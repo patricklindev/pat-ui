@@ -99,6 +99,4 @@ describe("Buttton", () => {
     fireEvent.click(btnDisabledElement);
     expect(btnDisabledProps.onClick).toHaveBeenCalledTimes(0);
   });
-
-  //new branch start
 });

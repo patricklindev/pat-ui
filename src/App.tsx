@@ -1,5 +1,11 @@
-import React from 'react';
-import Button, {ButtonType, ButtonSize} from './components/Button/Button';
+import React from "react";
+import "semantic-ui-css/semantic.min.css";
+import Button, { ButtonType, ButtonSize } from "./components/Button/Button";
+import ModalExample from "./components/Modal/Modal";
+import RatingExample from "./components/Rating/RatingExample";
+import ImageExample from "./components/Image/Image";
+import { Divider, Container } from "semantic-ui-react";
+
 function App() {
   return (
     <div className="App">
@@ -9,7 +15,7 @@ function App() {
       <Button
         disabled
         onClick={() => {
-          alert('Default Button Clicked');
+          alert("Default Button Clicked");
         }}
       >
         Default Button
@@ -34,6 +40,17 @@ function App() {
       <Button btnSize={ButtonSize.Large}>Large Button</Button>
       <Button>Default Button</Button>
       <Button btnSize={ButtonSize.Small}>Small Button</Button>
+      <Container>
+        <Divider horizontal />
+        <ModalExample />
+        <Divider horizontal />
+
+        <ImageExample></ImageExample>
+        <Divider horizontal />
+
+        <RatingExample></RatingExample>
+        <Divider horizontal />
+      </Container>
     </div>
   );
 }

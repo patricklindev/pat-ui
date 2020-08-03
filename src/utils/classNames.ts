@@ -1,8 +1,4 @@
-type ClassNamesArg = string | {[key: string]: boolean};
-// const styleClasses = classNames('btn', {
-//   [`btn-${btnType}`]: true,
-//   [`btn-${btnSize}`]: !!btnSize,
-// });
+export type ClassNamesArg = string | {[key: string]: boolean};
 export function classNames(...args: ClassNamesArg[]): string {
   return args
     .reduce((acc, cur) => {

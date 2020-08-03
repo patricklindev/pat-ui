@@ -19,6 +19,13 @@
     $btn-font-size,
     $border-radius
   );
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+  }
 }
 
 .btn-sm {
@@ -35,6 +42,17 @@
     $btn-padding-x-lg,
     $btn-font-size-lg,
     $border-radius-lg
+  );
+}
+
+.btn-default {
+  @include button-style(
+    $body-color,
+    $white,
+    $gray-400,
+    $primary,
+    $white,
+    $primary
   );
 }
 

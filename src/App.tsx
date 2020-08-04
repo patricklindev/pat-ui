@@ -1,11 +1,20 @@
 import React from 'react';
+import Rating, {RatingShape, RatingSize} from './components/Rating/Rating'
 import Button, {ButtonType, ButtonSize} from './components/Button/Button';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { far, faMoon, faStar, faHeart, faSmileWink } from '@fortawesome/free-regular-svg-icons'
+
+import {fas} from '@fortawesome/free-solid-svg-icons'
+
+
+library.add( fas, faMoon, faStar, faHeart, faSmileWink )
 function App() {
   return (
     <div className="App">
       <h1> Welcome To Pat-UI</h1>
       <h2>Default</h2>
-      <Button className="test">Default Button</Button>
+      <Rating rtShape={RatingShape.Moon}/>
+      {/* <Button className="test">Default Button</Button>
       <Button
         disabled
         onClick={() => {
@@ -33,7 +42,7 @@ function App() {
       <h2>Size</h2>
       <Button btnSize={ButtonSize.Large}>Large Button</Button>
       <Button>Default Button</Button>
-      <Button btnSize={ButtonSize.Small}>Small Button</Button>
+      <Button btnSize={ButtonSize.Small}>Small Button</Button> */}
     </div>
   );
 }

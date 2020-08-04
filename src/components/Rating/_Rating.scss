@@ -1,0 +1,29 @@
+#rt-container{
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-right: 2px;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
+svg {
+    pointer-events: none;
+    scale: 2;
+}
+
+.rt-icon {
+    color: lightgrey;
+    width: auto;
+    margin-right: 2px;
+}
+
+.rt-active {
+    color:yellowgreen;
+    transform: scale(1.1)
+}
+
+.rt-icon:hover, .rt-icon:hover~.rt-icon{
+    color: rgb(19, 112, 7);
+    transform: scale(1.1)
+}

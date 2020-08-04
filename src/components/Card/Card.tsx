@@ -1,40 +1,31 @@
 import React from "react";
 import { classNames } from "../../utils/classNames";
-
+import MyCard from "./myCard";
 export enum CardSize {
   Large = "lg",
   Small = "sm",
 }
-export enum CardLayout {
-  Vertical = "vertical",
+export enum CardType {
   Horizontal = "horizontal",
-}
-export enum CardImageType {
   Default = "default",
   CircledImage = "circledImage",
   NoImage = "noImage",
-}
-
-export enum CardTheme {
-  Light = "light",
   Dark = "dark",
 }
 
-export interface IButtonProps {
-  className?: string;
+export interface ICardProps {
   cardSize?: CardSize;
-  cardLayout?: CardLayout;
+  cardType?: CardType;
   children?: React.ReactNode;
-  cardImageType?: CardImageType;
+  className?: string;
 }
-
-export const Card = () => {
+const myCard = () => {
   return (
     <div className="card">
-      <img className="card-img-top" src="https://via.placeholder.com/150" />
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">
+      <img className="card img-top" src="https://via.placeholder.com/150" />
+      <div className="card body">
+        <h5 className="card title">Card title</h5>
+        <p className="card text">
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </p>
@@ -44,4 +35,18 @@ export const Card = () => {
       </div>
     </div>
   );
+};
+
+export const Card: React.FC<any> = (props) => {
+  const { cardSize, cardType, children, className, ...rest } = props;
+  let styleClasses = classNames("card", {
+    [`card-${cardType}`]: true,
+    [`card-${cardSize}`]: !!cardSize,
+  });
+  if (className) {
+    styleClasses += " " + className;
+  }
+  let card = <MyCard />;
+
+  return card;
 };

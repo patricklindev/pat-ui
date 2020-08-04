@@ -1,0 +1,21 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-weight: $dropdown-font-weight;
+    line-height: $dropdown-line-height;
+    color: $body-color;
+    white-space: nowrap;
+    text-align: center;
+    border: $dropdown-border-width solid transparent;
+    box-shadow: $dropdown-box-shadow;
+    cursor: pointer;
+
+    padding: $dropdown-padding-y $dropdown-padding-x;
+  
+    &.disabled,
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: $dropdown-disabled-opacity;
+      box-shadow: none;
+    }
+  }

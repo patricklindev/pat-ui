@@ -1,5 +1,7 @@
 import React from 'react';
-import Button, {ButtonType, ButtonSize} from './components/Button/Button';
+import Button, { ButtonType, ButtonSize } from './components/Button/Button';
+import Icon from './components/Icon/Icon';
+
 function App() {
   return (
     <div className="App">
@@ -34,6 +36,10 @@ function App() {
       <Button btnSize={ButtonSize.Large}>Large Button</Button>
       <Button>Default Button</Button>
       <Button btnSize={ButtonSize.Small}>Small Button</Button>
+      <svg width="22" height="22" viewBox="0 0 1024 1024">
+        <path d="M192 1024h640l64-704h-768zM640 128v-128h-256v128h-320v192l64-64h768l64 64v-192h-320zM576 128h-128v-64h128v64z"></path>
+      </svg>
+      <Icon className="angle down" />
     </div>
   );
 }

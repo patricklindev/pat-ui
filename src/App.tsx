@@ -1,5 +1,6 @@
-import React from 'react';
-import Button, {ButtonType, ButtonSize} from './components/Button/Button';
+import React from "react";
+import Button, { ButtonType, ButtonSize } from "./components/Button/Button";
+import { RenderCard } from "./components/Card/RenderCard";
 function App() {
   return (
     <div className="App">
@@ -9,7 +10,7 @@ function App() {
       <Button
         disabled
         onClick={() => {
-          alert('Default Button Clicked');
+          alert("Default Button Clicked");
         }}
       >
         Default Button
@@ -34,6 +35,10 @@ function App() {
       <Button btnSize={ButtonSize.Large}>Large Button</Button>
       <Button>Default Button</Button>
       <Button btnSize={ButtonSize.Small}>Small Button</Button>
+
+      <h2>Card Component</h2>
+      <h2>Default</h2>
+      <RenderCard></RenderCard>
     </div>
   );
 }

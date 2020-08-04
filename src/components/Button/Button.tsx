@@ -1,4 +1,9 @@
-import React from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  FC,
+  MouseEvent,
+} from 'react';
 import {classNames} from '../../utils/classNames';
 
 export enum ButtonSize {
@@ -13,20 +18,29 @@ export enum ButtonType {
   Link = 'link',
 }
 export interface IButtonProps {
+  /** set customized style */
   className?: string;
+  /** set button size */
   btnSize?: ButtonSize;
+  /** set button type */
   btnType?: ButtonType;
-  children?: React.ReactNode;
+  /** set disabled button */
   disabled?: boolean;
 }
 
-type NativeButtonProps = IButtonProps &
-  React.ButtonHTMLAttributes<HTMLButtonElement>;
+type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 type NativeAchorButtonProps = IButtonProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  AnchorHTMLAttributes<HTMLAnchorElement>;
 type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
 
-const Button: React.FC<PatButtonProps> = (props) => {
+/**
+ * A Button indicates a possible user action.
+ *
+ * ```js
+ * import {Button} from 'pat-ui'
+ * ```
+ */
+export const Button: FC<PatButtonProps> = (props) => {
   const {btnSize, btnType, children, disabled, className, ...rest} = props;
   let styleClasses = classNames('btn', {
     [`btn-${btnType}`]: true,
@@ -50,7 +64,7 @@ const Button: React.FC<PatButtonProps> = (props) => {
     );
   } else {
     if (disabled) {
-      rest.onClick = (e: React.MouseEvent) => {
+      rest.onClick = (e: MouseEvent) => {
         e.preventDefault();
       };
     }

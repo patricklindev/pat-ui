@@ -1,17 +1,18 @@
 import React from "react";
-function MyCard() {
+function MyCard(props) {
   return (
-    <div className="card">
-      <img className="card img-top" src="https://via.placeholder.com/150" />
-      <div className="card body">
-        <h5 className="card title">Card title</h5>
-        <p className="card text">
+    <div className={props.className}>
+      <img
+        className={props.className + " img"}
+        src="https://via.placeholder.com/150"
+      />
+      <div className={props.className + " body"}>
+        <h5 className={props.className + " title"}>Card title</h5>
+        <p className={props.className + " content"}>
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </p>
-        <a href="#" className="btn btn-primary">
-          Go somewhere
-        </a>
+        <a href="#">Go somewhere</a>
       </div>
     </div>
   );

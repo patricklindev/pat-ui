@@ -16,29 +16,15 @@ export enum CardType {
 export interface ICardProps {
   cardSize?: CardSize;
   cardType?: CardType;
-  children?: React.ReactNode;
   className?: string;
 }
-const myCard = () => {
-  return (
-    <div className="card">
-      <img className="card img-top" src="https://via.placeholder.com/150" />
-      <div className="card body">
-        <h5 className="card title">Card title</h5>
-        <p className="card text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" className="btn btn-primary">
-          Go somewhere
-        </a>
-      </div>
-    </div>
-  );
-};
+export interface ImgHTMLAttributes<T> {
+  src?: string;
+}
+type CardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
 
-export const Card: React.FC<any> = (props) => {
-  const { cardSize, cardType, children, className, ...rest } = props;
+export const Card: React.FC<CardProps> = (props) => {
+  const { cardSize, cardType, className, src } = props;
   let styleClasses = classNames("card", {
     [`card-${cardType}`]: true,
     [`card-${cardSize}`]: !!cardSize,
@@ -46,7 +32,10 @@ export const Card: React.FC<any> = (props) => {
   if (className) {
     styleClasses += " " + className;
   }
-  let card = <MyCard />;
-
+  let card = <MyCard className={styleClasses}></MyCard>;
   return card;
 };
+Card.defaultProps = {
+  cardType: CardType.Default,
+};
+export default Card;

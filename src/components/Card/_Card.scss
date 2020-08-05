@@ -7,8 +7,12 @@
   border-color: $border-color;
   display: flex;
   flex-direction: column;
-  .card-body {
-    font-size: $font-size-sm;
-    padding: 1rem;
-  }
+  .card body {
+  font-size: $font-size-sm;
+  padding: 0.6rem;
 }
+.img {
+  height: 10rem;
+}
+
+

@@ -27,6 +27,8 @@
   }
 
   .body {
+    border-style: none;
+
     display: flex;
     font-size: $font-size-sm;
     flex-direction: column;
@@ -59,6 +61,45 @@
     padding: 0.6rem;
   }
   .btn {
+    width: 10rem;
+  }
+}
+
+.card-noImage {
+  @include card-border;
+  width: 20rem;
+
+  display: flex;
+  flex-direction: column;
+  .image {
+    display: none;
+  }
+  .body {
+    border-style: none;
+    font-size: $font-size-sm;
+    padding: 0.6rem;
+  }
+  .btn {
+    width: 10rem;
+  }
+}
+.card-dark {
+  @include card-border;
+
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+
+  .body {
+    border-style: none;
+    font-size: $font-size-sm;
+    background-color: $gray-800;
+    color: $white;
+    padding: 0.6rem;
+  }
+  .btn {
+    @include button-style($white, $secondary, $secondary);
+
     width: 10rem;
   }
 }

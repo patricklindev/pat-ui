@@ -13,6 +13,8 @@ export function RenderCard() {
       <Card cardType={CardType.CircledImage}></Card>
       <h2>NoImage</h2>
       <Card cardType={CardType.NoImage}></Card>
+      <h2>Dark</h2>
+      <Card cardType={CardType.Dark}></Card>
     </>
   );
 }

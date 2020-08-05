@@ -1,9 +1,12 @@
 import React from 'react';
 import Button, {ButtonType, ButtonSize} from './components/Button/Button';
+import Input from "./components/Input/Input";
 function App() {
   return (
     <div className="App">
       <h1> Welcome To Pat-UI</h1>
+        <h2>Default</h2>
+        <Input id={'good'} size={'mini'} icon={{ name: 'search', circular: true, link: true }} focus placeholder={'Search....'}></Input>
       <h2>Default</h2>
       <Button className="test">Default Button</Button>
       <Button

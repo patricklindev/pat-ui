@@ -36,8 +36,6 @@ function App() {
       <Button>Default Button</Button>
       <Button btnSize={ButtonSize.Small}>Small Button</Button>
 
-      <h2>Card Component</h2>
-      <h2>Default</h2>
       <RenderCard></RenderCard>
     </div>
   );

@@ -1,17 +1,64 @@
-.card {
+.card-default {
+  @include card-border;
   width: 15rem;
-
-  border-style: solid;
-  border-width: $border-width;
-  border-radius: $border-radius;
-  border-color: $border-color;
   display: flex;
   flex-direction: column;
-  .card body {
+  img {
+    height: 10rem;
+  }
+  .body {
+    border-style: none;
     font-size: $font-size-sm;
     padding: 0.6rem;
   }
-  .img {
+  .btn {
+    width: 10rem;
+  }
+}
+
+.card-horizontal {
+  @include card-border;
+  width: 40rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  .image {
+    width: 10rem;
+  }
+
+  .body {
+    display: flex;
+    font-size: $font-size-sm;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.6rem;
+  }
+  .btn {
+    width: 10rem;
+  }
+}
+.card-circledImage {
+  @include card-border;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  .image {
     height: 10rem;
+    display: flex;
+    border-style: none;
+    padding: 0.5rem;
+  }
+  img {
+    width: 10rem;
+    border-radius: 50%;
+    align-self: center;
+  }
+  .body {
+    border-style: none;
+    font-size: $font-size-sm;
+    padding: 0.6rem;
+  }
+  .btn {
+    width: 10rem;
   }
 }

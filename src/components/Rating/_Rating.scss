@@ -2,28 +2,135 @@
     display: inline-flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    margin-right: 2px;
+    margin: 4px;
+    padding: 4px;
     flex-wrap: nowrap;
     cursor: pointer;
 }
 
 svg {
     pointer-events: none;
-    scale: 2;
+    
 }
 
 .rt-icon {
     color: lightgrey;
-    width: auto;
-    margin-right: 2px;
+    margin-right: 4px;
+
 }
 
-.rt-active {
-    color:yellowgreen;
-    transform: scale(1.1)
+// .rt-active {
+//     color:yellowgreen;
+//     transform: scale(1.1)
+// }
+
+// .rt-icon:hover, .rt-icon:hover~.rt-icon{
+//     color: rgb(19, 112, 7);
+//     transform: scale(1.1)
+// }
+
+// .rt-sm > *{
+//     @include rating-size(
+//         16px,
+//         16px
+//     )
+// }
+
+// .rt-rg > * {
+//     @include rating-size(
+//         20px,
+//         20px
+//     )
+// }
+
+// .rt-lg > * {
+//     @include rating-size(
+//         24px,
+//         24px
+//     )
+// }
+
+// .rt-lgr > * {
+//     @include rating-size(
+//         28px,
+//         28px
+//     )
+// }
+
+.rt-star > * {
+    @include rating-shape($star,$yellow)
 }
 
-.rt-icon:hover, .rt-icon:hover~.rt-icon{
-    color: rgb(19, 112, 7);
-    transform: scale(1.1)
+.rt-moon > * {
+    @include rating-shape($moon,$yellow)
 }
+
+.rt-heart > * {
+    @include rating-shape($heart,$pink)
+}
+
+.rt-smile-wink > * {
+    @include rating-shape($smile-wink,$cyan)
+}
+
+.rt-bounce{
+        animation: stretch-bounce 1s ;
+
+}
+
+.rt-fade {
+        animation: fade 1s reverse;
+}
+
+.rt-swing {
+    animation: swing 1s;
+}
+
+
+
+@keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.5);
+    }
+    50% {
+      transform: scale(0.9);
+    }
+    75% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    25% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.6;
+    }
+    75% {
+      transform: scale(1.8);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes swing {
+    0%{transform: rotate(10deg);}
+    50%{transform: rotate(-5deg)}
+    100%{transform: rotate(10deg);}
+  }

@@ -27,3 +27,51 @@
     border-color: $hover-border-color;
   }
 }
+
+// @mixin rating-size(
+//   $width,
+//   $height
+// ) {
+//   width: $width;
+//   height: $height;
+// }
+
+@mixin rating-shape(
+  $shape,
+  $active-color,
+  $hover-color: lighten($active-color, 15%) ,
+) {
+  // &::before {
+  //   font-family: fontAwesome;
+  //   display: inline-block;
+  //   content: $shape;
+  //   position: relative;
+  //   float: right;
+  //   z-index: 2;
+  // }
+  &.rt-active{
+    color: $active-color;
+  }
+
+  &:hover, &:hover~* {
+    color: $hover-color;
+  }
+}
+
+@keyframes stretch-bounce {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.5);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

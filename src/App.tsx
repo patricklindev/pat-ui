@@ -1,5 +1,5 @@
 import React from 'react';
-import Rating, {RatingShape, RatingSize} from './components/Rating/Rating'
+import Rating, {RatingShape, RatingSize, RatingAnimation} from './components/Rating/Rating'
 import Button, {ButtonType, ButtonSize} from './components/Button/Button';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { far, faMoon, faStar, faHeart, faSmileWink } from '@fortawesome/free-regular-svg-icons'
@@ -13,7 +13,10 @@ function App() {
     <div className="App">
       <h1> Welcome To Pat-UI</h1>
       <h2>Default</h2>
+      <Rating rtAnimation={RatingAnimation.Swing} rtSize={RatingSize.Large}/>
       <Rating rtShape={RatingShape.Moon}/>
+      <Rating rtShape={RatingShape.Wink}/>
+      <Rating rtShape={RatingShape.Heart}/>
       {/* <Button className="test">Default Button</Button>
       <Button
         disabled

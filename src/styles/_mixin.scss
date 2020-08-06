@@ -28,13 +28,7 @@
   }
 }
 
-// @mixin rating-size(
-//   $width,
-//   $height
-// ) {
-//   width: $width;
-//   height: $height;
-// }
+
 
 @mixin rating-shape(
   $shape,
@@ -55,23 +49,5 @@
 
   &:hover, &:hover~* {
     color: $hover-color;
-  }
-}
-
-@keyframes stretch-bounce {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.5);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  75% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
   }
 }

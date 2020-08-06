@@ -42,12 +42,18 @@ export const DiffTypeCard = () => (
     >
       No Image Card
     </Card>
+    <Card
+      onClick={action('Default Button clicked')}
+      cardType={CardType.LargeImage}
+    >
+      Large Image Card
+    </Card>
   </div>
 );
 export const DiffThemeCard = () => (
   <div>
     <Card onClick={action('Dark Button clicked')} cardType={CardType.Dark}>
-      Dark Theme Card
+      Dark Card
     </Card>
   </div>
 );

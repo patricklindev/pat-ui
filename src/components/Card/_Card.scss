@@ -3,7 +3,6 @@
   width: 15rem;
   display: flex;
   flex-direction: column;
-
   img {
     height: 10rem;
   }
@@ -26,7 +25,6 @@
     margin: 0px;
     width: 10rem;
   }
-
   .body {
     @include card-body-style;
     display: flex;
@@ -40,7 +38,6 @@
   @include card-border;
   margin-right: '5px';
   margin: 5px;
-
   width: 15rem;
   display: flex;
   flex-direction: column;
@@ -68,12 +65,10 @@
   @include card-border;
   width: 20rem;
   margin: 5px;
-
   display: flex;
   flex-direction: column;
   .image {
     margin: 0px;
-
     display: none;
   }
   .body {
@@ -85,21 +80,16 @@
 }
 .card-dark {
   @include card-border;
-
   width: 15rem;
   display: flex;
   flex-direction: column;
-
   .body {
     @include card-body-style;
-
     background-color: $gray-800;
     color: $white;
   }
-
   .btn {
     @include button-style($white, $secondary, $secondary);
-
     width: 10rem;
   }
 }
@@ -107,7 +97,6 @@
 .card-sm {
   @include card-border;
   margin: 5px;
-
   width: 12rem;
   display: flex;
   flex-direction: column;
@@ -148,5 +137,29 @@
   }
   .btn {
     width: 12rem;
+  }
+}
+
+.card-largeImage {
+  @include card-border;
+  width: 18rem;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  .image {
+    margin: 0px;
+  }
+  .image img {
+    height: 12rem;
+  }
+  .body {
+    text-align: center;
+    @include card-body-style;
+  }
+  .body p {
+    display: none;
+  }
+  .btn {
+    display: none;
   }
 }

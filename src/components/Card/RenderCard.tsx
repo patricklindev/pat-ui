@@ -17,6 +17,7 @@ export function RenderCard() {
         <Card cardType={CardType.Horizontal}></Card>
         <Card cardType={CardType.CircledImage}></Card>
         <Card cardType={CardType.NoImage}></Card>
+        <Card cardType={CardType.LargeImage}></Card>
       </div>
       <h2>ColorTheme</h2>
       <div>

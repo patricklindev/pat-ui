@@ -12,6 +12,7 @@ export enum CardType {
   CircledImage = 'circledImage',
   NoImage = 'noImage',
   Dark = 'dark',
+  LargeImage = 'largeImage',
 }
 
 export interface ICardProps {

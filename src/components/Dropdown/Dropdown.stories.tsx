@@ -9,7 +9,7 @@ export default {
 
 export const DefaultDropdown = () => (
   <div>
-    <Dropdown onChange={action(`selected`)} placeholder='Select a type'>
+    <Dropdown onChange={action('selected')} placeholder='Select a type'>
       <Dropdown.Item>Sedan</Dropdown.Item>
       <Dropdown.Item>SUV</Dropdown.Item>
       <Dropdown.Item>Convertible</Dropdown.Item>

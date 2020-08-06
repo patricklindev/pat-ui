@@ -21,7 +21,7 @@ export const DiffSizeCard = () => (
     <Card
       onClick={action('Default Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardSize={CardSize.Small}
+      cardSize='sm'
     >
       Small Card
     </Card>
@@ -29,7 +29,7 @@ export const DiffSizeCard = () => (
     <Card
       onClick={action('Default Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardSize={CardSize.Large}
+      cardSize='lg'
     >
       Large Card
     </Card>
@@ -40,28 +40,28 @@ export const DiffTypeCard = () => (
     <Card
       onClick={action('Default Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardType={CardType.Horizontal}
+      cardType='horizontal'
     >
       Horizontal Card
     </Card>
     <Card
       onClick={action('Default Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardType={CardType.CircledImage}
+      cardType='circledImage'
     >
       Circled Image Card
     </Card>
     <Card
       onClick={action('Default Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardType={CardType.NoImage}
+      cardType='noImage'
     >
       No Image Card
     </Card>
     <Card
       onClick={action('Default Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardType={CardType.LargeImage}
+      cardType='largeImage'
     >
       Large Image Card
     </Card>
@@ -72,7 +72,7 @@ export const DiffThemeCard = () => (
     <Card
       onClick={action('Dark Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardType={CardType.Dark}
+      cardType='dark'
     >
       Dark Card
     </Card>

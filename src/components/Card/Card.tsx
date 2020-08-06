@@ -3,18 +3,15 @@ import { PatButtonProps } from '../Button/Button';
 import { classNames } from '../../utils/classNames';
 import MyCard from './myCard';
 
-export enum CardSize {
-  Large = 'lg',
-  Small = 'sm',
-}
-export enum CardType {
-  Horizontal = 'horizontal',
-  Default = 'default',
-  CircledImage = 'circledImage',
-  NoImage = 'noImage',
-  Dark = 'dark',
-  LargeImage = 'largeImage',
-}
+export type CardSize = 'lg' | 'sm';
+
+export type CardType =
+  | 'horizontal'
+  | 'default'
+  | 'circledImage'
+  | 'noImage'
+  | 'dark'
+  | 'largeImage';
 
 export interface ICardProps {
   cardSize?: CardSize;
@@ -25,7 +22,7 @@ export interface ICardProps {
 //   src?: string;
 // }
 
-type myCardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
+export type myCardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
 /**
  * A default card with a button to show more
  *
@@ -51,6 +48,6 @@ export const Card: FC<myCardProps> = (props) => {
   return card;
 };
 Card.defaultProps = {
-  cardType: CardType.Default,
+  cardType: 'default',
 };
 export default Card;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import Card, { CardType, CardSize } from './Card';
+import Card, { myCardProps } from './Card';
 describe('Card', () => {
   it('should match snapshot', () => {
     const { asFragment } = render(<Card> Snapshot Card </Card>);
@@ -16,8 +16,8 @@ describe('Card', () => {
     expect(cardElement).toHaveClass('card card-default');
   });
   it('should render dark card with correct title', () => {
-    const cardProps = {
-      cardType: CardType.Dark,
+    const cardProps: myCardProps = {
+      cardType: 'dark',
       onClick: jest.fn(),
     };
     const wrapper = render(<Card {...cardProps}>Dark Card</Card>);
@@ -30,8 +30,8 @@ describe('Card', () => {
     expect(cardElement).toHaveClass('card card-dark');
   });
   it('should render small size card', () => {
-    const cardProps = {
-      cardSize: CardSize.Small,
+    const cardProps: myCardProps = {
+      cardSize: 'sm',
       onClick: jest.fn(),
     };
     const wrapper = render(<Card {...cardProps}>Small Card</Card>);

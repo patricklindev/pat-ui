@@ -6,7 +6,7 @@ cache:
     - node_modules
 env: -CI-ture
 script: npm ci && echo hello
-jobs:
-  include:
-    - stage: unit tests
-    script: npm run test
+# jobs:
+#   include:
+#     - stage: unit tests
+#     script: npm run test

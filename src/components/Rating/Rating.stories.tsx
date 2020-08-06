@@ -7,8 +7,8 @@ export default {
 };
 
 const RatingStyle:React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
 };
 
 export const defaultRating = () => (

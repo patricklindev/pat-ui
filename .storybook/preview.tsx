@@ -1,5 +1,4 @@
 import '../src/styles/index.scss';
-import 'semantic-ui-css/components/icon.css';
 import {addDecorator, addParameters} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
 import React from 'react';

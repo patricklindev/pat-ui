@@ -1,5 +1,6 @@
 import React from 'react';
 import { RenderCard } from './components/Card/RenderCard';
+import { CardType, CardSize } from './components/Card/Card';
 function App() {
   return (
     <div className='App'>

@@ -11,7 +11,9 @@ describe('Card', () => {
     const wrapper = render(<Card {...cardProps}>Dark Card</Card>);
     const element = wrapper.queryByText('Dark Card') as HTMLElement;
     expect(element).toBeInTheDocument();
-    expect(element).toHaveClass('card card-dark');
+    expect(element.tagName).toBe('H5');
+    const cardElement = wrapper.container.firstChild;
+    expect(cardElement).toHaveClass('card card-dark');
     // expect(cardProps.onClick).toHaveBeenCalledTimes(0);
     // fireEvent.click(element);
     // expect(cardProps.onClick).toHaveBeenCalledTimes(1);

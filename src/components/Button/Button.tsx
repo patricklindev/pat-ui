@@ -6,17 +6,24 @@ import React, {
 } from 'react';
 import {classNames} from '../../utils/classNames';
 
-export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm',
-}
-export enum ButtonType {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Danger = 'danger',
-  Default = 'default',
-  Link = 'link',
-}
+// export enum ButtonSize {
+//   Large = 'lg',
+//   Small = 'sm',
+// }
+export type ButtonSize = 'lg' | 'sm';
+export type ButtonType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'default'
+  | 'link';
+// export enum ButtonType {
+//   Primary = 'primary',
+//   Secondary = 'secondary',
+//   Danger = 'danger',
+//   Default = 'default',
+//   Link = 'link',
+// }
 export interface IButtonProps {
   /** set customized style */
   className?: string;
@@ -31,7 +38,7 @@ export interface IButtonProps {
 type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 type NativeAchorButtonProps = IButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;
-type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
+export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
 
 /**
  * A Button indicates a possible user action.
@@ -45,14 +52,14 @@ export const Button: FC<PatButtonProps> = (props) => {
   let styleClasses = classNames('btn', {
     [`btn-${btnType}`]: true,
     [`btn-${btnSize}`]: !!btnSize,
-    disabled: !!(disabled && btnType === ButtonType.Link),
+    disabled: !!(disabled && btnType === 'link'),
   });
   if (className) {
     styleClasses += ' ' + className;
   }
 
   let btn;
-  if (btnType !== ButtonType.Link) {
+  if (btnType !== 'link') {
     btn = (
       <button
         className={styleClasses}
@@ -78,7 +85,7 @@ export const Button: FC<PatButtonProps> = (props) => {
 };
 
 Button.defaultProps = {
-  btnType: ButtonType.Default,
+  btnType: 'default',
   disabled: false,
 };
 

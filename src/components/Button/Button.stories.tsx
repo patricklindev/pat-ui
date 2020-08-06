@@ -1,6 +1,6 @@
 import React from 'react';
 import {action} from '@storybook/addon-actions';
-import Button, {ButtonType, ButtonSize} from './Button';
+import Button from './Button';
 
 export default {
   title: 'Button',
@@ -20,7 +20,7 @@ export const DiffSizeButton = () => (
   <div>
     <Button
       style={buttonStyle}
-      btnSize={ButtonSize.Small}
+      btnSize="sm"
       onClick={action('Small Button clicked')}
     >
       Small Button
@@ -28,7 +28,7 @@ export const DiffSizeButton = () => (
     <Button style={buttonStyle} onClick={action('Default Button clicked')}>
       Default Button
     </Button>
-    <Button btnSize={ButtonSize.Large} onClick={action('Large Button clicked')}>
+    <Button btnSize="lg" onClick={action('Large Button clicked')}>
       Large Button
     </Button>
   </div>
@@ -38,28 +38,28 @@ export const DiffTypeButton = () => (
   <div>
     <Button
       style={buttonStyle}
-      btnType={ButtonType.Primary}
+      btnType="primary"
       onClick={action('Primary Button clicked')}
     >
       Primary Button
     </Button>
     <Button
       style={buttonStyle}
-      btnType={ButtonType.Secondary}
+      btnType="secondary"
       onClick={action('Secondary Button clicked')}
     >
       Secondary Button
     </Button>
     <Button
       style={buttonStyle}
-      btnType={ButtonType.Danger}
+      btnType="danger"
       onClick={action('Danger Button clicked')}
     >
       Danger Button
     </Button>
     <Button
       style={buttonStyle}
-      btnType={ButtonType.Default}
+      btnType="default"
       onClick={action('Default Button clicked')}
     >
       Default Button
@@ -67,21 +67,21 @@ export const DiffTypeButton = () => (
     <Button
       style={buttonStyle}
       disabled
-      btnType={ButtonType.Default}
+      btnType="default"
       onClick={action('DisabledDefault Button clicked should not work')}
     >
       Disabled Default Button
     </Button>
     <Button
       style={buttonStyle}
-      btnType={ButtonType.Link}
+      btnType="link"
       onClick={action('Link Button clicked')}
     >
       Link Button
     </Button>
     <Button
       disabled
-      btnType={ButtonType.Link}
+      btnType="link"
       onClick={action('Disabled Link Button clicked should not work')}
     >
       Disabled Link Button

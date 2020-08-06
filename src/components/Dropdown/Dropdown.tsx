@@ -1,30 +1,56 @@
-import React from 'react';
-import DropdownItem, { PatDropdownItemProps } from './DropdownItem';
-import { classNames } from '../../utils/classNames';
+import React, { CSSProperties, useState, Children, ReactElement } from 'react';
+import DropdownItem, { IDropdownItemProps } from './DropdownItem';
 
 interface IDropdownProps {
+  children?: React.ReactElement | React.ReactElement[];
   className?: string;
-  children?: React.ReactNode;
+  disabled?: boolean;
+  cssStyle?: CSSProperties;
+  placeholder?: string;
 }
 
-interface PatDropDownSubComponents {
-  Item: React.FC<PatDropdownItemProps>
+interface PatDropdownSubComponents {
+  Item: React.FC<IDropdownItemProps>;
 }
 
-type PatDropdownProps = IDropdownProps & React.SelectHTMLAttributes<HTMLSelectElement>;
+type PatDropdown = React.FC<IDropdownProps> & PatDropdownSubComponents;
 
-type PatDropdown = React.FC<PatDropdownProps> & PatDropDownSubComponents;
+const Dropdown: PatDropdown = (props) => {
+  const { className, children, cssStyle, placeholder } = props;
 
-const Dropdown : PatDropdown = (props) => {
-  const { children, className, ...rest } = props;
-  let styleClasses = classNames('dropdown');
+  const [isOptionListOpen, setIsOptionListOpen] = useState(false);
+  const [activeOption, setActiveOption] = useState(placeholder ? placeholder : '');
 
-  if(className) {
-    styleClasses += ` ${className}`;
+  const toggleOptionList = () => {
+    setIsOptionListOpen(!isOptionListOpen);
   }
 
-  return <select className={styleClasses} {...rest}>{children}</select>
-}
+  const setSelected = (val: string) => {
+    setActiveOption(val);
+  }
+
+  let classNames = ['dropdown', className].join(' ');
+  if(isOptionListOpen) {
+    classNames = ['dropdown', 'open', className].join(' ');
+  }
+
+  return (
+    <div className="dropdown__wrapper">
+      <div className={classNames} style={cssStyle} onClick={() => { toggleOptionList() }}>
+        <div className="dropdown__active_option">
+          <span>{activeOption}</span>
+          <div className="arrow" />
+        </div>
+
+        <div className="dropdown__options">
+          {
+            children ? Children.map(children, (child : ReactElement) => React.cloneElement(child, { setSelected })) : children
+          }
+        </div>
+      </div>
+    </div>
+  );
+};
 
 Dropdown.Item = DropdownItem;
 

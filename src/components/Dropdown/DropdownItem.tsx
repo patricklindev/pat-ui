@@ -1,16 +1,32 @@
-import React, { OptionHTMLAttributes } from 'react';
+import React, { CSSProperties } from 'react';
 
-interface IDropdownItem {
-  children?: React.ReactNode;
+export interface IDropdownItemProps {
+  children?: string;
   className?: string;
+  disabled?: boolean;
+  cssStyle?: CSSProperties;
+  setSelected?: (text: string) => void;
 }
 
-export type PatDropdownItemProps = IDropdownItem & OptionHTMLAttributes<HTMLOptionElement>;
+const DropdownItem: React.FC<IDropdownItemProps> = (props) => {
+  const { className, children, cssStyle, setSelected } = props;
 
-const DropdownItem : React.FC<PatDropdownItemProps> = (props) => {
-  const { children, className, ...rest } = props;
+  let classNames = 'dropdown__option';
+  if(className) {
+    classNames = ['dropdown__option', className].join(' ');
+  } 
 
-  return <option className={className} {...rest}>{children}</option>
-}
+  const callback = () => {
+    if(setSelected && children) {
+      setSelected(children);
+    }
+  }
+
+  return (
+    <span className={classNames} style={cssStyle} onClick={callback}>
+      {children}
+    </span>
+  );
+};
 
 export default DropdownItem;

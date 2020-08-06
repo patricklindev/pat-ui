@@ -4,7 +4,7 @@ import { RenderCard } from "./components/Card/RenderCard";
 function App() {
   return (
     <div className="App">
-      <h1> Welcome To Pat-UI</h1>
+      {/* <h1> Welcome To Pat-UI</h1>
       <h2>Default</h2>
       <Button className="test">Default Button</Button>
       <Button
@@ -36,7 +36,7 @@ function App() {
       <Button>Default Button</Button>
       <Button btnSize={ButtonSize.Small}>Small Button</Button>
 
-      <RenderCard></RenderCard>
+      <RenderCard></RenderCard> */}
     </div>
   );
 }

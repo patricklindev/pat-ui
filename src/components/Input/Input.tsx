@@ -1,25 +1,36 @@
-import React from 'react';
+import React,{
+    InputHTMLAttributes,
+    FC
+} from 'react';
 import {classNames} from '../../utils/classNames';
 
 interface IInputProps{
+    /** set customized style */
     className?: string;
-    placeholder?: string;
-    size?: string;
+    /** set input bar size */
+    size?: 'mini'|'small'|'large'|'big'|'huge'|'massive';
+    /** make input bar always focused */
     focus?: boolean,
+    /** disabled the input bar */
     disabled?: boolean,
+    /** apply error style to input bar */
     error?: boolean,
+    /** make input bar transparent */
     transparent?: boolean,
+    /** make input bar take whole space of parent container */
     fluid?: boolean,
+    /** add specific icon to input bar */
     icon?: string|{[key:string]:string|boolean},
+    /** apply loading style to input bar */
     loading?: boolean,
-    iconPosition?: string,
-    labeled?: string
+    /** set icon to show on left or right, default is right */
+    iconPosition?: 'left'|'right',
 }
 
-type PatInputProps = IInputProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>;
+type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
-const Input: React.FC<PatInputProps> = (props) => {
-    const {size,focus,disabled,error,transparent,fluid, icon,loading,iconPosition,labeled, ...rest} = props;
+const Input: FC<PatInputProps> = (props) => {
+    const {size,focus,disabled,error,transparent,fluid, icon,loading,iconPosition, ...rest} = props;
     const styleClasses = classNames('ui', 'input', {
         [`input-focus`]: !!focus,
         [`input-${size}`]: !!size,
@@ -29,8 +40,7 @@ const Input: React.FC<PatInputProps> = (props) => {
         [`input-fluid`]: !!fluid,
         'input-loading':!!loading,
         [`input-${iconPosition}`]: !!iconPosition,
-        'input-icon': !!icon,
-        'input-labeled': !!labeled,
+        icon: !!icon || !!loading,
     });
     const iconFilteredClasses:{[key:string]:boolean} = {};
     let iconName:string = "";
@@ -42,14 +52,14 @@ const Input: React.FC<PatInputProps> = (props) => {
         }
         iconName = icon['name'] as string;
     }
-    const iconClasses = classNames({[`${icon}`]: !!icon && typeof icon === 'string', [`${iconName}`]:!!iconName},iconFilteredClasses, 'input-icon');
+    const iconClasses = classNames({[`${icon}`]: !!icon && typeof icon === 'string' && !loading, [`${iconName}`]:!!iconName, 'spinner big loading':!!loading},iconFilteredClasses, 'icon');
     const inputIcon = <i aria-hidden={'true'} className={iconClasses}></i>;
     return (
         <div
             className={styleClasses}
         >
-            <input type="text" {...rest}/>
-            {icon? inputIcon:null}
+            <input type="text" disabled={disabled} {...rest}/>
+            {icon || loading? inputIcon:null}
         </div>
     )
 };

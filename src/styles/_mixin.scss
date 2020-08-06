@@ -27,3 +27,15 @@
     border-color: $hover-border-color;
   }
 }
+
+@mixin message-size($padding-y, $padding-x, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+@mixin message-style($color, $background, $border-color) {
+  color: $color;
+  background: $background;
+  border-color: $border-color;
+}

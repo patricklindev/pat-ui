@@ -1,5 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
+import { FontAwesomeIconProps, FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 export enum messageType {
     Basic = 'bs',
@@ -8,23 +10,27 @@ export enum messageType {
     Dismiss = 'ds'
 }
 
+export enum iconType {
+    Spinner = 'spinner'
+}
+
 export interface IMessageProps {
     className?: string;
     msgType?: messageType;
 }
 
-type DivMessageProps = IMessageProps & HTMLAttributes<HTMLDivElement>;
-type PMessageProps = IMessageProps & HTMLAttributes<HTMLParagraphElement>;
+//type DivMessageProps = IMessageProps & HTMLAttributes<HTMLDivElement>;
+//type PMessageProps = IMessageProps & HTMLAttributes<HTMLParagraphElement>;
 type ITagMessageProps = IMessageProps & HTMLAttributes<HTMLElement>;
-type UlMessageProps = IMessageProps & HTMLAttributes<HTMLUListElement>;
+//type UlMessageProps = IMessageProps & HTMLAttributes<HTMLUListElement>;
 
-type AllMessageProps = DivMessageProps | PMessageProps | ITagMessageProps | UlMessageProps;
+//type AllMessageProps = DivMessageProps | PMessageProps | ITagMessageProps | UlMessageProps;
 
-export const Message: FC<AllMessageProps> = (props) => {
+export const Message: FC<ITagMessageProps> = (props) => {
     const {className, msgType, ...rest} = props;
     
-    let styleClasses = classNames('msg', { 
-        [`btn-${msgType}`]: true
+    let styleClasses = classNames('msg', {
+        [`msg-${msgType}`]: true
     });
 
     if (className) {
@@ -32,8 +38,9 @@ export const Message: FC<AllMessageProps> = (props) => {
     }
 
     let message = (
-        <>
-        </>
+        <div>
+            <div className={styleClasses} {...(rest as ITagMessageProps)}></div>
+        </div>
     );
 
     return message;

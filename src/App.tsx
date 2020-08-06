@@ -34,9 +34,9 @@ function App() {
       <h2>Size</h2>
       <Button btnSize={ButtonSize.Large}>Large Button</Button>
       <Button>Default Button</Button>
-      <Button btnSize={ButtonSize.Small}>Small Button</Button>
+      <Button btnSize={ButtonSize.Small}>Small Button</Button> */}
 
-      <RenderCard></RenderCard> */}
+      <RenderCard></RenderCard>
     </div>
   );
 }

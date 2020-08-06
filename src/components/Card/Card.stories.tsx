@@ -8,9 +8,7 @@ export default {
 };
 
 export const DefaultCard = () => (
-  <Card onClick={action("Default Button clicked")} cardType={CardType.Default}>
-    Default Card
-  </Card>
+  <Card onClick={action("Default Button clicked")}>Default Card</Card>
 );
 
 export const DiffSizeCard = () => (
@@ -19,18 +17,37 @@ export const DiffSizeCard = () => (
       Small Card
     </Card>
 
-    <Card cardSize={CardSize.Large}>Large Card</Card>
+    <Card onClick={action("Default Button clicked")} cardSize={CardSize.Large}>
+      Large Card
+    </Card>
   </div>
 );
 export const DiffTypeCard = () => (
   <div>
-    <Card cardType={CardType.Horizontal}>Horizontal Card</Card>
-    <Card cardType={CardType.CircledImage}>Circled Image Card</Card>
-    <Card cardType={CardType.NoImage}>No Image Card</Card>
+    <Card
+      onClick={action("Default Button clicked")}
+      cardType={CardType.Horizontal}
+    >
+      Horizontal Card
+    </Card>
+    <Card
+      onClick={action("Default Button clicked")}
+      cardType={CardType.CircledImage}
+    >
+      Circled Image Card
+    </Card>
+    <Card
+      onClick={action("Default Button clicked")}
+      cardType={CardType.NoImage}
+    >
+      No Image Card
+    </Card>
   </div>
 );
 export const DiffThemeCard = () => (
   <div>
-    <Card cardType={CardType.Dark}>No Image Card</Card>
+    <Card onClick={action("Dark Button clicked")} cardType={CardType.Dark}>
+      Dark Theme Card
+    </Card>
   </div>
 );

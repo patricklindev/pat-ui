@@ -3,6 +3,7 @@ import React, {
   AnchorHTMLAttributes,
   FC,
   MouseEvent,
+  ImgHTMLAttributes,
 } from "react";
 import { PatButtonProps } from "../Button/Button";
 import { classNames } from "../../utils/classNames";
@@ -28,7 +29,7 @@ export interface ICardProps {
 //   src?: string;
 // }
 
-type myCardProps = ICardProps & React.ImgHTMLAttributes<HTMLImageElement>;
+type myCardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
 /**
  * A default card with a button to show more
  *
@@ -36,7 +37,7 @@ type myCardProps = ICardProps & React.ImgHTMLAttributes<HTMLImageElement>;
  * import {Card} from 'pat-ui'
  * ```
  */
-export const Card: React.FC<myCardProps> = (props) => {
+export const Card: FC<myCardProps> = (props) => {
   const { cardSize, cardType, children, className, ...rest } = props;
   let styleClasses = classNames("card", {
     [`card-${cardType}`]: true,
@@ -45,8 +46,13 @@ export const Card: React.FC<myCardProps> = (props) => {
   if (className) {
     styleClasses += " " + className;
   }
+
   let card = (
-    <MyCard className={styleClasses} {...(rest as myCardProps)}>
+    <MyCard
+      className={styleClasses}
+      src={"https://via.placeholder.com/150"}
+      {...(rest as myCardProps)}
+    >
       {props.children}
     </MyCard>
   );

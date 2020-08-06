@@ -27,7 +27,6 @@ interface PatDropdownSubComponents {
   Item: FC<IDropdownItemProps>;
 }
 
-
 /**
  * A dropdown allows user to select from multiple actions.
  *

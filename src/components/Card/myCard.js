@@ -12,7 +12,7 @@ function MyCard(props) {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </p>
-        <Button className="btn btn-primary" href="#">
+        <Button onClick={props.onClick} className="btn btn-primary" href="#">
           Go somewhere
         </Button>
       </div>

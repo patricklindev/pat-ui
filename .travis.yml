@@ -6,9 +6,8 @@ cache:
     - node_modules
 env: -CI-ture
 
-before_install: echo before_install
 install: echo install
-after_install: echo after_install
+script: echo script
 # script: npm ci && echo hello
 # jobs:
 #   include:

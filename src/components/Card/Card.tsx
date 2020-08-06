@@ -1,4 +1,10 @@
-import React from "react";
+import React, {
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  FC,
+  MouseEvent,
+} from "react";
+import { PatButtonProps } from "../Button/Button";
 import { classNames } from "../../utils/classNames";
 import MyCard from "./myCard";
 export enum CardSize {
@@ -18,13 +24,13 @@ export interface ICardProps {
   cardType?: CardType;
   className?: string;
 }
-export interface ImgHTMLAttributes<T> {
-  src?: string;
-}
-type CardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
+// export interface ImgHTMLAttributes<T> {
+//   src?: string;
+// }
+type myCardProps = ICardProps & React.ImgHTMLAttributes<HTMLImageElement>;
 
-export const Card: React.FC<CardProps> = (props) => {
-  const { cardSize, cardType, className, src } = props;
+export const Card: React.FC<myCardProps> = (props) => {
+  const { cardSize, cardType, children, className, ...rest } = props;
   let styleClasses = classNames("card", {
     [`card-${cardType}`]: true,
     [`card-${cardSize}`]: !!cardSize,
@@ -32,7 +38,11 @@ export const Card: React.FC<CardProps> = (props) => {
   if (className) {
     styleClasses += " " + className;
   }
-  let card = <MyCard className={styleClasses}></MyCard>;
+  let card = (
+    <MyCard className={styleClasses} {...(rest as myCardProps)}>
+      {props.children}
+    </MyCard>
+  );
   return card;
 };
 Card.defaultProps = {

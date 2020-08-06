@@ -3,19 +3,19 @@ import React, {
   AnchorHTMLAttributes,
   FC,
   MouseEvent,
-} from 'react';
-import {classNames} from '../../utils/classNames';
+} from "react";
+import { classNames } from "../../utils/classNames";
 
 export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm',
+  Large = "lg",
+  Small = "sm",
 }
 export enum ButtonType {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Danger = 'danger',
-  Default = 'default',
-  Link = 'link',
+  Primary = "primary",
+  Secondary = "secondary",
+  Danger = "danger",
+  Default = "default",
+  Link = "link",
 }
 export interface IButtonProps {
   /** set customized style */
@@ -31,7 +31,7 @@ export interface IButtonProps {
 type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 type NativeAchorButtonProps = IButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;
-type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
+export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
 
 /**
  * A Button indicates a possible user action.
@@ -41,14 +41,14 @@ type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
  * ```
  */
 export const Button: FC<PatButtonProps> = (props) => {
-  const {btnSize, btnType, children, disabled, className, ...rest} = props;
-  let styleClasses = classNames('btn', {
+  const { btnSize, btnType, children, disabled, className, ...rest } = props;
+  let styleClasses = classNames("btn", {
     [`btn-${btnType}`]: true,
     [`btn-${btnSize}`]: !!btnSize,
     disabled: !!(disabled && btnType === ButtonType.Link),
   });
   if (className) {
-    styleClasses += ' ' + className;
+    styleClasses += " " + className;
   }
 
   let btn;

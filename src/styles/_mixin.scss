@@ -34,3 +34,9 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+@mixin card-body-style {
+  border-style: none;
+  font-size: $font-size-sm;
+  padding: 0.6rem;
+  border-radius: 0;
+}

@@ -3,13 +3,12 @@
   width: 15rem;
   display: flex;
   flex-direction: column;
+
   img {
     height: 10rem;
   }
   .body {
-    border-style: none;
-    font-size: $font-size-sm;
-    padding: 0.6rem;
+    @include card-body-style;
   }
   .btn {
     width: 10rem;
@@ -18,22 +17,20 @@
 
 .card-horizontal {
   @include card-border;
+  margin: 5px;
   width: 40rem;
   height: 10rem;
   display: flex;
   flex-direction: row;
   .image {
+    margin: 0px;
     width: 10rem;
   }
 
   .body {
-    border-style: none;
-
+    @include card-body-style;
     display: flex;
-    font-size: $font-size-sm;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 0.6rem;
   }
   .btn {
     width: 10rem;
@@ -41,24 +38,26 @@
 }
 .card-circledImage {
   @include card-border;
+  margin-right: "5px";
+  margin: 5px;
+
   width: 15rem;
   display: flex;
   flex-direction: column;
   .image {
+    margin: 0px;
     height: 10rem;
     display: flex;
     border-style: none;
     padding: 0.5rem;
   }
-  img {
+  .image img {
     width: 10rem;
     border-radius: 50%;
     align-self: center;
   }
   .body {
-    border-style: none;
-    font-size: $font-size-sm;
-    padding: 0.6rem;
+    @include card-body-style;
   }
   .btn {
     width: 10rem;
@@ -68,16 +67,17 @@
 .card-noImage {
   @include card-border;
   width: 20rem;
+  margin: 5px;
 
   display: flex;
   flex-direction: column;
   .image {
+    margin: 0px;
+
     display: none;
   }
   .body {
-    border-style: none;
-    font-size: $font-size-sm;
-    padding: 0.6rem;
+    @include card-body-style;
   }
   .btn {
     width: 10rem;
@@ -91,15 +91,62 @@
   flex-direction: column;
 
   .body {
-    border-style: none;
-    font-size: $font-size-sm;
+    @include card-body-style;
+
     background-color: $gray-800;
     color: $white;
-    padding: 0.6rem;
   }
+
   .btn {
     @include button-style($white, $secondary, $secondary);
 
     width: 10rem;
+  }
+}
+
+.card-sm {
+  @include card-border;
+  margin: 5px;
+
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  .image {
+    margin: 0px;
+  }
+  .image img {
+    height: 8rem;
+  }
+  .body {
+    @include card-body-style;
+  }
+  .btn {
+    width: 8.5rem;
+  }
+}
+
+.card-lg {
+  @include card-border;
+  margin: 5px;
+  width: 18rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .image {
+    margin: 0px;
+  }
+  .image img {
+    height: 12rem;
+  }
+  .body {
+    @include card-body-style;
+    font-size: $font-size-base;
+  }
+  .body h5 {
+    font-size: 1.5rem;
+  }
+  .btn {
+    width: 12rem;
   }
 }

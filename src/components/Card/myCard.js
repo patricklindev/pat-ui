@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button/Button";
 function MyCard(props) {
   return (
     <div className={props.className}>
@@ -11,9 +12,9 @@ function MyCard(props) {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </p>
-        <a className="btn btn-primary" href="#">
+        <Button className="btn btn-primary" href="#">
           Go somewhere
-        </a>
+        </Button>
       </div>
     </div>
   );

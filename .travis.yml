@@ -5,7 +5,14 @@ cache:
   directories:
     - node_modules
 env: -CI-ture
-script: npm ci && echo hello
+
+before_install:
+  script: echo before_install
+install:
+  script: echo install
+after_install:
+  script: echo after_install
+# script: npm ci && echo hello
 # jobs:
 #   include:
 #     - stage: unit tests

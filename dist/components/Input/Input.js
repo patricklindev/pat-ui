@@ -1,0 +1,57 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+import React from 'react';
+import { classNames } from '../../utils/classNames';
+var Input = function (props) {
+    var _a, _b;
+    var size = props.size, focus = props.focus, disabled = props.disabled, error = props.error, transparent = props.transparent, fluid = props.fluid, icon = props.icon, loading = props.loading, iconPosition = props.iconPosition, labeled = props.labeled, rest = __rest(props, ["size", "focus", "disabled", "error", "transparent", "fluid", "icon", "loading", "iconPosition", "labeled"]);
+    var styleClasses = classNames('ui', 'input', (_a = {},
+        _a["input-focus"] = !!focus,
+        _a["input-" + size] = !!size,
+        _a["input-disabled"] = !!disabled,
+        _a["input-error"] = !!error,
+        _a["input-transparent"] = !!transparent,
+        _a["input-fluid"] = !!fluid,
+        _a['input-loading'] = !!loading,
+        _a["input-" + iconPosition] = !!iconPosition,
+        _a.icon = !!icon || !!loading,
+        _a['input-labeled'] = !!labeled,
+        _a));
+    var iconFilteredClasses = {};
+    var iconName = "";
+    if (icon && typeof icon === 'object') {
+        for (var _i = 0, _c = Object.keys(icon); _i < _c.length; _i++) {
+            var key = _c[_i];
+            if (key !== 'name') {
+                iconFilteredClasses["" + key] = icon[key];
+            }
+        }
+        iconName = icon['name'];
+    }
+    var iconClasses = classNames((_b = {}, _b["" + icon] = !!icon && typeof icon === 'string' && !loading, _b["" + iconName] = !!iconName, _b['spinner big loading'] = !!loading, _b), iconFilteredClasses, 'icon');
+    var inputIcon = React.createElement("i", { "aria-hidden": 'true', className: iconClasses });
+    return (React.createElement("div", { className: styleClasses },
+        React.createElement("input", __assign({ type: "text", disabled: disabled }, rest)),
+        icon || loading ? inputIcon : null));
+};
+export default Input;

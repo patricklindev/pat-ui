@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - 10
 install:
-  - echo this is install script
+  - npm ci
 script:
-  - echo this is script script
+  - npm run test:nowatch
+  - npm run lint

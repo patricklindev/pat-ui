@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - 10
+install:
+  - echo this is install script
+script:
+  - echo this is script script

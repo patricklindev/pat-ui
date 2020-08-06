@@ -6,9 +6,7 @@ cache:
     - node_modules
 env: -CI-ture
 script: npm ci
-stages:
-  - name: unit tests
-    script: npm run test && npm run build
-  - name: deploy
-    if: branch = master
-    script: echo "hello"
+jobs:
+  include:
+    - stage: unit tests
+    script: npm run test

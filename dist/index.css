@@ -384,3 +384,92 @@ main {
   .btn-link:focus, .btn-link.focus {
     text-decoration: underline;
     box-shadow: none; }
+
+#rt-container {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-right: 4px;
+  margin-bottom: 8px;
+  flex-wrap: nowrap;
+  cursor: pointer; }
+
+svg {
+  pointer-events: none; }
+
+.rt-icon {
+  color: lightgrey;
+  margin-right: 4px; }
+
+.rt-title {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: 400; }
+
+.rt-star > *.rt-active {
+  color: #fadb14; }
+
+.rt-star > *:hover, .rt-star > *:hover ~ * {
+  color: #fce65f; }
+
+.rt-moon > *.rt-active {
+  color: #fadb14; }
+
+.rt-moon > *:hover, .rt-moon > *:hover ~ * {
+  color: #fce65f; }
+
+.rt-heart > *.rt-active {
+  color: #d63384; }
+
+.rt-heart > *:hover, .rt-heart > *:hover ~ * {
+  color: #e373aa; }
+
+.rt-smile-wink > *.rt-active {
+  color: #17a2b8; }
+
+.rt-smile-wink > *:hover, .rt-smile-wink > *:hover ~ * {
+  color: #36cee6; }
+
+.rt-bounce {
+  animation: bounce 1s; }
+
+.rt-fade {
+  animation: fade 1s reverse; }
+
+.rt-swing {
+  animation: swing 1s; }
+
+@keyframes bounce {
+  0% {
+    transform: scale(1); }
+  25% {
+    transform: scale(1.5); }
+  50% {
+    transform: scale(0.9); }
+  75% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes fade {
+  0% {
+    transform: scale(1);
+    opacity: 1; }
+  25% {
+    transform: scale(1.2);
+    opacity: 0.8; }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6; }
+  75% {
+    transform: scale(1.8);
+    opacity: 0.4; }
+  100% {
+    transform: scale(2);
+    opacity: 0.2; } }
+
+@keyframes swing {
+  0%, 50%, 100% {
+    transform: rotate(20deg); }
+  25%, 75% {
+    transform: rotate(-10deg); } }

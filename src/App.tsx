@@ -1,23 +1,26 @@
 import React from 'react';
-import Rating, {RatingShape, RatingSize, RatingAnimation} from './components/Rating/Rating'
-import Button, {ButtonType, ButtonSize} from './components/Button/Button';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { far, faMoon, faStar, faHeart, faSmileWink } from '@fortawesome/free-regular-svg-icons'
+import Rating from './components/Rating/Rating'
+import Button from './components/Button/Button';
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faMoon, faStar, faHeart, faSmileWink } from '@fortawesome/free-regular-svg-icons'
 
-import {fas} from '@fortawesome/free-solid-svg-icons'
+// import {fas} from '@fortawesome/free-solid-svg-icons'
 
 
-library.add( fas, faMoon, faStar, faHeart, faSmileWink )
+// library.add( fas, faMoon, faStar, faHeart, faSmileWink )
+
 function App() {
   return (
     <div className="App">
-      <h1> Welcome To Pat-UI</h1>
+      <h1> Welcome To Pat-UI</h1>      
+      <Rating>Star</Rating>
+      <Rating rtShape='moon' rtAnimation='bounce'/>
+      <Rating rtShape='heart' rtAnimation= 'fade'/>
+      <Rating rtShape='smile-wink' rtAnimation= 'swing'/>
       <h2>Default</h2>
-      <Rating rtAnimation={RatingAnimation.Swing} rtSize={RatingSize.Large}/>
-      <Rating rtShape={RatingShape.Moon}/>
-      <Rating rtShape={RatingShape.Wink}/>
-      <Rating rtShape={RatingShape.Heart}/>
-      {/* <Button className="test">Default Button</Button>
+
+
+      <Button className="test">Default Button</Button>
       <Button
         disabled
         onClick={() => {
@@ -28,24 +31,24 @@ function App() {
       </Button>
 
       <h2>Type</h2>
-      <Button btnType={ButtonType.Primary}>Primary Button</Button>
-      <Button btnType={ButtonType.Secondary}>Secondary Button</Button>
-      <Button btnType={ButtonType.Danger}>Danger Button</Button>
-      <Button btnType={ButtonType.Link}>Link Button</Button>
+      <Button btnType='primary'>Primary Button</Button>
+      <Button btnType='secondary'>Secondary Button</Button>
+      <Button btnType='danger'>Danger Button</Button>
+      <Button btnType='link'>Link Button</Button>
       <Button
         disabled
         // onClick={() => {
         //   alert('Default Button Clicked');
         // }}
-        btnType={ButtonType.Link}
+        btnType='link'
         href="www.google.com"
       >
         Link Button
       </Button>
       <h2>Size</h2>
-      <Button btnSize={ButtonSize.Large}>Large Button</Button>
+      <Button btnSize='lg'>Large Button</Button>
       <Button>Default Button</Button>
-      <Button btnSize={ButtonSize.Small}>Small Button</Button> */}
+      <Button btnSize='sm'>Small Button</Button>
     </div>
   );
 }

@@ -2,8 +2,8 @@
     display: inline-flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    margin: 4px;
-    padding: 4px;
+    margin-right: 4px;
+    margin-bottom: 8px;
     flex-wrap: nowrap;
     cursor: pointer;
 }
@@ -16,6 +16,12 @@ svg {
 .rt-icon {
     color: lightgrey;
     margin-right: 4px;
+}
+
+.rt-title {
+   font-family: $font-family-monospace;
+   font-size: $font-size-base;
+   font-weight: $font-weight-normal;
 
 }
 
@@ -74,7 +80,7 @@ svg {
 }
 
 .rt-bounce{
-        animation: stretch-bounce 1s ;
+        animation: bounce 1s ;
 
 }
 
@@ -130,7 +136,7 @@ svg {
   }
 
   @keyframes swing {
-    0%{transform: rotate(20deg);}
-    50%{transform: rotate(-10deg)}
-    100%{transform: rotate(20deg);}
+    0%, 50%, 100%{transform: rotate(20deg);}
+    25%, 75%{transform: rotate(-10deg)}
+
   }

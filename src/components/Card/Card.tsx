@@ -44,11 +44,7 @@ export const Card: FC<myCardProps> = (props) => {
   }
 
   let card = (
-    <MyCard
-      className={styleClasses}
-      src={'https://via.placeholder.com/150'}
-      {...(rest as myCardProps)}
-    >
+    <MyCard className={styleClasses} src={props.src} {...(rest as myCardProps)}>
       {props.children}
     </MyCard>
   );

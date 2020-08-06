@@ -2,6 +2,11 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Card, { CardType, CardSize } from './Card';
 describe('Card', () => {
+  it('should match snapshot', () => {
+    const { asFragment } = render(<Card> Snapshot Card </Card>);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('should render default card', () => {
     const cardProps = {
       onClick: jest.fn(),
@@ -44,5 +49,14 @@ describe('Card', () => {
     expect(cardProps.onClick).toHaveBeenCalledTimes(0);
     fireEvent.click(buttonElement);
     expect(cardProps.onClick).toHaveBeenCalledTimes(1);
+  });
+  it('should render image with correct source', () => {
+    const cardProps = {
+      src: 'png',
+    };
+    const wrapper = render(<Card {...cardProps}></Card>);
+    const imageElement = screen.getByTestId('image-element');
+    expect(imageElement.tagName).toBe('IMG');
+    expect(imageElement.getAttribute('src')).toBe('png');
   });
 });

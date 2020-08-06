@@ -8,16 +8,29 @@ export default {
 };
 
 export const DefaultCard = () => (
-  <Card onClick={action('Default Button clicked')}>Default Card</Card>
+  <Card
+    onClick={action('Default Button clicked')}
+    src={'https://via.placeholder.com/150'}
+  >
+    Default Card
+  </Card>
 );
 
 export const DiffSizeCard = () => (
   <div>
-    <Card onClick={action('Default Button clicked')} cardSize={CardSize.Small}>
+    <Card
+      onClick={action('Default Button clicked')}
+      src={'https://via.placeholder.com/150'}
+      cardSize={CardSize.Small}
+    >
       Small Card
     </Card>
 
-    <Card onClick={action('Default Button clicked')} cardSize={CardSize.Large}>
+    <Card
+      onClick={action('Default Button clicked')}
+      src={'https://via.placeholder.com/150'}
+      cardSize={CardSize.Large}
+    >
       Large Card
     </Card>
   </div>
@@ -26,24 +39,28 @@ export const DiffTypeCard = () => (
   <div>
     <Card
       onClick={action('Default Button clicked')}
+      src={'https://via.placeholder.com/150'}
       cardType={CardType.Horizontal}
     >
       Horizontal Card
     </Card>
     <Card
       onClick={action('Default Button clicked')}
+      src={'https://via.placeholder.com/150'}
       cardType={CardType.CircledImage}
     >
       Circled Image Card
     </Card>
     <Card
       onClick={action('Default Button clicked')}
+      src={'https://via.placeholder.com/150'}
       cardType={CardType.NoImage}
     >
       No Image Card
     </Card>
     <Card
       onClick={action('Default Button clicked')}
+      src={'https://via.placeholder.com/150'}
       cardType={CardType.LargeImage}
     >
       Large Image Card
@@ -52,7 +69,11 @@ export const DiffTypeCard = () => (
 );
 export const DiffThemeCard = () => (
   <div>
-    <Card onClick={action('Dark Button clicked')} cardType={CardType.Dark}>
+    <Card
+      onClick={action('Dark Button clicked')}
+      src={'https://via.placeholder.com/150'}
+      cardType={CardType.Dark}
+    >
       Dark Card
     </Card>
   </div>

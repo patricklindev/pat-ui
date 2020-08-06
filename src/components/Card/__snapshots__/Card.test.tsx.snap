@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="card card-default"
+    data-testid="card-element"
+  >
+    <div
+      class="card card-default image"
+    >
+      <img
+        data-testid="image-element"
+      />
+    </div>
+    <div
+      class="card card-default body"
+    >
+      <h5>
+         Snapshot Card 
+      </h5>
+      <p>
+        Some quick example text to build on the card title and make up the bulk of the card's content.
+      </p>
+      <button
+        class="btn btn-default btn btn-primary"
+        data-testid="button-element"
+        href="#"
+      >
+        Show More Info
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

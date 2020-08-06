@@ -4,7 +4,7 @@ function MyCard(props) {
   return (
     <div className={props.className} data-testid='card-element'>
       <div className={props.className + ' image'}>
-        <img src={props.src} />
+        <img src={props.src} data-testid='image-element' />
       </div>
       <div className={props.className + ' body'}>
         <h5>{props.children}</h5>

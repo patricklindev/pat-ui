@@ -1,10 +1,4 @@
-import React, {
-  ButtonHTMLAttributes,
-  AnchorHTMLAttributes,
-  FC,
-  MouseEvent,
-  ImgHTMLAttributes,
-} from 'react';
+import React, { FC, ImgHTMLAttributes } from 'react';
 import { PatButtonProps } from '../Button/Button';
 import { classNames } from '../../utils/classNames';
 import MyCard from './myCard';

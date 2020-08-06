@@ -1,34 +1,40 @@
 {
   "name": "pat-ui",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.53",
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.9.8",
-    "cra-template-typescript": "1.0.3",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+  "private": false,
+  "description": "React components library",
+  "license": "MIT",
+  "keywords": [
+    "Components library",
+    "React",
+    "UI"
+  ],
+  "homepage": "https://github.com/YuhanLin1105/pat-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YuhanLin1105/pat-ui"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean-lib": "rimraf ./dist",
+    "build": "npm run clean-lib && npm run build-lib",
+    "build-lib": "tsc -p tsconfig.lib.json && node-sass ./src/styles/index.scss ./dist/index.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepublish": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,12 +52,24 @@
     ]
   },
   "devDependencies": {
+    "rimraf": "^3.0.2",
+    "typescript": "^3.7.5",
+    "cra-template-typescript": "1.0.3",
+    "node-sass": "^4.14.1",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^5.3.19",
-    "react-docgen-typescript-loader": "^3.7.2"
+    "react-docgen-typescript-loader": "^3.7.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.53",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "react-scripts": "3.4.1"
   }
 }

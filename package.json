@@ -30,14 +30,21 @@
     "clean-lib": "rimraf ./dist",
     "build": "npm run clean-lib && npm run build-lib",
     "build-lib": "tsc -p tsconfig.lib.json && node-sass ./src/styles/index.scss ./dist/index.css",
+    "test:nowatch": "react-scripts test --watchAll=false",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "quotes": [
+        "error",
+        "single"
+      ]
+    }
   },
   "browserslist": {
     "production": [

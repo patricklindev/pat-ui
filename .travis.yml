@@ -5,3 +5,10 @@ cache:
   directories:
     - node_modules
 env: -CI-ture
+
+stages:
+  - name: unit tests
+    script: npm run test && npm run build
+  - name: deploy
+    if: branch = master
+    script: echo "hello"

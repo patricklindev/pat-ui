@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {render, fireEvent} from '@testing-library/react';
-import Button, {ButtonSize, ButtonType}from './Button';
+import Button, {PatButtonProps} from './Button';
 
 describe('Buttton', () => {
   it('should match snapshot', () => {
@@ -24,9 +24,9 @@ describe('Buttton', () => {
   });
 
   it('should render correct button based on different props', () => {
-    const btnPrimarySmallProps = {
-      btnType: 'primary'as ButtonType,
-      btnSize: 'sm'as ButtonSize,
+    const btnPrimarySmallProps: PatButtonProps = {
+      btnType: 'primary',
+      btnSize: 'sm',
       onClick: jest.fn(),
       className: 'test',
     };
@@ -44,8 +44,8 @@ describe('Buttton', () => {
     expect(btnPrimarySmallProps.onClick).toHaveBeenCalledTimes(1);
 
     /// Link Button
-    const btnLinkProps = {
-      btnType: 'link'as ButtonType,
+    const btnLinkProps: PatButtonProps = {
+      btnType: 'link',
       onClick: jest.fn(),
     };
     const btnLinkWrapper = render(
@@ -63,8 +63,8 @@ describe('Buttton', () => {
   });
 
   it('should render disabled button', () => {
-    const btnDisabledLinkProps = {
-      btnType: 'link'as ButtonType,
+    const btnDisabledLinkProps: PatButtonProps = {
+      btnType: 'link',
       onClick: jest.fn(),
       disabled: true,
     };

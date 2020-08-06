@@ -1,4 +1,4 @@
-import React, {  FC, MouseEvent, HTMLProps} from 'react';
+import React, {FunctionComponent, MouseEvent, HTMLProps} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -7,7 +7,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons'
 library.add( fas, faMoon, faStar, faHeart, faSmileWink )
 
 
-export type RatingShape = 'star' | 'moon' | 'heart' | 'smile-wink'
+export type RatingShape = 'star' | 'moon' | 'heart' | 'smile-wink';
 
 // export enum RatingShape {
 //     Star = 'star',
@@ -17,7 +17,7 @@ export type RatingShape = 'star' | 'moon' | 'heart' | 'smile-wink'
 
 // }
 
-export type RatingSize = 'lg' | 'sm' | '1x' | '2x';
+export type RatingSize = 'lg' | 'sm' | '1x' | '2x' ;
 
 // export enum RatingSize {
 //     Small = 'sm',
@@ -51,7 +51,7 @@ export interface IRatingProps {
 
 // type SRatingProps = IRatingProps & HTMLProps<HTMLDivElement>
 
-export const Rating: React.FC<IRatingProps> = (props) => {
+export const Rating: FunctionComponent<IRatingProps> = (props) => {
     const {className, rtShape, rtSize, rtAnimation, children, ...rest} = props
     const prefix = new Array(5).fill('fas')
     // let styleClasses = 'rt'
@@ -87,8 +87,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
     return (
    
-  <>
-  <div className='rt-title'>{props.children}</div>
+
             <div id='rt-container' className={styleClasses} {...(rest as IRatingProps)}>
 
                 <div className='rt-icon' onClick={handleClick} id='rt-5'>
@@ -106,9 +105,8 @@ export const Rating: React.FC<IRatingProps> = (props) => {
                 <div className='rt-icon' onClick={handleClick} id='rt-1'>
                     <FontAwesomeIcon icon={[prefix[0], rtShape as string] as IconProp} size={rtSize}/>
                 </div>
-        </div>
+            </div>
 
-  </>
     )
 };
 
@@ -119,4 +117,4 @@ Rating.defaultProps = {
 };
 
 
-export default Rating
+export default Rating;

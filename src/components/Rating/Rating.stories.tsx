@@ -29,6 +29,7 @@ export const DiffShapeRating = () => (
 export const DiffSizeRating = () => (
     <div style = {RatingStyle}>
         <Rating rtSize='sm'/>
+        <Rating />
         <Rating rtSize='lg'/>
         <Rating rtSize= '2x'/>
     </div>

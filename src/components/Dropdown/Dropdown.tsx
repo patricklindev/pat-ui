@@ -6,6 +6,7 @@ import React, {
   ReactElement,
   cloneElement,
 } from 'react';
+import { classNames } from '../../utils/classNames';
 import DropdownItem, { IDropdownItemProps } from './DropdownItem';
 
 export interface IDropdownProps {
@@ -35,7 +36,14 @@ interface PatDropdownSubComponents {
  * ```
  */
 const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
-  const { className, children, cssStyle, placeholder, onChange } = props;
+  const {
+    className,
+    children,
+    cssStyle,
+    placeholder,
+    onChange,
+    disabled,
+  } = props;
 
   const [isOptionListOpen, setIsOptionListOpen] = useState(false);
   const [activeOption, setActiveOption] = useState(placeholder);
@@ -45,28 +53,42 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
   };
 
   const setSelected = (val: string) => {
-    if(onChange) {
+    if (onChange) {
       onChange(val);
     }
 
     setActiveOption(val);
   };
 
-  let classNames = ['dropdown', className].join(' ');
+  let classStyles = classNames('dropdown');
   if (isOptionListOpen) {
-    classNames = ['dropdown', 'open', className].join(' ');
+    classStyles = classNames('dropdown', 'open');
+  }
+
+  if (className) {
+    classStyles += ` ${className}`;
   }
 
   return (
     <div className="dropdown__wrapper">
       <div
-        className={classNames}
+        className={classStyles}
         style={cssStyle}
-        onClick={() => {
-          toggleOptionList();
+        onClick={(e) => {
+          if (disabled) {
+            e.preventDefault();
+          } else {
+            toggleOptionList();
+          }
         }}
       >
-        <div className="dropdown__active_option">
+        <div
+          className={
+            disabled
+              ? 'dropdown__active_option disabled'
+              : 'dropdown__active_option'
+          }
+        >
           <span>{activeOption}</span>
           <div className="arrow" />
         </div>

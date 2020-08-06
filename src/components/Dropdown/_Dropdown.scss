@@ -29,6 +29,12 @@
   background: $white;
 
   cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: rgba(34, 36, 38, 0.15);
+    color: rgba(34, 36, 38, 0.35);
+  }
 }
 
 .dropdown__active_option:hover {

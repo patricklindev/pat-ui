@@ -16,3 +16,14 @@ export const DefaultDropdown = () => (
     </Dropdown>
   </div>
 );
+
+export const DisabledDropdown = () => (
+  <div>
+    <Dropdown disabled onChange={action('selected')} placeholder='Select a type'>
+      <Dropdown.Item>Sedan</Dropdown.Item>
+      <Dropdown.Item>SUV</Dropdown.Item>
+      <Dropdown.Item>Convertible</Dropdown.Item>
+    </Dropdown>
+  </div>
+);
+

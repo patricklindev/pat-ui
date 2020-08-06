@@ -27,3 +27,26 @@
     border-color: $hover-border-color;
   }
 }
+
+@mixin dropdown-border-style($border-width, $border-color) {
+  border: $border-width solid $border-color;
+}
+
+@mixin dropdown-border-radius-style(
+  $border-top-left-radius,
+  $border-top-right-radius,
+  $border-bottom-left-radius,
+  $border-bottom-right-radius
+) {
+  border-top-left-radius: $border-top-left-radius;
+  border-top-right-radius: $border-top-right-radius;
+  border-bottom-left-radius: $border-bottom-left-radius;
+  border-bottom-right-radius: $border-bottom-right-radius;
+}
+
+@mixin dropdown-options-border($border-width, $border-color) {
+  border-top: 0;
+  border-bottom: $border-width solid $border-color;
+  border-left: $border-width solid $border-color;
+  border-right: $border-width solid $border-color;
+}

@@ -48,7 +48,9 @@ describe('Buttton', () => {
       btnType: 'link',
       onClick: jest.fn(),
     };
-    const btnLinkWrapper = render(<Button {...btnLinkProps}>Link Btn</Button>);
+    const btnLinkWrapper = render(
+      <Button {...btnLinkProps}>Link Button</Button>
+    );
     const btnLinkElement = btnLinkWrapper.queryByText(
       'Link Button'
     ) as HTMLElement;

@@ -1,9 +1,8 @@
-import React from "react";
-import Button, { ButtonType, ButtonSize } from "./components/Button/Button";
-import { RenderCard } from "./components/Card/RenderCard";
+import React from 'react';
+import { RenderCard } from './components/Card/RenderCard';
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       {/* <h1> Welcome To Pat-UI</h1>
       <h2>Default</h2>
       <Button className="test">Default Button</Button>

@@ -3,20 +3,20 @@ import React, {
   AnchorHTMLAttributes,
   FC,
   MouseEvent,
-} from "react";
-import { classNames } from "../../utils/classNames";
+} from 'react';
+import { classNames } from '../../utils/classNames';
 
 // export enum ButtonSize {
 //   Large = 'lg',
 //   Small = 'sm',
 // }
-export type ButtonSize = "lg" | "sm";
+export type ButtonSize = 'lg' | 'sm';
 export type ButtonType =
-  | "primary"
-  | "secondary"
-  | "danger"
-  | "default"
-  | "link";
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'default'
+  | 'link';
 // export enum ButtonType {
 //   Primary = 'primary',
 //   Secondary = 'secondary',
@@ -49,17 +49,17 @@ export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
  */
 export const Button: FC<PatButtonProps> = (props) => {
   const { btnSize, btnType, children, disabled, className, ...rest } = props;
-  let styleClasses = classNames("btn", {
+  let styleClasses = classNames('btn', {
     [`btn-${btnType}`]: true,
     [`btn-${btnSize}`]: !!btnSize,
-    disabled: !!(disabled && btnType === "link"),
+    disabled: !!(disabled && btnType === 'link'),
   });
   if (className) {
-    styleClasses += " " + className;
+    styleClasses += ' ' + className;
   }
 
   let btn;
-  if (btnType !== "link") {
+  if (btnType !== 'link') {
     btn = (
       <button
         className={styleClasses}
@@ -85,7 +85,7 @@ export const Button: FC<PatButtonProps> = (props) => {
 };
 
 Button.defaultProps = {
-  btnType: "default",
+  btnType: 'default',
   disabled: false,
 };
 

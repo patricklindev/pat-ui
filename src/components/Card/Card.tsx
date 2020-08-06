@@ -4,20 +4,20 @@ import React, {
   FC,
   MouseEvent,
   ImgHTMLAttributes,
-} from "react";
-import { PatButtonProps } from "../Button/Button";
-import { classNames } from "../../utils/classNames";
-import MyCard from "./myCard";
+} from 'react';
+import { PatButtonProps } from '../Button/Button';
+import { classNames } from '../../utils/classNames';
+import MyCard from './myCard';
 export enum CardSize {
-  Large = "lg",
-  Small = "sm",
+  Large = 'lg',
+  Small = 'sm',
 }
 export enum CardType {
-  Horizontal = "horizontal",
-  Default = "default",
-  CircledImage = "circledImage",
-  NoImage = "noImage",
-  Dark = "dark",
+  Horizontal = 'horizontal',
+  Default = 'default',
+  CircledImage = 'circledImage',
+  NoImage = 'noImage',
+  Dark = 'dark',
 }
 
 export interface ICardProps {
@@ -39,18 +39,18 @@ type myCardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
  */
 export const Card: FC<myCardProps> = (props) => {
   const { cardSize, cardType, children, className, ...rest } = props;
-  let styleClasses = classNames("card", {
+  let styleClasses = classNames('card', {
     [`card-${cardType}`]: true,
     [`card-${cardSize}`]: !!cardSize,
   });
   if (className) {
-    styleClasses += " " + className;
+    styleClasses += ' ' + className;
   }
 
   let card = (
     <MyCard
       className={styleClasses}
-      src={"https://via.placeholder.com/150"}
+      src={'https://via.placeholder.com/150'}
       {...(rest as myCardProps)}
     >
       {props.children}

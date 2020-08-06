@@ -20,8 +20,35 @@ describe('dropdown', () => {
       placeholder: 'select',
     };
 
-    const wrapper = render(<Dropdown {...dropdownProps}></Dropdown>).container.firstChild;
+    const wrapper = render(
+      <Dropdown {...dropdownProps}>
+        <Dropdown.Item>1</Dropdown.Item>
+        <Dropdown.Item>12</Dropdown.Item>
+        <Dropdown.Item>123</Dropdown.Item>
+      </Dropdown>
+    ).container.firstChild;
 
     expect(wrapper).toHaveClass('dropdown__wrapper');
+    expect(wrapper?.firstChild?.childNodes.length).toBe(2);
+    expect(wrapper?.firstChild?.lastChild?.childNodes.length).toBe(3);
+  });
+
+  it('should render a dropdown with a custom class', () => {
+    const dropdownProps = {
+      placeholder: 'select',
+      className: 'custom'
+    };
+
+    const wrapper = render(
+      <Dropdown {...dropdownProps}>
+        <Dropdown.Item>1</Dropdown.Item>
+        <Dropdown.Item>12</Dropdown.Item>
+        <Dropdown.Item>123</Dropdown.Item>
+      </Dropdown>
+    ).container.firstChild;
+
+    expect(wrapper).toHaveClass('dropdown__wrapper');
+    expect(wrapper?.firstChild?.childNodes.length).toBe(2);
+    expect(wrapper?.firstChild).toHaveClass('dropdown custom');
   });
 });

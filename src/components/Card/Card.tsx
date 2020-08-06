@@ -27,8 +27,15 @@ export interface ICardProps {
 // export interface ImgHTMLAttributes<T> {
 //   src?: string;
 // }
-type myCardProps = ICardProps & React.ImgHTMLAttributes<HTMLImageElement>;
 
+type myCardProps = ICardProps & React.ImgHTMLAttributes<HTMLImageElement>;
+/**
+ * A default card with a button to show more
+ *
+ * ```js
+ * import {Card} from 'pat-ui'
+ * ```
+ */
 export const Card: React.FC<myCardProps> = (props) => {
   const { cardSize, cardType, children, className, ...rest } = props;
   let styleClasses = classNames("card", {

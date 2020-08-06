@@ -12,11 +12,13 @@ export const DefaultCard = () => (
     Default Card
   </Card>
 );
+
 export const DiffSizeCard = () => (
   <div>
     <Card onClick={action("Default Button clicked")} cardSize={CardSize.Small}>
       Small Card
     </Card>
+
     <Card cardSize={CardSize.Large}>Large Card</Card>
   </div>
 );

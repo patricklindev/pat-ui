@@ -5,7 +5,7 @@ cache:
   directories:
     - node_modules
 env: -CI-ture
-script: npm ci
+script: npm ci && echo hello
 jobs:
   include:
     - stage: unit tests

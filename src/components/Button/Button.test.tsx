@@ -48,11 +48,12 @@ describe('Buttton', () => {
       btnType: 'link',
       onClick: jest.fn(),
     };
+
     const btnLinkWrapper = render(
-      <Button {...btnLinkProps}>Link Button</Button>
+      <Button {...btnLinkProps}>Link Button!</Button>
     );
     const btnLinkElement = btnLinkWrapper.queryByText(
-      'Link Button'
+      'Link Button!'
     ) as HTMLElement;
     expect(btnLinkElement).toBeInTheDocument();
     expect(btnLinkElement.tagName).toBe('A');

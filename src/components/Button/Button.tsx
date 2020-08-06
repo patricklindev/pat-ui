@@ -1,44 +1,65 @@
-import React from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  FC,
+  MouseEvent,
+} from 'react';
 import {classNames} from '../../utils/classNames';
 
-export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm',
-}
-export enum ButtonType {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Danger = 'danger',
-  Default = 'default',
-  Link = 'link',
-}
+// export enum ButtonSize {
+//   Large = 'lg',
+//   Small = 'sm',
+// }
+export type ButtonSize = 'lg' | 'sm';
+export type ButtonType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'default'
+  | 'link';
+// export enum ButtonType {
+//   Primary = 'primary',
+//   Secondary = 'secondary',
+//   Danger = 'danger',
+//   Default = 'default',
+//   Link = 'link',
+// }
 export interface IButtonProps {
+  /** set customized style */
   className?: string;
+  /** set button size */
   btnSize?: ButtonSize;
+  /** set button type */
   btnType?: ButtonType;
-  children?: React.ReactNode;
+  /** set disabled button */
   disabled?: boolean;
 }
 
-type NativeButtonProps = IButtonProps &
-  React.ButtonHTMLAttributes<HTMLButtonElement>;
+type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 type NativeAchorButtonProps = IButtonProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  AnchorHTMLAttributes<HTMLAnchorElement>;
 type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
 
-const Button: React.FC<PatButtonProps> = (props) => {
+/**
+ * A Button indicates a possible user action.
+ *
+ * ```js
+ * import {Button} from 'pat-ui'
+ * ```
+ */
+export const Button: FC<PatButtonProps> = (props) => {
   const {btnSize, btnType, children, disabled, className, ...rest} = props;
   let styleClasses = classNames('btn', {
     [`btn-${btnType}`]: true,
     [`btn-${btnSize}`]: !!btnSize,
-    disabled: !!(disabled && btnType === ButtonType.Link),
+    disabled: !!(disabled && btnType === 'link'),
   });
   if (className) {
     styleClasses += ' ' + className;
   }
 
   let btn;
-  if (btnType !== ButtonType.Link) {
+  if (btnType !== 'link') {
     btn = (
       <button
         className={styleClasses}
@@ -50,7 +71,7 @@ const Button: React.FC<PatButtonProps> = (props) => {
     );
   } else {
     if (disabled) {
-      rest.onClick = (e: React.MouseEvent) => {
+      rest.onClick = (e: MouseEvent) => {
         e.preventDefault();
       };
     }
@@ -64,7 +85,7 @@ const Button: React.FC<PatButtonProps> = (props) => {
 };
 
 Button.defaultProps = {
-  btnType: ButtonType.Default,
+  btnType: 'default',
   disabled: false,
 };
 

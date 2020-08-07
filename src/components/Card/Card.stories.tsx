@@ -9,94 +9,133 @@ export default {
 
 export const DefaultCard = () => (
   <Card
-    onClick={action('Default Button clicked')}
-    src={'https://via.placeholder.com/150'}
-  >
-    Default Card
-  </Card>
+    btnOnClick={action('Default Button clicked')}
+    cardSrc={'https://via.placeholder.com/150'}
+    cardParagraph={
+      "Some quick example text to build on the card title and make up the bulk of the card's content."
+    }
+    cardTitle={'Default card'}
+    buttonHref={'#'}
+    buttonTitle={'show more info'}
+  ></Card>
 );
 
 export const DiffSizeCard = () => (
   <div>
     <Card
-      onClick={action('Small Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Small Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Small card'}
+      buttonHref={'#'}
       cardSize='sm'
-    >
-      Small Card
-    </Card>
+      buttonTitle={'show more info'}
+    ></Card>
 
     <Card
-      onClick={action('Large Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Large Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Large card'}
+      buttonHref={'#'}
       cardSize='lg'
-    >
-      Large Card
-    </Card>
+      buttonTitle={'show more info'}
+    ></Card>
   </div>
 );
 export const DiffTypeCard = () => (
   <div>
     <Card
-      onClick={action('Default Button clicked')}
-      src={'https://via.placeholder.com/150'}
-      cardType='horizontal'
-    >
-      Horizontal Card
-    </Card>
+      btnOnClick={action('Default Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Horizontal card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
+      cardMode='horizontal'
+    ></Card>
     <Card
-      onClick={action('Default Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Default Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Circled image card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
       cardType='circledImage'
-    >
-      Circled Image Card
-    </Card>
+    ></Card>
     <Card
-      onClick={action('Default Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Default Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'No image card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
       cardType='noImage'
-    >
-      No Image Card
-    </Card>
+    ></Card>
     <Card
-      onClick={action('Default Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Default Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardTitle={'Large image card'}
       cardType='largeImage'
-    >
-      Large Image Card
-    </Card>
+    ></Card>
   </div>
 );
 export const DiffThemeCard = () => (
   <div>
     <Card
-      onClick={action('Dark Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Dark Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardTitle={'Dark image card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
       cardTheme='dark'
-    >
-      Dark Theme Card
-    </Card>
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+    ></Card>
 
     <Card
-      onClick={action('Purple Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Purple Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardTitle={'Purple image card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
       cardTheme='purple'
-    >
-      Purple Theme Card
-    </Card>
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+    ></Card>
     <Card
-      onClick={action('Yellow Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Yellow Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardTitle={'Yellow image card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
       cardTheme='yellow'
-    >
-      Yellow Theme Card
-    </Card>
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+    ></Card>
     <Card
-      onClick={action('Blue Button clicked')}
-      src={'https://via.placeholder.com/150'}
+      btnOnClick={action('Blue Button clicked')}
+      cardSrc={'https://via.placeholder.com/150'}
+      cardTitle={'Blue image card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
       cardTheme='blue'
-    >
-      Blue Theme Card
-    </Card>
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+    ></Card>
   </div>
 );

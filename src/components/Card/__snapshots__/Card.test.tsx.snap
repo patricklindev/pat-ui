@@ -18,19 +18,12 @@ exports[`Card should match snapshot 1`] = `
       class="card card-default body"
       data-testid="card-body-element"
     >
-      <h5>
-         Snapshot Card 
-      </h5>
-      <p>
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-      </p>
+      <h5 />
+      <p />
       <button
         class="btn btn-default btn btn-primary"
         data-testid="button-element"
-        href="#"
-      >
-        Show More Info
-      </button>
+      />
     </div>
   </div>
 </DocumentFragment>

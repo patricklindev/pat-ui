@@ -10,6 +10,20 @@ describe('Message', () => {
         expect(asFragment()).toMatchSnapshot();
     });
 
+    it('should render default message', () => {
+        // Default message
+        const msgBasicProps = {
+            msgType: messageType.Basic,
+            className: 'test'
+        }
+        const msgBasicWrapper = render (
+            <Message {...msgBasicProps}>Basic Message</Message>
+        );
+        const msgBasicElement = msgBasicWrapper.queryByText('Basic Message') as HTMLElement;
+        expect(msgBasicElement).toBeInTheDocument();
+        expect(msgBasicElement).toHaveClass('msg msg-bs test');
+    })
+
     it('should render correct message based on different props', () => {
         // Basic message
         const msgBasicProps = {
@@ -24,8 +38,29 @@ describe('Message', () => {
         expect(msgBasicElement).toHaveClass('msg msg-bs test');
 
         // List message
+        const msgListProps = {
+            msgType: messageType.List,
+            className: 'test'
+        }
+        const msgListWrapper = render (
+            <Message {...msgListProps}>List Message</Message>
+        );
+        const msgListElement = msgListWrapper.queryByText('List Message') as HTMLElement;
+        expect(msgListElement).toBeInTheDocument();
+        expect(msgListElement).toHaveClass('msg msg-ls test');
 
         // Icon message
+        const msgIconProps = {
+            msgType: messageType.Icon,
+            className: 'test',
+            iconType: iconType.Spinner
+        }
+        const msgIconWrapper = render (
+            <Message {...msgIconProps}>Icon Message</Message>
+        );
+        const msgIconElement = msgIconWrapper.queryByText('Icon Message') as HTMLElement;
+        expect(msgIconElement).toBeInTheDocument();
+        expect(msgIconElement).toHaveClass('msg msg-ic msg-spinner test');
 
         // Dismiss message
         const msgDismissProps = {

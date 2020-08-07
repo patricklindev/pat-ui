@@ -1,4 +1,6 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { 
+    FC, 
+    HTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export enum messageType {
@@ -14,8 +16,11 @@ export enum iconType {
 }
 
 export interface IMessageProps {
+    /** set class name */
     className?: string;
+    /** set message type */
     msgType?: messageType;
+    /** set icon type */
     iconType?: iconType;
 }
 

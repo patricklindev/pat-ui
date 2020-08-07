@@ -5,9 +5,7 @@ import Message, {messageType} from './Message';
 
 describe('Message', () => {
     it('should match snapshot', () => {
-      const {asFragment} = render(<Message> Snapshot Message </Message>);
-      expect(asFragment()).toMatchSnapshot();
+        const {asFragment} = render(<Message> Snapshot Message </Message>);
+        expect(asFragment()).toMatchSnapshot();
     });
-    
 });
-

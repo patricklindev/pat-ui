@@ -52,7 +52,9 @@ describe('dropdown', () => {
     expect(wrapper).toHaveClass('dropdown__wrapper custom');
     expect(wrapper?.firstChild?.childNodes.length).toBe(2);
 
-    fireEvent.click(wrapper?.firstChild?.lastChild?.childNodes.item(0) as Element);
+    fireEvent.click(
+      wrapper?.firstChild?.lastChild?.childNodes.item(0) as Element
+    );
     expect(dropdownProps.onChange).toBeCalledTimes(1);
   });
 
@@ -75,5 +77,26 @@ describe('dropdown', () => {
     expect(wrapper).toHaveClass('dropdown__wrapper custom');
     expect(wrapper?.firstChild?.childNodes.length).toBe(2);
     expect(wrapper?.firstChild?.firstChild).toHaveClass('disabled');
+  });
+
+  it('should render a disabled dropdown with a custom class and default value is set to 123', () => {
+    const dropdownProps = {
+      placeholder: 'select',
+      className: 'custom',
+      disabled: true,
+      onChange: jest.fn(),
+    };
+
+    const wrapper = render(
+      <Dropdown {...dropdownProps}>
+        <Dropdown.Option>1</Dropdown.Option>
+        <Dropdown.Option>12</Dropdown.Option>
+        <Dropdown.Option active>123</Dropdown.Option>
+      </Dropdown>
+    ).container.firstChild;
+
+    expect(wrapper).toHaveClass('dropdown__wrapper custom');
+    expect(wrapper?.firstChild?.childNodes.length).toBe(2);
+    expect(wrapper?.firstChild?.firstChild?.firstChild).toHaveTextContent('123');
   });
 });

@@ -28,3 +28,12 @@ export const DisabledDropdown = () => (
   </div>
 );
 
+export const DropdownWithActive = () => (
+  <div>
+    <Dropdown onChange={action('selected')} placeholder='this is a dropdown'>
+      <Dropdown.Option value="java" active>Java</Dropdown.Option>
+      <Dropdown.Option value="go">Go</Dropdown.Option>
+      <Dropdown.Option value="ruby">Ruby</Dropdown.Option>
+    </Dropdown>
+  </div>
+);

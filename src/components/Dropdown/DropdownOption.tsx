@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties, ReactNode } from 'react';
+import React, { FC, CSSProperties, ReactNode, useEffect } from 'react';
 
 export interface IDropdownOptionProps {
   /** children must be React Element */
@@ -11,25 +11,34 @@ export interface IDropdownOptionProps {
   setSelected?: (val: string, children: ReactNode) => void;
   /** value for this option */
   value?: string;
+  /** is the active / default option */
+  active?: boolean;
 }
 
 const DropdownOption: FC<IDropdownOptionProps> = (props) => {
-  const { className, children, cssStyle, setSelected, value } = props;
+  const { className, children, cssStyle, setSelected, value, active } = props;
 
   let classNames = 'dropdown__option';
-  if(className) {
+  if (className) {
     classNames = ['dropdown__option', className].join(' ');
-  } 
+  }
 
-  const callback = () => {
-    if(setSelected) {
+  const passToDropdown = () => {
+    if (setSelected) {
       const selectedValue = value ? value : '';
       setSelected(selectedValue, children);
     }
-  }
+  };
+
+  useEffect(() => {
+    // check if active is set when mounted
+    if (active) {
+      passToDropdown();
+    }
+  }, []);
 
   return (
-    <div className={classNames} style={cssStyle} onClick={callback}>
+    <div className={classNames} style={cssStyle} onClick={passToDropdown}>
       {children}
     </div>
   );
@@ -37,6 +46,7 @@ const DropdownOption: FC<IDropdownOptionProps> = (props) => {
 
 DropdownOption.defaultProps = {
   value: '',
-}
+  active: false,
+};
 
 export default DropdownOption;

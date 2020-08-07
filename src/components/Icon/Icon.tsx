@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { classNames } from '../../utils/classNames';
 import { IconPath } from './Icons';
+// import * as icons from '../../asset/icon';
 
 export type IconSize =
   | 'tiny'

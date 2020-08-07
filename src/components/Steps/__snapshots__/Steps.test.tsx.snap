@@ -1,0 +1,431 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttton renders correctly 1`] = `
+<div
+  className="step step-horizontal"
+>
+  <div
+    className="enable"
+  >
+    <div>
+      <div
+        className="step-root"
+      >
+        <div
+          className="truck"
+          onClick={[Function]}
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+                "fontSize": "50px",
+              }
+            }
+            viewBox="0 0 640 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"
+            />
+          </svg>
+        </div>
+        <div
+          className="content"
+        >
+          <p>
+            <b>
+              shipping
+            </b>
+          </p>
+          <p>
+            <i>
+              Choose your shipping option
+            </i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="disable"
+  >
+    <div>
+      <div
+        className="step-root"
+      >
+        <div
+          className="truck"
+          onClick={[Function]}
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+                "fontSize": "50px",
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1,5.00087166 C1,4.4481055 1.43945834,4 2.00246167,4 L21.9975383,4 C22.5511826,4 23,4.44463086 23,5.00087166 L23,18.9991283 C23,19.5518945 22.5605417,20 21.9975383,20 L2.00246167,20 C1.44881738,20 1,19.5553691 1,18.9991283 L1,5.00087166 Z M1,8 L23,8 L23,10 L1,10 L1,8 Z M5,15 L7,15 L7,15.5 L5,15.5 L5,15 Z M10,15 L16,15 L16,15.5 L10,15.5 L10,15 Z"
+              fill="none"
+              stroke="#000"
+              strokeWidth="2"
+            />
+          </svg>
+        </div>
+        <div
+          className="content"
+        >
+          <p>
+            <b>
+              billing
+            </b>
+          </p>
+          <p>
+            <i>
+              Enter billing information
+            </i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="disable"
+  >
+    <div>
+      <div
+        className="step-root"
+      >
+        <div
+          className="truck"
+          onClick={[Function]}
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+                "fontSize": "50px",
+              }
+            }
+            viewBox="0 0 192 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"
+            />
+          </svg>
+        </div>
+        <div
+          className="content"
+        >
+          <p>
+            <b>
+              Confirm Order
+            </b>
+          </p>
+          <p>
+            <i>
+              Verify order details
+            </i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Buttton should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="step step-undefined"
+  >
+    <div
+      class="enable"
+    >
+      <div>
+        <div
+          class="step-root"
+        >
+          <div
+            class="truck"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="font-size: 50px;"
+              viewBox="0 0 640 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"
+              />
+            </svg>
+          </div>
+          <div
+            class="content"
+          >
+            <p>
+              <b>
+                shipping
+              </b>
+            </p>
+            <p>
+              <i>
+                Choose your shipping option
+              </i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="disable"
+    >
+      <div>
+        <div
+          class="step-root"
+        >
+          <div
+            class="truck"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="font-size: 50px;"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1,5.00087166 C1,4.4481055 1.43945834,4 2.00246167,4 L21.9975383,4 C22.5511826,4 23,4.44463086 23,5.00087166 L23,18.9991283 C23,19.5518945 22.5605417,20 21.9975383,20 L2.00246167,20 C1.44881738,20 1,19.5553691 1,18.9991283 L1,5.00087166 Z M1,8 L23,8 L23,10 L1,10 L1,8 Z M5,15 L7,15 L7,15.5 L5,15.5 L5,15 Z M10,15 L16,15 L16,15.5 L10,15.5 L10,15 Z"
+                fill="none"
+                stroke="#000"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+          <div
+            class="content"
+          >
+            <p>
+              <b>
+                billing
+              </b>
+            </p>
+            <p>
+              <i>
+                Enter billing information
+              </i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="disable"
+    >
+      <div>
+        <div
+          class="step-root"
+        >
+          <div
+            class="truck"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="font-size: 50px;"
+              viewBox="0 0 192 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"
+              />
+            </svg>
+          </div>
+          <div
+            class="content"
+          >
+            <p>
+              <b>
+                Confirm Order
+              </b>
+            </p>
+            <p>
+              <i>
+                Verify order details
+              </i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Steps should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="step step-undefined"
+  >
+    <div
+      class="enable"
+    >
+      <div>
+        <div
+          class="step-root"
+        >
+          <div
+            class="truck"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="font-size: 50px;"
+              viewBox="0 0 640 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"
+              />
+            </svg>
+          </div>
+          <div
+            class="content"
+          >
+            <p>
+              <b>
+                shipping
+              </b>
+            </p>
+            <p>
+              <i>
+                Choose your shipping option
+              </i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="disable"
+    >
+      <div>
+        <div
+          class="step-root"
+        >
+          <div
+            class="truck"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="font-size: 50px;"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1,5.00087166 C1,4.4481055 1.43945834,4 2.00246167,4 L21.9975383,4 C22.5511826,4 23,4.44463086 23,5.00087166 L23,18.9991283 C23,19.5518945 22.5605417,20 21.9975383,20 L2.00246167,20 C1.44881738,20 1,19.5553691 1,18.9991283 L1,5.00087166 Z M1,8 L23,8 L23,10 L1,10 L1,8 Z M5,15 L7,15 L7,15.5 L5,15.5 L5,15 Z M10,15 L16,15 L16,15.5 L10,15.5 L10,15 Z"
+                fill="none"
+                stroke="#000"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+          <div
+            class="content"
+          >
+            <p>
+              <b>
+                billing
+              </b>
+            </p>
+            <p>
+              <i>
+                Enter billing information
+              </i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="disable"
+    >
+      <div>
+        <div
+          class="step-root"
+        >
+          <div
+            class="truck"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="font-size: 50px;"
+              viewBox="0 0 192 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"
+              />
+            </svg>
+          </div>
+          <div
+            class="content"
+          >
+            <p>
+              <b>
+                Confirm Order
+              </b>
+            </p>
+            <p>
+              <i>
+                Verify order details
+              </i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

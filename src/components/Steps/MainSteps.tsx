@@ -26,30 +26,28 @@ const MainSteps: React.FC<ImainSteps> = (props) => {
                 label: "shipping",
                 description: "Choose your shipping option",
                 icon: <FaTruck /> ,
-                active: false
+                active: false,
+                enable: true
             },
             {
                 id:1,
                 label: "billing",
                 description: "Enter billing information",
                 icon: <GrCreditCard/>,
-                active: false
+                active: false,
+                enable: false
             },
             {
                 id:2,
                 label: "Confirm Order",
                 description: "Verify order details",
                 icon: <FaInfo/>,
-                active: false
+                active: false,
+                enable: false
             }
         ]
     )
-     let styleClasses=
-    //  if(stepStyle === StepStyle.Horizontal){
-    //         styleClasses = "Horizontal"
-    //     }
-    //  else styleClasses = "Vertical"
-     classNames('step', {
+     let styleClasses=classNames('step', {
         [`step-${stepStyle}`]: true
     })
      
@@ -58,20 +56,22 @@ const MainSteps: React.FC<ImainSteps> = (props) => {
         console.log("I am inside handleclick") 
         console.log("selected element is", index) 
         setActive(true)
-        setIndexGlobal(index)              
+        setIndexGlobal(index) 
+                     
     }
     if(Active){
-       
         steps[indexGlobal].icon =  <FcCheckmark/>  
+        console.log(steps.length, indexGlobal)
+        if(indexGlobal<steps.length-1){
+        steps[indexGlobal+1].enable = true  
     }
-   
-    
-
+     
+    }
     return (
         
         <div className={styleClasses}>
             {steps.map((value,index:number) =>(
-            <div key={index} >
+            <div key={index} className={steps[index].enable?'enable':'disable'}>
             <Steps label={value.label} 
                     description={value.description}
                     icons={value.icon} 

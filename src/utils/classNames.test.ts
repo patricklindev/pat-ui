@@ -1,14 +1,13 @@
 import {classNames, ClassNamesArg} from './classNames';
 
 describe('classNames', () => {
-  it('should return a classes string based on args', () => {
+  it('should return component style', () => {
     const mockAgs: ClassNamesArg[] = [
-      'btn',
-      {'btn-default': true, 'btn-small': false},
-      {'btn-test': true},
-      'test1 test2',
+      'step',
+      {'step-horizontal': true},
+      {'step-test': true}
     ];
-    const expectedResult = 'btn btn-default btn-test test1 test2';
+    const expectedResult = 'step step-horizontal step-test';
     const result = classNames(...mockAgs);
     expect(result).toBe(expectedResult);
   });

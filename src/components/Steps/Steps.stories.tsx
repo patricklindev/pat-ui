@@ -12,8 +12,6 @@ export default {
 export const horizontalSteps = ()=>{
     return(
     <div className="App" onClick={action('Steps')}>
-    <h1>Create your own steps</h1>
-    <h5> Horizontal Steps</h5>
     <MainSteps stepStyle={StepStyle.Horizontal}/>
   </div>
     )
@@ -21,8 +19,6 @@ export const horizontalSteps = ()=>{
 export const verticalSteps = ()=>{
     return(
     <div className="App" onClick={action('Steps')}>
-    <h1>Create your own steps</h1>
-    <h5> Vertical Steps</h5>
     <MainSteps stepStyle={StepStyle.Vertical}/>
   </div>
     )

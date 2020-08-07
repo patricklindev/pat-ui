@@ -47,4 +47,13 @@
     margin-left: 50px;
   
 }
+.enable{
+    background-color:lightgray;
+}
+.enable:hover{
+    transform: scale(1.1);
+}
+.disable{
+    pointer-events:none;
+}
 

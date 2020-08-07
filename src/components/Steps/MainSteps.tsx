@@ -69,7 +69,8 @@ const MainSteps: React.FC<ImainSteps> = (props) => {
     }
     return (
         
-        <div className={styleClasses}>
+        <div className={styleClasses} >
+            {/* <h5>Create your own steps...</h5> */}
             {steps.map((value,index:number) =>(
             <div key={index} className={steps[index].enable?'enable':'disable'}>
             <Steps label={value.label} 

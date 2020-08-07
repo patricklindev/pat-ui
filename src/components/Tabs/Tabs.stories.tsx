@@ -9,10 +9,10 @@ export default {
 
 export const DefaultTabs = () => {
   return (
-    <div className='DefaultTabs' onChange={action('selected')}>
+    <div className='DefaultTabs' onChange={action('defaultTab')}>
       <h1>Esther's Tab Component Demo</h1>
 
-      <Tabs headings={['Tab1', 'Tab2']} />
+      <Tabs headings={['Tab1', 'Tab2']} tabType='basic' />
     </div>
   );
 };

@@ -72,9 +72,31 @@ export const DiffThemeCard = () => (
     <Card
       onClick={action('Dark Button clicked')}
       src={'https://via.placeholder.com/150'}
-      cardType='dark'
+      cardTheme='dark'
     >
       Dark Card
+    </Card>
+
+    <Card
+      onClick={action('Purple Button clicked')}
+      src={'https://via.placeholder.com/150'}
+      cardTheme='purple'
+    >
+      Purple Card
+    </Card>
+    <Card
+      onClick={action('Yellow Button clicked')}
+      src={'https://via.placeholder.com/150'}
+      cardTheme='yellow'
+    >
+      Yellow Card
+    </Card>
+    <Card
+      onClick={action('Blue Button clicked')}
+      src={'https://via.placeholder.com/150'}
+      cardTheme='blue'
+    >
+      Blue Card
     </Card>
   </div>
 );

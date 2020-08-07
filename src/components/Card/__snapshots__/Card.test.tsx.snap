@@ -8,6 +8,7 @@ exports[`Card should match snapshot 1`] = `
   >
     <div
       class="card card-default image"
+      data-testid="card-image-element"
     >
       <img
         data-testid="image-element"
@@ -15,6 +16,7 @@ exports[`Card should match snapshot 1`] = `
     </div>
     <div
       class="card card-default body"
+      data-testid="card-body-element"
     >
       <h5>
          Snapshot Card 

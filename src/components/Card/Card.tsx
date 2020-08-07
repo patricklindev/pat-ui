@@ -4,16 +4,16 @@ import { classNames } from '../../utils/classNames';
 import MyCard from './myCard';
 
 export type CardSize = 'lg' | 'sm';
-
+export type CardTheme = 'dark' | 'purple' | 'blue' | 'yellow';
 export type CardType =
   | 'horizontal'
   | 'default'
   | 'circledImage'
   | 'noImage'
-  | 'dark'
   | 'largeImage';
 
 export interface ICardProps {
+  cardTheme?: CardTheme;
   cardSize?: CardSize;
   cardType?: CardType;
   className?: string;
@@ -26,14 +26,12 @@ export type myCardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
 /**
  * A default card with a button to show more
  *
- * ```js
- * import {Card} from 'pat-ui'
- * ```
  */
 export const Card: FC<myCardProps> = (props) => {
-  const { cardSize, cardType, children, className, ...rest } = props;
+  const { cardSize, cardType, cardTheme, children, className, ...rest } = props;
   let styleClasses = classNames('card', {
     [`card-${cardType}`]: true,
+    [`card-${cardTheme}`]: true,
     [`card-${cardSize}`]: !!cardSize,
   });
   if (className) {

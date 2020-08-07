@@ -33,10 +33,40 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+  margin: 5px;
 }
 @mixin card-body-style {
   border-style: none;
   font-size: $font-size-sm;
   padding: 0.6rem;
   border-radius: 0;
+}
+
+@mixin card-theme-style($color) {
+  @include card-border;
+  border-color: $color;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  .image {
+    border-style: none;
+
+    margin: 0px;
+  }
+  .image img {
+    border-radius: inherit;
+    height: 10rem;
+    width: 14.9rem;
+  }
+  .body {
+    @include card-body-style;
+    margin: 0px;
+  }
+  .body h5 {
+    color: $color;
+  }
+  .btn {
+    @include button-style($white, $color, $secondary);
+    width: 10rem;
+  }
 }

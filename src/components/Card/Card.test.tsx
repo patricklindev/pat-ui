@@ -17,8 +17,7 @@ describe('Card', () => {
   });
   it('should render dark card with correct title', () => {
     const cardProps: myCardProps = {
-      cardType: 'dark',
-      onClick: jest.fn(),
+      cardTheme: 'dark',
     };
     const wrapper = render(<Card {...cardProps}>Dark Card</Card>);
     //test h5 title
@@ -29,15 +28,23 @@ describe('Card', () => {
     const cardElement = screen.getByTestId('card-element');
     expect(cardElement).toHaveClass('card card-dark');
   });
-  it('should render small size card', () => {
+  it('should render card on different props', () => {
     const cardProps: myCardProps = {
-      cardSize: 'sm',
-      onClick: jest.fn(),
+      cardSize: 'lg',
+      cardType: 'noImage',
+      className: 'test',
     };
-    const wrapper = render(<Card {...cardProps}>Small Card</Card>);
-    const cardElement = screen.getByTestId('card-element');
-    expect(cardElement).toHaveClass('card card-default card-sm');
+    const wrapper = render(<Card {...cardProps}>noImage Card</Card>);
+    //test h5 title
+    const titleElement = wrapper.queryByText('noImage Card') as HTMLElement;
+    expect(titleElement).toBeInTheDocument();
+    //test class name
+    const cardElement = screen.getByTestId('card-body-element');
+    expect(cardElement).toHaveClass('card card-noImage card-lg body test');
+    const cardBodyElement = screen.getByTestId('card-image-element');
+    expect(cardBodyElement).toHaveClass('card card-noImage card-lg image test');
   });
+
   it('should render button can be clicked', () => {
     const cardProps = {
       onClick: jest.fn(),

@@ -3,10 +3,16 @@ import Button from '../Button/Button';
 function MyCard(props) {
   return (
     <div className={props.className} data-testid='card-element'>
-      <div className={props.className + ' image'}>
+      <div
+        className={props.className + ' image'}
+        data-testid='card-image-element'
+      >
         <img src={props.src} data-testid='image-element' />
       </div>
-      <div className={props.className + ' body'}>
+      <div
+        className={props.className + ' body'}
+        data-testid='card-body-element'
+      >
         <h5>{props.children}</h5>
         <p>
           Some quick example text to build on the card title and make up the

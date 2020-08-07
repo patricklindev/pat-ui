@@ -52,6 +52,12 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
     setIsOptionListOpen(!isOptionListOpen);
   };
 
+  const closeOptionList = () => {
+    if(isOptionListOpen) {
+      setIsOptionListOpen(!isOptionListOpen);
+    }
+  }
+
   const setSelected = (val: string) => {
     if (onChange) {
       onChange(val);
@@ -81,6 +87,8 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
             toggleOptionList();
           }
         }}
+        onBlur={() => { closeOptionList() }}
+        tabIndex={0}
       >
         <div
           className={

@@ -19,7 +19,7 @@ export const DefaultCard = () => (
 export const DiffSizeCard = () => (
   <div>
     <Card
-      onClick={action('Default Button clicked')}
+      onClick={action('Small Button clicked')}
       src={'https://via.placeholder.com/150'}
       cardSize='sm'
     >
@@ -27,7 +27,7 @@ export const DiffSizeCard = () => (
     </Card>
 
     <Card
-      onClick={action('Default Button clicked')}
+      onClick={action('Large Button clicked')}
       src={'https://via.placeholder.com/150'}
       cardSize='lg'
     >

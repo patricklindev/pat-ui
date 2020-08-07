@@ -1,20 +1,28 @@
 import { InputHTMLAttributes, FC } from 'react';
 interface IInputProps {
+    /** set customized style */
     className?: string;
-    placeholder?: string;
+    /** set input bar size */
     size?: 'mini' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+    /** make input bar always focused */
     focus?: boolean;
+    /** disabled the input bar */
     disabled?: boolean;
+    /** apply error style to input bar */
     error?: boolean;
+    /** make input bar transparent */
     transparent?: boolean;
+    /** make input bar take whole space of parent container */
     fluid?: boolean;
+    /** add specific icon to input bar */
     icon?: string | {
         [key: string]: string | boolean;
     };
+    /** apply loading style to input bar */
     loading?: boolean;
-    iconPosition?: string;
-    labeled?: string;
+    /** set icon to show on left or right, default is right */
+    iconPosition?: 'left' | 'right';
 }
-declare type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
+export declare type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 declare const Input: FC<PatInputProps>;
 export default Input;

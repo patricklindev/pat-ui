@@ -13,7 +13,7 @@ export interface IButtonProps {
 }
 declare type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 declare type NativeAchorButtonProps = IButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>;
-declare type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
+export declare type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
 /**
  * A Button indicates a possible user action.
  *

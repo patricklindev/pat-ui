@@ -32,12 +32,12 @@ export type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElem
 const Input: FC<PatInputProps> = (props) => {
     const {size, focus, disabled, error, transparent, fluid, icon, loading, iconPosition, ...rest} = props;
     const styleClasses = classNames('ui', 'input', {
-        [`input-focus`]: !!focus,
+        'input-focus': !!focus,
         [`input-${size}`]: !!size,
-        [`input-disabled`]: !!disabled,
-        [`input-error`]: !!error,
-        [`input-transparent`]: !!transparent,
-        [`input-fluid`]: !!fluid,
+        'input-disabled': !!disabled,
+        'input-error': !!error,
+        'input-transparent': !!transparent,
+        'input-fluid': !!fluid,
         'input-loading': !!loading,
         [`input-${iconPosition}`]: !!iconPosition,
         icon: !!icon || !!loading,

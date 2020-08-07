@@ -23,16 +23,19 @@
 
 .remove-icon {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: $remove-icon-margin;
+    right: $remove-icon-margin;
 }
 
 .circle-icon {
     position: absolute;
-    left: 1.5rem;
-    top: 1.6rem;
-    font-size: 3rem;
+    left: $circle-icon-margin;
+    top: $circle-icon-margin;
+    font-size: $cirle-icon-size;
+    animation: $icon-animation;
 }
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 .spinner-message {
     @include icon-style (

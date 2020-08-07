@@ -209,4 +209,10 @@ $msg-header-size: $h4-font-size !default;
 $msg-pg-size: 1.2rem !default;
 
 // message icon
-$msg-margin-left: 10% !default;
+$msg-margin-left: 6rem !default;
+$remove-icon-margin: 0.5rem !default;
+$circle-icon-margin: 1.7rem !default;
+$cirle-icon-size: 3rem !default;
+
+// icon animation
+$icon-animation: spin 2s linear infinite;

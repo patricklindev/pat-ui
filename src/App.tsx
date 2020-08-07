@@ -78,8 +78,9 @@ function App() {
       <Message msgType={messageType.Dismiss} iconType={iconType.Remove} className="remove-message">
         <FontAwesomeIcon className="remove-icon" icon={faTimes}
         onClick={() => {
-
-        }}/>
+          const element = document.querySelector('.remove-message');
+          return element?.remove();
+          }}/>
         <div className="header">
           Welcome back!
         </div>

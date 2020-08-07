@@ -77,7 +77,8 @@ export const DiffTypeMessage = () => (
         >
         <FontAwesomeIcon className="remove-icon" icon={faTimes}
         onClick={() => {
-
+          const element = document.querySelector('.remove-message');
+          return element?.remove();
         }}/>
         <div className="header">
         Welcome back!

@@ -8,47 +8,32 @@ export default {
 };
 
 export const DefaultCard = () => (
-  <Card
-    btnOnClick={action('Default Button clicked')}
-    cardImgSrc={'https://via.placeholder.com/150'}
-    cardParagraph={
-      "Some quick example text to build on the card title and make up the bulk of the card's content."
-    }
-    cardTitle={'Default card'}
-    buttonHref={'#'}
-    buttonTitle={'show more info'}
-  ></Card>
-);
-
-export const DiffSizeCard = () => (
   <div>
     <Card
-      btnOnClick={action('Small Button clicked')}
+      btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
-      cardTitle={'Small card'}
+      cardTitle={'Default card'}
       buttonHref={'#'}
-      cardSize='sm'
-      buttonTitle={'show more info'}
-    ></Card>
-
-    <Card
-      btnOnClick={action('Large Button clicked')}
-      cardImgSrc={'https://via.placeholder.com/150'}
-      cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
-      }
-      cardTitle={'Large card'}
-      buttonHref={'#'}
-      cardSize='lg'
       buttonTitle={'show more info'}
     ></Card>
   </div>
 );
-export const DiffTypeCard = () => (
+
+export const DiffModeCard = () => (
   <div>
+    <Card
+      btnOnClick={action('Default Button clicked')}
+      cardImgSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Default card'}
+      buttonHref={'#'}
+      buttonTitle={'show more info'}
+    ></Card>
     <Card
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -60,6 +45,11 @@ export const DiffTypeCard = () => (
       buttonTitle={'show more info'}
       cardMode='horizontal'
     ></Card>
+  </div>
+);
+
+export const DiffTypeCard = () => (
+  <div>
     <Card
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -136,6 +126,34 @@ export const DiffThemeCard = () => (
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
+    ></Card>
+  </div>
+);
+
+export const DiffSizeCard = () => (
+  <div>
+    <Card
+      btnOnClick={action('Small Button clicked')}
+      cardImgSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Small card'}
+      buttonHref={'#'}
+      cardSize='sm'
+      buttonTitle={'show more info'}
+    ></Card>
+
+    <Card
+      btnOnClick={action('Large Button clicked')}
+      cardImgSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'Large card'}
+      buttonHref={'#'}
+      cardSize='lg'
+      buttonTitle={'show more info'}
     ></Card>
   </div>
 );

@@ -10,12 +10,6 @@ export type CardType = 'circledImage' | 'noImage' | 'largeImage';
 export interface ICardProps {
   /** set customized card */
   className?: string;
-  /** set card content */
-  cardParagraph?: string;
-  /** set card title */
-  cardTitle?: string;
-  /** set card image source */
-  cardImgSrc?: string;
   /** set card theme */
   cardTheme?: CardTheme;
   /** set card mode */
@@ -24,12 +18,17 @@ export interface ICardProps {
   cardSize?: CardSize;
   /** set card type */
   cardType?: CardType;
+  /** set card title */
+  cardTitle?: string;
+  /** set card content */
+  cardParagraph?: string;
+  /** set card image source */
+  cardImgSrc?: string;
   /** set action on bottun clicked */
   btnOnClick?: () => void;
   /** set the redirect page on button clicked*/
   buttonHref?: string;
   /** set button title */
-
   buttonTitle?: string;
 }
 // export interface ImgHTMLAttributes<T> {

@@ -1,5 +1,7 @@
 .card-default {
   @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
   width: 15rem;
   display: flex;
   flex-direction: column;
@@ -19,6 +21,8 @@
 
 .card-horizontal {
   @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
   width: 40rem;
   height: 10rem;
   display: flex;
@@ -39,6 +43,8 @@
 }
 .card-circledImage {
   @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
   align-self: center;
   margin-right: '5px';
   width: 15rem;
@@ -70,6 +76,8 @@
 
 .card-noImage {
   @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
   width: 20rem;
   display: flex;
   flex-direction: column;
@@ -82,6 +90,31 @@
   }
   .btn {
     width: 10rem;
+  }
+}
+
+.card-largeImage {
+  @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  .image {
+    margin: 0px;
+  }
+  .image img {
+    height: 12rem;
+  }
+  .body {
+    text-align: center;
+    @include card-body-style;
+  }
+  .body p {
+    display: none;
+  }
+  .btn {
+    display: none;
   }
 }
 
@@ -118,6 +151,8 @@
 
 .card-sm {
   @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
   width: 12rem;
   display: flex;
   flex-direction: column;
@@ -147,6 +182,8 @@
 
 .card-lg {
   @include card-border;
+  margin-right: 15px;
+  margin-top: 15px;
   width: 18rem;
   height: 25rem;
   display: flex;
@@ -167,28 +204,5 @@
   }
   .btn {
     width: 12rem;
-  }
-}
-
-.card-largeImage {
-  @include card-border;
-  width: 18rem;
-  display: flex;
-  flex-direction: column;
-  .image {
-    margin: 0px;
-  }
-  .image img {
-    height: 12rem;
-  }
-  .body {
-    text-align: center;
-    @include card-body-style;
-  }
-  .body p {
-    display: none;
-  }
-  .btn {
-    display: none;
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button, { ButtonType, ButtonSize } from './components/Button/Button';
-import Message, { messageType, iconType } from './components/Message/Message';
+import Message, { messageType } from './components/Message/Message';
 
 function App() {
   return (

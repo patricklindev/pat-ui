@@ -1,17 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Buttton should match snapshot 1`] = `
-<DocumentFragment>
-  <div>
-    <div
-      class="msg msg-bs"
-    >
-       Snapshot Message 
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`Message should match snapshot 1`] = `
 <DocumentFragment>
   <div>

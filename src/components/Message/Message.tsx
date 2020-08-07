@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
-import { FontAwesomeIconProps, FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch, faSpinner } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIconProps, FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCircleNotch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 export enum messageType {
     Basic = 'bs',
@@ -10,9 +10,9 @@ export enum messageType {
     Dismiss = 'ds'
 }
 
-export enum iconType {
-    Spinner = 'spinner'
-}
+// export enum iconType {
+//     Spinner = 'spinner'
+// }
 
 export interface IMessageProps {
     className?: string;

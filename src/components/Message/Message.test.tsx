@@ -9,3 +9,4 @@ describe('Message', () => {
         expect(asFragment()).toMatchSnapshot();
     });
 });
+

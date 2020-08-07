@@ -1,5 +1,5 @@
-import React, { FC, ImgHTMLAttributes } from 'react';
-import Button, { PatButtonProps } from '../Button/Button';
+import React, { FC } from 'react';
+import Button from '../Button/Button';
 import { classNames } from '../../utils/classNames';
 
 export type CardSize = 'lg' | 'sm';

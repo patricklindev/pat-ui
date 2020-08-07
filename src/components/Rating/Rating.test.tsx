@@ -6,17 +6,18 @@ import Rating, {IRatingProps} from './Rating'
 
 describe('Rating', () => {
     it('should match snapshot', () => {
-        const {asFragment} = render(<Rating/>);
+        const {asFragment} = render(<Rating rtKey = '1'/>);
         expect(asFragment()).toMatchSnapshot();
       });
     it('should render default stars', () => {
-        const wrapper = render(<Rating />)
+        const wrapper = render(<Rating rtKey = '1' />)
         const el = wrapper.container.firstChild
         expect(el).toHaveClass('rt rt-star');
     })
 
     it('should render correct shape and size based on different props', ()=> {
         const rtHeartSmallProps: IRatingProps = {
+            rtKey: '1',
             rtShape: 'heart',
             rtSize: 'sm'
         }
@@ -26,6 +27,7 @@ describe('Rating', () => {
         expect(heartSmallel).toHaveClass('rt rt-sm rt-heart');
 
         const rtWinkLargeProps: IRatingProps = {
+            rtKey: '2',
             rtShape: 'smile-wink',
             rtSize: 'lg'
         }
@@ -36,7 +38,7 @@ describe('Rating', () => {
     })
 
     it('should change correct number of icons color when clicked', ()=>{
-        const wrapper = render(<Rating />)
+        const wrapper = render(<Rating rtKey = '1'/>)
         const iconcontainer = wrapper.container.firstChild
         const firstIcon = iconcontainer?.firstChild
         const secondIcon = iconcontainer?.childNodes[1]
@@ -59,6 +61,7 @@ describe('Rating', () => {
 
     it('should fire correct effect when clicked', ()=>{
         const rtBounceProps: IRatingProps = {
+            rtKey: '1',
             rtAnimation: 'bounce',
         }  
         const rtBounceWrapper = render(<Rating {...rtBounceProps}/>)      

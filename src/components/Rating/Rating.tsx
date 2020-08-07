@@ -1,4 +1,4 @@
-import React, {FunctionComponent, MouseEvent, HTMLProps} from 'react';
+import React, {FunctionComponent, MouseEvent, useEffect, useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -37,15 +37,23 @@ export type RatingAnimation = 'none' | 'fade' | 'bounce' | 'swing';
 
 // }
 
-export interface IRatingProps {    
+
+export interface IRatingProps {      
+    /** set unique rtKey */
+    rtKey: string  
     /** set customized style */
     className?: string;
     /** set icon shape */
     rtShape?: RatingShape;
     /** set icon size */
     rtSize?: RatingSize;
+    /** set initial score */
+    rtScore?:number;
+    /** set ajax call function */
+    rtAjax?: (score:number) => any;
     /** set click effect */
-    rtAnimation?: RatingAnimation
+    rtAnimation?: RatingAnimation;
+
 
 }
 
@@ -59,11 +67,25 @@ export interface IRatingProps {
 // type SRatingProps = IRatingProps & HTMLProps<HTMLDivElement>
 
 export const Rating: FunctionComponent<IRatingProps> = (props) => {
-    const {className, rtShape, rtSize, rtAnimation, children, ...rest} = props
+    let {className, rtShape, rtSize, rtAnimation, rtScore, rtAjax, rtKey, children, ...rest} = props
+    const [score, setScore] = useState(rtScore)
     const prefix = new Array(5).fill('fas')
-    // let styleClasses = 'rt'
-    let styleClasses = ['rt', `rt-${rtSize}`, `rt-${rtShape}`].join(' ')
+    let styleClasses = ['rt', `rt-${rtSize}`, `rt-${rtShape}`, `rt-rtKey-${rtKey}`].join(' ')
     if (className) styleClasses += ' ' + className
+    useEffect(()=> {
+        let parent = document.getElementById(rtKey)
+        if (parent && score) {
+            let icons = (parent as Element).children    
+            for (let i =0; i< 5; i++){
+                icons[i].classList.remove('rt-active')                
+            }
+            for (let i = (5 - (score as number)) ; i < 5; i++){            
+                icons[i].classList.add('rt-active')
+            }
+            if(rtAjax) rtAjax(score as number)
+        }
+
+    }, [score])
     const handleClick = (e:MouseEvent) => {
         e.stopPropagation()
         let target = e.target as Element
@@ -73,20 +95,20 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
             target.classList.remove(`rt-${rtAnimation}`)
         }, 1000)
         let num = parseInt(target.id.split('-')[1])
-        // console.log(target)
-        // console.log(num)
-        let parent = target.parentElement
-        if (parent?.id === 'rt-container') {
-            let icons = parent.children    
-            for (let i =0; i< 5; i++){
-                icons[i].classList.remove('rt-active')                
-            }
-            for (let i = 5-num; i < 5; i++){            
-                icons[i].classList.add('rt-active')
-            }
-        } 
+        setScore(num)
 
-   
+        // console.log(target)
+        
+        // let parent = target.parentElement
+        // if (parent?.id === 'rt-container') {
+        //     let icons = parent.children    
+        //     for (let i =0; i< 5; i++){
+        //         icons[i].classList.remove('rt-active')                
+        //     }
+        //     for (let i = 5-num; i < 5; i++){            
+        //         icons[i].classList.add('rt-active')
+        //     }
+        // }    
         // prefixState(newfix)
         // console.log(prefix)
         // }        
@@ -95,7 +117,7 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
     return (
    
         <>
-            <div id='rt-container' className={styleClasses} {...(rest as IRatingProps)}>
+            <div id={`${rtKey}`} className={styleClasses + ' rt-container'} {...(rest as IRatingProps)}>
                 <div className='rt-icon' onClick={handleClick} id='rt-5'>
                     <FontAwesomeIcon icon={[prefix[4], rtShape as string] as IconProp} size={rtSize}/>
                 </div>
@@ -118,9 +140,10 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
 };
 
 Rating.defaultProps = {
+    rtScore: 0,
     rtShape: 'star',
     rtSize: '1x',
-    rtAnimation: 'none'
+    rtAnimation: 'none',
 };
 
 

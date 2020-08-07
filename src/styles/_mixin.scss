@@ -27,7 +27,29 @@
     border-color: $hover-border-color;
   }
 }
-
+@mixin default-card {
+  border-style: solid;
+  border-width: $border-width;
+  border-radius: $border-radius;
+  border-color: $border-color;
+  margin-right: 15px;
+  margin-top: 15px;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  .image {
+    margin: 0px;
+  }
+  .image img {
+    height: 10rem;
+  }
+  .body {
+    @include card-body-style;
+  }
+  .btn {
+    width: 10rem;
+  }
+}
 @mixin card-border {
   border-style: solid;
   border-width: $border-width;

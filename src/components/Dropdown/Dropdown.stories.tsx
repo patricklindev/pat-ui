@@ -9,20 +9,21 @@ export default {
 
 export const DefaultDropdown = () => (
   <div>
-    <Dropdown onChange={action('selected')} placeholder='Select a type'>
-      <Dropdown.Item>Sedan</Dropdown.Item>
-      <Dropdown.Item>SUV</Dropdown.Item>
-      <Dropdown.Item>Convertible</Dropdown.Item>
+    <Dropdown onChange={action('selected')} placeholder='select a framework'>
+      <Dropdown.Item>Spark</Dropdown.Item>
+      <Dropdown.Item>Kafka</Dropdown.Item>
+      <Dropdown.Item>Flink</Dropdown.Item>
+      <Dropdown.Item>Storm</Dropdown.Item>
     </Dropdown>
   </div>
 );
 
 export const DisabledDropdown = () => (
   <div>
-    <Dropdown disabled onChange={action('selected')} placeholder='Select a type'>
-      <Dropdown.Item>Sedan</Dropdown.Item>
-      <Dropdown.Item>SUV</Dropdown.Item>
-      <Dropdown.Item>Convertible</Dropdown.Item>
+    <Dropdown disabled onChange={action('selected')} placeholder='this is a disabled dropdown'>
+      <Dropdown.Item>Java</Dropdown.Item>
+      <Dropdown.Item>Go</Dropdown.Item>
+      <Dropdown.Item>Ruby</Dropdown.Item>
     </Dropdown>
   </div>
 );

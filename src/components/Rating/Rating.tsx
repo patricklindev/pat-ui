@@ -38,16 +38,23 @@ export type RatingAnimation = 'none' | 'fade' | 'bounce' | 'swing';
 // }
 
 export interface IRatingProps {    
-
+    /** set customized style */
     className?: string;
-
+    /** set icon shape */
     rtShape?: RatingShape;
-
+    /** set icon size */
     rtSize?: RatingSize;
-
+    /** set click effect */
     rtAnimation?: RatingAnimation
 
 }
+
+/**
+ * A rating indicates user interest in content
+ * ```js
+ * 
+ * ```
+ */
 
 // type SRatingProps = IRatingProps & HTMLProps<HTMLDivElement>
 

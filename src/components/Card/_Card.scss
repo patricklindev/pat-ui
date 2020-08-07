@@ -1,22 +1,5 @@
 .card-default {
-  @include card-border;
-  margin-right: 15px;
-  margin-top: 15px;
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
-  .image {
-    margin: 0px;
-  }
-  .image img {
-    height: 10rem;
-  }
-  .body {
-    @include card-body-style;
-  }
-  .btn {
-    width: 10rem;
-  }
+  @include default-card;
 }
 
 .card-horizontal {

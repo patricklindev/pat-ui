@@ -10,14 +10,14 @@ export type CardType = 'circledImage' | 'noImage' | 'largeImage';
 export interface ICardProps {
   /** set customized card */
   className?: string;
-  /** set card theme */
-  cardTheme?: CardTheme;
   /** set card mode */
   cardMode?: CardMode;
-  /** set card size */
-  cardSize?: CardSize;
   /** set card type */
   cardType?: CardType;
+  /** set card theme */
+  cardTheme?: CardTheme;
+  /** set card size */
+  cardSize?: CardSize;
   /** set card title */
   cardTitle?: string;
   /** set card content */

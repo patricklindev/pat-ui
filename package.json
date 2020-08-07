@@ -20,7 +20,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "react-icons": "^3.10.0"
+  },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"

@@ -1,0 +1,50 @@
+.step-root{
+    display: flex;
+    border: 1px solid  grey;
+    width: 100%;
+    margin-left: 1%;
+    padding: 10px;
+    position: relative;
+    height: 80px
+    
+}
+
+// .step-root:after {
+//   position: absolute;
+//   width: 30px;
+//   height: 30px;
+//  border-top: 1px solid  grey;
+//  border-bottom: 0px solid black;
+//  border-left: 0px solid black;
+//  border-right: 1px solid  grey;
+//  top: 50%;
+//  left: 100%;
+//  margin-top: -20px;
+//  content: "";
+//  transform: rotate(45deg);
+//  margin-left: -18px;
+//  background-color: white;
+//  z-index: 1;
+       
+// }
+.truck{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.content{
+    margin-left: 20px;
+}
+.step-horizontal{
+    display:flex;
+    margin-bottom: 30px;
+    margin-left: 50px;
+   
+}
+.step-vertical{
+    width: 50%;
+    margin-bottom: 30px;
+    margin-left: 50px;
+  
+}
+

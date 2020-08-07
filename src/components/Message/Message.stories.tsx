@@ -1,5 +1,4 @@
 import React from 'react';
-//import {action} from '@storybook/addon-actions';
 import Message, {messageType, iconType} from './Message';
 
 import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';

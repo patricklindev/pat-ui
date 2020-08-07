@@ -13,9 +13,13 @@ export type CardType =
   | 'largeImage';
 
 export interface ICardProps {
+  /** set card theme */
   cardTheme?: CardTheme;
+  /** set card size */
   cardSize?: CardSize;
+  /** set card type */
   cardType?: CardType;
+  /** set customized card */
   className?: string;
 }
 // export interface ImgHTMLAttributes<T> {

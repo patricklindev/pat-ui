@@ -7,7 +7,7 @@ import React, {
   cloneElement,
 } from 'react';
 import { classNames } from '../../utils/classNames';
-import DropdownItem, { IDropdownItemProps } from './DropdownItem';
+import DropdownOption from './DropdownOption';
 
 export interface IDropdownProps {
   /** children must be React Element */
@@ -25,7 +25,7 @@ export interface IDropdownProps {
 }
 
 interface PatDropdownSubComponents {
-  Item: FC<IDropdownItemProps>;
+  Option: typeof DropdownOption;
 }
 
 /**
@@ -115,7 +115,7 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
   );
 };
 
-Dropdown.Item = DropdownItem;
+Dropdown.Option = DropdownOption;
 
 Dropdown.defaultProps = {
   placeholder: '',

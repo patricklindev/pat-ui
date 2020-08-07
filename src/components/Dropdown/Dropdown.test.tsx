@@ -23,9 +23,9 @@ describe('dropdown', () => {
 
     const wrapper = render(
       <Dropdown {...dropdownProps}>
-        <Dropdown.Item>1</Dropdown.Item>
-        <Dropdown.Item>12</Dropdown.Item>
-        <Dropdown.Item>123</Dropdown.Item>
+        <Dropdown.Option>1</Dropdown.Option>
+        <Dropdown.Option>12</Dropdown.Option>
+        <Dropdown.Option>123</Dropdown.Option>
       </Dropdown>
     ).container.firstChild;
 
@@ -43,9 +43,9 @@ describe('dropdown', () => {
 
     const wrapper = render(
       <Dropdown {...dropdownProps}>
-        <Dropdown.Item>1</Dropdown.Item>
-        <Dropdown.Item>12</Dropdown.Item>
-        <Dropdown.Item>123</Dropdown.Item>
+        <Dropdown.Option>1</Dropdown.Option>
+        <Dropdown.Option>12</Dropdown.Option>
+        <Dropdown.Option>123</Dropdown.Option>
       </Dropdown>
     ).container.firstChild;
 
@@ -66,9 +66,9 @@ describe('dropdown', () => {
 
     const wrapper = render(
       <Dropdown {...dropdownProps}>
-        <Dropdown.Item>1</Dropdown.Item>
-        <Dropdown.Item>12</Dropdown.Item>
-        <Dropdown.Item>123</Dropdown.Item>
+        <Dropdown.Option>1</Dropdown.Option>
+        <Dropdown.Option>12</Dropdown.Option>
+        <Dropdown.Option>123</Dropdown.Option>
       </Dropdown>
     ).container.firstChild;
 

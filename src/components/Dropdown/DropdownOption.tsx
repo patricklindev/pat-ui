@@ -1,6 +1,6 @@
 import React, { FC, CSSProperties } from 'react';
 
-export interface IDropdownItemProps {
+export interface IDropdownOptionProps {
   /** children must be React Element */
   children?: string;
   /** set customized css class */
@@ -11,7 +11,7 @@ export interface IDropdownItemProps {
   setSelected?: (text: string) => void;
 }
 
-const DropdownItem: FC<IDropdownItemProps> = (props) => {
+const DropdownItem: FC<IDropdownOptionProps> = (props) => {
   const { className, children, cssStyle, setSelected } = props;
 
   let classNames = 'dropdown__option';

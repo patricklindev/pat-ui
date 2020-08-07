@@ -15,7 +15,7 @@ export interface ICardProps {
   /** set card title */
   cardTitle?: string;
   /** set card image source */
-  cardSrc?: string;
+  cardImgSrc?: string;
   /** set card theme */
   cardTheme?: CardTheme;
   /** set card mode */
@@ -66,7 +66,7 @@ export const Card: FC<patCardProps> = (props) => {
   let Card = (
     <div className={styleClasses} data-testid='card-element'>
       <div className={styleClasses + ' image'} data-testid='card-image-element'>
-        <img src={props.cardSrc} data-testid='image-element' />
+        <img src={props.cardImgSrc} data-testid='image-element' />
       </div>
       <div className={styleClasses + ' body'} data-testid='card-body-element'>
         <h5>{props.cardTitle}</h5>

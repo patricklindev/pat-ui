@@ -49,7 +49,7 @@ describe('Card', () => {
   });
   it('should render image with correct source', () => {
     const cardProps = {
-      cardSrc: 'png',
+      cardImgSrc: 'png',
     };
     const wrapper = render(<Card {...cardProps}></Card>);
     const imageElement = screen.getByTestId('image-element');

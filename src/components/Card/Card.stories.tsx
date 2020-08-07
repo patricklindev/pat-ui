@@ -10,7 +10,7 @@ export default {
 export const DefaultCard = () => (
   <Card
     btnOnClick={action('Default Button clicked')}
-    cardSrc={'https://via.placeholder.com/150'}
+    cardImgSrc={'https://via.placeholder.com/150'}
     cardParagraph={
       "Some quick example text to build on the card title and make up the bulk of the card's content."
     }
@@ -24,7 +24,7 @@ export const DiffSizeCard = () => (
   <div>
     <Card
       btnOnClick={action('Small Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
@@ -36,7 +36,7 @@ export const DiffSizeCard = () => (
 
     <Card
       btnOnClick={action('Large Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
@@ -51,7 +51,7 @@ export const DiffTypeCard = () => (
   <div>
     <Card
       btnOnClick={action('Default Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
@@ -62,7 +62,7 @@ export const DiffTypeCard = () => (
     ></Card>
     <Card
       btnOnClick={action('Default Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
@@ -73,7 +73,7 @@ export const DiffTypeCard = () => (
     ></Card>
     <Card
       btnOnClick={action('Default Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
@@ -84,7 +84,7 @@ export const DiffTypeCard = () => (
     ></Card>
     <Card
       btnOnClick={action('Default Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Large image card'}
       cardType='largeImage'
     ></Card>
@@ -94,7 +94,7 @@ export const DiffThemeCard = () => (
   <div>
     <Card
       btnOnClick={action('Dark Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Dark image card'}
       buttonHref={'#'}
       buttonTitle={'show more info'}
@@ -106,7 +106,7 @@ export const DiffThemeCard = () => (
 
     <Card
       btnOnClick={action('Purple Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Purple image card'}
       buttonHref={'#'}
       buttonTitle={'show more info'}
@@ -117,7 +117,7 @@ export const DiffThemeCard = () => (
     ></Card>
     <Card
       btnOnClick={action('Yellow Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Yellow image card'}
       buttonHref={'#'}
       buttonTitle={'show more info'}
@@ -128,7 +128,7 @@ export const DiffThemeCard = () => (
     ></Card>
     <Card
       btnOnClick={action('Blue Button clicked')}
-      cardSrc={'https://via.placeholder.com/150'}
+      cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Blue image card'}
       buttonHref={'#'}
       buttonTitle={'show more info'}

@@ -1,12 +1,38 @@
-import React from 'react';
-import Tabs from './components/Tabs/Tabs';
+import * as React from 'react';
+import { render } from 'react-dom';
+import { Tabs } from './components/Tabs/Tabs';
+
+import './styles.css';
 
 function App() {
   return (
     <div className='App'>
-      <h1>Esther's Tab Component Demo</h1>
+      <Tabs>
+        {/* Group of tabs */}
+        <Tabs.Tab label='a'>Tab A</Tabs.Tab>
+        <Tabs.Tab label='b'>Tab B</Tabs.Tab>
+        <Tabs.Tab label='c'>Tab C</Tabs.Tab>
 
-      <Tabs headings={['Tab1', 'Tab2']} />
+        {/* Tab panels */}
+        <Tabs.Panel label='a'>
+          This is tab A{' '}
+          <span role='img' aria-label='Rocket ship'>
+            🚀
+          </span>
+        </Tabs.Panel>
+        <Tabs.Panel label='b'>
+          This is tab B{' '}
+          <span role='img' aria-label='Diamond'>
+            💎
+          </span>
+        </Tabs.Panel>
+        <Tabs.Panel label='c'>
+          This is tab C{' '}
+          <span role='img' aria-label='Ghost'>
+            👻
+          </span>
+        </Tabs.Panel>
+      </Tabs>
     </div>
   );
 }

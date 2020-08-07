@@ -5,7 +5,7 @@ import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default {
-    title: 'Basic Message',
+    title: 'Message',
     component: Message,
 };
 
@@ -28,6 +28,7 @@ export const DefaultMessage = () => (
 
 export const DiffTypeMessage = () => (
     <div>
+      <h4>Basic Message: </h4>
         <Message
         style={messageStyle}
         msgType={messageType.Basic}
@@ -40,6 +41,9 @@ export const DiffTypeMessage = () => (
             We recommend reviewing the changes.</p>
         </div>
         </Message>
+
+        <h4>List Message: </h4>
+
         <Message
         style={messageStyle}
         msgType={messageType.List}
@@ -54,6 +58,8 @@ export const DiffTypeMessage = () => (
             </ul>
         </div>
         </Message>
+
+        <h4>Icon Message: </h4>
     
         <Message
         style={messageStyle}
@@ -70,6 +76,8 @@ export const DiffTypeMessage = () => (
         </div>
         </div>
         </Message>
+
+        <h4>Dismiss Message: </h4>
 
         <Message
         style={messageStyle}

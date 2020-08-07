@@ -94,9 +94,8 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
 
     return (
    
-
+        <>
             <div id='rt-container' className={styleClasses} {...(rest as IRatingProps)}>
-
                 <div className='rt-icon' onClick={handleClick} id='rt-5'>
                     <FontAwesomeIcon icon={[prefix[4], rtShape as string] as IconProp} size={rtSize}/>
                 </div>
@@ -113,6 +112,7 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
                     <FontAwesomeIcon icon={[prefix[0], rtShape as string] as IconProp} size={rtSize}/>
                 </div>
             </div>
+        </>
 
     )
 };

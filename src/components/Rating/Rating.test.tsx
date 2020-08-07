@@ -5,6 +5,10 @@ import Rating, {IRatingProps} from './Rating'
 
 
 describe('Rating', () => {
+    it('should match snapshot', () => {
+        const {asFragment} = render(<Rating/>);
+        expect(asFragment()).toMatchSnapshot();
+      });
     it('should render default stars', () => {
         const wrapper = render(<Rating />)
         const el = wrapper.container.firstChild
@@ -31,7 +35,7 @@ describe('Rating', () => {
         expect(winkLargeel).toHaveClass('rt rt-lg rt-smile-wink');
     })
 
-    it('should change correct number of colors when clicked', ()=>{
+    it('should change correct number of icons color when clicked', ()=>{
         const wrapper = render(<Rating />)
         const iconcontainer = wrapper.container.firstChild
         const firstIcon = iconcontainer?.firstChild

@@ -28,9 +28,13 @@ export const DiffShapeRating = () => (
 
 export const DiffSizeRating = () => (
     <div style = {RatingStyle}>
+        <div className='rt-title'>Small</div>
         <Rating rtSize='sm'/>
+        <div className='rt-title'>Regular</div>
         <Rating />
+        <div className='rt-title'>Large</div>
         <Rating rtSize='lg'/>
+        <div className='rt-title'>Larger</div>
         <Rating rtSize= '2x'/>
     </div>
 );
@@ -38,10 +42,11 @@ export const DiffSizeRating = () => (
 
 export const DiffEffectRating = () => (
     <div style = {RatingStyle}>
+        <div className='rt-title'>Fade</div>
         <Rating rtShape= 'heart' rtAnimation= 'fade'/>
-
+        <div className='rt-title'>Bounce</div>
         <Rating rtShape='moon' rtAnimation= 'bounce' />
-
+        <div className='rt-title'>Swing</div>
         <Rating rtShape='smile-wink' rtAnimation= 'swing'/>
     </div>
 );

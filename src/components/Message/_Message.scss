@@ -1,8 +1,22 @@
 .msg {
     position: relative;
-    background-color: rgb(238, 237, 237);
-    border-radius: $border-radius;
-    border-width: $border-width;
-    border: $btn-border-width solid gray;
+    display: inline-block;
+    margin: $msg-margin;
+
+    @include message-style(
+        $msg-background-color, 
+        $msg-border-radius, 
+        $msg-border,
+        $msg-padding,
+        $msg-box-width
+    );
 }
 
+.header {
+    font-size: $msg-header-size;
+    font-weight: $font-weight-bold;
+}
+
+.content {
+    font-size: $msg-pg-size;
+}

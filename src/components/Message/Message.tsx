@@ -21,12 +21,12 @@ export interface IMessageProps {
 
 //type DivMessageProps = IMessageProps & HTMLAttributes<HTMLDivElement>;
 //type PMessageProps = IMessageProps & HTMLAttributes<HTMLParagraphElement>;
-type ITagMessageProps = IMessageProps & HTMLAttributes<HTMLElement>;
+type TagMessageProps = IMessageProps & HTMLAttributes<HTMLElement>;
 //type UlMessageProps = IMessageProps & HTMLAttributes<HTMLUListElement>;
 
 //type AllMessageProps = DivMessageProps | PMessageProps | ITagMessageProps | UlMessageProps;
 
-export const Message: FC<ITagMessageProps> = (props) => {
+export const Message: FC<TagMessageProps> = (props) => {
     const {className, msgType, ...rest} = props;
     
     let styleClasses = classNames('msg', {
@@ -39,7 +39,7 @@ export const Message: FC<ITagMessageProps> = (props) => {
 
     let message = (
         <div>
-            <div className={styleClasses} {...(rest as ITagMessageProps)}></div>
+            <div className={styleClasses} {...(rest as TagMessageProps)}></div>
         </div>
     );
 

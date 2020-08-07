@@ -34,8 +34,11 @@
   border-radius: $border-radius;
 }
 
-@mixin message-style($color, $background, $border-color) {
-  color: $color;
-  background: $background;
-  border-color: $border-color;
+
+@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+  background-color: $msg-background-color;
+  border-radius: $msg-border-radius;
+  border: $msg-border;
+  padding: $msg-padding;
+  width: $msg-box-width;
 }

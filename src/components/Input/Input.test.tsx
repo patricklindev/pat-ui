@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
-import Input, {PatInputProps} from './Input';
+import Input from './Input';
 
 describe('Input', ()=>{
     it('should render default Input', function () {

@@ -43,7 +43,7 @@ const Input: FC<PatInputProps> = (props) => {
         icon: !!icon || !!loading,
     });
     const iconFilteredClasses: { [key: string]: boolean } = {};
-    let iconName: string = "";
+    let iconName: string = '';
     if (icon && typeof icon === 'object') {
         for (let key of Object.keys(icon)) {
             if (key !== 'name') {
@@ -62,7 +62,7 @@ const Input: FC<PatInputProps> = (props) => {
         <div
             className={styleClasses}
         >
-            <input type="text" disabled={disabled} {...rest}/>
+            <input type='text' disabled={disabled} {...rest}/>
             {icon || loading ? inputIcon : null}
         </div>
     )

@@ -11,8 +11,17 @@ const RatingStyle:React.CSSProperties = {
     flexDirection: 'column',
 };
 
+const mockAjax = function() {
+    return new Promise((res,rej)=> {
+        setTimeout(()=>{
+            res(2)
+        }, 2000)
+    })
+}
+
+
 export const defaultRating = () => (
-    <Rating  rtAjax={(score)=> console.log(score)} rtKey='1'/>
+    <Rating  rtScore={mockAjax} rtKey='1'/>
 );
 
 
@@ -23,6 +32,16 @@ export const DiffInitRating = () => (
     <Rating rtScore = {3} rtKey='3'/>
     <Rating rtScore = {4} rtKey='4'/>
     <Rating rtScore = {5} rtKey='5'/>
+    </div>
+)
+
+export const DiffMaxRating = () => (
+    <div style = {RatingStyle}>
+    <Rating rtMaxScore = {1} rtKey='1'/>
+    <Rating rtMaxScore = {3} rtKey='2'/>
+    <Rating rtMaxScore = {4} rtKey='3'/>
+    <Rating rtMaxScore = {5} rtKey='4'/>
+    <Rating rtMaxScore = {10} rtKey='5'/>
     </div>
 )
 

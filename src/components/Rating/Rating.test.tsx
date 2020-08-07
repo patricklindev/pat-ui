@@ -40,6 +40,7 @@ describe('Rating', () => {
     it('should change correct number of icons color when clicked', ()=>{
         const wrapper = render(<Rating rtKey = '1'/>)
         const iconcontainer = wrapper.container.firstChild
+        expect(iconcontainer).toBeInTheDocument()
         const firstIcon = iconcontainer?.firstChild
         const secondIcon = iconcontainer?.childNodes[1]
         const thirdIcon = iconcontainer?.childNodes[2]
@@ -66,13 +67,26 @@ describe('Rating', () => {
         }  
         const rtBounceWrapper = render(<Rating {...rtBounceProps}/>)      
         const iconcontainer = rtBounceWrapper.container.firstChild
+        expect(iconcontainer).toBeInTheDocument()
         const firstIcon = iconcontainer?.firstChild
 
         fireEvent.click(firstIcon as Element)
 
         expect(firstIcon).toHaveClass('rt-bounce')
+    })
+    it('should fire ajax call when provided', ()=>{
+        const rtBounceProps: IRatingProps = {
+            rtKey: '1',
+            rtAnimation: 'bounce',
+            rtAjax: jest.fn()
+        }  
+        const rtBounceWrapper = render(<Rating {...rtBounceProps}/>)      
+        const iconcontainer = rtBounceWrapper.container.firstChild
+        expect(iconcontainer).toBeInTheDocument()
+        const firstIcon = iconcontainer?.firstChild
 
+        fireEvent.click(firstIcon as Element)
 
-
+        expect(rtBounceProps.rtAjax).toHaveBeenCalledTimes(1)
     })
 })

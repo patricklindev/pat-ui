@@ -33,7 +33,7 @@
 @mixin rating-shape(
   $shape,
   $active-color,
-  $hover-color: lighten($active-color, 15%) ,
+  $hover-color: lighten($active-color, 20%) ,
 ) {
   // &::before {
   //   font-family: fontAwesome;
@@ -45,9 +45,11 @@
   // }
   &.rt-active{
     color: $active-color;
+    transform: scale(1.1);
   }
 
   &:hover, &:hover~* {
     color: $hover-color;
+    transform: scale(1.1);
   }
 }

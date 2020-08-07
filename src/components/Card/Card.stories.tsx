@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Card, { CardType, CardSize } from './Card';
+import Card from './Card';
 
 export default {
   title: 'Card',

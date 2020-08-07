@@ -80,20 +80,13 @@
 }
 
 .card-dark {
-  @include card-border;
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
-  .image {
-    margin: 0px;
-  }
-  .image img {
-    height: 10rem;
-  }
+  @include card-theme-style($gray-800);
+
   .body {
-    @include card-body-style;
-    margin: 0px;
     background-color: $gray-800;
+    color: $white;
+  }
+  .body h5 {
     color: $white;
   }
   .btn {
@@ -129,9 +122,19 @@
   }
   .body {
     @include card-body-style;
+    font-size: $font-size-sm * 0.8;
+  }
+  .body h5 {
+    font-size: $font-size-sm;
   }
   .btn {
-    width: 8.5rem;
+    @include button-size(
+      $btn-padding-y-sm,
+      $btn-padding-x-sm,
+      $btn-font-size-sm,
+      $border-radius-sm
+    );
+    width: 8rem;
   }
 }
 

@@ -5,6 +5,7 @@ import React, {
   Children,
   ReactElement,
   cloneElement,
+  ReactNode,
 } from 'react';
 import { classNames } from '../../utils/classNames';
 import DropdownOption from './DropdownOption';
@@ -46,7 +47,7 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
   } = props;
 
   const [isOptionListOpen, setIsOptionListOpen] = useState(false);
-  const [activeOption, setActiveOption] = useState(placeholder);
+  const [activeOption, setActiveOption] = useState(placeholder as ReactNode);
 
   const toggleOptionList = () => {
     setIsOptionListOpen(!isOptionListOpen);
@@ -58,12 +59,12 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
     }
   };
 
-  const setSelected = (val: string) => {
+  const setSelected = (val: string, innerChild: ReactNode) => {
     if (onChange) {
       onChange(val);
     }
 
-    setActiveOption(val);
+    setActiveOption(innerChild);
   };
 
   let classStyles = classNames('dropdown');
@@ -99,7 +100,9 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
               : 'dropdown__active_option'
           }
         >
-          <span>{activeOption}</span>
+          <div className="dropdown__active_option__inner">
+            {activeOption}
+          </div>
           <div className="arrow" />
         </div>
 

@@ -12,7 +12,7 @@ describe('dropdown', () => {
     const element = wrapper.queryByText('select');
     expect(element).not.toBeNull();
     expect(element).toBeInTheDocument();
-    expect(element?.tagName).toBe('SPAN');
+    expect(element?.tagName).toBe('DIV');
   });
 
   it('should render a dropdown with three children', () => {
@@ -23,9 +23,9 @@ describe('dropdown', () => {
 
     const wrapper = render(
       <Dropdown {...dropdownProps}>
-        <Dropdown.Option>1</Dropdown.Option>
-        <Dropdown.Option>12</Dropdown.Option>
-        <Dropdown.Option>123</Dropdown.Option>
+        <Dropdown.Option value="1">1</Dropdown.Option>
+        <Dropdown.Option value="12">12</Dropdown.Option>
+        <Dropdown.Option value="123">123</Dropdown.Option>
       </Dropdown>
     ).container.firstChild;
 

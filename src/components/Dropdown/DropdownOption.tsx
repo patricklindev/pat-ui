@@ -1,18 +1,20 @@
-import React, { FC, CSSProperties } from 'react';
+import React, { FC, CSSProperties, ReactNode } from 'react';
 
 export interface IDropdownOptionProps {
   /** children must be React Element */
-  children?: string;
+  children?: ReactNode;
   /** set customized css class */
   className?: string;
   /** set customized css style */
   cssStyle?: CSSProperties;
   /** callback provided by Dropdown */
-  setSelected?: (text: string) => void;
+  setSelected?: (val: string, children: ReactNode) => void;
+  /** value for this option */
+  value?: string;
 }
 
-const DropdownItem: FC<IDropdownOptionProps> = (props) => {
-  const { className, children, cssStyle, setSelected } = props;
+const DropdownOption: FC<IDropdownOptionProps> = (props) => {
+  const { className, children, cssStyle, setSelected, value } = props;
 
   let classNames = 'dropdown__option';
   if(className) {
@@ -20,16 +22,21 @@ const DropdownItem: FC<IDropdownOptionProps> = (props) => {
   } 
 
   const callback = () => {
-    if(setSelected && children) {
-      setSelected(children);
+    if(setSelected) {
+      const selectedValue = value ? value : '';
+      setSelected(selectedValue, children);
     }
   }
 
   return (
-    <span className={classNames} style={cssStyle} onClick={callback}>
+    <div className={classNames} style={cssStyle} onClick={callback}>
       {children}
-    </span>
+    </div>
   );
 };
 
-export default DropdownItem;
+DropdownOption.defaultProps = {
+  value: '',
+}
+
+export default DropdownOption;

@@ -14,6 +14,11 @@
   outline: none;
 }
 
+.dropdown__active_option__inner {
+  display: flex;
+  flex-direction: row;
+}
+
 .dropdown__active_option {
   position: relative;
   display: flex;
@@ -75,7 +80,8 @@
 
 .dropdown__option {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: row;
 
   padding: $dropdown-padding-y $dropdown-padding-x;
 

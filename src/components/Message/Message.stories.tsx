@@ -1,5 +1,5 @@
 import React from 'react';
-import {action} from '@storybook/addon-actions';
+//import {action} from '@storybook/addon-actions';
 import Message, {messageType, iconType} from './Message';
 
 import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -59,6 +59,7 @@ export const DiffTypeMessage = () => (
         <Message
         style={messageStyle}
         msgType={messageType.Icon}
+        iconType={iconType.Spinner}
         >
         <FontAwesomeIcon className="circle-icon" icon={faCircleNotch} />
         <div className="spinner-message">
@@ -74,6 +75,7 @@ export const DiffTypeMessage = () => (
         <Message
         style={messageStyle}
         msgType={messageType.Dismiss}
+        iconType={iconType.Remove}
         >
         <FontAwesomeIcon className="remove-icon" icon={faTimes}
         onClick={() => {

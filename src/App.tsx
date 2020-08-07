@@ -1,5 +1,5 @@
 import React from 'react';
-import Button, { ButtonType, ButtonSize } from './components/Button/Button';
+//import Button, { ButtonType, ButtonSize } from './components/Button/Button';
 import Message, { messageType, iconType } from './components/Message/Message';
 
 import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';

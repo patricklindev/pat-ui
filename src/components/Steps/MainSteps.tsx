@@ -11,14 +11,22 @@ export enum StepStyle {
     Vertical = 'vertical',
   }
 
+export enum StepSize{
+    Small = 'small',
+    Midium = 'mid',
+    large = 'large'
+}
+
+
 export interface ImainSteps{
-    stepStyle?: StepStyle
+    stepStyle?: StepStyle,
+    stepSize?: StepSize;
 }
 
 const MainSteps: React.FC<ImainSteps> = (props) => {
     const [Active, setActive] =  React.useState(false)
     const [indexGlobal,setIndexGlobal] = React.useState(-1);
-    const {stepStyle} = props
+    const {stepStyle, stepSize} = props
     const [steps, setSteps] = React.useState(
         [
             {
@@ -48,7 +56,8 @@ const MainSteps: React.FC<ImainSteps> = (props) => {
         ]
     )
      let styleClasses=classNames('step', {
-        [`step-${stepStyle}`]: true
+        [`step-${stepStyle}`]: true,
+        [`step-${stepSize}`]: true,
     })
      
     

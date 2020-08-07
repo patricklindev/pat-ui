@@ -36,8 +36,9 @@ class Tabs extends React.Component<IProps, IState> {
     return (
       <div>
         <ul className='tabs'>
-          {this.props.headings.map((heading) => (
+          {this.props.headings.map((heading, index: number) => (
             <li
+              key={index}
               onClick={this.handleTabClick}
               className={heading === this.state.activeHeading ? 'active' : ''}
             >

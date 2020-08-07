@@ -53,10 +53,10 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
   };
 
   const closeOptionList = () => {
-    if(isOptionListOpen) {
+    if (isOptionListOpen) {
       setIsOptionListOpen(!isOptionListOpen);
     }
-  }
+  };
 
   const setSelected = (val: string) => {
     if (onChange) {
@@ -71,12 +71,12 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
     classStyles = classNames('dropdown', 'open');
   }
 
-  if (className) {
-    classStyles += ` ${className}`;
-  }
-
   return (
-    <div className="dropdown__wrapper">
+    <div
+      className={
+        className ? `dropdown__wrapper ${className}` : 'dropdown__wrapper'
+      }
+    >
       <div
         className={classStyles}
         style={cssStyle}
@@ -87,7 +87,9 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
             toggleOptionList();
           }
         }}
-        onBlur={() => { closeOptionList() }}
+        onBlur={() => {
+          closeOptionList();
+        }}
         tabIndex={0}
       >
         <div

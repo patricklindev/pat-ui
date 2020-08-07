@@ -49,9 +49,8 @@ describe('dropdown', () => {
       </Dropdown>
     ).container.firstChild;
 
-    expect(wrapper).toHaveClass('dropdown__wrapper');
+    expect(wrapper).toHaveClass('dropdown__wrapper custom');
     expect(wrapper?.firstChild?.childNodes.length).toBe(2);
-    expect(wrapper?.firstChild).toHaveClass('dropdown custom');
 
     fireEvent.click(wrapper?.firstChild?.lastChild?.childNodes.item(0) as Element);
     expect(dropdownProps.onChange).toBeCalledTimes(1);
@@ -73,9 +72,8 @@ describe('dropdown', () => {
       </Dropdown>
     ).container.firstChild;
 
-    expect(wrapper).toHaveClass('dropdown__wrapper');
+    expect(wrapper).toHaveClass('dropdown__wrapper custom');
     expect(wrapper?.firstChild?.childNodes.length).toBe(2);
-    expect(wrapper?.firstChild).toHaveClass('dropdown custom');
     expect(wrapper?.firstChild?.firstChild).toHaveClass('disabled');
   });
 });

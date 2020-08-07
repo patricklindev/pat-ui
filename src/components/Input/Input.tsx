@@ -27,7 +27,7 @@ interface IInputProps{
     iconPosition?: 'left'|'right',
 }
 
-type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
+export type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
 const Input: FC<PatInputProps> = (props) => {
     const {size,focus,disabled,error,transparent,fluid, icon,loading,iconPosition, ...rest} = props;

@@ -50,7 +50,7 @@ export interface IRatingProps {
 }
 
 /**
- * A rating indicates user interest in content
+ * 
  * ```js
  * 
  * ```

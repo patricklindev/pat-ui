@@ -63,7 +63,7 @@ describe('Rating', () => {
 
         fireEvent.click(firstIcon as Element)
 
-        expect(firstIcon).not.toHaveClass('rt-bounce')
+        expect(firstIcon).toHaveClass('rt-bounce')
 
 
 

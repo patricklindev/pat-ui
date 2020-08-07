@@ -74,7 +74,7 @@ export const DiffThemeCard = () => (
       src={'https://via.placeholder.com/150'}
       cardTheme='dark'
     >
-      Dark Card
+      Dark Theme Card
     </Card>
 
     <Card
@@ -82,21 +82,21 @@ export const DiffThemeCard = () => (
       src={'https://via.placeholder.com/150'}
       cardTheme='purple'
     >
-      Purple Card
+      Purple Theme Card
     </Card>
     <Card
       onClick={action('Yellow Button clicked')}
       src={'https://via.placeholder.com/150'}
       cardTheme='yellow'
     >
-      Yellow Card
+      Yellow Theme Card
     </Card>
     <Card
       onClick={action('Blue Button clicked')}
       src={'https://via.placeholder.com/150'}
       cardTheme='blue'
     >
-      Blue Card
+      Blue Theme Card
     </Card>
   </div>
 );

@@ -23,6 +23,7 @@
   height: 10rem;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   .image {
     margin: 0px;
     width: 10rem;
@@ -38,6 +39,7 @@
 }
 .card-circledImage {
   @include card-border;
+  align-self: center;
   margin-right: '5px';
   width: 15rem;
   display: flex;
@@ -57,7 +59,11 @@
   .body {
     @include card-body-style;
   }
+  .body h5 {
+    align-self: center;
+  }
   .btn {
+    align-self: center;
     width: 10rem;
   }
 }
@@ -83,6 +89,8 @@
   @include card-theme-style($gray-800);
 
   .body {
+    width: 14.9rem;
+
     background-color: $gray-800;
     color: $white;
   }
@@ -91,7 +99,6 @@
   }
   .btn {
     @include button-style($white, $secondary, $secondary);
-    width: 10rem;
   }
 }
 .card-purple {

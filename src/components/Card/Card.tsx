@@ -24,7 +24,7 @@ export interface ICardProps {
 
 export type myCardProps = ICardProps & ImgHTMLAttributes<HTMLImageElement>;
 /**
- * A default card with a button to show more
+ * A card with a button to show more
  *
  */
 export const Card: FC<myCardProps> = (props) => {

@@ -33,13 +33,15 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
-  margin: 5px;
+  margin-right: 15px;
+  margin-top: 15px;
 }
 @mixin card-body-style {
   border-style: none;
   font-size: $font-size-sm;
   padding: 0.6rem;
   border-radius: 0;
+  margin: 0px;
 }
 
 @mixin card-theme-style($color) {
@@ -50,7 +52,6 @@
   flex-direction: column;
   .image {
     border-style: none;
-
     margin: 0px;
   }
   .image img {

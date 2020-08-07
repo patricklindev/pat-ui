@@ -20,3 +20,22 @@
 .content {
     font-size: $msg-pg-size;
 }
+
+.remove-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.circle-icon {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.6rem;
+    font-size: 3rem;
+}
+
+.spinner-message {
+    @include icon-style (
+        $msg-margin-left
+    );
+}

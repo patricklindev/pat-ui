@@ -200,13 +200,13 @@ $msg-border-radius: $border-radius-lg !default;
 $msg-border: 0.05rem solid $gray-500 !default;
 $msg-padding: 1rem !default;
 $msg-box-width: 80% !default;
-
 $msg-margin: 2rem !default;
 
 // message header
 $msg-header-size: $h4-font-size !default;
 
-// message paragraphs
+// message paragraph
 $msg-pg-size: 1.2rem !default;
 
-// message icons
+// message icon
+$msg-margin-left: 10% !default;

@@ -1,7 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
-// import { FontAwesomeIconProps, FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCircleNotch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 export enum messageType {
     Basic = 'bs',
@@ -10,27 +8,25 @@ export enum messageType {
     Dismiss = 'ds'
 }
 
-// export enum iconType {
-//     Spinner = 'spinner'
-// }
+export enum iconType {
+    Spinner = 'spinner',
+    Remove = 'remove'
+}
 
 export interface IMessageProps {
     className?: string;
     msgType?: messageType;
+    iconType?: iconType;
 }
 
-//type DivMessageProps = IMessageProps & HTMLAttributes<HTMLDivElement>;
-//type PMessageProps = IMessageProps & HTMLAttributes<HTMLParagraphElement>;
-type TagMessageProps = IMessageProps & HTMLAttributes<HTMLElement>;
-//type UlMessageProps = IMessageProps & HTMLAttributes<HTMLUListElement>;
+type AllMessageProps = IMessageProps & HTMLAttributes<HTMLElement>;
 
-//type AllMessageProps = DivMessageProps | PMessageProps | ITagMessageProps | UlMessageProps;
-
-export const Message: FC<TagMessageProps> = (props) => {
-    const {className, msgType, ...rest} = props;
+export const Message: FC<AllMessageProps> = (props) => {
+    const {className, msgType, iconType, ...rest} = props;
     
     let styleClasses = classNames('msg', {
-        [`msg-${msgType}`]: true
+        [`msg-${msgType}`]: true,
+        [`msg-${iconType}`]: !!iconType
     });
 
     if (className) {
@@ -39,7 +35,7 @@ export const Message: FC<TagMessageProps> = (props) => {
 
     let message = (
         <div>
-            <div className={styleClasses} {...(rest as TagMessageProps)}></div>
+            <div className={styleClasses} {...(rest as AllMessageProps)}></div>
         </div>
     );
 
@@ -47,7 +43,7 @@ export const Message: FC<TagMessageProps> = (props) => {
 };
 
 Message.defaultProps = {
-    msgType: messageType.Basic,
+    msgType: messageType.Basic
 };
 
 export default Message;

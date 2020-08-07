@@ -1,6 +1,9 @@
 import React from 'react';
 import Button, { ButtonType, ButtonSize } from './components/Button/Button';
-import Message, { messageType } from './components/Message/Message';
+import Message, { messageType, iconType } from './components/Message/Message';
+
+import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
   return (
@@ -60,18 +63,23 @@ function App() {
         </div>
       </Message>
 
-      <Message msgType={messageType.Icon}>
-        <i className="notched circle loading icon"></i>
-          <div className="header">
+      <Message msgType={messageType.Icon} iconType={iconType.Spinner}>
+        <FontAwesomeIcon className="circle-icon" icon={faCircleNotch} />
+        <div className="spinner-message">
+        <div className="header">
             Just one second
           </div>
           <div className="content">
             <p>We're fetching that content for you.</p>
           </div>
+        </div>
       </Message>
 
-      <Message msgType={messageType.Dismiss}>
-        <i className="close icon"></i>
+      <Message msgType={messageType.Dismiss} iconType={iconType.Remove} className="remove-message">
+        <FontAwesomeIcon className="remove-icon" icon={faTimes}
+        onClick={() => {
+
+        }}/>
         <div className="header">
           Welcome back!
         </div>

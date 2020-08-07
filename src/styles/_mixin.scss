@@ -28,12 +28,6 @@
   }
 }
 
-@mixin message-size($padding-y, $padding-x, $font-size, $border-radius) {
-  padding: $padding-y $padding-x;
-  font-size: $font-size;
-  border-radius: $border-radius;
-}
-
 
 @mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
   background-color: $msg-background-color;
@@ -42,3 +36,8 @@
   padding: $msg-padding;
   width: $msg-box-width;
 }
+
+@mixin icon-style($msg-margin-left) {
+  margin-left: $msg-margin-left;
+}
+

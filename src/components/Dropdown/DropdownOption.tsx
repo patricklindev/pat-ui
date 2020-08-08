@@ -25,6 +25,7 @@ const DropdownOption: FC<IDropdownOptionProps> = (props) => {
 
   const passToDropdown = () => {
     if (setSelected) {
+      // call the callback function provided by parent
       const selectedValue = value ? value : '';
       setSelected(selectedValue, children);
     }

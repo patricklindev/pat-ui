@@ -60,6 +60,7 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
   };
 
   const setSelected = (val: string, innerChild: ReactNode) => {
+    // trigger callback function
     if (onChange) {
       onChange(val);
     }

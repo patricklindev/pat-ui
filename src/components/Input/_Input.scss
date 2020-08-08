@@ -1,5 +1,3 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css');
-
 .ui.input {
   font-size: 1em;
   display: inline-flex;
@@ -67,7 +65,41 @@
   }
   // Icon
   &.icon {
-    &>i.icon {
+  //  &>i.icon {
+  //    display: inline-block;
+  //    position: absolute;
+  //    line-height: 1;
+  //    top: 0;
+  //    right: 0;
+  //    text-align: center;
+  //    height: 100%;
+  //    cursor: default;
+  //    width: 2.67em;
+  //    opacity: 0.5;
+  //    margin: 0;
+  //    font-size: 1.5em;
+  //    &:before {
+  //      left: 0;
+  //      position: absolute;
+  //      text-align: center;
+  //      top: 50%;
+  //      width: 100%;
+  //      margin-top: -.5em;
+  //    }
+  //  }
+  //  &>input {
+  //    padding-right: 3em;
+  //  };
+  //  &.input-left>i.icon{
+  //    left: 0;
+  //  };
+  //  &.input-left>input {
+  //    padding-left: 3em;
+  //    padding-right: 1em;
+  //  }
+  //}
+
+    &>svg {
       display: inline-block;
       position: absolute;
       line-height: 1;
@@ -79,7 +111,7 @@
       width: 2.67em;
       opacity: 0.5;
       margin: 0;
-      font-size: 1.5em;
+      font-size: 1em;
       &:before {
         left: 0;
         position: absolute;
@@ -92,7 +124,7 @@
     &>input {
       padding-right: 3em;
     };
-    &.input-left>i.icon{
+    &.input-left>svg{
       left: 0;
     };
     &.input-left>input {

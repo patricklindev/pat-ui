@@ -1,5 +1,6 @@
 import React, { InputHTMLAttributes, FC } from 'react';
 import { classNames } from '../../utils/classNames';
+import Icon from '../Icon/Icon';
 
 interface IInputProps {
   /** set customized style */
@@ -61,20 +62,29 @@ const Input: FC<PatInputProps> = (props) => {
     }
     iconName = icon['name'] as string;
   }
-  const iconClasses = classNames(
-    {
-      [`${icon}`]: !!icon && typeof icon === 'string' && !loading,
-      [`${iconName}`]: !!iconName,
-      'spinner big loading': !!loading,
-    },
-    iconFilteredClasses,
-    'icon'
-  );
-  const inputIcon = <i aria-hidden={'true'} className={iconClasses}></i>;
+  // const iconClasses = classNames(
+  //   {
+  //     [`${icon}`]: !!icon && typeof icon === 'string' && !loading,
+  //     [`${iconName}`]: !!iconName,
+  //     'spinner big loading': !!loading,
+  //   },
+  //   iconFilteredClasses,
+  //   'icon'
+  // );
+  if (!iconName) {
+    if (typeof icon === 'string') {
+      iconName = icon;
+    }
+    else if (loading) {
+      iconName = 'spinner';
+    }
+  }
+  // const inputIcon = <i aria-hidden={'true'} className={iconClasses}></i>;
+  const patIcon = <Icon aria-hidden={'true'} name={iconName} loading={!!loading} disabled={!!disabled} size={size? size: 'small'}></Icon>;
   return (
     <div className={styleClasses}>
       <input type={'text'} disabled={disabled} {...rest} />
-      {icon || loading ? inputIcon : null}
+      {icon || loading ? patIcon : null}
     </div>
   );
 };

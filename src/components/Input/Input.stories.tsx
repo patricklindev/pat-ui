@@ -52,10 +52,10 @@ export const LoadingInput = () => (
     <div>
         <h1>Loading</h1>
         <p>An icon input field can show that it is currently loading data.</p>
-        <Input loading icon='user' placeholder='Search...'/>
+        <Input loading icon='users' placeholder='Search...'/>
         <br/>
         <br/>
-        <Input loading icon='user' iconPosition='left' placeholder='Search...'/>
+        <Input loading icon='users' iconPosition='left' placeholder='Search...'/>
         <br/>
         <br/>
         <p>An input field can show that it is currently loading data without an icon, too.</p>

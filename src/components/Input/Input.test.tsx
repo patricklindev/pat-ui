@@ -59,14 +59,12 @@ describe('Input', ()=>{
     });
 
     it('should render Icon Input', function () {
-        const wrapper = render(<Input icon={'user'} placeholder={'Search...'}></Input>);
+        const wrapper = render(<Input icon={'users'} placeholder={'Search...'}></Input>);
         const input_bar = wrapper.getByPlaceholderText('Search...') as HTMLInputElement;
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
         expect(element).toHaveClass('ui input icon');
-        const icon = wrapper.container.querySelector('i');
-        expect(icon).toHaveClass('icon user');
     });
 
     it('should render Loading Input', function () {
@@ -76,8 +74,6 @@ describe('Input', ()=>{
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
         expect(element).toHaveClass('ui input input-loading');
-        const icon = wrapper.container.querySelector('i');
-        expect(icon).toHaveClass('icon loading');
     });
 
     it('should render Size Input', function () {

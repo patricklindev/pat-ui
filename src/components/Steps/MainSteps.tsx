@@ -5,6 +5,7 @@ import {GrCreditCard} from 'react-icons/gr';
 import{FaInfo} from "react-icons/fa"
 import {FcCheckmark} from "react-icons/fc"
 import {classNames} from "../../utils/classNames"
+import { IconBaseProps } from 'react-icons/lib';
 
 export enum StepStyle {
     Horizontal = 'horizontal',
@@ -17,44 +18,27 @@ export enum StepSize{
     large = 'large'
 }
 
-
+// interface Istepselection{
+//     [index: number]: {  id: number;
+//         label: string;
+//         description: string;
+//         icon: IconBaseProps;
+//         active: boolean;
+//         enable: boolean };
+// }
 export interface ImainSteps{
     stepStyle?: StepStyle,
     stepSize?: StepSize;
+    step?: any  
 }
 
 const MainSteps: React.FC<ImainSteps> = (props) => {
     const [Active, setActive] =  React.useState(false)
     const [indexGlobal,setIndexGlobal] = React.useState(-1);
-    const {stepStyle, stepSize} = props
-    const [steps, setSteps] = React.useState(
-        [
-            {
-                id: 0,
-                label: "shipping",
-                description: "Choose your shipping option",
-                icon: <FaTruck /> ,
-                active: false,
-                enable: true
-            },
-            {
-                id:1,
-                label: "billing",
-                description: "Enter billing information",
-                icon: <GrCreditCard/>,
-                active: false,
-                enable: false
-            },
-            {
-                id:2,
-                label: "Confirm Order",
-                description: "Verify order details",
-                icon: <FaInfo/>,
-                active: false,
-                enable: false
-            }
-        ]
-    )
+    const {stepStyle, stepSize, step} = props
+    console.log(step,"in mainstep", typeof step)
+
+    
      let styleClasses=classNames('step', {
         [`step-${stepStyle}`]: true,
         [`step-${stepSize}`]: true,
@@ -69,10 +53,10 @@ const MainSteps: React.FC<ImainSteps> = (props) => {
                      
     }
     if(Active){
-        steps[indexGlobal].icon =  <FcCheckmark/>  
-        console.log(steps.length, indexGlobal)
-        if(indexGlobal<steps.length-1){
-        steps[indexGlobal+1].enable = true  
+        step[indexGlobal].icon =  <FcCheckmark/>  
+        console.log(step.length, indexGlobal)
+        if(indexGlobal<step.length-1){
+        step[indexGlobal+1].enable = true  
     }
      
     }
@@ -80,8 +64,8 @@ const MainSteps: React.FC<ImainSteps> = (props) => {
         
         <div className={styleClasses} >
             {/* <h5>Create your own steps...</h5> */}
-            {steps.map((value,index:number) =>(
-            <div key={index} className={steps[index].enable?'enable':'disable'}>
+            {step.map((value:any,index:number) =>(
+            <div key={index} className={step[index].enable?'enable':'disable'}>
             <Steps label={value.label} 
                     description={value.description}
                     icons={value.icon} 

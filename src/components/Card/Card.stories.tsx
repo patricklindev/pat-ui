@@ -155,5 +155,19 @@ export const DiffSizeCard = () => (
       cardSize='lg'
       buttonTitle={'show more info'}
     ></Card>
+    <Card
+      btnOnClick={action('Large Button clicked')}
+      cardImgSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        "Some quick example text to build on the card title and make up the bulk of the card's content."
+      }
+      cardTitle={'default largeImage card'}
+      buttonHref={'#'}
+      cardMode='default'
+      cardType='circledImage'
+      cardTheme='dark'
+      cardSize='sm'
+      buttonTitle={'show more info'}
+    ></Card>
   </div>
 );

@@ -1,5 +1,26 @@
 .card-default {
-  @include default-card;
+  border-style: solid;
+  border-width: $border-width;
+  border-radius: $border-radius;
+  border-color: $border-color;
+
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  .image {
+    height: 10rem;
+  }
+  .image img {
+    height: inherit;
+  }
+  .body {
+    border-style: none;
+    padding: 0.6rem;
+    margin: 0px;
+  }
+  .btn {
+    width: 10rem;
+  }
 }
 
 .card-horizontal {
@@ -7,69 +28,64 @@
   margin-right: 15px;
   margin-top: 15px;
   width: 40rem;
-  height: 10rem;
+  height: 12rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   .image {
     margin: 0px;
-    width: 10rem;
+    width: 12rem;
+    height: 12rem;
+  }
+  .image img {
+    border-radius: inherit;
+    width: 11.8rem;
+    height: 11.8rem;
   }
   .body {
-    @include card-body-style;
     display: flex;
+    margin: 0px;
+    padding: 10px;
     flex-direction: column;
+    justify-content: space-between;
   }
   .btn {
     width: 10rem;
   }
 }
 .card-circledImage {
-  @include card-border;
-  margin-right: 15px;
-  margin-top: 15px;
-  align-self: center;
-  margin-right: '5px';
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
   .image {
-    margin: 0px;
-    height: 10rem;
+    height: 10.5rem;
     display: flex;
     border-style: none;
-    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
   }
   .image img {
-    width: 10rem;
+    width: fit-content;
+    height: fit-content;
     border-radius: 50%;
-    align-self: center;
   }
   .body {
-    @include card-body-style;
+    border-style: none;
+    padding: 0.6rem;
+    margin: 0px;
+    // @include card-body-style;
   }
-  .body h5 {
-    align-self: center;
-  }
+
   .btn {
-    align-self: center;
     width: 10rem;
   }
 }
 
 .card-noImage {
-  @include card-border;
-  margin-right: 15px;
-  margin-top: 15px;
-  width: 20rem;
-  display: flex;
-  flex-direction: column;
   .image {
     margin: 0px;
     display: none;
   }
   .body {
-    @include card-body-style;
+    border-style: none;
+    padding: 0.6rem;
+    margin: 0px;
   }
   .btn {
     width: 10rem;
@@ -77,21 +93,11 @@
 }
 
 .card-largeImage {
-  @include card-border;
-  margin-right: 15px;
-  margin-top: 15px;
-  width: 18rem;
-  display: flex;
-  flex-direction: column;
-  .image {
-    margin: 0px;
-  }
   .image img {
-    height: 12rem;
+    border-radius: inherit;
   }
   .body {
     text-align: center;
-    @include card-body-style;
   }
   .body p {
     display: none;
@@ -100,92 +106,127 @@
     display: none;
   }
 }
-
 .card-dark {
-  @include card-theme-style($gray-800);
+  border-color: $gray-800;
 
   .body {
-    width: 14.9rem;
-
     background-color: $gray-800;
+    border-color: $gray-800;
     color: $white;
   }
-  .body h5 {
-    color: $white;
+
+  .image {
+    width: 14.9rem;
+    border-style: none;
   }
   .btn {
     @include button-style($white, $secondary, $secondary);
   }
 }
 .card-purple {
-  @include card-theme-style($purple);
+  border-color: $purple;
+
+  .body {
+    border-color: $purple;
+  }
+  .body h5 {
+    color: $purple;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $purple, $purple);
+  }
 }
+
 .card-blue {
-  @include card-theme-style($blue);
+  border-color: $blue;
+
+  .body {
+    border-color: $blue;
+  }
+  .body h5 {
+    color: $blue;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $blue, $blue);
+  }
 }
 
 .card-yellow {
-  @include card-theme-style($dark-yellow);
+  border-color: $dark-yellow;
+
+  .body {
+    border-color: $dark-yellow;
+  }
+  .body h5 {
+    color: $dark-yellow;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
   .btn {
-    @include button-style($white, $dark-yellow, $yellow);
-    width: 10rem;
+    @include button-style($white, $dark-yellow, $dark-yellow);
   }
 }
 
 .card-sm {
-  @include card-border;
-  margin-right: 15px;
-  margin-top: 15px;
-  width: 12rem;
-  display: flex;
-  flex-direction: column;
+  transform: scale(0.8);
   .image {
-    margin: 0px;
-  }
-  .image img {
-    height: 8rem;
+    transform: scale(1);
   }
   .body {
-    @include card-body-style;
-    font-size: $font-size-sm * 0.8;
+    transform: scale(1);
   }
-  .body h5 {
-    font-size: $font-size-sm;
-  }
-  .btn {
-    @include button-size(
-      $btn-padding-y-sm,
-      $btn-padding-x-sm,
-      $btn-font-size-sm,
-      $border-radius-sm
-    );
-    width: 8rem;
-  }
+  // .image {
+  //   height: fit-content;
+  //   width: fit-content;
+  //   margin: 0px;
+  // }
+  // .image img {
+  //   height: 7.8rem;
+  //   width: 11.8rem;
+  // }
+  // .body {
+  //   font-size: $font-size-sm * 0.8;
+  // }
+  // .body h5 {
+  //   font-size: $font-size-sm;
+  // }
+  // .btn {
+  //   @include button-size(
+  //     $btn-padding-y-sm,
+  //     $btn-padding-x-sm,
+  //     $btn-font-size-sm,
+  //     $border-radius-sm
+  //   );
+  //   width: 8rem;
+  // }
 }
 
 .card-lg {
-  @include card-border;
-  margin-right: 15px;
   margin-top: 15px;
-  width: 18rem;
-  height: 25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  transform: scale(1.2);
   .image {
-    margin: 0px;
-  }
-  .image img {
-    height: 12rem;
+    transform: scale(1);
   }
   .body {
-    @include card-body-style;
-    font-size: $font-size-base;
+    transform: scale(1);
   }
-  .body h5 {
-    font-size: 1.5rem;
-  }
-  .btn {
-    width: 12rem;
-  }
+  // .body {
+  //   font-size: $font-size-base;
+  // }
+  // .body h5 {
+  //   font-size: 1.5rem;
+  // }
+  // .btn {
+  //   width: 12rem;
+  // }
 }

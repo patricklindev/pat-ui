@@ -27,67 +27,10 @@
     border-color: $hover-border-color;
   }
 }
-@mixin default-card {
-  border-style: solid;
-  border-width: $border-width;
-  border-radius: $border-radius;
-  border-color: $border-color;
-  margin-right: 15px;
-  margin-top: 15px;
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
-  .image {
-    margin: 0px;
-  }
-  .image img {
-    height: 10rem;
-  }
-  .body {
-    @include card-body-style;
-  }
-  .btn {
-    width: 10rem;
-  }
-}
+
 @mixin card-border {
   border-style: solid;
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
-}
-@mixin card-body-style {
-  border-style: none;
-  font-size: $font-size-sm;
-  padding: 0.6rem;
-  border-radius: 0;
-  margin: 0px;
-}
-
-@mixin card-theme-style($color) {
-  @include card-border;
-  border-color: $color;
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
-  .image {
-    border-style: none;
-    margin: 0px;
-  }
-  .image img {
-    border-radius: inherit;
-    height: 10rem;
-    width: 14.9rem;
-  }
-  .body {
-    @include card-body-style;
-    margin: 0px;
-  }
-  .body h5 {
-    color: $color;
-  }
-  .btn {
-    @include button-style($white, $color, $secondary);
-    width: 10rem;
-  }
 }

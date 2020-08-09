@@ -20,11 +20,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@types/storybook__addon-info": "^5.2.1",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.1.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"

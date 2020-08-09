@@ -6,7 +6,7 @@ interface IInputProps {
   /** set customized style */
   className?: string;
   /** set input bar size */
-  size?: 'mini' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+  inputSize?: 'mini' | 'small' | 'large' | 'big' | 'huge' | 'massive';
   /** make input bar always focused */
   focus?: boolean;
   /** disabled the input bar */
@@ -25,12 +25,11 @@ interface IInputProps {
   iconPosition?: 'left' | 'right';
 }
 
-export type PatInputProps = IInputProps &
-  Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
+export type PatInputProps = IInputProps & InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FC<PatInputProps> = (props) => {
   const {
-    size,
+    inputSize,
     focus,
     disabled,
     error,
@@ -41,9 +40,9 @@ const Input: FC<PatInputProps> = (props) => {
     iconPosition,
     ...rest
   } = props;
-  const styleClasses = classNames('ui', 'input', {
+  const styleClasses = classNames('ui-input', {
     'input-focus': !!focus,
-    [`input-${size}`]: !!size,
+    [`input-${inputSize}`]: !!inputSize,
     'input-disabled': !!disabled,
     'input-error': !!error,
     'input-transparent': !!transparent,
@@ -80,7 +79,7 @@ const Input: FC<PatInputProps> = (props) => {
     }
   }
   // const inputIcon = <i aria-hidden={'true'} className={iconClasses}></i>;
-  const patIcon = <Icon aria-hidden={'true'} name={iconName} loading={!!loading} disabled={!!disabled} size={size? size: 'small'}></Icon>;
+  const patIcon = <Icon aria-hidden={'true'} name={iconName} loading={!!loading} disabled={!!disabled} size={inputSize? inputSize: 'small'}></Icon>;
   return (
     <div className={styleClasses}>
       <input type={'text'} disabled={disabled} {...rest} />

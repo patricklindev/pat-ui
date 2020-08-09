@@ -86,21 +86,21 @@ export const SizeInput = () => (
     <div>
         <h1>Size</h1>
         <p>An input can vary in size.</p>
-        <Input size='mini' icon='search' placeholder='Search...'/>
+        <Input inputSize='mini' icon='search' placeholder='Search...'/>
         <br/>
         <br/>
-        <Input size='small' icon='search' placeholder='Search...'/>
+        <Input inputSize='small' icon='search' placeholder='Search...'/>
         <br/>
         <br/>
-        <Input size='large' icon='search' placeholder='Search...'/>
+        <Input inputSize='large' icon='search' placeholder='Search...'/>
         <br/>
         <br/>
-        <Input size='big' icon='search' placeholder='Search...'/>
+        <Input inputSize='big' icon='search' placeholder='Search...'/>
         <br/>
         <br/>
-        <Input size='huge' icon='search' placeholder='Search...'/>
+        <Input inputSize='huge' icon='search' placeholder='Search...'/>
         <br/>
         <br/>
-        <Input size='massive' icon='search' placeholder='Search...'/>
+        <Input inputSize='massive' icon='search' placeholder='Search...'/>
     </div>
 );

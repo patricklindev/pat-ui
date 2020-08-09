@@ -1,4 +1,3 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css");
 *,
 *::before,
 *::after {
@@ -386,11 +385,11 @@ main {
     text-decoration: underline;
     box-shadow: none; }
 
-.ui.input {
+.ui-input {
   font-size: 1em;
   display: inline-flex;
   position: relative; }
-  .ui.input > input {
+  .ui-input > input {
     margin: 0;
     max-width: 100%;
     max-height: 100%;
@@ -405,35 +404,35 @@ main {
     box-shadow: none;
     outline-color: #85b7d9;
     font-size: 1.1em; }
-  .ui.input.input-focus > input {
+  .ui-input.input-focus > input {
     border-color: #85b7d9;
     background: #ffffff;
     color: rgba(0, 0, 0, 0.8);
     box-shadow: none; }
-    .ui.input.input-focus > input:focus {
+    .ui-input.input-focus > input:focus {
       outline: none; }
-  .ui.input.input-disabled > input {
+  .ui-input.input-disabled > input {
     cursor: not-allowed;
     opacity: 0.65;
     box-shadow: none; }
-  .ui.input.input-error > input {
+  .ui-input.input-error > input {
     background-color: #fff6f6;
     border-color: #e0b4b4;
     color: #9f3a38;
     box-shadow: none; }
-  .ui.input.input-transparent > input {
+  .ui-input.input-transparent > input {
     border-color: transparent !important;
     box-shadow: none !important;
     border-radius: 0 !important;
     background-color: transparent !important; }
-    .ui.input.input-transparent > input:focus {
+    .ui-input.input-transparent > input:focus {
       outline: none !important; }
-  .ui.input.input-fluid {
+  .ui-input.input-fluid {
     width: 100%;
     display: flex; }
-    .ui.input.input-fluid > input {
+    .ui-input.input-fluid > input {
       flex: 1; }
-  .ui.input.icon > i.icon {
+  .ui-input.icon > svg {
     display: inline-block;
     position: absolute;
     line-height: 1;
@@ -445,36 +444,36 @@ main {
     width: 2.67em;
     opacity: 0.5;
     margin: 0;
-    font-size: 1.5em; }
-    .ui.input.icon > i.icon:before {
+    font-size: 1em; }
+    .ui-input.icon > svg:before {
       left: 0;
       position: absolute;
       text-align: center;
       top: 50%;
       width: 100%;
       margin-top: -.5em; }
-  .ui.input.icon > input {
+  .ui-input.icon > input {
     padding-right: 3em; }
-  .ui.input.icon.input-left > i.icon {
+  .ui-input.icon.input-left > svg {
     left: 0; }
-  .ui.input.icon.input-left > input {
+  .ui-input.icon.input-left > input {
     padding-left: 3em;
     padding-right: 1em; }
 
-.ui.input.input-mini {
+.ui-input.input-mini {
   font-size: 0.7em; }
 
-.ui.input.input-small {
+.ui-input.input-small {
   font-size: 0.928em; }
 
-.ui.input.input-large {
+.ui-input.input-large {
   font-size: 1.142em; }
 
-.ui.input.input-big {
+.ui-input.input-big {
   font-size: 1.286em; }
 
-.ui.input.input-huge {
+.ui-input.input-huge {
   font-size: 1.429em; }
 
-.ui.input.input-massive {
+.ui-input.input-massive {
   font-size: 1.714em; }

@@ -3,7 +3,7 @@ interface IInputProps {
     /** set customized style */
     className?: string;
     /** set input bar size */
-    size?: 'mini' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+    inputSize?: 'mini' | 'small' | 'large' | 'big' | 'huge' | 'massive';
     /** make input bar always focused */
     focus?: boolean;
     /** disabled the input bar */
@@ -23,6 +23,6 @@ interface IInputProps {
     /** set icon to show on left or right, default is right */
     iconPosition?: 'left' | 'right';
 }
-export declare type PatInputProps = IInputProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
+export declare type PatInputProps = IInputProps & InputHTMLAttributes<HTMLInputElement>;
 declare const Input: FC<PatInputProps>;
 export default Input;

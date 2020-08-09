@@ -10,7 +10,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input');
+        expect(element).toHaveClass('ui-input');
     });
 
     it('should render Focus Input', function () {
@@ -19,7 +19,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input input-focus');
+        expect(element).toHaveClass('ui-input input-focus');
     });
 
     it('should render Transparent Input', function () {
@@ -28,7 +28,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input input-transparent');
+        expect(element).toHaveClass('ui-input input-transparent');
     });
 
     it('should render Fluid Input', function () {
@@ -37,7 +37,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input input-fluid');
+        expect(element).toHaveClass('ui-input input-fluid');
     });
 
     it('should render Disabled Input', function () {
@@ -46,7 +46,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input input-disabled');
+        expect(element).toHaveClass('ui-input input-disabled');
     });
 
     it('should render Error Input', function () {
@@ -55,7 +55,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input input-error');
+        expect(element).toHaveClass('ui-input input-error');
     });
 
     it('should render Icon Input', function () {
@@ -64,7 +64,7 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input icon');
+        expect(element).toHaveClass('ui-input icon');
     });
 
     it('should render Loading Input', function () {
@@ -73,18 +73,18 @@ describe('Input', ()=>{
         const element = wrapper.container.firstElementChild as HTMLElement;
         expect(input_bar).toBeInTheDocument();
         expect(input_bar.tagName).toBe('INPUT');
-        expect(element).toHaveClass('ui input input-loading');
+        expect(element).toHaveClass('ui-input input-loading');
     });
 
     it('should render Size Input', function () {
         const AllSize = ['mini', 'small','large','big','huge','massive'];
         for (let s of AllSize) {
-            const wrapper = render(<Input size={s as any} placeholder={s}></Input>);
+            const wrapper = render(<Input inputSize={s as any} placeholder={s}></Input>);
             const input_bar = wrapper.getByPlaceholderText(s) as HTMLInputElement;
             const element = wrapper.container.firstElementChild as HTMLElement;
             expect(input_bar).toBeInTheDocument();
             expect(input_bar.tagName).toBe('INPUT');
-            expect(element).toHaveClass(`ui input input-${s}`);
+            expect(element).toHaveClass(`ui-input input-${s}`);
         }
     });
 });

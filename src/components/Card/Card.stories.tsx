@@ -34,6 +34,7 @@ export const DiffModeCard = () => (
       buttonHref={'#'}
       buttonTitle={'show more info'}
     ></Card>
+    <br></br>
     <Card
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -61,6 +62,7 @@ export const DiffTypeCard = () => (
       buttonTitle={'show more info'}
       cardType='circledImage'
     ></Card>
+    <br></br>
     <Card
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -72,6 +74,7 @@ export const DiffTypeCard = () => (
       buttonTitle={'show more info'}
       cardType='noImage'
     ></Card>
+    <br></br>
     <Card
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -93,7 +96,7 @@ export const DiffThemeCard = () => (
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
     ></Card>
-
+    <br></br>
     <Card
       btnOnClick={action('Purple Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -105,6 +108,7 @@ export const DiffThemeCard = () => (
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
     ></Card>
+    <br></br>
     <Card
       btnOnClick={action('Yellow Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -116,6 +120,7 @@ export const DiffThemeCard = () => (
         "Some quick example text to build on the card title and make up the bulk of the card's content."
       }
     ></Card>
+    <br></br>
     <Card
       btnOnClick={action('Blue Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
@@ -143,6 +148,7 @@ export const DiffSizeCard = () => (
       cardSize='sm'
       buttonTitle={'show more info'}
     ></Card>
+    <br></br>
 
     <Card
       btnOnClick={action('Large Button clicked')}
@@ -155,19 +161,6 @@ export const DiffSizeCard = () => (
       cardSize='lg'
       buttonTitle={'show more info'}
     ></Card>
-    <Card
-      btnOnClick={action('Large Button clicked')}
-      cardImgSrc={'https://via.placeholder.com/150'}
-      cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
-      }
-      cardTitle={'default largeImage card'}
-      buttonHref={'#'}
-      cardMode='default'
-      cardType='circledImage'
-      cardTheme='dark'
-      cardSize='sm'
-      buttonTitle={'show more info'}
-    ></Card>
+    <br></br>
   </div>
 );

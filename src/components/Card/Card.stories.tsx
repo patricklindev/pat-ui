@@ -28,7 +28,7 @@ export const DiffModeCard = () => (
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Default card'}
       buttonHref={'#'}
@@ -39,7 +39,7 @@ export const DiffModeCard = () => (
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Horizontal card'}
       buttonHref={'#'}
@@ -55,7 +55,7 @@ export const DiffTypeCard = () => (
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Circled image card'}
       buttonHref={'#'}
@@ -67,7 +67,7 @@ export const DiffTypeCard = () => (
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'No image card'}
       buttonHref={'#'}
@@ -93,7 +93,7 @@ export const DiffThemeCard = () => (
       buttonTitle={'show more info'}
       cardTheme='dark'
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
     ></Card>
     <br></br>
@@ -105,7 +105,7 @@ export const DiffThemeCard = () => (
       buttonTitle={'show more info'}
       cardTheme='purple'
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
     ></Card>
     <br></br>
@@ -117,7 +117,7 @@ export const DiffThemeCard = () => (
       buttonTitle={'show more info'}
       cardTheme='yellow'
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
     ></Card>
     <br></br>
@@ -129,7 +129,7 @@ export const DiffThemeCard = () => (
       buttonTitle={'show more info'}
       cardTheme='blue'
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
     ></Card>
   </div>
@@ -141,7 +141,7 @@ export const DiffSizeCard = () => (
       btnOnClick={action('Small Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Small card'}
       buttonHref={'#'}
@@ -154,7 +154,7 @@ export const DiffSizeCard = () => (
       btnOnClick={action('Large Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        "Some quick example text to build on the card title and make up the bulk of the card's content."
+        'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Large card'}
       buttonHref={'#'}

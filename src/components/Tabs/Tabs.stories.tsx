@@ -12,7 +12,11 @@ export const DefaultTabs = () => {
     <div className='DefaultTabs' onChange={action('defaultTab')}>
       <h1>Esther's Tab Component Demo</h1>
 
-      <Tabs headings={['Tab1', 'Tab2']} tabType='basic' />
+      <Tabs
+        headings={['Tab1', 'Tab2']}
+        tabType='basic'
+        content={['This is Tab1', 'This is Tab2']}
+      ></Tabs>
     </div>
   );
 };

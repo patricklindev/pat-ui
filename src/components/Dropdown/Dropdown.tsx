@@ -18,7 +18,7 @@ export interface IDropdownProps {
   /** set dropDown to be disabled */
   disabled?: boolean;
   /** set customized css style */
-  cssStyle?: CSSProperties;
+  style?: CSSProperties;
   /** set default string on active option */
   placeholder?: string;
   /** a callback to provide current value */
@@ -37,14 +37,7 @@ interface PatDropdownSubComponents {
  * ```
  */
 const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
-  const {
-    className,
-    children,
-    cssStyle,
-    placeholder,
-    onChange,
-    disabled,
-  } = props;
+  const { className, children, style, placeholder, onChange, disabled } = props;
 
   const [isOptionListOpen, setIsOptionListOpen] = useState(false);
   const [activeOption, setActiveOption] = useState(placeholder as ReactNode);
@@ -78,10 +71,10 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
       className={
         className ? `dropdown__wrapper ${className}` : 'dropdown__wrapper'
       }
+      style={style}
     >
       <div
-        className={classStyles}
-        style={cssStyle}
+        className={isOptionListOpen ? 'dropdown open' : 'dropdown'}
         onClick={(e) => {
           if (disabled) {
             e.preventDefault();
@@ -101,9 +94,7 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
               : 'dropdown__active_option'
           }
         >
-          <div className="dropdown__active_option__inner">
-            {activeOption}
-          </div>
+          <div className="dropdown__active_option__inner">{activeOption}</div>
           <div className="arrow" />
         </div>
 

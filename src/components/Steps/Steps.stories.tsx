@@ -3,10 +3,7 @@ import {action} from '@storybook/addon-actions';
 import Steps from './Steps';
 import MainSteps, { StepSize } from "./MainSteps"
 import {StepStyle} from "./MainSteps" ;
-import { FaTruck } from 'react-icons/fa';
-import {GrCreditCard} from 'react-icons/gr';
-import{FaInfo} from "react-icons/fa"
-import {FcCheckmark} from "react-icons/fc"
+import Icon from '../Icon';
 
 export default {
     title: 'Steps',
@@ -17,7 +14,7 @@ export default {
     id: 0,
     label: "shipping",
     description: "Choose your shipping option",
-    icon: <FaTruck /> ,
+    icon: <Icon name="truck"/> ,
     active: false,
     enable: true
 },
@@ -25,7 +22,7 @@ export default {
     id:1,
     label: "billing",
     description: "Enter billing information",
-    icon: <GrCreditCard/>,
+    icon: <Icon name="credit card"/>,
     active: false,
     enable: false
 },
@@ -33,7 +30,7 @@ export default {
     id:2,
     label: "Confirm Order",
     description: "Verify order details",
-    icon: <FaInfo/>,
+    icon: <Icon name="info"/>,
     active: false,
     enable: false
 }

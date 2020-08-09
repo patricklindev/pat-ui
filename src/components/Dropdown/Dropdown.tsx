@@ -7,7 +7,6 @@ import React, {
   cloneElement,
   ReactNode,
 } from 'react';
-import { classNames } from '../../utils/classNames';
 import DropdownOption from './DropdownOption';
 
 export interface IDropdownProps {
@@ -60,11 +59,6 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
 
     setActiveOption(innerChild);
   };
-
-  let classStyles = classNames('dropdown');
-  if (isOptionListOpen) {
-    classStyles = classNames('dropdown', 'open');
-  }
 
   return (
     <div

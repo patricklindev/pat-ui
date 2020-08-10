@@ -1,0 +1,64 @@
+import React from 'react';
+import Message, { messageType, iconType } from '../Message/Message';
+
+import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+function Render() {
+    return (
+      <div className="Render">
+  
+        <Message msgType={messageType.Basic} >
+          <div className="header">
+            Changes in Service
+          </div>
+          <div className="content">
+            <p>We just updated our privacy policy here to better service our customers. 
+              We recommend reviewing the changes.</p>
+          </div>
+        </Message>
+  
+        <Message msgType={messageType.List}>
+          <div className="header">
+            New Site Features
+          </div>
+          <div className="content">
+            <ul className="list">
+              <li>You can now have cover images on blog pages</li>
+              <li>Drafts will now auto-save while writing</li>
+            </ul>
+          </div>
+        </Message>
+  
+        <Message msgType={messageType.Icon} iconType={iconType.Spinner}>
+          <FontAwesomeIcon className="circle-icon" icon={faCircleNotch} />
+          <div className="spinner-message">
+          <div className="header">
+              Just one second
+            </div>
+            <div className="content">
+              <p>We're fetching that content for you.</p>
+            </div>
+          </div>
+        </Message>
+  
+        <Message msgType={messageType.Dismiss} iconType={iconType.Remove} className="remove-message">
+          <FontAwesomeIcon className="remove-icon" icon={faTimes}
+          onClick={() => {
+            const element = document.querySelector('.remove-message');
+            return element?.remove();
+            }}/>
+          <div className="header">
+            Welcome back!
+          </div>
+          <div className="content">
+            <p>This is a special notification which you can dismiss if you're bored with it.</p>
+          </div>
+        </Message>
+
+      </div>
+    );
+}
+
+export default Render;

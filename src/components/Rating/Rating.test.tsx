@@ -24,7 +24,7 @@ describe('Rating', () => {
 
         const rtHeartSmallWrapper = render(<Rating {...rtHeartSmallProps}/>)
         const heartSmallel = rtHeartSmallWrapper.container.firstChild
-        expect(heartSmallel).toHaveClass('rt rt-sm rt-heart');
+        expect(heartSmallel).toHaveClass('rt rt-small rt-heart');
 
         const rtWinkLargeProps: IRatingProps = {
             rtKey: '2',
@@ -34,7 +34,7 @@ describe('Rating', () => {
 
         const rtWinkLargeWrapper = render(<Rating {...rtWinkLargeProps}/>)
         const winkLargeel = rtWinkLargeWrapper.container.firstChild
-        expect(winkLargeel).toHaveClass('rt rt-lg rt-smile-wink');
+        expect(winkLargeel).toHaveClass('rt rt-large rt-smile-wink');
     })
 
     it('should change correct number of icons color when clicked', ()=>{

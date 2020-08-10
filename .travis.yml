@@ -22,22 +22,12 @@ jobs:
         skip_cleanup: true
         github_token: $github_token
         local_dir: docs
-        skip_cleanup: 'true'
 
     - state: Npm release
-      if: branch = master
       deploy:
         provider: npm
         email: yuhanlin1105@gmail.com
         api_key: $api_key
-        skip_cleanup: 'true'
-
-
-          
-# deploy:
-#   provider: npm
-#   email: yuhanlin1105@gmail.com
-#   api_key: $api_key
-#   on:
-#     tags: true
-#   skip_cleanup: 'true'
+        skip_cleanup: true
+        on:
+          tags: true

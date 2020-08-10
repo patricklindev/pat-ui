@@ -37,7 +37,7 @@
     "test": "react-scripts test",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public -o docs",
-    "prepublishOnly": "npm run build && npm run build-storybook",
+    "prepublishOnly": "npm run build",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "eslintConfig": {

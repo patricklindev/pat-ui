@@ -23,6 +23,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon/Icon';
+/**
+ * An Input bar with different styling and feature.
+ *
+ * ```js
+ * import {Input} from 'pat-ui'
+ * ```
+ */
 var Input = function (props) {
     var _a;
     var inputSize = props.inputSize, focus = props.focus, disabled = props.disabled, error = props.error, transparent = props.transparent, fluid = props.fluid, icon = props.icon, loading = props.loading, iconPosition = props.iconPosition, rest = __rest(props, ["inputSize", "focus", "disabled", "error", "transparent", "fluid", "icon", "loading", "iconPosition"]);

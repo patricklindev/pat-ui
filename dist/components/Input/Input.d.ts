@@ -24,5 +24,12 @@ interface IInputProps {
     iconPosition?: 'left' | 'right';
 }
 export declare type PatInputProps = IInputProps & InputHTMLAttributes<HTMLInputElement>;
+/**
+ * An Input bar with different styling and feature.
+ *
+ * ```js
+ * import {Input} from 'pat-ui'
+ * ```
+ */
 declare const Input: FC<PatInputProps>;
 export default Input;

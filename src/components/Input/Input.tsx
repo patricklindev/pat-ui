@@ -27,6 +27,13 @@ interface IInputProps {
 
 export type PatInputProps = IInputProps & InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * An Input bar with different styling and feature.
+ *
+ * ```js
+ * import {Input} from 'pat-ui'
+ * ```
+ */
 const Input: FC<PatInputProps> = (props) => {
   const {
     inputSize,

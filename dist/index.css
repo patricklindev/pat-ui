@@ -437,14 +437,14 @@ main {
     position: absolute;
     line-height: 1;
     top: 0;
-    right: 0;
+    right: 0.5em;
     text-align: center;
     height: 100%;
     cursor: default;
     width: 2.67em;
     opacity: 0.5;
     margin: 0;
-    font-size: 1em; }
+    font-size: 0.8em; }
     .ui-input.icon > svg:before {
       left: 0;
       position: absolute;
@@ -453,11 +453,11 @@ main {
       width: 100%;
       margin-top: -.5em; }
   .ui-input.icon > input {
-    padding-right: 3em; }
+    padding-right: 2.5em; }
   .ui-input.icon.input-left > svg {
-    left: 0; }
+    left: 0.5em; }
   .ui-input.icon.input-left > input {
-    padding-left: 3em;
+    padding-left: 2.5em;
     padding-right: 1em; }
 
 .ui-input.input-mini {

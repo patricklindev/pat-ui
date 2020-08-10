@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - 10
+directories:
+  - node_modules
 env:
   - CI=true
 install: npm ci
@@ -11,22 +13,26 @@ jobs:
     - stage: test & lint
       script: npm run test
       script: npm run lint
+       skip_cleanup: 'true'
+       
     - stage: Github Pages release
+      if: branch = master
       script: npm run build-storybook
       deploy:
         provider: pages
         skip_cleanup: true
         github_token: $github_token
         local_dir: docs
-        on:
-          branch: master
-    - stage: Npm release
-      script: npm run build-storybook
+        skip_cleanup: 'true'   
+
+    - state: Npm release
+      if: tags = true
       deploy:
-        provider: npm run build
-        api_key: $NPM_API_KEY
-        on: 
-          tags: true
+        provider: npm
+        email: yuhanlin1105@gmail.com
+        api_key: $api_key
+        skip_cleanup: 'true'
+
 
           
 # deploy:

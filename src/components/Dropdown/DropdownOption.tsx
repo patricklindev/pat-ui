@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties, ReactNode, useEffect } from 'react';
+import React, { FC, CSSProperties, ReactNode } from 'react';
 
 export interface IDropdownOptionProps {
   /** children must be React Element */

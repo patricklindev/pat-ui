@@ -22,7 +22,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import { classNames } from '../../utils/classNames';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 /**
  * An Input bar with different styling and feature.
  *

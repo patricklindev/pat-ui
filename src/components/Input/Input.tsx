@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes, FC } from 'react';
 import { classNames } from '../../utils/classNames';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 
 interface IInputProps {
   /** set customized style */

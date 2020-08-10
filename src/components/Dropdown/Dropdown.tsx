@@ -7,7 +7,7 @@ import React, {
   cloneElement,
   ReactNode,
 } from 'react';
-import DropdownOption from './DropdownOption';
+import DropdownOption, { IDropdownOptionProps } from './DropdownOption';
 
 export interface IDropdownProps {
   /** children must be React Element */
@@ -39,7 +39,25 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
   const { className, children, style, placeholder, onChange, disabled } = props;
 
   const [isOptionListOpen, setIsOptionListOpen] = useState(false);
-  const [activeOption, setActiveOption] = useState(placeholder as ReactNode);
+
+  // Check if there is an active option among children
+  let activeOption: ReactNode = undefined;
+  if (children) {
+    Children.forEach(children, (child: ReactElement<IDropdownOptionProps>) => {
+      // set activeOption if active is set to true
+      const { active } = child.props;
+      const childChildren = child.props.children;
+
+      if (active) {
+        activeOption = childChildren;
+      }
+    });
+  }
+
+  // if no active child is set, then use the placeholder
+  const [currActiveOption, setCurrActiveOption] = useState(
+    activeOption ? activeOption : (placeholder as ReactNode)
+  );
 
   const toggleOptionList = () => {
     setIsOptionListOpen(!isOptionListOpen);
@@ -57,7 +75,7 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
       onChange(val);
     }
 
-    setActiveOption(innerChild);
+    setCurrActiveOption(innerChild);
   };
 
   return (
@@ -88,7 +106,9 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
               : 'dropdown__active_option'
           }
         >
-          <div className="dropdown__active_option__inner">{activeOption}</div>
+          <div className="dropdown__active_option__inner">
+            {currActiveOption}
+          </div>
           <div className="arrow" />
         </div>
 

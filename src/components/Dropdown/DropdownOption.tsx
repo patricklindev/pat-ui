@@ -16,7 +16,7 @@ export interface IDropdownOptionProps {
 }
 
 const DropdownOption: FC<IDropdownOptionProps> = (props) => {
-  const { className, children, cssStyle, setSelected, value, active } = props;
+  const { className, children, cssStyle, setSelected, value } = props;
 
   let classNames = 'dropdown__option';
   if (className) {
@@ -30,13 +30,6 @@ const DropdownOption: FC<IDropdownOptionProps> = (props) => {
       setSelected(selectedValue, children);
     }
   };
-
-  useEffect(() => {
-    // check if active is set when mounted
-    if (active) {
-      passToDropdown();
-    }
-  }, []);
 
   return (
     <div className={classNames} style={cssStyle} onClick={passToDropdown}>

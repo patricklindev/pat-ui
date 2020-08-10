@@ -1,4 +1,4 @@
-  export interface IIconPath {
+export interface IIconPath {
   [name: string]: {
     path: string;
     viewBox: string;

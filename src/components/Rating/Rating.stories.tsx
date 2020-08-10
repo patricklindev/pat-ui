@@ -21,17 +21,17 @@ const mockAjax = function() {
 
 
 export const defaultRating = () => (
-    <Rating  rtScore={mockAjax} rtKey='1'/>
+    <Rating  rtInitScore={mockAjax} rtKey='1'/>
 );
 
 
 export const DiffInitRating = () => (
     <div style = {RatingStyle}>
-    <Rating rtScore = {1} rtKey='1'/>
-    <Rating rtScore = {2} rtKey='2'/>
-    <Rating rtScore = {3} rtKey='3'/>
-    <Rating rtScore = {4} rtKey='4'/>
-    <Rating rtScore = {5} rtKey='5'/>
+    <Rating rtInitScore = {1} rtKey='1'/>
+    <Rating rtInitScore = {2} rtKey='2'/>
+    <Rating rtInitScore = {3} rtKey='3'/>
+    <Rating rtInitScore = {4} rtKey='4'/>
+    <Rating rtInitScore = {5} rtKey='5'/>
     </div>
 )
 
@@ -59,13 +59,13 @@ export const DiffShapeRating = () => (
 export const DiffSizeRating = () => (
     <div style = {RatingStyle}>
         <div className='rt-title'>Small</div>
-        <Rating rtSize='sm' rtKey='1'/>
-        <div className='rt-title' >Regular</div>
+        <Rating rtSize='small' rtKey='1'/>
+        <div className='rt-title' >Medium</div>
         <Rating rtKey='2'/>
         <div className='rt-title'>Large</div>
-        <Rating rtSize='lg' rtKey='3'/>
-        <div className='rt-title' >Larger</div>
-        <Rating rtSize= '2x' rtKey='4'/>
+        <Rating rtSize='large' rtKey='3'/>
+        <div className='rt-title' >Huge</div>
+        <Rating rtSize= 'huge' rtKey='4'/>
     </div>
 );
 

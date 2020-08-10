@@ -19,7 +19,7 @@ describe('Rating', () => {
         const rtHeartSmallProps: IRatingProps = {
             rtKey: '1',
             rtShape: 'heart',
-            rtSize: 'sm'
+            rtSize: 'small'
         }
 
         const rtHeartSmallWrapper = render(<Rating {...rtHeartSmallProps}/>)
@@ -29,7 +29,7 @@ describe('Rating', () => {
         const rtWinkLargeProps: IRatingProps = {
             rtKey: '2',
             rtShape: 'smile-wink',
-            rtSize: 'lg'
+            rtSize: 'large'
         }
 
         const rtWinkLargeWrapper = render(<Rating {...rtWinkLargeProps}/>)
@@ -78,7 +78,7 @@ describe('Rating', () => {
         const rtBounceProps: IRatingProps = {
             rtKey: '1',
             rtAnimation: 'bounce',
-            rtAjax: jest.fn()
+            rtFunction: jest.fn()
         }  
         const rtBounceWrapper = render(<Rating {...rtBounceProps}/>)      
         const iconcontainer = rtBounceWrapper.container.firstChild
@@ -87,6 +87,6 @@ describe('Rating', () => {
 
         fireEvent.click(firstIcon as Element)
 
-        expect(rtBounceProps.rtAjax).toHaveBeenCalledTimes(1)
+        expect(rtBounceProps.rtFunction).toHaveBeenCalledTimes(1)
     })
 })

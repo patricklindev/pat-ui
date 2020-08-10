@@ -44,12 +44,12 @@
   //   z-index: 2;
   // }
   &.rt-active{
-    color: $active-color;
+    fill: $active-color !important;
     transform: scale(1.1);
   }
 
   &:hover, &:hover~* {
-    color: $hover-color;
+    fill: $hover-color !important;
     transform: scale(1.1);
   }
 }

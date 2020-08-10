@@ -6,3 +6,12 @@ install:
 script:
   - npm run test:nowatch
   - npm run lint
+
+deploy:
+  provider: npm
+  email: yuhanlin1105@gmail.com
+  api_key:
+    secure: HSsy2+B4tZ/l6ztSsBE3Z0CFTj6ZNZQgb8x80Vg/cX0gxeFbYwk6uztOCTTt6jV9HQc/X1dMqFk7490pQvJZAX0QQEdVN2QIK+0my99byusBJdTMeDJpsnfhMhsvxr5hFxUpxnP8yMVjU1AkGjX89ncUWZHhcWb1rHlLfRSn4KtENKy4bh2qqbqvhVyxyjkT9ja+u4CoSGVQEBkbIuvr4TjX/XLDGXvr/Qyu8FJX2KbEJHhvLlLY6P3/2J/TgQLVgJvflufbEHYDfVm0Enp968qiIFVa7SKF3ym/Sj9BVifVovC6U7RLerC4J0OS+0nNxw9zQtaGLVqrClMdEKVuOXRiPY5bgLW64TdB0/bzLAQTZ4YYp8NX/fn6m07URlVrnB2etlc2LL/hFZkRkOO3CB1vizEMkn7y0nKujOo9HaX/hOJ9lAL4fdMGO3bYRfKCSHsTi291myuGTLzzbyAwbTbNZQzekE0N8ekj7T1lPtdddSKcwJiNy4QH4cjyullsEeLxi6ViP4iYLhGLxZ6c3P481OO9FiPC4mGE/dV1tu+WpvnJD+9bj0GQJ3HA4guGYrBdwM2rbu/AKR1WsJhfd5j0u2ZNWBYlQyqQIZ+QGfjANma/qdaIrdR3oMZqOwO5zzfEu+2udfcMOa9LUaGTNU8bhot9DuRkH1etRLUT2Zg=
+  on:
+    repo: YuhanLin1105/pat-ui
+  skip_cleanup: 'true'

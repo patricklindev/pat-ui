@@ -21,7 +21,7 @@ export interface IDropdownProps {
   /** set default string on active option */
   placeholder?: string;
   /** a callback to provide current value */
-  onChange?: (val: string) => void;
+  onChange?: (val: any) => void;
 }
 
 interface PatDropdownSubComponents {
@@ -51,7 +51,7 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
     }
   };
 
-  const setSelected = (val: string, innerChild: ReactNode) => {
+  const setSelected = (val: any, innerChild: ReactNode) => {
     // trigger callback function
     if (onChange) {
       onChange(val);

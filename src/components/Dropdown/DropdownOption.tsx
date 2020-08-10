@@ -10,7 +10,7 @@ export interface IDropdownOptionProps {
   /** callback provided by Dropdown */
   setSelected?: (val: string, children: ReactNode) => void;
   /** value for this option */
-  value?: string;
+  value?: any;
   /** is the active / default option */
   active?: boolean;
 }

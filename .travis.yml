@@ -12,5 +12,5 @@ deploy:
   email: yuhanlin1105@gmail.com
   api_key: $api_key
   on:
-    branch: master
+    tags: true
   skip_cleanup: 'true'

@@ -12,7 +12,7 @@ const RatingStyle:React.CSSProperties = {
 };
 
 const mockAjax = function() {
-    return new Promise((res,rej)=> {
+    return new Promise<number>((res,rej)=> {
         setTimeout(()=>{
             res(2)
         }, 2000)
@@ -23,28 +23,12 @@ const mockOnSLog = function(score:number) {
     console.log(score)
 }
 
-const mockOnSAjax = function(score:number) {
-    return new Promise((res,rej)=> {
-        setTimeout(()=>{
-            res(score)
-        }, 2000)
-    }).then(()=> console.log('success'))
-}
-
-const mockOnSAPI = function(score:number) {
-
-        return fetch('https://jsonplaceholder.typicode.com/posts', {
-          method: 'POST',
-          body: JSON.stringify(score),
-        }).then((res) => res.json()).then((data)=> console.log(data));
-
-}
-
-
 
 export const defaultRating = () => (
-    <Rating  rtInitScore={mockAjax}/>
+        <Rating rtInitScore={mockAjax} rtOnSelect={mockOnSLog}/>
+
 );
+
 
 
 export const DiffInitRating = () => (
@@ -91,16 +75,7 @@ export const DiffSizeRating = () => (
     </div>
 );
 
-export const DiffOnSelectRating = () => (
-    <div style = {RatingStyle}>
-    <div className='rt-title'>ConsoleLog</div>
-    <Rating rtOnSelect={mockOnSLog} />
-    <div className='rt-title'>AjaxCall</div>
-    <Rating  rtOnSelect={mockOnSAjax}/>
-    <div className='rt-title'>API</div>
-    <Rating  rtOnSelect={mockOnSAPI} />
-</div>
-)
+
 
 export const DiffEffectRating = () => (
     <div style = {RatingStyle}>

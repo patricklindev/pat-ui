@@ -44,7 +44,7 @@ export interface IRatingProps {
     /** set icon size */
     rtSize?: RatingSize;
     /** set initial score */
-    rtInitScore?: number | (()=> Promise<any>);
+    rtInitScore?: number | (()=> Promise<number>);
     /** set max score */
     rtMaxScore?:number;
     /** set customiized function */

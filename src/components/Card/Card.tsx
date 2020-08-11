@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import Button from '../Button/Button';
 import { classNames } from '../../utils/classNames';
 
@@ -21,7 +21,7 @@ export interface ICardProps {
   /** set card title */
   cardTitle?: string;
   /** set card content */
-  cardParagraph?: string;
+  cardParagraph?: ReactNode;
   /** set card image source */
   cardImgSrc?: string;
   /** set action on bottun clicked */

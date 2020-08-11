@@ -1,6 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Card from './Card';
+import { Icon } from '../../index';
 
 export default {
   title: 'Card',
@@ -13,7 +14,14 @@ export const DefaultCard = () => (
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
-        'Some quick example text to build on the card title and make up the bulk of the card content.'
+        <div>
+          <Icon disabled={false} loading={false} name='home' size='tiny' />{' '}
+          <span>
+            You can put any ReactNode including ReactElement, ReactFragment,
+            string, number, array of ReactNodes, null, undefined, boolean in the
+            card content{' '}
+          </span>
+        </div>
       }
       cardTitle={'Default Card'}
       buttonTitle={'show more info'}
@@ -163,5 +171,18 @@ export const DiffSizeCard = () => (
     ></Card>
 
     <br></br>
+    <Card
+      btnOnClick={action('Large Button clicked')}
+      cardImgSrc={'https://via.placeholder.com/150'}
+      cardParagraph={
+        <div>
+          <Icon disabled={false} loading={false} name='home' />{' '}
+          <span>this is a react node</span>
+        </div>
+      }
+      cardTitle={'Large Card'}
+      cardSize='sm'
+      buttonTitle={'show more info'}
+    ></Card>
   </div>
 );

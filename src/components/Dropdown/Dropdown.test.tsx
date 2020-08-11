@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Dropdown from './Dropdown';
+import Dropdown from './index';
 
 describe('dropdown', () => {
   it('should render a dropdown without a child', () => {

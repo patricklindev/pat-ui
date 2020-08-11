@@ -7,11 +7,11 @@ import React, {
   cloneElement,
   ReactNode,
 } from 'react';
-import DropdownOption, { IDropdownOptionProps } from './DropdownOption';
+import { IDropdownOptionProps } from './DropdownOption';
 
 export interface IDropdownProps {
   /** children must be React Element */
-  children?: ReactElement | ReactElement[];
+  children?: | ReactElement<IDropdownOptionProps> | ReactElement<IDropdownOptionProps>[];
   /** set customized css class */
   className?: string;
   /** set dropDown to be disabled */
@@ -24,10 +24,6 @@ export interface IDropdownProps {
   onChange?: (val: any) => void;
 }
 
-interface PatDropdownSubComponents {
-  Option: typeof DropdownOption;
-}
-
 /**
  * A dropdown allows user to select from multiple actions.
  *
@@ -35,7 +31,7 @@ interface PatDropdownSubComponents {
  * import { Dropdown } from 'pat-ui'
  * ```
  */
-const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
+const Dropdown: FC<IDropdownProps> = (props) => {
   const { className, children, style, placeholder, onChange, disabled } = props;
 
   const [isOptionListOpen, setIsOptionListOpen] = useState(false);
@@ -123,8 +119,6 @@ const Dropdown: FC<IDropdownProps> & PatDropdownSubComponents = (props) => {
     </div>
   );
 };
-
-Dropdown.Option = DropdownOption;
 
 Dropdown.defaultProps = {
   placeholder: '',

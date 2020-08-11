@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Dropdown from './Dropdown';
+import Dropdown from './index';
 import Icon from '../Icon';
 
 export default {

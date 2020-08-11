@@ -58,14 +58,14 @@ const Input: FC<PatInputProps> = (props) => {
     [`input-${iconPosition}`]: !!iconPosition,
     icon: !!icon || !!loading,
   });
-  const iconFilteredClasses: { [key: string]: boolean } = {};
+  // const iconFilteredClasses: { [key: string]: boolean } = {};
   let iconName: string = '';
   if (icon && typeof icon === 'object') {
-    for (let key of Object.keys(icon)) {
-      if (key !== 'name') {
-        iconFilteredClasses[`${key}`] = icon[key] as boolean;
-      }
-    }
+    // for (let key of Object.keys(icon)) {
+    //   if (key !== 'name') {
+    //     iconFilteredClasses[`${key}`] = icon[key] as boolean;
+    //   }
+    // }
     iconName = icon['name'] as string;
   }
   // const iconClasses = classNames(

@@ -6,18 +6,17 @@ import Rating, {IRatingProps} from './Rating'
 
 describe('Rating', () => {
     it('should match snapshot', () => {
-        const {asFragment} = render(<Rating rtKey = '1'/>);
+        const {asFragment} = render(<Rating />);
         expect(asFragment()).toMatchSnapshot();
       });
     it('should render default stars', () => {
-        const wrapper = render(<Rating rtKey = '1' />)
+        const wrapper = render(<Rating  />)
         const el = wrapper.container.firstChild
         expect(el).toHaveClass('rt rt-star');
     })
 
     it('should render correct shape and size based on different props', ()=> {
         const rtHeartSmallProps: IRatingProps = {
-            rtKey: '1',
             rtShape: 'heart',
             rtSize: 'small'
         }
@@ -27,8 +26,7 @@ describe('Rating', () => {
         expect(heartSmallel).toHaveClass('rt rt-small rt-heart');
 
         const rtWinkLargeProps: IRatingProps = {
-            rtKey: '2',
-            rtShape: 'smile-wink',
+            rtShape: 'smile wink',
             rtSize: 'large'
         }
 
@@ -38,7 +36,7 @@ describe('Rating', () => {
     })
 
     it('should change correct number of icons color when clicked', ()=>{
-        const wrapper = render(<Rating rtKey = '1'/>)
+        const wrapper = render(<Rating/>)
         const iconcontainer = wrapper.container.firstChild
         expect(iconcontainer).toBeInTheDocument()
         const firstIcon = iconcontainer?.firstChild
@@ -62,7 +60,6 @@ describe('Rating', () => {
 
     it('should fire correct effect when clicked', ()=>{
         const rtBounceProps: IRatingProps = {
-            rtKey: '1',
             rtAnimation: 'bounce',
         }  
         const rtBounceWrapper = render(<Rating {...rtBounceProps}/>)      
@@ -76,7 +73,6 @@ describe('Rating', () => {
     })
     it('should fire ajax call when provided', ()=>{
         const rtBounceProps: IRatingProps = {
-            rtKey: '1',
             rtAnimation: 'bounce',
             rtOnSelect: jest.fn()
         }  

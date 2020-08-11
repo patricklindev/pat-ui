@@ -10,7 +10,7 @@ interface IProps {
 }
 interface IState {
   activeHeading: string;
-  description: string;
+  content: string;
 }
 
 class Tabs extends Component<IProps, IState> {
@@ -25,7 +25,7 @@ class Tabs extends Component<IProps, IState> {
         this.props.headings && this.props.headings.length > 0
           ? this.props.headings[0]
           : '',
-      description: this.props.content[0],
+      content: this.props.content[0],
     };
   }
 
@@ -35,8 +35,8 @@ class Tabs extends Component<IProps, IState> {
     this.setState({ activeHeading: heading });
 
     if (li.textContent === 'Tab1') {
-      this.setState({ description: this.props.content[0] });
-    } else this.setState({ description: this.props.content[1] });
+      this.setState({ content: this.props.content[0] });
+    } else this.setState({ content: this.props.content[1] });
   };
 
   public render() {
@@ -53,7 +53,7 @@ class Tabs extends Component<IProps, IState> {
             </li>
           ))}
         </ul>
-        <div>{this.state.description}</div>
+        <div>{this.state.content}</div>
       </div>
     );
   }

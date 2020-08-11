@@ -33,7 +33,6 @@ describe('Card', () => {
 
   it('should render button can be clicked', () => {
     const cardProps = {
-      buttonHref: '#',
       buttonTitle: 'title',
       btnOnClick: jest.fn(),
     };
@@ -41,7 +40,6 @@ describe('Card', () => {
     const wrapper = render(<Card {...cardProps}></Card>);
     const buttonElement = screen.getByTestId('button-element');
     expect(buttonElement.tagName).toBe('BUTTON');
-    expect(buttonElement.getAttribute('href')).toBe('#');
     expect(buttonElement).toHaveTextContent('title');
     expect(cardProps.btnOnClick).toHaveBeenCalledTimes(0);
     fireEvent.click(buttonElement);

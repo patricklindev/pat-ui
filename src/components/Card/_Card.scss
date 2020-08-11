@@ -106,6 +106,22 @@
     display: none;
   }
 }
+.card-primary {
+  border-color: $border-color;
+  .body {
+    border-color: $border-color;
+  }
+  .body h5 {
+    color: $black;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $primary, $primary);
+  }
+}
 .card-dark {
   border-color: $gray-800;
 

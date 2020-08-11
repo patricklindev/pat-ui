@@ -4,7 +4,7 @@ import { classNames } from '../../utils/classNames';
 
 export type CardSize = 'lg' | 'sm';
 export type CardMode = 'default' | 'horizontal';
-export type CardTheme = 'dark' | 'purple' | 'blue' | 'yellow';
+export type CardTheme = 'primary' | 'dark' | 'purple' | 'blue' | 'yellow';
 export type CardType = 'circledImage' | 'noImage' | 'largeImage';
 
 export interface ICardProps {
@@ -26,8 +26,6 @@ export interface ICardProps {
   cardImgSrc?: string;
   /** set action on bottun clicked */
   btnOnClick?: () => void;
-  /** set the redirect page on button clicked*/
-  buttonHref?: string;
   /** set button title */
   buttonTitle?: string;
 }
@@ -37,8 +35,12 @@ export interface ICardProps {
 
 export type patCardProps = ICardProps;
 /**
- * A card with a button to show more
+ * A card displays a flexible and extensible content container for various kinds of content,
+ * including site content in a manner of a card
  *
+ * ```js
+ * import {Card} from 'pat-ui'
+ * ```
  */
 export const Card: FC<patCardProps> = (props) => {
   const {
@@ -48,7 +50,6 @@ export const Card: FC<patCardProps> = (props) => {
     cardTheme,
     children,
     className,
-    buttonHref,
     buttonTitle,
     ...rest
   } = props;
@@ -62,25 +63,41 @@ export const Card: FC<patCardProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
-  let Card = (
-    <div className={styleClasses} data-testid='card-element'>
-      <div className={styleClasses + ' image'} data-testid='card-image-element'>
-        <img src={props.cardImgSrc} data-testid='image-element' />
-      </div>
-      <div className={styleClasses + ' body'} data-testid='card-body-element'>
-        <h5>{props.cardTitle}</h5>
-        <p>{props.cardParagraph}</p>
-        <Button
-          onClick={props.btnOnClick}
-          data-testid='button-element'
-          className='btn btn-primary'
-          href={props.buttonHref}
+  let Card =
+    buttonTitle === undefined ? (
+      <div className={styleClasses} data-testid='card-element'>
+        <div
+          className={styleClasses + ' image'}
+          data-testid='card-image-element'
         >
-          {props.buttonTitle}
-        </Button>
+          <img src={props.cardImgSrc} data-testid='image-element' />
+        </div>
+        <div className={styleClasses + ' body'} data-testid='card-body-element'>
+          <h5>{props.cardTitle}</h5>
+          <p>{props.cardParagraph}</p>
+        </div>
       </div>
-    </div>
-  );
+    ) : (
+      <div className={styleClasses} data-testid='card-element'>
+        <div
+          className={styleClasses + ' image'}
+          data-testid='card-image-element'
+        >
+          <img src={props.cardImgSrc} data-testid='image-element' />
+        </div>
+        <div className={styleClasses + ' body'} data-testid='card-body-element'>
+          <h5>{props.cardTitle}</h5>
+          <p>{props.cardParagraph}</p>
+          <Button
+            btnType='primary'
+            onClick={props.btnOnClick}
+            data-testid='button-element'
+          >
+            {props.buttonTitle}
+          </Button>
+        </div>
+      </div>
+    );
   return Card;
 };
 Card.defaultProps = {

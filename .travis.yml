@@ -27,7 +27,7 @@ jobs:
       deploy:
         provider: npm
         email: yuhanlin1105@gmail.com
-        api_key: $api_key
+        api_key: $npm_token
         skip_cleanup: true
         on:
           tags: true

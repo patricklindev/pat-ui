@@ -78,7 +78,7 @@ describe('Rating', () => {
         const rtBounceProps: IRatingProps = {
             rtKey: '1',
             rtAnimation: 'bounce',
-            rtFunction: jest.fn()
+            rtOnSelect: jest.fn()
         }  
         const rtBounceWrapper = render(<Rating {...rtBounceProps}/>)      
         const iconcontainer = rtBounceWrapper.container.firstChild
@@ -87,6 +87,6 @@ describe('Rating', () => {
 
         fireEvent.click(firstIcon as Element)
 
-        expect(rtBounceProps.rtFunction).toHaveBeenCalledTimes(1)
+        expect(rtBounceProps.rtOnSelect).toHaveBeenCalledTimes(1)
     })
 })

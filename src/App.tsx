@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="App">
       <h1> Welcome To Pat-UI</h1>      
-      <Rating rtKey='1'>Star</Rating>
-      <Rating rtShape='moon' rtAnimation='bounce' rtKey='2'/>
-      <Rating rtShape='heart' rtAnimation= 'fade' rtKey='3'/>
-      <Rating rtShape='smile-wink' rtAnimation= 'swing' rtKey='4'/>
+      <Rating>Star</Rating>
+      <Rating rtShape='moon' rtAnimation='bounce'/>
+      <Rating rtShape='heart' rtAnimation= 'fade' />
+      <Rating rtShape='smile wink' rtAnimation= 'swing' />
 
     </div>
   );

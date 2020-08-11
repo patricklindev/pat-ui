@@ -1,0 +1,248 @@
+.card-default {
+  border-style: solid;
+  border-width: $border-width;
+  border-radius: $border-radius;
+  border-color: $border-color;
+
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  .image {
+    height: 10rem;
+  }
+  .image img {
+    height: inherit;
+  }
+  .body {
+    border-style: none;
+    padding: 0.6rem;
+    margin: 0px;
+  }
+  .btn {
+    width: 10rem;
+  }
+}
+
+.card-horizontal {
+  @include card-border;
+  // margin-right: 15px;
+  // margin-top: 15px;
+  width: 40rem;
+  height: 12rem;
+  display: flex;
+  flex-direction: row;
+  .image {
+    margin: 0px;
+    width: 12rem;
+    height: 12rem;
+  }
+  .image img {
+    border-radius: inherit;
+    width: 11.8rem;
+    height: 11.8rem;
+  }
+  .body {
+    display: flex;
+    margin: 0px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .btn {
+    width: 10rem;
+  }
+}
+.card-circledImage {
+  .image {
+    height: 10.5rem;
+    display: flex;
+    border-style: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .image img {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50%;
+  }
+  .body {
+    border-style: none;
+    padding: 0.6rem;
+    margin: 0px;
+    // @include card-body-style;
+  }
+
+  .btn {
+    width: 10rem;
+  }
+}
+
+.card-noImage {
+  .image {
+    margin: 0px;
+    display: none;
+  }
+  .body {
+    border-style: none;
+    padding: 0.6rem;
+    margin: 0px;
+  }
+  .btn {
+    width: 10rem;
+  }
+}
+
+.card-largeImage {
+  .image img {
+    border-radius: inherit;
+  }
+  .body {
+    text-align: center;
+  }
+  .body p {
+    display: none;
+  }
+  .btn {
+    display: none;
+  }
+}
+.card-primary {
+  border-color: $border-color;
+  .body {
+    border-color: $border-color;
+  }
+  .body h5 {
+    color: $black;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $primary, $primary);
+  }
+}
+.card-dark {
+  border-color: $gray-800;
+
+  .body {
+    background-color: $gray-800;
+    border-color: $gray-800;
+    color: $white;
+  }
+
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $secondary, $secondary);
+  }
+}
+.card-purple {
+  border-color: $purple;
+
+  .body {
+    border-color: $purple;
+  }
+  .body h5 {
+    color: $purple;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $purple, $purple);
+  }
+}
+
+.card-blue {
+  border-color: $blue;
+
+  .body {
+    border-color: $blue;
+  }
+  .body h5 {
+    color: $blue;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $blue, $blue);
+  }
+}
+
+.card-yellow {
+  border-color: $dark-yellow;
+
+  .body {
+    border-color: $dark-yellow;
+  }
+  .body h5 {
+    color: $dark-yellow;
+  }
+  .image {
+    width: 14.9rem;
+    border-style: none;
+  }
+  .btn {
+    @include button-style($white, $dark-yellow, $dark-yellow);
+  }
+}
+
+.card-sm {
+  transform: scale(0.8);
+  .image {
+    transform: scale(1);
+  }
+  .body {
+    transform: scale(1);
+  }
+  // .image {
+  //   height: fit-content;
+  //   width: fit-content;
+  //   margin: 0px;
+  // }
+  // .image img {
+  //   height: 7.8rem;
+  //   width: 11.8rem;
+  // }
+  // .body {
+  //   font-size: $font-size-sm * 0.8;
+  // }
+  // .body h5 {
+  //   font-size: $font-size-sm;
+  // }
+  // .btn {
+  //   @include button-size(
+  //     $btn-padding-y-sm,
+  //     $btn-padding-x-sm,
+  //     $btn-font-size-sm,
+  //     $border-radius-sm
+  //   );
+  //   width: 8rem;
+  // }
+}
+
+.card-lg {
+  transform: scale(1.2);
+  .image {
+    transform: scale(1);
+  }
+  .body {
+    transform: scale(1);
+  }
+
+  // .body {
+  //   font-size: $font-size-base;
+  // }
+  // .body h5 {
+  //   font-size: 1.5rem;
+  // }
+  // .btn {
+  //   width: 12rem;
+  // }
+}

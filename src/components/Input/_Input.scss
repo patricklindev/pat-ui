@@ -1,0 +1,160 @@
+.ui-input {
+  font-size: 1em;
+  display: inline-flex;
+  position: relative;
+  // Default
+  &>input {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    text-align: left;
+    line-height: 1.21428571em;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    padding: 0.67857143em 1em;
+    background: #ffffff;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: $border-radius;
+    box-shadow: none;
+    outline-color: #85b7d9;
+    font-size: 1.1em;
+  }
+  // Focus
+  &.input-focus>input {
+    border-color: #85b7d9;
+    background: #ffffff;
+    color: rgba(0,0,0,.8);
+    box-shadow: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  // Disabled
+  &.input-disabled>input {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+  }
+  // Error
+  &.input-error>input {
+    background-color: #fff6f6;
+    border-color: #e0b4b4;
+    color: #9f3a38;
+    box-shadow: none;
+  }
+  // Transparent
+  &.input-transparent {
+    &>input {
+      border-color: transparent !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      background-color: transparent !important;
+
+      &:focus{
+        outline: none !important;
+      }
+    }
+  }
+  // Fluid
+  &.input-fluid {
+    width: 100%;
+    display: flex;
+    &>input{
+      flex: 1;
+    }
+  }
+  // Icon
+  &.icon {
+  //  &>i.icon {
+  //    display: inline-block;
+  //    position: absolute;
+  //    line-height: 1;
+  //    top: 0;
+  //    right: 0;
+  //    text-align: center;
+  //    height: 100%;
+  //    cursor: default;
+  //    width: 2.67em;
+  //    opacity: 0.5;
+  //    margin: 0;
+  //    font-size: 1.5em;
+  //    &:before {
+  //      left: 0;
+  //      position: absolute;
+  //      text-align: center;
+  //      top: 50%;
+  //      width: 100%;
+  //      margin-top: -.5em;
+  //    }
+  //  }
+  //  &>input {
+  //    padding-right: 3em;
+  //  };
+  //  &.input-left>i.icon{
+  //    left: 0;
+  //  };
+  //  &.input-left>input {
+  //    padding-left: 3em;
+  //    padding-right: 1em;
+  //  }
+  //}
+
+    &>svg {
+      display: inline-block;
+      position: absolute;
+      line-height: 1;
+      top: 0;
+      right: 0.5em;
+      text-align: center;
+      height: 100%;
+      cursor: default;
+      width: 2.67em;
+      opacity: 0.5;
+      margin: 0;
+      font-size: 0.8em;
+      &:before {
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        width: 100%;
+        margin-top: -.5em;
+      }
+    }
+    &>input {
+      padding-right: 2.5em;
+    };
+    &.input-left>svg{
+      left: 0.5em;
+    };
+    &.input-left>input {
+      padding-left: 2.5em;
+      padding-right: 1em;
+    }
+  }
+}
+// Mini
+.ui-input.input-mini {
+  font-size: 0.7em;
+}
+// Small
+.ui-input.input-small {
+  font-size: 0.928em;
+}
+// Large
+.ui-input.input-large {
+  font-size: 1.142em;
+}
+// Big
+.ui-input.input-big {
+  font-size: 1.286em;
+}
+// Huge
+.ui-input.input-huge {
+  font-size: 1.429em;
+}
+// Massive
+.ui-input.input-massive {
+  font-size: 1.714em;
+}
+

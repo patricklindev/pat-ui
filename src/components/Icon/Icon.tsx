@@ -98,6 +98,11 @@ const Icon: FC<IIconProps> = (props) => {
     default:
       height = '28';
   }
+
+  // return null if IconPath[name] is undefined
+  if(!IconPath[name]) {
+    return null;
+  }
   if (disabled) {
     return (
       <svg

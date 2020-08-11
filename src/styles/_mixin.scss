@@ -27,3 +27,10 @@
     border-color: $hover-border-color;
   }
 }
+
+@mixin card-border {
+  border-style: solid;
+  border-width: $border-width;
+  border-radius: $border-radius;
+  border-color: $border-color;
+}

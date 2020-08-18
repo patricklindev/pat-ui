@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react'
 import { FC} from 'react';
-import Steps from "./Steps"
-import {classNames} from "../../utils/classNames"
-import Icon from "../Icon"
+import Steps from './Steps'
+import {classNames} from '../../utils/classNames'
+import Icon from '../Icon'
 
 
 export enum StepStyle {
@@ -34,12 +34,11 @@ const MainSteps: FC<ImainSteps> = (props) => {
      
     
     const handleClick= (index:number)=>{
-        console.log("selected element is", index) 
         setActive(true)
         setIndexGlobal(index)                 
     }
     if(Active){
-        step[indexGlobal].icon = <Icon name="check"/> 
+        step[indexGlobal].icon = <Icon name='check'/> 
         console.log(step.length, indexGlobal)
         if(indexGlobal<step.length-1){
         step[indexGlobal+1].enable = true  

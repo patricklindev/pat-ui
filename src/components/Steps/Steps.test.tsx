@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import MainSteps,{StepStyle} from '../../components/Steps/MainSteps';
-import {steps} from '../Steps/Steps.stories'
+import {steps} from '../Steps/stepsData'
 
  describe('Steps', () => {
   // it('should match snapshot', () => {

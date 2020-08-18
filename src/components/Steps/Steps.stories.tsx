@@ -1,41 +1,15 @@
 import React from 'react';
 import {action} from '@storybook/addon-actions';
 import Steps from './Steps';
-import MainSteps, { StepSize } from "./MainSteps"
-import {StepStyle} from "./MainSteps" ;
-import Icon from '../Icon';
+import MainSteps, { StepSize,StepStyle } from './MainSteps'
+import {steps} from './stepsData'
 
 export default {
     title: 'Steps',
     component: Steps,
   };
   
- export const steps =  [ {
-    id: 0,
-    label: "Shipping",
-    description: "Choose your shipping option",
-    icon: <Icon name="truck"/> ,
-    active: false,
-    enable: true
-},
-{
-    id:1,
-    label: "Billing",
-    description: "Enter billing information",
-    icon: <Icon name="credit card"/>,
-    active: false,
-    enable: false
-},
-{
-    id:2,
-    label: "Confirm Order",
-    description: "Verify order details",
-    icon: <Icon name="info"/>,
-    active: false,
-    enable: false
-}
-] 
-
+ 
 export const horizontalSteps = ()=>{
     return(
     <div className="App" onClick={action('Steps')}>

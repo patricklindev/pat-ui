@@ -10,7 +10,7 @@ export default {
     component: Steps,
   };
   
-  const steps =  [ {
+ export const steps =  [ {
     id: 0,
     label: "Shipping",
     description: "Choose your shipping option",

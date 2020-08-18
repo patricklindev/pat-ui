@@ -26,9 +26,7 @@ const MainSteps: FC<ImainSteps> = (props) => {
     const [Active, setActive] =  React.useState(false)
     const [indexGlobal,setIndexGlobal] = React.useState(-1);
     const {stepStyle, stepSize, step} = props
-    console.log(step,"in mainstep", typeof step)
-
-    
+   
      let styleClasses=classNames('step', {
         [`step-${stepStyle}`]: true,
         [`step-${stepSize}`]: true,
@@ -38,8 +36,7 @@ const MainSteps: FC<ImainSteps> = (props) => {
     const handleClick= (index:number)=>{
         console.log("selected element is", index) 
         setActive(true)
-        setIndexGlobal(index) 
-                     
+        setIndexGlobal(index)                 
     }
     if(Active){
         step[indexGlobal].icon = <Icon name="check"/> 

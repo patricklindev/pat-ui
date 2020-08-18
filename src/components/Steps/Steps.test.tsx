@@ -9,7 +9,7 @@ import {steps} from '../Steps/stepsData'
   //   expect(asFragment()).toMatchSnapshot();
   // });
 
- it("renders without crashing", () => {
+ it('renders without crashing', () => {
     render(<MainSteps stepStyle={StepStyle.Horizontal}  step= { steps }></MainSteps>);
   });
 

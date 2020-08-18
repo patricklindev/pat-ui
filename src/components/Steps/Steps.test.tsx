@@ -12,16 +12,16 @@ describe('Steps', () => {
     render(<MainSteps stepStyle={StepStyle.Horizontal}></MainSteps>);
   });
 
-  it('should render correct title', () => {
-    const cardProps = {
-      style: 'horizontal',
-    };
-    const wrapper = render(<MainSteps stepStyle={StepStyle.Horizontal}></MainSteps>);
-    const titleElement = wrapper.queryByText('Create your own steps...') as HTMLElement;
-    expect(titleElement).toBeInTheDocument();
-    expect(titleElement.tagName).toBe('H5');
+  // it('should render correct title', () => {
+  //   const cardProps = {
+  //     style: 'horizontal',
+  //   };
+  //   const wrapper = render(<MainSteps stepStyle={StepStyle.Horizontal}></MainSteps>);
+  //   const titleElement = wrapper.queryByText('Create your own steps...') as HTMLElement;
+  //   expect(titleElement).toBeInTheDocument();
+  //   expect(titleElement.tagName).toBe('H5');
    
-  });
+  // });
 
 
 

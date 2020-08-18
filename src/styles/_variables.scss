@@ -191,4 +191,7 @@ $btn-border-radius-sm: $border-radius-sm !default;
 
 // button animation
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+
+//step animation
+$step-transition: width 0.15s ease-in-out, background-color 0.15s ease-in-out, height 0.15s ease-in-out !default;

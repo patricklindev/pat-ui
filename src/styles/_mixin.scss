@@ -27,3 +27,10 @@
     border-color: $hover-border-color;
   }
 }
+
+//Step size
+@mixin step-size ($width, $font-size) {
+  width: $width;
+  font-size: $font-size; 
+  
+}

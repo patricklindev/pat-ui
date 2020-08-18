@@ -12,7 +12,7 @@ export default {
   
   const steps =  [ {
     id: 0,
-    label: "shipping",
+    label: "Shipping",
     description: "Choose your shipping option",
     icon: <Icon name="truck"/> ,
     active: false,
@@ -20,7 +20,7 @@ export default {
 },
 {
     id:1,
-    label: "billing",
+    label: "Billing",
     description: "Enter billing information",
     icon: <Icon name="credit card"/>,
     active: false,

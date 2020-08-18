@@ -1,65 +1,44 @@
 .step-root{
     display: flex;
-    border: 1px solid  grey;
+    border: 1px solid $gray-500;
     width: 100%;
-    margin-left: 1%;
     padding: 10px;
-    position: relative;
-    height: 80px   
+    height: 80px;
+    box-shadow: $btn-box-shadow;
+    transition: transform .2s;
 }
-
-// .step-root:after {
-//   position: absolute;
-//   width: 30px;
-//   height: 30px;
-//  border-top: 1px solid  grey;
-//  border-bottom: 0px solid black;
-//  border-left: 0px solid black;
-//  border-right: 1px solid  grey;
-//  top: 50%;
-//  left: 100%;
-//  margin-top: -20px;
-//  content: "";
-//  transform: rotate(45deg);
-//  margin-left: -18px;
-//  background-color: white;
-//  z-index: 1;
-       
-// }
-.truck{
+.icon{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .content{
     margin-left: 20px;
+    font-weight: $btn-font-weight;
 }
 .step-horizontal{
     display:flex;
-    margin-bottom: 30px;
-    margin-left: 50px;
-   
+    margin-bottom: 30px;  
 }
 .step-vertical{
     width: 50%;
-    margin-bottom: 30px;
-    margin-left: 50px;
-  
+    margin-bottom: 30px; 
 }
+
 .step-small{
-    width: 30%;
-    font-size: 7px;
+    @include step-size( 50% , 0.6em );
+    
 }
 .step-mid{
-    width: 70%;
-    font-size: 9px;   
+    @include step-size( 70% , 0.8em );  
 }
 .step-large{
-    width: 100%;   
+    @include step-size( 100% , 1.0em);  
 }
 .enable{
-    background-color:lightgray;
+    background-color:$gray-200;
     cursor: pointer;
+   
 }
 .enable:hover{
     transform: scale(1.1);

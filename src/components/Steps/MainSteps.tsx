@@ -46,6 +46,8 @@ const MainSteps: FC<ImainSteps> = (props) => {
      
     }
     return (
+        <div>
+            {props.children} 
         <div className={styleClasses} >
             {step.map((value:any,index:number) =>(
             <div key={index} className={step[index].enable?'enable':'disable'}>
@@ -55,8 +57,11 @@ const MainSteps: FC<ImainSteps> = (props) => {
                     handleClick={()=>handleClick(index)}
                     />
             </div>
-            ))}
+            ))} 
         </div>
+        </div>
+       
+        
        
       
     );

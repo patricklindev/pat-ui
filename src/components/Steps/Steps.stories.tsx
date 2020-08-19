@@ -14,7 +14,7 @@ export const horizontalSteps = ()=>{
     return(
     <div className="App" onClick={action('Steps')}>
     <MainSteps stepStyle={StepStyle.Horizontal} 
-    step= { steps } />
+    step= { steps } >Horizontal steps:</MainSteps> 
   </div>
     )
 }
@@ -22,7 +22,7 @@ export const verticalSteps = ()=>{
     return(
     <div className="App" onClick={action('Steps')}>
     <MainSteps stepStyle={StepStyle.Vertical} 
-     step= { steps } />
+     step= { steps } >Vertical Steps:</MainSteps>
   </div>
     )
 }
@@ -30,19 +30,16 @@ export const SizeVariations = ()=>{
   return(
   <div className="App" onClick={action('Steps')}>
   <div >
-    <h5>Small Size</h5>
-    <MainSteps stepStyle={StepStyle.Horizontal} stepSize={StepSize.Small}  step= { steps } />
+    <MainSteps stepStyle={StepStyle.Horizontal} stepSize={StepSize.Small}  step= { steps } >Small Size:</MainSteps>
   </div>
   <br/>
   <br/>
   <div >
-    <h5>Midium Size</h5>
-    <MainSteps stepStyle={StepStyle.Horizontal} stepSize={StepSize.Midium}  step= { steps } />
+    <MainSteps stepStyle={StepStyle.Horizontal} stepSize={StepSize.Midium}  step= { steps } >Medium Size:</MainSteps>
   </div>
   <br/>
   <div >
-    <h5>Large Size</h5>
-    <MainSteps stepStyle={StepStyle.Horizontal} stepSize={StepSize.large}  step= { steps } />
+    <MainSteps stepStyle={StepStyle.Horizontal} stepSize={StepSize.large}  step= { steps } >Large Size:</MainSteps>
   </div>
   <br/>
   </div>

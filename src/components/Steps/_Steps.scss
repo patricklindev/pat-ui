@@ -18,19 +18,22 @@
 }
 .step-horizontal{
     display:flex;
-    margin-bottom: 30px;  
-}
+    margin-bottom: 30px; 
+   
+ }
+ //.step-horizontal:first-child{
+//    align-self: end; 
+//}
 .step-vertical{
     width: 50%;
     margin-bottom: 30px; 
 }
 
 .step-small{
-    @include step-size( 50% , 0.6em );
-    
+    @include step-size( 60% , 0.6em ); 
 }
 .step-mid{
-    @include step-size( 70% , 0.8em );  
+    @include step-size( 80% , 0.8em );  
 }
 .step-large{
     @include step-size( 100% , 1.0em);  

@@ -28,13 +28,11 @@
   }
 }
 
-<<<<<<< HEAD
 //Step size
 @mixin step-size ($width, $font-size) {
   width: $width;
   font-size: $font-size; 
   
-=======
 @mixin dropdown-border-style($border-width, $border-color) {
   border: $border-width solid $border-color;
 }
@@ -63,5 +61,4 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
->>>>>>> origin/master
 }

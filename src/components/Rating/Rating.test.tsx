@@ -5,10 +5,6 @@ import Rating, {IRatingProps} from './Rating'
 
 
 describe('Rating', () => {
-    it('should match snapshot', () => {
-        const {asFragment} = render(<Rating />);
-        expect(asFragment()).toMatchSnapshot();
-      });
     it('should render default stars', () => {
         const wrapper = render(<Rating  />)
         const el = wrapper.container.firstChild

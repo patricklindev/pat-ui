@@ -9,16 +9,13 @@ exports[`Tabs should match snapshot 1`] = `
       <li
         class="active"
       >
-        t1
-      </li>
-      <li
-        class=""
-      >
-        t2
+        Tab1
       </li>
     </ul>
     <div>
-      This is Tab1
+      <div>
+        This is tab1
+      </div>
     </div>
   </div>
 </DocumentFragment>

@@ -7,23 +7,24 @@ import Tabs from '../Tabs/Tabs';
 describe('Tabs', () => {
   it('should match snapshot', () => {
     const { asFragment } = render(
-      <Tabs headings={['t1', 't2']} content={['This is Tab1', 'This is Tab2']}>
-        {' '}
-        Snapshot Tabs{' '}
-      </Tabs>
+      <Tabs
+        tabs={[{ heading: 'Tab1', content: <div>This is tab1</div> }]}
+      ></Tabs>
     );
     expect(asFragment()).toMatchSnapshot();
   });
   it('should render tab1', () => {
-    const liProps = {
-      onClick: jest.fn(),
+    const tabProps = {
+      tabs: [
+        {
+          heading: 'tab1',
+          content: <div>content</div>,
+        },
+      ],
     };
-    const wrapper = render(
-      <Tabs headings={['Tab1', 'Tab2']} content={['p1', 'p2']}></Tabs>
-    );
-    const element = wrapper.queryByText('Tab1') as HTMLElement;
+    const wrapper = render(<Tabs {...tabProps}></Tabs>);
+    const element = wrapper.queryByText('tab1') as HTMLElement;
     expect(element).toBeInTheDocument();
     expect(element.tagName).toBe('LI');
-    expect(liProps.onClick).toHaveBeenCalledTimes(0);
   });
 });

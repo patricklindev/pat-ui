@@ -1,16 +1,19 @@
-import React, { Component, MouseEvent } from 'react';
+import React, { Component } from 'react';
 
 export type tabType = 'basic';
 
+type TabContentType = {
+  heading: string;
+  content: React.ReactNode;
+  active?: Boolean;
+};
 interface IProps {
-  headings: string[];
+  tabs: TabContentType[];
   tabType?: tabType;
   className?: string;
-  content: string[];
 }
 interface IState {
-  activeHeading: string;
-  content: string;
+  activeIndex: number;
 }
 
 class Tabs extends Component<IProps, IState> {
@@ -20,40 +23,39 @@ class Tabs extends Component<IProps, IState> {
   public constructor(props: IProps) {
     super(props);
 
+    const { tabs } = props;
+
+    let activeIndex = 0;
+    tabs.forEach((tab, index) => {
+      const { active } = tab;
+      if (active) {
+        activeIndex = index;
+      }
+    });
     this.state = {
-      activeHeading:
-        this.props.headings && this.props.headings.length > 0
-          ? this.props.headings[0]
-          : '',
-      content: this.props.content[0],
+      activeIndex,
     };
   }
 
-  handleTabClick = (e: MouseEvent<HTMLLIElement>) => {
-    const li = e.target as HTMLLIElement;
-    const heading: string = li.textContent ? li.textContent : '';
-    this.setState({ activeHeading: heading });
-
-    if (li.textContent === 'Tab1') {
-      this.setState({ content: this.props.content[0] });
-    } else this.setState({ content: this.props.content[1] });
-  };
-
   public render() {
+    const { tabs } = this.props;
+    const { activeIndex } = this.state;
     return (
       <div>
         <ul className='tabs'>
-          {this.props.headings.map((heading, index: number) => (
+          {tabs.map((tab, index: number) => (
             <li
               key={index}
-              onClick={this.handleTabClick}
-              className={heading === this.state.activeHeading ? 'active' : ''}
+              onClick={() => {
+                this.setState({ activeIndex: index });
+              }}
+              className={index === activeIndex ? 'active' : undefined}
             >
-              {heading}
+              {tab.heading}
             </li>
           ))}
         </ul>
-        <div>{this.state.content}</div>
+        <div>{tabs[activeIndex].content}</div>
       </div>
     );
   }

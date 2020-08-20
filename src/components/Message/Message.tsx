@@ -89,7 +89,7 @@ export const Message: FC<IMessagesProps> = (props) => {
 
     let message = (
             <div className={styleClasses} {...(rest as IMessagesProps)} data-testid='message-element'>
-                <div className='icon' onClick={props.msgOnClick}>
+                <div className='icon' onClick={props.msgOnClick} data-testid='icon-element'>
                     <p>{props.msgIcon}</p>
                 </div>
                 <div className='header'>

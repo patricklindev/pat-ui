@@ -1,6 +1,7 @@
 import React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react';
 import Message ,{ IMessagesProps } from './Message';
+import { Icon } from '../..';
 
 describe('Message', () => {
     it('should match snapshot', () => {
@@ -37,8 +38,28 @@ describe('Message', () => {
         expect(listElement).toHaveClass('msg msg-list msg-large msg-white test');
 
         // Icon message
+        const msgIconProps: IMessagesProps = {
+            msgType: 'icon',
+            msgSize: 'large',
+            msgColor: 'white',
+            className: 'test',
+            msgHeader: 'Icon Message'
+        }
+        const msgIconWrapper = render(<Message {...msgIconProps}></Message>);
+        const msgIconElement = msgIconWrapper.queryByText('Icon Message');
+        expect(msgIconElement).toBeInTheDocument();
 
         // Dismiss message
+        const msgDismissProps: IMessagesProps = {
+            msgType: 'dismiss',
+            msgSize: 'large',
+            msgColor: 'white',
+            msgHeader: 'Dismiss Message',
+            msgOnClick: jest.fn()
+        }
+        const msgDismissWrapper = render(<Message></Message>);
+        const dismissElement = screen.queryAllByTestId('message-element');
+        expect(msgDismissProps.msgOnClick).toHaveBeenCalledTimes(0);
     });
 
 });

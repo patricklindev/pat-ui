@@ -8,6 +8,7 @@ exports[`Message should match snapshot 1`] = `
   >
     <div
       class="icon"
+      data-testid="icon-element"
     >
       <p />
     </div>

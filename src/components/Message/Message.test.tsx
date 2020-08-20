@@ -12,7 +12,7 @@ describe('Message', () => {
     it('should render default message', () => {
         // Default message
         const msgBasicProps: IMessagesProps = {
-            msgType: "basic",
+            msgType: 'basic',
             msgSize: 'large',
             msgColor: 'white',
             className: 'test'
@@ -25,7 +25,7 @@ describe('Message', () => {
     it('should render message with different props', () => {
         // List message
         const msgListProps: IMessagesProps = {
-            msgType: "list",
+            msgType: 'list',
             msgSize: 'large',
             msgColor: 'white',
             className: 'test',

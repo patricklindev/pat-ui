@@ -24,9 +24,9 @@ describe('Buttton', () => {
   });
 
   it('should render correct button based on different props', () => {
-    const btnPrimarySmallProps = {
-      btnType: ButtonType.Primary,
-      btnSize: ButtonSize.Small,
+    const btnPrimarySmallProps: PatButtonProps = {
+      btnType: 'primary',
+      btnSize: 'sm',
       onClick: jest.fn(),
       className: 'test',
     };
@@ -44,8 +44,8 @@ describe('Buttton', () => {
     expect(btnPrimarySmallProps.onClick).toHaveBeenCalledTimes(1);
 
     /// Link Button
-    const btnLinkProps = {
-      btnType: ButtonType.Link,
+    const btnLinkProps: PatButtonProps = {
+      btnType: 'link',
       onClick: jest.fn(),
     };
     const btnLinkWrapper = render(
@@ -63,8 +63,8 @@ describe('Buttton', () => {
   });
 
   it('should render disabled button', () => {
-    const btnDisabledLinkProps = {
-      btnType: ButtonType.Link,
+    const btnDisabledLinkProps: PatButtonProps = {
+      btnType: 'link',
       onClick: jest.fn(),
       disabled: true,
     };

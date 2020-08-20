@@ -35,6 +35,10 @@ describe('Message', () => {
         expect(msgListElement).toBeInTheDocument();
         const listElement = screen.queryByTestId('message-element');
         expect(listElement).toHaveClass('msg msg-list msg-large msg-white test');
+
+        // Icon message
+
+        // Dismiss message
     });
 
 });

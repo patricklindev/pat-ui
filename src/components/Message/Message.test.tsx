@@ -1,7 +1,6 @@
 import React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react';
 import Message ,{ IMessagesProps } from './Message';
-import { DefaultMessage } from './Message.stories';
 
 describe('Message', () => {
     it('should match snapshot', () => {

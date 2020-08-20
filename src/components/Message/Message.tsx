@@ -67,7 +67,7 @@ export const Message: FC<IMessagesProps> = (props) => {
         styleClasses += ' ' + className;
     }
 
-    if (props.msgList == true) {
+    if (props.msgList === true) {
         return (
             <div className={styleClasses} {...(rest as IMessagesProps)} data-testid='message-element'>
             <div className='list-header'>

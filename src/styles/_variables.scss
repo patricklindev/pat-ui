@@ -194,25 +194,46 @@ $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
   border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
 
-// message
+// message style
 $msg-background-color: $gray-100 !default;
 $msg-border-radius: $border-radius-lg !default;
 $msg-border: 0.05rem solid $gray-500 !default;
 $msg-padding: 1rem !default;
-$msg-box-width: 80% !default;
-$msg-margin: 2rem !default;
+$msg-box-width: 95% !default;
 
 // message header
 $msg-header-size: $h4-font-size !default;
 
-// message paragraph
+// message content
 $msg-pg-size: 1.2rem !default;
+$msg-pg-display: flex !default;
+$msg-pg-display-wrap: wrap !default;
 
-// message icon
-$msg-margin-left: 6rem !default;
-$remove-icon-margin: 0.5rem !default;
-$circle-icon-margin: 1.7rem !default;
-$cirle-icon-size: 3rem !default;
+// list message header
+$msg-list-margin-left: 0.8rem !default;
 
-// icon animation
-$icon-animation: spin 2s linear infinite;
+// icon message's icon
+$msg-icon-float: left !default;
+$msg-icon-margin: 0.5rem 1rem 0rem 0rem !default;
+
+// dismiss message's icon
+$msg-dismiss-float: right !default;
+
+// message format
+$msg-indent-left: 1rem !default;
+$msg-padding: 0rem !default;
+
+// different message type font sizes
+$msg-mini-font-size: 0.7rem !default;
+$msg-tiny-font-size: 1rem !default;
+$msg-small-font-size: 1.3rem !default;
+$msg-large-font-size: 1.6rem !default;
+$msg-big-font-size: 1.9rem !default;
+$msg-huge-font-size: 2.2rem !default;
+$msg-massive-font-size: 2.5rem !default;
+
+// different message background colors
+$msg-red-background: rgba(255, 0, 0, 0.1) !default;
+$msg-orange-background: rgba(255, 165, 0, 0.1) !default;
+$msg-blue-background: rgba(0, 0, 255, 0.1) !default;
+$msg-pink-background: rgba(255, 192, 203, 0.1) !default;

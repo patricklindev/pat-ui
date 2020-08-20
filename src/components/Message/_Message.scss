@@ -1,7 +1,6 @@
 .msg {
     position: relative;
     display: inline-block;
-    margin: $msg-margin;
 
     @include message-style(
         $msg-background-color, 
@@ -12,33 +11,117 @@
     );
 }
 
-.header {
+// default Message and different type message
+.msg .header {
     font-size: $msg-header-size;
     font-weight: $font-weight-bold;
 }
 
-.content {
+.msg .content {
+    display: $msg-pg-display;
+    flex-wrap: $msg-pg-display-wrap;
+}
+
+.basic-message .content{
     font-size: $msg-pg-size;
 }
 
-.remove-icon {
-    position: absolute;
-    top: $remove-icon-margin;
-    right: $remove-icon-margin;
+.list-message .list-header {
+    font-size: $msg-header-size;
+    font-weight: $font-weight-bold;
+    margin-left: $msg-list-margin-left;
 }
 
-.circle-icon {
-    position: absolute;
-    left: $circle-icon-margin;
-    top: $circle-icon-margin;
-    font-size: $cirle-icon-size;
-    animation: $icon-animation;
+.list-message .list-content {
+    font-size: $msg-pg-size;
 }
 
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+.icon-message .content {
+    font-size: $msg-pg-size;
+}
 
-.spinner-message {
-    @include icon-style (
-        $msg-margin-left
+.icon-message .icon {
+    float: $msg-icon-float;
+    margin: $msg-icon-margin;
+}
+
+.dismiss-message .content {
+    font-size: $msg-pg-size;
+}
+
+.dismiss-message .icon {
+    float: $msg-dismiss-float;
+}
+
+// different size message
+.size-message {
+    @include size-message (
+        $msg-indent-left
     );
+}
+
+.mini-message {
+    font-size: $msg-mini-font-size;
+}
+
+.tiny-message {
+    font-size: $msg-tiny-font-size;
+}
+
+.small-message {
+    font-size: $msg-small-font-size;
+}
+
+.large-message {
+    font-size: $msg-large-font-size;
+}
+
+.big-message {
+    font-size: $msg-big-font-size;
+}
+
+.huge-message {
+    font-size: $msg-huge-font-size;
+}
+
+.massive-message {
+    font-size: $msg-massive-font-size;
+}
+
+// different color message
+.color-message {
+    @include color-message(
+        $msg-indent-left,
+        $msg-pg-size
+    );
+}
+
+.red-message {
+    border-color: $red;
+    color: $red;
+    background-color: $msg-red-background;
+}
+
+.orange-message {
+    border-color: $orange;
+    color: $orange;
+    background-color: $msg-orange-background;
+}
+
+.blue-message {
+    border-color: $blue;
+    color: $blue;
+    background-color: $msg-blue-background;
+}
+
+.pink-message {
+    border-color: $pink;
+    color: $pink;
+    background-color: $msg-pink-background;
+}
+
+.black-message {
+    border-color: $black;
+    color: $white;
+    background-color: $black;
 }

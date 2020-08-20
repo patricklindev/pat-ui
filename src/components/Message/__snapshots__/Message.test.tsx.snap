@@ -2,11 +2,24 @@
 
 exports[`Message should match snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="msg msg-basic msg-large msg-white"
+    data-testid="message-element"
+  >
     <div
-      class="msg msg-bs"
+      class="icon"
     >
-       Snapshot Message 
+      <p />
+    </div>
+    <div
+      class="header"
+    >
+      <p />
+    </div>
+    <div
+      class="content"
+    >
+      <p />
     </div>
   </div>
 </DocumentFragment>

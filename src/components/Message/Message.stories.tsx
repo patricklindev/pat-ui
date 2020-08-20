@@ -1,100 +1,183 @@
 import React from 'react';
-import Message, {messageType, iconType} from './Message';
-
-import { faCircleNotch, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Message from './Message';
+import { Icon } from '../../index';
 
 export default {
     title: 'Message',
     component: Message,
 };
 
-const messageStyle: React.CSSProperties = {
-    marginRight: '5px',
-    marginTop: '5px',
-};
-
 export const DefaultMessage = () => (
-   <Message msgType={messageType.Basic} >
-    <div className="header">
-      Changes in Service
-    </div>
-    <div className="content">
-      <p>We just updated our privacy policy here to better service our customers. 
-        We recommend reviewing the changes.</p>
-    </div>
-   </Message>
+  <Message 
+    className='basic-message'
+    msgHeader='Basic Message'
+    msgContent='This is a basic message for you to use, you can change it to any message you want.'
+  >
+  </Message>
 );
 
 export const DiffTypeMessage = () => (
-    <div>
-      <h4>Basic Message: </h4>
-        <Message
-        style={messageStyle}
-        msgType={messageType.Basic}
+  <div>
+    <h3>Basic Message</h3>
+      <Message
+        className='basic-message'
+        msgHeader='Basic Message'
+        msgContent='This is a basic message for you to use, you can change it to any message you want.'
+      >
+      </Message>
+    <br />
+    <br />
+    <h3>List Message</h3>
+      <Message 
+        className='list-message'
+        msgList={true}
+        msgHeader='List Message'
+        msgContent='This is the first bullet point for you to use, you can change it to any message you want.'
+        msgBulletContent='This is the second bullet point for you to use, you can change it to any message you want.'
+      >
+      </Message>
+    <br />
+    <br />
+    <h3>Icon Message</h3>
+      <Message
+        className='icon-message'
+        msgIcon={
+          <Icon disabled={false} loading={true} name='spinner' size='large' color='black' />
+          }
+        msgHeader='Icon Message'
+        msgContent='This is an icon message for you to use, you can change it to any message you want.'
         >
-        <div className="header">
-          Changes in Service
-        </div>
-        <div className="content">
-          <p>We just updated our privacy policy here to better service our customers. 
-            We recommend reviewing the changes.</p>
-        </div>
-        </Message>
+      </Message>
+    <br />
+    <br />
+    <h3>Dismiss Message</h3>
+    <Message
+      className='dismiss-message'
+      msgIcon={
+        <Icon disabled={false} loading={false} name='times' size='mini' color='black' />
+        }
+      msgHeader='Dismiss Message'
+      msgContent='This is a dismiss message for you to use, you can change it to any message you want. You can click the delete button to dismiss this message.'
+      msgOnClick={() => {
+        const element = document.querySelector('.dismiss-message');
+        return element?.remove();
+      }}
+    >
+    </Message>
+  </div>
+);
 
-        <h4>List Message: </h4>
 
-        <Message
-        style={messageStyle}
-        msgType={messageType.List}
-        >
-        <div className="header">
-            New Site Features
-        </div>
-        <div className="content">
-            <ul className="list">
-            <li>You can now have cover images on blog pages</li>
-            <li>Drafts will now auto-save while writing</li>
-            </ul>
-        </div>
-        </Message>
+export const DiffSizeMessage = () => (
+  <div className='size-message'>
+    <br />
+    <br />
+    <Message
+      className='mini-message'
+      msgSize='mini'
+      msgContent='This is a mini message.'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='tiny-message'
+      msgSize='tiny'
+      msgContent='This is a tiny message.'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='small-message'
+      msgSize='small'
+      msgContent='This is a small message.'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='large-message'
+      msgSize='large'
+      msgContent='This is a large message.'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='big-message'
+      msgSize='big'
+      msgContent='This is a big message.'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='huge-message'
+      msgSize='huge'
+      msgContent='This is a huge message.'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='massive-message'
+      msgSize='massive'
+      msgContent='This is a massive message.'
+    >
+    </Message>
+  </div>
+);
 
-        <h4>Icon Message: </h4>
-    
-        <Message
-        style={messageStyle}
-        msgType={messageType.Icon}
-        iconType={iconType.Spinner}
-        >
-        <FontAwesomeIcon className="circle-icon" icon={faCircleNotch} />
-        <div className="spinner-message">
-        <div className="header">
-            Just one second
-        </div>
-        <div className="content">
-            <p>We're fetching that content for you.</p>
-        </div>
-        </div>
-        </Message>
-
-        <h4>Dismiss Message: </h4>
-
-        <Message
-        style={messageStyle}
-        msgType={messageType.Dismiss}
-        iconType={iconType.Remove}
-        >
-        <FontAwesomeIcon className="remove-icon" icon={faTimes}
-        onClick={() => {
-          const element = document.querySelector('.remove-message');
-          return element?.remove();
-        }}/>
-        <div className="header">
-        Welcome back!
-        </div>
-        <div className="content">
-        <p>This is a special notification which you can dismiss if you're bored with it.</p>
-        </div>
-        </Message>
-    </div>
-  );
+export const DiffColorMessage = () => (
+  <div className='color-message'>
+    <br />
+    <br />
+    <Message
+      className='white-message'
+      msgColor='white'
+      msgContent='White'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='red-message'
+      msgColor='red'
+      msgContent='Red'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='orange-message'
+      msgColor='orange'
+      msgContent='Orange'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='blue-message'
+      msgColor='blue'
+      msgContent='Blue'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='pink-message'
+      msgColor='pink'
+      msgContent='Pink'
+    >
+    </Message>
+    <br />
+    <br />
+    <Message
+      className='black-message'
+      msgColor='black'
+      msgContent='Black'
+    >
+    </Message>
+  </div>
+);

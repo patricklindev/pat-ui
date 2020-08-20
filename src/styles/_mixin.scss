@@ -37,6 +37,11 @@
   width: $msg-box-width;
 }
 
-@mixin icon-style($msg-margin-left) {
-  margin-left: $msg-margin-left;
+@mixin color-message($msg-indent-left, $msg-pg-size) {
+  text-indent: $msg-indent-left;
+  font-size: $msg-pg-size;
+}
+
+@mixin size-message($msg-indent-left) {
+  text-indent: $msg-indent-left;
 }

@@ -90,20 +90,20 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
         }
 
     }, [score])
-    const handleClick = (e:MouseEvent) => {
+    const handleClick = (num:string) => (e:MouseEvent) => {
         e.stopPropagation()
         let target = e.target as Element
         target.classList.add(`rt-${rtAnimation}`)
         window.setTimeout(()=> {
             target.classList.remove(`rt-${rtAnimation}`)
         }, 1000)
-        let num = parseInt(target.id.split('-')[1])
-        setScore(num)    
+        // let num = parseInt(target.id.split('-')[1])
+        setScore(parseInt(num))    
     }
 
 
     let list = (new Array(rtMaxScore).fill(0)).map((el, idx)=> {
-        return (<div className='rt-icon' onClick={handleClick} id={`rt-${rtMaxScore as number - idx}`} key = {idx}>
+        return (<div className='rt-icon' onClick={handleClick(`${rtMaxScore as number - idx}`)}>
                     {/* <FontAwesomeIcon icon={['fas', rtShape as string] as IconProp} size={rtSize}/> */}
                     <Icon name={rtShape as string} size ={rtSize}/>
                 </div>)

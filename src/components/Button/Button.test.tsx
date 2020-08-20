@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {render, fireEvent} from '@testing-library/react';
-import Button, {ButtonType, ButtonSize} from './Button';
+import { render, fireEvent } from '@testing-library/react';
+import Button, { PatButtonProps } from './Button';
 
 describe('Buttton', () => {
   it('should match snapshot', () => {
-    const {asFragment} = render(<Button> Snapshot Button </Button>);
+    const { asFragment } = render(<Button> Snapshot Button </Button>);
     expect(asFragment()).toMatchSnapshot();
   });
 

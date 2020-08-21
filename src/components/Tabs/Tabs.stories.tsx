@@ -9,7 +9,7 @@ export default {
 
 export const DefaultTabs = () => {
   return (
-    <div onChange={action('defaultTab')}>
+    <div>
       <Tabs
         tabs={[
           {

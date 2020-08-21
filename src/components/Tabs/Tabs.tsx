@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-export type tabType = 'basic';
-
 type TabContentType = {
   heading: string;
   content: React.ReactNode;
@@ -9,7 +7,6 @@ type TabContentType = {
 };
 interface IProps {
   tabs: TabContentType[];
-  tabType?: tabType;
   className?: string;
 }
 interface IState {
@@ -17,9 +14,6 @@ interface IState {
 }
 
 class Tabs extends Component<IProps, IState> {
-  static defaultProps = {
-    tabType: 'basic',
-  };
   public constructor(props: IProps) {
     super(props);
 
@@ -42,7 +36,7 @@ class Tabs extends Component<IProps, IState> {
     const { activeIndex } = this.state;
     return (
       <div>
-        <ul className='tabs'>
+        <ul className="tabs">
           {tabs.map((tab, index: number) => (
             <li
               key={index}

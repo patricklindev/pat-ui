@@ -73,7 +73,6 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
                 setScore(data)})            
             }
         }, [])       
-    const prefix = new Array(5).fill('fas')
     let styleClasses = ['rt', `rt-${rtSize}`, `rt-${(rtShape as string).split(' ').join('-')}`].join(' ')
     if (className) styleClasses += ' ' + className
     useEffect(()=> {
@@ -97,14 +96,12 @@ export const Rating: FunctionComponent<IRatingProps> = (props) => {
         window.setTimeout(()=> {
             target.classList.remove(`rt-${rtAnimation}`)
         }, 1000)
-        // let num = parseInt(target.id.split('-')[1])
         setScore(parseInt(num))    
     }
 
 
     let list = (new Array(rtMaxScore).fill(0)).map((el, idx)=> {
         return (<div className='rt-icon' onClick={handleClick(`${rtMaxScore as number - idx}`)}>
-                    {/* <FontAwesomeIcon icon={['fas', rtShape as string] as IconProp} size={rtSize}/> */}
                     <Icon name={rtShape as string} size ={rtSize}/>
                 </div>)
     })

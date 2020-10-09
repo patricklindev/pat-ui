@@ -4,7 +4,7 @@ import React, {
   FC,
   MouseEvent,
 } from 'react';
-import {classNames} from '../../utils/classNames';
+import { classNames } from '../../utils/classNames';
 
 // export enum ButtonSize {
 //   Large = 'lg',
@@ -48,7 +48,7 @@ export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
  * ```
  */
 export const Button: FC<PatButtonProps> = (props) => {
-  const {btnSize, btnType, children, disabled, className, ...rest} = props;
+  const { btnSize, btnType, children, disabled, className, ...rest } = props;
   let styleClasses = classNames('btn', {
     [`btn-${btnType}`]: true,
     [`btn-${btnSize}`]: !!btnSize,

@@ -67,6 +67,7 @@ const Dropdown: FC<IDropdownProps> = (props) => {
 
   const setSelected = (val: any, innerChild: ReactNode) => {
     // trigger callback function
+     console.log(val);
     if (onChange) {
       onChange(val);
     }

@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stepper should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="stepper stepper-horizontal stepper-md"
+    data-testid="stepper-element"
+  >
+    <div
+      class="step step-active"
+      data-testid="step-1-element"
+    >
+      <span
+        class="step-icon-container"
+      >
+        <svg
+          class="step-icon"
+          height="28"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="step-icon-circle"
+            cx="12"
+            cy="12"
+            r="12"
+          />
+          <text
+            class="step-icon-text"
+            text-anchor="middle"
+            x="12"
+            y="17"
+          >
+            1
+          </text>
+        </svg>
+      </span>
+      <span
+        class="step-label-container"
+      >
+        <span
+          class="step-label"
+        >
+          Step1
+        </span>
+      </span>
+    </div>
+    <div
+      class="step-connection"
+    >
+      <hr />
+    </div>
+    <div
+      class="step step-incompleted"
+      data-testid="step-2-element"
+    >
+      <span
+        class="step-icon-container"
+      >
+        <svg
+          class="step-icon"
+          height="28"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="step-icon-circle"
+            cx="12"
+            cy="12"
+            r="12"
+          />
+          <text
+            class="step-icon-text"
+            text-anchor="middle"
+            x="12"
+            y="17"
+          >
+            2
+          </text>
+        </svg>
+      </span>
+      <span
+        class="step-label-container"
+      >
+        <span
+          class="step-label"
+        >
+          Step2
+        </span>
+      </span>
+    </div>
+    <div
+      class="step-connection"
+    >
+      <hr />
+    </div>
+    <div
+      class="step step-incompleted"
+      data-testid="step-3-element"
+    >
+      <span
+        class="step-icon-container"
+      >
+        <svg
+          class="step-icon"
+          height="28"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="step-icon-circle"
+            cx="12"
+            cy="12"
+            r="12"
+          />
+          <text
+            class="step-icon-text"
+            text-anchor="middle"
+            x="12"
+            y="17"
+          >
+            3
+          </text>
+        </svg>
+      </span>
+      <span
+        class="step-label-container"
+      >
+        <span
+          class="step-label"
+        >
+          Step3
+        </span>
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

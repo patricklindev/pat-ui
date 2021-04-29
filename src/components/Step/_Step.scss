@@ -1,0 +1,70 @@
+.steps-wrapper {
+  width: 80%;
+
+  margin: 0 auto;
+}
+
+.stepper { 
+  display: flex;
+  padding: 1.5rem;
+  border: 1px solid;
+  border-color: #ced4da;
+}
+
+.stepper-horizontal {
+  align-items: center;
+  flex-direction: row;
+}
+.stepper-vertical { 
+  flex-direction: column;
+}
+
+
+// step
+.step {
+  display: flex;
+  align-items: center; 
+  padding: 1rem;
+}
+
+// step icon
+.step-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.step-icon {
+  padding-right: 1rem;
+}
+
+.step-incompleted .step-icon-circle {
+  fill:#ced4da
+}
+
+.step-active .step-icon-circle {
+  fill:turquoise
+}
+
+.step-icon-text {
+  fill: white;
+}
+
+
+// step-connection
+.step-connection {
+  flex: 1 1 auto;
+}
+
+.step-connection>.vl {
+  width: 0;
+  margin-left: 1.8rem;
+  border-left: 2px solid #ced4da;
+  border-right: 2px solid #ced4da;
+  border-radius: 2px;
+  min-height: 50px;
+}
+
+.step-connection>hr {
+  border: 2px solid #ced4da;
+  border-radius: 2px;
+}

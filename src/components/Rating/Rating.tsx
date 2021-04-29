@@ -46,8 +46,8 @@ export interface IRatingProps {
   };
   /** set the value of the bar. 'barValue' should be between 0-100*/
   barValue?: number;
-
-  noText? :boolean;
+  /** removes text for progress bar if set to true */
+  noText?: boolean;
 }
 
 /**
@@ -68,9 +68,11 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     ratingtype,
     barcolor,
     barValue,
+    noText,
     ...rest
   } = props;
   let value = 0;
+
   const [rating, setRating] = React.useState(0);
   const [unSelected, setUnSelected] = React.useState(Colors.default);
   const [selected, setSelected] = React.useState(Colors.yellow);
@@ -194,36 +196,71 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           </svg>
         </div>
       );
-    //barcolor: {left:string, right:string,}
-    //height: thin | default | thick
-    // progress will have l | default | s
-    //value: in percent
-    //linear-gradient(to left, #f2709c, #ff9472)'
 
     case 'progress':
       let progressClass = 'progress ';
       if (className) {
         progressClass += className;
       }
+
       return (
-        <div className={progressClass}>
+        <div className={progressClass} {...(rest as IRatingProps)}>
           <article
             className="progress__primary"
             style={{
               width: `${barValue ? `${barValue}%` : '0px'}`,
               background: `linear-gradient(to right, ${
                 barcolor ? barcolor.left : Colors.red
-              }, ${barcolor ? barcolor.right : Colors.pink})`, boxShadow:`1px 1px 5px ${barcolor?barcolor.right:Colors.pink}`
+              }, ${barcolor ? barcolor.right : Colors.pink})`,
+              boxShadow: `1px 1px 5px ${
+                barcolor ? barcolor.right : Colors.pink
+              }`,
             }}
           >
-            <span className="progress__barValue" style={{fontSize: `${size}px`}}>
-              {barValue ? barValue : 0}%
+            <span
+              className="progress__barValue"
+              style={{ fontSize: `${size}px` }}
+            >
+              {noText ? '' : barValue ? barValue + '%' : 0 + '%'}{' '}
             </span>
           </article>
         </div>
       );
     case 'thumb':
-      return <div></div>;
+      let thumbClass: string = 'rating thumb__item ';
+      if (className) {
+        thumbClass += className;
+      }
+      let thumbSize = size;
+      if (!thumbSize) {
+        thumbSize = 25;
+      }
+      return (
+        <div className="thumb" {...(rest as IRatingProps)}>
+          <article className={thumbClass}>
+            <svg
+              viewBox={IconPath['thumbsUp'].viewBox}
+              height={`${thumbSize}px`}
+            >
+              <path
+                fill={'gray'}
+                d={IconPath['thumbsUp'].path}
+              />
+            </svg>
+          </article>
+          <article className={thumbClass}>
+            <svg
+              viewBox={IconPath['thumbsDown'].viewBox}
+              height={`${thumbSize}px`}
+            >
+              <path
+                fill={'gray'}
+                d={IconPath['thumbsDown'].path}
+              />
+            </svg>
+          </article>
+        </div>
+      );
     default:
       return null;
   }

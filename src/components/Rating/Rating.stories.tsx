@@ -27,6 +27,7 @@ export const DiffTypeRating = () => {
       <p></p>
       <Rating ratingtype="progress" barValue={60} />
       <p>Progress is used to show results from ratings</p>
+      <Rating size={30}ratingtype="thumb"/>
     </div>
   );
 };

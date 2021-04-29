@@ -5,14 +5,13 @@
   background-color: rgb(235, 235, 235);
   width: 230px;
   border-radius: 30px;
-
+  height: 17px;
 }
 
 .progress__primary {
   border-radius: 30px;
   font-size: 94%;
   color: white;
-  box-shadow: 2px 2px 2px black;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -22,3 +21,32 @@
 .progress__barValue {
   margin-left: 10px;
 }
+
+.thumb {
+  display: flex;
+}
+.thumb__item {
+  border-radius: 20%;
+  padding: 10px;
+  margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+
+  object-fit: contain;
+  transition: 200ms ease-out;
+
+  &:hover{
+    transform:scale(1.1);
+    transform: translate(-3%, -3%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 10px 20px 0px;
+
+  }
+
+  &:active{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+    transform: translate(1%, 1%);
+  }
+}
+

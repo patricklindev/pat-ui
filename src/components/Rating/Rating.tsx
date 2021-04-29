@@ -55,6 +55,8 @@ export interface IRatingProps {
   clickThumbsUp?: () => void;
   /** pass in a function for thumbs down actions*/
   clickThumbsDown?: () => void;
+  /** set the thumb outline color */
+  thumbColor?: string;
 }
 
 /**
@@ -79,6 +81,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     disabled,
     clickThumbsDown,
     clickThumbsUp,
+    thumbColor,
     ...rest
   } = props;
 
@@ -211,9 +214,14 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       );
 
     case 'progress':
-      let progressClass = 'progress ';
+
+      let progressClass = classNames('progress',{
+        ['progress--noText']:!!noText,
+      })
+      console.log(progressClass);
+
       if (className) {
-        progressClass += className;
+        progressClass += " "+className;
       }
 
       return (
@@ -240,15 +248,16 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         </div>
       );
     case 'thumb':
-
-      let thumbClass= classNames('rating',{
-        [`thumb__item`]:!disabled,
-        [`thumb__item-disabled`]:!!disabled
-      })
+      let thumbClass = classNames('rating', {
+        [`thumb__item`]: !disabled,
+        [`thumb__item-disabled`]: !!disabled,
+      });
 
       if (className) {
-        thumbClass += ' '+className;
+        thumbClass += ' ' + className;
       }
+      
+      //used another variable thumbSize because size is also used for other components.
       let thumbSize = size;
       if (!thumbSize) {
         thumbSize = 25;
@@ -259,12 +268,16 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           clickThumbsUp();
         }
       };
+
       const handelThumbsDown = (e: React.MouseEvent) => {
         if (clickThumbsDown && !disabled) {
           clickThumbsDown();
         }
       };
 
+      if(disabled){
+       thumbColor='lightGray'   
+      }
       return (
         <div className="thumb" {...rest}>
           <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
@@ -272,7 +285,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
               viewBox={IconPath['thumbsUp'].viewBox}
               height={`${thumbSize}px`}
             >
-              <path fill={'gray'} d={IconPath['thumbsUp'].path} />
+              <path fill={thumbColor?thumbColor:'gray'} d={IconPath['thumbsUp'].path} />
             </svg>
           </article>
           <article className={thumbClass} onClick={(e) => handelThumbsDown(e)}>
@@ -280,7 +293,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
               viewBox={IconPath['thumbsDown'].viewBox}
               height={`${thumbSize}px`}
             >
-              <path fill={'gray'} d={IconPath['thumbsDown'].path} />
+              <path fill={thumbColor?thumbColor:'gray'} d={IconPath['thumbsDown'].path} />
             </svg>
           </article>
         </div>

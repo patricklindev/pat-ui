@@ -27,7 +27,10 @@ export const DiffTypeRating = () => {
 
       <h4>Progress Rating</h4>
       <p>Progress is used to show results from ratings</p>
-      <Rating className="patComponent" ratingtype="progress" barValue={60} />
+      <Rating className="patComponent" ratingtype="progress" barValue={20} />
+      <Rating className="patComponent" ratingtype="progress" barValue={30} />
+      <Rating className="patComponent" ratingtype="progress" barValue={70} />
+      <Rating className="patComponent" ratingtype="progress" barValue={40} />
 
       <h4>Thumb Rating</h4>
       <p>
@@ -38,7 +41,6 @@ export const DiffTypeRating = () => {
         clickThumbsDown={action('Disliked')}
         clickThumbsUp={action('Liked')}
         ratingtype="thumb"
-
       />
     </div>
   );

@@ -65,3 +65,9 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
   transition: 200ms ease-out;
 }
+
+.ratingSection{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

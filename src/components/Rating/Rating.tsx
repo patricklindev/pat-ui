@@ -9,8 +9,8 @@ export type size = 'large' | 'small' | 'default';
 export type rating = 0 | 1 | 2 | 3 | 4 | 5;
 export type type = 'fivepoint' | 'progress' | 'thumb';
 export type barcol = {
-  left: 'yellow' | 'orange' | 'pink' | 'red';
-  right: 'yellow' | 'orange' | 'pink' | 'red';
+  left: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'lightblue';
+  right: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'lightblue';
 };
 
 export enum Colors {
@@ -42,8 +42,8 @@ export interface IRatingProps {
   ratingtype?: type;
   /** set the color of the bar */
   barcolor?: {
-    left: 'yellow' | 'orange' | 'pink' | 'red';
-    right: 'yellow' | 'orange' | 'pink' | 'red';
+    left: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'blue' | 'lightblue';
+    right: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'blue' | 'lightblue';
   };
   /** set the value of the bar. 'barValue' should be between 0-100*/
   barValue?: number;
@@ -90,11 +90,12 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [rating, setRating] = React.useState(0);
   const [unSelected, setUnSelected] = React.useState(Colors.default);
   const [selected, setSelected] = React.useState(Colors.yellow);
-  let generatedStyle = 'rating ';
 
-  if (className) {
-    generatedStyle += className;
-  }
+  // let generatedStyle = 'rating ';
+
+  // if (className) {
+  //   generatedStyle += className;
+  // }
 
   React.useEffect(() => {
     if (defaultRating) {
@@ -214,14 +215,13 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       );
 
     case 'progress':
-
-      let progressClass = classNames('progress',{
-        ['progress--noText']:!!noText,
-      })
+      let progressClass = classNames('progress', {
+        ['progress--noText']: !!noText,
+      });
       console.log(progressClass);
 
       if (className) {
-        progressClass += " "+className;
+        progressClass += ' ' + className;
       }
 
       return (
@@ -256,7 +256,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       if (className) {
         thumbClass += ' ' + className;
       }
-      
+
       //used another variable thumbSize because size is also used for other components.
       let thumbSize = size;
       if (!thumbSize) {
@@ -275,8 +275,8 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         }
       };
 
-      if(disabled){
-       thumbColor='lightGray'   
+      if (disabled) {
+        thumbColor = 'lightGray';
       }
       return (
         <div className="thumb" {...rest}>
@@ -285,7 +285,10 @@ export const Rating: React.FC<IRatingProps> = (props) => {
               viewBox={IconPath['thumbsUp'].viewBox}
               height={`${thumbSize}px`}
             >
-              <path fill={thumbColor?thumbColor:'gray'} d={IconPath['thumbsUp'].path} />
+              <path
+                fill={thumbColor ? thumbColor : 'gray'}
+                d={IconPath['thumbsUp'].path}
+              />
             </svg>
           </article>
           <article className={thumbClass} onClick={(e) => handelThumbsDown(e)}>
@@ -293,7 +296,10 @@ export const Rating: React.FC<IRatingProps> = (props) => {
               viewBox={IconPath['thumbsDown'].viewBox}
               height={`${thumbSize}px`}
             >
-              <path fill={thumbColor?thumbColor:'gray'} d={IconPath['thumbsDown'].path} />
+              <path
+                fill={thumbColor ? thumbColor : 'gray'}
+                d={IconPath['thumbsDown'].path}
+              />
             </svg>
           </article>
         </div>

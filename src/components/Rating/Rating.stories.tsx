@@ -32,14 +32,12 @@ export const DiffTypeRating = () => {
 
       <h4>Thumb Rating</h4>
       <p>
-        Like and dislike rating buttons are used when rating result types are of
-        extreme values
+        Like and dislike ratings are used when results are either good or bad
       </p>
       <Rating
         className="patComponent"
         clickThumbsDown={action('Disliked')}
         clickThumbsUp={action('Liked')}
-        size={20}
         ratingtype="thumb"
       />
     </div>

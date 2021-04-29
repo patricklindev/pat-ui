@@ -37,16 +37,18 @@
   object-fit: contain;
   transition: 200ms ease-out;
 
-  &:hover{
-    transform:scale(1.1);
+  &:hover {
+    transform: scale(1.1);
     transform: translate(-3%, -3%);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 10px 20px 0px;
-
   }
 
-  &:active{
+  &:active {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
     transform: translate(1%, 1%);
   }
 }
 
+.patComponent {
+  margin-bottom: 45px;
+}

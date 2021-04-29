@@ -7,7 +7,7 @@ export default {
   component: Button,
 };
 
-const buttonStyle: React.CSSProperties = {
+export const buttonStyle: React.CSSProperties = {
   marginRight: '5px',
   marginTop: '5px',
 };

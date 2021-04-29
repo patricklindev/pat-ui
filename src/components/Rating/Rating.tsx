@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import { type } from 'os';
 import * as React from 'react';
 import { IconPath } from '../Icon/Icons';
@@ -48,6 +49,12 @@ export interface IRatingProps {
   barValue?: number;
   /** removes text for progress bar if set to true */
   noText?: boolean;
+  /** set true to disable rating */
+  disabled?: boolean;
+  /** pass in a function for thumbs up actions*/
+  clickThumbsUp?: () => void;
+  /** pass in a function for thumbs down actions*/
+  clickThumbsDown?: () => void;
 }
 
 /**
@@ -69,8 +76,12 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     barcolor,
     barValue,
     noText,
+    disabled,
+    clickThumbsDown,
+    clickThumbsUp,
     ...rest
   } = props;
+
   let value = 0;
 
   const [rating, setRating] = React.useState(0);
@@ -123,22 +134,24 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   }, []);
 
   const changeValue = (num: number) => {
-    if (rating === num) {
-      setRating(rating - 1);
-      value = rating - 1;
-    } else {
-      setRating(num);
-      value = num;
-    }
-    if (getRating) {
-      getRating(value);
+    if (!disabled) {
+      if (rating === num) {
+        setRating(rating - 1);
+        value = rating - 1;
+      } else {
+        setRating(num);
+        value = num;
+      }
+      if (getRating) {
+        getRating(value);
+      }
     }
   };
 
   switch (ratingtype) {
     case 'fivepoint':
       return (
-        <div className={className} {...(rest as IRatingProps)}>
+        <div className={className} {...rest}>
           <svg
             className="rating"
             viewBox={IconPath['star'].viewBox}
@@ -204,7 +217,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       }
 
       return (
-        <div className={progressClass} {...(rest as IRatingProps)}>
+        <div className={progressClass} {...rest}>
           <article
             className="progress__primary"
             style={{
@@ -235,28 +248,34 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       if (!thumbSize) {
         thumbSize = 25;
       }
+
+      const handelThumbsUp = (e: React.MouseEvent) => {
+        if (clickThumbsUp) {
+          clickThumbsUp();
+        }
+      };
+      const handelThumbsDown = (e: React.MouseEvent) => {
+        if (clickThumbsDown) {
+          clickThumbsDown();
+        }
+      };
+
       return (
-        <div className="thumb" {...(rest as IRatingProps)}>
-          <article className={thumbClass}>
+        <div className="thumb" {...rest}>
+          <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
             <svg
               viewBox={IconPath['thumbsUp'].viewBox}
               height={`${thumbSize}px`}
             >
-              <path
-                fill={'gray'}
-                d={IconPath['thumbsUp'].path}
-              />
+              <path fill={'gray'} d={IconPath['thumbsUp'].path} />
             </svg>
           </article>
-          <article className={thumbClass}>
+          <article className={thumbClass} onClick={(e) => handelThumbsDown(e)}>
             <svg
               viewBox={IconPath['thumbsDown'].viewBox}
               height={`${thumbSize}px`}
             >
-              <path
-                fill={'gray'}
-                d={IconPath['thumbsDown'].path}
-              />
+              <path fill={'gray'} d={IconPath['thumbsDown'].path} />
             </svg>
           </article>
         </div>
@@ -268,6 +287,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
 Rating.defaultProps = {
   ratingtype: 'fivepoint',
+  disabled: false,
 };
 
 export default Rating;

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Rating from './Rating';
+import { action } from '@storybook/addon-actions';
+import { buttonStyle } from '../Button/Button.stories';
 
 export default {
   title: 'Rating',
@@ -20,14 +22,26 @@ export const DefaultRating = () => {
 export const DiffTypeRating = () => {
   return (
     <div>
-      <h3>Five Point Rating</h3>
+      <h4>Five Point Rating</h4>
       <p>Five point rating is used for fixed scale</p>
-      <Rating defaultRating={3}/>
-      <h3>Progress Rating</h3>
-      <p></p>
-      <Rating ratingtype="progress" barValue={60} />
+      <Rating className="patComponent" defaultRating={3} />
+
+      <h4>Progress Rating</h4>
       <p>Progress is used to show results from ratings</p>
-      <Rating size={30}ratingtype="thumb"/>
+      <Rating className="patComponent" ratingtype="progress" barValue={60} />
+
+      <h4>Thumb Rating</h4>
+      <p>
+        Like and dislike rating buttons are used when rating result types are of
+        extreme values
+      </p>
+      <Rating
+        className="patComponent"
+        clickThumbsDown={action('Disliked')}
+        clickThumbsUp={action('Liked')}
+        size={20}
+        ratingtype="thumb"
+      />
     </div>
   );
 };

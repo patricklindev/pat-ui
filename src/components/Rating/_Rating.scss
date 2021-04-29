@@ -1,0 +1,17 @@
+.rating {
+  cursor: pointer;
+}
+
+.progress {
+  background-color: rgb(235, 235, 235);
+  width: 230px;
+  border-radius: 30px;
+}
+
+.progress__primary {
+  background: linear-gradient(to left, #f2709c, #ff9472);
+  border-radius: 30px;
+  color: white;
+  padding-left: 10px;
+  font-size: 94%;
+}

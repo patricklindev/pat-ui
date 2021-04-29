@@ -12,4 +12,18 @@ describe('classNames', () => {
     const result = classNames(...mockAgs);
     expect(result).toBe(expectedResult);
   });
+
+  it('should return appropriate class name for rating',()=>{
+    const mockAgs : ClassNamesArg[] = [
+      'rating',
+      {
+        [`thumb__item`]:!true,
+        [`thumb__item-disabled`]:true,
+      }
+    ];
+
+    const expectedResults = 'rating thumb__item-disabled'
+    const result = classNames(...mockAgs);
+    expect(result).toBe(expectedResults)
+  })
 });

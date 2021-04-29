@@ -1,5 +1,6 @@
 import { type } from 'os';
 import * as React from 'react';
+import { classNames } from '../../utils/classNames';
 import { IconPath } from '../Icon/Icons';
 
 export type unselectColor = 'gray' | 'white' | 'red';
@@ -239,9 +240,14 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         </div>
       );
     case 'thumb':
-      let thumbClass: string = 'rating thumb__item ';
+
+      let thumbClass= classNames('rating',{
+        [`thumb__item`]:!disabled,
+        [`thumb__item-disabled`]:!!disabled
+      })
+
       if (className) {
-        thumbClass += className;
+        thumbClass += ' '+className;
       }
       let thumbSize = size;
       if (!thumbSize) {

@@ -52,3 +52,16 @@
 .patComponent {
   margin-bottom: 25px;
 }
+
+.thumb__item-disabled {
+  border-radius: 20%;
+  padding: 10px;
+  margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+
+  object-fit: contain;
+  transition: 200ms ease-out;
+}

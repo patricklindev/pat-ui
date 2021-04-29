@@ -38,6 +38,7 @@ export const DiffTypeRating = () => {
         clickThumbsDown={action('Disliked')}
         clickThumbsUp={action('Liked')}
         ratingtype="thumb"
+
       />
     </div>
   );

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
@@ -7,7 +8,7 @@ export default {
   component: Button,
 };
 
-export const buttonStyle: React.CSSProperties = {
+const buttonStyle: React.CSSProperties = {
   marginRight: '5px',
   marginTop: '5px',
 };

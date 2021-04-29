@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Rating from './Rating';
 import { action } from '@storybook/addon-actions';
-import { buttonStyle } from '../Button/Button.stories';
 
 export default {
   title: 'Rating',

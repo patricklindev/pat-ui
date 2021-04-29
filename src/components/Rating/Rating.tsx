@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import { type } from 'os';
 import * as React from 'react';
 import { IconPath } from '../Icon/Icons';
@@ -250,12 +249,12 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       }
 
       const handelThumbsUp = (e: React.MouseEvent) => {
-        if (clickThumbsUp) {
+        if (clickThumbsUp && !disabled) {
           clickThumbsUp();
         }
       };
       const handelThumbsDown = (e: React.MouseEvent) => {
-        if (clickThumbsDown) {
+        if (clickThumbsDown && !disabled) {
           clickThumbsDown();
         }
       };

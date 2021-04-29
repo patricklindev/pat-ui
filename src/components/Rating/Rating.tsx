@@ -43,7 +43,14 @@ export interface IRatingProps {
   /** set the color of the bar */
   barcolor?: {
     left: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'blue' | 'lightblue';
-    right: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'blue' | 'lightblue';
+    right:
+      | 'yellow'
+      | 'orange'
+      | 'pink'
+      | 'red'
+      | 'green'
+      | 'blue'
+      | 'lightblue';
   };
   /** set the value of the bar. 'barValue' should be between 0-100*/
   barValue?: number;
@@ -154,10 +161,14 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
   switch (ratingtype) {
     case 'fivepoint':
+      const ratingClasse = classNames('rating',{
+        [`rating--disabled`]: !!disabled,
+      })
+
       return (
         <div className={className} {...rest}>
           <svg
-            className="rating"
+            className={ratingClasse}
             viewBox={IconPath['star'].viewBox}
             height={size ? `${size}px` : '20px'}
           >
@@ -168,7 +179,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             />
           </svg>
           <svg
-            className="rating"
+            className={ratingClasse}
             viewBox={IconPath['star'].viewBox}
             height={size ? `${size}px` : '20px'}
           >
@@ -179,7 +190,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             />
           </svg>
           <svg
-            className="rating"
+            className={ratingClasse}
             viewBox={IconPath['star'].viewBox}
             height={size ? `${size}px` : '20px'}
           >
@@ -190,7 +201,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             />
           </svg>
           <svg
-            className="rating"
+            className={ratingClasse}
             viewBox={IconPath['star'].viewBox}
             height={size ? `${size}px` : '20px'}
           >
@@ -201,7 +212,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             />
           </svg>
           <svg
-            className="rating"
+            className={ratingClasse}
             viewBox={IconPath['star'].viewBox}
             height={size ? `${size}px` : '20px'}
           >
@@ -218,14 +229,13 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       let progressClass = classNames('progress', {
         ['progress--noText']: !!noText,
       });
-      console.log(progressClass);
 
       if (className) {
         progressClass += ' ' + className;
       }
 
       return (
-        <div className={progressClass} {...rest}>
+        <div className={progressClass} style={{height: `${noText && size?`${size}px`:""}`}}{...rest}>
           <article
             className="progress__primary"
             style={{
@@ -239,7 +249,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             }}
           >
             <span
-              className="progress__barValue"
+              className="progress__barValue noSelect"
               style={{ fontSize: `${size}px` }}
             >
               {noText ? '' : barValue ? barValue + '%' : 0 + '%'}{' '}
@@ -286,6 +296,8 @@ export const Rating: React.FC<IRatingProps> = (props) => {
               height={`${thumbSize}px`}
             >
               <path
+                stroke={thumbColor ? thumbColor : 'gray'}
+                stroke-width="10"
                 fill={thumbColor ? thumbColor : 'gray'}
                 d={IconPath['thumbsUp'].path}
               />
@@ -297,6 +309,8 @@ export const Rating: React.FC<IRatingProps> = (props) => {
               height={`${thumbSize}px`}
             >
               <path
+                stroke={thumbColor ? thumbColor : 'gray'}
+                stroke-width="10"
                 fill={thumbColor ? thumbColor : 'gray'}
                 d={IconPath['thumbsDown'].path}
               />

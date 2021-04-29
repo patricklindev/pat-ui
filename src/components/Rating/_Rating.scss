@@ -1,8 +1,12 @@
 .rating {
   cursor: pointer;
+  &--disabled {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+  }
 }
 .progress {
-  background-color: rgb(235, 235, 235);
+  background-color: $rating-progress-bg-color;
   width: 230px;
   border-radius: 30px;
 
@@ -15,7 +19,7 @@
 .progress__primary {
   border-radius: 30px;
   font-size: 94%;
-  color: white;
+  color: $rating-progress-font-color;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -48,6 +52,7 @@
   &:active {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
     transform: translate(1%, 1%);
+    background-color: $rating-thumb-active-color;
   }
 }
 
@@ -56,18 +61,29 @@
 }
 
 .thumb__item-disabled {
+  cursor: not-allowed;
   border-radius: 20%;
   padding: 10px;
-  margin: 0px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+  box-shadow: rgba(100, 100, 111, 0.102) 0px 7px 15px 0px;
   transition: 200ms ease-out;
 }
 
-.ratingSection{
+.ratingSection {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.noSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }

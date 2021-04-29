@@ -54,7 +54,7 @@ export const DiffColorRating = () => {
   return (
     <div className="ratingSection">
       <section>
-        <h4>Five Point Rating</h4>
+        <h4>Five Point Rating Colors</h4>
         <p>Five point rating is used for fixed scale</p>
         <Rating className="patComponent" defaultRating={3} />
         <Rating
@@ -72,18 +72,48 @@ export const DiffColorRating = () => {
       </section>
 
       <section>
-        <h4>Progress Rating</h4>
+        <h4>Progress Rating Colors</h4>
         <p>Progress is used to show results from ratings</p>
-        <Rating barcolor={{left:"orange",right:"yellow"}} className="patComponent" ratingtype="progress" barValue={40} />
-        <Rating barcolor={{left:"orange",right:"red"}} className="patComponent" ratingtype="progress" barValue={55} />
-        <Rating barcolor={{left:"yellow",right:"green"}} className="patComponent" ratingtype="progress" barValue={70} />
-        <Rating barcolor={{left:"green",right:"lightblue"}} className="patComponent" ratingtype="progress" barValue={40} />
-        <Rating barcolor={{left:"orange",right:"pink"}} className="patComponent" ratingtype="progress" barValue={80} />
-        <Rating barcolor={{left:"lightblue",right:"lightblue"}} className="patComponent" ratingtype="progress" barValue={35} />
+        <Rating
+          barcolor={{ left: 'orange', right: 'yellow' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={40}
+        />
+        <Rating
+          barcolor={{ left: 'orange', right: 'red' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={55}
+        />
+        <Rating
+          barcolor={{ left: 'yellow', right: 'green' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={70}
+        />
+        <Rating
+          barcolor={{ left: 'green', right: 'lightblue' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={40}
+        />
+        <Rating
+          barcolor={{ left: 'orange', right: 'pink' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={80}
+        />
+        <Rating
+          barcolor={{ left: 'lightblue', right: 'lightblue' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={35}
+        />
       </section>
 
       <section>
-      <h4>Thumb Rating</h4>
+        <h4>Thumb Rating Colors</h4>
         <p>
           Like and dislike ratings are used when results are either good or bad
         </p>
@@ -107,6 +137,45 @@ export const DiffColorRating = () => {
           clickThumbsUp={action('Liked')}
           ratingtype="thumb"
           thumbColor={'red'}
+        />
+      </section>
+    </div>
+  );
+};
+export const DisabledRating = () => {
+  return (
+    <div className="ratingSection">
+      <section>
+        <h4>Five Point Rating Colors</h4>
+        <p>Five point rating is used for fixed scale</p>
+        <Rating className="patComponent" defaultRating={3} disabled={true} />
+      </section>
+
+      <section>
+        <h4>Progress Rating Colors</h4>
+        <p>Progress is used to show results from ratings</p>
+
+        <Rating
+          barcolor={{ left: 'orange', right: 'red' }}
+          className="patComponent"
+          ratingtype="progress"
+          barValue={55}
+
+        />
+      </section>
+
+      <section>
+        <h4>Thumb Rating Colors</h4>
+        <p>
+          Like and dislike ratings are used when results are either good or bad
+        </p>
+        <Rating
+          className="patComponent"
+          clickThumbsDown={action('Disliked')}
+          clickThumbsUp={action('Liked')}
+          ratingtype="thumb"
+          thumbColor={'lightgreen'}
+          disabled={true}
         />
       </section>
     </div>

@@ -7,69 +7,69 @@
 }
 .progress {
   background-color: $rating-progress-bg-color;
-  width: 230px;
-  border-radius: 30px;
+  width: $rating-progress-default-width;
+  border-radius: $rating-progress-border-radius;
 
   &--noText {
     @extend .progress;
-    height: 20px;
+    height: $rating-progress-noText-default-height;
   }
 }
 
 .progress__primary {
-  border-radius: 30px;
-  font-size: 94%;
+  border-radius: $rating-progress-border-radius;
+  font-size: $rating-progress-default-fontsize;
   color: $rating-progress-font-color;
-  height: 100%;
+  height: $rating-progress-primary-height;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .progress__barValue {
-  margin-left: 10px;
+  margin-left: $rating-progress-text-margin-left;
 }
 
 .thumb {
   display: flex;
 }
 .thumb__item {
-  border-radius: 20%;
-  padding: 10px;
-  margin: 0px 10px;
+  border-radius: $rating-thumb-border-radius;
+  padding: $rating-thumb-padding;
+  margin: $rating-thumb-margin-lr;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+  box-shadow: $rating-thumb-default-shadow;
   transition: 200ms ease-out;
 
   &:hover {
-    transform: scale(1.1);
-    transform: translate(-3%, -3%);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 10px 20px 0px;
+    transform: $rating-thumb-hover-scale;
+    transform: $rating-thumb-hover-translate;
+    box-shadow: $rating-thumb-hover-shadow;
   }
 
   &:active {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
-    transform: translate(1%, 1%);
+    box-shadow: $rating-thumb-active-shadow;
+    transform: $rating-thumb-active-translate;
     background-color: $rating-thumb-active-color;
   }
 }
 
 .patComponent {
-  margin-bottom: 25px;
+  margin-bottom: $story-component-margin-bottom;
 }
 
 .thumb__item-disabled {
   cursor: not-allowed;
-  border-radius: 20%;
-  padding: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  border-radius: $rating-thumb-border-radius;
+  padding: $rating-thumb-padding;
+  margin-left: $rating-thumb-margin-l;
+  margin-right: $rating-thumb-margin-r;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: rgba(100, 100, 111, 0.102) 0px 7px 15px 0px;
+  box-shadow: $rating-thumb-disabled-shadow;
   transition: 200ms ease-out;
 }
 

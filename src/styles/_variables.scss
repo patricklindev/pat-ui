@@ -78,7 +78,7 @@ $body-text-align: null !default;
 
 // Spacing
 $spacer: 1rem !default;
-
+$story-component-margin-bottom:25px;
 $headings-margin-bottom: $spacer / 2 !default;
 $headings-font-family: null !default;
 $headings-font-style: null !default;
@@ -273,3 +273,26 @@ $rating-progress-font-color:$white;
 //rating thumb clors
 $rating-thumb-active-color: rgb(246, 246, 246);
 
+//rating progress dimensions
+$rating-progress-default-width:230px;
+$rating-progress-border-radius:30px;
+$rating-progress-noText-default-height:20px;
+$rating-progress-default-fontsize:94%;
+$rating-progress-primary-height:100%;
+$rating-progress-text-margin-left:10px;
+
+//rating thumb dimensions 
+$rating-thumb-border-radius:20%;
+$rating-thumb-padding:10px;
+$rating-thumb-margin-lr:0px 10px;
+$rating-thumb-margin-l:10px;
+$rating-thumb-margin-r:10px;
+$rating-thumb-hover-scale:scale(1.1);
+$rating-thumb-hover-translate:translate(-3%, -3%);
+$rating-thumb-active-translate:translate(1%,1%);
+
+//rating shodows
+$rating-thumb-default-shadow:rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+$rating-thumb-hover-shadow:rgba(100, 100, 111, 0.2) 0px 10px 20px 0px;
+$rating-thumb-active-shadow:rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+$rating-thumb-disabled-shadow:rgba(100, 100, 111, 0.102) 0px 7px 15px 0px;

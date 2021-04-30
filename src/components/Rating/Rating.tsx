@@ -161,9 +161,9 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
   switch (ratingtype) {
     case 'fivepoint':
-      const ratingClasse = classNames('rating',{
+      const ratingClasse = classNames('rating', {
         [`rating--disabled`]: !!disabled,
-      })
+      });
 
       return (
         <div className={className} {...rest}>
@@ -235,7 +235,11 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       }
 
       return (
-        <div className={progressClass} style={{height: `${noText && size?`${size}px`:""}`}}{...rest}>
+        <div
+          className={progressClass}
+          style={{ height: `${noText && size ? `${size}px` : ''}` }}
+          {...rest}
+        >
           <article
             className="progress__primary"
             style={{
@@ -305,6 +309,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           </article>
           <article className={thumbClass} onClick={(e) => handelThumbsDown(e)}>
             <svg
+              transform="scale(-1,1)"
               viewBox={IconPath['thumbsDown'].viewBox}
               height={`${thumbSize}px`}
             >

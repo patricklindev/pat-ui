@@ -24,6 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 100ms ease-in-out;
 }
 
 .progress__barValue {

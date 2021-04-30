@@ -14,9 +14,9 @@ export const DefaultRating = () => {
     <div>
       <h4>Default Rating</h4>
       <Rating
-        getRating={(rating: number) => {
-          setRating(rating);
-        }}
+      defaultRating={5}
+        getRating={
+          (rating)=>action(`${rating}`)()}
       />
       <span>Rating: {rating}</span>
     </div>

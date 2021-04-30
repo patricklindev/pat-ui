@@ -2,7 +2,8 @@ import { type } from 'os';
 import * as React from 'react';
 import { classNames } from '../../utils/classNames';
 import { IconPath } from '../Icon/Icons';
-
+import Icon from '../Icon/index'
+import {IconSize} from '../Icon/Icon'
 export type unselectColor = 'gray' | 'white' | 'red';
 export type selectedColor = 'white' | 'yellow' | 'green';
 export type size = 'large' | 'small' | 'default';
@@ -24,6 +25,18 @@ export enum Colors {
   pink = 'rgb(254,72,133)',
   orange = ' #f2709c',
 }
+
+const fivePointSize = new Map([
+  [5,"tiny"],
+  [10,"mini"],
+  [20,"small"],
+  [30,"medium"],
+  [40,"large"],
+  [50,"big"],
+  [60,"huge"],
+  [70,"massive"],
+]);
+
 
 export interface IRatingProps {
   /** customize rating design */
@@ -97,7 +110,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [rating, setRating] = React.useState(0);
   const [unSelected, setUnSelected] = React.useState(Colors.default);
   const [selected, setSelected] = React.useState(Colors.yellow);
-
+  const [iconSize,setIconSize]:[IconSize,Function] = React.useState("small")
   // let generatedStyle = 'rating ';
 
   // if (className) {
@@ -139,6 +152,12 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         setSelected(Colors.yellow);
         break;
     }
+
+    if(size && (size>=5 && size<=70)){
+      setIconSize(`${fivePointSize.get(size)}`)
+    }
+
+
     if (!!getRating) {
       getRating(value);
     }
@@ -259,6 +278,20 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           </article>
         </div>
       );
+      //data-testid="rating-svg"
+    //   <svg
+            
+    //   className={ratingClasse}
+    //   viewBox={IconPath['star'].viewBox}
+    //   height={size ? `${size}px` : '20px'}
+    // >
+    //   <path
+    //     data-testid="rating-click"
+    //     onClick={() => changeValue(1)}
+    //     fill={1 <= rating ? selected : unSelected}
+    //     d={IconPath['star'].path}
+    //   />
+    // </svg>
     default:
       const ratingClasse = classNames('rating', {
         [`rating--disabled`]: !!disabled,
@@ -266,63 +299,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
       return (
         <div className={className} {...rest} data-testid="rating-element">
-          <svg
-            data-testid="rating-svg"
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              data-testid="rating-click"
-              onClick={() => changeValue(1)}
-              fill={1 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(2)}
-              fill={2 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(3)}
-              fill={3 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(4)}
-              fill={4 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(5)}
-              fill={5 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
+          <Icon name="star" size={iconSize}/>
         </div>
       );
   }

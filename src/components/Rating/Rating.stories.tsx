@@ -13,7 +13,7 @@ export const DefaultRating = () => {
   return (
     <div>
       <h4>Default Rating</h4>
-      <Rating defaultRating={3} getRating={(rating) => action(`${rating}`)()} />
+      <Rating getRating={(rating) => action(`${rating}`)()} />
     </div>
   );
 };

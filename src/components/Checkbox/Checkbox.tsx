@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,13 +9,30 @@ export type CheckboxType = 'primary' | 'secondary' | 'default';
 export type CheckboxShape = 'square' | 'circle';
 
 export interface ICheckboxProps {
+  /** set checkbox size */
   checkboxSize?: CheckboxSize;
+  /** set checkbox type */
   checkboxType?: CheckboxType;
+  /** set checkbox shape */
   checkboxShape?: CheckboxShape;
+  /** set customized style */
   className?: string;
+  /** set disabled checkbox */
   disabled?: boolean;
 }
-export const Checkbox: React.FC<ICheckboxProps> = (props) => {
+
+export type NativeCheckboxProps = ICheckboxProps &
+  InputHTMLAttributes<HTMLInputElement>;
+
+/**
+ * A Checkbox indicates a possible user action.
+ *
+ * ```js
+ * import {Checkbox} from 'pat-ui'
+ * ```
+ */
+
+export const Checkbox: FC<NativeCheckboxProps> = (props) => {
   const {
     checkboxSize,
     checkboxType,

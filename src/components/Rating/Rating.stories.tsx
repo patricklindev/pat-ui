@@ -52,7 +52,7 @@ export const DiffSizeRating = () => {
       <section>
         <h4>Five Point Rating</h4>
         <p>Five point rating can vary in size</p>
-        <Rating size={15} className="patComponent" defaultRating={3} />
+        <Rating size={10} className="patComponent" defaultRating={3} />
         <Rating size={20} className="patComponent" defaultRating={3} />
         <Rating size={30} className="patComponent" defaultRating={3} />
         <Rating size={40} className="patComponent" defaultRating={3} />

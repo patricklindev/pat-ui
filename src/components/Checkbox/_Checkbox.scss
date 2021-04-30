@@ -10,13 +10,11 @@
 }
 
 .checkbox-sm {
-  height: $checkbox-sm-height;
-  width: $chekcbox-sm-width;
+  @include checkbox-size($checkbox-sm-height, $chekcbox-sm-width);
 }
 
 .checkbox-lg {
-  height: $checkbox-lg-height;
-  width: $checkbox-lg-width;
+  @include checkbox-size($checkbox-lg-height, $checkbox-lg-width);
 }
 
 .checkbox-circle {
@@ -53,34 +51,35 @@
 }
 
 .check-icon-lg::after {
-  top: 50%;
-  left: $checkbox-icon-left-lg;
-  height: $checkbox-icon-height-lg;
-  width: $checkbox-icon-width-lg;
   animation: check-icon-lg 0.8s ease;
+  @include check-icon-size(
+    $check-icon-top,
+    $check-icon-left-lg,
+    $icon-height-lg,
+    $icon-width-lg
+  );
 }
 
 .check-icon-sm::after {
-  top: 50%;
-  left: $checkbox-icon-left-sm;
-  height: $checkbox-icon-height-sm;
-  width: $checkbox-icon-width-sm;
   animation: check-icon-sm 0.8s ease;
+  @include check-icon-size(
+    $check-icon-top,
+    $check-icon-left-sm,
+    $icon-height-sm,
+    $icon-width-sm
+  );
 }
 
 .check-icon-default::after {
-  border-top: 4px solid $checkbox-border-green;
-  border-right: 4px solid $checkbox-border-green;
+  @include check-icon-type($border-top-green, $border-right-green);
 }
 
 .check-icon-primary::after {
-  border-top: 4px solid $checkbox-border-purple;
-  border-right: 4px solid $checkbox-border-purple;
+  @include check-icon-type($border-top-purple, $border-right-purple);
 }
 
 .check-icon-secondary::after {
-  border-top: 4px solid $checkbox-border-orange;
-  border-right: 4px solid $checkbox-border-orange;
+  @include check-icon-type($border-top-orange, $border-right-orange);
 }
 
 @keyframes check-icon-lg {
@@ -138,19 +137,25 @@ input:checked ~ label .check-icon {
 }
 
 input:checked ~ .checkbox-default {
-  animation: none;
-  border-color: $checkbox-border-green;
-  transition: border 0.5s ease-out;
+  @include input-checked(
+    $animation-input-checked,
+    $checkbox-border-green,
+    $transition-input-checked
+  );
 }
 
 input:checked ~ .checkbox-primary {
-  animation: none;
-  border-color: $checkbox-border-purple;
-  transition: border 0.5s ease-out;
+  @include input-checked(
+    $animation-input-checked,
+    $checkbox-border-purple,
+    $transition-input-checked
+  );
 }
 
 input:checked ~ .checkbox-secondary {
-  animation: none;
-  border-color: $checkbox-border-orange;
-  transition: border 0.5s ease-out;
+  @include input-checked(
+    $animation-input-checked,
+    $checkbox-border-orange,
+    $transition-input-checked
+  );
 }

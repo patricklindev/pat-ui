@@ -285,3 +285,24 @@ $checkbox-icon-left-sm: 1px;
 $checkbox-icon-height-lg: 28px;
 $checkbox-icon-width-lg: 14px;
 $checkbox-icon-left-lg: 12px;
+
+// input checked animation
+$animation-input-checked: none;
+$transition-input-checked: border 0.5s ease-out;
+
+// check icon border
+$border-top-green: 4px solid $checkbox-border-green;
+$border-right-green: 4px solid $checkbox-border-green;
+$border-top-purple: 4px solid $checkbox-border-purple;
+$border-right-purple: 4px solid $checkbox-border-purple;
+$border-top-orange: 4px solid $checkbox-border-orange;
+$border-right-orange: 4px solid $checkbox-border-orange;
+
+//check icon sizes
+$check-icon-top: 50%;
+$check-icon-left-sm: $checkbox-icon-left-sm;
+$icon-height-sm: $checkbox-icon-height-sm;
+$icon-width-sm: $checkbox-icon-width-sm;
+$check-icon-left-lg: $checkbox-icon-left-lg;
+$icon-height-lg: $checkbox-icon-height-lg;
+$icon-width-lg: $checkbox-icon-width-lg;

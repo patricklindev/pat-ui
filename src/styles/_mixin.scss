@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,31 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin checkbox-size($checkbox-height, $checkbox-width) {
+  height: $checkbox-height;
+  width: $checkbox-width;
+}
+
+@mixin input-checked(
+  $input-checked-animation,
+  $input-checked-bordercolor,
+  $input-checked-transition
+) {
+  animation: $input-checked-animation;
+  border-color: $input-checked-bordercolor;
+  transition: $input-checked-transition;
+}
+
+@mixin check-icon-type($check-icon-border-top, $check-icon-border-right) {
+  border-top: $check-icon-border-top;
+  border-right: $check-icon-border-right;
+}
+
+@mixin check-icon-size($top, $left, $check-icon-height, $check-icon-width) {
+  top: $top;
+  left: $left;
+  height: $check-icon-height;
+  width: $check-icon-width;
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Rating from './Rating';
 import { action } from '@storybook/addon-actions';
 
+
 export default {
   title: 'Rating',
   component: Rating,
@@ -9,16 +10,10 @@ export default {
 
 //used _ here for documentation purposes as Rating conflicts.
 export const DefaultRating = () => {
-  const [rating, setRating] = React.useState(0);
   return (
     <div>
       <h4>Default Rating</h4>
-      <Rating
-      defaultRating={5}
-        getRating={
-          (rating)=>action(`${rating}`)()}
-      />
-      <span>Rating: {rating}</span>
+      <Rating defaultRating={3} getRating={(rating) => action(`${rating}`)()} />
     </div>
   );
 };

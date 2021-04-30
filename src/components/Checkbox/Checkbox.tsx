@@ -46,18 +46,35 @@ export const Checkbox: React.FC<ICheckboxProps> = (props) => {
   let checkbox;
   let uniqueId = uuidv4();
 
-  checkbox = (
-    <>
-      <input type="checkbox" id={labelStyleClasses + ' ' + uniqueId} />
-      <label
-        htmlFor={labelStyleClasses + ' ' + uniqueId}
-        className={labelStyleClasses}
-        {...(rest as ICheckboxProps)}
-      >
-        <div className={iconStyleClasses}></div>
-      </label>
-    </>
-  );
+  if (disabled) {
+    checkbox = (
+      <>
+        <input type="checkbox" id={labelStyleClasses + ' ' + uniqueId} />
+        <label
+          htmlFor={labelStyleClasses + ' ' + uniqueId}
+          className={labelStyleClasses}
+          {...(rest as ICheckboxProps)}
+          data-testid="checkbox"
+        >
+          <div></div>
+        </label>
+      </>
+    );
+  } else {
+    checkbox = (
+      <>
+        <input type="checkbox" id={labelStyleClasses + ' ' + uniqueId} />
+        <label
+          htmlFor={labelStyleClasses + ' ' + uniqueId}
+          className={labelStyleClasses}
+          {...(rest as ICheckboxProps)}
+          data-testid="checkbox"
+        >
+          <div className={iconStyleClasses}></div>
+        </label>
+      </>
+    );
+  }
 
   return checkbox;
 };

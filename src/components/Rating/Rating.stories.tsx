@@ -12,7 +12,7 @@ export const DefaultRating = () => {
   const [rating, setRating] = React.useState(0);
   return (
     <div>
-      <h3>Default Rating</h3>
+      <h4>Default Rating</h4>
       <Rating
         getRating={(rating: number) => {
           setRating(rating);
@@ -27,7 +27,7 @@ export const DiffTypeRating = () => {
   return (
     <div>
       <h4>Five Point Rating</h4>
-      <p>Five point rating is used for fixed scale</p>
+      <p>Five point rating is used for a fixed scale i.e. 0-5</p>
       <Rating className="patComponent" defaultRating={3} />
 
       <h4>Progress Rating</h4>
@@ -56,17 +56,16 @@ export const DiffSizeRating = () => {
     <div className="ratingSection">
       <section>
         <h4>Five Point Rating</h4>
-        <p>Five point rating is used for fixed scale</p>
-        <Rating size ={15} className="patComponent" defaultRating={3} />
-        <Rating size ={20} className="patComponent" defaultRating={3} />
-        <Rating size ={30}className="patComponent" defaultRating={3} />
-        <Rating size ={40}className="patComponent" defaultRating={3} />
-
+        <p>Five point rating can vary in size</p>
+        <Rating size={15} className="patComponent" defaultRating={3} />
+        <Rating size={20} className="patComponent" defaultRating={3} />
+        <Rating size={30} className="patComponent" defaultRating={3} />
+        <Rating size={40} className="patComponent" defaultRating={3} />
       </section>
 
       <section>
-        <h4>Progress Rating Colors</h4>
-        <p>Progress is used to show results from ratings</p>
+        <h4>Progress Rating</h4>
+        <p>Progress rating can vary in size</p>
         <Rating
           className="patComponent"
           ratingtype="progress"
@@ -103,10 +102,8 @@ export const DiffSizeRating = () => {
       </section>
 
       <section>
-        <h4>Thumb Rating Colors</h4>
-        <p>
-          Like and dislike ratings are used when results are either good or bad
-        </p>
+        <h4>Thumb Rating </h4>
+        <p>Thumb rating can vary in size</p>
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}
@@ -138,7 +135,7 @@ export const DiffColorRating = () => {
     <div className="ratingSection">
       <section>
         <h4>Five Point Rating Colors</h4>
-        <p>Five point rating is used for fixed scale</p>
+        <p>Five point rating comes in solid colors</p>
         <Rating className="patComponent" defaultRating={3} />
         <Rating
           selectedColor={'green'}
@@ -156,7 +153,7 @@ export const DiffColorRating = () => {
 
       <section>
         <h4>Progress Rating Colors</h4>
-        <p>Progress is used to show results from ratings</p>
+        <p>Progress rating has gradient and solid colors</p>
         <Rating
           barcolor={{ left: 'orange', right: 'yellow' }}
           className="patComponent"
@@ -197,9 +194,7 @@ export const DiffColorRating = () => {
 
       <section>
         <h4>Thumb Rating Colors</h4>
-        <p>
-          Like and dislike ratings are used when results are either good or bad
-        </p>
+        <p>Thumb rating comes in solid colors</p>
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}
@@ -230,14 +225,13 @@ export const DisabledRating = () => {
     <div className="ratingSection">
       <section>
         <h4>Five Point Rating Colors</h4>
-        <p>Five point rating is used for fixed scale</p>
+        <p>Five point rating can be disabled</p>
         <Rating className="patComponent" defaultRating={3} disabled={true} />
       </section>
 
       <section>
         <h4>Progress Rating Colors</h4>
-        <p>Progress is used to show results from ratings</p>
-
+        <p>Progress rating cannot be disabled</p>
         <Rating
           barcolor={{ left: 'orange', right: 'red' }}
           className="patComponent"
@@ -248,9 +242,7 @@ export const DisabledRating = () => {
 
       <section>
         <h4>Thumb Rating Colors</h4>
-        <p>
-          Like and dislike ratings are used when results are either good or bad
-        </p>
+        <p>Thumb rating can be disabled</p>
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}

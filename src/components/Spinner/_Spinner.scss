@@ -21,21 +21,21 @@
 .spinner-md {
   @include spinner-container(50px);
   div {
-    @include spinner-size(40px, 6px, $gray-400);
+    @include spinner-size(40px, 6px, $gray-800);
     animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
 }
 .spinner-sm {
   @include spinner-container(40px);
   div {
-    @include spinner-size(30px, 5px, $gray-400);
+    @include spinner-size(30px, 5px, $gray-800);
     animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
 }
 .spinner-lg {
   @include spinner-container(60px);
   div {
-    @include spinner-size(50px, 7px, $gray-400);
+    @include spinner-size(50px, 7px, $gray-800);
     animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
 }

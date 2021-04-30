@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '../../utils/classNames';
 
-type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type SpinnerSize = 'sm' | 'md' | 'lg';
 
 interface SpinnerProps {
   // size of the spinner, medium is the default
@@ -9,7 +9,7 @@ interface SpinnerProps {
   className?: string;
 }
 
-export const Spinner: React.FC<SpinnerProps> = ({ size, className }) => {
+const Spinner: React.FC<SpinnerProps> = ({ size, className }) => {
   let classes = classNames('spinner', {
     [`spinner-${size}`]: !!size,
   });

@@ -14,6 +14,5 @@ export const DefaultContainer = () => (
         <DefaultCard />
         <DefaultCard />
         <DefaultCard />
-        <DefaultCard />
     </Container>
 )

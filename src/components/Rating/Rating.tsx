@@ -34,9 +34,9 @@ export interface IRatingProps {
   selectedColor?: selectedColor;
   /** set the size */
   size?: number;
-  /** pass in a function to get the rating only for type: fivepoint*/
+  /** pass in a function to get the rating only for type: 'fivepoint'*/
   getRating?: (rating: number) => void;
-  /** set the default rating*/
+  /** set the default rating (0-5) only for type: 'fivepoint'*/
   defaultRating?: rating;
   /** set the type of the rating */
   ratingtype?: type;
@@ -52,7 +52,7 @@ export interface IRatingProps {
       | 'blue'
       | 'lightblue';
   };
-  /** set the value of the bar. 'barValue' should be between 0-100*/
+  /** set the value of the bar. 'barValue' should be from 0-100*/
   barValue?: number;
   /** removes text for progress bar if set to true */
   noText?: boolean;
@@ -160,71 +160,6 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   };
 
   switch (ratingtype) {
-    case 'fivepoint':
-      const ratingClasse = classNames('rating', {
-        [`rating--disabled`]: !!disabled,
-      });
-
-      return (
-        <div className={className} {...rest}>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(1)}
-              fill={1 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(2)}
-              fill={2 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(3)}
-              fill={3 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(4)}
-              fill={4 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-          <svg
-            className={ratingClasse}
-            viewBox={IconPath['star'].viewBox}
-            height={size ? `${size}px` : '20px'}
-          >
-            <path
-              onClick={() => changeValue(5)}
-              fill={5 <= rating ? selected : unSelected}
-              d={IconPath['star'].path}
-            />
-          </svg>
-        </div>
-      );
-
     case 'progress':
       let progressClass = classNames('progress', {
         ['progress--noText']: !!noText,
@@ -237,6 +172,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       return (
         <div
           className={progressClass}
+          data-testid="rating-element"
           style={{ height: `${noText && size ? `${size}px` : ''}` }}
           {...rest}
         >
@@ -293,7 +229,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         thumbColor = 'lightGray';
       }
       return (
-        <div className="thumb" {...rest}>
+        <div className="thumb" {...rest} data-testid="rating-element">
           <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
             <svg
               viewBox={IconPath['thumbsUp'].viewBox}
@@ -324,7 +260,71 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         </div>
       );
     default:
-      return null;
+      const ratingClasse = classNames('rating', {
+        [`rating--disabled`]: !!disabled,
+      });
+
+      return (
+        <div className={className} {...rest} data-testid="rating-element">
+          <svg
+            data-testid="rating-svg"
+            className={ratingClasse}
+            viewBox={IconPath['star'].viewBox}
+            height={size ? `${size}px` : '20px'}
+          >
+            <path
+              data-testid="rating-click"
+              onClick={() => changeValue(1)}
+              fill={1 <= rating ? selected : unSelected}
+              d={IconPath['star'].path}
+            />
+          </svg>
+          <svg
+            className={ratingClasse}
+            viewBox={IconPath['star'].viewBox}
+            height={size ? `${size}px` : '20px'}
+          >
+            <path
+              onClick={() => changeValue(2)}
+              fill={2 <= rating ? selected : unSelected}
+              d={IconPath['star'].path}
+            />
+          </svg>
+          <svg
+            className={ratingClasse}
+            viewBox={IconPath['star'].viewBox}
+            height={size ? `${size}px` : '20px'}
+          >
+            <path
+              onClick={() => changeValue(3)}
+              fill={3 <= rating ? selected : unSelected}
+              d={IconPath['star'].path}
+            />
+          </svg>
+          <svg
+            className={ratingClasse}
+            viewBox={IconPath['star'].viewBox}
+            height={size ? `${size}px` : '20px'}
+          >
+            <path
+              onClick={() => changeValue(4)}
+              fill={4 <= rating ? selected : unSelected}
+              d={IconPath['star'].path}
+            />
+          </svg>
+          <svg
+            className={ratingClasse}
+            viewBox={IconPath['star'].viewBox}
+            height={size ? `${size}px` : '20px'}
+          >
+            <path
+              onClick={() => changeValue(5)}
+              fill={5 <= rating ? selected : unSelected}
+              d={IconPath['star'].path}
+            />
+          </svg>
+        </div>
+      );
   }
 };
 

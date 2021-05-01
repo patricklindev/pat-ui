@@ -4,8 +4,10 @@ import { classNames } from '../../utils/classNames';
 import { IconPath } from '../Icon/Icons';
 import Icon from '../Icon/index';
 import { IconSize } from '../Icon/Icon';
+import { IconColor } from '../Icon/Icon';
+
 export type unselectColor = 'gray' | 'white' | 'red';
-export type selectedColor = 'white' | 'yellow' | 'green';
+export type selectedColor = 'white' | 'gold' | 'green';
 export type size = 'large' | 'small' | 'default';
 export type rating = 0 | 1 | 2 | 3 | 4 | 5;
 export type type = 'fivepoint' | 'progress' | 'thumb';
@@ -41,9 +43,9 @@ export interface IRatingProps {
   /** customize rating design */
   className?: string;
   /** set the unselected color for the component*/
-  unselectColor?: unselectColor;
+  unselectColor?: IconColor;
   /** set the selected color for the compoenent*/
-  selectedColor?: selectedColor;
+  selectedColor?: IconColor;
   /** set the size */
   size?: number;
   /** pass in a function to get the rating only for type: 'fivepoint'*/
@@ -110,9 +112,12 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   let value = 0;
 
   const [rating, setRating] = React.useState(0);
-  const [unSelected, setUnSelected] = React.useState(Colors.default);
-  const [selected, setSelected] = React.useState(Colors.yellow);
+  const [unSelected, setUnSelected]: [IconColor, Function] = React.useState(
+    'lightgray'
+  );
+  const [selected, setSelected]: [IconColor, Function] = React.useState('gold');
   const [iconSize, setIconSize]: [IconSize, Function] = React.useState('small');
+  const [hover, setHover] = React.useState(0);
   // let generatedStyle = 'rating ';
 
   // if (className) {
@@ -125,34 +130,12 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       value = defaultRating;
     }
 
-    switch (unselectColor) {
-      case 'gray':
-        setUnSelected(Colors.gray);
-        break;
-      case 'red':
-        setUnSelected(Colors.red);
-        break;
-      case 'white':
-        setUnSelected(Colors.white);
-        break;
-      default:
-        setUnSelected(Colors.default);
-        break;
+    if (unselectColor) {
+      setUnSelected(unselectColor);
     }
 
-    switch (selectedColor) {
-      case 'white':
-        setSelected(Colors.white);
-        break;
-      case 'yellow':
-        setSelected(Colors.yellow);
-        break;
-      case 'green':
-        setSelected(Colors.green);
-        break;
-      default:
-        setSelected(Colors.yellow);
-        break;
+    if (selectedColor) {
+      setSelected(selectedColor);
     }
 
     if (size && size >= 5 && size <= 70) {
@@ -166,13 +149,8 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
   const changeValue = (num: number) => {
     if (!disabled) {
-      if (rating === num) {
-        setRating(rating - 1);
-        value = rating - 1;
-      } else {
-        setRating(num);
-        value = num;
-      }
+      setRating(num);
+      value = num;
       if (getRating) {
         getRating(value);
       }
@@ -292,31 +270,45 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     //   />
     // </svg>
     default:
+      const handelMouseEnter = (e: any, index: number) => {
+        if (disabled) e.preventDefault();
+        if (!disabled) {
+          console.log(index);
+          setHover(index);
+        }
+      };
+
+      const handelMouseLeave = (e: any, index = 0) => {
+        if (disabled) e.preventDefault();
+        if (!disabled) {
+          console.log(index);
+          setHover(0);
+        }
+      };
+
       const ratingClasse = classNames('rating', {
         [`rating--disabled`]: !!disabled,
       });
 
       return (
         <div className={className} {...rest} data-testid="rating-element">
-          {max
-            ? [...Array(max)].map((rating, index) => (
+          {[...Array(max ? max : 5)].map((rate, index) => (
+            <label key={index}>
+              <div
+                onMouseEnter={(e) => handelMouseEnter(e, index + 1)}
+                onMouseLeave={(e) => handelMouseLeave(e, 0)}
+                onClick={() => changeValue(index + 1)}
+              >
                 <Icon
                   className={ratingClasse}
                   data-testid="rating-click"
-                  key={index + 1}
                   name="star"
                   size={iconSize}
+                  color={index + 1 <= (hover || rating) ? selected : unSelected}
                 />
-              ))
-            : [...Array(5)].map((rating, index) => (
-                <Icon
-                  className={ratingClasse}
-                  data-testid="rating-click"
-                  key={index + 1}
-                  name="star"
-                  size={iconSize}
-                />
-              ))}
+              </div>
+            </label>
+          ))}
         </div>
       );
   }

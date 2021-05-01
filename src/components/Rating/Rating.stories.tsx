@@ -2,7 +2,6 @@ import * as React from 'react';
 import Rating from './Rating';
 import { action } from '@storybook/addon-actions';
 
-
 export default {
   title: 'Rating',
   component: Rating,

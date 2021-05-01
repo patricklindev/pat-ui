@@ -118,11 +118,6 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [selected, setSelected]: [IconColor, Function] = React.useState('gold');
   const [iconSize, setIconSize]: [IconSize, Function] = React.useState('small');
   const [hover, setHover] = React.useState(0);
-  // let generatedStyle = 'rating ';
-
-  // if (className) {
-  //   generatedStyle += className;
-  // }
 
   React.useEffect(() => {
     if (defaultRating) {
@@ -255,20 +250,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           </article>
         </div>
       );
-    //data-testid="rating-svg"
-    //   <svg
 
-    //   className={ratingClasse}
-    //   viewBox={IconPath['star'].viewBox}
-    //   height={size ? `${size}px` : '20px'}
-    // >
-    //   <path
-    //     data-testid="rating-click"
-    //     onClick={() => changeValue(1)}
-    //     fill={1 <= rating ? selected : unSelected}
-    //     d={IconPath['star'].path}
-    //   />
-    // </svg>
     default:
       const handelMouseEnter = (e: any, index: number) => {
         if (disabled) e.preventDefault();

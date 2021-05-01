@@ -2,8 +2,8 @@ import { type } from 'os';
 import * as React from 'react';
 import { classNames } from '../../utils/classNames';
 import { IconPath } from '../Icon/Icons';
-import Icon from '../Icon/index'
-import {IconSize} from '../Icon/Icon'
+import Icon from '../Icon/index';
+import { IconSize } from '../Icon/Icon';
 export type unselectColor = 'gray' | 'white' | 'red';
 export type selectedColor = 'white' | 'yellow' | 'green';
 export type size = 'large' | 'small' | 'default';
@@ -27,16 +27,15 @@ export enum Colors {
 }
 
 const fivePointSize = new Map([
-  [5,"tiny"],
-  [10,"mini"],
-  [20,"small"],
-  [30,"medium"],
-  [40,"large"],
-  [50,"big"],
-  [60,"huge"],
-  [70,"massive"],
+  [5, 'tiny'],
+  [10, 'mini'],
+  [20, 'small'],
+  [30, 'medium'],
+  [40, 'large'],
+  [50, 'big'],
+  [60, 'huge'],
+  [70, 'massive'],
 ]);
-
 
 export interface IRatingProps {
   /** customize rating design */
@@ -77,6 +76,8 @@ export interface IRatingProps {
   clickThumbsDown?: () => void;
   /** set the thumb outline color */
   thumbColor?: string;
+  /** set the number of rating elements*/
+  max?: number;
 }
 
 /**
@@ -102,6 +103,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     clickThumbsDown,
     clickThumbsUp,
     thumbColor,
+    max,
     ...rest
   } = props;
 
@@ -110,7 +112,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [rating, setRating] = React.useState(0);
   const [unSelected, setUnSelected] = React.useState(Colors.default);
   const [selected, setSelected] = React.useState(Colors.yellow);
-  const [iconSize,setIconSize]:[IconSize,Function] = React.useState("small")
+  const [iconSize, setIconSize]: [IconSize, Function] = React.useState('small');
   // let generatedStyle = 'rating ';
 
   // if (className) {
@@ -153,10 +155,9 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         break;
     }
 
-    if(size && (size>=5 && size<=70)){
-      setIconSize(`${fivePointSize.get(size)}`)
+    if (size && size >= 5 && size <= 70) {
+      setIconSize(`${fivePointSize.get(size)}`);
     }
-
 
     if (!!getRating) {
       getRating(value);
@@ -256,7 +257,6 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             >
               <path
                 stroke={thumbColor ? thumbColor : 'gray'}
-                stroke-width="10"
                 fill={thumbColor ? thumbColor : 'gray'}
                 d={IconPath['thumbsUp'].path}
               />
@@ -270,7 +270,6 @@ export const Rating: React.FC<IRatingProps> = (props) => {
             >
               <path
                 stroke={thumbColor ? thumbColor : 'gray'}
-                stroke-width="10"
                 fill={thumbColor ? thumbColor : 'gray'}
                 d={IconPath['thumbsDown'].path}
               />
@@ -278,9 +277,9 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           </article>
         </div>
       );
-      //data-testid="rating-svg"
+    //data-testid="rating-svg"
     //   <svg
-            
+
     //   className={ratingClasse}
     //   viewBox={IconPath['star'].viewBox}
     //   height={size ? `${size}px` : '20px'}
@@ -299,7 +298,25 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
       return (
         <div className={className} {...rest} data-testid="rating-element">
-          <Icon name="star" size={iconSize}/>
+          {max
+            ? [...Array(max)].map((rating, index) => (
+                <Icon
+                  className={ratingClasse}
+                  data-testid="rating-click"
+                  key={index + 1}
+                  name="star"
+                  size={iconSize}
+                />
+              ))
+            : [...Array(5)].map((rating, index) => (
+                <Icon
+                  className={ratingClasse}
+                  data-testid="rating-click"
+                  key={index + 1}
+                  name="star"
+                  size={iconSize}
+                />
+              ))}
         </div>
       );
   }

@@ -51,7 +51,7 @@ export interface IRatingProps {
   /** pass in a function to get the rating only for type: 'fivepoint'*/
   getRating?: (rating: number) => void;
   /** set the default rating (0-5) only for type: 'fivepoint'*/
-  defaultRating?: rating;
+  ratingValue?: rating;
   /** set the type of the rating */
   ratingtype?: type;
   /** set the color of the bar */
@@ -95,7 +95,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     getRating,
     selectedColor,
     unselectColor,
-    defaultRating,
+    ratingValue,
     className,
     ratingtype,
     barcolor,
@@ -120,9 +120,9 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [hover, setHover] = React.useState(0);
 
   React.useEffect(() => {
-    if (defaultRating) {
-      setRating(defaultRating);
-      value = defaultRating;
+    if (ratingValue) {
+      setRating(ratingValue);
+      value = ratingValue;
     }
 
     if (unselectColor) {
@@ -135,10 +135,6 @@ export const Rating: React.FC<IRatingProps> = (props) => {
 
     if (size && size >= 5 && size <= 70) {
       setIconSize(`${fivePointSize.get(size)}`);
-    }
-
-    if (!!getRating) {
-      getRating(value);
     }
   }, []);
 

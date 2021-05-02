@@ -22,7 +22,7 @@ export const DiffTypeRating = () => {
     <div>
       <h4>Five Point Rating</h4>
       <p>Five point rating is used for a fixed scale i.e. 0-5</p>
-      <Rating className="patComponent" defaultRating={3} />
+      <Rating className="patComponent" ratingValue={3} />
 
       <h4>Progress Rating</h4>
       <p>Progress is used to show results from ratings</p>
@@ -51,10 +51,10 @@ export const DiffSizeRating = () => {
       <section>
         <h4>Five Point Rating</h4>
         <p>Five point rating can vary in size</p>
-        <Rating size={10} className="patComponent" defaultRating={3} />
-        <Rating size={20} className="patComponent" defaultRating={3} />
-        <Rating size={30} className="patComponent" defaultRating={3} />
-        <Rating size={40} className="patComponent" defaultRating={3} />
+        <Rating size={10} className="patComponent" ratingValue={3} />
+        <Rating size={20} className="patComponent" ratingValue={3} />
+        <Rating size={30} className="patComponent" ratingValue={3} />
+        <Rating size={40} className="patComponent" ratingValue={3} />
       </section>
 
       <section>
@@ -130,18 +130,18 @@ export const DiffColorRating = () => {
       <section>
         <h4>Five Point Rating Colors</h4>
         <p>Five point rating comes in solid colors</p>
-        <Rating className="patComponent" defaultRating={3} />
+        <Rating className="patComponent" ratingValue={3} />
         <Rating
           selectedColor={'green'}
           unselectColor={'gray'}
           className="patComponent"
-          defaultRating={3}
+          ratingValue={3}
         />
         <Rating
           selectedColor={'green'}
           unselectColor={'red'}
           className="patComponent"
-          defaultRating={2}
+          ratingValue={2}
         />
       </section>
 
@@ -220,7 +220,7 @@ export const DisabledRating = () => {
       <section>
         <h4>Five Point Rating Colors</h4>
         <p>Five point rating can be disabled</p>
-        <Rating className="patComponent" defaultRating={3} disabled={true} />
+        <Rating className="patComponent" ratingValue={3} disabled={true} />
       </section>
 
       <section>

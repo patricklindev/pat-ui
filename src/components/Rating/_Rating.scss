@@ -30,49 +30,13 @@
   margin-left: $rating-progress-text-margin-left;
 }
 
-.thumb {
+.likeButton {
   display: flex;
   position: relative;
 }
 
-.thumb__item {
-  border-radius: $rating-thumb-border-radius;
-  padding: $rating-thumb-padding;
-  margin: $rating-thumb-margin-lr;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: $rating-thumb-default-shadow;
-  transition: 200ms ease-out;
-
-  &:hover {
-    transform: $rating-thumb-hover-scale;
-    transform: $rating-thumb-hover-translate;
-    box-shadow: $rating-thumb-hover-shadow;
-  }
-
-  &:active {
-    box-shadow: $rating-thumb-active-shadow;
-    transform: $rating-thumb-active-translate;
-    background-color: $rating-thumb-active-color;
-  }
-}
-
 .patComponent {
   margin-bottom: $story-component-margin-bottom;
-}
-
-.thumb__item-disabled {
-  cursor: not-allowed;
-  border-radius: $rating-thumb-border-radius;
-  padding: $rating-thumb-padding;
-  margin-left: $rating-thumb-margin-l;
-  margin-right: $rating-thumb-margin-r;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: $rating-thumb-disabled-shadow;
-  transition: 200ms ease-out;
 }
 
 .ratingSection {
@@ -94,11 +58,6 @@
   display: none;
 }
 
-.like {
-  position: absolute;
-  left: -100vw;
-}
-
 @keyframes bounce {
   0% {
     transform: scale(0.1);
@@ -117,11 +76,6 @@
   animation: bounce 0.2s;
 }
 
-.like-bounce:after {
-  height: 30px;
-  width: 30px;
-}
-
 @keyframes pop {
   0% {
     transform: scale(0);
@@ -134,26 +88,24 @@
 
 .heart__label {
   display: flex;
-  border: 1px solid lightgray;
-  padding: 10px;
-
+  border: $rating-like-default-border;
+  padding: $rating-like-padding;
   align-items: center;
-  border-radius: 7px;
+  border-radius: $rating-like-borderRadius;
   cursor: pointer;
   transition: 200ms ease-in-out;
 
-
   &__like {
-    margin-left: 10px;
-    color: gray;
+    margin-left: $rating-like-text-margin-l;
+    color: $rating-like-font-default-color;
     &-active {
       @extend .heart__label__like;
-      color: rgb(47, 47, 47);
+      color: $rating-like-font-active-color;
     }
   }
   &-active {
     @extend .heart__label;
-    background-color: #fff5f6;
-    border: 1px solid transparent;
+    background-color: $rating-like-bg-color;
+    border: $rating-like-active-border;
   }
 }

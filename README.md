@@ -25,7 +25,7 @@ import 'pat-ui/dist/index.css';
 ### Example
 
 ```js
-import {Button} from 'pat-ui';
+import { Button } from 'pat-ui';
 
 const App = () => (
   <>
@@ -47,4 +47,3 @@ Created by [@YuhanLin1105][1] and an amazing group of [contributors][3].
 [1]: https://github.com/YuhanLin1105
 [2]: https://yuhanlin1105.github.io/pat-ui
 [3]: https://github.com/YuhanLin1105/pat-ui/graphs/contributors
-[4]: 

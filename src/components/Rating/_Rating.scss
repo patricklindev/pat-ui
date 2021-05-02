@@ -34,6 +34,7 @@
   display: flex;
   position: relative;
 }
+
 .thumb__item {
   border-radius: $rating-thumb-border-radius;
   padding: $rating-thumb-padding;
@@ -128,5 +129,31 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.heart__label {
+  display: flex;
+  border: 1px solid lightgray;
+  padding: 10px;
+
+  align-items: center;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+
+
+  &__like {
+    margin-left: 10px;
+    color: gray;
+    &-active {
+      @extend .heart__label__like;
+      color: rgb(47, 47, 47);
+    }
+  }
+  &-active {
+    @extend .heart__label;
+    background-color: #fff5f6;
+    border: 1px solid transparent;
   }
 }

@@ -5,12 +5,13 @@ import { IconPath } from '../Icon/Icons';
 import Icon from '../Icon/index';
 import { IconSize } from '../Icon/Icon';
 import { IconColor } from '../Icon/Icon';
+import Button from '../Button';
 
 export type unselectColor = 'gray' | 'white' | 'red';
 export type selectedColor = 'white' | 'gold' | 'green';
 export type size = 'large' | 'small' | 'default';
 export type rating = 0 | 1 | 2 | 3 | 4 | 5;
-export type type = 'fivepoint' | 'progress' | 'thumb';
+export type type = 'fivepoint' | 'progress' | 'like' | 'thumb';
 export type barcol = {
   left: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'lightblue';
   right: 'yellow' | 'orange' | 'pink' | 'red' | 'green' | 'lightblue';
@@ -80,7 +81,14 @@ export interface IRatingProps {
   thumbColor?: IconColor;
   /** set the number of rating elements*/
   max?: number;
+  /** set the icon of the five point rating*/
   fivePointType?: string;
+  /** pass in a function */
+  clickLike?: () => void;
+  /** set the count for the like button */
+  setLikeCount?: number;
+  /** removes the count in the button */
+  removeLikeCount?: boolean;
 }
 
 /**
@@ -108,6 +116,9 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     thumbColor,
     max,
     fivePointType,
+    clickLike,
+    setLikeCount,
+    removeLikeCount,
     ...rest
   } = props;
 
@@ -117,7 +128,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [unSelected, setUnSelected]: [IconColor, Function] = React.useState(
     'lightgray'
   );
-  const [like,setLike] = React.useState(false);
+  const [like, setLike] = React.useState(false);
   const [selected, setSelected]: [IconColor, Function] = React.useState('gold');
   const [iconSize, setIconSize]: [IconSize, Function] = React.useState('small');
   const [hover, setHover] = React.useState(0);
@@ -189,6 +200,44 @@ export const Rating: React.FC<IRatingProps> = (props) => {
           </article>
         </div>
       );
+    case 'like':
+      let iconClasses = classNames('rating-like', {
+        ['like-bounce']: like,
+      });
+
+      let labelClasses = classNames('heart__label', {
+        [`heart__label-active`]: like,
+        [`noSelect`]: true,
+      });
+
+      const handelLikeClick = () => {
+        setLike(!like);
+        if (!!clickLike) {
+          clickLike();
+        }
+      };
+      return (
+        <div className="thumb" {...rest} data-testid="rating-element">
+          <label
+            className={labelClasses}
+            onClick={handelLikeClick}
+            htmlFor="toggle-heart"
+          >
+            <Icon
+              color={like ? (thumbColor ? thumbColor : '#FF0032') : 'lightgray'}
+              className={iconClasses}
+              name="heart"
+            />
+            <span className={`heart__label__like${like ? '-active' : ''}`}>
+              Like
+            </span>
+            <span className={`heart__label__like${like ? '-active' : ''}`}>
+              {removeLikeCount ? '' : setLikeCount ? setLikeCount : 0}
+            </span>
+          </label>
+        </div>
+      );
+
     case 'thumb':
       let thumbClass = classNames('rating', {
         [`thumb__item`]: !disabled,
@@ -199,7 +248,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         thumbClass += ' ' + className;
       }
 
-      //used another variable thumbSize because size is also used for other components.
+      //  used another variable thumbSize because size is also used for other components.
       let thumbSize = size;
       if (!thumbSize) {
         thumbSize = 25;
@@ -221,13 +270,9 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         thumbColor = 'lightgray';
       }
 
-      let theClass = classNames('rating-like',{
-        ['like-bounce']:like
-      })
-      console.log(theClass);
       return (
-        <div className="thumb" {...rest} data-testid="rating-element">
-          {/* <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
+        <div>
+          <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
             <svg
               viewBox={IconPath['thumbsUp'].viewBox}
               height={`${thumbSize}px`}
@@ -251,10 +296,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
                 d={IconPath['thumbsDown'].path}
               />
             </svg>
-          </article> */}
-          
-
-          <label onClick={()=>setLike(!like)} htmlFor="toggle-heart"><Icon size={iconSize} color={like?thumbColor?thumbColor:"#FF0032":"lightgray"} className={theClass} name="heart"/></label>
+          </article>
         </div>
       );
 

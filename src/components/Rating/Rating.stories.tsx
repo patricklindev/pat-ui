@@ -39,7 +39,8 @@ export const DiffTypeRating = () => {
         className="patComponent"
         clickThumbsDown={action('Disliked')}
         clickThumbsUp={action('Liked')}
-        ratingtype="thumb"
+        ratingtype="like"
+        removeLikeCount={false}
       />
     </div>
   );
@@ -102,21 +103,21 @@ export const DiffSizeRating = () => {
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           size={7}
         />
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           size={15}
         />
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           size={50}
         />
       </section>
@@ -193,21 +194,21 @@ export const DiffColorRating = () => {
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           thumbColor={'green'}
         />
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           thumbColor={'orange'}
         />
         <Rating
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           thumbColor={'red'}
         />
       </section>
@@ -241,7 +242,7 @@ export const DisabledRating = () => {
           className="patComponent"
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
-          ratingtype="thumb"
+          ratingtype="like"
           thumbColor={'green'}
           disabled={true}
         />

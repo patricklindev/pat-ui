@@ -28,7 +28,8 @@ export type IconColor =
   | 'gray'
   | 'black'
   |'gold'
-  | 'lightgray';
+  | 'lightgray'
+  | '#FF0032';
 
 // export enum IconRotated {
 //   Clockwise = 'clockwise',

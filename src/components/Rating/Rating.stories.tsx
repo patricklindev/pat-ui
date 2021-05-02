@@ -194,7 +194,7 @@ export const DiffColorRating = () => {
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
           ratingtype="thumb"
-          thumbColor={'lightgreen'}
+          thumbColor={'green'}
         />
         <Rating
           className="patComponent"
@@ -242,7 +242,7 @@ export const DisabledRating = () => {
           clickThumbsDown={action('Disliked')}
           clickThumbsUp={action('Liked')}
           ratingtype="thumb"
-          thumbColor={'lightgreen'}
+          thumbColor={'green'}
           disabled={true}
         />
       </section>

@@ -77,9 +77,10 @@ export interface IRatingProps {
   /** pass in a function for thumbs down actions*/
   clickThumbsDown?: () => void;
   /** set the thumb outline color */
-  thumbColor?: string;
+  thumbColor?: IconColor;
   /** set the number of rating elements*/
   max?: number;
+  fivePointType?: string;
 }
 
 /**
@@ -106,6 +107,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
     clickThumbsUp,
     thumbColor,
     max,
+    fivePointType,
     ...rest
   } = props;
 
@@ -115,6 +117,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
   const [unSelected, setUnSelected]: [IconColor, Function] = React.useState(
     'lightgray'
   );
+  const [like,setLike] = React.useState(false);
   const [selected, setSelected]: [IconColor, Function] = React.useState('gold');
   const [iconSize, setIconSize]: [IconSize, Function] = React.useState('small');
   const [hover, setHover] = React.useState(0);
@@ -215,11 +218,16 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       };
 
       if (disabled) {
-        thumbColor = 'lightGray';
+        thumbColor = 'lightgray';
       }
+
+      let theClass = classNames('rating-like',{
+        ['like-bounce']:like
+      })
+      console.log(theClass);
       return (
         <div className="thumb" {...rest} data-testid="rating-element">
-          <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
+          {/* <article className={thumbClass} onClick={(e) => handelThumbsUp(e)}>
             <svg
               viewBox={IconPath['thumbsUp'].viewBox}
               height={`${thumbSize}px`}
@@ -243,7 +251,10 @@ export const Rating: React.FC<IRatingProps> = (props) => {
                 d={IconPath['thumbsDown'].path}
               />
             </svg>
-          </article>
+          </article> */}
+          
+
+          <label onClick={()=>setLike(!like)} htmlFor="toggle-heart"><Icon size={iconSize} color={like?thumbColor?thumbColor:"#FF0032":"lightgray"} className={theClass} name="heart"/></label>
         </div>
       );
 
@@ -264,7 +275,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
         }
       };
 
-      const ratingClasse = classNames('rating', {
+      const ratingClasses = classNames('rating', {
         [`rating--disabled`]: !!disabled,
       });
 
@@ -278,7 +289,8 @@ export const Rating: React.FC<IRatingProps> = (props) => {
                 onClick={() => changeValue(index + 1)}
               >
                 <Icon
-                  className={ratingClasse}
+                  className={ratingClasses}
+                  disabled={disabled}
                   data-testid="rating-click"
                   name="star"
                   size={iconSize}

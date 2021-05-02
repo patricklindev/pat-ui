@@ -205,19 +205,19 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       });
 
       let labelClasses = classNames('heart__label', {
-        [`heart__label-active`]: !!likeclicked,
-        [`noSelect`]: true,
+        ['heart__label-active']: !!likeclicked,
+        ['noSelect']: true,
         ['btn disabled']: !!disabled,
       });
 
       const handelLikeClick = () => {
-        if (!!clickLike && disabled != true) {
+        if (!!clickLike && disabled !== true) {
           clickLike();
         }
       };
       return (
         <div className={wrapperClasses} {...rest} data-testid="rating-element">
-          <div className={labelClasses} onClick={handelLikeClick}>
+          <div className={labelClasses} onClick={handelLikeClick} data-testid="like-element">
             <Icon
               color={
                 likeclicked
@@ -261,7 +261,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
       };
 
       const ratingClasses = classNames('rating', {
-        [`rating--disabled`]: !!disabled,
+        ['rating--disabled']: !!disabled,
       });
 
       return (
@@ -277,7 +277,7 @@ export const Rating: React.FC<IRatingProps> = (props) => {
                   className={ratingClasses}
                   disabled={disabled}
                   data-testid="rating-click"
-                  name={fivePointType?fivePointType:"star"}
+                  name={fivePointType ? fivePointType : 'star'}
                   size={iconSize}
                   color={index + 1 <= (hover || rating) ? selected : unSelected}
                 />

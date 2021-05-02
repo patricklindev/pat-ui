@@ -17,8 +17,8 @@ describe('classNames', () => {
     const mockAgs : ClassNamesArg[] = [
       'rating',
       {
-        [`thumb__item`]:!true,
-        [`thumb__item-disabled`]:true,
+        ['thumb__item']:!true,
+        ['thumb__item-disabled']:true,
       }
     ];
 

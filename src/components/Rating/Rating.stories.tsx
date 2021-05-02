@@ -35,7 +35,7 @@ export const DiffTypeRating = () => {
     <div>
       <h4>Five Point Rating</h4>
       <p>Five point rating is used for a fixed scale i.e. 0-5</p>
-      <Rating className="patComponent" ratingValue={3} />
+      <Rating  className="patComponent" ratingValue={3} />
 
       <h4>Progress Rating</h4>
       <p>Progress is used to show results from ratings</p>

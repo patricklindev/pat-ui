@@ -7,33 +7,45 @@ describe('Rating', () => {
     const { asFragment } = render(<Rating> Snapshot of Rating</Rating>);
     expect(asFragment()).toMatchSnapshot();
   });
-it('should render the default Reating component with user given class name for custom styles',()=>{
-    const ratingProps:IRatingProps = {
-        className:"custom"
-    }
-    const wrapper = render(<Rating {...ratingProps} ></Rating>);
-    const ratingElement = screen.getByTestId('rating-element')
-    expect(ratingElement).toHaveClass('custom')
-})
-//test for the disable functionality
-it('should render the disabled class if user gives disabled. (for svg tag)',()=>{
-    const ratingProps:IRatingProps = {
-        disabled:true
-    }
-    const wrapper = render(<Rating {...ratingProps} ></Rating>);
-    const ratingElement = screen.getByTestId('rating-svg')
-    expect(ratingElement).toHaveClass('rating rating--disabled')
-})
 
-//test for propety values 
-it('disabled rating should not click',()=>{
-    const ratingProps:IRatingProps = {
-        disabled:true,
-        getRating: jest.fn(),
-    }
-    const wrapper = render(<Rating {...ratingProps} ></Rating>);
-    const ratingElement = screen.getByTestId('rating-click')
-    fireEvent.click(ratingElement)
-    expect(ratingProps.getRating).toHaveBeenCalledTimes(0);
-})
+  //_________Test for Custom styles from user_________
+
+  it('should have different class based on input for default type', () => {
+    const ratingProps: IRatingProps = {
+      className: 'custom',
+    };
+    const wrapper = render(<Rating {...ratingProps}></Rating>);
+    const ratingElement = screen.getByTestId('rating-element');
+    expect(ratingElement).toHaveClass('custom');
+  });
+  it('should have different class based on input for progress type', () => {
+    const ratingProps: IRatingProps = {
+      className: 'custom',
+      ratingtype: 'progress',
+    };
+    const wrapper = render(<Rating {...ratingProps}></Rating>);
+    const ratingElement = screen.getByTestId('rating-element');
+    expect(ratingElement).toHaveClass('custom');
+  });
+  it('should have different class based on input for like type', () => {
+    const ratingProps: IRatingProps = {
+      className: 'custom',
+      ratingtype: 'progress',
+    };
+    const wrapper = render(<Rating {...ratingProps}></Rating>);
+    const ratingElement = screen.getByTestId('rating-element');
+    expect(ratingElement).toHaveClass('custom');
+  });
+
+  // _______Test for disabled changing class______
+
+  it('should have disabled class based on input for like type', () => {
+    const ratingProps: IRatingProps = {
+      ratingtype: 'like',
+      disabled: true,
+    };
+    const wrapper = render(<Rating {...ratingProps}></Rating>);
+    const ratingElement = screen.getByTestId('like-element');
+    expect(ratingElement).toHaveClass('btn disabled');
+  });
 });

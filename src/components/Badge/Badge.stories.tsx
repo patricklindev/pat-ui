@@ -24,6 +24,14 @@ export const ShowZeroBadge = () => (
   <div>
     <Badge style={badgeStyle} badgeContent={0}></Badge>
     <Badge style={badgeStyle} badgeContent={0} showZero={true}></Badge>
+    <Badge style={badgeStyle} badgeContent={10} showZero={false}></Badge>
+  </div>
+);
+
+export const InvisibleBadge = () => (
+  <div>
+    <Badge style={badgeStyle} badgeContent={10}></Badge>
+    <Badge style={badgeStyle} badgeContent={10} invisible={false}></Badge>
   </div>
 );
 

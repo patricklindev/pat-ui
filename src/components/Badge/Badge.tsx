@@ -37,6 +37,10 @@ export const Badge: FC<patBadgeProps> = (props) => {
     badge = <span className={styleClasses}>{badgeContent}</span>;
   }
 
+  if (!invisible) {
+    badge = '';
+  }
+
   return (
     <span className="MuiBadge-root" {...rest}>
       <svg
@@ -54,6 +58,8 @@ export const Badge: FC<patBadgeProps> = (props) => {
 
 Badge.defaultProps = {
   color: 'primary',
+  invisible: true,
+  showZero: false,
 };
 
 export default Badge;

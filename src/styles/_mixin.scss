@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,26 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin tabs-panel-type($panel-bg-color) {
+  background-color: $panel-bg-color;
+}
+
+@mixin tab-btn-style($color, $hover-color: $color) {
+  color: $color;
+  background: none;
+  border:none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+  &.focus,
+  &:focus {
+    outline: none;
+  }
+  &.actived {
+    color:$hover-color;
+    border-bottom: 2px solid pink;
+  }
 }

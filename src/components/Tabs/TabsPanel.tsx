@@ -1,65 +1,95 @@
-import React, {
-  Children,
-  FC,
-  ReactElement,
-  cloneElement,
-  ReactNode,
-  useState,
-  useRef,
-} from 'react';
+import React, { Children, FC, ReactElement } from 'react';
 import { classNames } from '../../utils/classNames';
 import Button from '../Button/Button';
 
-interface ITabsPanelProps {
+export type PanelType = 'primary' | 'default';
+
+export interface ITabsPanelProps {
   children?: JSX.Element[];
   value?: any;
   label?: any;
-  //placeholder?: string;
-  tabOnClick?: (val: any) => void;
+  wrapped?: boolean;
+  centered?: boolean;
+  className?: string;
   tabValue?: string;
-  setTabValue?: (val: any) => {};
+  type?: PanelType;
+
+  onClick?: (val: any) => void;
+  setTabValue?: (val: any) => {}; //?????
+}
+
+export interface ITabProps {
+  value: any;
+  label: any;
+  wrapped?: boolean;
+  className?: string;
 }
 
 export const TabsPanel: FC<ITabsPanelProps> = (props) => {
-  const { children, label, tabOnClick, tabValue, setTabValue, ...rest } = props;
-  // const [tabValue, setTabValue] = useState('');
-  // let tabRef = useRef(tabValue);
-  // tabRef.current = tabValue;
-  //console.log(onChange);
+  const {
+    children,
+    className,
+    tabValue,
+    type,
+    centered,
+    onClick,
+    setTabValue,
+    ...rest
+  } = props;
+
+  let styleClasses = classNames('tabs__panel', {
+    [`panel-type-${type}`]: true,
+    centered: !!centered,
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
+
   const handleTabClick = (e: any) => {
-    //console.log(e.target);
-    if (tabOnClick) {
-      tabOnClick(e.target.value);
+    if (onClick) {
+      onClick(e.target.value);
       setTabValue && setTabValue(e.target.value);
-      // setTabValue(e.target.value);
-      // console.log(tabRef);
     }
   };
   return (
-    <div>
+    <div className={styleClasses}>
       {children
         ? Children.map(children, (child: ReactElement) => {
+            const { className, value, label, wrapped, ...rest } = child.props;
+            console.log(child.props);
+            let btnStyleClasses = classNames('tabs__panel__tab-button', {
+              [`tab-type-${type}`]: true,
+              wrapped: !!wrapped,
+            });
+            if (className) {
+              btnStyleClasses += ' ' + className;
+            }
+            if (tabValue === value) {
+              btnStyleClasses += ' ' + 'actived';
+            }
             return (
-              <Button
-                value={child.props.value}
-                onClick={(e: any) => handleTabClick(e)}
-                //onClick={btnOnClick}
-              >
-                {child.props.label}
-              </Button>
+              <div className={`tabs__panel__tab`}>
+                <Button
+                  className={btnStyleClasses}
+                  value={value}
+                  onClick={(e: any) => handleTabClick(e)}
+                >
+                  {label}
+                </Button>
+              </div>
             );
           })
         : children}
     </div>
   );
 };
-export const Tab: FC<ITabsPanelProps> = (props) => {
-  const { children, value, ...rest } = props;
-  console.log('tab', children);
+export const Tab: FC<ITabProps> = (props) => {
+  const { children, className, ...rest } = props;
+
   return <div>{children}</div>;
 };
-// TabsPanel.defaultProps = {
-//   placeholder: '',
-// };
+TabsPanel.defaultProps = {
+  type: 'default',
+};
 
 export default TabsPanel;

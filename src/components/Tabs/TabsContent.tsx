@@ -1,27 +1,31 @@
 import React, {
-  Children,
   FC,
-  ReactElement,
-  cloneElement,
-  ReactNode,
 } from 'react';
 import { classNames } from '../../utils/classNames';
-import { ITabsProps } from './Tabs';
 
 interface ITabsContentProps {
-  index?: any;
+  index: string | number;
   tabValue?: string;
-  //children?: ReactNode;
+  className?: string;
 }
 export const TabsContent: FC<ITabsContentProps> = (props) => {
-  const { children, tabValue, index, ...rest } = props;
-  //console.log(tabValue,index);
+  const { children, className, tabValue, index, ...rest } = props;
 
-  return (
-    <div className={`content ${tabValue === index ? 'actived' : ''}`}>
-      {children}
-    </div>
-  );
+  let styleClasses = classNames('tabs__content', {
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
+  if (tabValue === index){
+    styleClasses += ' actived';
+  }
+    return (
+      <div
+        className={styleClasses}
+      >
+        {children}
+      </div>
+    );
 };
 
 export default TabsContent;

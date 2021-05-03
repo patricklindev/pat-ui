@@ -3,30 +3,33 @@ import React, {
   FC,
   ReactElement,
   cloneElement,
-  ReactNode,
-  ReactChild,
-  ReactFragment,
-  ReactPortal,
   useState,
+  useEffect,
 } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export interface ITabsProps {
-  //index:any
-  children?: JSX.Element[] | JSX.Element;
-  tabOnClick?: (val: any) => void;
+  children?: JSX.Element[];
+  defaultTab?: string;
+  onClick?: (val: any) => void;
 }
 export const Tabs: FC<ITabsProps> = (props) => {
-  const { children, tabOnClick, ...rest } = props;
-  //console.log(onChange);
-  const [tabValue, setTabValue] = useState('');
+  const { children, defaultTab, onClick, ...rest } = props;
+
   console.log(children);
+  const [tabValue, setTabValue] = useState('');
+
+  useEffect(() => {
+    if (defaultTab) {
+      setTabValue(defaultTab);
+    }
+  }, []);
   return (
     <div className="tabs">
       {' '}
       {children
         ? Children.map(children, (child: ReactElement) =>
-            cloneElement(child, { tabOnClick, tabValue, setTabValue })
+            cloneElement(child, { tabValue, onClick, setTabValue })
           )
         : children}
     </div>

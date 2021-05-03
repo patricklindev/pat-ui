@@ -1,8 +1,49 @@
-.tabs{
-    .content{
-        display: none;
+.tabs {
+  &__panel {
+    display: flex;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+    &.panel-type-default {
+      @include tabs-panel-type($white);
     }
-    .actived{
-        display: block;
+    &.panel-type-primary {
+      @include tabs-panel-type($light-blue);
     }
+    &.centered{
+        justify-content: center;
+    }
+    &__tab {
+      &-button {
+        height: 100%;
+        max-width: 260px;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        text-transform: uppercase;
+        &.tab-type-default {
+          @include tab-btn-style($gray-500, $light-blue);
+        }
+        &.tab-type-primary {
+          @include tab-btn-style($gray-400, $white);
+        }
+        &.wrapped {
+          word-wrap: break-word;
+          white-space: normal;
+        }
+      }
+    }
+  }
+  &__content {
+    //.tabs__content
+    display: none;
+    background-color: #eee;
+    padding: 20px;
+    &.actived {
+      //.tabs__content.actived
+      display: block;
+    }
+  }
 }

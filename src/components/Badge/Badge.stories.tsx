@@ -15,6 +15,7 @@ const badgeStyle: React.CSSProperties = {
 
 export const DefaultBadge = () => (
   <div>
+    <Badge style={badgeStyle}></Badge>
     <Badge style={badgeStyle} badgeContent={3} color="secondary"></Badge>
     <Badge style={badgeStyle} badgeContent={2} color="error"></Badge>
   </div>

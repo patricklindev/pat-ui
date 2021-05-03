@@ -78,7 +78,7 @@ export const Badge: FC<patBadgeProps> = (props) => {
   }
 
   return (
-    <span className="Badge-root" {...rest}>
+    <span className="Badge-root" {...rest} data-testid="badge-element">
       <svg
         className="Badge-icon"
         focusable="false"
@@ -94,6 +94,7 @@ export const Badge: FC<patBadgeProps> = (props) => {
 
 Badge.defaultProps = {
   color: 'primary',
+  badgeContent: 0,
   invisible: true,
   showZero: false,
   icon: 'star',

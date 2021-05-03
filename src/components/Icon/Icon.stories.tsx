@@ -37,7 +37,7 @@ export const DiffColorIcon = () => (
     <Icon color="purple" name="users" />
     <Icon color="pink" name="users" />
     <Icon color="brown" name="users" />
-    <Icon color="grey" name="users" />
+    <Icon color="gray" name="users" />
     <Icon color="black" name="users" />
   </div>
 );

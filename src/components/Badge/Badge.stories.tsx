@@ -1,6 +1,7 @@
 import React from 'react';
-// import { action } from '@storybook/addon-actions';
 import Badge from './Badge';
+import { action } from '@storybook/addon-actions';
+import Button from '../Button/Button';
 
 export default {
   title: 'Badge',
@@ -14,7 +15,6 @@ const badgeStyle: React.CSSProperties = {
 
 export const DefaultBadge = () => (
   <div>
-    <Badge style={badgeStyle} badgeContent={4} color="primary"></Badge>
     <Badge style={badgeStyle} badgeContent={3} color="secondary"></Badge>
     <Badge style={badgeStyle} badgeContent={2} color="error"></Badge>
   </div>
@@ -67,5 +67,23 @@ export const VariantBadge = () => (
       max={10}
       variant={'dot'}
     ></Badge>
+  </div>
+);
+
+export const BadgeButton = () => (
+  // need to implement icon button
+  <div>
+    <Button
+      btnType="default"
+      style={{
+        border: 'none',
+        outline: 'none',
+        padding: 0,
+        boxShadow: 'none',
+      }}
+      onClick={action('Badge Click')}
+    >
+      <Badge badgeContent={5} icon={'mail'}></Badge>
+    </Button>
   </div>
 );

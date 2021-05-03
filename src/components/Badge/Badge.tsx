@@ -30,11 +30,12 @@ export const Badge: FC<patBadgeProps> = (props) => {
     variant,
     ...rest
   } = props;
+
   let styleClasses = classNames('Badge', 'Badge-TopRight', {
     [`badge-${color}`]: true,
     [`badge-${variant}`]: true,
   });
-  console.log(styleClasses);
+
   if (className) {
     styleClasses += ' ' + className;
   }
@@ -62,8 +63,6 @@ export const Badge: FC<patBadgeProps> = (props) => {
   const patIcon = (
     <Icon aria-hidden={'true'} name={iconName} size="small"></Icon>
   );
-
-  console.log(patIcon);
 
   if (!!badgeContent && !!max && badgeContent > max) {
     badge = (

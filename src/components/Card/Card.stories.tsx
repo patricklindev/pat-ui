@@ -15,7 +15,7 @@ export const DefaultCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         <div>
-          <Icon disabled={false} loading={false} name='home' size='tiny' />{' '}
+          <Icon disabled={false} loading={false} name="home" size="tiny" />{' '}
           <span>
             You can put any ReactNode including ReactElement, ReactFragment,
             string, number, array of ReactNodes, null, undefined, boolean in the
@@ -49,7 +49,7 @@ export const DiffModeCard = () => (
       }
       cardTitle={'Horizontal Card'}
       buttonTitle={'show more info'}
-      cardMode='horizontal'
+      cardMode="horizontal"
     ></Card>
   </div>
 );
@@ -64,7 +64,7 @@ export const DiffTypeCard = () => (
       }
       cardTitle={'Circle Image Card'}
       buttonTitle={'show more info'}
-      cardType='circledImage'
+      cardType="circledImage"
     ></Card>
     <br></br>
     <Card
@@ -75,14 +75,14 @@ export const DiffTypeCard = () => (
       }
       cardTitle={'No Image Card'}
       buttonTitle={'show more info'}
-      cardType='noImage'
+      cardType="noImage"
     ></Card>
     <br></br>
     <Card
       btnOnClick={action('Default Button clicked')}
       cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Large Image Card'}
-      cardType='largeImage'
+      cardType="largeImage"
     ></Card>
   </div>
 );
@@ -93,7 +93,7 @@ export const DiffThemeCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Primary Theme Card'}
       buttonTitle={'show more info'}
-      cardTheme='primary'
+      cardTheme="primary"
       cardParagraph={
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
@@ -104,7 +104,7 @@ export const DiffThemeCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Dark Theme Card'}
       buttonTitle={'show more info'}
-      cardTheme='dark'
+      cardTheme="dark"
       cardParagraph={
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
@@ -115,7 +115,7 @@ export const DiffThemeCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Purple Theme Card'}
       buttonTitle={'show more info'}
-      cardTheme='purple'
+      cardTheme="purple"
       cardParagraph={
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
@@ -126,7 +126,7 @@ export const DiffThemeCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Yellow Theme Card'}
       buttonTitle={'show more info'}
-      cardTheme='yellow'
+      cardTheme="yellow"
       cardParagraph={
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
@@ -137,7 +137,7 @@ export const DiffThemeCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardTitle={'Blue Theme Card'}
       buttonTitle={'show more info'}
-      cardTheme='blue'
+      cardTheme="blue"
       cardParagraph={
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
@@ -145,7 +145,7 @@ export const DiffThemeCard = () => (
   </div>
 );
 
-export const DiffSizeCard = () => (
+export const DiffaaaSizeCard = () => (
   <div>
     <Card
       btnOnClick={action('Small Button clicked')}
@@ -154,7 +154,7 @@ export const DiffSizeCard = () => (
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Small Card'}
-      cardSize='sm'
+      cardSize="sm"
       buttonTitle={'show more info'}
     ></Card>
     <br></br>
@@ -166,7 +166,7 @@ export const DiffSizeCard = () => (
         'Some quick example text to build on the card title and make up the bulk of the card content.'
       }
       cardTitle={'Large Card'}
-      cardSize='lg'
+      cardSize="lg"
       buttonTitle={'show more info'}
     ></Card>
 
@@ -176,12 +176,12 @@ export const DiffSizeCard = () => (
       cardImgSrc={'https://via.placeholder.com/150'}
       cardParagraph={
         <div>
-          <Icon disabled={false} loading={false} name='home' />{' '}
+          <Icon disabled={false} loading={false} name="home" />{' '}
           <span>this is a react node</span>
         </div>
       }
       cardTitle={'Large Card'}
-      cardSize='sm'
+      cardSize="sm"
       buttonTitle={'show more info'}
     ></Card>
   </div>

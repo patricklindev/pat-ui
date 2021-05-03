@@ -57,7 +57,6 @@ export const Button: FC<PatButtonProps> = (props) => {
   if (className) {
     styleClasses += ' ' + className;
   }
-
   let btn;
   if (btnType !== 'link') {
     btn = (

@@ -80,13 +80,20 @@ const Input: FC<PatInputProps> = (props) => {
   if (!iconName) {
     if (typeof icon === 'string') {
       iconName = icon;
-    }
-    else if (loading) {
+    } else if (loading) {
       iconName = 'spinner';
     }
   }
   // const inputIcon = <i aria-hidden={'true'} className={iconClasses}></i>;
-  const patIcon = <Icon aria-hidden={'true'} name={iconName} loading={!!loading} disabled={!!disabled} size={inputSize? inputSize: 'small'}></Icon>;
+  const patIcon = (
+    <Icon
+      aria-hidden={'true'}
+      name={iconName}
+      loading={!!loading}
+      disabled={!!disabled}
+      size={inputSize ? inputSize : 'small'}
+    ></Icon>
+  );
   return (
     <div className={styleClasses}>
       <input type={'text'} disabled={disabled} {...rest} />

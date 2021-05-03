@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
+import Icon from '../Icon';
 
 export type BadgeColor = 'primary' | 'secondary' | 'error';
 
@@ -9,6 +10,9 @@ export interface IBadgeProps {
   badgeContent?: number;
   invisible?: boolean;
   showZero?: boolean;
+  max?: number;
+  icon?: string | { [key: string]: string | boolean };
+  variant?: 'default' | 'dot';
 }
 
 type NativeBadgeProps = IBadgeProps & HTMLAttributes<HTMLElement>;
@@ -21,13 +25,16 @@ export const Badge: FC<patBadgeProps> = (props) => {
     badgeContent,
     invisible,
     showZero,
+    max,
+    icon,
+    variant,
     ...rest
   } = props;
-  let styleClasses = classNames(
-    'MuiBadge-badge',
-    'MuiBadge-anchorOriginTopRightRectangle',
-    { [`badge-${color}`]: true }
-  );
+  let styleClasses = classNames('Badge', 'Badge-TopRight', {
+    [`badge-${color}`]: true,
+    [`badge-${variant}`]: true,
+  });
+  console.log(styleClasses);
   if (className) {
     styleClasses += ' ' + className;
   }
@@ -41,15 +48,45 @@ export const Badge: FC<patBadgeProps> = (props) => {
     badge = '';
   }
 
+  let iconName: string = '';
+  if (icon && typeof icon === 'object') {
+    iconName = icon['name'] as string;
+  }
+
+  if (!iconName) {
+    if (typeof icon === 'string') {
+      iconName = icon;
+    }
+  }
+
+  const patIcon = (
+    <Icon aria-hidden={'true'} name={iconName} size="small"></Icon>
+  );
+
+  console.log(patIcon);
+
+  if (!!badgeContent && !!max && badgeContent > max) {
+    badge = (
+      <span className={styleClasses}>
+        {max}
+        {'+'}
+      </span>
+    );
+  }
+
+  if (variant === 'dot') {
+    badge = <span className={styleClasses}></span>;
+  }
+
   return (
-    <span className="MuiBadge-root" {...rest}>
+    <span className="Badge-root" {...rest}>
       <svg
-        className="MuiSvgIcon-root"
+        className="Badge-icon"
         focusable="false"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
-        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+        {patIcon}
       </svg>
       {badge}
     </span>
@@ -60,6 +97,8 @@ Badge.defaultProps = {
   color: 'primary',
   invisible: true,
   showZero: false,
+  icon: 'star',
+  variant: 'default',
 };
 
 export default Badge;

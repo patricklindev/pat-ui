@@ -8,8 +8,8 @@ export default {
 };
 
 const badgeStyle: React.CSSProperties = {
-  marginRight: '10px',
-  marginTop: '5px',
+  marginRight: '15px',
+  marginTop: '10px',
 };
 
 export const DefaultBadge = () => (
@@ -35,57 +35,37 @@ export const InvisibleBadge = () => (
   </div>
 );
 
-// export const DiffTypeButton = () => (
-//   <div>
-//     <Button
-//       style={buttonStyle}
-//       btnType='primary'
-//       onClick={action('Primary Button clicked')}
-//     >
-//       Primary Button
-//     </Button>
-//     <Button
-//       style={buttonStyle}
-//       btnType='secondary'
-//       onClick={action('Secondary Button clicked')}
-//     >
-//       Secondary Button
-//     </Button>
-//     <Button
-//       style={buttonStyle}
-//       btnType='danger'
-//       onClick={action('Danger Button clicked')}
-//     >
-//       Danger Button
-//     </Button>
-//     <Button
-//       style={buttonStyle}
-//       btnType='default'
-//       onClick={action('Default Button clicked')}
-//     >
-//       Default Button
-//     </Button>
-//     <Button
-//       style={buttonStyle}
-//       disabled
-//       btnType='default'
-//       onClick={action('DisabledDefault Button clicked should not work')}
-//     >
-//       Disabled Default Button
-//     </Button>
-//     <Button
-//       style={buttonStyle}
-//       btnType='link'
-//       onClick={action('Link Button clicked')}
-//     >
-//       Link Button
-//     </Button>
-//     <Button
-//       disabled
-//       btnType='link'
-//       onClick={action('Disabled Link Button clicked should not work')}
-//     >
-//       Disabled Link Button
-//     </Button>
-//   </div>
-// );
+export const MaxBadge = () => (
+  <div>
+    <Badge style={badgeStyle} badgeContent={50} max={10}></Badge>
+    <Badge style={badgeStyle} badgeContent={50}></Badge>
+  </div>
+);
+
+export const IconBadge = () => (
+  <div>
+    <Badge style={badgeStyle} badgeContent={50} max={10} icon={'mail'}></Badge>
+    <Badge style={badgeStyle} badgeContent={50} max={10} icon={'star'}></Badge>
+    <Badge style={badgeStyle} badgeContent={50} max={10} icon={'moon'}></Badge>
+  </div>
+);
+
+export const VariantBadge = () => (
+  <div>
+    <Badge style={badgeStyle} badgeContent={50} icon={'mail'}></Badge>
+    <Badge
+      style={badgeStyle}
+      badgeContent={50}
+      max={10}
+      icon={'star'}
+      variant={'dot'}
+    ></Badge>
+    <Badge
+      style={badgeStyle}
+      badgeContent={50}
+      color={'error'}
+      max={10}
+      variant={'dot'}
+    ></Badge>
+  </div>
+);

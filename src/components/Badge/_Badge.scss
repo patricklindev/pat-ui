@@ -1,11 +1,11 @@
-.MuiBadge-root {
+.Badge-root {
   display: inline-flex;
   position: relative;
   flex-shrink: 0;
   vertical-align: middle;
 }
 
-.MuiSvgIcon-root {
+.Badge-icon {
   fill: currentColor;
   width: 1em;
   height: 1em;
@@ -17,7 +17,7 @@
   overflow: hidden;
 }
 
-.MuiBadge-badge {
+.Badge {
   height: 20px;
   display: flex;
   padding: 0 6px;
@@ -38,7 +38,7 @@
   justify-content: center;
 }
 
-.MuiBadge-anchorOriginTopRightRectangle {
+.Badge-TopRight {
   top: 0;
   right: 0;
   transform: scale(1) translate(50%, -50%);
@@ -55,4 +55,11 @@
 
 .badge-error {
   @include badge-color($white, $danger);
+}
+
+.badge-dot {
+  height: 8px;
+  padding: 0;
+  min-width: 8px;
+  border-radius: 4px;
 }

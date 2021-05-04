@@ -59,11 +59,12 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
   const arrLength = children?.length;
   const [elRefs, setElRefs] = useState([] as any);
   useEffect(() => {
-    setElRefs((elRefs: any) =>
-      Array(arrLength)
-        .fill(null)
-        .map((_, i) => elRefs[i] || createRef())
-    );
+    scrollable &&
+      setElRefs((elRefs: any) =>
+        Array(arrLength)
+          .fill(null)
+          .map((_, i) => elRefs[i] || createRef())
+      );
   }, [arrLength]);
   //console.log(elRefs);
 
@@ -72,7 +73,7 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
       onClick(e.target.value);
       setTabValue && setTabValue(e.target.value);
     }
-    if (elRefs[i].current !== null) {
+    if (scrollable && elRefs[i].current !== null) {
       elRefs[i].current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   };

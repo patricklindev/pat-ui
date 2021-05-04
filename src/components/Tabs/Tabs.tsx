@@ -44,7 +44,6 @@ export const Tabs: FC<ITabsProps> = (props) => {
   }
   return (
     <div className={styleClasses}>
-      {' '}
       {children
         ? Children.map(children, (child: ReactElement) =>
             cloneElement(child, { tabValue, vertical, onClick, setTabValue })

@@ -21,7 +21,6 @@ export const DefaultTabs = () => (
         <h4>content one</h4>
         <p>text</p>
       </div>
-      {/* test */}
     </TabsContent>
     <TabsContent index="two">
       <div>

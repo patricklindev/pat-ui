@@ -49,8 +49,8 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
   let styleClasses = classNames('tabs__panel', {
     [`panel-type-${type}`]: true,
     centered: !!centered,
-    [`scrollable-row`]: !!scrollable && !vertical,
-    [`scrollable-col`]: !!scrollable && !!vertical,
+    ['scrollable-row']: !!scrollable && !vertical,
+    ['scrollable-col']: !!scrollable && !!vertical,
     vertical: !!vertical,
   });
   if (className) {
@@ -108,7 +108,7 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
               }
             }
             return (
-              <div className={`tabs__panel__tab`} ref={elRefs[i]}>
+              <div className={'tabs__panel__tab'} ref={elRefs[i]}>
                 <Button
                   disabled={disabled}
                   className={btnStyleClasses}

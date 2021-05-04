@@ -12,29 +12,25 @@ import Button from '../Button/Button';
 export type PanelType = 'primary' | 'default';
 
 export interface ITabsPanelProps {
-  children?: JSX.Element[];
-  value?: any;
-  label?: any;
-  wrapped?: boolean;
-  centered?: boolean;
-  scrollable?: boolean;
-  vertical?: boolean;
-  disabled?: boolean;
-  className?: string;
-  tabValue?: string;
+  /** children must be React Element */
+  children?: ReactElement[];
+  /** set tabsPanel type */
   type?: PanelType;
-
+  /** set centered tabsPanel */
+  centered?: boolean;
+  /** set scrollable tabsPanel */
+  scrollable?: boolean;
+  /** set vertical tabsPanel */
+  vertical?: boolean;
+  /** set customized css class */
+  className?: string;
+  /** default tab state provided by tabs */
+  tabValue?: string | number;
+  /** a callback to provide current value */
   onClick?: (val: any) => void;
-  setTabValue?: (val: any) => {}; //?????
+  /** set tab value state provided by tabs */
+  setTabValue?: (val: any) => {};
 }
-
-// export interface ITabProps {
-//   value: any;
-//   label: any;
-//   wrapped?: boolean;
-//   disabled?: boolean;
-//   className?: string;
-// }
 
 export const TabsPanel: FC<ITabsPanelProps> = (props) => {
   const {
@@ -127,11 +123,7 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
     </div>
   );
 };
-// export const Tab: FC<ITabProps> = (props) => {
-//   const { children, className, ...rest } = props;
 
-//   return <div>{children}</div>;
-// };
 TabsPanel.defaultProps = {
   type: 'default',
 };

@@ -2,7 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 .tabs {
-  margin: 100px;
   &.vertical {
     display: flex;
     flex-direction: row;
@@ -52,6 +51,7 @@ html {
         border-bottom: none;
       }
     }
+
     &__tab {
       &-button {
         height: 100%;
@@ -64,7 +64,7 @@ html {
         align-items: center;
         overflow: hidden;
         text-transform: uppercase;
-  
+
         &.tab-type-default {
           @include tab-btn-style($gray-500, $light-blue);
         }

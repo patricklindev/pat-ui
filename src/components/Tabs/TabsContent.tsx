@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import { classNames } from '../../utils/classNames';
 
-interface ITabsContentProps {
-  index: string | number;
+export interface ITabsContentProps {
+  index?: string | number;
   tabValue?: string;
   className?: string;
 }

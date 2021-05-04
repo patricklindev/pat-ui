@@ -1,4 +1,12 @@
-import React, { Children, FC, ReactElement } from 'react';
+import React, {
+  Children,
+  createRef,
+  FC,
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { classNames } from '../../utils/classNames';
 import Button from '../Button/Button';
 
@@ -10,6 +18,8 @@ export interface ITabsPanelProps {
   label?: any;
   wrapped?: boolean;
   centered?: boolean;
+  scrollable?: boolean;
+  vertical?: boolean;
   className?: string;
   tabValue?: string;
   type?: PanelType;
@@ -32,6 +42,8 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
     tabValue,
     type,
     centered,
+    scrollable,
+    vertical,
     onClick,
     setTabValue,
     ...rest
@@ -40,23 +52,42 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
   let styleClasses = classNames('tabs__panel', {
     [`panel-type-${type}`]: true,
     centered: !!centered,
+    [`scrollable-row`]: !!scrollable && !vertical,
+    [`scrollable-col`]: !!scrollable && !!vertical,
+    vertical: !!vertical,
   });
   if (className) {
     styleClasses += ' ' + className;
   }
+  const arrLength = children?.length;
+  const [elRefs, setElRefs] = useState([] as any);
+  useEffect(() => {
 
-  const handleTabClick = (e: any) => {
+    setElRefs((elRefs: any) =>
+      Array(arrLength)
+        .fill(null)
+        .map((_, i) => elRefs[i] || createRef())
+    );
+  }, [arrLength]);
+  console.log(elRefs);
+
+  const handleTabClick = (e: any,i:number) => {
     if (onClick) {
       onClick(e.target.value);
       setTabValue && setTabValue(e.target.value);
     }
+    if (elRefs[i].current !== null) {
+
+      elRefs[i].current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
   };
+
   return (
     <div className={styleClasses}>
       {children
-        ? Children.map(children, (child: ReactElement) => {
+        ? Children.map(children, (child: ReactElement, i) => {
             const { className, value, label, wrapped, ...rest } = child.props;
-            console.log(child.props);
+            //console.log(child.props);
             let btnStyleClasses = classNames('tabs__panel__tab-button', {
               [`tab-type-${type}`]: true,
               wrapped: !!wrapped,
@@ -65,14 +96,16 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
               btnStyleClasses += ' ' + className;
             }
             if (tabValue === value) {
-              btnStyleClasses += ' ' + 'actived';
+              btnStyleClasses +=
+                ' ' + `${vertical ? 'actived-vertical' : 'actived'}`;
+   
             }
             return (
-              <div className={`tabs__panel__tab`}>
+              <div className={`tabs__panel__tab`} ref={elRefs[i]}>
                 <Button
                   className={btnStyleClasses}
                   value={value}
-                  onClick={(e: any) => handleTabClick(e)}
+                  onClick={(e: any) => handleTabClick(e,i)}
                 >
                   {label}
                 </Button>

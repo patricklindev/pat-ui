@@ -84,20 +84,47 @@
   background-color: $panel-bg-color;
 }
 
-@mixin tab-btn-style($color, $hover-color: $color) {
+@mixin tab-btn-style($color, $click-color: $color) {
   color: $color;
   background: none;
-  border:none;
+  border: none;
   border-bottom: 2px solid transparent;
   border-radius: 0;
   box-shadow: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease-in-out;
   &.focus,
   &:focus {
     outline: none;
   }
+  &.hover,
+  &:hover {
+    color: $click-color;
+  }
   &.actived {
-    color:$hover-color;
-    border-bottom: 2px solid pink;
+    color: $click-color;
+    border-bottom: 2px solid rgb(235, 87, 111);
+  }
+  &.actived-vertical {
+    color: $click-color;
+    border-right: 2px solid rgb(235, 87, 111);
+  }
+  &:after {
+    content: '';
+    background: $click-color;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+  }
+
+  &:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 0.5;
+    transition: 0s;
   }
 }

@@ -10,13 +10,14 @@ import { classNames } from '../../utils/classNames';
 
 export interface ITabsProps {
   children?: JSX.Element[];
+  className?: string;
   defaultTab?: string;
+  vertical?: boolean;
   onClick?: (val: any) => void;
 }
 export const Tabs: FC<ITabsProps> = (props) => {
-  const { children, defaultTab, onClick, ...rest } = props;
-
-  console.log(children);
+  const { children, defaultTab, className, vertical, onClick, ...rest } = props;
+  //console.log(children);
   const [tabValue, setTabValue] = useState('');
 
   useEffect(() => {
@@ -24,12 +25,19 @@ export const Tabs: FC<ITabsProps> = (props) => {
       setTabValue(defaultTab);
     }
   }, []);
+
+  let styleClasses = classNames('tabs', {
+    vertical: !!vertical,
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
   return (
-    <div className="tabs">
+    <div className={styleClasses}>
       {' '}
       {children
         ? Children.map(children, (child: ReactElement) =>
-            cloneElement(child, { tabValue, onClick, setTabValue })
+            cloneElement(child, { tabValue, vertical, onClick, setTabValue })
           )
         : children}
     </div>

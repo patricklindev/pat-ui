@@ -139,13 +139,13 @@ export const WrappedTabs = () => (
         </div>
       </TabsContent>
     </Tabs>
-    <hr />
+  </div>
+);
+export const centeredTabs = () => (
+  <div>
     <Tabs defaultTab="one" onClick={action('tabs selected')}>
-      <TabsPanel>
-        <Tab
-          value="one"
-          label="New Arrivals in the Longest Text of Nonfiction"
-        ></Tab>
+      <TabsPanel centered>
+        <Tab value="one" label="tab one"></Tab>
         <Tab value="two" label="tab two"></Tab>
       </TabsPanel>
       <TabsContent index="one">
@@ -163,16 +163,16 @@ export const WrappedTabs = () => (
     </Tabs>
   </div>
 );
-export const centeredTabs = () => (
+export const scrollableTabs = () => (
   <div>
     <Tabs defaultTab="one" onClick={action('tabs selected')}>
-      <TabsPanel centered>
-        <Tab
-          value="one"
-          label="tab one"
-          wrapped
-        ></Tab>
+      <TabsPanel scrollable>
+        <Tab value="one" label="tab one"></Tab>
         <Tab value="two" label="tab two"></Tab>
+        <Tab value="three" label="tab three"></Tab>
+        <Tab value="four" label="tab four"></Tab>
+        <Tab value="five" label="tab five"></Tab>
+        <Tab value="six" label="tab six"></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -183,18 +183,46 @@ export const centeredTabs = () => (
       <TabsContent index="two">
         <div>
           <h4>content two</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="three">
+        <div>
+          <h4>content three</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="four">
+        <div>
+          <h4>content four</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="five">
+        <div>
+          <h4>content five</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="six">
+        <div>
+          <h4>content six</h4>
           <p>text</p>
         </div>
       </TabsContent>
     </Tabs>
-    <hr />
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
-      <TabsPanel>
-        <Tab
-          value="one"
-          label="tab one"
-        ></Tab>
+  </div>
+);
+export const verticalTabs = () => (
+  <div>
+    <Tabs vertical defaultTab="one" onClick={action('tabs selected')}>
+      <TabsPanel scrollable>
+        <Tab value="one" label="tab one"></Tab>
         <Tab value="two" label="tab two"></Tab>
+        <Tab value="three" label="tab three"></Tab>
+        <Tab value="four" label="tab four"></Tab>
+        <Tab value="five" label="tab five"></Tab>
+        <Tab value="six" label="tab six"></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -205,6 +233,30 @@ export const centeredTabs = () => (
       <TabsContent index="two">
         <div>
           <h4>content two</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="three">
+        <div>
+          <h4>content three</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="four">
+        <div>
+          <h4>content four</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="five">
+        <div>
+          <h4>content five</h4>
+          <p>text</p>
+        </div>
+      </TabsContent>
+      <TabsContent index="six">
+        <div>
+          <h4>content six</h4>
           <p>text</p>
         </div>
       </TabsContent>

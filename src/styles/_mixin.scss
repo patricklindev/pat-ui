@@ -75,6 +75,7 @@
   border-color: $border-color;
 }
 
+// spinner mixins
 @mixin spinner-size($size, $thickness) {
   width: $size;
   height: $size;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Spinner from './Spinner';
 
 export default {
@@ -7,17 +6,24 @@ export default {
   component: Spinner,
 };
 
-export const DefaultSpinner = () => (
-    <Spinner />
-)
+export const DefaultSpinner = () => <Spinner />;
 
 export const DiffSizeSpinner = () => (
   <div>
-    <Spinner size="sm" />
+    <Spinner size="sm"/>
     <p>Small spinner</p>
     <Spinner />
     <p>Default spinner</p>
     <Spinner size="lg" />
     <p>Large spinner</p>
+  </div>
+);
+
+export const DiffColorSpinner = () => (
+  <div>
+    <Spinner color="light" />
+    <p>Light spinner</p>
+    <Spinner />
+    <p>Default (Dark) spinner</p>
   </div>
 );

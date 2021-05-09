@@ -75,11 +75,14 @@
   border-color: $border-color;
 }
 
-@mixin spinner-size($size, $thickness, $color) {
+@mixin spinner-size($size, $thickness) {
   width: $size;
   height: $size;
   margin: $thickness;
-  border: $thickness solid $color;
+  border-width: $thickness;
+  border-style: solid;
+}
+@mixin spinner-color($color) {
   border-color: $color transparent transparent transparent;
 }
 @mixin spinner-container($size) {

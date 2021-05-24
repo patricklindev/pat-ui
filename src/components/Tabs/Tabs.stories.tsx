@@ -11,10 +11,10 @@ export default {
 };
 
 export const DefaultTabs = () => (
-  <Tabs onClick={action('tabs selected')}>
+  <Tabs>
     <TabsPanel>
-      <Tab value="one" label="tab one"></Tab>
-      <Tab value="two" label="tab two"></Tab>
+      <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+      <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
     </TabsPanel>
     <TabsContent index="one">
       <div>
@@ -33,10 +33,10 @@ export const DefaultTabs = () => (
 
 export const SetDefaultTabs = () => (
   <div>
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -52,10 +52,10 @@ export const SetDefaultTabs = () => (
       </TabsContent>
     </Tabs>
     <hr />
-    <Tabs defaultTab="two" onClick={action('tabs selected')}>
+    <Tabs defaultTab="two">
       <TabsPanel>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -75,10 +75,10 @@ export const SetDefaultTabs = () => (
 
 export const DiffTypeTabs = () => (
   <div>
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -94,10 +94,10 @@ export const DiffTypeTabs = () => (
       </TabsContent>
     </Tabs>
     <hr />
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel type="primary">
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -116,10 +116,15 @@ export const DiffTypeTabs = () => (
 );
 export const DisabledTabs = () => (
   <div>
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two" disabled></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab
+          value="two"
+          label="tab two"
+          disabled
+          onClick={action('tab two')}
+        ></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -138,14 +143,15 @@ export const DisabledTabs = () => (
 );
 export const WrappedTabs = () => (
   <div>
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel>
         <Tab
           value="one"
           label="New Arrivals in the Longest Text of Nonfiction"
           wrapped
+          onClick={action('tab one')}
         ></Tab>
-        <Tab value="two" label="tab two"></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -164,10 +170,10 @@ export const WrappedTabs = () => (
 );
 export const centeredTabs = () => (
   <div>
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel centered>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -186,14 +192,18 @@ export const centeredTabs = () => (
 );
 export const scrollableTabs = () => (
   <div>
-    <Tabs defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs defaultTab="one">
       <TabsPanel scrollable>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
-        <Tab value="three" label="tab three"></Tab>
-        <Tab value="four" label="tab four"></Tab>
-        <Tab value="five" label="tab five"></Tab>
-        <Tab value="six" label="tab six"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
+        <Tab
+          value="three"
+          label="tab three"
+          onClick={action('tab three')}
+        ></Tab>
+        <Tab value="four" label="tab four" onClick={action('tab four')}></Tab>
+        <Tab value="five" label="tab five" onClick={action('tab five')}></Tab>
+        <Tab value="six" label="tab six" onClick={action('tab six')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>
@@ -236,14 +246,18 @@ export const scrollableTabs = () => (
 );
 export const verticalTabs = () => (
   <div>
-    <Tabs vertical defaultTab="one" onClick={action('tabs selected')}>
+    <Tabs vertical defaultTab="one" >
       <TabsPanel scrollable>
-        <Tab value="one" label="tab one"></Tab>
-        <Tab value="two" label="tab two"></Tab>
-        <Tab value="three" label="tab three"></Tab>
-        <Tab value="four" label="tab four"></Tab>
-        <Tab value="five" label="tab five"></Tab>
-        <Tab value="six" label="tab six"></Tab>
+        <Tab value="one" label="tab one" onClick={action('tab one')}></Tab>
+        <Tab value="two" label="tab two" onClick={action('tab two')}></Tab>
+        <Tab
+          value="three"
+          label="tab three"
+          onClick={action('tab three')}
+        ></Tab>
+        <Tab value="four" label="tab four" onClick={action('tab four')}></Tab>
+        <Tab value="five" label="tab five" onClick={action('tab five')}></Tab>
+        <Tab value="six" label="tab six" onClick={action('tab six')}></Tab>
       </TabsPanel>
       <TabsContent index="one">
         <div>

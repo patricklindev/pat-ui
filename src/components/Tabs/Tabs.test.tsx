@@ -7,15 +7,20 @@ import Tab from './Tab';
 import TabsContent from './TabsContent';
 
 describe('Tabs', () => {
-  it('should render a tabs with two tabs and tabs content', () => {
-    const tabsProps = {
+  it('should match snapshot', () => {
+    const { asFragment } = render(<Tabs></Tabs>);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render a default tabs container with tabsPabel and tabsContent based on user input', () => {
+    const tabProps = {
       onClick: jest.fn(),
     };
     const wrapper = render(
-      <Tabs {...tabsProps}>
+      <Tabs>
         <TabsPanel>
           <Tab value="one" label="tab one"></Tab>
-          <Tab value="two" label="tab two"></Tab>
+          <Tab value="two" label="tab two" {...tabProps}></Tab>
         </TabsPanel>
         <TabsContent index="one">
           <div>
@@ -37,22 +42,25 @@ describe('Tabs', () => {
     expect(wrapper?.firstChild?.childNodes.length).toBe(2);
     expect(wrapper?.firstChild).toHaveClass('tabs__panel');
     expect(wrapper?.lastChild).toHaveClass('tabs__content');
-
+    expect(tabProps.onClick).toBeCalledTimes(0);
     fireEvent.click(
       wrapper?.firstChild?.lastChild?.childNodes.item(0) as HTMLElement
     );
-    expect(tabsProps.onClick).toBeCalledTimes(1);
+    expect(tabProps.onClick).toBeCalledTimes(1);
   });
-  it('should render a correct tabs based on different props', () => {
+  it('should render a correct tabs container based on different props and user input', () => {
     const tabsProps = {
       defaultTab: 'two',
       vertical: true,
       onClick: jest.fn(),
     };
+     const tabProps = {
+       onClick: jest.fn(),
+     };
     const wrapper = render(
       <Tabs {...tabsProps}>
         <TabsPanel scrollable type="primary">
-          <Tab value="one" label="tab one" disabled></Tab>
+          <Tab value="one" label="tab one" disabled {...tabProps}></Tab>
           <Tab value="two" label="tab two"></Tab>
         </TabsPanel>
         <TabsContent index="one">
@@ -77,7 +85,8 @@ describe('Tabs', () => {
     expect(wrapper?.firstChild?.lastChild?.firstChild).toHaveClass(
       'actived-vertical'
     );
-    window.HTMLElement.prototype.scrollIntoView = function () {};
+    //window.HTMLElement.prototype.scrollIntoView = function () {};
+    expect(tabsProps.onClick).toHaveBeenCalledTimes(0);
     fireEvent.click(
       wrapper?.firstChild?.firstChild?.childNodes.item(0) as HTMLElement
     );

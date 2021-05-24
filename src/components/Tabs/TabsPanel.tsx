@@ -26,8 +26,6 @@ export interface ITabsPanelProps {
   className?: string;
   /** default tab state provided by tabs */
   tabValue?: string | number;
-  /** a callback to provide current value */
-  onClick?: (val: any) => void;
   /** set tab value state provided by tabs */
   setTabValue?: (val: any) => {};
 }
@@ -41,7 +39,6 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
     centered,
     scrollable,
     vertical,
-    onClick,
     setTabValue,
     ...rest
   } = props;
@@ -69,10 +66,7 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
   //console.log(elRefs);
 
   const handleTabClick = (e: any, i: number) => {
-    if (onClick) {
-      onClick(e.target.value);
-      setTabValue && setTabValue(e.target.value);
-    }
+    setTabValue && setTabValue(e.target.value);
     if (scrollable && elRefs[i].current !== null) {
       elRefs[i].current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
@@ -82,14 +76,8 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
     <div className={styleClasses}>
       {children
         ? Children.map(children, (child: ReactElement, i) => {
-            const {
-              className,
-              value,
-              label,
-              wrapped,
-              disabled,
-              ...rest
-            } = child.props;
+            const { className, value, label, wrapped, disabled, ...rest } =
+              child.props;
 
             let btnStyleClasses = classNames('tabs__panel__tab-button', {
               [`tab-type-${type}`]: true,
@@ -108,12 +96,16 @@ export const TabsPanel: FC<ITabsPanelProps> = (props) => {
               }
             }
             return (
-              <div className={'tabs__panel__tab'} ref={elRefs[i]}>
+              <div
+                className={'tabs__panel__tab'}
+                ref={elRefs[i]}
+                onClick={(e: any) => handleTabClick(e, i)}
+              >
                 <Button
                   disabled={disabled}
                   className={btnStyleClasses}
                   value={value}
-                  onClick={(e: any) => handleTabClick(e, i)}
+                  {...rest}
                 >
                   {label}
                 </Button>

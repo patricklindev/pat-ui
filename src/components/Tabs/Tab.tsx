@@ -12,6 +12,8 @@ export interface ITabProps {
   disabled?: boolean;
   /** set customized css class */
   className?: string;
+  /** a callback to provide current value */
+  onClick?: (val: any) => void;
 }
 export const Tab: FC<ITabProps> = (props) => {
   const { children, className, ...rest } = props;

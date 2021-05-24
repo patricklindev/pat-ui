@@ -15,26 +15,26 @@ export interface ITabsProps {
   className?: string;
   /** set default tab and tab content */
   defaultTab?: string | number;
+  /** set vertial tabs */
   vertical?: boolean;
-  onClick?: (val: any) => void;
 }
 /**
  * A tabs container allows user to set multiple tabs and related tab content.
  *
  * ```js
- * import { Tabs, TabsPanel, Tabs, Tab, TabsContent } from 'pat-ui'
+ * import { Tabs, TabsPanel, Tab, TabsContent } from 'pat-ui'
  * ```
  */
 export const Tabs: FC<ITabsProps> = (props) => {
-  const { children, defaultTab, className, vertical, onClick, ...rest } = props;
+  const { children, defaultTab, className, vertical, ...rest } = props;
   //console.log(children);
   const [tabValue, setTabValue] = useState<any>();
 
-  useEffect(() => {
-    if (defaultTab) {
-      setTabValue(defaultTab);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (defaultTab) {
+  //     setTabValue(defaultTab);
+  //   }
+  // }, []);
 
   let styleClasses = classNames('tabs', {
     vertical: !!vertical,
@@ -46,7 +46,7 @@ export const Tabs: FC<ITabsProps> = (props) => {
     <div className={styleClasses}>
       {children
         ? Children.map(children, (child: ReactElement) =>
-            cloneElement(child, { tabValue, vertical, onClick, setTabValue })
+            cloneElement(child, { tabValue, vertical, setTabValue })
           )
         : children}
     </div>

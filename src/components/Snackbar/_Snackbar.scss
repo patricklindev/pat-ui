@@ -1,0 +1,39 @@
+.snackbar {
+  display: none;
+  // background-color: $blue;
+  position: fixed;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 8px;
+
+  &.open {
+    // background-color: $red;
+    display: block;
+  }
+
+  &.v_bottom {
+    bottom: 10%;
+  }
+
+  &.v_top {
+    top: 10%;
+  }
+
+  &.v_center {
+    top: 50%;
+  }
+
+  &.h_left {
+    left: 10%;
+  }
+
+  &.h_center {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  &.h_right {
+    right: 10%;
+  }
+}

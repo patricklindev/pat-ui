@@ -1,15 +1,22 @@
+@mixin easeAnimation($time: 1s) {
+  transition: all $time ease-in-out;
+}
+
 .snackbar {
-  display: none;
+  // display: none;
   // background-color: $blue;
   position: fixed;
   border: 1px solid black;
-  cursor: pointer;
   border-radius: 6px;
   padding: 8px;
+  transform: scale(0);
+  @include easeAnimation(0.3s);
 
   &.open {
     // background-color: $red;
-    display: block;
+    // display: block;
+    @include easeAnimation(0.3s);
+    transform: scale(1);
   }
 
   &.v_bottom {
@@ -30,7 +37,6 @@
 
   &.h_center {
     left: 50%;
-    transform: translate(-50%, 0);
   }
 
   &.h_right {

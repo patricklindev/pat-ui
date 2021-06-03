@@ -1,24 +1,23 @@
+@use "sass:color";
+
 @mixin easeAnimation($time: 1s) {
   transition: all $time ease-in-out;
 }
 
 .snackbar {
-  // display: none;
-  // background-color: $blue;
   position: fixed;
-  border: 1px solid black;
-  border-radius: 6px;
+  // border: 1px solid black;
+  border-radius: 10px;
   padding: 8px;
   transform: scale(0);
   @include easeAnimation(0.3s);
 
   &.open {
-    // background-color: $red;
-    // display: block;
     @include easeAnimation(0.3s);
     transform: scale(1);
   }
 
+  //define position
   &.v_bottom {
     bottom: 10%;
   }
@@ -41,5 +40,36 @@
 
   &.h_right {
     right: 10%;
+  }
+
+  @mixin snackbarColor($bgcolor: $white) {
+    background-color: $bgcolor;
+    //adjust text color based on background color
+    @if (lightness($bgcolor) > 40) {
+      color: $black;
+    } @else {
+      color: $white;
+    }
+  }
+
+  //define colors
+  &__default {
+    @include snackbarColor;
+  }
+
+  &__error {
+    @include snackbarColor($danger);
+  }
+
+  &__warning {
+    @include snackbarColor($warning);
+  }
+
+  &__success {
+    @include snackbarColor($success);
+  }
+
+  &__info {
+    @include snackbarColor($info);
   }
 }

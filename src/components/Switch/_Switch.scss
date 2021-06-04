@@ -1,0 +1,110 @@
+.sw__wrapper {
+    position: relative;
+    // display: inline-block;
+    width: 55px;
+    // @include sw-wrapper-size($sw-wrapper-height, $sw-wrapper-width);
+}
+
+.sw__wrapper-sm {
+    // @include sw-wrapper-size($sw-wrapper-height, $sw-wrapper-width-sm);
+    width: 30px;
+}
+
+.sw__wrapper-lg {
+    // @include sw-wrapper-size($sw-wrapper-height, $sw-wrapper-width-lg);
+    width: 70px;
+}
+
+.sw__default {
+}
+
+.sw__primary {
+    //
+}
+.sw__secondary {
+}
+
+.sw__checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.sw__label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    border: 0px solid #ffffff;
+    border-radius: 30px;
+    background-color: #9e9e9e;
+}
+.sw__label-sm {
+    height: 10px;
+    line-height: 10px;
+    border-radius: 18px;
+}
+.sw__label-lg {
+    height: 25px;
+    line-height: 25px;
+    border-radius: 40   px;
+}
+.sw__label:before {
+    content: "";
+    display: block;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0 6px 12px 0px #757575;
+    width: 30px;
+    margin: -5px;
+    right: 31px;
+    border-radius: 30px;
+}
+.sw__label-sm::before {
+    width: 18px;
+    margin: -4px;
+    right: 16px;
+    border-radius: 18px;
+}
+.sw__label-lg::before {
+    width: 40px;
+    margin: -7.5px;
+    right: 41px;
+    border-radius: 40px;
+}
+
+// theme
+
+//primary
+.sw__checkbox:checked + .sw__label {
+    background-color: $primary;
+}
+.sw__checkbox:checked + .sw__label,
+.sw__checkbox:checked + .sw__label:before {
+    border-color: $primary;
+}
+.sw__checkbox:checked + .sw__label .sw__inner {
+    margin-left: 0;
+}
+.sw__checkbox:checked + .sw__label:before {
+    right: 0px;
+    background-color: $primary;
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+}
+
+//secondary
+.sw__checkbox:checked + .sw__label-secondary {
+    background-color: $secondary;
+}
+.sw__checkbox:checked + .sw__label-secondary,
+.sw__checkbox:checked + .sw__label-secondary:before {
+    border-color: $secondary;
+}
+.sw__checkbox:checked + .sw__label-secondary:before {
+    right: 0px;
+    background-color: $secondary;
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+}

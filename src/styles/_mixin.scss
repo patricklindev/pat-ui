@@ -28,7 +28,6 @@
   }
 }
 
-
 @mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
@@ -73,4 +72,18 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin sw-wrapper-size($sw-wrapper-height, $sw-wrapper-width) {
+  width: $sw-wrapper-width;
+  height: $sw-wrapper-height;
+}
+
+@mixin sw-label-size($sw-label-height, $sw-label-line-height, $border-radius) {
+  height: $sw-label-height;
+  line-height: $sw-label-line-height;
+  border-radius: $border-radius;
+}
+
+@mixin sw-style($color, $background-color, $border-color) {
 }

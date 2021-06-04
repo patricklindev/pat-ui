@@ -1,0 +1,55 @@
+.bread {
+    display: flex;
+    list-style: none;
+    padding: 0.4rem 0.2rem 0.4rem;
+}
+
+.bread a {
+    color: black;
+}
+
+.bread li {
+    cursor: pointer;
+}
+
+.bread-default {
+    color: rgb(30, 30, 30);
+}
+
+.bread-primary {
+    background-color: rgb(86, 86, 236);
+    color: white;
+}
+
+.bread-secondary {
+    background-color: black;
+    color: white;
+}
+
+.bread__option {
+    margin-right: 0.3rem;
+}
+
+.bread__option:hover {
+    color:darkgray;
+}
+
+.bread-primary .bread__option:hover {
+    color: rgb(233, 230, 34);
+}
+
+.bread-secondary .bread__option:hover {
+    color: rgb(143, 229, 208);
+}
+
+.bread .home {
+    margin-right: 0.5rem;
+}
+
+.bread-slash li:nth-child(n+2)::before {
+    content: ' / ';
+}
+
+.bread-arrow li:nth-child(n+2)::before {
+    content: ' ⮞ ';
+}

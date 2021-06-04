@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb  should match snapshot 1`] = `
+<DocumentFragment>
+  <ul
+    class="bread bread-default bread-arrow"
+    role="bread"
+  >
+    <li
+      class="home"
+    >
+      Home 
+    </li>
+     default bread
+  </ul>
+</DocumentFragment>
+`;

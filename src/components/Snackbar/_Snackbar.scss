@@ -1,14 +1,19 @@
 @use "sass:color";
+@use "sass:selector";
 
 @mixin easeAnimation($time: 1s) {
   transition: all $time ease-in-out;
 }
 
 .snackbar {
+  $root-snackbar: &;
+  //store text color to apply to snackbar close button
+  $text-color: $white;
+
   position: fixed;
-  // border: 1px solid black;
-  border-radius: 10px;
-  padding: 8px;
+  border-radius: 15px;
+  padding: 10px;
+  font-weight: $font-weight-bold;
   transform: scale(0);
   @include easeAnimation(0.3s);
 
@@ -44,32 +49,82 @@
 
   @mixin snackbarColor($bgcolor: $white) {
     background-color: $bgcolor;
+    color: setTextColor($bgcolor);
+  }
+
+  @function setTextColor($bgcolor: $white) {
     //adjust text color based on background color
-    @if (lightness($bgcolor) > 40) {
-      color: $black;
+    @if (lightness($bgcolor) > 60) {
+      @return $black;
     } @else {
-      color: $white;
+      @return $white;
     }
   }
 
   //define colors
   &__default {
     @include snackbarColor;
+    $text-color: setTextColor();
   }
 
   &__error {
     @include snackbarColor($danger);
+    $text-color: setTextColor($danger);
   }
 
   &__warning {
     @include snackbarColor($warning);
+    $text-color: setTextColor($warning);
   }
 
   &__success {
+    $text-color: setTextColor($success);
     @include snackbarColor($success);
   }
 
   &__info {
     @include snackbarColor($info);
+    $text-color: setTextColor($info);
+  }
+
+  &__default,
+  &__error,
+  &__warning,
+  &__success,
+  &__info {
+    //close button
+    // @at-root &__close {
+    #{$root-snackbar}__close {
+      cursor: pointer;
+      columns: $red;
+      margin-left: 20px;
+      margin-right: 20px;
+
+      &::after {
+        background-color: $text-color;
+        content: '';
+        position: absolute;
+        // top: 8px;
+        width: 20px;
+        height: 3px;
+        top: 22px;
+        right: 10px;
+        transform: rotate(45deg);
+        @include easeAnimation;
+      }
+
+      &::before {
+        background-color: $text-color;
+        content: '';
+        position: absolute;
+        // top: 8px;
+        width: 20px;
+        height: 3px;
+        top: 22px;
+        right: 10px;
+        transform: rotate(-45deg);
+        @include easeAnimation;
+      }
+    }
   }
 }

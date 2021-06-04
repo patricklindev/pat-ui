@@ -10,15 +10,19 @@ export type SnackbarSeverity =
   | 'error';
 
 export interface SnackbarProps {
+  /** set horizontal position (left, center, right) */
   horizontal?: string;
+  /** set vertical position (top, center, bottom) */
   vertical?: string;
-  // onClick: (e: Event) => void;
+  /** message to display */
   message: string;
+  /** set duration to hide snackbar */
   autoHideDuration?: number;
-  //snackbar open state is managed by calling component
+  /** manage snackbar open/close state with this prop */
   open?: boolean;
-  //a function that change open state after autoHideDuration. if op
+  /** if open is provided, this function should also provided to set open state to false*/
   onClose?: () => void;
+  /** set style of snackbar */
   severity?: SnackbarSeverity;
 }
 
@@ -27,8 +31,6 @@ export interface SnackbarProps {
  *
  * ```js
  * import {Snackbar} from 'pat-ui'
-import Button from '../Button/Button';
-import { default } from '../Button/Button.stories';
  * ```
  */
 export const Snackbar: FC<SnackbarProps> = (props) => {
@@ -39,6 +41,7 @@ export const Snackbar: FC<SnackbarProps> = (props) => {
   const onClose = props.onClose;
   const autoHideDuration = props.autoHideDuration || 3000;
 
+  //define class names for snackbar
   let classnames = classNames(
     'snackbar',
     vertical,
@@ -61,7 +64,7 @@ export const Snackbar: FC<SnackbarProps> = (props) => {
   }, [props.open, classnames]);
 
   const closeBtn = props.onClose ? (
-    <Button onClick={() => onClose!()}>X</Button>
+    <span className="snackbar__close" onClick={() => onClose!()}></span>
   ) : null;
 
   return (
@@ -76,6 +79,7 @@ Snackbar.defaultProps = {
   onClose: () => {},
   vertical: 'bottom',
   horizontal: 'left',
+  open: true,
 };
 
 export default Snackbar;

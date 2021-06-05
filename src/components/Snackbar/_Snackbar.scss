@@ -47,6 +47,7 @@
     right: 10%;
   }
 
+  //define background color and text color of snackbar
   @mixin snackbarColor($bgcolor: $white) {
     background-color: $bgcolor;
     color: setTextColor($bgcolor);
@@ -60,7 +61,7 @@
       @return $white;
     }
   }
-
+  //define colors based on type of snackbar
   //define colors
   &__default {
     @include snackbarColor;

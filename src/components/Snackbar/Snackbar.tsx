@@ -56,7 +56,7 @@ export const Snackbar: FC<SnackbarProps> = (props) => {
     if (open) {
       setTimeout(() => {
         //remove open from classnames
-        classnames = classnames.replace('open', '');
+        // classnames = classnames.replace('open', '');
         onClose!();
       }, autoHideDuration);
     }

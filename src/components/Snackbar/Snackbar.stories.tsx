@@ -64,6 +64,8 @@ export const DiffPositionButton = () => {
   const [vertical, setVertical] = useState('bottom');
   return (
     <div>
+      <label>Choose a vertical position</label>
+
       <Dropdown
         onChange={(val) => setVertical(val)}
         placeholder="Choose a vertical position"
@@ -79,6 +81,7 @@ export const DiffPositionButton = () => {
         </DropdownOption>
       </Dropdown>
 
+      <label>Choose a horizontal position</label>
       <Dropdown
         onChange={(val) => setHorizontal(val)}
         placeholder="Choose a horizontal position"

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snackbar should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="snackbar v_bottom h_left open snackbar__default"
+  >
+     Snapshot Button  
+    <span
+      class="snackbar__close"
+    />
+  </div>
+</DocumentFragment>
+`;

@@ -61,8 +61,8 @@
       @return $white;
     }
   }
+
   //define colors based on type of snackbar
-  //define colors
   &__default {
     @include snackbarColor;
     $text-color: setTextColor();

@@ -7,9 +7,7 @@
 
 .snackbar {
   $root-snackbar: &;
-  //store text color to apply to snackbar close button
-  $text-color: $white;
-
+  z-index: 100;
   position: fixed;
   border-radius: 15px;
   padding: 10px;
@@ -55,9 +53,12 @@
 
   @function setTextColor($bgcolor: $white) {
     //adjust text color based on background color
-    @if (lightness($bgcolor) > 60) {
+    // @error '$bgcolor: #{$bgcolor}';
+    @if (lightness($bgcolor) > 50) {
+      // @error 'return black #{$bgcolor}';
       @return $black;
     } @else {
+      // @error 'return white #{$bgcolor}';
       @return $white;
     }
   }
@@ -65,67 +66,56 @@
   //define colors based on type of snackbar
   &__default {
     @include snackbarColor;
-    $text-color: setTextColor();
   }
 
   &__error {
     @include snackbarColor($danger);
-    $text-color: setTextColor($danger);
   }
 
   &__warning {
     @include snackbarColor($warning);
-    $text-color: setTextColor($warning);
   }
 
   &__success {
-    $text-color: setTextColor($success);
     @include snackbarColor($success);
   }
 
   &__info {
     @include snackbarColor($info);
-    $text-color: setTextColor($info);
   }
+  //close button
+  // @at-root &__close {
+  &__close {
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
 
-  &__default,
-  &__error,
-  &__warning,
-  &__success,
-  &__info {
-    //close button
-    // @at-root &__close {
-    #{$root-snackbar}__close {
-      cursor: pointer;
-      columns: $red;
-      margin-left: 20px;
-      margin-right: 20px;
+    &::after {
+      //set background color of this pseudo element to the color of the text
+      background-color: currentColor;
+      content: '';
+      position: absolute;
+      // top: 8px;
+      width: 18px;
+      height: 3px;
+      top: 22px;
+      right: 10px;
+      transform: rotate(45deg);
+      @include easeAnimation;
+    }
 
-      &::after {
-        background-color: $text-color;
-        content: '';
-        position: absolute;
-        // top: 8px;
-        width: 20px;
-        height: 3px;
-        top: 22px;
-        right: 10px;
-        transform: rotate(45deg);
-        @include easeAnimation;
-      }
-
-      &::before {
-        background-color: $text-color;
-        content: '';
-        position: absolute;
-        // top: 8px;
-        width: 20px;
-        height: 3px;
-        top: 22px;
-        right: 10px;
-        transform: rotate(-45deg);
-        @include easeAnimation;
-      }
+    &::before {
+      //set background color of this pseudo element to the color of the text
+      background-color: currentColor;
+      content: '';
+      position: absolute;
+      // top: 8px;
+      width: 18px;
+      height: 3px;
+      top: 22px;
+      right: 10px;
+      transform: rotate(-45deg);
+      @include easeAnimation;
     }
   }
 }

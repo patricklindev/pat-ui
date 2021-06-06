@@ -38,7 +38,7 @@ export const Snackbar: FC<SnackbarProps> = (props) => {
   const horizontal = 'h_' + props.horizontal;
   let { open, severity, children, message } = props;
   //default value for onClose: empty function
-  const onClose = props.onClose;
+  const onClose = props.onClose || (() => {});
   const autoHideDuration = props.autoHideDuration || 3000;
 
   //define class names for snackbar
@@ -78,7 +78,6 @@ export const Snackbar: FC<SnackbarProps> = (props) => {
 
 Snackbar.defaultProps = {
   severity: 'default',
-  onClose: () => {},
   vertical: 'bottom',
   horizontal: 'left',
   open: true,

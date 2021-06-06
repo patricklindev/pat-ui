@@ -6,9 +6,6 @@ exports[`Snackbar should match snapshot 1`] = `
     class="snackbar v_bottom h_left open snackbar__default"
   >
      Snapshot Button  
-    <span
-      class="snackbar__close"
-    />
   </div>
 </DocumentFragment>
 `;

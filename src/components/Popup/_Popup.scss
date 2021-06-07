@@ -1,0 +1,25 @@
+.popup {
+  position: relative;
+  display: inline-block;
+
+  background-color: $msg-background-color;
+  box-shadow: 1px 1px 2.5px 2.5px #ccc;
+  border-radius: 3px;
+  padding: 10px;
+}
+.popup-large {
+  font-size: large;
+  width: 300px;
+  height: 150px;
+}
+.popup-small {
+  font-size: small;
+  width: 200px;
+  height: 80px;
+}
+.popup-black {
+  color: black;
+}
+.popup-green {
+  color: rgb(57, 150, 57);
+}

@@ -264,3 +264,21 @@ $dropdown-transition: all 0.4s !default;
 
 // dropdown arrow
 $dropdown-arrow-color: $black;
+
+// step
+$step-bg: #ffffff !default;
+$step-border-width:$border-width !default;
+$step-border-color:#3b3b3b;
+$step-padding-x:0.2rem;
+$step-padding-y:0.2rem;
+$step-inner-spacer:0;
+$step-icon-bg:#e1dfe9 !default;
+$step-icon-font-size:1rem !default;
+$step-icon-font-weight:400;
+$step-icon-height:3.3rem;
+$step-icon-bg-active:#d0cae9 !default;
+$step-icon-color:$white;
+$step-text-color:$black;
+$step-text-font-size:1rem;
+$step-text-font-weight:200;
+$step-text-color-active:#b0a4e0 !default;

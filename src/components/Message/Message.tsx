@@ -109,5 +109,4 @@ Message.defaultProps = {
     msgSize: 'large',
     msgColor: 'white'
 };
-
 export default Message;

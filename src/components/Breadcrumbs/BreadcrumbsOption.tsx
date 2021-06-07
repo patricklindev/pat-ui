@@ -14,15 +14,17 @@ import { IBreadProps } from './Breadcrumbs';
 
 export type IBreadOptionProps = {
     children?: ReactNode,
+    /** classname */
     className?: string,
     cssStyle?: CSSProperties,
     value?: any,
-    anchor?:any,
+    /** href */
+    anchor?:string,
 }
 
 export type nativeBreadOptionProps = IBreadOptionProps & LiHTMLAttributes<HTMLLIElement>
 
-const BreadOption: FC<nativeBreadOptionProps> = (props) => {
+export const BreadOption: FC<nativeBreadOptionProps> = (props) => {
     const { children, className, cssStyle, anchor, value, ...rest } = props;
     let styleClasses = 'bread__option'
     if (className) {

@@ -7,7 +7,6 @@ import React, {
     ReactNode,
 } from 'react';
 import { classNames } from '../../utils/classNames';
-import PropTypes from 'prop-types';
 
 export type BreadSize = 'lg' | 'sm';
 export type BreadType = 'primary' | 'secondary' | 'default';
@@ -16,17 +15,15 @@ export type Breaddivider = 'slash' | 'arrow';
 export interface IBreadProps {
     /** classname */
     className?: string,
-    /** divider sla */
+    /** divider symbol */
     divider?: Breaddivider,
-    /** bre */
+    /** color theme */
     breadType?: BreadType,
-    /** fdd */
     role?: string,
 }
 
-// export type nativaBreadProps = BreadProps & LiHTMLAttributes<HTMLLIElement>;
 
-const Bread: FC<IBreadProps> = (props) => {
+export const Bread: FC<IBreadProps> = (props) => {
     const { className, breadType, divider, children, ...rest } = props;
     let styleClasses = classNames('bread', {
         [`bread-${breadType}`]: true,

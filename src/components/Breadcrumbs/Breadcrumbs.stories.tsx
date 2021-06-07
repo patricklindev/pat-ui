@@ -57,3 +57,4 @@ export const differentTypeBreadcrumbs = () => (
         </Bread>
     </div>
 )
+

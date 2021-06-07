@@ -1,6 +1,5 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-// import { Bread } from './Breadcrumbs';
 import Bread from './index';
 
 export default {

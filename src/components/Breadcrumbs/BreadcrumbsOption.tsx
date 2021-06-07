@@ -1,16 +1,8 @@
-import React, {
-    ButtonHTMLAttributes,
-    AnchorHTMLAttributes,
-    FC,
-    MouseEvent,
+import React, { FC,
     LiHTMLAttributes,
     CSSProperties,
     ReactNode,
-    Children,
 } from 'react';
-import { classNames } from '../../utils/classNames';
-import { IBreadProps } from './Breadcrumbs';
-
 
 export type IBreadOptionProps = {
     children?: ReactNode,
@@ -36,12 +28,6 @@ export const BreadOption: FC<nativeBreadOptionProps> = (props) => {
     } else {
         content = children
     }
-    // let devIcon = '';
-    // if (divider == 'arrow') {
-    //     devIcon = '⮞'
-    // } else {
-    //     devIcon = '/'
-    // }
     return (
         <li className={styleClasses} 
         style={cssStyle} value={ value } 

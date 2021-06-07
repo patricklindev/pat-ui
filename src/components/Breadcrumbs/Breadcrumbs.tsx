@@ -1,11 +1,4 @@
-import React, {
-    ButtonHTMLAttributes,
-    AnchorHTMLAttributes,
-    FC,
-    MouseEvent,
-    LiHTMLAttributes,
-    ReactNode,
-} from 'react';
+import React, { FC } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export type BreadSize = 'lg' | 'sm';
@@ -19,7 +12,6 @@ export interface IBreadProps {
     divider?: Breaddivider,
     /** color theme */
     breadType?: BreadType,
-    role?: string,
 }
 
 

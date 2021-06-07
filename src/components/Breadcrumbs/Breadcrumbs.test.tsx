@@ -22,17 +22,6 @@ describe('Breadcrumb', () => {
         console.log(element.tagName)
     })
 
-    it(' should render primary Breadcrumbs', () => {
-        const breadProps = {
-            className: 'test',
-        }
-        const wrapper = render(<Bread {...breadProps}>primary sm bread</Bread>);
-        // const element = wrapper.queryByText('⮞ primary sm bread') as HTMLElement;
-        // expect(element).toBeInTheDocument()
-        // expect(element.tagName).toBe('UL')
-        // expect(element).toHaveClass('bread test')
-    })
-
     it(' should render BreadOption', () => {
         const breadOptionProps = {
             value: 'val',

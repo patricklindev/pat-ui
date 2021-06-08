@@ -22,7 +22,7 @@ export interface ISwitchProps {
   onChange?: (val: boolean) => void;
 }
 
-type NativeSwitchProps = ISwitchProps & InputHTMLAttributes<HTMLInputElement>;
+export type NativeSwitchProps = ISwitchProps & InputHTMLAttributes<HTMLInputElement>;
 
 export const Switch: FC<NativeSwitchProps> = (props) => {
   const { swSize, swType, disabled, defaultChecked, id, onChange, ...rest } = props;
@@ -46,7 +46,6 @@ export const Switch: FC<NativeSwitchProps> = (props) => {
     if(onChange){
       onChange(e.target.checked);
     }
-    // console.log(e.target.checked)
   }
 
   let sw;

@@ -239,6 +239,7 @@ $msg-red-background: rgba(255, 0, 0, 0.1) !default;
 $msg-orange-background: rgba(255, 165, 0, 0.1) !default;
 $msg-blue-background: rgba(0, 0, 255, 0.1) !default;
 $msg-pink-background: rgba(255, 192, 203, 0.1) !default;
+
 // dropdown
 $dropdown-padding-y: 0.4rem !default;
 $dropdown-padding-x: 1rem !default;
@@ -264,3 +265,26 @@ $dropdown-transition: all 0.4s !default;
 
 // dropdown arrow
 $dropdown-arrow-color: $black;
+
+// pageitem
+$pageitem-font-weight: 300;
+$pageitem-padding-y: 0.5rem !default;
+$pageitem-padding-x: 0.75rem !default;
+
+$pageitem-font-family: $font-family-base !default;
+$pageitem-font-size: $font-size-base !default;
+$pageitem-line-height: $line-height-base !default;
+
+// pageitem border
+$pageitem-border-width: $border-width !default;
+$pageitem-border-radius: $border-width !default;
+
+// pageitem shadow
+$pageitem-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+
+// pageitem transition
+$pageitem-transition: all 0.4s ease-in-out !default;
+
+// pageItem disabled
+$pageitem-disabled-opacity: 0.65 !default;
+$pageitem-disabled-color: $gray-600;

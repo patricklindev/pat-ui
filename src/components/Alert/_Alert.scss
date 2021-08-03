@@ -1,0 +1,40 @@
+.alert {
+  position: relative;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  color: $body-color;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  border: $btn-border-width solid lightgray;
+  box-shadow: $btn-box-shadow;
+  transition: $btn-transition;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+.alert-sm {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+}
+
+.alert-lg {
+  font-size: 1.2rem;
+  padding: 0.7rem 1.2rem;
+}
+
+.alert-primary {
+  background-color: $primary;
+  color: $white;
+}
+
+.alert-secondary {
+  background-color: $secondary;
+  color: $white;
+}
+
+.alert-danger {
+  background-color: $danger;
+  color: $white;
+}

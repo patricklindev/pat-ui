@@ -7,8 +7,8 @@
   text-align: center;
   vertical-align: middle;
   border: $btn-border-width solid lightgray;
-  box-shadow: $btn-box-shadow;
-  transition: $btn-transition;
+  //   box-shadow: $btn-box-shadow;
+  //   transition: $btn-transition;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   margin: 0.5rem;
@@ -25,16 +25,25 @@
 }
 
 .alert-primary {
-  background-color: $primary;
-  color: $white;
+  @include alert-style(rgba($primary, 0.3), darken($primary, 10%));
 }
 
 .alert-secondary {
-  background-color: $secondary;
-  color: $white;
+  @include alert-style(rgba($secondary, 0.3), darken($secondary, 10%));
 }
 
 .alert-danger {
-  background-color: $danger;
-  color: $white;
+  @include alert-style(rgba($danger, 0.3), darken($danger, 10%));
+}
+
+.alert-warning {
+  @include alert-style(rgba($warning, 0.3), darken($warning, 10%));
+}
+
+.alert-info {
+  @include alert-style(rgba($info, 0.3), darken($info, 10%));
+}
+
+.alert-success {
+  @include alert-style(rgba($success, 0.3), darken($success, 10%));
 }

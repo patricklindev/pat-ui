@@ -10,6 +10,9 @@ export type AlertType =
   | 'primary'
   | 'secondary'
   | 'danger'
+  | 'warning'
+  | 'info'
+  | 'success'
   | 'default';
 
 export interface IAlertProps {

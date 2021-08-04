@@ -195,7 +195,6 @@ $btn-border-radius-sm: $border-radius-sm !default;
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
   border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
-
 // message style
 $msg-background-color: $gray-100 !default;
 $msg-border-radius: $border-radius-lg !default;
@@ -252,11 +251,12 @@ $dropdown-font-color: #3b3b3b;
 
 // dropdown border
 $dropdown-border-width: $border-width !default;
-$dropdown-border-radius: .28571429rem !default;
+$dropdown-border-radius: 0.28571429rem !default;
 $dropdown-onopen-color: #96c8da;
 
 // dropdown shadow
-$dropdown-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+$dropdown-box-shadow: inset 0 1px 0 rgba($white, 0.15),
+  0 1px 1px rgba($black, 0.075) !default;
 $dropdown-disabled-opacity: 0.65 !default;
 
 // dropdown transition
@@ -264,3 +264,18 @@ $dropdown-transition: all 0.4s !default;
 
 // dropdown arrow
 $dropdown-arrow-color: $black;
+
+// Alert styles
+$alert-border-radius: 5px !default;
+
+$alert-font-size: 1rem !default;
+$alert-font-size-sm: 0.8rem !default;
+$alert-font-size-lg: 1.2rem !default;
+
+$alert-padding-x: 1rem !default;
+$alert-padding-x-sm: 0.8rem !default;
+$alert-padding-x-lg: 1.2rem !default;
+
+$alert-padding-y: 0.7rem !default;
+$alert-padding-y-sm: 0.5rem !default;
+$alert-padding-y-lg: 1rem !default;

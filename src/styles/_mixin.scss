@@ -80,7 +80,8 @@
   border-color: $border-color;
 }
 
-@mixin alert-style($background-color, $color) {
+@mixin alert-style($background-color, $color, $border-color) {
   background-color: $background-color;
   color: $color;
+  border: $btn-border-width solid $border-color;
 }

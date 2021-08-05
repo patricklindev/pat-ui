@@ -26,6 +26,13 @@ export interface IAlertProps {
 
 export type PatAlertProps = IAlertProps & HTMLAttributes<HTMLDivElement>;
 
+/**
+ * Provide contextual feedback messages for typical user actions.
+ *
+ * ```js
+ * import {Alert} from 'pat-ui'
+ * ```
+ */
 export const Alert: FC<PatAlertProps> = (props) => {
     const { alertSize, alertType, children, className, ...rest } = props;
     let styleClasses = classNames('alert', {

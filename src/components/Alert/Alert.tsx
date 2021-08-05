@@ -24,7 +24,7 @@ export interface IAlertProps {
     alertType?: AlertType;
 }
 
-type PatAlertProps = IAlertProps & HTMLAttributes<HTMLDivElement>;
+export type PatAlertProps = IAlertProps & HTMLAttributes<HTMLDivElement>;
 
 export const Alert: FC<PatAlertProps> = (props) => {
     const { alertSize, alertType, children, className, ...rest } = props;

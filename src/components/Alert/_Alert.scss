@@ -1,14 +1,12 @@
 .alert {
   position: relative;
-  font-weight: $btn-font-weight;
-  line-height: $btn-line-height;
+  font-weight: $alert-font-weight;
+  line-height: $alert-line-height;
   color: $body-color;
   white-space: nowrap;
   text-align: center;
   vertical-align: middle;
-  border: $btn-border-width solid lightgray;
-  //   box-shadow: $btn-box-shadow;
-  //   transition: $btn-transition;
+  border: $alert-border-width solid $gray-500;
   padding: $alert-padding-y $alert-padding-x;
   border-radius: $alert-border-radius;
   margin: 0.5rem;
@@ -23,7 +21,9 @@
   font-size: $alert-font-size-lg;
   padding: $alert-padding-y-lg $alert-padding-x-lg;
 }
-
+.alert-default {
+  @include alert-style(transparent, $body-color, $gray-500);
+}
 .alert-primary {
   @include alert-style(rgba($primary, 0.3), darken($primary, 10%), $primary);
 }

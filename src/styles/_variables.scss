@@ -266,6 +266,9 @@ $dropdown-transition: all 0.4s !default;
 $dropdown-arrow-color: $black;
 
 // Alert styles
+$alert-font-weight: 400;
+$alert-line-height: $line-height-base !default;
+$alert-border-width: $border-width !default;
 $alert-border-radius: 5px !default;
 
 $alert-font-size: 1rem !default;

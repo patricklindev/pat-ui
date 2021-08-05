@@ -14,12 +14,13 @@ export { default as Dropdown } from './components/Dropdown';
 
 ReactDOM.render(
     <>
-      <h1 style={{margin:10}}>Alert Sizes</h1>
+      <h2 style={{margin:10}}>Alert Sizes</h2>
       <Alert alertSize="sm">Small Default Alert-Check it out</Alert>
       <Alert>Default Alert-Check it out</Alert>
       <Alert alertSize="lg">Large Default Alert-Check it out</Alert>
       <br/>
-      <h1 style={{margin:10}}>Alert Types</h1>
+      <h2 style={{margin:10}}>Alert Types</h2>
+      <Alert alertType="default">Default Alert-Check it out</Alert>
       <Alert alertType="primary">Primary  Alert-Check it out</Alert>
       <Alert alertType="secondary">Secondary  Alert-Check it out</Alert>
       <Alert alertType="danger">Danger  Alert-Check it out</Alert>

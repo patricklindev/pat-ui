@@ -1,0 +1,66 @@
+.slider {
+    cursor: pointer;
+    transition: $btn-transition;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+
+    @include slider-size(
+        $slider-width,
+        $slider-height
+    );
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    @include slider-thumb-size(
+        $slider-thumb-width,
+        $slider-thumb-height
+    );
+  }
+
+.slider-sm {
+    @include slider-size(
+        $slider-height-sm,
+        $slider-thumb-height-sm,
+    );
+    @include slider-thumb-size(
+        $slider-thumb-width-sm,
+        $slider-thumb-height-sm
+    );
+}
+
+.slider-md {
+    @include slider-size(
+        $slider-height-md
+    );
+    @include slider-thumb-size(
+        $slider-thumb-width-md,
+        $slider-thumb-height-md
+    );
+}
+
+.slider-lg {
+    @include slider-size(
+        $slider-height-lg
+    );
+    @include slider-thumb-size(
+        $slider-thumb-width-lg,
+        $slider-thumb-height-lg
+    );
+}
+
+.slider-primary {
+    @include slider-style($gray, $primary, $primary)
+}
+
+.slider-secondary {
+    @include slider-style($gray, $secondary, $secondary)
+}
+
+.slider-info {
+    @include slider-style($gray, $secondary, $secondary)
+}

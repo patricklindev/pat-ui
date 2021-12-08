@@ -264,3 +264,72 @@ $dropdown-transition: all 0.4s !default;
 
 // dropdown arrow
 $dropdown-arrow-color: $black;
+
+
+
+
+
+// // button
+// $btn-font-weight: 400;
+// $btn-padding-y: 0.375rem !default;
+// $btn-padding-x: 0.75rem !default;
+
+// $btn-font-family: $font-family-base !default;
+// $btn-font-size: $font-size-base !default;
+// $btn-line-height: $line-height-base !default;
+
+// // button small
+// $btn-padding-y-sm: 0.25rem !default;
+// $btn-padding-x-sm: 0.5rem !default;
+// $btn-font-size-sm: $font-size-sm !default;
+
+// // button large
+// $btn-padding-y-lg: 0.5rem !default;
+// $btn-padding-x-lg: 1rem !default;
+// $btn-font-size-lg: $font-size-lg !default;
+
+// // button border
+// $btn-border-width: $border-width !default;
+
+// // button shadow
+// $btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+// $btn-disabled-opacity: 0.65 !default;
+
+// // button link
+// $btn-link-color: $link-color !default;
+// $btn-link-hover-color: $link-hover-color !default;
+// $btn-link-disabled-color: $gray-600 !default;
+
+// // button radius
+// $btn-border-radius: $border-radius !default;
+// $btn-border-radius-lg: $border-radius-lg !default;
+// $btn-border-radius-sm: $border-radius-sm !default;
+
+// // button animation
+// $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+//   border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+
+
+
+//slider
+$slider-width: 100% !default;
+$slider-height: 0.7rem !default;
+
+//slider small
+$slider-width-sm: 100% !default;
+$slider-height-sm: 0.3rem !default;
+$slider-thumb-height-sm: 0.5rem !default;
+$slider-thumb-width-sm: 0.5rem !default;
+
+//slider medium
+$slider-width-md: 100% !default;
+$slider-height-md: 0.5rem !default;
+$slider-thumb-height-md: 1rem !default;
+$slider-thumb-width-md: 1rem !default;
+
+//slider large
+$slider-width-lg: 100% !default;
+$slider-height-lg: 1rem !default;
+$slider-thumb-height-lg: 1.5rem !default;
+$slider-thumb-width-lg: 1.5rem !default;
+

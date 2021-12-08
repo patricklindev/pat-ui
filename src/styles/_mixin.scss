@@ -76,21 +76,35 @@
 }
 
 
-@mixin slider-size($width, $height){
-  width: $width;
-  height: $height;
+@mixin slider-size($slider-width, $slider-height){
+  width: $slider-width;
+  height: $slider-height;
 }
 
-@mixin slider-style($color, $background, $hover-color, $hover-background-color){
-  color: $color;
+@mixin slider-thumb-size($slider-thumb-width, $slider-thumb-height){
+  width: $slider-thumb-width;
+  height: $slider-thumb-height;
+}
+
+@mixin slider-style($background, $hover-color, $hover-background-color){
   background: $background;
   &:hover {
-    color: $hover-color;
     background: $hover-background-color;
   }
   &.focus,
   &:focus {
     color: $hover-color;
     background: $hover-background-color;
+  }
+}
+
+@mixin slider-thumb-style($color, $hover-color){
+  color: $color;
+  &hover {
+    color: $hover-color;
+  }
+  &.focus,
+  &:focus {
+    color: $hover-color
   }
 }

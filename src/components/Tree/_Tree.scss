@@ -13,7 +13,7 @@
 }
 
 .tree__node:hover {
-  background-color: rgb(220, 220, 220);
+  background-color: #ced4da;
 }
 
 // styling on open
@@ -27,13 +27,13 @@
 .caret {
   cursor: pointer;
   user-select: none; /* Prevent text selection */
-  color: rgb(0, 60, 255);
+  color: #6610f2;
   padding: 5px;
   border-radius: 5px;
 }
 
 .caret:hover {
-  background-color: rgb(245, 245, 245);
+  background-color: #adb5bd;
 }
 
 /* Create the caret/arrow with a unicode, and style it */

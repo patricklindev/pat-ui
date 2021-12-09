@@ -81,19 +81,9 @@
   height: $slider-height;
 }
 
-@mixin slider-thumb-size($slider-thumb-width, $slider-thumb-height){
-  width: $slider-thumb-width;
-  height: $slider-thumb-height;
-}
-
 @mixin slider-style($background, $hover-color, $hover-background-color){
   background: $background;
   &:hover {
-    background: $hover-background-color;
-  }
-  &.focus,
-  &:focus {
-    color: $hover-color;
     background: $hover-background-color;
   }
 }
@@ -102,9 +92,5 @@
   color: $color;
   &hover {
     color: $hover-color;
-  }
-  &.focus,
-  &:focus {
-    color: $hover-color
   }
 }

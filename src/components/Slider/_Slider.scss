@@ -1,66 +1,39 @@
 .slider {
-    cursor: pointer;
-    transition: $btn-transition;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 15px;
 
-    @include slider-size(
-        $slider-width,
-        $slider-height
-    );
+  @include slider-size($slider-width, $slider-height);
 }
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
 
-    @include slider-thumb-size(
-        $slider-thumb-width,
-        $slider-thumb-height
-    );
-  }
+input[type="range"]{  
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
 
 .slider-sm {
-    @include slider-size(
-        $slider-height-sm,
-        $slider-thumb-height-sm,
-    );
-    @include slider-thumb-size(
-        $slider-thumb-width-sm,
-        $slider-thumb-height-sm
-    );
+  @include slider-size($slider-width-sm, $slider-height-sm);
 }
 
 .slider-md {
-    @include slider-size(
-        $slider-height-md
-    );
-    @include slider-thumb-size(
-        $slider-thumb-width-md,
-        $slider-thumb-height-md
-    );
+  @include slider-size($slider-width-md, $slider-height-md);
 }
 
 .slider-lg {
-    @include slider-size(
-        $slider-height-lg
-    );
-    @include slider-thumb-size(
-        $slider-thumb-width-lg,
-        $slider-thumb-height-lg
-    );
+  @include slider-size($slider-width-lg, $slider-height-lg);
 }
 
 .slider-primary {
-    @include slider-style($gray, $primary, $primary)
+  @include slider-style($gray-500, $primary, $primary);
 }
 
 .slider-secondary {
-    @include slider-style($gray, $secondary, $secondary)
+  @include slider-style($gray-500, $secondary, $secondary);
 }
 
 .slider-info {
-    @include slider-style($gray, $secondary, $secondary)
+  @include slider-style($gray-500, $info, $info);
 }

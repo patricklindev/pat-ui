@@ -16,8 +16,6 @@ export type SliderTheme =
 export interface ISliderProps {
     /**set slider size */
     sliderSize?: SliderSize;
-    /**set slider thumb size */
-    sliderThumbSize?: SliderThumbSize;
     /**set customized slider */
     className?: string;
     /**set slider type */
@@ -27,11 +25,10 @@ export interface ISliderProps {
 export type patSliderProps = ISliderProps;
 
 export const Slider: FC<patSliderProps> = (props) => {
-    const {className, sliderSize, sliderThumbSize, sliderTheme} = props;
+    const {className, sliderSize, sliderTheme} = props;
 
     let styleClasses = classNames('slider', {
         [`slider-${sliderSize}`]: !!sliderSize,
-        [`slider-${sliderThumbSize}`]: !!sliderThumbSize,
         [`slider-${sliderTheme}`]: true
     })
     if (className) {
@@ -39,7 +36,7 @@ export const Slider: FC<patSliderProps> = (props) => {
     }
 
     let slider = (
-        <input type="range" min="1" max="100" value="50" className={styleClasses}></input>
+        <input type="range" min="1" max="100" className={styleClasses}></input>
     )
 
     return slider;

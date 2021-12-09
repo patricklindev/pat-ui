@@ -66,7 +66,7 @@ export const Button: FC<PatButtonProps> = (props) => {
         disabled={disabled}
         {...(rest as NativeButtonProps)}
       >
-        {props.children}
+        {props.children + 'test'}
       </button>
     );
   } else {
@@ -77,7 +77,7 @@ export const Button: FC<PatButtonProps> = (props) => {
     }
     btn = (
       <a className={styleClasses} {...(rest as NativeAchorButtonProps)}>
-        {props.children}
+        {props.children + 'test'}
       </a>
     );
   }

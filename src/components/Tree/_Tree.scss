@@ -1,0 +1,49 @@
+.tree {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.tree__nodes {
+  display: none;
+}
+
+.tree__node {
+  padding: 5px 5px;
+}
+
+.tree__node:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+// styling on open
+.tree__nodes.open {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+  color: rgb(0, 60, 255);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.caret:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: '\25B6';
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  transform: rotate(90deg);
+}

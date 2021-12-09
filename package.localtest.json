@@ -7,22 +7,15 @@
   },
   "description": "React components library",
   "license": "MIT",
-  "keywords": [
-    "Components library",
-    "React",
-    "UI"
-  ],
+  "keywords": ["Components library", "React", "UI"],
   "homepage": "https://github.com/YuhanLin1105/pat-ui",
   "repository": {
     "type": "git",
     "url": "https://github.com/YuhanLin1105/pat-ui"
   },
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
@@ -37,7 +30,6 @@
     "clean-lib": "rimraf ./dist",
     "build": "npm run clean-lib && npm run build-lib",
     "build-lib": "tsc -p tsconfig.lib.json && node-sass ./src/styles/index.scss ./dist/index.css",
-    "build-lib-local-test": "npm run build && cp ./package.localtest.json ./dist/package.json && rimraf ../pat-ui-local && cp -R ./dist ../pat-ui-local",
     "test:nowatch": "react-scripts test --watchAll=false",
     "test": "react-scripts test",
     "storybook": "start-storybook -p 9009 -s public",
@@ -48,21 +40,14 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "quotes": [
-        "error",
-        "single"
-      ]
+      "quotes": ["error", "single"]
     }
   },
   "prettier": {
     "singleQuote": true
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

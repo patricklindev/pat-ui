@@ -28,6 +28,23 @@
   }
 }
 
+
+@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+  background-color: $msg-background-color;
+  border-radius: $msg-border-radius;
+  border: $msg-border;
+  padding: $msg-padding;
+  width: $msg-box-width;
+}
+
+@mixin color-message($msg-indent-left, $msg-pg-size) {
+  text-indent: $msg-indent-left;
+  font-size: $msg-pg-size;
+}
+
+@mixin size-message($msg-indent-left) {
+  text-indent: $msg-indent-left;
+}
 @mixin dropdown-border-style($border-width, $border-color) {
   border: $border-width solid $border-color;
 }

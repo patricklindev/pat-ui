@@ -1,0 +1,127 @@
+.msg {
+    position: relative;
+    display: inline-block;
+
+    @include message-style(
+        $msg-background-color, 
+        $msg-border-radius, 
+        $msg-border,
+        $msg-padding,
+        $msg-box-width
+    );
+}
+
+// default Message and different type message
+.msg .header {
+    font-size: $msg-header-size;
+    font-weight: $font-weight-bold;
+}
+
+.msg .content {
+    display: $msg-pg-display;
+    flex-wrap: $msg-pg-display-wrap;
+}
+
+.basic-message .content{
+    font-size: $msg-pg-size;
+}
+
+.list-message .list-header {
+    font-size: $msg-header-size;
+    font-weight: $font-weight-bold;
+    margin-left: $msg-list-margin-left;
+}
+
+.list-message .list-content {
+    font-size: $msg-pg-size;
+}
+
+.icon-message .content {
+    font-size: $msg-pg-size;
+}
+
+.icon-message .icon {
+    float: $msg-icon-float;
+    margin: $msg-icon-margin;
+}
+
+.dismiss-message .content {
+    font-size: $msg-pg-size;
+}
+
+.dismiss-message .icon {
+    float: $msg-dismiss-float;
+}
+
+// different size message
+.size-message {
+    @include size-message (
+        $msg-indent-left
+    );
+}
+
+.mini-message {
+    font-size: $msg-mini-font-size;
+}
+
+.tiny-message {
+    font-size: $msg-tiny-font-size;
+}
+
+.small-message {
+    font-size: $msg-small-font-size;
+}
+
+.large-message {
+    font-size: $msg-large-font-size;
+}
+
+.big-message {
+    font-size: $msg-big-font-size;
+}
+
+.huge-message {
+    font-size: $msg-huge-font-size;
+}
+
+.massive-message {
+    font-size: $msg-massive-font-size;
+}
+
+// different color message
+.color-message {
+    @include color-message(
+        $msg-indent-left,
+        $msg-pg-size
+    );
+}
+
+.red-message {
+    border-color: $red;
+    color: $red;
+    background-color: $msg-red-background;
+}
+
+.orange-message {
+    border-color: $orange;
+    color: $orange;
+    background-color: $msg-orange-background;
+}
+
+.blue-message {
+    border-color: $blue;
+    color: $blue;
+    background-color: $msg-blue-background;
+}
+
+.pink-message {
+    border-color: $pink;
+    color: $pink;
+    background-color: $msg-pink-background;
+}
+
+.black-message {
+    border-color: $black;
+    color: $white;
+    background-color: $black;
+}

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="msg msg-basic msg-large msg-white"
+    data-testid="message-element"
+  >
+    <div
+      class="icon"
+      data-testid="icon-element"
+    >
+      <p />
+    </div>
+    <div
+      class="header"
+    >
+      <p />
+    </div>
+    <div
+      class="content"
+    >
+      <p />
+    </div>
+  </div>
+</DocumentFragment>
+`;

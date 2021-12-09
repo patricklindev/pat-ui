@@ -10,6 +10,7 @@
 
 .tree__node {
   padding: 5px 5px;
+  border-radius: 5px;
 }
 
 .tree__node:hover {
@@ -20,7 +21,7 @@
 .tree__nodes.open {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 /* Style the caret/arrow */

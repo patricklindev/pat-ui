@@ -153,6 +153,10 @@
   .progress-ring {
     stroke: $primary;
   }
+
+  .pg-circular-text {
+    color: $primary;
+  }
 }
 .pg-circular-secondary {
   .ring {
@@ -161,6 +165,10 @@
 
   .progress-ring {
     stroke: $secondary;
+  }
+
+  .pg-circular-text {
+    color: $secondary;
   }
 }
 .pg-circular-success {
@@ -171,6 +179,10 @@
   .progress-ring {
     stroke: $success;
   }
+
+  .pg-circular-text {
+    color: $success;
+  }
 }
 .pg-circular-info {
   .ring {
@@ -179,6 +191,10 @@
 
   .progress-ring {
     stroke: $info;
+  }
+
+  .pg-circular-text {
+    color: $info;
   }
 }
 .pg-circular-warning {
@@ -189,6 +205,10 @@
   .progress-ring {
     stroke: $warning;
   }
+
+  .pg-circular-text {
+    color: $warning;
+  }
 }
 .pg-circular-danger {
   .ring {
@@ -197,5 +217,9 @@
 
   .progress-ring {
     stroke: $danger;
+  }
+
+  .pg-circular-text {
+    color: $danger;
   }
 }

@@ -7,17 +7,15 @@ import { classNames } from '../../utils/classNames';
 import Button from '../Button/Button';
 
 export type UnderlineType = 'always' | 'hover' | 'none';
-export type VariantType = 'button' | 'h1' | 'h2' | 'h3' | 'div' | 'span';
+export type VariantType =  'h1' | 'h2' | 'h3' | 'body1' | 'body2' | 'inherit';
 export type LinkType = 'primary' | 'secondary' | 'default';
-export type LinkSize = 'smaller' | 'small' | 'large' | 'larger' | 'big';
 
 interface ILinkProps {
   linkType?: LinkType;
   underline?: UnderlineType;
   variant?: VariantType;
   href: string;
-  size?: LinkSize;
-  component?: 'button';
+  component?: 'button' | 'Button';
 }
 
 type LinkAnchorProps = ILinkProps & AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -25,11 +23,10 @@ type LinkButtonProps = ILinkProps & ButtonHTMLAttributes<HTMLButtonElement>;
 export type PatLinkProps = LinkAnchorProps | LinkButtonProps;
 
 const Link: FC<PatLinkProps> = (props) => {
-  const { linkType, underline, variant, href, size, component, ...rest } = props;
+  const { linkType, underline, variant, href, component, ...rest } = props;
   const styleClasses = classNames('link', {
     [`link-${linkType}`]: true,
     [`link-${underline}`]: true,
-    [`link-${size}`]: !!size,
     [`link-${variant}`]: true,
     [`link-${component}`]: !!component,
   });
@@ -44,6 +41,14 @@ const Link: FC<PatLinkProps> = (props) => {
           </a>
         )
         return link;
+      case 'Button':
+        link = (
+          <a href={href}>
+            <Button className={styleClasses} {...(rest as LinkButtonProps)}></Button>
+          </a>
+        )
+        return link;
+      
       default:
         link = null;
         return link;
@@ -51,9 +56,9 @@ const Link: FC<PatLinkProps> = (props) => {
 
   }
   link = (
-    <a className={styleClasses} {...(rest as LinkAnchorProps)}>
-      {props.children}
-    </a>
+      <a className={styleClasses} href={href}>
+        {props.children}
+      </a>
   );
   return link;
 }
@@ -61,7 +66,7 @@ const Link: FC<PatLinkProps> = (props) => {
 Link.defaultProps = {
   underline: 'always',
   linkType: 'default',
-  variant: 'button',
+  variant: 'inherit', //should be inherit
 };
 
 export default Link;

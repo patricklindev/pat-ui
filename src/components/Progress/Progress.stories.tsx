@@ -71,21 +71,21 @@ export const DiffSizeProgress = () => {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>xs</h3>
+          <h3 style={{ textAlign: 'center' }}>xs</h3>
           <div style={{ margin: 'auto' }}>
             <Progress pgType="circular" pgSize="xs" pgValue={progress} />
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>sm</h3>
+          <h3 style={{ textAlign: 'center' }}>sm</h3>
           <div style={{ margin: 'auto' }}>
             <Progress pgType="circular" pgSize="sm" pgValue={progress} />
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>
+          <h3 style={{ textAlign: 'center' }}>
             default
             <span style={{ fontSize: '12px' }}> (no need to add props)</span>
           </h3>
@@ -95,14 +95,14 @@ export const DiffSizeProgress = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>lg</h3>
+          <h3 style={{ textAlign: 'center' }}>lg</h3>
           <div style={{ margin: 'auto' }}>
             <Progress pgType="circular" pgSize="lg" pgValue={progress} />
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>xl</h3>
+          <h3 style={{ textAlign: 'center' }}>xl</h3>
           <div style={{ margin: 'auto' }}>
             <Progress pgType="circular" pgSize="xl" pgValue={progress} />
           </div>
@@ -154,7 +154,7 @@ export const ShowPercentage = () => {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>
+          <h3 style={{ textAlign: 'center' }}>
             xs{' '}
             <span style={{ fontSize: '12px' }}>
               (no percentage shown for xs)
@@ -171,7 +171,7 @@ export const ShowPercentage = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>sm</h3>
+          <h3 style={{ textAlign: 'center' }}>sm</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -183,14 +183,14 @@ export const ShowPercentage = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>default</h3>
+          <h3 style={{ textAlign: 'center' }}>default</h3>
           <div style={{ margin: 'auto' }}>
             <Progress showPercentage pgType="circular" pgValue={progress} />
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>lg</h3>
+          <h3 style={{ textAlign: 'center' }}>lg</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -202,7 +202,7 @@ export const ShowPercentage = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>xl</h3>
+          <h3 style={{ textAlign: 'center' }}>xl</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -268,7 +268,7 @@ export const DiffColorProgress = () => {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>primary</h3>
+          <h3 style={{ textAlign: 'center' }}>primary</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -280,7 +280,7 @@ export const DiffColorProgress = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>secondary</h3>
+          <h3 style={{ textAlign: 'center' }}>secondary</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -292,7 +292,7 @@ export const DiffColorProgress = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>success</h3>
+          <h3 style={{ textAlign: 'center' }}>success</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -304,7 +304,7 @@ export const DiffColorProgress = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>info</h3>
+          <h3 style={{ textAlign: 'center' }}>info</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -316,7 +316,7 @@ export const DiffColorProgress = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>warning</h3>
+          <h3 style={{ textAlign: 'center' }}>warning</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -328,7 +328,7 @@ export const DiffColorProgress = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3>danger</h3>
+          <h3 style={{ textAlign: 'center' }}>danger</h3>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage

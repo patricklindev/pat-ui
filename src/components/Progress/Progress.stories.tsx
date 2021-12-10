@@ -1,6 +1,7 @@
 import React from 'react';
 import Progress from './Progress';
 import useSimulateProgress from '../../utils/hooks/useSimulateProgress';
+import { classNames } from '../../../dist/utils/classNames';
 
 export default {
   title: 'Progress',
@@ -200,6 +201,112 @@ export const DiffColorProgress = () => {
           <h3>danger</h3>
           <div style={{ margin: 'auto' }}>
             <Progress pgType="circular" pgColor="danger" pgValue={progress} />
+          </div>
+        </div>
+      </div>
+
+      <br />
+    </div>
+  );
+};
+
+export const ShowPercentage = () => {
+  const progress = useSimulateProgress();
+
+  return (
+    <div>
+      <h1>Linear</h1>
+      <br />
+
+      <h3>xs</h3>
+      <Progress showPercentage pgSize="xs" pgValue={progress} />
+      <br />
+
+      <h3>sm</h3>
+      <Progress showPercentage pgSize="sm" pgValue={progress} />
+      <br />
+
+      <h3>default</h3>
+      <Progress showPercentage pgValue={progress} />
+      <br />
+
+      <h3>lg</h3>
+      <Progress showPercentage pgSize="lg" pgValue={progress} />
+      <br />
+
+      <h3>xl</h3>
+      <Progress showPercentage pgSize="xl" pgValue={progress} />
+      <br />
+
+      <br />
+
+      <h1>Circular</h1>
+      <br />
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-around',
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3>
+            xs{' '}
+            <span style={{ fontSize: '12px' }}>
+              {' '}
+              (no percentage shown for xs)
+            </span>
+          </h3>
+          <div style={{ margin: 'auto' }}>
+            <Progress
+              showPercentage
+              pgType="circular"
+              pgSize="xs"
+              pgValue={progress}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3>sm</h3>
+          <div style={{ margin: 'auto' }}>
+            <Progress
+              showPercentage
+              pgType="circular"
+              pgSize="sm"
+              pgValue={progress}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3>default</h3>
+          <div style={{ margin: 'auto' }}>
+            <Progress showPercentage pgType="circular" pgValue={progress} />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3>lg</h3>
+          <div style={{ margin: 'auto' }}>
+            <Progress
+              showPercentage
+              pgType="circular"
+              pgSize="lg"
+              pgValue={progress}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3>xl</h3>
+          <div style={{ margin: 'auto' }}>
+            <Progress
+              showPercentage
+              pgType="circular"
+              pgSize="xl"
+              pgValue={progress}
+            />
           </div>
         </div>
       </div>

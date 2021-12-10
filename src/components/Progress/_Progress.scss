@@ -95,6 +95,14 @@
     left: 0;
   }
 
+  // circular text
+  .pg-circular-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .progress {
     position: absolute;
     top: 0;
@@ -115,6 +123,28 @@
 }
 
 // circular size
+.pg-circular-xs {
+  .pg-circular-text {
+    display: none;
+  }
+}
+.pg-circular-sm {
+  .pg-circular-text {
+    font-size: 12px;
+  }
+}
+.pg-circular-lg {
+  .pg-circular-text {
+    font-size: 20px;
+  }
+}
+.pg-circular-xl {
+  .pg-circular-text {
+    font-size: 30px;
+  }
+}
+
+// circular color
 .pg-circular-primary {
   .ring {
     stroke: $pg-primary-background;

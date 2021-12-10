@@ -174,6 +174,9 @@ export const Progress: FC<IProgressProps> = (props) => {
             cy={ringProps.cy}
           />
         </svg>
+        {showPercentage ? (
+          <div className="pg-circular-text">{`${Math.floor(pgValue)}%`}</div>
+        ) : null}
       </div>
     );
   }

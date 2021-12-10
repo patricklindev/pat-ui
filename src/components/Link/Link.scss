@@ -1,0 +1,60 @@
+.link {
+  margin: 0;
+  display: inline-block;
+}
+
+.link-default {
+  color: $body-color;
+  text-decoration-color: $body-color;
+  &:hover {
+    color: blue;
+  }
+}
+
+// 버튼 일 경우에만 color white. Otherwise, $primary
+.link-primary {
+  color: $primary;
+  text-decoration-color: $primary;
+  &:hover {
+    color: darken($primary, 15%);
+  }
+}
+
+.link-secondary {
+  color: $secondary;
+  text-decoration-color: $secondary;
+  &:hover {
+    color: darken($secondary, 35%);
+  }
+}
+
+.link-always {
+  text-decoration: underline;
+}
+
+.link-hover:hover {
+  text-decoration: underline;
+}
+
+.link-none{ 
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.link-h1 {
+  font-size: $link-h1-font-size;
+}
+.link-h2 {
+  font-size: $link-h2-font-size;
+}
+.link-h3 {
+  font-size: $link-h3-font-size;
+}
+.link-body1 {
+  font-size: $link-body1-font-size;
+}
+.link-body2 {
+  font-size: $link-body2-font-size;
+}

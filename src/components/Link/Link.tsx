@@ -70,3 +70,49 @@ Link.defaultProps = {
 };
 
 export default Link;
+
+// import './App.css';
+// import { Link } from 'pat-ui';
+// import 'pat-ui/index.css';
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Link variant='h1' href='#'>H1 Link</Link>
+//       <Link variant='h2' href='#'>H2 Link</Link>
+//       <Link variant='h3' href='#'>H3 Link</Link>
+//       <Link variant='body1' href='#'>Body1 Link</Link>
+//       <Link variant='body2' href='#' style={{color: 'red'}}>Body2 Link</Link>
+
+//       <br />
+//       <br />
+//       <br />
+
+//       <Link underline='always' href='#' linkType='primary'>Underline Always</Link>
+//       <Link underline='hover' href='#' linkType='secondary'>Underline Hover</Link>
+//       <Link underline='none' href='#' linkType='primary'>Underline None</Link>
+
+//       <br />
+//       <br />
+//       <br />
+
+//       <Link component='button' href='#' style={{height: '35px'}}>Button</Link>
+//       <Link component='Button' href='#' underline='hover' linkType='primary'>Button</Link>
+
+//       <br />
+//       <br />
+//       <br />
+    
+//       <Link variant='h1' component='Button' href='#' underline='none'>Button component with H1 variant</Link>
+
+//       <br />
+//       <br />
+//       <br />
+
+//       <div>this is testing inheritance <Link href='#'>link</Link></div>
+//       <h3>this is testing inheritance <Link href='#' linkType='primary' underline='hover'>link</Link></h3>
+//     </div>
+//   );
+// }
+
+// export default App;

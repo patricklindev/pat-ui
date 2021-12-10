@@ -13,12 +13,12 @@ const useSimulateProgress = () => {
         }
 
         // create random value
-        const diff = Math.random() * 10;
+        const diff = Math.random() * 5;
 
         // return whichever is smaller
         return Math.min(prevProgress + diff, 100);
       });
-    }, 400);
+    }, 300);
 
     return () => {
       clearInterval(interval);

@@ -3,32 +3,40 @@
   width: 100%;
   background-color: $gray-400;
   border-radius: 50px;
+  margin: auto 0;
 
-  .bar {
+  .pg-linear-bar {
     height: 7px;
     background-color: $black;
     border-radius: 50px;
+    transition: width 0.3s linear;
   }
+}
+
+// linear text
+.pg-linear-text {
+  margin-left: 10px;
+  width: 5%;
 }
 
 // linear size
 .pg-linear-xs {
-  .bar {
+  .pg-linear-bar {
     height: 3px;
   }
 }
 .pg-linear-sm {
-  .bar {
+  .pg-linear-bar {
     height: 5px;
   }
 }
 .pg-linear-lg {
-  .bar {
+  .pg-linear-bar {
     height: 10px;
   }
 }
 .pg-linear-xl {
-  .bar {
+  .pg-linear-bar {
     height: 13px;
   }
 }
@@ -37,42 +45,42 @@
 .pg-linear-primary {
   background-color: $pg-primary-background;
 
-  .bar {
+  .pg-linear-bar {
     background-color: $primary;
   }
 }
 .pg-linear-secondary {
   background-color: $pg-secondary-background;
 
-  .bar {
+  .pg-linear-bar {
     background-color: $secondary;
   }
 }
 .pg-linear-success {
   background-color: $pg-success-background;
 
-  .bar {
+  .pg-linear-bar {
     background-color: $success;
   }
 }
 .pg-linear-info {
   background-color: $pg-info-background;
 
-  .bar {
+  .pg-linear-bar {
     background-color: $info;
   }
 }
 .pg-linear-warning {
   background-color: $pg-warning-background;
 
-  .bar {
+  .pg-linear-bar {
     background-color: $warning;
   }
 }
 .pg-linear-danger {
   background-color: $pg-danger-background;
 
-  .bar {
+  .pg-linear-bar {
     background-color: $danger;
   }
 }

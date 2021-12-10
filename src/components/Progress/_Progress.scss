@@ -88,6 +88,8 @@
 // circular default
 .pg-circular {
   position: relative;
+  height: 75px;
+  width: 75px;
 
   .background {
     position: absolute;
@@ -129,16 +131,25 @@
   }
 }
 .pg-circular-sm {
+  height: 50px;
+  width: 50px;
+
   .pg-circular-text {
     font-size: 12px;
   }
 }
 .pg-circular-lg {
+  height: 100px;
+  width: 100px;
+
   .pg-circular-text {
     font-size: 20px;
   }
 }
 .pg-circular-xl {
+  height: 150px;
+  width: 150px;
+
   .pg-circular-text {
     font-size: 30px;
   }

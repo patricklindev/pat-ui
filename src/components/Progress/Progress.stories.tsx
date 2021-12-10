@@ -25,7 +25,12 @@ export const DiffTypeProgress = () => {
 
       <h1>Circular</h1>
       <br />
-      <Progress pgType="circular" pgValue={progress} />
+      <Progress
+        showPercentage
+        pgSize="xl"
+        pgType="circular"
+        pgValue={progress}
+      />
       <br />
     </div>
   );

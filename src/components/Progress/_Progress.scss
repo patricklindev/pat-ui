@@ -6,7 +6,7 @@
 
   .bar {
     height: 7px;
-    background-color: $gray-600;
+    background-color: $black;
     border-radius: 50px;
   }
 }
@@ -79,4 +79,85 @@
 
 // circular default
 .pg-circular {
+  position: relative;
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .ring {
+    stroke: $gray-400;
+  }
+
+  .progress-ring {
+    stroke: $black;
+
+    transition: stroke-dashoffset 0.5s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+}
+
+// circular size
+.pg-circular-primary {
+  .ring {
+    stroke: $pg-primary-background;
+  }
+
+  .progress-ring {
+    stroke: $primary;
+  }
+}
+.pg-circular-secondary {
+  .ring {
+    stroke: $pg-secondary-background;
+  }
+
+  .progress-ring {
+    stroke: $secondary;
+  }
+}
+.pg-circular-success {
+  .ring {
+    stroke: $pg-success-background;
+  }
+
+  .progress-ring {
+    stroke: $success;
+  }
+}
+.pg-circular-info {
+  .ring {
+    stroke: $pg-info-background;
+  }
+
+  .progress-ring {
+    stroke: $info;
+  }
+}
+.pg-circular-warning {
+  .ring {
+    stroke: $pg-warning-background;
+  }
+
+  .progress-ring {
+    stroke: $warning;
+  }
+}
+.pg-circular-danger {
+  .ring {
+    stroke: $pg-danger-background;
+  }
+
+  .progress-ring {
+    stroke: $danger;
+  }
 }

@@ -35,7 +35,7 @@ export interface IProgressProps {
   pgColor?: ProgressColor;
   /** show or hide progress text */
   showPercentage?: boolean;
-  /** set progress value */
+  /** set progress value from 0 to 100 (%) */
   pgValue: number;
 }
 

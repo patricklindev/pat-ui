@@ -13,7 +13,7 @@ const useSimulateProgress = () => {
         }
 
         // create random value
-        const diff = Math.random() * 5;
+        const diff = Math.random() * 8;
 
         // return whichever is smaller
         return Math.min(prevProgress + diff, 100);

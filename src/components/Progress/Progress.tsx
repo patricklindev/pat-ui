@@ -39,6 +39,13 @@ export interface IProgressProps {
   pgValue: number;
 }
 
+/**
+ * A progress component shows the process of a task
+ *
+ * ```js
+ * import {Progress} from 'pat-ui'
+ * ```
+ */
 export const Progress: FC<IProgressProps> = (props) => {
   // props destructure
   const { className, pgType, pgSize, pgColor, showPercentage, pgValue } = props;

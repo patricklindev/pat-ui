@@ -1,10 +1,82 @@
-.linear {
+// linear default
+.pg-linear {
   width: 100%;
-  background-color: lightgrey;
+  background-color: $gray-400;
+  border-radius: 50px;
 
   .bar {
-    width: 0%;
-    height: 30px;
-    background-color: lightgreen;
+    height: 7px;
+    background-color: $gray-600;
+    border-radius: 50px;
   }
+}
+
+// linear size
+.pg-linear-xs {
+  .bar {
+    height: 3px;
+  }
+}
+.pg-linear-sm {
+  .bar {
+    height: 5px;
+  }
+}
+.pg-linear-lg {
+  .bar {
+    height: 10px;
+  }
+}
+.pg-linear-xl {
+  .bar {
+    height: 13px;
+  }
+}
+
+// linear color
+.pg-linear-primary {
+  background-color: $pg-primary-background;
+
+  .bar {
+    background-color: $primary;
+  }
+}
+.pg-linear-secondary {
+  background-color: $pg-secondary-background;
+
+  .bar {
+    background-color: $secondary;
+  }
+}
+.pg-linear-success {
+  background-color: $pg-success-background;
+
+  .bar {
+    background-color: $success;
+  }
+}
+.pg-linear-info {
+  background-color: $pg-info-background;
+
+  .bar {
+    background-color: $info;
+  }
+}
+.pg-linear-warning {
+  background-color: $pg-warning-background;
+
+  .bar {
+    background-color: $warning;
+  }
+}
+.pg-linear-danger {
+  background-color: $pg-danger-background;
+
+  .bar {
+    background-color: $danger;
+  }
+}
+
+// circular default
+.pg-circular {
 }

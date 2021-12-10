@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
+import React, { FC } from 'react';
+import { classNames } from '../../utils/classNames';
 
 // progress type
 export type ProgressType = 'circular' | 'linear';
@@ -9,46 +10,63 @@ export type ProgressColor =
   | 'success'
   | 'info'
   | 'warning'
-  | 'danger'
-  | 'white'
-  | 'dark';
+  | 'danger';
 // progress size
-export type ProgressSize = 'sm' | 'lg';
+export type ProgressSize = 'xs' | 'sm' | 'lg' | 'xl';
 
 // props type
 export interface IProgressProps {
+  /** set class name */
+  className?: string;
+  /** set progress type: circular or linear */
   pgType?: ProgressType;
+  /** set message size */
+  pgSize?: ProgressSize;
+  /** set progress color */
   pgColor?: ProgressColor;
+  /** set progress value */
+  pgValue: number;
 }
 
 export const Progress: FC<IProgressProps> = (props) => {
   // props destructure
-  const { pgType, pgColor } = props;
+  const { className, pgType, pgSize, pgColor, pgValue, ...rest } = props;
 
-  // linear progress bar width
-  // const [width, setWidth] = useState<number>(0);
+  // manage class names with different type
+  let styleClasses;
+  if (pgType === 'linear') {
+    styleClasses = classNames('pg-linear', {
+      [`pg-linear-${pgSize}`]: !!pgSize,
+      [`pg-linear-${pgColor}`]: !!pgColor,
+    });
+  } else if (pgType === 'circular') {
+    styleClasses = classNames('pg-circular', {
+      [`pg-circular-${pgSize}`]: !!pgSize,
+      [`pg-circular-${pgColor}`]: !!pgColor,
+    });
+  }
+  // add user's custom class
+  if (className) {
+    styleClasses += ' ' + className;
+  }
 
-  // // interval ref
-  const intervalRef = useRef<number | undefined>(undefined);
+  // render different component based on type
+  let renderComponent;
+  if (pgType === 'linear') {
+    renderComponent = (
+      <div className={styleClasses}>
+        <div style={{ width: `${pgValue}%` }} className="bar"></div>
+      </div>
+    );
+  } else if (pgType === 'circular') {
+    renderComponent = <div className={styleClasses}></div>;
+  }
 
-  // // set interval to simulate progress
-  // useEffect(() => {
-  //   intervalRef.current = window.setTimeout(() => {
-  //     setWidth((width) => width + 1);
-  //   }, 50);
-  // }, []);
+  return <>{renderComponent}</>;
+};
 
-  // useEffect(() => {
-  //   if (width >= 100) {
-  //     window.clearInterval(intervalRef.current);
-  //   }
-  // }, [width]);
-
-  return (
-    <div className="linear">
-      <div className="bar">Progress</div>
-    </div>
-  );
+Progress.defaultProps = {
+  pgType: 'linear',
 };
 
 export default Progress;

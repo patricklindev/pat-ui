@@ -81,16 +81,25 @@
   height: $slider-height;
 }
 
-@mixin slider-style($background, $hover-color, $hover-background-color){
+// @mixin thumb-size($thumb-width, $thumb-height){
+//   width: $thumb-width;
+//   height: $thumb-height;
+// }
+
+@mixin slider-style($background, $hover-background-color){
   background: $background;
   &:hover {
     background: $hover-background-color;
   }
 }
 
-@mixin slider-thumb-style($color, $hover-color){
-  color: $color;
-  &hover {
-    color: $hover-color;
-  }
+@mixin thumb-style($thumb-color){
+  background: $thumb-color;
 }
+
+// @mixin slider-thumb-style($color, $hover-color){
+//   color: $color;
+//   &hover {
+//     color: $hover-color;
+//   }
+// }

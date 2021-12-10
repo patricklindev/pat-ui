@@ -1,39 +1,79 @@
 .slider {
+  -webkit-appearance: none;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
   border-radius: 15px;
 
   @include slider-size($slider-width, $slider-height);
+ 
 }
 
-input[type="range"]{  
+.slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
+  width: 20px;
+  height: 20px;
+  // background: red;
+  border-radius: 15px;
   cursor: pointer;
+  @include thumb-style($thumb-color);
+  // @include thumb-size($thumb-width, $thumb-height);
 }
 
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  // background: red;
+  border-radius: 15px;
+  cursor: pointer;
+  @include thumb-style($thumb-color);
+  // @include thumb-size($thumb-width, $thumb-height);
+
+}
+
+//slider sizes
 .slider-sm {
   @include slider-size($slider-width-sm, $slider-height-sm);
 }
-
 .slider-md {
   @include slider-size($slider-width-md, $slider-height-md);
 }
-
 .slider-lg {
   @include slider-size($slider-width-lg, $slider-height-lg);
 }
 
+// //thumb sizes
+// .thumb-sm{
+//   @include thumb-size($thumb-width-sm, $thumb-height-sm);
+// }
+// .thumb-md{
+//   @include thumb-size($thumb-width-sm, $thumb-height-md);
+// }
+// .thumb-lg{
+//   @include thumb-size($thumb-width-sm, $thumb-height-lg);
+// }
+
+
+//slider colors
 .slider-primary {
-  @include slider-style($gray-500, $primary, $primary);
+  @include slider-style($primary, #19dfa4);
 }
-
 .slider-secondary {
-  @include slider-style($gray-500, $secondary, $secondary);
+  @include slider-style($secondary, #9b9fa4);
+}
+.slider-info {
+  @include slider-style($info, #12c3df);
 }
 
-.slider-info {
-  @include slider-style($gray-500, $info, $info);
+//thumb colors
+.slider::-moz-range-thumb-primary, .slider::-webkit-slider-thumb-primary{
+  @include thumb-style($primary);
+}
+.slider::-moz-range-thumb-secondary, .slider::-webkit-slider-thumb-secondary{
+  @include thumb-style($secondary);
+}
+.slider::-moz-range-thumb-info, .slider::-webkit-slider-thumb-info{
+  @include thumb-style($info);
 }

@@ -8,7 +8,12 @@ export default {
 
 export const DefaultTree = () => (
   <div>
-    <Tree title="Web Applications">
+    <Tree
+      title="Web Applications"
+      buttonColor="primary"
+      clickTitle={() => alert('Tree title')}
+    >
+      <Tree.Node>React</Tree.Node>
       <Tree title="Front End">
         <Tree title="JavaScript">
           <Tree.Node>React</Tree.Node>

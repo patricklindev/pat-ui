@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties, ReactNode } from 'react';
+import React, { FC, CSSProperties, ReactNode, HTMLAttributes } from 'react';
 
 export interface ITreeNodeProps {
   /** children must be React Element */
@@ -7,10 +7,14 @@ export interface ITreeNodeProps {
   className?: string;
   /** set customized css style */
   cssStyle?: CSSProperties;
+  /** set customized css style */
+  onClick?: Function;
 }
 
-const TreeNode: FC<ITreeNodeProps> = (props) => {
-  const { className, children, cssStyle } = props;
+type NativeTreeProps = ITreeNodeProps & HTMLAttributes<HTMLDivElement>;
+
+const TreeNode: FC<NativeTreeProps> = (props) => {
+  const { className, children, cssStyle, ...rest } = props;
 
   let classNames = 'tree__node';
   if (className) {
@@ -18,9 +22,14 @@ const TreeNode: FC<ITreeNodeProps> = (props) => {
   }
 
   return (
-    <li className={classNames} style={cssStyle}>
+    <div
+      className={classNames}
+      style={cssStyle}
+      onClick={props.onClick}
+      {...rest}
+    >
       {children}
-    </li>
+    </div>
   );
 };
 

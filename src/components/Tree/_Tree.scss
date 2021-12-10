@@ -3,48 +3,77 @@
   flex-direction: column;
   list-style-type: none;
 }
+.tree__title-primary {
+  color: $primary;
+}
+.tree__title-secondary {
+  color: $secondary;
+}
+.tree__title-danger {
+  color: $danger;
+}
+.tree__title-info {
+  color: $info;
+}
+.tree__title-warning {
+  color: $warning;
+}
 
 .tree__nodes {
   display: none;
+  margin-left: 15px;
+  // styling on open
+  &.open {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .tree__node {
   padding: 5px 5px;
   border-radius: 5px;
-}
-
-.tree__node:hover {
-  background-color: #ced4da;
-}
-
-// styling on open
-.tree__nodes.open {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
+  &:hover {
+    background-color: $gray-200;
+  }
 }
 
 /* Style the caret/arrow */
 .caret {
   cursor: pointer;
   user-select: none; /* Prevent text selection */
-  color: #6610f2;
+  color: $primary;
   padding: 5px;
   border-radius: 5px;
-}
 
-.caret:hover {
-  background-color: #adb5bd;
-}
+  &:hover {
+    background-color: $gray-100;
+  }
 
-/* Create the caret/arrow with a unicode, and style it */
-.caret::before {
-  content: '\25B6';
-  display: inline-block;
-  margin-right: 6px;
-}
+  /* Create the caret/arrow with a unicode, and style it */
+  &::before {
+    content: '\1405';
+    font-size: small;
+    display: inline-block;
+    margin-right: 5px;
+  }
 
-/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
-  transform: rotate(90deg);
+  /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+  &-down::before {
+    transform: rotate(90deg);
+  }
+}
+.caret-primary {
+  color: $primary;
+}
+.caret-secondary {
+  color: $secondary;
+}
+.caret-danger {
+  color: $danger;
+}
+.caret-info {
+  color: $info;
+}
+.caret-warning {
+  color: $warning;
 }

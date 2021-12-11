@@ -36,10 +36,20 @@
   text-decoration: underline;
 }
 
-.link-none{ 
+.link-none {
   text-decoration: none;
-  &:hover{
+  &:hover {
     text-decoration: none;
+  }
+}
+
+.link-button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  &:focus {
+    border: none;
+    outline: none;
   }
 }
 

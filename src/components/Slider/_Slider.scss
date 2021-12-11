@@ -17,6 +17,15 @@
   }
 }
 
+
+//slider orientation
+.slider-vertical {
+  @include slider-ori($slider-vertical)
+}
+.slider-horizontal {
+  @include slider-ori($slider-horizontal)
+}
+
 //thumb colors
 .thumb-primary {
   &::-moz-range-thumb{

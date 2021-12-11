@@ -80,6 +80,10 @@
   height: $slider-height;
 }
 
+@mixin slider-ori($slider-ori){
+  transform: $slider-ori;
+}
+
 @mixin thumb-size($thumb-width, $thumb-height){
   width: $thumb-width;
   height: $thumb-height;

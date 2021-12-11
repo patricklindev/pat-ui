@@ -3,6 +3,7 @@ import { classNames } from '../../utils/classNames';
 
 export type SliderSize = 'lg' | 'md' | 'sm';
 export type ThumbSize = 'lg' | 'md' | 'sm';
+export type SliderOrientation = 'horizontal' | 'vertical'
 export type SliderTheme =
   | 'primary'
   | 'secondary'
@@ -29,6 +30,8 @@ export interface ISliderProps {
   thumbSize?: ThumbSize;
   /**set customized slider */
   className?: string;
+  /**set slider orientation */
+  sliderOrientation?: SliderOrientation;
   /**set slider type */
   sliderTheme?: SliderTheme;
   /**set thumb type */
@@ -46,7 +49,7 @@ export interface ISliderProps {
 export type PatSliderProps = ISliderProps;
 
 export const Slider: FC<PatSliderProps> = (props) => {
-  const {min, max, className, sliderSize, thumbSize, sliderTheme, thumbTheme, onChange, ...rest} = props
+  const {min, max, className, sliderSize, thumbSize, sliderTheme, thumbTheme, onChange, sliderOrientation, ...rest} = props
   const [value, setValue] = useState(props.startvalue);
   
   let styleClasses = classNames('slider', {
@@ -54,6 +57,7 @@ export const Slider: FC<PatSliderProps> = (props) => {
     [`thumb-${thumbSize}`]: !!thumbSize,
     [`thumb-${thumbTheme}`]: true,
     [`slider-${sliderTheme}`]: true,
+    [`slider-${sliderOrientation}`]: true
   });
   if (className) {
     styleClasses += ' ' + className;
@@ -82,6 +86,7 @@ export const Slider: FC<PatSliderProps> = (props) => {
 Slider.defaultProps = {
   sliderTheme: 'secondary',
   thumbTheme: 'success',
+  sliderOrientation: 'horizontal',
   sliderSize: 'md',
   thumbSize: 'md',
   startvalue: 0,

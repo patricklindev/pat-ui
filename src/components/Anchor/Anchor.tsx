@@ -6,15 +6,27 @@ export type VariantType = 'h1' | 'h2' | 'h3' | 'body1' | 'body2' | 'inherit';
 export type AnchorType = 'primary' | 'secondary' | 'default';
 
 interface IAnchorProps {
+  /** set anchor type */
   anchorType?: AnchorType;
+  /** set underline type */
   underline?: UnderlineType;
+  /** set variant size / type */
   variant?: VariantType;
+  /** href property */
   href?: string;
 }
 
 type AnchorProps = IAnchorProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 export type PatAnchorProps = AnchorProps;
 
+/**
+ * An Anchor performs very much like <a> tag but with several specified properties
+ * for user's convenience.
+ *
+ * ```js
+ * import {Anchor} from 'pat-ui'
+ * ```
+ */
 const Anchor: FC<PatAnchorProps> = (props) => {
   const { anchorType, underline, variant, href, ...rest } = props;
   const styleClasses = classNames('anchor', {

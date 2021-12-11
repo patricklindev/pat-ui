@@ -22,7 +22,6 @@ describe('Carousel', () => {
         {imageSrc.map((src, index) => (
           <div key={index}>
             <img
-              alt={src}
               src={src}
               style={{
                 width: '100%',
@@ -36,8 +35,7 @@ describe('Carousel', () => {
     const container = document.querySelector('.Carousel');
     expect(container).toBeInTheDocument();
 
-    const dots = document.querySelector('.dots');
+    const dots = document.querySelector('.Carousel__dots-wrapper');
     expect(dots).toBeInTheDocument();
-
   });
 });

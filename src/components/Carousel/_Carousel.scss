@@ -1,19 +1,24 @@
+$my-max-width: 600px;
+
 .Carousel {
   position: relative;
   box-shadow: inset 0px 0px 20px 10px rgba(0, 0, 0, 0.2);
-  /* height: 300px;
-	width: 500px; */
   overflow: hidden;
 }
 
 .Carousel__img-wrapper {
   position: relative;
+
+  width: 3 * $my-max-width;
+}
+.Carousel__img-wrapper img {
+  max-width: $my-max-width;
 }
 
 #Carousel__img__left {
   position: absolute;
   top: 0;
-  left: -600px;
+  left: -$my-max-width;
 }
 #Carousel__img__center {
   position: absolute;
@@ -23,7 +28,7 @@
 #Carousel__img__right {
   position: absolute;
   top: 0;
-  left: 600px;
+  left: $my-max-width;
 }
 
 /*deal with the situation when prev is clicked*/
@@ -41,7 +46,7 @@
   animation-name: moveCentertoRight;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: 600px; /*end with this position after animation*/
+  left: $my-max-width; /*end with this position after animation*/
 }
 #Carousel__img__mostleft-to-left {
   position: absolute;
@@ -49,10 +54,10 @@
   animation-name: moveMostLefttoLeft;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: -600px; /*end with this position after animation*/
+  left: -$my-max-width; /*end with this position after animation*/
 }
 /*deal with with the situation when next is clicked*/
-#rCarousel__img__ight-to-center {
+#Carousel__img__right-to-center {
   position: absolute;
   display: block;
   animation-name: moveRighttoCenter;
@@ -66,7 +71,7 @@
   animation-name: moveCentertoLeft;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: -600px; /*end with this position after animation*/
+  left: -$my-max-width; /*end with this position after animation*/
 }
 #Carousel__img__mostright-to-right {
   position: absolute;
@@ -74,11 +79,11 @@
   animation-name: moveMostRighttoRight;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: 600px; /*end with this position after animation*/
+  left: $my-max-width; /*end with this position after animation*/
 }
 @keyframes moveLefttoCenter {
   0% {
-    left: -600px;
+    left: -$my-max-width;
     top: 0px;
   }
   100% {
@@ -94,13 +99,13 @@
   }
   100% {
     top: 0px;
-    left: 600px;
+    left: $my-max-width;
   }
 }
 
 @keyframes moveRighttoCenter {
   0% {
-    left: 600px;
+    left: $my-max-width;
     top: 0px;
   }
   100% {
@@ -116,34 +121,34 @@
   }
   100% {
     top: 0px;
-    left: -600px;
+    left: -$my-max-width;
   }
 }
 
 @keyframes moveMostLeftToLeft {
   0% {
-    left: -1200px;
+    left: -2 * $my-max-width;
     top: 0px;
   }
   100% {
-    left: -600px;
+    left: -$my-max-width;
     top: 0px;
   }
 }
 
 @keyframes moveMostRighttoRight {
   0% {
-    left: 1200px;
+    left: 2 * $my-max-width;
     top: 0px;
   }
   100% {
-    left: 600px;
+    left: $my-max-width;
     top: 0px;
   }
 }
 
-.Carousel__a-prev,
-.Carousel__a-next {
+.Carousel__prev,
+.Carousel__next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -157,31 +162,30 @@
   user-select: none;
 }
 
-.Carousel__a-prev {
+.Carousel__prev {
   left: 0;
   border-radius: 3px 0 0 3px;
 }
 
-.Carousel__a-next {
+.Carousel__next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-.Carousel__dots-wrapper {
+.Carousel__dots {
   position: absolute;
-  bottom: 5px;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%);
 }
 .Carousel__dot {
   cursor: pointer;
-  height: 7px;
-  width: 7px;
-  margin: 0 4px;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 0.6s ease;
 }
 
 .Carousel__dot-active,

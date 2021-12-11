@@ -76,15 +76,14 @@
 }
 
 
-@mixin slider-size($slider-width, $slider-height){
-  width: $slider-width;
+@mixin slider-size($slider-height){
   height: $slider-height;
 }
 
-// @mixin thumb-size($thumb-width, $thumb-height){
-//   width: $thumb-width;
-//   height: $thumb-height;
-// }
+@mixin thumb-size($thumb-width, $thumb-height){
+  width: $thumb-width;
+  height: $thumb-height;
+}
 
 @mixin slider-style($background, $hover-background-color){
   background: $background;
@@ -96,10 +95,3 @@
 @mixin thumb-style($thumb-color){
   background: $thumb-color;
 }
-
-// @mixin slider-thumb-style($color, $hover-color){
-//   color: $color;
-//   &hover {
-//     color: $hover-color;
-//   }
-// }

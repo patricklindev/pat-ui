@@ -266,31 +266,21 @@ $dropdown-transition: all 0.4s !default;
 $dropdown-arrow-color: $black;
 
 
-//slider
-$slider-width: 100% !default;
-$slider-height: 0.5rem !default;
-$thumb-color: $primary !default;
-// $thumb-width: 25px !default;
-// $thumb-height: 25px !default;
-
 //slider small
-$slider-width-sm: 100% !default;
 $slider-height-sm: 0.2rem !default;
 //slider medium
-$slider-width-md: 100% !default;
-$slider-height-md: 0.3rem !default;
+$slider-height-md: 0.5rem !default;
 //slider large
-$slider-width-lg: 100% !default;
 $slider-height-lg: 1rem !default;
 
-// //thumb small
-// $thumb-width-sm: 15px !default;
-// $thumb-height-sm: 15px !default;
-// //thumb med
-// $thumb-width-md: 25px !default;
-// $thumb-height-md: 25px !default;
-// //thumb large
-// $thumb-width-lg: 35px !default;
-// $thumb-height-lg: 35px !default;
+//thumb small
+$thumb-width-sm: 0.7rem !default;
+$thumb-height-sm: 0.7rem !default;
+//thumb med
+$thumb-width-md: 1.3rem !default;
+$thumb-height-md: 1.3rem !default;
+//thumb large
+$thumb-width-lg: 2rem !default;
+$thumb-height-lg: 2rem !default;
 
 

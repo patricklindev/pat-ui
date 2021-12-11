@@ -2,59 +2,123 @@
   -webkit-appearance: none;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
   border-radius: 15px;
 
-  @include slider-size($slider-width, $slider-height);
- 
+  &::-moz-range-thumb {
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
 }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  // background: red;
-  border-radius: 15px;
-  cursor: pointer;
-  @include thumb-style($thumb-color);
-  // @include thumb-size($thumb-width, $thumb-height);
+//thumb colors
+.thumb-primary {
+  &::-moz-range-thumb{
+    @include thumb-style($primary);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($primary);
+  }
 }
-
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  // background: red;
-  border-radius: 15px;
-  cursor: pointer;
-  @include thumb-style($thumb-color);
-  // @include thumb-size($thumb-width, $thumb-height);
-
+.thumb-secondary {
+  &::-moz-range-thumb{
+    @include thumb-style($secondary);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($secondary);
+  }
+}
+.thumb-success {
+  &::-moz-range-thumb{
+    @include thumb-style($success);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($success);
+  }
+}
+.thumb-info {
+  &::-moz-range-thumb{
+    @include thumb-style($info);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($info);
+  }
+}
+.thumb-warning {
+  &::-moz-range-thumb{
+    @include thumb-style($warning);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($warning);
+  }
+}
+.thumb-danger{
+  &::-moz-range-thumb{
+    @include thumb-style($danger);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($danger);
+  }
+}
+.thumb-light {
+  &::-moz-range-thumb{
+    @include thumb-style($light);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($light);
+  }
+}
+.thumb-dark {
+  &::-moz-range-thumb{
+    @include thumb-style($dark);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-style($dark);
+  }
 }
 
 //slider sizes
 .slider-sm {
-  @include slider-size($slider-width-sm, $slider-height-sm);
+  @include slider-size($slider-height-sm);
 }
 .slider-md {
-  @include slider-size($slider-width-md, $slider-height-md);
+  @include slider-size($slider-height-md);
 }
 .slider-lg {
-  @include slider-size($slider-width-lg, $slider-height-lg);
+  @include slider-size($slider-height-lg);
 }
 
-// //thumb sizes
-// .thumb-sm{
-//   @include thumb-size($thumb-width-sm, $thumb-height-sm);
-// }
-// .thumb-md{
-//   @include thumb-size($thumb-width-sm, $thumb-height-md);
-// }
-// .thumb-lg{
-//   @include thumb-size($thumb-width-sm, $thumb-height-lg);
-// }
-
+//thumb sizes
+.thumb-sm{
+  &::-moz-range-thumb{
+    @include thumb-size($thumb-width-sm, $thumb-height-sm);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-size($thumb-width-sm, $thumb-height-sm);
+  }
+}
+.thumb-md{
+  &::-moz-range-thumb{
+    @include thumb-size($thumb-width-md, $thumb-height-md);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-size($thumb-width-md, $thumb-height-md);
+  }
+}
+.thumb-lg{
+  &::-moz-range-thumb{
+    @include thumb-size($thumb-width-lg, $thumb-height-lg);
+  }
+  &::-webkit-slider-thumb {
+    @include thumb-size($thumb-width-lg, $thumb-height-lg);
+  }
+}
 
 //slider colors
 .slider-primary {
@@ -63,17 +127,21 @@
 .slider-secondary {
   @include slider-style($secondary, #9b9fa4);
 }
+.slider-success {
+  @include slider-style($success, #63f21d);
+}
 .slider-info {
-  @include slider-style($info, #12c3df);
+  @include slider-style($info, #16d7f5);
 }
-
-//thumb colors
-.slider::-moz-range-thumb-primary, .slider::-webkit-slider-thumb-primary{
-  @include thumb-style($primary);
+.slider-warning {
+  @include slider-style($warning, #fff08f)
 }
-.slider::-moz-range-thumb-secondary, .slider::-webkit-slider-thumb-secondary{
-  @include thumb-style($secondary);
+.slider-danger{
+  @include slider-style($danger, #fc0a21)
 }
-.slider::-moz-range-thumb-info, .slider::-webkit-slider-thumb-info{
-  @include thumb-style($info);
+.slider-light{
+  @include slider-style($light, #b9b9b9)
+}
+.slider-dark{
+  @include slider-style($dark, #65686b)
 }

@@ -9,20 +9,26 @@ export interface ICarousel {
 
 const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
   const [counter, setCounter] = useState(0);
-
-  const { children, autoPlay } = props;
+  const { children } = props;
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
   );
   const [prevOrNextIsClicked, setPrevOrNextIsClicked] = useState('');
 
   useEffect(() => {
-    if (autoPlay === true) {
-      let timer = setInterval(() => {
+    let timer: any;
+    if (props.autoPlay) {
+      setPrevOrNextIsClicked('autoNext');
+      timer = setInterval(() => {
         setCounter((counter) => (counter + 1) % length);
       }, 3000);
     }
-  }, []);
+
+    return () => {
+      // Clean up the subscription
+      clearInterval(timer);
+    };
+  }, [props]);
 
   let classNameList: string[] = [];
   console.log('c', children);
@@ -66,15 +72,11 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
             return React.cloneElement(item, {
               style: { display: 'block' },
               id: (function () {
-                if (
-                  prevOrNextIsClicked === '' &&
-                  (autoPlay === false || autoPlay === undefined)
-                )
-                  return 'Carousel__img__left';
+                if (prevOrNextIsClicked === '') return 'Carousel__img__left';
                 //trigger when next is clicked or when auto property
                 else if (
                   prevOrNextIsClicked === 'nextIsClicked' ||
-                  autoPlay === true
+                  prevOrNextIsClicked === 'autoNext'
                 )
                   return 'Carousel__img__center-to-left';
                 //trigger when prev is clicked
@@ -87,18 +89,14 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
             return React.cloneElement(item, {
               style: { display: 'block' },
               id: (function () {
-                if (
-                  prevOrNextIsClicked === '' &&
-                  (autoPlay === false || autoPlay === undefined)
-                )
-                  return 'Carousel__img__center';
+                if (prevOrNextIsClicked === '') return 'Carousel__img__center';
                 //trigger when prev is clicked
                 else if (prevOrNextIsClicked === 'prevIsClicked')
                   return 'Carousel__img__left-to-center';
                 //trigger when next is clicked or when auto property
                 else if (
                   prevOrNextIsClicked === 'nextIsClicked' ||
-                  autoPlay === true
+                  prevOrNextIsClicked === 'autoNext'
                 )
                   return 'Carousel__img__right-to-center';
               })(),
@@ -108,18 +106,14 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
             return React.cloneElement(item, {
               style: { display: 'block' },
               id: (function () {
-                if (
-                  prevOrNextIsClicked === '' &&
-                  (autoPlay === false || autoPlay === undefined)
-                )
-                  return 'Carousel__img__right';
+                if (prevOrNextIsClicked === '') return 'Carousel__img__right';
                 //trigger when prev is click
                 else if (prevOrNextIsClicked === 'prevIsClicked')
                   return 'Carousel__img__center-to-right';
                 //trigger when next is click or when auto property
                 else if (
                   prevOrNextIsClicked === 'nextIsClicked' ||
-                  autoPlay === true
+                  prevOrNextIsClicked === 'autoNext'
                 )
                   return 'Carousel__img__mostright-to-right';
               })(),

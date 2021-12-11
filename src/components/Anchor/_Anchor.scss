@@ -1,9 +1,9 @@
-.link {
+.anchor {
   margin: 0;
   display: inline-block;
 }
 
-.link-default {
+.anchor-default {
   color: $body-color;
   text-decoration-color: $body-color;
   &:hover {
@@ -12,7 +12,7 @@
 }
 
 // 버튼 일 경우에만 color white. Otherwise, $primary
-.link-primary {
+.anchor-primary {
   color: $primary;
   text-decoration-color: $primary;
   &:hover {
@@ -20,7 +20,7 @@
   }
 }
 
-.link-secondary {
+.anchor-secondary {
   color: $secondary;
   text-decoration-color: $secondary;
   &:hover {
@@ -28,22 +28,22 @@
   }
 }
 
-.link-always {
+.anchor-always {
   text-decoration: underline;
 }
 
-.link-hover:hover {
+.anchor-hover:hover {
   text-decoration: underline;
 }
 
-.link-none {
+.anchor-none {
   text-decoration: none;
   &:hover {
     text-decoration: none;
   }
 }
 
-.link-button {
+.anchor-button {
   border: none;
   background-color: transparent;
   outline: none;
@@ -53,22 +53,22 @@
   }
 }
 
-.link-h1 {
+.anchor-h1 {
   font-size: $link-h1-font-size;
 }
-.link-h2 {
+.anchor-h2 {
   font-size: $link-h2-font-size;
 }
-.link-h3 {
+.anchor-h3 {
   font-size: $link-h3-font-size;
 }
-.link-body1 {
+.anchor-body1 {
   font-size: $link-body1-font-size;
 }
-.link-body2 {
+.anchor-body2 {
   font-size: $link-body2-font-size;
 }
 
-.link-inherit {
+.anchor-inherit {
   font-size: inherit;
 }

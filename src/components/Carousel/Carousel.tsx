@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { JsxElement } from 'typescript';
 
-interface ICarousel {
+export interface ICarousel {
   children: JSX.Element | JSX.Element[];
-
   style?: object;
 }
 
@@ -14,6 +13,8 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
   );
+  const [prevOrNextIsClicked, setPrevOrNextIsClicked] = useState('');
+
   let classNameList: string[] = [];
   console.log('c', children);
 
@@ -22,15 +23,18 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
   const handleClick = (event: React.MouseEvent) => {
     //console.log(event.currentTarget.id)
     setCounter(parseInt(event.currentTarget.id));
+    setPrevOrNextIsClicked('');
   };
   const handleClickPrev = () => {
-    if (counter > 1) {
+    setPrevOrNextIsClicked('prevIsClicked');
+    if (counter > 0) {
       setCounter(counter - 1);
     } else {
       setCounter(length - 1);
     }
   };
   const handleClickNext = () => {
+    setPrevOrNextIsClicked('nextIsClicked');
     if (counter < length - 1) {
       setCounter(counter + 1);
     } else {
@@ -45,22 +49,70 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
       className="Carousel"
       style={{
         ...props.style,
-        backgroundImage: `url(${children[counter].props.children.props.src})`,
-        backgroundSize: `${children[counter].props.children.props.style.width}`,
-        backgroundRepeat: 'no-repeat',
       }}
     >
-      <a className="prev" onClick={handleClickPrev}>
+      <div className="Carousel__img-wrapper">
+        {children.map((item, index) => {
+          if (index === counter - 1 || index === counter - 1 + length) {
+            return React.cloneElement(item, {
+              style: { display: 'block' },
+              id: (function () {
+                if (prevOrNextIsClicked === '') return 'Carousel__img_left';
+                //trigger when next is clicked
+                else if (prevOrNextIsClicked === 'nextIsClicked')
+                  return 'Carousel__img__center-to-left';
+                //when prev is clicked
+                else if (prevOrNextIsClicked === 'prevIsClicked')
+                  return 'Carousel__img__mostleft-to-left';
+              })(),
+            });
+          }
+          if (index === counter) {
+            return React.cloneElement(item, {
+              style: { display: 'block' },
+              id: (function () {
+                if (prevOrNextIsClicked === '') return 'Carousel__img__center';
+                //trigger when prev is clicked
+                else if (prevOrNextIsClicked === 'prevIsClicked')
+                  return 'Carousel__img__left-to-center';
+                //trigger when next is clicked
+                else if (prevOrNextIsClicked === 'nextIsClicked')
+                  return 'Carousel__img__right-to-center';
+              })(),
+            });
+          }
+          if (index === counter + 1 || index === counter + 1 - length) {
+            return React.cloneElement(item, {
+              style: { display: 'block' },
+              id: (function () {
+                if (prevOrNextIsClicked === '') return 'Carousel__img__right';
+                //trigger when prev is click
+                else if (prevOrNextIsClicked === 'prevIsClicked')
+                  return 'Carousel__img__center-to-right';
+                //trigger when next is click
+                else if (prevOrNextIsClicked === 'nextIsClicked')
+                  return 'Carousel__img__mostright-to-right';
+              })(),
+            });
+          }
+        })}
+      </div>
+
+      <span className="Carousel__a-prev" onClick={handleClickPrev}>
         &#10094;
-      </a>
-      <a className="next" onClick={handleClickNext}>
+      </span>
+      <span className="Carousel__a-next" onClick={handleClickNext}>
         &#10095;
-      </a>
-      <div className="center dots">
+      </span>
+      <div className="Carousel__center Carousel__dots-wrapper">
         {children.map((src, index) => (
           <span
             id={index.toString()}
-            className={index === counter ? 'dot active' : 'dot'}
+            className={
+              index === counter
+                ? 'Carousel__dot Carousel__dot-active'
+                : 'Carousel__dot'
+            }
             onClick={handleClick}
           ></span>
         ))}

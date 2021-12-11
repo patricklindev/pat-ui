@@ -1,12 +1,149 @@
 .Carousel {
   position: relative;
   box-shadow: inset 0px 0px 20px 10px rgba(0, 0, 0, 0.2);
-  height: 300px;
-  width: 500px;
+  /* height: 300px;
+	width: 500px; */
+  overflow: hidden;
 }
 
-.prev,
-.next {
+.Carousel__img-wrapper {
+  position: relative;
+}
+
+#Carousel__img__left {
+  position: absolute;
+  top: 0;
+  left: -600px;
+}
+#Carousel__img__center {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#Carousel__img__right {
+  position: absolute;
+  top: 0;
+  left: 600px;
+}
+
+/*deal with the situation when prev is clicked*/
+#Carousel__img__left-to-center {
+  position: absolute;
+  display: block;
+  animation-name: moveLefttoCenter;
+  animation-duration: 0.6s;
+  top: 0; /*end with this position after animation*/
+  left: 0; /*end with this position after animation*/
+}
+#Carousel__img__center-to-right {
+  position: absolute;
+  display: block;
+  animation-name: moveCentertoRight;
+  animation-duration: 0.6s;
+  top: 0; /*end with this position after animation*/
+  left: 600px; /*end with this position after animation*/
+}
+#Carousel__img__mostleft-to-left {
+  position: absolute;
+  display: block;
+  animation-name: moveMostLefttoLeft;
+  animation-duration: 0.6s;
+  top: 0; /*end with this position after animation*/
+  left: -600px; /*end with this position after animation*/
+}
+/*deal with with the situation when next is clicked*/
+#rCarousel__img__ight-to-center {
+  position: absolute;
+  display: block;
+  animation-name: moveRighttoCenter;
+  animation-duration: 0.6s;
+  top: 0; /*end with this position after animation*/
+  left: 0; /*end with this position after animation*/
+}
+#Carousel__img__center-to-left {
+  position: absolute;
+  display: block;
+  animation-name: moveCentertoLeft;
+  animation-duration: 0.6s;
+  top: 0; /*end with this position after animation*/
+  left: -600px; /*end with this position after animation*/
+}
+#Carousel__img__mostright-to-right {
+  position: absolute;
+  display: block;
+  animation-name: moveMostRighttoRight;
+  animation-duration: 0.6s;
+  top: 0; /*end with this position after animation*/
+  left: 600px; /*end with this position after animation*/
+}
+@keyframes moveLefttoCenter {
+  0% {
+    left: -600px;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+@keyframes moveCentertoRight {
+  0% {
+    top: 0;
+    left: 0px;
+  }
+  100% {
+    top: 0px;
+    left: 600px;
+  }
+}
+
+@keyframes moveRighttoCenter {
+  0% {
+    left: 600px;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+@keyframes moveCentertoLeft {
+  0% {
+    top: 0;
+    left: 0px;
+  }
+  100% {
+    top: 0px;
+    left: -600px;
+  }
+}
+
+@keyframes moveMostLeftToLeft {
+  0% {
+    left: -1200px;
+    top: 0px;
+  }
+  100% {
+    left: -600px;
+    top: 0px;
+  }
+}
+
+@keyframes moveMostRighttoRight {
+  0% {
+    left: 1200px;
+    top: 0px;
+  }
+  100% {
+    left: 600px;
+    top: 0px;
+  }
+}
+
+.Carousel__a-prev,
+.Carousel__a-next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -14,35 +151,40 @@
   padding: 16px;
   margin-top: -22px;
   color: white;
-
-  transition: 0.6s ease;
+  font-weight: bold;
+  font-size: 18px;
   border-radius: 0 3px 3px 0;
   user-select: none;
 }
 
-.next {
+.Carousel__a-prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.Carousel__a-next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-.dots {
+.Carousel__dots-wrapper {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 50%;
   transform: translate(-50%);
 }
-.dot {
+.Carousel__dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
+  height: 7px;
+  width: 7px;
+  margin: 0 4px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
 }
 
-.active,
-.dot:hover {
-  background-color: #717171;
+.Carousel__dot-active,
+.Carousel__dot:hover {
+  background-color: white;
 }

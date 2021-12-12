@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import Tree, { ITreeProps } from './Tree';
-import TreeNode, { ITreeNodeProps } from './TreeNode';
+import Tree, { NativeTreeProps } from './Tree';
+import TreeNode, { NativeTreeNodeProps } from './TreeNode';
 
-export type PatTreeComponent = FC<ITreeProps> & {
-  Node: FC<ITreeNodeProps>;
+export type PatTreeComponent = FC<NativeTreeProps> & {
+  Node: FC<NativeTreeNodeProps>;
 };
 
 const TransTree = Tree as PatTreeComponent;

@@ -6,19 +6,28 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import { classNames } from '../../utils/classNames';
-import { ITreeNodeProps } from './TreeNode';
+import { NativeTreeNodeProps } from './TreeNode';
 
-export type ButtonColor = 'primary' | 'secondary' | 'danger' | 'info' | 'link';
+export type TreeColor = 'primary' | 'secondary' | 'danger' | 'info' | 'warning';
+export type TreeSize = 'lg' | 'sm';
 
-export interface ITreeProps {
+interface ITreeProps {
   /** Set tree's title */
   title?: string;
+  /** Set tree's title */
+  treeSize?: string;
+  /** Set tree's title */
+  textColor?: string;
   /** Set tree's color */
-  buttonColor?: string;
+  treeColor?: string;
   /** Set globally unique key for each tree node */
   key?: string;
   /** children must be React Element */
-  children?: ReactElement<ITreeNodeProps> | ReactElement<ITreeNodeProps>[];
+  children?:
+    | ReactElement<NativeTreeNodeProps>
+    | ReactElement<NativeTreeNodeProps>[]
+    | ReactElement<NativeTreeProps>
+    | ReactElement<NativeTreeProps>[];
   /** set customized css class */
   className?: string;
   /** set tree to be disabled */
@@ -26,10 +35,10 @@ export interface ITreeProps {
   /** set customized css style */
   style?: CSSProperties;
   /** set customized css style */
-  clickTitle?: Function;
+  onClick?: Function;
 }
 
-type NativeTreeProps = ITreeProps & HTMLAttributes<HTMLDivElement>;
+export type NativeTreeProps = ITreeProps & HTMLAttributes<HTMLDivElement>;
 
 /**
  * A tree allows user to view a hierarchical structure of a topic.
@@ -40,13 +49,15 @@ type NativeTreeProps = ITreeProps & HTMLAttributes<HTMLDivElement>;
  */
 const Tree: FC<NativeTreeProps> = (props) => {
   const {
-    title,
-    buttonColor,
     key,
+    title,
+    treeSize,
+    textColor,
+    treeColor,
     className,
     children,
     style,
-    clickTitle,
+    onClick,
     ...rest
   } = props;
 
@@ -57,36 +68,51 @@ const Tree: FC<NativeTreeProps> = (props) => {
   };
 
   let treeStyle = classNames('tree', {
-    [`tree-${buttonColor}`]: true,
+    [`tree-${treeColor}`]: true,
+    [`tree-${treeSize}`]: true,
   });
   if (className) {
     treeStyle += ' ' + className;
   }
 
-  let caretStyle = classNames('caret', {
-    [`caret-${buttonColor}`]: true,
+  let caretStyle = classNames('tree__caret', {
+    [`tree__caret-${treeColor}`]: true,
+  });
+
+  let treeTitleStyle = classNames('tree__title', {
+    [`tree__title-${textColor}`]: true,
+  });
+
+  let treeNodesStyle = classNames('tree__nodes', {
+    [`open`]: isTreeNodeOpen,
   });
 
   return (
     <div className={treeStyle} style={style} {...rest}>
-      <div className="tree__title">
+      <div>
         <span
           onClick={toggleTreeView}
-          className={isTreeNodeOpen ? `${caretStyle} caret-down` : caretStyle}
+          className={
+            isTreeNodeOpen ? `${caretStyle} tree__caret-down` : caretStyle
+          }
         ></span>
-        <span
-          onClick={() => (clickTitle ? clickTitle() : null)}
-          className={`tree__title`}
-        >
+        <span onClick={onClick} className={treeTitleStyle}>
           {title}
         </span>
       </div>
-      <div className={isTreeNodeOpen ? `tree__nodes open` : `tree__nodes`}>
+      <div className={treeNodesStyle}>
         {children
           ? React.Children.map(children, (child: React.ReactElement) => {
               return React.cloneElement(
                 child,
-                { key, onClick: clickTitle, parent: title },
+                {
+                  key,
+                  treeColor,
+                  treeSize,
+                  textColor,
+                  parent: title,
+                  onClick,
+                },
                 child.props.children
               );
             })

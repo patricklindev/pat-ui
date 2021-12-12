@@ -1,34 +1,67 @@
 import React, { FC, CSSProperties, ReactNode, HTMLAttributes } from 'react';
+import { classNames } from '../../utils/classNames';
 
-export interface ITreeNodeProps {
+interface ITreeNodeProps {
+  /** get parent's title */
+  parent?: string;
+  /** get tree size */
+  treeSize?: string;
+  /** will change caret color */
+  treeColor?: string;
+  /** will change title color */
+  textColor?: string;
   /** children must be React Element */
   children?: ReactNode;
   /** set customized css class */
   className?: string;
   /** set customized css style */
   cssStyle?: CSSProperties;
-  /** set customized css style */
+  /** pass an onClick handler */
   onClick?: Function;
 }
 
-type NativeTreeProps = ITreeNodeProps & HTMLAttributes<HTMLDivElement>;
+export type NativeTreeNodeProps = ITreeNodeProps &
+  HTMLAttributes<HTMLDivElement>;
 
-const TreeNode: FC<NativeTreeProps> = (props) => {
-  const { className, children, cssStyle, ...rest } = props;
+const TreeNode: FC<NativeTreeNodeProps> = (props) => {
+  const {
+    parent,
+    treeSize,
+    treeColor,
+    textColor,
+    className,
+    children,
+    cssStyle,
+    onClick,
+    ...rest
+  } = props;
 
-  let classNames = 'tree__node';
+  let treeNodeClassNames = 'tree__node';
   if (className) {
-    classNames = ['tree__node', className].join(' ');
+    treeNodeClassNames = ['tree__node', className].join(' ');
   }
+
+  let caretClassNames = classNames('tree__node_caret', {
+    [`tree__node_caret-${treeColor}`]: true,
+  });
+
+  let treeTitleStyle = classNames('tree__title', {
+    [`tree__title-${textColor}`]: true,
+  });
+
+  const handleClick = () => {
+    console.log('parent tree: ', parent);
+  };
 
   return (
     <div
-      className={classNames}
+      className={treeNodeClassNames}
       style={cssStyle}
-      onClick={props.onClick}
+      onClick={onClick ? onClick : handleClick}
       {...rest}
     >
-      {children}
+      <span className={caretClassNames}></span>
+      <span className={treeTitleStyle}>{children}</span>
     </div>
   );
 };

@@ -2,6 +2,34 @@
   display: flex;
   flex-direction: column;
   list-style-type: none;
+
+  // tree size
+  @include tree-size(
+    $tree-padding-y,
+    $tree-padding-x,
+    $tree-font-size,
+    $border-radius
+  );
+}
+.tree-lg {
+  @include button-size(
+    $tree-padding-y-lg,
+    $tree-padding-x-lg,
+    $tree-font-size-lg,
+    $border-radius-lg
+  );
+}
+.tree-sm {
+  @include button-size(
+    $tree-padding-y-sm,
+    $tree-padding-x-sm,
+    $tree-font-size-sm,
+    $border-radius-sm
+  );
+}
+
+.tree__title {
+  margin-bottom: 5px;
 }
 .tree__title-primary {
   color: $primary;
@@ -21,7 +49,7 @@
 
 .tree__nodes {
   display: none;
-  margin-left: 15px;
+  margin-left: 30px;
   // styling on open
   &.open {
     display: flex;
@@ -30,20 +58,21 @@
 }
 
 .tree__node {
-  padding: 5px 5px;
-  border-radius: 5px;
+  padding: $tree-padding-y $tree-padding-x;
+  border-radius: $border-radius;
   &:hover {
     background-color: $gray-200;
   }
 }
 
 /* Style the caret/arrow */
-.caret {
+.tree__caret {
   cursor: pointer;
   user-select: none; /* Prevent text selection */
   color: $primary;
-  padding: 5px;
-  border-radius: 5px;
+  padding: $tree-padding-y $tree-padding-x;
+  border-radius: $border-radius;
+  margin-right: 15px;
 
   &:hover {
     background-color: $gray-100;
@@ -52,9 +81,7 @@
   /* Create the caret/arrow with a unicode, and style it */
   &::before {
     content: '\1405';
-    font-size: small;
     display: inline-block;
-    margin-right: 5px;
   }
 
   /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
@@ -62,18 +89,34 @@
     transform: rotate(90deg);
   }
 }
-.caret-primary {
+
+.tree__node_caret {
+  color: $primary;
+  margin-right: 15px;
+
+  /* Create the caret/arrow with a unicode, and style it */
+  &::before {
+    content: '\2022';
+  }
+}
+
+.tree__caret-primary,
+.tree__node_caret-primary {
   color: $primary;
 }
-.caret-secondary {
+.tree__caret-secondary,
+.tree__node_caret-secondary {
   color: $secondary;
 }
-.caret-danger {
+.tree__caret-danger,
+.tree__node_caret-danger {
   color: $danger;
 }
-.caret-info {
+.tree__caret-info,
+.tree__node_caret-info {
   color: $info;
 }
-.caret-warning {
+.tree__caret-warning,
+.tree__node_caret-warning {
   color: $warning;
 }

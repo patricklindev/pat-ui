@@ -20,6 +20,8 @@ interface ITreeProps {
   textColor?: string;
   /** Set tree's color */
   treeColor?: string;
+  /** set tree to be disabled */
+  disabled?: boolean;
   /** Set globally unique key for each tree node */
   key?: string;
   /** children must be React Element */
@@ -30,8 +32,6 @@ interface ITreeProps {
     | ReactElement<NativeTreeProps>[];
   /** set customized css class */
   className?: string;
-  /** set tree to be disabled */
-  disabled?: boolean;
   /** set customized css style */
   style?: CSSProperties;
   /** set customized css style */
@@ -54,6 +54,7 @@ const Tree: FC<NativeTreeProps> = (props) => {
     treeSize,
     textColor,
     treeColor,
+    disabled,
     className,
     children,
     style,
@@ -70,6 +71,7 @@ const Tree: FC<NativeTreeProps> = (props) => {
   let treeStyle = classNames('tree', {
     [`tree-${treeColor}`]: true,
     [`tree-${treeSize}`]: true,
+    [`disabled`]: !!disabled,
   });
   if (className) {
     treeStyle += ' ' + className;
@@ -77,6 +79,7 @@ const Tree: FC<NativeTreeProps> = (props) => {
 
   let caretStyle = classNames('tree__caret', {
     [`tree__caret-${treeColor}`]: true,
+    [`disabled`]: !!disabled,
   });
 
   let treeTitleStyle = classNames('tree__title', {
@@ -91,12 +94,15 @@ const Tree: FC<NativeTreeProps> = (props) => {
     <div className={treeStyle} style={style} {...rest}>
       <div>
         <span
-          onClick={toggleTreeView}
+          onClick={disabled ? () => {} : toggleTreeView}
           className={
             isTreeNodeOpen ? `${caretStyle} tree__caret-down` : caretStyle
           }
         ></span>
-        <span onClick={onClick} className={treeTitleStyle}>
+        <span
+          onClick={disabled ? () => {} : onClick}
+          className={treeTitleStyle}
+        >
           {title}
         </span>
       </div>

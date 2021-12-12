@@ -10,6 +10,13 @@
     $tree-font-size,
     $border-radius
   );
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $tree-disabled-opacity;
+    box-shadow: none;
+  }
 }
 .tree-lg {
   @include button-size(
@@ -30,26 +37,26 @@
 
 .tree__title {
   margin-bottom: 5px;
-}
-.tree__title-primary {
-  color: $primary;
-}
-.tree__title-secondary {
-  color: $secondary;
-}
-.tree__title-danger {
-  color: $danger;
-}
-.tree__title-info {
-  color: $info;
-}
-.tree__title-warning {
-  color: $warning;
+
+  &.tree__title-primary {
+    color: $primary;
+  }
+  &.tree__title-secondary {
+    color: $secondary;
+  }
+  &.tree__title-danger {
+    color: $danger;
+  }
+  &.tree__title-info {
+    color: $info;
+  }
+  &.tree__title-warning {
+    color: $warning;
+  }
 }
 
 .tree__nodes {
   display: none;
-  margin-left: 30px;
   // styling on open
   &.open {
     display: flex;
@@ -60,6 +67,7 @@
 .tree__node {
   padding: $tree-padding-y $tree-padding-x;
   border-radius: $border-radius;
+  margin-left: 20px;
   &:hover {
     background-color: $gray-200;
   }
@@ -87,6 +95,13 @@
   /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
   &-down::before {
     transform: rotate(90deg);
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $tree-disabled-opacity;
+    box-shadow: none;
   }
 }
 

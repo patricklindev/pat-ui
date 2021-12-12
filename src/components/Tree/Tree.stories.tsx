@@ -8,30 +8,46 @@ export default {
 
 export const DefaultTree = () => (
   <div>
-    <Tree
-      title="Web Applications"
-      treeColor="info"
-      treeSize="lg"
-      textColor="danger"
-      // onClick={() => console.log('Tree title')}
-    >
-      <Tree.Node onClick={() => console.log('Tree node')}>React</Tree.Node>
-      <Tree title="Front End">
-        <Tree title="JavaScript">
-          <Tree.Node>React</Tree.Node>
-          <Tree.Node>Angular</Tree.Node>
-          <Tree.Node>Vue</Tree.Node>
-        </Tree>
-        <Tree title="CSS">
-          <Tree.Node>Bootstrap</Tree.Node>
-        </Tree>
+    <Tree title="Tree" onClick={() => console.log('Tree title')}>
+      <Tree.Node>Tree Node</Tree.Node>
+      <Tree title="SubTree">
+        <Tree.Node>SubTree Node</Tree.Node>
       </Tree>
-      <Tree title="Back End">
-        <Tree title="Frameworks">
-          <Tree.Node>Express (JavaScript)</Tree.Node>
-          <Tree.Node>Elixir (Phoenix)</Tree.Node>
-          <Tree.Node>Django (Python)</Tree.Node>
-        </Tree>
+    </Tree>
+  </div>
+);
+export const DisabledTree = () => (
+  <div>
+    <Tree title="Disabled Tree" disabled>
+      <Tree.Node>Tree Node</Tree.Node>
+    </Tree>
+  </div>
+);
+export const ColoredTree = () => (
+  <div>
+    <Tree
+      title="Colored Tree"
+      treeColor="danger"
+      textColor="info"
+      onClick={() => console.log('Tree title')}
+    >
+      <Tree.Node>treeColor = 'danger'</Tree.Node>
+      <Tree.Node>textColor = 'info'</Tree.Node>
+    </Tree>
+  </div>
+);
+export const TreeSizes = () => (
+  <div>
+    <Tree title="Large Tree" treeSize="lg">
+      <Tree.Node>Tree Node</Tree.Node>
+      <Tree title="SubTree">
+        <Tree.Node>SubTree Node</Tree.Node>
+      </Tree>
+    </Tree>
+    <Tree title="Small Tree" treeSize="sm">
+      <Tree.Node>Tree Node</Tree.Node>
+      <Tree title="SubTree">
+        <Tree.Node>SubTree Node</Tree.Node>
       </Tree>
     </Tree>
   </div>

@@ -245,6 +245,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
       <div className="Carousel__center Carousel__dots">
         {children.map((src, index) => (
           <span
+            key={index}
             id={index.toString()}
             className={
               index === counter

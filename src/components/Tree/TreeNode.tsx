@@ -4,11 +4,11 @@ import { classNames } from '../../utils/classNames';
 interface ITreeNodeProps {
   /** get parent's title */
   parent?: string;
-  /** get tree size */
+  /** change tree size */
   treeSize?: string;
   /** will change caret color */
   treeColor?: string;
-  /** will change title color */
+  /** will change text color */
   textColor?: string;
   /** children must be React Element */
   children?: ReactNode;

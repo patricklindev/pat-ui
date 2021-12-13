@@ -19,15 +19,23 @@
   }
 }
 .tree-lg {
-  @include button-size(
+  @include tree-size(
     $tree-padding-y-lg,
     $tree-padding-x-lg,
     $tree-font-size-lg,
     $border-radius-lg
   );
 }
+.tree-md {
+  @include tree-size(
+    $tree-padding-y,
+    $tree-padding-x,
+    $tree-font-size,
+    $border-radius
+  );
+}
 .tree-sm {
-  @include button-size(
+  @include tree-size(
     $tree-padding-y-sm,
     $tree-padding-x-sm,
     $tree-font-size-sm,

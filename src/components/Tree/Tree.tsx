@@ -9,16 +9,16 @@ import { classNames } from '../../utils/classNames';
 import { NativeTreeNodeProps } from './TreeNode';
 
 export type TreeColor = 'primary' | 'secondary' | 'danger' | 'info' | 'warning';
-export type TreeSize = 'lg' | 'sm';
+export type TreeSize = 'lg' | 'md' | 'sm';
 
 interface ITreeProps {
   /** Set tree's title */
   title?: string;
-  /** Set tree's title */
+  /** Set tree's size to: lg, md (default), or sm */
   treeSize?: string;
-  /** Set tree's title */
+  /** Set tree's text color */
   textColor?: string;
-  /** Set tree's color */
+  /** Set tree's caret color */
   treeColor?: string;
   /** set tree to be disabled */
   disabled?: boolean;
@@ -34,7 +34,7 @@ interface ITreeProps {
   className?: string;
   /** set customized css style */
   style?: CSSProperties;
-  /** set customized css style */
+  /** set onClick prop */
   onClick?: Function;
 }
 

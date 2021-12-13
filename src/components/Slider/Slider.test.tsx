@@ -5,6 +5,7 @@ import Slider, { PatSliderProps } from './Slider';
 describe('Slider', () => {
   it('should match snapshot', () => {
     const { asFragment } = render(<Slider />);
+
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -14,6 +15,7 @@ describe('Slider', () => {
     };
     const wrapper = render(<Slider {...sliderProps}></Slider>);
     const element = wrapper.getByTestId('slider-element') as HTMLElement;
+
     expect(element).toHaveClass('slider');
     expect(sliderProps.onChange).toHaveBeenCalledTimes(0);
     fireEvent.change(element, { target: { value: 1 } });
@@ -28,6 +30,7 @@ describe('Slider', () => {
     };
     const wrapper = render(<Slider {...sliderProps}></Slider>);
     const element = wrapper.getByTestId('slider-element') as HTMLElement;
+
     expect(element).toHaveClass('slider test');
     expect(element.tagName).toBe('INPUT');
   });
@@ -43,6 +46,7 @@ describe('Slider', () => {
     };
     const wrapper = render(<Slider {...sliderProps} />);
     const element = wrapper.getByTestId('slider-element') as HTMLElement;
+
     expect(element).toHaveClass(
       'slider slider-md thumb-md test slider-horizontal slider-info thumb-primary'
     );

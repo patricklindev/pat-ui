@@ -49,15 +49,25 @@ export interface ISliderProps {
 export type PatSliderProps = ISliderProps;
 
 export const Slider: FC<PatSliderProps> = (props) => {
-  const {min, max, className, sliderSize, thumbSize, sliderTheme, thumbTheme, sliderOrientation, onChange} = props
+  const {
+    min,
+    max,
+    className,
+    sliderSize,
+    thumbSize,
+    sliderTheme,
+    thumbTheme,
+    sliderOrientation,
+    onChange,
+  } = props;
   const [value, setValue] = useState(props.startvalue);
-  
+
   let styleClasses = classNames('slider', {
     [`slider-${sliderSize}`]: !!sliderSize,
     [`thumb-${thumbSize}`]: !!thumbSize,
     [`thumb-${thumbTheme}`]: true,
     [`slider-${sliderTheme}`]: true,
-    [`slider-${sliderOrientation}`]: true
+    [`slider-${sliderOrientation}`]: true,
   });
   if (className) {
     styleClasses += ' ' + className;
@@ -65,13 +75,13 @@ export const Slider: FC<PatSliderProps> = (props) => {
 
   let slider = (
     <input
-      data-testid='slider-element'
+      data-testid="slider-element"
       type="range"
       min={min}
       max={max}
       className={styleClasses}
       value={value}
-      onChange={(event:React.ChangeEvent<HTMLInputElement>) => {
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(+event.target.value);
         if (onChange) {
           onChange(value);

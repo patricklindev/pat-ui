@@ -25,22 +25,22 @@ export interface IRingProps {
 
 // props type
 export interface IProgressProps {
-  /** set class name */
+  /** set customize style */
   className?: string;
   /** set progress type: circular or linear */
   pgType?: ProgressType;
-  /** set message size */
+  /** set progress size */
   pgSize?: ProgressSize;
   /** set progress color */
   pgColor?: ProgressColor;
-  /** show or hide progress text */
+  /** show or hide percentage */
   showPercentage?: boolean;
-  /** set progress value from 0 to 100 (%) */
+  /** set progress value: from 0 to 100 (%) */
   pgValue: number;
 }
 
 /**
- * A progress component shows the process of a task
+ * A progress bar shows the progression of a task
  *
  * ```js
  * import {Progress} from 'pat-ui'

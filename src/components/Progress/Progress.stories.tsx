@@ -18,7 +18,7 @@ export const DiffTypeProgress = () => {
 
   return (
     <div>
-      <h1>Linear</h1>
+      <h1>Default</h1>
       <br />
       <Progress pgValue={progress} />
       <br />

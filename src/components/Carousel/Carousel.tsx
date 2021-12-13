@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactNode } from 'react';
 import { JsxElement } from 'typescript';
 
 export interface ICarousel {
@@ -15,30 +15,42 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
   );
   const [prevOrNextIsClicked, setPrevOrNextIsClicked] = useState('');
 
+  const timer = useRef(setInterval(() => {}, 0));
+
+  //console.log(children)
+
   useEffect(() => {
-    let timer: any;
+    setCounter(0);
+    setLength(Array.isArray(children) ? children.length : 1);
+
     if (props.autoPlay) {
       setPrevOrNextIsClicked('autoNext');
-      timer = setInterval(() => {
-        setCounter((counter) => (counter + 1) % length);
+      timer.current = setInterval(() => {
+        setCounter(
+          (counter) =>
+            (counter + 1) % (Array.isArray(children) ? children.length : 1)
+        );
       }, 3000);
     }
 
     return () => {
-      // Clean up the subscription
-      clearInterval(timer);
+      clearInterval(timer.current);
     };
-  }, [props]);
+  }, [props]); //when props.children change, we should set counter=0. so change of props.children determine counter
 
   let classNameList: string[] = [];
-  console.log('c', children);
+  //console.log('c', children)
 
   const classNames = classNameList.join('');
 
   const handleClick = (event: React.MouseEvent) => {
     //console.log(event.currentTarget.id)
     setCounter(parseInt(event.currentTarget.id));
-    setPrevOrNextIsClicked('');
+    if (parseInt(event.currentTarget.id) > counter) {
+      setPrevOrNextIsClicked('nextIsClicked');
+    } else {
+      setPrevOrNextIsClicked('prevIsClicked');
+    }
   };
   const handleClickPrev = () => {
     setPrevOrNextIsClicked('prevIsClicked');
@@ -57,19 +69,15 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
     }
   };
 
-  //deal with children
-
-  return children && Array.isArray(children) ? (
-    <div
-      className="Carousel"
-      style={{
-        ...props.style,
-      }}
-    >
-      <div className="Carousel__img-wrapper">
-        {children.map((item, index) => {
+  function createNewReactElements(
+    children: React.ReactElement[] | React.ReactElement
+  ): (React.ReactElement | null)[] | React.ReactElement {
+    if (Array.isArray(children)) {
+      const length = children.length;
+      if (length >= 3) {
+        const result = children.map((item, index) => {
           if (index === counter - 1 || index === counter - 1 + length) {
-            return React.cloneElement(item, {
+            let result = React.cloneElement(item, {
               style: { display: 'block' },
               id: (function () {
                 if (prevOrNextIsClicked === '') return 'Carousel__img__left';
@@ -84,7 +92,52 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
                   return 'Carousel__img__mostleft-to-left';
               })(),
             });
+
+            return result;
+          } else if (index === counter) {
+            let result = React.cloneElement(item, {
+              style: { display: 'block' },
+              id: (function () {
+                if (prevOrNextIsClicked === '') return 'Carousel__img__center';
+                //trigger when prev is clicked
+                else if (prevOrNextIsClicked === 'prevIsClicked')
+                  return 'Carousel__img__left-to-center';
+                //trigger when next is clicked or when auto property
+                else if (
+                  prevOrNextIsClicked === 'nextIsClicked' ||
+                  prevOrNextIsClicked === 'autoNext'
+                )
+                  return 'Carousel__img__right-to-center';
+              })(),
+            });
+
+            return result;
+          } else if (index === counter + 1 || index === counter + 1 - length) {
+            let result = React.cloneElement(item, {
+              style: { display: 'block' },
+              id: (function () {
+                if (prevOrNextIsClicked === '') return 'Carousel__img__right';
+                //trigger when prev is click
+                else if (prevOrNextIsClicked === 'prevIsClicked')
+                  return 'Carousel__img__center-to-right';
+                //trigger when next is click or when auto property
+                else if (
+                  prevOrNextIsClicked === 'nextIsClicked' ||
+                  prevOrNextIsClicked === 'autoNext'
+                )
+                  return 'Carousel__img__mostright-to-right';
+              })(),
+            });
+
+            return result;
+          } else {
+            return null;
           }
+        });
+        //console.log('result', result)
+        return result;
+      } else if (length === 2) {
+        const result = children.map((item, index) => {
           if (index === counter) {
             return React.cloneElement(item, {
               style: { display: 'block' },
@@ -101,8 +154,8 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
                   return 'Carousel__img__right-to-center';
               })(),
             });
-          }
-          if (index === counter + 1 || index === counter + 1 - length) {
+          } else {
+            //the previous one or the next one of the index===counter one
             return React.cloneElement(item, {
               style: { display: 'block' },
               id: (function () {
@@ -115,11 +168,65 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
                   prevOrNextIsClicked === 'nextIsClicked' ||
                   prevOrNextIsClicked === 'autoNext'
                 )
-                  return 'Carousel__img__mostright-to-right';
+                  return 'Carousel__img__center-to-left';
               })(),
             });
           }
-        })}
+        });
+        //console.log('result', result)
+        return result;
+      } else {
+        return children;
+      }
+    } else {
+      //console.log('result', children)
+      return children;
+    }
+  }
+
+  return children && Array.isArray(children) ? (
+    <div
+      className="Carousel"
+      style={{
+        ...props.style,
+      }}
+      onMouseOver={() => {
+        if (props.autoPlay === true) {
+          clearInterval(timer.current);
+        }
+      }}
+      onMouseLeave={() => {
+        if (props.autoPlay === true) {
+          if (prevOrNextIsClicked === 'prevIsClicked') {
+            console.log('yy');
+            setTimeout(() => {
+              setCounter(
+                (counter + 1) % (Array.isArray(children) ? children.length : 1)
+              );
+              setPrevOrNextIsClicked('autoNext');
+              timer.current = setInterval(() => {
+                setCounter(
+                  (counter) =>
+                    (counter + 1) %
+                    (Array.isArray(children) ? children.length : 1)
+                );
+              }, 3000);
+            }, 3000);
+          } else {
+            setPrevOrNextIsClicked('autoNext');
+            timer.current = setInterval(() => {
+              setCounter(
+                (counter) =>
+                  (counter + 1) %
+                  (Array.isArray(children) ? children.length : 1)
+              );
+            }, 3000);
+          }
+        }
+      }}
+    >
+      <div className="Carousel__img-wrapper">
+        {createNewReactElements(children)}
       </div>
 
       <span className="Carousel__prev" onClick={handleClickPrev}>

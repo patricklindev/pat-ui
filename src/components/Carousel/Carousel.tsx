@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export type AutoPlay = true | false;
-export type styleType = { width: number };
+export type styleType = { width?: number; height?: number };
 export interface ICarouselProps {
   children: JSX.Element | JSX.Element[];
   style?: styleType;

@@ -38,7 +38,8 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
         forceUpdate((pre) => !pre);
       }
     }
-  }, []);
+  }, [props.style?.width]);
+
   useEffect(() => {
     if (style) {
       if (style.width) {

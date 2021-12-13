@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export type SliderSize = 'lg' | 'md' | 'sm';
@@ -43,7 +43,7 @@ export interface ISliderProps {
   /**set inital starting value of thumb on slider */
   startvalue?: number;
   /**set action onChange */
-  onChange?: Function
+  onChange?: Function;
 }
 
 export type PatSliderProps = ISliderProps;
@@ -65,6 +65,7 @@ export const Slider: FC<PatSliderProps> = (props) => {
 
   let slider = (
     <input
+      data-testid='slider-element'
       type="range"
       min={min}
       max={max}

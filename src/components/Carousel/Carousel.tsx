@@ -24,7 +24,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
 
   const timer = useRef(setInterval(() => {}, 0));
 
-  const [update, forceUpdate] = useState(false);
   useEffect(() => {
     if (style) {
       if (style.width) {
@@ -34,8 +33,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
         console.log(
           document.documentElement.style.getPropertyValue('--my-max-width')
         );
-
-        forceUpdate((pre) => !pre);
       }
     }
   }, [props.style?.width]);
@@ -49,8 +46,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
         console.log(
           document.documentElement.style.getPropertyValue('--max-width')
         );
-
-        forceUpdate((pre) => !pre);
       }
     }
 

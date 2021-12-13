@@ -1,0 +1,141 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  font-family: sans-serif;
+  text-align: center;
+  &.top {
+    flex-direction: column-reverse;
+    margin-bottom: 17px;
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 45px;
+  height: 15px;
+  top: 3px;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  &.top{
+    margin: auto;
+  }
+  &.small{
+    @include switch-size(
+      $switch-width-small,
+      $switch-height-small,
+      $switch-pos-small
+        );
+  }
+  &.large {
+    @include switch-size(
+  $switch-width-large,
+  $switch-height-large,
+  $switch-pos-large
+    );
+  }
+}
+
+.label {
+  position: relative;
+  bottom: 4px;
+  left: 10px;
+  font-size: 20px;
+  &.true {
+    color: $gray-500;
+  }
+  &.top{
+    left:1px;
+  }
+  &.small{
+    bottom: 4.5px;
+  }
+  &.large{
+    bottom: 2.5px;
+  }
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $gray-400;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  &.true {
+    background-color: $slider-bakcground-color;
+    cursor: not-allowed;
+  }
+  &:before{
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: -3px;
+    background-color: $blue;
+    -webkit-transition: 0.4s;
+    transition: 0.5s;
+  }
+  &.small:before{
+    @include switch-slider(
+      $slider-width-small,
+      $slider-height-small,
+      $slider-left-small,
+      $slider-bottom-small,
+    );
+  }
+  &.large:before{
+    @include switch-slider(
+      $slider-width-large,
+      $slider-height-large,
+      $slider-left-large,
+      $slider-bottom-large,
+    );
+  }
+  &.true:before {
+    background-color: $slider-checked-color;
+  }
+}
+
+input{
+  &:focus + .slider{
+    box-shadow: 0 0 3px $blue;
+  }
+  &:checked + .slider{
+    background-color: $slider-checked-color;
+  }
+  &:checked + .slider.true{
+    background-color: $slider-bakcground-color;
+  }
+  &:focus + .slider.true {
+    box-shadow: 0 0 0px $slider-bakcground-color;
+  }
+  &:checked + .slider:before {
+    transform: translateX(17px);
+  }
+  &:checked + .slider.small:before {
+    transform: translateX(11px);
+  }
+  &:checked + .slider.large:before {
+    transform: translateX(19px);
+  }
+  &:checked + .slider.true:before {
+    transform: translateX(0px);
+  }
+}
+
+.slider {
+  border-radius: 34px;
+  &:before{
+    border-radius: 50%;
+  }
+}

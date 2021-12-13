@@ -3,6 +3,14 @@
   font-size: $font-size;
   border-radius: $border-radius;
 }
+.btn-sm {
+  @include button-size(
+    $btn-padding-y-sm,
+    $btn-padding-x-sm,
+    $btn-font-size-sm,
+    $border-radius-sm
+  );
+}
 
 @mixin button-style(
   $color,
@@ -73,4 +81,46 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin switch-size($switch-width, $switch-height, $switch-pos) {
+  width: $switch-width;
+  height: $switch-height;
+  top: $switch-pos;
+}
+.switch.small {
+  @include switch-size(
+    $switch-width-small,
+    $switch-height-small,
+    $switch-pos-small,
+  );
+}
+.switch.large {
+  @include switch-size(
+    $switch-width-large,
+    $switch-height-large,
+    $switch-pos-large,
+  );
+}
+@mixin switch-slider($slider-width, $slider-height, $slider-left, $slider-bottom) {
+  width: $slider-width;
+  height: $slider-height;
+  left: $slider-left;
+  bottom: $slider-bottom;
+}
+.slider.small:before {
+  @include switch-slider(
+  $slider-width-small,
+  $slider-height-small,
+  $slider-left-small,
+  $slider-bottom-small,
+  );
+}
+.slider.large:before {
+  @include switch-slider(
+  $slider-width-large,
+  $slider-height-large,
+  $slider-left-large,
+  $slider-bottom-large,
+  );
 }

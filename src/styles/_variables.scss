@@ -264,3 +264,31 @@ $dropdown-transition: all 0.4s !default;
 
 // dropdown arrow
 $dropdown-arrow-color: $black;
+
+// switch small
+$switch-width-small: 2.2rem !default;
+$switch-height-small: .8rem !default;
+$switch-pos-small: .13rem !default;
+
+// switch large
+$switch-width-large: 4rem !default;
+$switch-height-large: 1.6rem !default;
+$switch-pos-large: 0rem !default;
+
+// switch slider small
+$slider-width-small: 1.125rem !default;
+$slider-height-small: 1.125rem !default;
+$slider-left-small: 0.188rem !default;
+$slider-bottom-small: -0.188rem !default;
+
+// switch slider large
+$slider-width-large: 2.063rem !default;
+$slider-height-large:  2.063rem !default;
+$slider-left-large: 0.313rem !default;
+$slider-bottom-large: -0.313rem !default;
+
+// slider colors
+$slider-checked-color: rgb(139, 202, 253);
+$slider-bakcground-color: rgb(241, 235, 235);
+
+

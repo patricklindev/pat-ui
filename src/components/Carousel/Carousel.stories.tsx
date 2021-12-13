@@ -23,11 +23,6 @@ const imageSrc1 = [
   '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/cd7a1aaea8e1c5e3d26fe2591e561798.png~tplv-uwbnlip3yd-webp.webp',
 ];
 
-const buttonStyle: React.CSSProperties = {
-  marginRight: '5px',
-  marginTop: '5px',
-};
-
 export const DefaultCarousel = () => (
   <div>
     <p>More than 2 images</p>
@@ -106,7 +101,7 @@ export const AutoPlayCarousel = () => (
 export const DiffSizeCarousel = () => (
   <div>
     <Carousel
-      autoPlay={true}
+      autoPlay={false}
       style={{
         width: 400,
         height: 200,
@@ -122,7 +117,7 @@ export const DiffSizeCarousel = () => (
     <br />
 
     <Carousel
-      autoPlay={true}
+      autoPlay={false}
       style={{
         width: 600,
         height: 240,

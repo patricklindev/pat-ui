@@ -1,15 +1,22 @@
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
-import { JsxElement } from 'typescript';
+import React, { useState, useEffect, useRef } from 'react';
 
-export interface ICarousel {
+export type AutoPlay = true | false;
+
+export interface ICarouselProps {
   children: JSX.Element | JSX.Element[];
   style?: object;
-  autoPlay?: boolean;
+  /* set autopplay */
+  autoPlay?: AutoPlay;
 }
 
-const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
+export type PatCarouselProps = ICarouselProps;
+
+export const Carousel: React.FunctionComponent<PatCarouselProps> = (
+  props: PatCarouselProps
+) => {
+  const { children, style, autoPlay, ...rest } = props;
   const [counter, setCounter] = useState(0);
-  const { children } = props;
+
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
   );
@@ -250,5 +257,9 @@ const Carousel: React.FunctionComponent<ICarousel> = (props: ICarousel) => {
       </div>
     </div>
   ) : null;
+};
+
+Carousel.defaultProps = {
+  autoPlay: false,
 };
 export default Carousel;

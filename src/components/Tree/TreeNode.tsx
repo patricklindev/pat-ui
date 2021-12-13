@@ -49,15 +49,11 @@ const TreeNode: FC<NativeTreeNodeProps> = (props) => {
     [`tree__title-${textColor}`]: true,
   });
 
-  const handleClick = () => {
-    console.log('parent tree: ', parent);
-  };
-
   return (
     <div
       className={treeNodeClassNames}
       style={cssStyle}
-      onClick={onClick ? onClick : handleClick}
+      onClick={onClick ? onClick : () => {}}
       {...rest}
     >
       <span className={caretClassNames}></span>

@@ -8,7 +8,7 @@ export default {
 
 export const DefaultTree = () => (
   <div>
-    <Tree title="Tree" onClick={() => console.log('Tree title')}>
+    <Tree title="Tree">
       <Tree.Node>Tree Node</Tree.Node>
       <Tree title="SubTree">
         <Tree.Node>SubTree Node</Tree.Node>

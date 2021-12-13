@@ -1,4 +1,6 @@
-$my-max-width: 600px;
+:root {
+  --my-max-width: 600px;
+}
 
 .Carousel {
   position: relative;
@@ -8,17 +10,20 @@ $my-max-width: 600px;
 
 .Carousel__img-wrapper {
   position: relative;
-
-  width: 3 * $my-max-width;
+  width: calc(3 * var(--my-max-width));
 }
+.Carousel__img-wrapper div {
+  overflow: hidden;
+}
+
 .Carousel__img-wrapper img {
-  max-width: $my-max-width;
+  // max-width: calc(var(--my-max-width));
 }
 
 #Carousel__img__left {
   position: absolute;
   top: 0;
-  left: -$my-max-width;
+  left: calc(-1 * var(--my-max-width));
 }
 #Carousel__img__center {
   position: absolute;
@@ -28,7 +33,7 @@ $my-max-width: 600px;
 #Carousel__img__right {
   position: absolute;
   top: 0;
-  left: $my-max-width;
+  left: var(--my-max-width);
 }
 
 /*deal with the situation when prev is clicked*/
@@ -46,7 +51,9 @@ $my-max-width: 600px;
   animation-name: moveCentertoRight;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: $my-max-width; /*end with this position after animation*/
+  left: calc(
+    -1 * var(--my-max-width)
+  ); /*end with this position after animation*/
 }
 #Carousel__img__mostleft-to-left {
   position: absolute;
@@ -54,7 +61,9 @@ $my-max-width: 600px;
   animation-name: moveMostLefttoLeft;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: -$my-max-width; /*end with this position after animation*/
+  left: calc(
+    -1 * var(--my-max-width)
+  ); /*end with this position after animation*/
 }
 /*deal with with the situation when next is clicked*/
 #Carousel__img__right-to-center {
@@ -71,7 +80,9 @@ $my-max-width: 600px;
   animation-name: moveCentertoLeft;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: -$my-max-width; /*end with this position after animation*/
+  left: calc(
+    -1 * var(--my-max-width)
+  ); /*end with this position after animation*/
 }
 #Carousel__img__mostright-to-right {
   position: absolute;
@@ -79,11 +90,11 @@ $my-max-width: 600px;
   animation-name: moveMostRighttoRight;
   animation-duration: 0.6s;
   top: 0; /*end with this position after animation*/
-  left: $my-max-width; /*end with this position after animation*/
+  left: var(--my-max-width); /*end with this position after animation*/
 }
 @keyframes moveLefttoCenter {
   0% {
-    left: -$my-max-width;
+    left: calc(-1 * var(--my-max-width));
     top: 0px;
   }
   100% {
@@ -99,13 +110,13 @@ $my-max-width: 600px;
   }
   100% {
     top: 0px;
-    left: $my-max-width;
+    left: var(--my-max-width);
   }
 }
 
 @keyframes moveRighttoCenter {
   0% {
-    left: $my-max-width;
+    left: var(--my-max-width);
     top: 0px;
   }
   100% {
@@ -121,28 +132,28 @@ $my-max-width: 600px;
   }
   100% {
     top: 0px;
-    left: -$my-max-width;
+    left: calc(-1 * var(--my-max-width));
   }
 }
 
 @keyframes moveMostLeftToLeft {
   0% {
-    left: -2 * $my-max-width;
+    left: calc(-2 * var(--my-max-width));
     top: 0px;
   }
   100% {
-    left: -$my-max-width;
+    left: calc(-1 * var(--my-max-width));
     top: 0px;
   }
 }
 
 @keyframes moveMostRighttoRight {
   0% {
-    left: 2 * $my-max-width;
+    left: calc(2 * var(--my-max-width));
     top: 0px;
   }
   100% {
-    left: $my-max-width;
+    left: var(--my-max-width);
     top: 0px;
   }
 }

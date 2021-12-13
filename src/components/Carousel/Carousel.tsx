@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export type AutoPlay = true | false;
-
+export type styleType = { width: number };
 export interface ICarouselProps {
   children: JSX.Element | JSX.Element[];
-  style?: object;
+  style?: styleType;
   /* set autopplay */
   autoPlay?: AutoPlay;
 }
@@ -15,8 +15,8 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   props: PatCarouselProps
 ) => {
   const { children, style, autoPlay, ...rest } = props;
-  const [counter, setCounter] = useState(0);
 
+  const [counter, setCounter] = useState(0);
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
   );
@@ -24,12 +24,37 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
 
   const timer = useRef(setInterval(() => {}, 0));
 
-  //console.log(children)
-
+  const [update, forceUpdate] = useState(false);
   useEffect(() => {
+    if (style) {
+      if (style.width) {
+        console.log(style.width);
+        const root = document.documentElement;
+        root.style.setProperty('--my-max-width', style.width + 'px');
+        console.log(
+          document.documentElement.style.getPropertyValue('--my-max-width')
+        );
+
+        forceUpdate((pre) => !pre);
+      }
+    }
+  }, []);
+  useEffect(() => {
+    if (style) {
+      if (style.width) {
+        console.log(style.width);
+        const root = document.documentElement;
+        root.style.setProperty('--max-width', style.width + 'px');
+        console.log(
+          document.documentElement.style.getPropertyValue('--max-width')
+        );
+
+        forceUpdate((pre) => !pre);
+      }
+    }
+
     setCounter(0);
     setLength(Array.isArray(children) ? children.length : 1);
-
     if (props.autoPlay) {
       setPrevOrNextIsClicked('autoNext');
       timer.current = setInterval(() => {
@@ -46,12 +71,10 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   }, [props]); //when props.children change, we should set counter=0. so change of props.children determine counter
 
   let classNameList: string[] = [];
-  //console.log('c', children)
 
   const classNames = classNameList.join('');
 
   const handleClick = (event: React.MouseEvent) => {
-    //console.log(event.currentTarget.id)
     setCounter(parseInt(event.currentTarget.id));
     if (parseInt(event.currentTarget.id) > counter) {
       setPrevOrNextIsClicked('nextIsClicked');
@@ -141,7 +164,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
             return null;
           }
         });
-        //console.log('result', result)
         return result;
       } else if (length === 2) {
         const result = children.map((item, index) => {
@@ -180,13 +202,11 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
             });
           }
         });
-        //console.log('result', result)
         return result;
       } else {
         return children;
       }
     } else {
-      //console.log('result', children)
       return children;
     }
   }
@@ -205,7 +225,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
       onMouseLeave={() => {
         if (props.autoPlay === true) {
           if (prevOrNextIsClicked === 'prevIsClicked') {
-            console.log('yy');
             setTimeout(() => {
               setCounter(
                 (counter + 1) % (Array.isArray(children) ? children.length : 1)
@@ -239,9 +258,11 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
       <span className="Carousel__prev" onClick={handleClickPrev}>
         &#10094;
       </span>
+
       <span className="Carousel__next" onClick={handleClickNext}>
         &#10095;
       </span>
+
       <div className="Carousel__center Carousel__dots">
         {children.map((src, index) => (
           <span

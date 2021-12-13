@@ -22,22 +22,27 @@
 // linear size
 .pg-linear-xs {
   .pg-linear-bar {
-    height: 3px;
+    height: $pg-linear-xs-height;
   }
 }
 .pg-linear-sm {
   .pg-linear-bar {
-    height: 5px;
+    height: $pg-linear-sm-height;
+  }
+}
+.pg-linear-md {
+  .pg-linear-bar {
+    height: $pg-linear-md-height;
   }
 }
 .pg-linear-lg {
   .pg-linear-bar {
-    height: 10px;
+    height: $pg-linear-lg-height;
   }
 }
 .pg-linear-xl {
   .pg-linear-bar {
-    height: 13px;
+    height: $pg-linear-xl-height;
   }
 }
 
@@ -126,35 +131,43 @@
 
 // circular size
 .pg-circular-xs {
-  height: 25px;
-  width: 25px;
+  height: $pg-circular-xs-length;
+  width: $pg-circular-xs-length;
 
   .pg-circular-text {
     display: none;
   }
 }
 .pg-circular-sm {
-  height: 50px;
-  width: 50px;
+  height: $pg-circular-sm-length;
+  width: $pg-circular-sm-length;
 
   .pg-circular-text {
-    font-size: 12px;
+    font-size: $pg-circular-sm-text-size;
+  }
+}
+.pg-circular-md {
+  height: $pg-circular-md-length;
+  width: $pg-circular-md-length;
+
+  .pg-circular-text {
+    font-size: $pg-circular-md-text-size;
   }
 }
 .pg-circular-lg {
-  height: 100px;
-  width: 100px;
+  height: $pg-circular-lg-length;
+  width: $pg-circular-lg-length;
 
   .pg-circular-text {
-    font-size: 20px;
+    font-size: $pg-circular-lg-text-size;
   }
 }
 .pg-circular-xl {
-  height: 150px;
-  width: 150px;
+  height: $pg-circular-xl-length;
+  width: $pg-circular-xl-length;
 
   .pg-circular-text {
-    font-size: 30px;
+    font-size: $pg-circular-xl-text-size;
   }
 }
 

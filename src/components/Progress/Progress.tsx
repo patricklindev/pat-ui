@@ -12,7 +12,7 @@ export type ProgressColor =
   | 'warning'
   | 'danger';
 // progress size
-export type ProgressSize = 'xs' | 'sm' | 'lg' | 'xl';
+export type ProgressSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface IRingProps {
   height: number;
@@ -193,6 +193,8 @@ export const Progress: FC<IProgressProps> = (props) => {
 
 Progress.defaultProps = {
   pgType: 'linear',
+  pgSize: 'md',
+  showPercentage: false,
 };
 
 export default Progress;

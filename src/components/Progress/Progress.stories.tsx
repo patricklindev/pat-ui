@@ -18,7 +18,7 @@ export const DiffTypeProgress = () => {
 
   return (
     <div>
-      <h1>Default</h1>
+      <h1>Linear (Default)</h1>
       <br />
       <Progress pgValue={progress} />
       <br />
@@ -47,7 +47,7 @@ export const DiffSizeProgress = () => {
       <Progress pgSize="sm" pgValue={progress} />
       <br />
 
-      <h3>default (no need to add props)</h3>
+      <h3>md (default)</h3>
       <Progress pgValue={progress} />
       <br />
 
@@ -86,8 +86,8 @@ export const DiffSizeProgress = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h3 style={{ textAlign: 'center' }}>
-            default
-            <span style={{ fontSize: '12px' }}> (no need to add props)</span>
+            md
+            <span style={{ fontSize: '12px' }}> (default)</span>
           </h3>
           <div style={{ margin: 'auto' }}>
             <Progress pgType="circular" pgValue={progress} />
@@ -130,7 +130,7 @@ export const ShowPercentage = () => {
       <Progress showPercentage pgSize="sm" pgValue={progress} />
       <br />
 
-      <h3>default</h3>
+      <h3>md</h3>
       <Progress showPercentage pgValue={progress} />
       <br />
 
@@ -183,7 +183,7 @@ export const ShowPercentage = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ textAlign: 'center' }}>default</h3>
+          <h3 style={{ textAlign: 'center' }}>md</h3>
           <div style={{ margin: 'auto' }}>
             <Progress showPercentage pgType="circular" pgValue={progress} />
           </div>

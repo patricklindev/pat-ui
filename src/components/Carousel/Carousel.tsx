@@ -15,7 +15,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   props: PatCarouselProps
 ) => {
   const { children, style, autoPlay, ...rest } = props;
-
   const [counter, setCounter] = useState(0);
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
@@ -28,7 +27,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   useEffect(() => {
     //deal with change in props.style.width of Carousel. set --my-max-width when Carousel renders for the first time
     //and then listen to change in props.style.width to trigger update --my-max-width
-    console.log('useeffect [props]');
     if (style) {
       if (style.width) {
         const root = document.documentElement;
@@ -52,7 +50,6 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
     }
 
     return () => {
-      console.log('clear the timer');
       clearInterval(timer.current);
     };
   }, [props]); //when props.children change, we should set counter=0. so change of props.children determine counter
@@ -205,15 +202,11 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
         ...props.style,
       }}
       onMouseEnter={() => {
-        console.log(
-          '1onMouseEnter is triggerd. if props.autoPlay=true, the timer.current is cleared now'
-        );
         if (props.autoPlay === true) {
           clearInterval(timer.current);
         }
       }}
       onMouseLeave={() => {
-        console.log('2onMouseLeave is triggerd. if props.autoPlay=true, ');
         if (props.autoPlay === true) {
           if (prevOrNextIsClicked === 'prevIsClicked') {
             //clearTimeout first(clear the previous timeout) to deal with the case when 2 setTimout functions are invoked within 3s.

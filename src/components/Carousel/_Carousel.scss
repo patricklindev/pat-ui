@@ -21,76 +21,50 @@
 }
 
 #Carousel__img__left {
-  position: absolute;
-  top: 0;
-  left: calc(-1 * var(--my-max-width));
+  @include carousel-img-position(0, calc(-1 * var(--my-max-width)));
 }
 #Carousel__img__center {
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include carousel-img-position(0, 0);
 }
 #Carousel__img__right {
-  position: absolute;
-  top: 0;
-  left: var(--my-max-width);
+  @include carousel-img-position(0, var(--my-max-width));
 }
 
 /*deal with the situation when prev is clicked*/
 #Carousel__img__left-to-center {
-  position: absolute;
-  display: block;
-  animation-name: moveLefttoCenter;
-  animation-duration: 0.6s;
-  top: 0; /*end with this position after animation*/
-  left: 0; /*end with this position after animation*/
+  @include carousel-img-position-animation(0, 0, moveLefttoCenter);
 }
 #Carousel__img__center-to-right {
-  position: absolute;
-  display: block;
-  animation-name: moveCentertoRight;
-  animation-duration: 0.6s;
-  top: 0; /*end with this position after animation*/
-  left: calc(
-    -1 * var(--my-max-width)
-  ); /*end with this position after animation*/
+  @include carousel-img-position-animation(
+    0,
+    calc(-1 * var(--my-max-width)),
+    moveCentertoRight
+  );
 }
 #Carousel__img__mostleft-to-left {
-  position: absolute;
-  display: block;
-  animation-name: moveMostLefttoLeft;
-  animation-duration: 0.6s;
-  top: 0; /*end with this position after animation*/
-  left: calc(
-    -1 * var(--my-max-width)
-  ); /*end with this position after animation*/
+  @include carousel-img-position-animation(
+    0,
+    calc(-1 * var(--my-max-width)),
+    moveMostLefttoLeft
+  );
 }
 /*deal with with the situation when next is clicked*/
 #Carousel__img__right-to-center {
-  position: absolute;
-  display: block;
-  animation-name: moveRighttoCenter;
-  animation-duration: 0.6s;
-  top: 0; /*end with this position after animation*/
-  left: 0; /*end with this position after animation*/
+  @include carousel-img-position-animation(0, 0, moveRighttoCenter);
 }
 #Carousel__img__center-to-left {
-  position: absolute;
-  display: block;
-  animation-name: moveCentertoLeft;
-  animation-duration: 0.6s;
-  top: 0; /*end with this position after animation*/
-  left: calc(
-    -1 * var(--my-max-width)
-  ); /*end with this position after animation*/
+  @include carousel-img-position-animation(
+    0,
+    calc(-1 * var(--my-max-width)),
+    moveCentertoLeft
+  );
 }
 #Carousel__img__mostright-to-right {
-  position: absolute;
-  display: block;
-  animation-name: moveMostRighttoRight;
-  animation-duration: 0.6s;
-  top: 0; /*end with this position after animation*/
-  left: var(--my-max-width); /*end with this position after animation*/
+  @include carousel-img-position-animation(
+    0,
+    var(--my-max-width),
+    moveMostRighttoRight
+  );
 }
 @keyframes moveLefttoCenter {
   0% {
@@ -169,18 +143,16 @@
   color: white;
   font-weight: bold;
   font-size: 18px;
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px 0 0 3px;
   user-select: none;
 }
 
 .Carousel__prev {
   left: 0;
-  border-radius: 3px 0 0 3px;
 }
 
 .Carousel__next {
   right: 0;
-  border-radius: 3px 0 0 3px;
 }
 
 .Carousel__dots {

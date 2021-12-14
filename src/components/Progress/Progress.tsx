@@ -72,12 +72,16 @@ export const Progress: FC<IProgressProps> = (props) => {
   let renderComponent: JSX.Element | undefined;
   if (pgType === 'linear') {
     renderComponent = (
-      <div style={{ display: 'flex' }}>
+      <div role="progressbar" style={{ display: 'flex' }}>
         <div
           style={{ width: showPercentage ? '95%' : '100%' }}
           className={styleClasses}
         >
-          <div style={{ width: `${pgValue}%` }} className="pg-linear-bar"></div>
+          <div
+            data-testid="linear-bar"
+            style={{ width: `${pgValue}%` }}
+            className="pg-linear-bar"
+          ></div>
         </div>
         {showPercentage ? (
           <div className="pg-linear-text">{`${Math.floor(pgValue)}%`}</div>
@@ -148,7 +152,7 @@ export const Progress: FC<IProgressProps> = (props) => {
     const strokeDashoffset = circumference - (pgValue / 100) * circumference;
 
     renderComponent = (
-      <div className={styleClasses}>
+      <div role="progressbar" className={styleClasses}>
         <svg
           className="backgroud"
           height={ringProps.height}
@@ -171,6 +175,7 @@ export const Progress: FC<IProgressProps> = (props) => {
         >
           <circle
             className="progress-ring"
+            data-testid="circular-bar"
             style={{ strokeDashoffset }}
             strokeWidth={ringProps.strokeWidth}
             strokeLinecap="round"

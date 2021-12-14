@@ -7,6 +7,8 @@ export interface ICarouselProps {
   style?: styleType;
   /* set autopplay */
   autoPlay?: AutoPlay;
+  /* set moveSpeed */
+  imgChangeSpeed?: number;
 }
 
 export type PatCarouselProps = ICarouselProps;
@@ -24,6 +26,8 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   const timer: { current: any } = useRef(null);
   const timeout: { current: any } = useRef(null);
 
+  const [imgChangeSpeed, setImgChangeSpeed] = useState(3000);
+
   useEffect(() => {
     //deal with change in props.style.width of Carousel. set --my-max-width when Carousel renders for the first time
     //and then listen to change in props.style.width to trigger update --my-max-width
@@ -40,13 +44,22 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
 
     //deal with props.autoPlay. If props.autoPlay===true, then
     if (props.autoPlay === true) {
-      setPrevOrNextIsClicked('autoNext');
-      timer.current = setInterval(() => {
-        setCounter(
-          (counter) =>
-            (counter + 1) % (Array.isArray(children) ? children.length : 1)
+      //set imgChangeSpeed
+      if (props.imgChangeSpeed) {
+        setImgChangeSpeed(
+          props.imgChangeSpeed >= 3000 ? props.imgChangeSpeed : 3000
         );
-      }, 3000);
+      }
+      setPrevOrNextIsClicked('autoNext');
+      timer.current = setInterval(
+        () => {
+          setCounter(
+            (counter) =>
+              (counter + 1) % (Array.isArray(children) ? children.length : 1)
+          );
+        },
+        props.imgChangeSpeed ? Math.max(props.imgChangeSpeed, 3000) : 3000
+      );
     }
 
     return () => {
@@ -227,8 +240,8 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
                     (counter + 1) %
                     (Array.isArray(children) ? children.length : 1)
                 );
-              }, 3000);
-            }, 3000);
+              }, imgChangeSpeed);
+            }, imgChangeSpeed);
           } else {
             setPrevOrNextIsClicked('autoNext');
             clearInterval(timer.current); //clear the previous timer if any
@@ -239,7 +252,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
                   (counter + 1) %
                   (Array.isArray(children) ? children.length : 1)
               );
-            }, 3000);
+            }, imgChangeSpeed);
           }
         }
       }}

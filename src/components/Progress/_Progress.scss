@@ -15,8 +15,7 @@
 
 // linear text
 .pg-linear-text {
-  margin-left: 10px;
-  width: 5%;
+  margin: auto 0 auto 10px;
 }
 
 // linear size
@@ -131,40 +130,40 @@
 
 // circular size
 .pg-circular-xs {
-  height: $pg-circular-xs-length;
-  width: $pg-circular-xs-length;
+  height: $pg-circular-xs-diameter;
+  width: $pg-circular-xs-diameter;
 
   .pg-circular-text {
     display: none;
   }
 }
 .pg-circular-sm {
-  height: $pg-circular-sm-length;
-  width: $pg-circular-sm-length;
+  height: $pg-circular-sm-diameter;
+  width: $pg-circular-sm-diameter;
 
   .pg-circular-text {
     font-size: $pg-circular-sm-text-size;
   }
 }
 .pg-circular-md {
-  height: $pg-circular-md-length;
-  width: $pg-circular-md-length;
+  height: $pg-circular-md-diameter;
+  width: $pg-circular-md-diameter;
 
   .pg-circular-text {
     font-size: $pg-circular-md-text-size;
   }
 }
 .pg-circular-lg {
-  height: $pg-circular-lg-length;
-  width: $pg-circular-lg-length;
+  height: $pg-circular-lg-diameter;
+  width: $pg-circular-lg-diameter;
 
   .pg-circular-text {
     font-size: $pg-circular-lg-text-size;
   }
 }
 .pg-circular-xl {
-  height: $pg-circular-xl-length;
-  width: $pg-circular-xl-length;
+  height: $pg-circular-xl-diameter;
+  width: $pg-circular-xl-diameter;
 
   .pg-circular-text {
     font-size: $pg-circular-xl-text-size;

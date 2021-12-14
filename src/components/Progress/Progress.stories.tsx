@@ -59,6 +59,10 @@ export const DiffSizeProgress = () => {
       <Progress pgSize="xl" pgValue={progress} />
       <br />
 
+      <h3>custom size (height: 20px)</h3>
+      <Progress pgSize={20} pgValue={progress} />
+      <br />
+
       <br />
 
       <h1>Circular</h1>
@@ -107,6 +111,16 @@ export const DiffSizeProgress = () => {
             <Progress pgType="circular" pgSize="xl" pgValue={progress} />
           </div>
         </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ textAlign: 'center' }}>
+            custom size
+            <span style={{ fontSize: '12px' }}> (radius: 80px)</span>
+          </h3>
+          <div style={{ margin: 'auto' }}>
+            <Progress pgType="circular" pgSize={80} pgValue={progress} />
+          </div>
+        </div>
       </div>
 
       <br />
@@ -142,6 +156,21 @@ export const ShowPercentage = () => {
       <Progress showPercentage pgSize="xl" pgValue={progress} />
       <br />
 
+      <h3>custom size (height: 20px)</h3>
+      <Progress showPercentage pgSize={20} pgValue={progress} />
+      <br />
+
+      <h3>
+        custom size (height: 32px){' '}
+        <span style={{ fontSize: '12px' }}>
+          {' '}
+          (font size of percentage will be adjusted if the size value is greater
+          than 30)
+        </span>
+      </h3>
+      <Progress showPercentage pgSize={32} pgValue={progress} />
+      <br />
+
       <br />
 
       <h1>Circular</h1>
@@ -154,12 +183,8 @@ export const ShowPercentage = () => {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ textAlign: 'center' }}>
-            xs{' '}
-            <span style={{ fontSize: '12px' }}>
-              (no percentage shown for xs)
-            </span>
-          </h3>
+          <h3 style={{ textAlign: 'center' }}>xs</h3>
+          <span style={{ fontSize: '12px' }}>(no percentage shown for xs)</span>
           <div style={{ margin: 'auto' }}>
             <Progress
               showPercentage
@@ -171,8 +196,26 @@ export const ShowPercentage = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ textAlign: 'center' }}>sm</h3>
+          <h3 style={{ textAlign: 'center' }}>
+            custom size
+            <span style={{ fontSize: '12px' }}> (radius: 14px)</span>
+          </h3>
+          <span style={{ fontSize: '12px' }}>
+            (percentage will not show if the size value is less than 14)
+          </span>
           <div style={{ margin: 'auto' }}>
+            <Progress
+              showPercentage
+              pgType="circular"
+              pgSize={14}
+              pgValue={progress}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ textAlign: 'center' }}>sm</h3>
+          <div style={{ margin: 'auto', paddingTop: '18px' }}>
             <Progress
               showPercentage
               pgType="circular"
@@ -184,14 +227,14 @@ export const ShowPercentage = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h3 style={{ textAlign: 'center' }}>md</h3>
-          <div style={{ margin: 'auto' }}>
+          <div style={{ margin: 'auto', paddingTop: '18px' }}>
             <Progress showPercentage pgType="circular" pgValue={progress} />
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h3 style={{ textAlign: 'center' }}>lg</h3>
-          <div style={{ margin: 'auto' }}>
+          <div style={{ margin: 'auto', paddingTop: '18px' }}>
             <Progress
               showPercentage
               pgType="circular"
@@ -203,11 +246,26 @@ export const ShowPercentage = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h3 style={{ textAlign: 'center' }}>xl</h3>
-          <div style={{ margin: 'auto' }}>
+          <div style={{ margin: 'auto', paddingTop: '18px' }}>
             <Progress
               showPercentage
               pgType="circular"
               pgSize="xl"
+              pgValue={progress}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ textAlign: 'center' }}>
+            custom size
+            <span style={{ fontSize: '12px' }}> (radius: 80px)</span>
+          </h3>
+          <div style={{ margin: 'auto', paddingTop: '18px' }}>
+            <Progress
+              showPercentage
+              pgType="circular"
+              pgSize={80}
               pgValue={progress}
             />
           </div>

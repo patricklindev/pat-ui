@@ -14,7 +14,7 @@ export interface ICarouselProps {
   imgChangeSpeed?: number;
   /** set customized style */
   className?: string;
-  indicatorType: IndicatorType;
+  indicatorType?: IndicatorType;
 }
 
 export type PatCarouselProps = ICarouselProps;

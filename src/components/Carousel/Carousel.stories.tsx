@@ -98,6 +98,48 @@ export const AutoPlayCarousel = () => (
   </div>
 );
 
+export const imgChangeSpeed = () => (
+  <div>
+    <p>
+      default imgChangeSpeed is 3000 which means img is changed every 3000ms
+    </p>
+    <Carousel
+      autoPlay={true}
+      style={{
+        width: 600,
+        height: 240,
+      }}
+    >
+      {imageSrc4.map((src, index) => (
+        <div key={index}>
+          <img src={src} style={{ width: '100%' }} />
+        </div>
+      ))}
+    </Carousel>
+
+    <br />
+
+    <p>
+      user can set imgChangeSpeed to be any value greater than or equal to 3000
+    </p>
+    <Carousel
+      autoPlay={true}
+      style={{
+        width: 600,
+        height: 240,
+      }}
+      indicatorType="line"
+      imgChangeSpeed={5000}
+    >
+      {imageSrc4.map((src, index) => (
+        <div key={index}>
+          <img src={src} style={{ width: '100%' }} />
+        </div>
+      ))}
+    </Carousel>
+  </div>
+);
+
 export const DiffSizeCarousel = () => (
   <div>
     <Carousel
@@ -122,6 +164,43 @@ export const DiffSizeCarousel = () => (
         width: 600,
         height: 240,
       }}
+    >
+      {imageSrc4.map((src, index) => (
+        <div key={index}>
+          <img src={src} style={{ width: '100%' }} />
+        </div>
+      ))}
+    </Carousel>
+  </div>
+);
+
+export const IndicatorType = () => (
+  <div>
+    <p>default indicatorType is dot</p>
+    <Carousel
+      autoPlay={false}
+      style={{
+        width: 600,
+        height: 240,
+      }}
+    >
+      {imageSrc4.map((src, index) => (
+        <div key={index}>
+          <img src={src} style={{ width: '100%' }} />
+        </div>
+      ))}
+    </Carousel>
+
+    <br />
+
+    <p>indicatorType-line</p>
+    <Carousel
+      autoPlay={false}
+      style={{
+        width: 600,
+        height: 240,
+      }}
+      indicatorType="line"
     >
       {imageSrc4.map((src, index) => (
         <div key={index}>

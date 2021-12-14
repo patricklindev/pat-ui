@@ -20,6 +20,29 @@ const imageSrc1 = [
 ];
 
 describe('Carousel', () => {
+  it('should match snapshot', () => {
+    const { asFragment } = render(
+      <Carousel
+        style={{
+          width: 600,
+          height: 240,
+        }}
+      >
+        {imageSrc4.map((src, index) => (
+          <div key={index}>
+            <img
+              src={src}
+              style={{
+                width: '100%',
+              }}
+            />
+          </div>
+        ))}
+      </Carousel>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('If user passes Carousel component N inner elements following the correct syntax as below. If N>=3, it should render a carousel that has 3 images and N dots', () => {
     const wrapper = render(
       <Carousel

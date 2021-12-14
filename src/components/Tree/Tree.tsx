@@ -34,8 +34,6 @@ interface ITreeProps {
   className?: string;
   /** set customized css style */
   style?: CSSProperties;
-  /** set onClick prop */
-  onClick?: Function;
 }
 
 export type NativeTreeProps = ITreeProps & HTMLAttributes<HTMLDivElement>;
@@ -58,7 +56,6 @@ const Tree: FC<NativeTreeProps> = (props) => {
     className,
     children,
     style,
-    onClick,
     ...rest
   } = props;
 
@@ -99,12 +96,7 @@ const Tree: FC<NativeTreeProps> = (props) => {
             isTreeNodeOpen ? `${caretStyle} tree__caret-down` : caretStyle
           }
         ></span>
-        <span
-          onClick={disabled ? () => {} : onClick}
-          className={treeTitleStyle}
-        >
-          {title}
-        </span>
+        <span className={treeTitleStyle}>{title}</span>
       </div>
       <div className={treeNodesStyle}>
         {children
@@ -117,7 +109,6 @@ const Tree: FC<NativeTreeProps> = (props) => {
                   treeSize,
                   textColor,
                   parent: title,
-                  onClick,
                 },
                 child.props.children
               );
@@ -130,6 +121,8 @@ const Tree: FC<NativeTreeProps> = (props) => {
 
 Tree.defaultProps = {
   title: '',
+  treeSize: 'md',
+  treeColor: 'primary',
 };
 
 export default Tree;

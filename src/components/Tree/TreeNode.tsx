@@ -16,8 +16,6 @@ interface ITreeNodeProps {
   className?: string;
   /** set customized css style */
   cssStyle?: CSSProperties;
-  /** pass an onClick handler */
-  onClick?: Function;
 }
 
 export type NativeTreeNodeProps = ITreeNodeProps &
@@ -32,7 +30,6 @@ const TreeNode: FC<NativeTreeNodeProps> = (props) => {
     className,
     children,
     cssStyle,
-    onClick,
     ...rest
   } = props;
 
@@ -50,12 +47,7 @@ const TreeNode: FC<NativeTreeNodeProps> = (props) => {
   });
 
   return (
-    <div
-      className={treeNodeClassNames}
-      style={cssStyle}
-      onClick={onClick ? onClick : () => {}}
-      {...rest}
-    >
+    <div className={treeNodeClassNames} style={cssStyle} {...rest}>
       <span className={caretClassNames}></span>
       <span className={treeTitleStyle}>{children}</span>
     </div>

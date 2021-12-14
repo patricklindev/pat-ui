@@ -16,7 +16,7 @@ export type PatCarouselProps = ICarouselProps;
 export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   props: PatCarouselProps
 ) => {
-  const { children, style, autoPlay, ...rest } = props;
+  const { children, style, autoPlay, imgChangeSpeed, ...rest } = props;
   const [counter, setCounter] = useState(0);
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
@@ -26,7 +26,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   const timer: { current: any } = useRef(null);
   const timeout: { current: any } = useRef(null);
 
-  const [imgChangeSpeed, setImgChangeSpeed] = useState(3000);
+  const [imgChangeSpeedValue, setImgChangeSpeedValue] = useState(3000);
 
   useEffect(() => {
     //deal with change in props.style.width of Carousel. set --my-max-width when Carousel renders for the first time
@@ -46,7 +46,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
     if (props.autoPlay === true) {
       //set imgChangeSpeed
       if (props.imgChangeSpeed) {
-        setImgChangeSpeed(
+        setImgChangeSpeedValue(
           props.imgChangeSpeed >= 3000 ? props.imgChangeSpeed : 3000
         );
       }
@@ -240,8 +240,8 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
                     (counter + 1) %
                     (Array.isArray(children) ? children.length : 1)
                 );
-              }, imgChangeSpeed);
-            }, imgChangeSpeed);
+              }, imgChangeSpeedValue);
+            }, imgChangeSpeedValue);
           } else {
             setPrevOrNextIsClicked('autoNext');
             clearInterval(timer.current); //clear the previous timer if any
@@ -252,7 +252,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
                   (counter + 1) %
                   (Array.isArray(children) ? children.length : 1)
               );
-            }, imgChangeSpeed);
+            }, imgChangeSpeedValue);
           }
         }
       }}

@@ -48,8 +48,12 @@ export const DisabledTree = () => (
 export const ColoredTree = () => (
   <div>
     <Tree title="Colored Tree" treeColor="danger" textColor="info">
-      <Tree.Node>treeColor = 'danger' (default is 'primary')</Tree.Node>
-      <Tree.Node>textColor = 'info'</Tree.Node>
+      <Tree.Node>
+        Change tree caret with: treeColor = 'danger' (default is primary)
+      </Tree.Node>
+      <Tree.Node>
+        Change text with: textColor = 'info' (default is black)
+      </Tree.Node>
     </Tree>
   </div>
 );

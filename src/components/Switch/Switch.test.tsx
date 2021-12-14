@@ -42,11 +42,11 @@ describe('Switch', () => {
             onClick: () => {
                 console.log('Here')
             },
-            className: 'test-two'
+            className: 'test-three'
         }
         const switchWrapper = render(<Switch {...switchLeftProps}></Switch>);
         const switchElement = screen.getByTestId('switch-label');
-        expect(switchElement).toHaveClass('switch small left test-two');
+        expect(switchElement).toHaveClass('switch small left test-three');
     });
 
 

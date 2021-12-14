@@ -22,36 +22,26 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   );
   const [prevOrNextIsClicked, setPrevOrNextIsClicked] = useState('');
 
-  const timer = useRef(setInterval(() => {}, 0));
+  const timer: { current: any } = useRef(null);
+  const timeout: { current: any } = useRef(null);
 
   useEffect(() => {
+    //deal with change in props.style.width of Carousel. set --my-max-width when Carousel renders for the first time
+    //and then listen to change in props.style.width to trigger update --my-max-width
+    console.log('useeffect [props]');
     if (style) {
       if (style.width) {
-        console.log(style.width);
         const root = document.documentElement;
         root.style.setProperty('--my-max-width', style.width + 'px');
-        console.log(
-          document.documentElement.style.getPropertyValue('--my-max-width')
-        );
       }
     }
-  }, [props.style?.width]);
-
-  useEffect(() => {
-    if (style) {
-      if (style.width) {
-        console.log(style.width);
-        const root = document.documentElement;
-        root.style.setProperty('--max-width', style.width + 'px');
-        console.log(
-          document.documentElement.style.getPropertyValue('--max-width')
-        );
-      }
-    }
-
+    //deal with change in props.children of Carousel. set counter to 0 when Carousel renders for the first time.
+    //and then listen to change in props change to trigger update counter to 0
     setCounter(0);
     setLength(Array.isArray(children) ? children.length : 1);
-    if (props.autoPlay) {
+
+    //deal with props.autoPlay. If props.autoPlay===true, then
+    if (props.autoPlay === true) {
       setPrevOrNextIsClicked('autoNext');
       timer.current = setInterval(() => {
         setCounter(
@@ -62,6 +52,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
     }
 
     return () => {
+      console.log('clear the timer');
       clearInterval(timer.current);
     };
   }, [props]); //when props.children change, we should set counter=0. so change of props.children determine counter
@@ -213,19 +204,30 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
       style={{
         ...props.style,
       }}
-      onMouseOver={() => {
+      onMouseEnter={() => {
+        console.log(
+          '1onMouseEnter is triggerd. if props.autoPlay=true, the timer.current is cleared now'
+        );
         if (props.autoPlay === true) {
           clearInterval(timer.current);
         }
       }}
       onMouseLeave={() => {
+        console.log('2onMouseLeave is triggerd. if props.autoPlay=true, ');
         if (props.autoPlay === true) {
           if (prevOrNextIsClicked === 'prevIsClicked') {
-            setTimeout(() => {
+            //clearTimeout first(clear the previous timeout) to deal with the case when 2 setTimout functions are invoked within 3s.
+            //which is to say, when the last callback function is not pushed to main stack to execute, but a second callback is pushed to pool (possibly within 3s since the first setTimeout is invoked).
+            //In this case, we will clear the previous setTimeout so the previous callback function will not be executed.
+            //Otherwise, the previous callback function's reference will be lost. In this case, the setInterval function is invoked inside, if the previous setTimout's reference is lost and not cleared, setInterval will not called without our control.
+            clearTimeout(timeout.current);
+            timeout.current = setTimeout(() => {
               setCounter(
                 (counter + 1) % (Array.isArray(children) ? children.length : 1)
               );
               setPrevOrNextIsClicked('autoNext');
+              clearInterval(timer.current); //clear the previous timer if any
+              //start a new interval
               timer.current = setInterval(() => {
                 setCounter(
                   (counter) =>
@@ -236,6 +238,8 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
             }, 3000);
           } else {
             setPrevOrNextIsClicked('autoNext');
+            clearInterval(timer.current); //clear the previous timer if any
+            //start a new interval
             timer.current = setInterval(() => {
               setCounter(
                 (counter) =>

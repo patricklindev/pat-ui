@@ -28,13 +28,7 @@
   }
 }
 
-@mixin message-style(
-  $msg-background-color,
-  $msg-border-radius,
-  $msg-border,
-  $msg-padding,
-  $msg-box-width
-) {
+@mixin message-style($msg-background-color,$msg-border-radius,$msg-border,$msg-padding,$msg-box-width) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;

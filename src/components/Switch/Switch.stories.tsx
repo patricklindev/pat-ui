@@ -57,10 +57,17 @@ export const DiffTypeSwitch = () => (
       Primary Switch
     </Switch>
     <Switch
-      textPosition='top'
-      onClick={action('Secondary Switch clicked')}
+      textPosition='left'
+      onClick={action('Left Switch clicked')}
     >
-      Secondary Switch
+      Left Switch
     </Switch>
+    <Switch
+      textPosition='top'
+      onClick={action('Top Switch clicked')}
+    >
+      Top Switch
+    </Switch>
+
   </div>
 );

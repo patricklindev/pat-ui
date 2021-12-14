@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent, screen} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import Switch ,{ ISwitchProps } from './Switch';
 
 describe('Switch', () => {
@@ -9,18 +9,18 @@ describe('Switch', () => {
       });
 
     it('should render default switch', () => {
-        // Default message
+        // Default switch
         const switchBasicProps: ISwitchProps = {
             switchSize: 'medium',
             textPosition: 'default',
             className: 'test'
         }
-        const msgBasicWrapper = render(<Switch {...switchBasicProps}></Switch>);
-        const msgElement = screen.getByTestId('switch-element');
-        expect(msgElement).toHaveClass('container default');
+        const switchWrapper = render(<Switch {...switchBasicProps}></Switch>);
+        const switchElement = screen.getByTestId('switch-element');
+        expect(switchElement).toHaveClass('container default');
     });
-    it('should render default switch', () => {
-        // Default message
+    it('should render more complicated switch', () => {
+        // More complicated switch
         const switchLargeProps: ISwitchProps = {
             switchSize: 'large',
             textPosition: 'top',
@@ -30,9 +30,9 @@ describe('Switch', () => {
             },
             className: 'test-two'
         }
-        const msgBasicWrapper = render(<Switch {...switchLargeProps}></Switch>);
-        const msgElement = screen.getByTestId('switch-label');
-        expect(msgElement).toHaveClass('switch large top test-two true');
+        const switchWrapper = render(<Switch {...switchLargeProps}></Switch>);
+        const switchElement = screen.getByTestId('switch-label');
+        expect(switchElement).toHaveClass('switch large top test-two true');
     });
 
 

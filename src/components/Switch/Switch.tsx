@@ -4,7 +4,7 @@ import { classNames } from '../../utils/classNames';
 
 
 export type Size = 'large' | 'small' | 'medium';
-export type TextPosition = 'default' | 'top';
+export type TextPosition = 'default' | 'top' | 'left' ;
 
 
 export interface ISwitchProps {

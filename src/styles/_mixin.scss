@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,18 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin carousel-img-position($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+@mixin carousel-img-position-animation($top, $left, $animation-name) {
+  position: absolute;
+  top: $top; /*end with this position after animation*/
+  left: $left; /*end with this position after animation*/
+  animation-name: $animation-name;
+  animation-duration: 0.6s;
 }

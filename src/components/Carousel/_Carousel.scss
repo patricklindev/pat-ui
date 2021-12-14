@@ -162,16 +162,19 @@
   transform: translate(-50%);
 }
 .Carousel__dot {
-  cursor: pointer;
-  height: 10px;
-  width: 10px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
+  @include carousel-indicator(10px, 10px, 50%);
 }
 
 .Carousel__dot-active,
 .Carousel__dot:hover {
+  background-color: white;
+}
+
+.carousel-line .Carousel__dot {
+  @include carousel-indicator(5px, 13px, 95px);
+}
+
+.carousel-line .Carousel__dot-active,
+.carousel-line .Carousel__dot:hover {
   background-color: white;
 }

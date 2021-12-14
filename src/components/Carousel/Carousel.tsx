@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { classNames } from '../../utils/classNames';
 
 export type AutoPlay = true | false;
 export type styleType = { width?: number; height?: number };
+export type IndicatorType = 'dot' | 'line';
+
 export interface ICarouselProps {
   children: JSX.Element | JSX.Element[];
   style?: styleType;
@@ -9,6 +12,9 @@ export interface ICarouselProps {
   autoPlay?: AutoPlay;
   /* set moveSpeed */
   imgChangeSpeed?: number;
+  /** set customized style */
+  className?: string;
+  indicatorType: IndicatorType;
 }
 
 export type PatCarouselProps = ICarouselProps;
@@ -16,7 +22,15 @@ export type PatCarouselProps = ICarouselProps;
 export const Carousel: React.FunctionComponent<PatCarouselProps> = (
   props: PatCarouselProps
 ) => {
-  const { children, style, autoPlay, imgChangeSpeed, ...rest } = props;
+  const {
+    children,
+    style,
+    autoPlay,
+    imgChangeSpeed,
+    className,
+    indicatorType,
+    ...rest
+  } = props;
   const [counter, setCounter] = useState(0);
   const [length, setLength] = useState(
     Array.isArray(children) ? children.length : 1
@@ -67,9 +81,12 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
     };
   }, [props]); //when props.children change, we should set counter=0. so change of props.children determine counter
 
-  let classNameList: string[] = [];
-
-  const classNames = classNameList.join('');
+  let styleClasses = classNames('Carousel', {
+    [`carousel-${indicatorType}`]: !!indicatorType,
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
 
   const handleClick = (event: React.MouseEvent) => {
     setCounter(parseInt(event.currentTarget.id));
@@ -210,7 +227,7 @@ export const Carousel: React.FunctionComponent<PatCarouselProps> = (
 
   return children && Array.isArray(children) ? (
     <div
-      className="Carousel"
+      className={styleClasses}
       style={{
         ...props.style,
       }}

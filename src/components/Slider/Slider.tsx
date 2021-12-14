@@ -48,6 +48,14 @@ export interface ISliderProps {
 
 export type PatSliderProps = ISliderProps;
 
+/**
+ * A slider provides a user with the option of selecting an input value from a range of numbers.
+ *
+ * ```js
+ * import {Slider} from 'pat-ui'
+ * ```
+ */
+
 export const Slider: FC<PatSliderProps> = (props) => {
   const {
     min,

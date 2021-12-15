@@ -1,0 +1,251 @@
+// linear default
+.pg-linear {
+  width: 100%;
+  background-color: $gray-400;
+  border-radius: 50px;
+  margin: auto 0;
+
+  .pg-linear-bar {
+    height: 7px;
+    background-color: $black;
+    border-radius: 50px;
+    transition: width 0.3s linear;
+  }
+}
+
+// linear text
+.pg-linear-text {
+  margin: auto 0 auto 10px;
+}
+
+// linear size
+.pg-linear-xs {
+  .pg-linear-bar {
+    height: $pg-linear-xs-height;
+  }
+}
+.pg-linear-sm {
+  .pg-linear-bar {
+    height: $pg-linear-sm-height;
+  }
+}
+.pg-linear-md {
+  .pg-linear-bar {
+    height: $pg-linear-md-height;
+  }
+}
+.pg-linear-lg {
+  .pg-linear-bar {
+    height: $pg-linear-lg-height;
+  }
+}
+.pg-linear-xl {
+  .pg-linear-bar {
+    height: $pg-linear-xl-height;
+  }
+}
+
+// linear color
+.pg-linear-primary {
+  background-color: $pg-primary-background;
+
+  .pg-linear-bar {
+    background-color: $primary;
+  }
+}
+.pg-linear-secondary {
+  background-color: $pg-secondary-background;
+
+  .pg-linear-bar {
+    background-color: $secondary;
+  }
+}
+.pg-linear-success {
+  background-color: $pg-success-background;
+
+  .pg-linear-bar {
+    background-color: $success;
+  }
+}
+.pg-linear-info {
+  background-color: $pg-info-background;
+
+  .pg-linear-bar {
+    background-color: $info;
+  }
+}
+.pg-linear-warning {
+  background-color: $pg-warning-background;
+
+  .pg-linear-bar {
+    background-color: $warning;
+  }
+}
+.pg-linear-danger {
+  background-color: $pg-danger-background;
+
+  .pg-linear-bar {
+    background-color: $danger;
+  }
+}
+
+// circular default
+.pg-circular {
+  position: relative;
+  height: 75px;
+  width: 75px;
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  // circular text
+  .pg-circular-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .ring {
+    stroke: $gray-400;
+  }
+
+  .progress-ring {
+    stroke: $black;
+
+    transition: stroke-dashoffset 0.5s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+}
+
+// circular size
+.pg-circular-xs {
+  height: $pg-circular-xs-diameter;
+  width: $pg-circular-xs-diameter;
+
+  .pg-circular-text {
+    display: none;
+  }
+}
+.pg-circular-sm {
+  height: $pg-circular-sm-diameter;
+  width: $pg-circular-sm-diameter;
+
+  .pg-circular-text {
+    font-size: $pg-circular-sm-text-size;
+  }
+}
+.pg-circular-md {
+  height: $pg-circular-md-diameter;
+  width: $pg-circular-md-diameter;
+
+  .pg-circular-text {
+    font-size: $pg-circular-md-text-size;
+  }
+}
+.pg-circular-lg {
+  height: $pg-circular-lg-diameter;
+  width: $pg-circular-lg-diameter;
+
+  .pg-circular-text {
+    font-size: $pg-circular-lg-text-size;
+  }
+}
+.pg-circular-xl {
+  height: $pg-circular-xl-diameter;
+  width: $pg-circular-xl-diameter;
+
+  .pg-circular-text {
+    font-size: $pg-circular-xl-text-size;
+  }
+}
+
+// circular color
+.pg-circular-primary {
+  .ring {
+    stroke: $pg-primary-background;
+  }
+
+  .progress-ring {
+    stroke: $primary;
+  }
+
+  .pg-circular-text {
+    color: $primary;
+  }
+}
+.pg-circular-secondary {
+  .ring {
+    stroke: $pg-secondary-background;
+  }
+
+  .progress-ring {
+    stroke: $secondary;
+  }
+
+  .pg-circular-text {
+    color: $secondary;
+  }
+}
+.pg-circular-success {
+  .ring {
+    stroke: $pg-success-background;
+  }
+
+  .progress-ring {
+    stroke: $success;
+  }
+
+  .pg-circular-text {
+    color: $success;
+  }
+}
+.pg-circular-info {
+  .ring {
+    stroke: $pg-info-background;
+  }
+
+  .progress-ring {
+    stroke: $info;
+  }
+
+  .pg-circular-text {
+    color: $info;
+  }
+}
+.pg-circular-warning {
+  .ring {
+    stroke: $pg-warning-background;
+  }
+
+  .progress-ring {
+    stroke: $warning;
+  }
+
+  .pg-circular-text {
+    color: $warning;
+  }
+}
+.pg-circular-danger {
+  .ring {
+    stroke: $pg-danger-background;
+  }
+
+  .progress-ring {
+    stroke: $danger;
+  }
+
+  .pg-circular-text {
+    color: $danger;
+  }
+}

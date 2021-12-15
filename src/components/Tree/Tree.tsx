@@ -89,12 +89,13 @@ const Tree: FC<NativeTreeProps> = (props) => {
 
   return (
     <div className={treeStyle} style={style} {...rest}>
-      <div>
+      <div className="tree__title_container">
         <span
           onClick={disabled ? () => {} : toggleTreeView}
           className={
             isTreeNodeOpen ? `${caretStyle} tree__caret-down` : caretStyle
           }
+          title="Tree toggle button"
         ></span>
         <span className={treeTitleStyle}>{title}</span>
       </div>

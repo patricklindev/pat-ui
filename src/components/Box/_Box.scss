@@ -1,0 +1,16 @@
+.box-default {
+  border: none;
+  box-sizing: border-box;
+  background-color: $white;
+  margin: 2px;
+  padding: 2px;
+}
+
+.box-default-border {
+  border: 1px dashed $gray-600;
+  box-sizing: border-box;
+  background-color: $white;
+  display: inline-block;
+  margin: 2px;
+  padding: 2px;
+}

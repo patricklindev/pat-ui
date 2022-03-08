@@ -95,6 +95,7 @@ export const usePagination = (props: PaginationProps) => {
     itemTypes,
     onPrev,
     onNext,
+    updateCurrentPage,
     ...restProps,
   };
 };

@@ -21,12 +21,13 @@ const Drawer: FC<DrawerProps> = ({
   children
 }): JSX.Element => {
 
+
   
 
   return (
     
     
-  <aside className={`drawer ${anchor}`}>
+  <aside className={`drawer ${anchor} ${open? "": "openStateFalse"}`}>
       {children}
   </aside>
   
@@ -46,7 +47,7 @@ const CustomDrawer: FC = (): JSX.Element =>{
     <div>
       <button>Drawer Btn</button>
       
-      <Drawer anchor='left'>
+      <Drawer anchor='left' open={false}>
         <h1>email</h1>
         <h1>contacts</h1>
         <h1>drafts</h1>

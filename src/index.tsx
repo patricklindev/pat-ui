@@ -1,3 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom'
+import {CustomDrawer} from './components/Drawer/Drawer'
+
+
+ReactDOM.render(<CustomDrawer />, document.getElementById('root'));
+
 export { default as Button } from './components/Button';
 export { default as Input } from './components/Input';
 export { default as Icon } from './components/Icon';

@@ -23,6 +23,10 @@ export interface PaginationProps {
   shape?: ShapeType;
   /** show the number of adjacent siblings */
   siblingCount?: number;
+  /** number of items per page for table pagination */
+  rowsPerPage?: number;
+  /** range of rows per page */
+  range?: number[];
   /** trigger when previous or next page action is involed */
   onChangePage?: (currentPage: number) => void;
 }
@@ -53,10 +57,9 @@ export const usePagination = (props: PaginationProps) => {
   let itemTypes: ItemType[] = [];
   for (let i = 1; i <= count; i++) {
     if (
-      i === 1 ||
-      i === count ||
-      i === currentPage + siblingCount ||
-      i === currentPage - siblingCount
+      i < siblingCount ||
+      i > count - siblingCount ||
+      (i >= currentPage - siblingCount - 1 && i < currentPage + siblingCount)
     ) {
       itemTypes[i] = 'page';
     } else {
@@ -87,6 +90,7 @@ export const usePagination = (props: PaginationProps) => {
   };
 
   return {
+    count,
     currentPage,
     itemTypes,
     onPrev,

@@ -1,0 +1,34 @@
+.drawer{
+   
+    background-color: rgb(209, 85, 85);
+    position: fixed;
+   
+}
+
+.left{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+}
+
+.right{
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+}
+
+.top{
+    top:0;
+    width: 100%;
+    // height should depend on related content
+    height: 250px;
+}
+
+.bottom{
+    bottom:0;
+    width: 100%;
+    // height should depend on related content
+    height: 250px;
+}

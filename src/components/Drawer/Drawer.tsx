@@ -25,7 +25,7 @@ const Drawer: FC<DrawerProps> = ({
 
   return (
     
-  
+    
   <aside className={`drawer ${anchor}`}>
       {children}
   </aside>
@@ -38,3 +38,28 @@ export {Drawer};
 
 
 
+const CustomDrawer: FC = (): JSX.Element =>{
+
+
+
+  return(
+    <div>
+      <button>Drawer Btn</button>
+      
+      <Drawer anchor='left'>
+        <h1>email</h1>
+        <h1>contacts</h1>
+        <h1>drafts</h1>
+        <h1>email</h1>
+        <h1>contacts</h1>
+        <h1>drafts</h1>
+        <h1>email</h1>
+        <h1>contacts</h1>
+        <h1>drafts</h1>
+        </Drawer>
+    </div>
+    
+  )
+}
+
+export {CustomDrawer};

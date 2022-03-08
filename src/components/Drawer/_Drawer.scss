@@ -22,13 +22,11 @@
 .top{
     top:0;
     width: 100%;
-    // height should depend on related content
-    height: 250px;
+    height: max-content;
 }
 
 .bottom{
     bottom:0;
     width: 100%;
-    // height should depend on related content
-    height: 250px;
+    height: max-content;
 }

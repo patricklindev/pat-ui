@@ -61,10 +61,10 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
             { itemTypes.map((n, i) => {
                 if (n === 'eclipsed') {
                     eclipsed += 1;
-                    if (eclipsed > 3) {
+                    if (eclipsed > 1) {
                         return '';
                     }
-                    return '.';
+                    return '...';
                 }
                 else {
                     eclipsed = 0;

@@ -50,8 +50,8 @@ const TablePagination: React.FC<PaginationProps> = (props) => {
 
   return (
     <>
-      <div>
-        <div>
+      <div className="table-pagination">
+        <div className="table-pagination__option">
           <label>
             Rows per page:
             <select value={itemSize} onChange={handleItemSizeChange}>

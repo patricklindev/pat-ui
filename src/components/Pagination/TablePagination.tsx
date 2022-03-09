@@ -5,6 +5,29 @@ import {
   usePagination,
 } from '../../utils/hooks/usePagination';
 
+const getDisabledClass = (disabled: boolean | undefined) => {
+  return disabled ? 'pagination__icons--disabled' : '';
+};
+const getSizeClass = (size: string | undefined) => {
+  return size === 'lg'
+    ? 'pagination__icons--lg'
+    : size === 'sm'
+    ? 'pagination__icons--sm'
+    : 'pagination__icons--default';
+};
+const getShapeClass = (shape: string | undefined) => {
+  return shape === 'round'
+    ? 'pagination__icons--round'
+    : shape === 'rounded'
+    ? 'pagination__icons--rounded'
+    : '';
+};
+const getColorClass = (color: string | undefined) => {
+  return color === 'primary'
+    ? 'pagination__icons--primary'
+    : 'pagination__icons--secondary';
+};
+
 /**
  *
  * @param {PaginationProps} props
@@ -16,6 +39,10 @@ const TablePagination: React.FC<PaginationProps> = (props) => {
     currentPage,
     onPrev,
     onNext,
+    updateCurrentPage,
+    disabled = false,
+    size = 'default',
+    shape = 'round',
     rowsPerPage = 10,
     range = [10, 25, 50, 100],
   } = usePagination(props);
@@ -24,6 +51,7 @@ const TablePagination: React.FC<PaginationProps> = (props) => {
 
   // row per page option event handler
   const handleItemSizeChange: React.ChangeEventHandler = (e) => {
+    updateCurrentPage(1);
     setItemSize(+(e.target as HTMLInputElement).value);
   };
 
@@ -42,8 +70,7 @@ const TablePagination: React.FC<PaginationProps> = (props) => {
   const renderCurrentRows = () => {
     return (
       <div>
-        {(currentPage - 1) * itemSize + 1} -{' '}
-        {(currentPage - 1) * itemSize + itemSize} of {count}{' '}
+        {(currentPage - 1) * itemSize + 1} - {currentPage * itemSize} of {count}{' '}
       </div>
     );
   };
@@ -52,19 +79,31 @@ const TablePagination: React.FC<PaginationProps> = (props) => {
     <>
       <div className="table-pagination">
         <div className="table-pagination__option">
-          <label>
+          <label className="table-pagination__label">
             Rows per page:
-            <select value={itemSize} onChange={handleItemSizeChange}>
+            <select
+              disabled={disabled}
+              value={itemSize}
+              onChange={handleItemSizeChange}
+              className="table-pagination__select"
+            >
               {renderRangeOptions()}
             </select>
           </label>
         </div>
         <div>{renderCurrentRows()}</div>
         <div>
-          <button onClick={onPrev}>{'<'}</button>
+          <button disabled={disabled || currentPage === 1} onClick={onPrev}>
+            {'<'}
+          </button>
         </div>
         <div>
-          <button onClick={onNext}>{'>'}</button>
+          <button
+            disabled={disabled || currentPage * itemSize === count}
+            onClick={onNext}
+          >
+            {'>'}
+          </button>
         </div>
       </div>
     </>

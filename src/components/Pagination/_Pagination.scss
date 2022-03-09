@@ -28,10 +28,10 @@
   .pagination__icons--sm {
     &.pagination__icons__btn-icon {
       @include button-size(
-                      $btn-padding-y-sm,
-                      $btn-padding-x-sm,
-                      $btn-font-size-sm,
-                      $border-radius-sm
+        $btn-padding-y-sm,
+        $btn-padding-x-sm,
+        $btn-font-size-sm,
+        $border-radius-sm
       );
     }
     &.pagination__icons__btn-base {
@@ -52,10 +52,10 @@
   .pagination__icons--lg {
     &.pagination__icons__btn-icon {
       @include button-size(
-                      $btn-padding-y-lg,
-                      $btn-padding-x-lg,
-                      $btn-font-size-lg,
-                      $border-radius-lg
+        $btn-padding-y-lg,
+        $btn-padding-x-lg,
+        $btn-font-size-lg,
+        $border-radius-lg
       );
     }
     &.pagination__icons__btn-base {
@@ -76,10 +76,10 @@
   .pagination__icons--default {
     &.pagination__icons__btn-icon {
       @include button-size(
-                      $btn-padding-y-lg,
-                      $btn-padding-x-lg,
-                      $btn-font-size-lg,
-                      $border-radius-lg
+        $btn-padding-y-lg,
+        $btn-padding-x-lg,
+        $btn-font-size-lg,
+        $border-radius-lg
       );
     }
     &.pagination__icons__btn-base {

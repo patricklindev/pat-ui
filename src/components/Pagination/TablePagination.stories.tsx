@@ -10,7 +10,7 @@ export default {
 export const DefaultTablePagination = () => (
   <div>
     <h1>TablePagination</h1>
-    <p>A standard TablePagination field.</p>
+    <p>A standard TablePagination.</p>
     <TablePagination count={99} />
   </div>
 );

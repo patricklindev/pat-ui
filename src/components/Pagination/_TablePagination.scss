@@ -1,5 +1,50 @@
 .table-pagination {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
+  gap: $list-inline-padding * 3;
+
+  .table-pagination__row__option {
+    display: flex;
+
+    .table-pagination__select {
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .pagination__icons__btn-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $white;
+    border: none;
+    outline: none;
+    border-radius: $border-radius-sm;
+  }
+
+  .pagination__icons--disabled {
+    fill: $gray-400;
+  }
+
+  .pagination__icons--default {
+    &.pagination__icons__btn-icon {
+      @include button-size(
+        $btn-padding-y-default,
+        $btn-padding-x-default,
+        $btn-font-size-default,
+        $border-radius-sm
+      );
+    }
+    &.pagination__icons__btn-arrow {
+      width: $btn-padding-x-default * 4;
+      height: $btn-padding-x-default * 4;
+    }
+    &:hover:not(.pagination__icons--disabled) {
+      fill: $gray-600;
+    }
+  }
 }

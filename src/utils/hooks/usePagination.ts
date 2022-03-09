@@ -55,11 +55,11 @@ export const usePagination = (props: PaginationProps) => {
 
   // decide if current page is eclipse(...) or normal page item
   let itemTypes: ItemType[] = [];
-  for (let i = 1; i <= count; i++) {
+  for (let i = 1; i < count; i++) {
     if (
-      i < siblingCount ||
-      i > count - siblingCount ||
-      (i >= currentPage - siblingCount - 1 && i < currentPage + siblingCount)
+      i <= siblingCount ||
+      i >= count - siblingCount ||
+      (i >= currentPage - siblingCount && i <= currentPage + siblingCount)
     ) {
       itemTypes[i] = 'page';
     } else {

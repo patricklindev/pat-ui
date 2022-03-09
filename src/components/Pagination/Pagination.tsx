@@ -116,7 +116,7 @@ const Pagination: React.FC<PaginationProps> = (props: PaginationProps) => {
                 </div>
               );
             } else if (p === '...') {
-              return <div className={'agination__icons__btn-icon'}>{p}</div>;
+              return <div className={'pagination__icons__btn-icon'}>{p}</div>;
             } else {
               return (
                 <button

@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,38 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin checkbox-sm(
+  $checkbox-sm-width,
+  $checkbox-sm-height,
+  $checkbox-container-sm-width,
+  $checkbox-container-sm-height
+) {
+  .checkbox-container.checkbox-small {
+    height: $checkbox-container-sm-height;
+    width: $checkbox-container-sm-width;
+  }
+
+  .checkbox-small {
+    height: $checkbox-sm-height;
+    width: $checkbox-sm-width;
+  }
+}
+
+@mixin checkbox-md(
+  $checkbox-md-width,
+  $checkbox-md-height,
+  $checkbox-container-md-width,
+  $checkbox-container-md-height
+) {
+  .checkbox-container.checkbox-medium {
+    height: $checkbox-container-md-height;
+    width: $checkbox-container-md-width;
+  }
+
+  .checkbox-medium {
+    height: $checkbox-md-height;
+    width: $checkbox-md-width;
+  }
 }

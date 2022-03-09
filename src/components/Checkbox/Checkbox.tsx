@@ -1,53 +1,72 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, InputHTMLAttributes } from 'react';
+import { classNames } from '../../utils/classNames';
+import { CheckIcons } from './CheckIcons';
 
-export type CheckboxColor = 'primary' | 'secondary';
+export type CheckboxColor = 'primary' | 'secondary' | 'default';
 export type CheckboxSize = 'medium' | 'small';
+export type CheckboxIcon = 'checkbox' | 'heart';
 
 export interface ICheckboxProps {
   checkColor?: CheckboxColor;
   checkSize?: CheckboxSize;
-  icon?: any;
+  icon?: CheckboxIcon;
   label?: string;
   onChange?: (e?: React.MouseEvent) => void;
   isChecked?: boolean;
 }
 
-export const Checkbox: FC<ICheckboxProps> = (props) => {
-  const { checkColor, checkSize, icon, label, onChange, isChecked, ...rest } =
-    props;
+export type NativeCheckboxProps = ICheckboxProps &
+  InputHTMLAttributes<HTMLInputElement>;
+
+export const Checkbox: FC<NativeCheckboxProps> = (props) => {
+  const {
+    checkColor = 'default',
+    checkSize = 'medium',
+    icon = 'checkbox',
+    label = '',
+    onChange,
+    isChecked = false,
+    ...rest
+  } = props;
   const [checked, setChecked] = useState(false);
 
-  const handleCheck = (e: any) => {
+  let checkSizeStyle = classNames({
+    [`checkbox-${checkSize}`]: true,
+  });
+
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
   };
 
   return (
     <>
       <label className="form-control">
-        <span className="checkbox-container">
+        <span className={`checkbox-container ${checkSizeStyle}`}>
           <input type="checkbox" onChange={handleCheck} />
           {checked ? (
             <svg
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
+              className={checkSizeStyle}
+              viewBox={CheckIcons[`${icon}-fill`].viewBox}
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 fill="rgba(0, 0, 0, 0.54)"
-                d="M7 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm4 10.414-2.707-2.707 1.414-1.414L11 12.586l3.793-3.793 1.414 1.414L11 15.414z"
+                d={CheckIcons[`${icon}-fill`].path}
               />
             </svg>
           ) : (
             <svg
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
+              className={checkSizeStyle}
+              viewBox={CheckIcons[`${icon}-outline`].viewBox}
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 fill="rgba(0, 0, 0, 0.54)"
-                d="M7 5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2H7zm0 12V7h10l.002 10H7z"
+                d={CheckIcons[`${icon}-outline`].path}
               />
             </svg>
           )}

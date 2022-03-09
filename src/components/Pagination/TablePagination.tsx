@@ -18,7 +18,9 @@ type RenderActionFn = (actioni: ActionType) => ReactElement;
 
 /**
  *
- * ```import { TablePagination } from 'pat-ui';```
+ * ```js
+ * import { TablePagination } from 'pat-ui';
+ * ```
  */
 const TablePagination: FC<PaginationProps> = (props) => {
   const {

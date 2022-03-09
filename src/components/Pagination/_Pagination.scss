@@ -83,8 +83,8 @@
       );
     }
     &.pagination__icons__btn-base {
-      width: $btn-padding-x-default * 6;
-      height: $btn-padding-x-default * 6;
+      width: $btn-padding-x-default * 5;
+      height: $btn-padding-x-default * 5;
     }
     &.pagination__icons--round {
       border-radius: 50% !important;
@@ -92,8 +92,8 @@
       height: $btn-padding-x-default * 4;
     }
     &.pagination__icons__btn-arrow {
-      width: $btn-padding-x-default * 6;
-      height: $btn-padding-x-default * 6;
+      width: $btn-padding-x-default * 5;
+      height: $btn-padding-x-default * 5;
     }
   }
 

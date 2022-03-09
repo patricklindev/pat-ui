@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: -11px;
-  margin-right: 16px;
   font-family: Arial, Helvetica, sans-serif;
 
   .checkbox-container {
@@ -11,8 +9,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 42px;
-    width: 42px;
 
     input[type='checkbox'] {
       cursor: pointer;
@@ -35,3 +31,17 @@
     visibility: visible;
   }
 }
+
+@include checkbox-sm(
+  $checkbox-sm-width,
+  $checkbox-sm-height,
+  $checkbox-container-sm-width,
+  $checkbox-container-sm-height
+);
+
+@include checkbox-md(
+  $checkbox-md-width,
+  $checkbox-md-height,
+  $checkbox-container-md-width,
+  $checkbox-container-md-height
+);

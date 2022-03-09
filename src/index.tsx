@@ -1,13 +1,3 @@
-import React from "react";
-
-import { render } from "react-dom";
-
-import App from "./App";
-
-const rootElement = document.getElementById("root");
-render(<App />, rootElement);
-
-
 export { default as Button } from './components/Button';
 export { default as Input } from './components/Input';
 export { default as Icon } from './components/Icon';

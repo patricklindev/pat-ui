@@ -1,0 +1,103 @@
+.pagination {
+  display: flex;
+  align-items: center;
+
+  .pagination__icons {
+    display: flex;
+    align-items: center;
+  }
+
+  .pagination__icons__btn-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: none;
+    outline: none;
+  }
+
+  .pagination__icons__btn-icon {
+    &.pagination__icons--primary {
+      @include button-style($white, $primary, $primary);
+    }
+    &.pagination__icons--secondary {
+      @include button-style($white, $secondary, $secondary);
+    }
+  }
+
+  .pagination__icons--sm {
+    &.pagination__icons__btn-icon {
+      @include button-size(
+                      $btn-padding-y-sm,
+                      $btn-padding-x-sm,
+                      $btn-font-size-sm,
+                      $border-radius-sm
+      );
+    }
+    &.pagination__icons__btn-base {
+      width: $btn-padding-x-sm * 4;
+      height: $btn-padding-x-sm * 4;
+    }
+    &.pagination__icons--round {
+      border-radius: 50% !important;
+      width: $btn-padding-x-sm * 4;
+      height: $btn-padding-x-sm * 4;
+    }
+    &.pagination__icons__btn-arrow {
+      width: $btn-padding-x-sm * 4;
+      height: $btn-padding-x-sm * 4;
+    }
+  }
+
+  .pagination__icons--lg {
+    &.pagination__icons__btn-icon {
+      @include button-size(
+                      $btn-padding-y-lg,
+                      $btn-padding-x-lg,
+                      $btn-font-size-lg,
+                      $border-radius-lg
+      );
+    }
+    &.pagination__icons__btn-base {
+      width: $btn-padding-x-lg * 4;
+      height: $btn-padding-x-lg * 4;
+    }
+    &.pagination__icons--round {
+      border-radius: 50% !important;
+      width: $btn-padding-x-lg * 4;
+      height: $btn-padding-x-lg * 4;
+    }
+    &.pagination__icons__btn-arrow {
+      width: $btn-padding-x-lg * 4;
+      height: $btn-padding-x-lg * 4;
+    }
+  }
+
+  .pagination__icons--default {
+    &.pagination__icons__btn-icon {
+      @include button-size(
+                      $btn-padding-y-lg,
+                      $btn-padding-x-lg,
+                      $btn-font-size-lg,
+                      $border-radius-lg
+      );
+    }
+    &.pagination__icons__btn-base {
+      width: $btn-padding-x-default * 5;
+      height: $btn-padding-x-default * 5;
+    }
+    &.pagination__icons--round {
+      border-radius: 50% !important;
+      width: $btn-padding-x-default * 4;
+      height: $btn-padding-x-default * 4;
+    }
+    &.pagination__icons__btn-arrow {
+      width: $btn-padding-x-default * 5;
+      height: $btn-padding-x-default * 5;
+    }
+  }
+
+  .pagination__icons--disabled {
+    fill: lightgray;
+  }
+}

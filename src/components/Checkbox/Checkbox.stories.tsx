@@ -11,41 +11,41 @@ export const DefaultCheckbox = () => <Checkbox />;
 
 export const DiffSizeCheckbox = () => (
   <div>
-    <Checkbox />
-    <Checkbox />
+    <Checkbox checkSize="small" />
+    <Checkbox checkSize="medium" />
   </div>
 );
 
 export const DiffColorCheckbox = () => (
   <div>
-    <Checkbox />
-    <Checkbox />
-    <Checkbox />
+    <Checkbox checkColor="primary" />
+    <Checkbox checkColor="secondary" />
+    <Checkbox checkColor="default" />
   </div>
 );
 
 export const DiffIconCheckbox = () => (
   <div>
-    <Checkbox />
-    <Checkbox />
-    <Checkbox />
+    <Checkbox icon="checkbox" />
+    <Checkbox icon="heart" />
+    <Checkbox icon="bookmark" />
   </div>
 );
 
 export const CheckboxWithLabel = () => (
   <div>
-    <Checkbox />
+    <Checkbox label="checkbox" />
   </div>
 );
 
 export const CheckboxWithOnChange = () => (
   <div>
-    <Checkbox />
+    <Checkbox onChange={action('checked')} />
   </div>
 );
 
 export const CheckboxWithCheckedTrue = () => (
   <div>
-    <Checkbox />
+    <Checkbox isChecked={true} />
   </div>
 );

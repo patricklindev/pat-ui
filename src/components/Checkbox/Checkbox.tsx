@@ -40,9 +40,6 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
-    if (onChange !== undefined) {
-      onChange(e);
-    }
   };
 
   return (
@@ -80,7 +77,7 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
             className={`ripple-container ripple-container-color-${checkColorStyle}`}
           ></span>
         </span>
-        <span>{label}</span>
+        <span>Checkbox</span>
       </label>
     </>
   );

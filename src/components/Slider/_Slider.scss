@@ -178,7 +178,6 @@ body {
 .field .value {
   position: absolute;
   font-size: 18px;
-  // color: red;
   font-weight: 600;
 }
 .field .value.left {
@@ -188,52 +187,41 @@ body {
   right: -43px;
 }
 .range input {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 3px;
-  // track
-  background: $gray-600;
-  border-radius: 5px;
-  outline: none;
-  //rail
-  border: 1px solid $gray-600;
-  z-index: 2222;
+  @include slider-range($gray-600)
 }
+
 .range input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: $gray-600;
-  border: 1px solid $gray-600;
-  cursor: pointer;
+    @include slider-webkit($gray-600)
 }
+
 .range input::-moz-range-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: gray;
-  border: 1px solid gray;
-  cursor: pointer;
+    @include slider-moz($gray-600)
+}
+
+// color red
+.range .slider-red {
+  @include slider-range($red)
+}
+.range .slider-red::-webkit-slider-thumb {
+    @include slider-webkit($red)
+}
+.range .slider-red::-moz-range-thumb {
+    @include slider-moz($red)
+}
+// color blue
+.range .slider-blue {
+  @include slider-range($blue)
+}
+.range .slider-blue::-webkit-slider-thumb {
+    @include slider-webkit($blue)
+}
+.range .slider-blue::-moz-range-thumb {
+    @include slider-moz($blue)
 }
 
 
 
-// .range .slider-red {
-//   border: 1px solid pink;
-// }
 
-// .range .slider-red::-webkit-slider-thumb{
-//   background: red;
-//    border: 1px solid red;
-// }
 
-// .range .slider-blue {
-//   border: 1px solid blue;
-// }
 
-// .range .slider-blue::-webkit-slider-thumb{
-//     background: blue;
-//    border: 1px solid blue;
-// }
+

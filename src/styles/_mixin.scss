@@ -74,3 +74,40 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+// for the '.range input' selector
+@mixin slider-range($color) {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  // track
+  background: $color;
+  border-radius: 5px;
+  outline: none;
+  //rail
+  border: 1px solid $color;
+  z-index: 2222;
+}
+
+// for the '.range input::-webkit-slider-thumb' selector
+@mixin slider-webkit($color) {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $color;
+    border: 1px solid $color;
+    cursor: pointer;
+}
+
+// for the '.range input::-moz-range-thumb' selector
+@mixin slider-moz($color) {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $color;
+    border: 1px solid $color;
+    cursor: pointer;
+    
+}

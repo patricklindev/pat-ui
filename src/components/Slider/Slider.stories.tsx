@@ -12,3 +12,12 @@ export const DefaultSlider = () => (
     <Slider />
   </div>
 );
+
+export const DiffColorSlider = () => (
+  <div>
+    <Slider SliderColor='slider-blue'/>
+    <br></br>
+    <br></br>
+    <Slider SliderColor='slider-red'/>
+  </div>
+)

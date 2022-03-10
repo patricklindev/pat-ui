@@ -12,7 +12,6 @@ interface ISliderProps {
 
 
 const Slider:React.FC<ISliderProps> = ({SliderColor}) => {
-
     const [value, setValue] = useState(100)
     const [showOrHide, setShowOrHide] = useState('')
     let classNamesList: string[] = [];
@@ -25,11 +24,11 @@ const Slider:React.FC<ISliderProps> = ({SliderColor}) => {
     }
     
     useEffect(() => {
-        const slideValue: HTMLSpanElement | null = document.querySelector("span");
-        if(slideValue){
-            slideValue.style.left = (value/2) + "%";
+        const sliderValue: HTMLSpanElement | null = document.querySelector("span");
+        if(sliderValue){
+            sliderValue.style.left = (value/2) + "%";
+            console.log(sliderValue.style)
         }
-        
     }, [value])
 
     const onInputHandle = (e: any) => {
@@ -49,7 +48,7 @@ const Slider:React.FC<ISliderProps> = ({SliderColor}) => {
         <div className="field">
             <div className="value left">0</div>
         <input 
-        // className={classNamesList.join(' ')} 
+        className={classNamesList.join(' ')} 
         type="range" min="10" max="200" value={value} step="1" 
             onChange={e => onInputHandle(e)}
             onBlur={onBlurHandle}

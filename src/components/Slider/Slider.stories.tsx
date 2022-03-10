@@ -24,9 +24,9 @@ export const DiffColorSlider = () => (
 
 export const DiffSizeSlider = () => (
   <div>
-    <Slider />
+    <Slider size="small" />
     <br></br>
     <br></br>
-    <Slider />
+    <Slider size="large" />
   </div>
 );

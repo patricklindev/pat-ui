@@ -22,13 +22,13 @@ const Slider: React.FC<ISliderProps> = ({ color, size }) => {
   }
 
   if (size === 'small') {
+    console.log('slider is small');
   }
 
   useEffect(() => {
     const sliderValue: HTMLSpanElement | null = document.querySelector('span');
     if (sliderValue) {
       sliderValue.style.left = value / 2 + '%';
-      console.log(sliderValue.style);
     }
   }, [value]);
 

@@ -13,17 +13,10 @@ interface ISliderProps {
 const Slider: React.FC<ISliderProps> = ({ color, size }) => {
   const [value, setValue] = useState(100);
   const [showOrHide, setShowOrHide] = useState('');
+
   let classNamesList: string[] = [];
-
-  if (color === 'slider-red') {
-    classNamesList.push(color);
-  } else if (color === 'slider-blue') {
-    classNamesList.push(color);
-  }
-
-  if (size === 'small') {
-    // console.log('slider is small');
-  }
+  if (color) classNamesList.push(color);
+  if (size) classNamesList.push(size);
 
   const [spanlocation, setSpanlocation] = useState('');
 

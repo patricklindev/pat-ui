@@ -96,6 +96,10 @@ body {
 .range .slider-red::-moz-range-thumb {
   @include slider-moz($red);
 }
+.sliderValue.slider-red span:after {
+  @include slider-marker($red);
+}
+
 // color blue
 .range input.slider-blue {
   @include slider-range($blue);
@@ -106,11 +110,6 @@ body {
 .range .slider-blue::-moz-range-thumb {
   @include slider-moz($blue);
 }
-
-.sliderValue.slider-red span:after {
-  @include slider-marker($red);
-}
-
 .sliderValue.slider-blue span:after {
   @include slider-marker($blue);
 }

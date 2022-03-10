@@ -131,6 +131,19 @@ describe('Pagination', () => {
     expect(pageButton).toHaveClass('pagination__icons--lg');
   });
 
+  it('should disable pagination', () => {
+    // disabled pagination props
+    const disabledProps: PaginationProps = {
+      count: 20,
+      disabled: true,
+    };
+
+    render(<Pagination {...disabledProps} />);
+
+    const currentPageBtn = screen.getByText('1');
+    expect(currentPageBtn).toHaveClass('pagination__icons--disabled');
+  });
+
   it('should go to last page when click on the previous button', () => {
     // previous button test props
     const prevActionProps: PaginationProps = {

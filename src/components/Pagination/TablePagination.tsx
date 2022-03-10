@@ -5,16 +5,26 @@ import {
   usePagination,
 } from '../../utils/hooks/usePagination';
 
-const getDisabledClass = (disabled: boolean | undefined) => {
-  return disabled ? 'pagination__icons--disabled' : '';
-};
-
 enum ActionType {
   Left,
   Rgith,
 }
 
 type RenderActionFn = (actioni: ActionType) => ReactElement;
+
+// style classes utils
+const getArrowIconClass = () => {
+  return 'pagination__icons__btn-arrow';
+};
+const getBasicIconClass = () => {
+  return 'pagination__icons__btn-icon';
+};
+const getDefaultBtnClass = () => {
+  return 'pagination__icons--default';
+};
+const getDisabledClass = (disabled: boolean | undefined) => {
+  return disabled ? 'pagination__icons--disabled' : '';
+};
 
 /**
  *
@@ -29,9 +39,6 @@ const TablePagination: FC<PaginationProps> = (props) => {
     onPrev,
     onNext,
     updateCurrentPage,
-    color = 'primary',
-    size = 'default',
-    shape = 'round',
     disabled = false,
     rowsPerPage = 10,
     range = [10, 25, 50, 100],
@@ -92,7 +99,7 @@ const TablePagination: FC<PaginationProps> = (props) => {
           <button
             onClick={onPrev}
             disabled={isLeftDisabled}
-            className={`pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default ${getDisabledClass(
+            className={`${getBasicIconClass()} ${getArrowIconClass()} ${getDefaultBtnClass()} ${getDisabledClass(
               isLeftDisabled
             )} `}
           >
@@ -104,7 +111,7 @@ const TablePagination: FC<PaginationProps> = (props) => {
           <button
             onClick={onNext}
             disabled={isRightDisabled}
-            className={`pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default ${getDisabledClass(
+            className={`${getBasicIconClass()} ${getArrowIconClass()} ${getDefaultBtnClass()} ${getDisabledClass(
               isRightDisabled
             )} `}
           >

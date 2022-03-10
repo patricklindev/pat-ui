@@ -8,6 +8,8 @@ export type ShapeType = 'round' | 'rounded';
 
 export type ItemType = 'eclipsed' | 'page';
 
+export type PaginationType = 'default' | 'table';
+
 export interface PaginationProps {
   /** total page number */
   count: number;
@@ -25,6 +27,8 @@ export interface PaginationProps {
   siblingCount?: number;
   /** number of items per page for table pagination */
   rowsPerPage?: number;
+  /** regular pagination or table pagination */
+  paginationType?: PaginationType;
   /** range of rows per page */
   range?: number[];
   /** trigger when previous or next page action is involed */

@@ -72,6 +72,16 @@ $link-decoration: none !default;
 $link-hover-color: darken($link-color, 15%) !default;
 $link-hover-decoration: underline !default;
 
+$link-color-primary: $primary !default;
+$link-decoration: none !default;
+$link-hover-color-primary: darken($link-color-primary, 15%) !default;
+$link-hover-decoration-primary: none !default;
+
+$link-color-secondary: $secondary !default;
+$link-decoration: none !default;
+$link-hover-color-secondary: darken($link-color-secondary, 15%) !default;
+$link-hover-decoration-secondary: none !default;
+
 // body
 $body-bg: $white !default;
 $body-color: $gray-900 !default;
@@ -192,6 +202,12 @@ $btn-disabled-opacity: 0.65 !default;
 $btn-link-color: $link-color !default;
 $btn-link-hover-color: $link-hover-color !default;
 $btn-link-disabled-color: $gray-600 !default;
+
+$btn-link-color-primary: $link-color-primary !default;
+$btn-link-hover-color-primary: $link-hover-color-primary !default;
+
+$btn-link-color-secondary: $link-color-secondary !default;
+$btn-link-hover-color-secondary: $link-hover-color-secondary !default;
 
 // button radius
 $btn-border-radius: $border-radius !default;

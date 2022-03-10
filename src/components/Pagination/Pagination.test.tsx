@@ -138,6 +138,9 @@ describe('Pagination', () => {
     expect(prevActionProps.onChangePage).toHaveBeenCalledTimes(0);
     fireEvent.click(currentButton);
     expect(prevActionProps.onChangePage).toHaveBeenCalledTimes(1);
+
+    const focusedPageBtn = screen.getByText('9');
+    expect(focusedPageBtn).toHaveClass('pagination__icons__btn--focused');
   });
 
   it('should go to next page when click on the next button', () => {

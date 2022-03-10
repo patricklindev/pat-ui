@@ -36,7 +36,7 @@
         $btn-padding-y-default,
         $btn-padding-x-default,
         $btn-font-size-default,
-        $border-radius-sm
+        $border-radius-round
       );
     }
     &.pagination__icons__btn-arrow {
@@ -44,7 +44,7 @@
       height: $btn-padding-x-default * 4;
     }
     &:hover:not(.pagination__icons--disabled) {
-      fill: $gray-600;
+      background-color: $gray-200;
     }
   }
 }

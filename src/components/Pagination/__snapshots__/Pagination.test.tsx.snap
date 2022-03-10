@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="pagination"
+    data-testid="pagination"
+  >
+    <div>
+      <button
+        class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default  "
+        data-testid="prev-btn"
+        disabled=""
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="pagination__icons"
+    >
+      <div
+        class="pagination__icons__btn-icon 
+                    pagination__icons--default  pagination__icons--secondary  pagination__icons__btn--focused"
+      >
+        1
+      </div>
+      <button
+        class="pagination__icons__btn-icon pagination__icons--default  pagination__icons--secondary "
+      >
+        <div>
+          2
+        </div>
+      </button>
+      <div
+        class=""
+      >
+        ...
+      </div>
+      <button
+        class="pagination__icons__btn-icon pagination__icons--default  pagination__icons--secondary "
+      >
+        <div>
+          20
+        </div>
+      </button>
+    </div>
+    <div>
+      <button
+        class="pagination__icons__btn-icon pagination__icons__btn-arrow
+                     pagination__icons--default   "
+        data-testid="next-btn"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

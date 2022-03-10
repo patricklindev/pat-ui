@@ -80,6 +80,7 @@ body {
 
 .range input::-webkit-slider-thumb {
   @include slider-webkit($gray-600);
+  @include slider-thumb-size('large');
 }
 
 .range input::-moz-range-thumb {
@@ -112,4 +113,12 @@ body {
 }
 .sliderValue.slider-blue span:after {
   @include slider-marker($blue);
+}
+
+// sizes
+input.small::-webkit-slider-thumb {
+  @include slider-thumb-size('small');
+}
+input.large::-webkit-slider-thumb {
+  @include slider-thumb-size('large');
 }

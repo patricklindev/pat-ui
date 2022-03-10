@@ -96,8 +96,9 @@
 
 // for the '.range input::-webkit-slider-thumb' selector
 @mixin slider-webkit($color) {
-  @include slider-size('large');
   -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: $color;
   border: 1px solid $color;
@@ -106,8 +107,9 @@
 
 // for the '.range input::-moz-range-thumb' selector
 @mixin slider-moz($color) {
-  @include slider-size('large');
   -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: $color;
   border: 1px solid $color;
@@ -118,7 +120,7 @@
   background: $color;
 }
 
-@mixin slider-size($size) {
+@mixin slider-thumb-size($size) {
   @if $size == 'small' {
     width: 10px;
     height: 10px;
@@ -127,3 +129,8 @@
     height: 20px;
   }
 }
+
+/*height: 50%;
+width: 50%;
+left: 53%;
+bottom: -15px;*/

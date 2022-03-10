@@ -1,11 +1,10 @@
 import React, { useState, FC, InputHTMLAttributes } from 'react';
-import { classNames } from '../../utils/classNames'
+import { classNames } from '../../utils/classNames';
 import { CheckIcons } from './CheckIcons';
-// import './css&scss/style.css'
 
 export type CheckboxColor = 'primary' | 'secondary' | 'default';
 export type CheckboxSize = 'medium' | 'small';
-export type CheckboxIcon = 'checkbox' | 'heart';
+export type CheckboxIcon = 'checkbox' | 'heart' | 'bookmark';
 
 export interface ICheckboxProps {
   checkColor?: CheckboxColor;
@@ -24,16 +23,17 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
     checkColor = 'default',
     checkSize = 'medium',
     icon = 'checkbox',
-    label = '',
+    label,
     onChange,
     isChecked = false,
     ...rest
   } = props;
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(isChecked);
 
   let checkSizeStyles = classNames({
     [`checkbox-${checkSize}`]: true,
   });
+
   let checkColorStyle = classNames({
     [checkColor]: true,
   });
@@ -52,35 +52,28 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
           <input type="checkbox" onChange={handleCheck} />
           {checked ? (
             <svg
-              className={`${checkSizeStyles} ${checkColorStyle}` } 
-
+              className={`${checkSizeStyles} ${checkColorStyle}`}
               viewBox={CheckIcons[`${icon}-fill`].viewBox}
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               focusable="false"
             >
-              <path
-                d={CheckIcons[`${icon}-fill`].path}
-              />
+              <path d={CheckIcons[`${icon}-fill`].path} />
             </svg>
           ) : (
             <svg
-              className={`${checkSizeStyles} ${checkColorStyle}` } 
+              className={`${checkSizeStyles} ${checkColorStyle}`}
               viewBox={CheckIcons[`${icon}-outline`].viewBox}
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               focusable="false"
             >
-              <path
-                d={CheckIcons[`${icon}-outline`].path}
-              />
+              <path d={CheckIcons[`${icon}-outline`].path} />
             </svg>
           )}
           <span
             className={`ripple-container ripple-container-color-${checkColorStyle}`}
           ></span>
         </span>
-        <span>{label}</span>
+        {label ? <span>{label}</span> : null}
       </label>
     </>
   );

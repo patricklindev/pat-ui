@@ -125,3 +125,11 @@ export const SizePagination = () => (
     />
   </div>
 );
+
+export const TablePagination = () => (
+  <div>
+    <h1>TablePagination</h1>
+    <p>TablePagination enable by prop.</p>
+    <Pagination count={20} paginationType={'table'} />
+  </div>
+);

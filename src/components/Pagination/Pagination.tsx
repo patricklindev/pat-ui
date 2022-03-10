@@ -1,15 +1,12 @@
 import React, { FC } from 'react';
 
 import {
-  ColorType,
-  ItemType,
-  PageFunc,
   PaginationProps,
-  ShapeType,
-  SizeType,
   usePagination,
 } from '../../utils/hooks/usePagination';
+import TablePagination from './TablePagination';
 
+// style classes utils
 const getArrowIconClass = () => {
   return 'pagination__icons__btn-arrow';
 };
@@ -42,30 +39,8 @@ const getColorClass = (color: string | undefined) => {
     : 'pagination__icons--secondary';
 };
 
-export interface PaginationPropsExtended {
-  updateCurrentPage: PageFunc;
-  onPrev: React.MouseEventHandler;
-  onNext: React.MouseEventHandler;
-  count?: number;
-  itemTypes?: ItemType[];
-  currentPage: number;
-  /** current page number */
-  page?: number;
-  /** set pagination component to disable or active */
-  disabled?: boolean;
-  /** pagination color type, primary | secondary */
-  color?: ColorType;
-  /** size of component, medium as default | large | small */
-  size?: SizeType;
-  /** shape type, round | rounded  */
-  shape?: ShapeType;
-  /** show the number of adjacent siblings */
-  siblingCount?: number;
-  /** trigger when previous or next page action is involed */
-  onChangePage?: (currentPage: number) => void;
-}
-
-const Pagination: FC<PaginationProps> = (props) => {
+// regular pagination
+const BasePagination: FC<PaginationProps> = (props) => {
   const {
     count,
     currentPage,
@@ -100,9 +75,7 @@ const Pagination: FC<PaginationProps> = (props) => {
         {itemTypes.map((n, i) => {
           if (n === 'eclipsed') {
             eclipsed += 1;
-            return eclipsed > 1 ? (
-              <></>
-            ) : (
+            return eclipsed > 1 ? null : (
               <div className={`${getDisabledClass(disabled)}`}>{'...'}</div>
             );
           } else {
@@ -154,6 +127,28 @@ const Pagination: FC<PaginationProps> = (props) => {
       </div>
     </div>
   );
+};
+
+/**
+ * ```js
+ * import { Pagination } from 'pat-ui';
+ * ```
+ */
+const Pagination: FC<PaginationProps> = (props) => {
+  const { paginationType = 'default' } = props;
+
+  const renderPaginationType = () => {
+    switch (paginationType) {
+      case 'default':
+        return <BasePagination {...props} />;
+      case 'table':
+        return <TablePagination {...props} />;
+      default:
+        return <BasePagination {...props} />;
+    }
+  };
+
+  return renderPaginationType();
 };
 
 export default Pagination;

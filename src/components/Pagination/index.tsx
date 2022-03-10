@@ -1,4 +1,1 @@
-import Pagination from './Pagination';
-import TablePagination from './TablePagination';
-
-export { Pagination, TablePagination };
+export { default } from './Pagination';

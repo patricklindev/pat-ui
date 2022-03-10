@@ -45,3 +45,17 @@
   $checkbox-container-md-width,
   $checkbox-container-md-height
 );
+@include checkbox-primary(
+  $checkbox-primary-color,
+  $ripple-container-primary-color
+);
+
+@include checkbox-secondary(
+  $checkbox-secondary-color,
+  $ripple-container-secondary-color
+);
+
+@include checkbox-default(
+  $checkbox-default-color,
+  $ripple-container-default-color
+);

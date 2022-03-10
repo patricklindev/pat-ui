@@ -6,6 +6,15 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('Pagination', () => {
   // tets cases
+  it('should match snapshot', () => {
+    // default props
+    const defaultProps = {
+      count: 20,
+    };
+    const { asFragment } = render(<Pagination {...defaultProps} />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('should render default pagination', () => {
     // default props
     const defaultProps = {

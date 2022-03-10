@@ -77,13 +77,19 @@ const BasePagination: FC<PaginationProps> = (props) => {
           if (n === 'eclipsed') {
             eclipsed += 1;
             return eclipsed > 1 ? null : (
-              <div className={`${getDisabledClass(disabled)}`}>{'...'}</div>
+              <div
+                key={`pagination_number_${i}`}
+                className={`${getDisabledClass(disabled)}`}
+              >
+                {'...'}
+              </div>
             );
           } else {
             eclipsed = 0;
             if (+i === +currentPage) {
               return (
                 <div
+                  key={`pagination_number_${i}`}
                   className={`${getBasicIconClass()} 
                     ${getSizeClass(size)} ${getShapeClass(
                     shape
@@ -97,6 +103,7 @@ const BasePagination: FC<PaginationProps> = (props) => {
             } else {
               return (
                 <button
+                  key={`pagination_number_${i}`}
                   disabled={disabled}
                   onClick={(_) => updateCurrentPage(+i)}
                   className={`${getBasicIconClass()} ${getSizeClass(

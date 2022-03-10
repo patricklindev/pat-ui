@@ -18,6 +18,14 @@ export interface ICheckboxProps {
 export type NativeCheckboxProps = ICheckboxProps &
   InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * Checkboxes can be used to turn an option on or off.
+ *
+ * ```js
+ * import {Checkbox} from 'pat-ui'
+ * ```
+ */
+
 export const Checkbox: FC<NativeCheckboxProps> = (props) => {
   const {
     checkColor = 'default',

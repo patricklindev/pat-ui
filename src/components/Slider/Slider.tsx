@@ -21,11 +21,12 @@ const Slider: React.FC<ISliderProps> = ({ SliderColor }) => {
     classNamesList.push(SliderColor);
   }
 
+  const [spanlocation, setSpanlocation] = useState('')
+
   useEffect(() => {
     const sliderValue: HTMLSpanElement | null = document.querySelector('span');
     if (sliderValue) {
-      sliderValue.style.left = value / 2 + '%';
-      console.log(sliderValue.style);
+      setSpanlocation(value / 2 + '%')
     }
   }, [value]);
 
@@ -47,7 +48,9 @@ const Slider: React.FC<ISliderProps> = ({ SliderColor }) => {
     <div className="range">
       <div className={valueClassNames()}>
         {/* <div className="sliderValue"> */}
-        <span className={showOrHide}>{value}</span>
+        <span className={showOrHide} style={{
+          left:spanlocation
+        }}>{value}</span>
       </div>
       <div className="field">
         <div className="value left">0</div>

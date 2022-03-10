@@ -22,7 +22,7 @@ const Slider: React.FC<ISliderProps> = ({ color, size }) => {
   }
 
   if (size === 'small') {
-    console.log('slider is small');
+    // console.log('slider is small');
   }
 
   const [spanlocation, setSpanlocation] = useState('');

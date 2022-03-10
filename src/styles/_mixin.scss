@@ -114,7 +114,7 @@
   cursor: pointer;
 }
 
-@mixin slider-value($color) {
+@mixin slider-marker($color) {
   background: $color;
 }
 

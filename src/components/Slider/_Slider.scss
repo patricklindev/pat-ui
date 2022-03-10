@@ -1,4 +1,117 @@
+// @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+//   font-family: 'Poppins', sans-serif;
+// }
+// html,
+// body {
+//   display: grid;
+//   height: 100%;
+//   text-align: center;
+//   place-items: center;
+// }
+// .range {
+//   height: 80px;
+//   width: 380px;
+//   background: #fff;
+//   border-radius: 10px;
+//   padding: 0 65px 0 45px;
+//   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+// }
+// .sliderValue {
+//   position: relative;
+//   width: 100%;
+// }
+// .sliderValue span {
+//   position: absolute;
+//   height: 45px;
+//   width: 45px;
+//   transform: translateX(-70%) scale(0);
+//   font-weight: 500;
+//   top: -40px;
+//   line-height: 55px;
+//   z-index: 2;
+//   color: #fff;
+//   transform-origin: bottom;
+//   transition: transform 0.3s ease-in-out;
+// }
+// .sliderValue span.show {
+//   transform: translateX(-70%) scale(1);
+// }
+// .sliderValue span:after {
+//   position: absolute;
+//   content: '';
+//   height: 100%;
+//   width: 100%;
+//   background: purple;
+//   border: 3px solid #fff;
+//   z-index: -1;
+//   left: 50%;
+//   transform: translateX(-50%) rotate(45deg);
+//   border-bottom-left-radius: 50%;
+//   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+//   border-top-left-radius: 50%;
+//   border-top-right-radius: 50%;
+// }
+// .field {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   height: 100%;
+//   position: relative;
+// }
+// .field .value {
+//   position: absolute;
+//   font-size: 18px;
+//   color: purple;
+//   font-weight: 600;
+// }
+// .field .value.left {
+//   left: -22px;
+// }
+// .field .value.right {
+//   right: -43px;
+// }
+// .range input {
+//   -webkit-appearance: none;
+//   width: 100%;
+//   height: 3px;
+//   background: #ddd;
+//   border-radius: 5px;
+//   outline: none;
+//   border: none;
+//   z-index: 2222;
+// }
+// .range input::-webkit-slider-thumb {
+//   -webkit-appearance: none;
+//   width: 20px;
+//   height: 20px;
+//   border-radius: 50%;
+//   background: purple;
+//   border: 1px solid purple;
+//   cursor: pointer;
+// }
+// .range input::-moz-range-thumb {
+//   -webkit-appearance: none;
+//   width: 20px;
+//   height: 20px;
+//   border-radius: 50%;
+//   background: purple;
+//   border: 1px solid purple;
+//   cursor: pointer;
+// }
+// .range input::-moz-range-progress {
+//   background: purple; //this progress background is only shown on Firefox
+// }
+
+
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+// red: #dc3545 !default;
+// blue: blue !default;
+
 * {
   margin: 0;
   padding: 0;
@@ -45,7 +158,7 @@ body {
   content: '';
   height: 100%;
   width: 100%;
-  background: $purple;
+  background: black;
   border: 3px solid #fff;
   z-index: -1;
   left: 50%;
@@ -65,7 +178,7 @@ body {
 .field .value {
   position: absolute;
   font-size: 18px;
-  color: $purple;
+  // color: red;
   font-weight: 600;
 }
 .field .value.left {
@@ -78,10 +191,12 @@ body {
   -webkit-appearance: none;
   width: 100%;
   height: 3px;
-  background: #ddd;
+  // track
+  background: $gray-600;
   border-radius: 5px;
   outline: none;
-  border: none;
+  //rail
+  border: 1px solid $gray-600;
   z-index: 2222;
 }
 .range input::-webkit-slider-thumb {
@@ -89,8 +204,8 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: $purple;
-  border: 1px solid $purple;
+  background: $gray-600;
+  border: 1px solid $gray-600;
   cursor: pointer;
 }
 .range input::-moz-range-thumb {
@@ -98,10 +213,27 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: $purple;
-  border: 1px solid $purple;
+  background: gray;
+  border: 1px solid gray;
   cursor: pointer;
 }
-.range input::-moz-range-progress {
-  background: $purple; //this progress background is only shown on Firefox
-}
+
+
+
+// .range .slider-red {
+//   border: 1px solid pink;
+// }
+
+// .range .slider-red::-webkit-slider-thumb{
+//   background: red;
+//    border: 1px solid red;
+// }
+
+// .range .slider-blue {
+//   border: 1px solid blue;
+// }
+
+// .range .slider-blue::-webkit-slider-thumb{
+//     background: blue;
+//    border: 1px solid blue;
+// }

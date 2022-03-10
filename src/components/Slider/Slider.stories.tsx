@@ -15,9 +15,18 @@ export const DefaultSlider = () => (
 
 export const DiffColorSlider = () => (
   <div>
-    <Slider SliderColor='slider-blue'/>
+    <Slider color="slider-blue" />
     <br></br>
     <br></br>
-    <Slider SliderColor='slider-red'/>
+    <Slider color="slider-red" />
   </div>
-)
+);
+
+export const DiffSizeSlider = () => (
+  <div>
+    <Slider />
+    <br></br>
+    <br></br>
+    <Slider />
+  </div>
+);

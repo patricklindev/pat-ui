@@ -6,19 +6,22 @@ export type Size = 'large' | 'small';
 export type Color = 'slider-red' | 'slider-blue';
 
 interface ISliderProps {
-  SliderSize?: Size;
-  SliderColor?: Color;
+  size?: Size;
+  color?: Color;
 }
 
-const Slider: React.FC<ISliderProps> = ({ SliderColor }) => {
+const Slider: React.FC<ISliderProps> = ({ color, size }) => {
   const [value, setValue] = useState(100);
   const [showOrHide, setShowOrHide] = useState('');
   let classNamesList: string[] = [];
 
-  if (SliderColor === 'slider-red') {
-    classNamesList.push(SliderColor);
-  } else if (SliderColor === 'slider-blue') {
-    classNamesList.push(SliderColor);
+  if (color === 'slider-red') {
+    classNamesList.push(color);
+  } else if (color === 'slider-blue') {
+    classNamesList.push(color);
+  }
+
+  if (size === 'small') {
   }
 
   useEffect(() => {
@@ -46,7 +49,6 @@ const Slider: React.FC<ISliderProps> = ({ SliderColor }) => {
   return (
     <div className="range">
       <div className={valueClassNames()}>
-        {/* <div className="sliderValue"> */}
         <span className={showOrHide}>{value}</span>
       </div>
       <div className="field">

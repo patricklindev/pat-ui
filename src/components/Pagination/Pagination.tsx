@@ -57,9 +57,10 @@ const BasePagination: FC<PaginationProps> = (props) => {
   let eclipsed = 0;
 
   return (
-    <div className={'pagination'}>
+    <div className={'pagination'} data-testid={'pagination'}>
       <div>
         <button
+          data-testid={'prev-btn'}
           onClick={onPrev}
           disabled={disabled || currentPage === 1}
           className={`${getBasicIconClass()} ${getArrowIconClass()} ${getSizeClass(
@@ -113,6 +114,7 @@ const BasePagination: FC<PaginationProps> = (props) => {
       </div>
       <div>
         <button
+          data-testid={'next-btn'}
           onClick={onNext}
           disabled={disabled || currentPage === count}
           className={`${getBasicIconClass()} ${getArrowIconClass()}

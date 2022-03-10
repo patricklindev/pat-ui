@@ -123,7 +123,7 @@ const TablePagination: FC<PaginationProps> = (props) => {
 
   return (
     <>
-      <div className="table-pagination">
+      <div className="table-pagination" data-testid={'table-pagination'}>
         <div>Rows per page:</div>
         <div className="table-pagination__row__option">
           <select

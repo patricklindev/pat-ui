@@ -106,7 +106,6 @@
 //   background: purple; //this progress background is only shown on Firefox
 // }
 
-
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 // red: #dc3545 !default;
@@ -187,41 +186,42 @@ body {
   right: -43px;
 }
 .range input {
-  @include slider-range($gray-600)
+  @include slider-range($gray-600);
 }
 
 .range input::-webkit-slider-thumb {
-    @include slider-webkit($gray-600)
+  @include slider-webkit($gray-600);
 }
 
 .range input::-moz-range-thumb {
-    @include slider-moz($gray-600)
+  @include slider-moz($gray-600);
 }
 
 // color red
-.range .slider-red {
-  @include slider-range($red)
+.range input.slider-red {
+  @include slider-range($red);
 }
 .range .slider-red::-webkit-slider-thumb {
-    @include slider-webkit($red)
+  @include slider-webkit($red);
 }
 .range .slider-red::-moz-range-thumb {
-    @include slider-moz($red)
+  @include slider-moz($red);
 }
 // color blue
-.range .slider-blue {
-  @include slider-range($blue)
+.range input.slider-blue {
+  @include slider-range($blue);
 }
 .range .slider-blue::-webkit-slider-thumb {
-    @include slider-webkit($blue)
+  @include slider-webkit($blue);
 }
 .range .slider-blue::-moz-range-thumb {
-    @include slider-moz($blue)
+  @include slider-moz($blue);
 }
 
+.sliderValue.slider-red span:after {
+  @include slider-value($red);
+}
 
-
-
-
-
-
+.sliderValue.slider-blue span:after {
+  @include slider-value($blue);
+}

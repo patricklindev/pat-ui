@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -91,23 +96,26 @@
 
 // for the '.range input::-webkit-slider-thumb' selector
 @mixin slider-webkit($color) {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: $color;
-    border: 1px solid $color;
-    cursor: pointer;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: $color;
+  border: 1px solid $color;
+  cursor: pointer;
 }
 
 // for the '.range input::-moz-range-thumb' selector
 @mixin slider-moz($color) {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: $color;
-    border: 1px solid $color;
-    cursor: pointer;
-    
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: $color;
+  border: 1px solid $color;
+  cursor: pointer;
+}
+
+@mixin slider-value($color) {
+  background: $color;
 }

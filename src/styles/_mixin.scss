@@ -113,3 +113,39 @@
     width: $checkbox-md-width;
   }
 }
+
+@mixin checkbox-primary(
+  $checkbox-primary-color,
+  $ripple-container-primary-color
+) {
+  .primary {
+    fill: $checkbox-primary-color;
+  }
+  .ripple-container-color-primary {
+    background-color: $ripple-container-primary-color;
+  }
+}
+
+@mixin checkbox-secondary(
+  $checkbox-secondary-color,
+  $ripple-container-secondary-color
+) {
+  .secondary {
+    fill: $checkbox-secondary-color;
+  }
+  .ripple-container-color-secondary {
+    background-color: $ripple-container-secondary-color;
+  }
+}
+
+@mixin checkbox-default(
+  $checkbox-default-color,
+  $ripple-container-default-color
+) {
+  .default {
+    fill: $checkbox-default-color;
+  }
+  .ripple-container-color-default {
+    background-color: $ripple-container-default-color;
+  }
+}

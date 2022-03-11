@@ -3,10 +3,10 @@
 exports[`Checkbox should match snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="form-control"
+    class="checkbox"
   >
     <span
-      class="checkbox-container checkbox-medium"
+      class="checkbox__container checkbox__container--medium"
       data-testid="span wrapper"
     >
       <input
@@ -15,7 +15,7 @@ exports[`Checkbox should match snapshot 1`] = `
       />
       <svg
         aria-hidden="true"
-        class="checkbox-medium default"
+        class="checkbox__svg checkbox__svg--medium checkbox__svg--default"
         data-testid="svg unchecked"
         focusable="false"
         viewBox="0 0 24 24"
@@ -25,9 +25,13 @@ exports[`Checkbox should match snapshot 1`] = `
         />
       </svg>
       <span
-        class="ripple-container ripple-container-color-default"
+        class="checkbox__ripple checkbox__ripple--default"
         data-testid="ripple container"
-      />
+      >
+        <div
+          class="checkbox__ripple__container checkbox__ripple__container--medium"
+        />
+      </span>
     </span>
   </label>
 </DocumentFragment>

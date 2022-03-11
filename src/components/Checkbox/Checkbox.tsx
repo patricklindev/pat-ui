@@ -56,10 +56,19 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
   return (
     <>
       <label className="form-control">
-        <span className={`checkbox-container ${checkSizeStyles}`}>
-          <input type="checkbox" onChange={handleCheck} />
+        <span
+          data-testid="span wrapper"
+          className={`checkbox-container ${checkSizeStyles}`}
+        >
+          <input
+            data-testid="input element"
+            type="checkbox"
+            onChange={handleCheck}
+            {...rest}
+          />
           {checked ? (
             <svg
+              data-testid="svg checked"
               className={`${checkSizeStyles} ${checkColorStyle}`}
               viewBox={CheckIcons[`${icon}-fill`].viewBox}
               aria-hidden="true"
@@ -69,6 +78,7 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
             </svg>
           ) : (
             <svg
+              data-testid="svg unchecked"
               className={`${checkSizeStyles} ${checkColorStyle}`}
               viewBox={CheckIcons[`${icon}-outline`].viewBox}
               aria-hidden="true"
@@ -78,6 +88,7 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
             </svg>
           )}
           <span
+            data-testid="ripple container"
             className={`ripple-container ripple-container-color-${checkColorStyle}`}
           ></span>
         </span>

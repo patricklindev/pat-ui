@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 
 import {
-  PaginationProps,
+  IPaginationProps,
   usePagination,
 } from '../../utils/hooks/usePagination';
 import TablePagination from './TablePagination';
+
+export type PatPaginationProps = IPaginationProps;
 
 // style classes utils
 const getArrowIconClass = () => {
@@ -40,9 +42,11 @@ const getColorClass = (color: string | undefined) => {
 };
 
 // regular pagination
-const BasePagination: FC<PaginationProps> = (props) => {
+const BasePagination: FC<IPaginationProps> = (props) => {
   const {
     count,
+    className,
+    style,
     currentPage,
     onPrev,
     onNext,
@@ -56,8 +60,13 @@ const BasePagination: FC<PaginationProps> = (props) => {
 
   let eclipsed = 0;
 
+  let classes = 'pagination';
+  if (className) {
+    classes += ' ';
+  }
+
   return (
-    <div className={'pagination'} data-testid={'pagination'}>
+    <div style={style} className={classes} data-testid={'pagination'}>
       <div>
         <button
           data-testid={'prev-btn'}
@@ -143,7 +152,7 @@ const BasePagination: FC<PaginationProps> = (props) => {
  * import { Pagination } from 'pat-ui';
  * ```
  */
-const Pagination: FC<PaginationProps> = (props) => {
+const Pagination: FC<PatPaginationProps> = (props) => {
   const { paginationType = 'default' } = props;
 
   const renderPaginationType = () => {

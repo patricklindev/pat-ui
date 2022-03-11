@@ -1,6 +1,6 @@
 import React from 'react';
 import Pagination from '../Pagination';
-// import {action} from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Pagination',
@@ -10,7 +10,7 @@ export default {
 export const DefaultPagination = () => (
   <div>
     <h1>Pagination</h1>
-    <p>A standard input field.</p>
+    <p>A standard Pagination.</p>
     <Pagination
       count={20}
       page={10}
@@ -130,6 +130,10 @@ export const TablePagination = () => (
   <div>
     <h1>TablePagination</h1>
     <p>TablePagination enable by prop.</p>
-    <Pagination count={20} paginationType={'table'} />
+    <Pagination
+      count={20}
+      paginationType={'table'}
+      onPageChange={action('page changed')}
+    />
   </div>
 );

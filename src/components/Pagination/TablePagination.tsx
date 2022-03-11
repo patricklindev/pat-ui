@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, useState } from 'react';
 
 import {
-  PaginationProps,
+  IPaginationProps,
   usePagination,
 } from '../../utils/hooks/usePagination';
 
@@ -32,9 +32,11 @@ const getDisabledClass = (disabled: boolean | undefined) => {
  * import { TablePagination } from 'pat-ui';
  * ```
  */
-const TablePagination: FC<PaginationProps> = (props) => {
+const TablePagination: FC<IPaginationProps> = (props) => {
   const {
     count,
+    className,
+    style,
     currentPage,
     onPrev,
     onNext,
@@ -42,14 +44,23 @@ const TablePagination: FC<PaginationProps> = (props) => {
     disabled = false,
     rowsPerPage = 10,
     range = [10, 25, 50, 100],
+    onRowsPerPageChange,
   } = usePagination(props);
+
+  let classes = 'table-pagination';
+  if (className) {
+    classes += ' ';
+  }
 
   const [itemSize, setItemSize] = useState<number>(rowsPerPage);
 
   // row per page option event handler
   const handleItemSizeChange: React.ChangeEventHandler = (e) => {
+    const updatedItemSize = +(e.target as HTMLInputElement).value;
     updateCurrentPage(1);
-    setItemSize(+(e.target as HTMLInputElement).value);
+    setItemSize(updatedItemSize);
+
+    onRowsPerPageChange && onRowsPerPageChange(updatedItemSize);
   };
 
   // row per page options
@@ -123,7 +134,7 @@ const TablePagination: FC<PaginationProps> = (props) => {
 
   return (
     <>
-      <div className="table-pagination" data-testid={'table-pagination'}>
+      <div style={style} className={classes} data-testid={'table-pagination'}>
         <div>Rows per page:</div>
         <div className="table-pagination__row__option">
           <select

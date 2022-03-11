@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 
 export type ColorType = 'primary' | 'secondary';
 
@@ -10,9 +10,13 @@ export type ItemType = 'eclipsed' | 'page';
 
 export type PaginationType = 'default' | 'table';
 
-export interface PaginationProps {
+export interface IPaginationProps {
   /** total page number */
   count: number;
+  /** customized classes */
+  className?: string | undefined;
+  /** customized styles */
+  style?: CSSProperties | undefined;
   /** current page number */
   page?: number;
   /** set pagination component to disable or active */
@@ -31,8 +35,10 @@ export interface PaginationProps {
   paginationType?: PaginationType;
   /** range of rows per page */
   range?: number[];
-  /** trigger when previous or next page action is involed */
-  onChangePage?: (currentPage: number) => void;
+  /** callback for previous or next page action */
+  onPageChange?: (currentPage: number) => void;
+  /** callback for rows per page changes */
+  onRowsPerPageChange?: (currentRowsPerPage: number) => void;
 }
 
 // general page event handler function
@@ -41,14 +47,14 @@ export type PageFunc = (page: number, e?: React.MouseEvent) => void;
 /**
  * pagination custom hook
  *
- * @param {PaginationProps} props Pagination Props
+ * @param {IPaginationProps} props Pagination Props
  * @returns general pagination data
  */
-export const usePagination = (props: PaginationProps) => {
+export const usePagination = (props: IPaginationProps) => {
   const {
     count,
     page = 1,
-    onChangePage,
+    onPageChange,
     siblingCount = 1,
     ...restProps
   } = props;
@@ -74,7 +80,7 @@ export const usePagination = (props: PaginationProps) => {
   const updateCurrentPage: PageFunc = (updatedPage) => {
     setCurrentPage(updatedPage);
 
-    onChangePage && onChangePage(updatedPage);
+    onPageChange && onPageChange(updatedPage);
   };
 
   const onPrev: React.MouseEventHandler = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Checkbox, { NativeCheckboxProps } from './Checkbox';
+import Checkbox from './Checkbox';
 
 describe('Checkbox', () => {
   it('should match snapshot', () => {
@@ -12,13 +12,15 @@ describe('Checkbox', () => {
     const wrapper = render(<Checkbox />);
     const spanElement = wrapper.queryByTestId('span wrapper') as HTMLElement;
     expect(spanElement).toBeInTheDocument();
-    expect(spanElement).toHaveClass('checkbox-container checkbox-medium');
+    expect(spanElement).toHaveClass(
+      'checkbox__container checkbox__container--medium'
+    );
     const rippleElement = wrapper.queryByTestId(
       'ripple container'
     ) as HTMLElement;
     expect(rippleElement).toBeInTheDocument();
     expect(rippleElement).toHaveClass(
-      'ripple-container ripple-container-color-default'
+      'checkbox__ripple checkbox__ripple--default'
     );
     const svgElement = wrapper.queryByTestId('svg unchecked') as HTMLElement;
     expect(svgElement).toBeInTheDocument();
@@ -31,7 +33,7 @@ describe('Checkbox', () => {
     ) as HTMLElement;
     expect(primaryRippleElement).toBeInTheDocument();
     expect(primaryRippleElement).toHaveClass(
-      'ripple-container ripple-container-color-primary'
+      'checkbox__ripple checkbox__ripple--primary'
     );
   });
 
@@ -42,7 +44,7 @@ describe('Checkbox', () => {
     ) as HTMLElement;
     expect(secondRippleElement).toBeInTheDocument();
     expect(secondRippleElement).toHaveClass(
-      'ripple-container ripple-container-color-secondary'
+      'checkbox__ripple checkbox__ripple--secondary'
     );
   });
 
@@ -52,7 +54,9 @@ describe('Checkbox', () => {
       'span wrapper'
     ) as HTMLElement;
     expect(smallElement).toBeInTheDocument();
-    expect(smallElement).toHaveClass('checkbox-container checkbox-small');
+    expect(smallElement).toHaveClass(
+      'checkbox__container checkbox__container--small'
+    );
   });
 
   it('should render unchecked checkbox', () => {

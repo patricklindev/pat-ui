@@ -1,4 +1,4 @@
-.form-control {
+.checkbox {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
   border-radius: 50%;
   position: relative;
 
-  .checkbox-container {
+  .checkbox__container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,12 +33,12 @@
       z-index: 1;
     }
 
-    .svg {
+    .checkbox__svg {
       display: inline-block;
       flex-shrink: 0;
     }
 
-    .ripple-container {
+    .checkbox__ripple {
       display: block;
       position: absolute;
       width: 100%;
@@ -52,7 +52,7 @@
     }
   }
 
-  .checkbox-container:hover .ripple-container {
+  .checkbox__container:hover .checkbox__ripple {
     visibility: visible;
   }
 }
@@ -73,15 +73,18 @@
 
 @include checkbox-primary(
   $checkbox-primary-color,
-  $ripple-container-primary-color
+  $ripple-container-primary-color,
+  $ripple-animation-primary-color
 );
 
 @include checkbox-secondary(
   $checkbox-secondary-color,
-  $ripple-container-secondary-color
+  $ripple-container-secondary-color,
+  $ripple-animation-secondary-color
 );
 
 @include checkbox-default(
   $checkbox-default-color,
-  $ripple-container-default-color
+  $ripple-container-default-color,
+  $ripple-animation-default-color
 );

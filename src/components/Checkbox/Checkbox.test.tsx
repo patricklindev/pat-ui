@@ -20,6 +20,8 @@ describe('Checkbox', () => {
     expect(rippleElement).toHaveClass(
       'ripple-container ripple-container-color-default'
     );
+    const svgElement = wrapper.queryByTestId('svg unchecked') as HTMLElement;
+    expect(svgElement).toBeInTheDocument();
   });
 
   it('should render primary color', () => {
@@ -53,11 +55,17 @@ describe('Checkbox', () => {
     expect(smallElement).toHaveClass('checkbox-container checkbox-small');
   });
 
-  // it('should render checked checkbox', () => {
-  //   const wrapper = render(<Checkbox isChecked={true}/>);
-  //   expect(wrapper.state('checked')).toEqual(true);
+  it('should render unchecked checkbox', () => {
+    const wrapper = render(<Checkbox isChecked={false} />);
+    const checkedSVG = wrapper.queryByTestId('svg unchecked') as HTMLElement;
+    expect(checkedSVG).toBeInTheDocument();
+  });
 
-  // });
+  it('should render checked checkbox', () => {
+    const wrapper = render(<Checkbox isChecked={true} />);
+    const checkedSVG = wrapper.queryByTestId('svg checked') as HTMLElement;
+    expect(checkedSVG).toBeInTheDocument();
+  });
 
   it('should render checkbox with label', () => {
     const wrapper = render(<Checkbox label="test" />);

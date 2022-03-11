@@ -7,11 +7,17 @@ export type CheckboxSize = 'medium' | 'small';
 export type CheckboxIcon = 'checkbox' | 'heart' | 'bookmark';
 
 export interface ICheckboxProps {
+  /** set checkbox color */
   checkColor?: CheckboxColor;
+  /** set checkbox size */
   checkSize?: CheckboxSize;
+  /** set checkbox icon */
   icon?: CheckboxIcon;
+  /** set checkbox label */
   label?: string;
+  /** set checkbox size */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** set checkbox checked status */
   isChecked?: boolean;
 }
 
@@ -96,6 +102,13 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
       </label>
     </>
   );
+};
+
+Checkbox.defaultProps = {
+  checkColor: 'default',
+  checkSize: 'medium',
+  icon: 'checkbox',
+  isChecked: false,
 };
 
 export default Checkbox;

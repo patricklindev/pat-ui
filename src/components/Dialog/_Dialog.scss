@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.dialog{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    font-family: "Roboto" 
+}
+.dialog>div{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.dialog-btn{
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    min-width: 64px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(25, 118, 210, 0.5);
+    color: #1976d2;
+    background-color: white;
+    cursor: pointer;
+}
+.dialog-btn:hover{
+  background-color: rgba(25, 118, 210, 0.04);
+  border: 1px solid #1976d2;
+  background-color: transparent;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 500ms;
+    opacity: 1;
+    z-index: 1;
+  }
+  .overlay-display{
+    display: none;
+  }
+  // Several different types of dialogue
+  .dialog-container-simple{
+    width: 252px;
+    height: 248px;
+    border-radius: 4px;
+    background-color: white;
+  }
+
+ .dialog-container-alert{
+    width: 600px;
+    height: 180px;
+    border-radius: 4px;
+    background-color: white;
+ }
+ .dialog-container-form{
+    width: 600px;
+    height: 245px;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.dialog-header{
+  width: 100%;
+  height: 64px;
+  position: relative;
+}
+
+.dialog-title{
+      position: absolute;
+      top:16px;
+      left: 24px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 160%;
+      letter-spacing: 0.15px;
+  }
+
+ .dialog-content{
+   width: 100%;
+   height: 45%;
+   padding: 0px 24px;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.6);
+ }
+ 
+
+ .dialog-content input{
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentcolor;
+  padding: 4px 0px 5px;
+  border: 0px;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0px;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+ }
+
+ .dialog-actions{
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.6);
+ }
+ 
+
+ 

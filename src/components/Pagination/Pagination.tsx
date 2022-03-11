@@ -53,7 +53,7 @@ const BasePagination: FC<IPaginationProps> = (props) => {
     size,
     color,
     shape,
-    disabled,
+    disabled = false,
     itemTypes,
     updateCurrentPage,
   } = usePagination(props);
@@ -65,16 +65,19 @@ const BasePagination: FC<IPaginationProps> = (props) => {
     classes += ' ';
   }
 
+  const disabledPrevButton = disabled || currentPage === 1;
+  const disabledNextButton = disabled || currentPage === count;
+
   return (
     <div style={style} className={classes} data-testid={'pagination'}>
       <div>
         <button
           data-testid={'prev-btn'}
           onClick={onPrev}
-          disabled={disabled || currentPage === 1}
+          disabled={disabledPrevButton}
           className={`${getBasicIconClass()} ${getArrowIconClass()} ${getSizeClass(
             size
-          )} ${getShapeClass(shape)} ${getDisabledClass(disabled)}`}
+          )} ${getShapeClass(shape)} ${getDisabledClass(disabledPrevButton)}`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -132,11 +135,11 @@ const BasePagination: FC<IPaginationProps> = (props) => {
         <button
           data-testid={'next-btn'}
           onClick={onNext}
-          disabled={disabled || currentPage === count}
+          disabled={disabledNextButton}
           className={`${getBasicIconClass()} ${getArrowIconClass()}
                      ${getSizeClass(size)} ${getShapeClass(
             shape
-          )} ${getDisabledClass(disabled)} `}
+          )} ${getDisabledClass(disabledNextButton)} `}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />

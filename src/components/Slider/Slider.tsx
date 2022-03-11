@@ -53,7 +53,7 @@ const Slider: React.FC<ISliderProps> = ({ color, size }) => {
           {value}
         </span>
       </div>
-      <div className="field">
+      <div className={'field ' + classNamesList.join(' ')}>
         <div className="value left">0</div>
         <input
           className={classNamesList.join(' ')}

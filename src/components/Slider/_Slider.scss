@@ -115,10 +115,35 @@ body {
   @include slider-marker($blue);
 }
 
-// sizes
+// sizes small
 input.small::-webkit-slider-thumb {
   @include slider-thumb-size('small');
 }
+.sliderValue.small span {
+  font-size: 10px;
+  line-height: 97px;
+}
+.sliderValue.small span:after {
+  @include slider-marker-size('small');
+}
+
+// sizes large
 input.large::-webkit-slider-thumb {
   @include slider-thumb-size('large');
+}
+.sliderValue.large span {
+  font-size: 18px;
+  line-height: 55px;
+}
+.sliderValue.large span:after {
+  @include slider-marker-size('large');
+}
+
+.range {
+  .field.small .value {
+    font-size: 12px;
+  }
+  input.small {
+    @include slider-track-size('small');
+  }
 }

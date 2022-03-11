@@ -2,7 +2,7 @@ import React from 'react';
 
 import TablePagination from './TablePagination';
 import { IPaginationProps } from '../../utils/hooks/usePagination';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('TablePagination', () => {
   it('should match snapshot', () => {

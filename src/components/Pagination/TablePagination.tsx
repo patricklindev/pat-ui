@@ -34,7 +34,7 @@ const getDisabledClass = (disabled: boolean | undefined) => {
  */
 const TablePagination: FC<IPaginationProps> = (props) => {
   const {
-    count,
+    totalPage,
     className,
     style,
     currentPage,
@@ -78,10 +78,10 @@ const TablePagination: FC<IPaginationProps> = (props) => {
   const renderCurrentRows = () => {
     const leftRange = (currentPage - 1) * itemSize + 1;
     const rightRange =
-      currentPage * itemSize > count ? count : currentPage * itemSize;
+      currentPage * itemSize > totalPage ? totalPage : currentPage * itemSize;
     return (
       <div>
-        {leftRange} - {rightRange} of {count}{' '}
+        {leftRange} - {rightRange} of {totalPage}{' '}
       </div>
     );
   };
@@ -102,7 +102,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
 
     const isLeftDisabled: boolean = disabled || currentPage === 1;
     const isRightDisabled: boolean =
-      disabled || currentPage * itemSize >= count;
+      disabled || currentPage * itemSize >= totalPage;
 
     switch (actionType) {
       case ActionType.Left:

@@ -44,7 +44,7 @@ const getColorClass = (color: string | undefined) => {
 // regular pagination
 const BasePagination: FC<IPaginationProps> = (props) => {
   const {
-    count,
+    totalPage,
     className,
     style,
     currentPage,
@@ -66,7 +66,7 @@ const BasePagination: FC<IPaginationProps> = (props) => {
   }
 
   const disabledPrevButton = disabled || currentPage === 1;
-  const disabledNextButton = disabled || currentPage === count;
+  const disabledNextButton = disabled || currentPage === totalPage;
 
   return (
     <div style={style} className={classes} data-testid={'pagination'}>

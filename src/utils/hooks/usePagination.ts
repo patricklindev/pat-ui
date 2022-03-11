@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 
 export type ColorType = 'primary' | 'secondary';
 
@@ -59,16 +59,22 @@ export const usePagination = (props: IPaginationProps) => {
     ...restProps
   } = props;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [totalPage, setTotalPage] = useState<number>(count);
+  const [totalPage, setTotalPage] = useState<number>(Math.ceil(count));
   const [currentPage, setCurrentPage] = useState<number>(page);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (Math.ceil(count) !== totalPage) {
+      setTotalPage(Math.ceil(count));
+    }
+  });
+
   // decide if current page is eclipse(...) or normal page item
-  let itemTypes: ItemType[] = [];
-  for (let i = 1; i <= count; i++) {
+  const itemTypes: ItemType[] = [];
+  for (let i = 1; i <= totalPage; i++) {
     if (
       i <= siblingCount ||
-      i > count - siblingCount ||
+      i > totalPage - siblingCount ||
       (i >= currentPage - siblingCount && i <= currentPage + siblingCount)
     ) {
       itemTypes[i] = 'page';
@@ -100,7 +106,7 @@ export const usePagination = (props: IPaginationProps) => {
   };
 
   return {
-    count,
+    totalPage,
     currentPage,
     itemTypes,
     onPrev,

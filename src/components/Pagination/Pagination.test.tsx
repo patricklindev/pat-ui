@@ -24,6 +24,24 @@ describe('Pagination', () => {
     const paginationDiv = screen.getByTestId('pagination') as HTMLElement;
 
     expect(paginationDiv).toHaveClass('pagination');
+
+    const arrowButton = screen.getByTestId('prev-btn');
+    expect(arrowButton).toHaveClass('pagination__icons--disabled');
+  });
+
+  it('should render default pagination', () => {
+    // props
+    const lastPageProps = {
+      count: 20,
+      page: 20,
+    };
+    render(<Pagination {...lastPageProps} />);
+    const paginationDiv = screen.getByTestId('pagination') as HTMLElement;
+
+    expect(paginationDiv).toHaveClass('pagination');
+
+    const arrowButton = screen.getByTestId('next-btn');
+    expect(arrowButton).toHaveClass('pagination__icons--disabled');
   });
 
   it('should render primary color', () => {
@@ -147,7 +165,9 @@ describe('Pagination', () => {
     fireEvent.click(currentButton);
     expect(prevActionProps.onPageChange).toHaveBeenCalledTimes(1);
 
-    const focusedPageBtn = screen.getByText('9');
+    const focusedPageBtn = screen.getByText(
+      `${(prevActionProps.page as number) - 1}`
+    );
     expect(focusedPageBtn).toHaveClass('pagination__icons__btn--focused');
   });
 
@@ -168,7 +188,9 @@ describe('Pagination', () => {
     fireEvent.click(currentButton);
     expect(nextActionProps.onPageChange).toHaveBeenCalledTimes(1);
 
-    const focusedPageBtn = screen.getByText('11');
+    const focusedPageBtn = screen.getByText(
+      `${(nextActionProps.page as number) + 1}`
+    );
     expect(focusedPageBtn).toHaveClass('pagination__icons__btn--focused');
   });
 });

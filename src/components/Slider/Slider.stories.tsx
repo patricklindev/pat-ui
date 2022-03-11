@@ -12,3 +12,21 @@ export const DefaultSlider = () => (
     <Slider />
   </div>
 );
+
+export const DiffColorSlider = () => (
+  <div>
+    <Slider color="slider-blue" />
+    <br></br>
+    <br></br>
+    <Slider color="slider-red" />
+  </div>
+);
+
+export const DiffSizeSlider = () => (
+  <div>
+    <Slider size="small" />
+    <br></br>
+    <br></br>
+    <Slider size="large" />
+  </div>
+);

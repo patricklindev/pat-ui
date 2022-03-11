@@ -6,58 +6,69 @@ export type Size = 'large' | 'small';
 export type Color = 'slider-red' | 'slider-blue';
 
 interface ISliderProps {
-    SliderSize?: Size;
-    SliderColor?: Color;
+  size?: Size;
+  color?: Color;
 }
 
+const Slider: React.FC<ISliderProps> = ({ color, size }) => {
+  const [value, setValue] = useState(100);
+  const [showOrHide, setShowOrHide] = useState('');
 
-const Slider:React.FC<ISliderProps> = ({SliderColor}) => {
+  let classNamesList: string[] = [];
+  if (color) classNamesList.push(color);
+  if (size) classNamesList.push(size);
 
-    const [value, setValue] = useState(100)
-    const [showOrHide, setShowOrHide] = useState('')
-    let classNamesList: string[] = [];
-    
-    if(SliderColor === 'slider-red'){
-        classNamesList.push(SliderColor)
+  const [spanlocation, setSpanlocation] = useState('');
+
+  useEffect(() => {
+    const sliderValue: HTMLSpanElement | null = document.querySelector('span');
+    if (sliderValue) {
+      setSpanlocation(value / 2 + '%');
     }
-    else if(SliderColor === 'slider-blue'){
-        classNamesList.push(SliderColor)
-    }
-    
-    useEffect(() => {
-        const slideValue: HTMLSpanElement | null = document.querySelector("span");
-        if(slideValue){
-            slideValue.style.left = (value/2) + "%";
-        }
-        
-    }, [value])
+  }, [value]);
 
-    const onInputHandle = (e: any) => {
-        setValue(e.target.value);
-        setShowOrHide('show');
-    }
+  const onInputHandle = (e: any) => {
+    setValue(e.target.value);
+    setShowOrHide('show');
+  };
 
-    const onBlurHandle = () => {
-        setShowOrHide('')
-    }
+  const onBlurHandle = () => {
+    setShowOrHide('');
+  };
 
-    return(
-        <div className="range">
-        <div className="sliderValue">
-            <span className={showOrHide}>{value}</span>
-        </div>
-        <div className="field">
-            <div className="value left">0</div>
-        <input 
-        // className={classNamesList.join(' ')} 
-        type="range" min="10" max="200" value={value} step="1" 
-            onChange={e => onInputHandle(e)}
-            onBlur={onBlurHandle}
-            />
-            <div className="value right">200</div>
-        </div>
+  const valueClassNames = () => {
+    classNamesList.push('sliderValue');
+    return classNamesList.join(' ');
+  };
+
+  return (
+    <div className="range">
+      <div className={valueClassNames()}>
+        <span
+          className={showOrHide}
+          style={{
+            left: spanlocation,
+          }}
+        >
+          {value}
+        </span>
+      </div>
+      <div className={'field ' + classNamesList.join(' ')}>
+        <div className="value left">0</div>
+        <input
+          className={classNamesList.join(' ')}
+          type="range"
+          min="10"
+          max="200"
+          value={value}
+          step="1"
+          onChange={(e) => onInputHandle(e)}
+          onBlur={onBlurHandle}
+        />
+        <div className="value right">200</div>
+      </div>
     </div>
-    )
-}
+  );
+};
 
 export default Slider;

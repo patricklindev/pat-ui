@@ -62,12 +62,9 @@ export const usePagination = (props: IPaginationProps) => {
   const [totalPage, setTotalPage] = useState<number>(Math.ceil(count));
   const [currentPage, setCurrentPage] = useState<number>(page);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (Math.ceil(count) !== totalPage) {
-      setTotalPage(Math.ceil(count));
-    }
-  });
+    setTotalPage(Math.ceil(count));
+  }, [count]);
 
   // decide if current page is eclipse(...) or normal page item
   const itemTypes: ItemType[] = [];

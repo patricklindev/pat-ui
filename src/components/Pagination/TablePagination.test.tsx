@@ -1,7 +1,9 @@
 import React from 'react';
 
-import TablePagination from './TablePagination';
 import { IPaginationProps } from '../../utils/hooks/usePagination';
+import Pagination from './Pagination';
+import TablePagination from './TablePagination';
+
 import { render, screen } from '@testing-library/react';
 
 describe('TablePagination', () => {
@@ -20,7 +22,7 @@ describe('TablePagination', () => {
       count: 20,
       paginationType: 'table',
     };
-    render(<TablePagination {...tableIPaginationProps} />);
+    render(<Pagination {...tableIPaginationProps} />);
     const tablePaginationDiv = screen.getByTestId(
       'table-pagination'
     ) as HTMLElement;

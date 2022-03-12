@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Pagination from './Pagination';
 import { IPaginationProps } from '../../utils/hooks/usePagination';
+import Pagination from './Pagination';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('Pagination', () => {

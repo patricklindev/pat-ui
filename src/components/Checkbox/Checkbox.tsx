@@ -3,6 +3,7 @@ import React, {
   FC,
   InputHTMLAttributes,
   useLayoutEffect,
+  useEffect,
 } from 'react';
 import { classNames } from '../../utils/classNames';
 import { CheckIcons } from './CheckIcons';
@@ -65,6 +66,10 @@ export const Checkbox: FC<NativeCheckboxProps> = (props) => {
       onChange(e);
     }
   };
+
+  useEffect(() => {
+    setChecked(isChecked);
+  }, [isChecked]);
 
   useLayoutEffect(() => {
     let ripple: any = null;

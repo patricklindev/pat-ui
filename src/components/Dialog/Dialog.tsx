@@ -4,7 +4,7 @@ import React from 'react'
 // Define the props
 export interface DialogProps {
     isOpen?: boolean,
-    onClose?: (e?:React.MouseEvent) => void,
+    onClose?: () => void,
     children?: React.ReactNode;
 }
 

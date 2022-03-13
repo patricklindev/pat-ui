@@ -30,3 +30,9 @@ export const DiffSizeSlider = () => (
     <Slider size="large" />
   </div>
 );
+
+export const DisabledSlider = () => (
+  <div>
+    <Slider disabled />
+  </div>
+);

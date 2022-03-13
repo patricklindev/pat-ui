@@ -126,6 +126,14 @@ input.small::-webkit-slider-thumb {
 .sliderValue.small span:after {
   @include slider-marker-size('small');
 }
+.range {
+  .field.small .value {
+    font-size: 12px;
+  }
+  input.small {
+    @include slider-track-size('small');
+  }
+}
 
 // sizes large
 input.large::-webkit-slider-thumb {
@@ -137,13 +145,4 @@ input.large::-webkit-slider-thumb {
 }
 .sliderValue.large span:after {
   @include slider-marker-size('large');
-}
-
-.range {
-  .field.small .value {
-    font-size: 12px;
-  }
-  input.small {
-    @include slider-track-size('small');
-  }
 }

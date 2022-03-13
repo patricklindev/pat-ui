@@ -8,17 +8,18 @@ export type Color = 'slider-red' | 'slider-blue';
 interface ISliderProps {
   size?: Size;
   color?: Color;
+  disabled?: boolean;
 }
 
-const Slider: React.FC<ISliderProps> = ({ color, size }) => {
+const Slider: React.FC<ISliderProps> = ({ color, size, disabled }) => {
   const [value, setValue] = useState(100);
   const [showOrHide, setShowOrHide] = useState('');
+  const [spanlocation, setSpanlocation] = useState('');
 
-  let classNamesList: string[] = [];
+  let classNamesList: (string | boolean)[] = [];
   if (color) classNamesList.push(color);
   if (size) classNamesList.push(size);
-
-  const [spanlocation, setSpanlocation] = useState('');
+  if (disabled) classNamesList.push(disabled);
 
   useEffect(() => {
     const sliderValue: HTMLSpanElement | null = document.querySelector('span');
@@ -64,6 +65,7 @@ const Slider: React.FC<ISliderProps> = ({ color, size }) => {
           step="1"
           onChange={(e) => onInputHandle(e)}
           onBlur={onBlurHandle}
+          disabled={disabled}
         />
         <div className="value right">200</div>
       </div>

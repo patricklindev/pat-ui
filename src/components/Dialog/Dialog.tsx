@@ -1,5 +1,4 @@
 import React from 'react'
-// import './Dialog.scss'
 
 
 // Define the props

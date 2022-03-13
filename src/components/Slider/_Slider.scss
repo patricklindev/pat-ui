@@ -14,7 +14,7 @@ body {
   place-items: center;
 }
 .range {
-  height: 80px;
+  height: 100px;
   width: 380px;
   background: #fff;
   border-radius: 10px;
@@ -146,4 +146,21 @@ input.large::-webkit-slider-thumb {
   input.small {
     @include slider-track-size('small');
   }
+}
+
+.ui-slider-tick {
+    position: absolute;
+    margin-top: 1em;
+    width: 2px;
+    height: 6px; 
+    background: rgb(170, 170, 170);
+}
+.ui-slider-tick-num{
+  position: absolute;
+  font-size: small;
+    margin-top: 2em;
+    margin-left: -0.5em;
+    width: 1px;
+    height: 3px;
+    color: rgb(170, 170, 170);
 }

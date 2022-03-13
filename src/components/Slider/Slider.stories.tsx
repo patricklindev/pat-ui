@@ -30,3 +30,9 @@ export const DiffSizeSlider = () => (
     <Slider size="large" />
   </div>
 );
+
+export const TickMarkSlider = () => (
+  <div>
+    <Slider RangeSlider={true} Tick={true} min={10} max={100}/>
+  </div>
+)

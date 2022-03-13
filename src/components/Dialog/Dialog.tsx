@@ -53,13 +53,13 @@ const Dialog: React.FC<DialogProps> = ({
 }) => {
 
     return (
-        <div className={isOpen?'':'overlay-display'}>
+        <div className={isOpen?'':'overlay-display'} data-testid='dialog-window'>
             <section className='dialog'>
-                <div className='dialog-window'>
+                <div className='dialog-window' data-testid='dialog-children'>
                     {children}
                 </div>
             </section>
-            <section className='overlay' onClick={onClose}>
+            <section className='overlay' onClick={onClose} data-testid='dialog-dim-background'>
             </section>
         </div>
     )

@@ -1,18 +1,11 @@
 import React from 'react'
-import './_Dialog.scss'
+// import './Dialog.scss'
 
-
-export enum DialogType {
-    Simple,
-    Alert,
-    Form
-}
 
 // Define the props
 export interface DialogProps {
-    type?: DialogType,
-    onOpen?: boolean,
-    onClose?: (event: any) => void,
+    isOpen?: boolean,
+    onClose?: (e?:React.MouseEvent) => void,
     children?: React.ReactNode;
 }
 
@@ -31,11 +24,10 @@ interface DialogActionsProps {
 export const DialogTitle: React.FC<DialogTitleProps> = ({
     children
 }) => (
-    <header className='dialog-header'>
-        <div className='dialog-title'>
+        <h2 className='dialog-title'>
             {children}
-        </div>
-    </header>
+        </h2>
+   
 );
 
 export const DialogContent: React.FC<DialogContentProps> = ({
@@ -50,44 +42,31 @@ export const DialogActions: React.FC<DialogActionsProps> = ({
     children
 }) => (
     <div className='dialog-actions'>
-        <div className='dialog-actions-container'>
-            {children}
-        </div>
+        {children}
     </div>
 );
 
 
 const Dialog: React.FC<DialogProps> = ({
-    type = DialogType.Alert,
-    onOpen,
+    isOpen,
     onClose,
     children,
 }) => {
 
     return (
-        <div>
-            <section className='dialog' >
-                <div className={generateDialogWindow(type)}
-                     data-testid ='dialog-window'
-                >    
+        <div className={isOpen?'':'overlay-display'}>
+            <section className='dialog'>
+                <div className='dialog-window'>
                     {children}
                 </div>
             </section>
-            <section className={onOpen ? 'overlay' : 'overlay overlay-display'} 
-            data-testid ='dialog-dim-background'
-            id="overlay" onClick={onClose}>
+            <section className='overlay' onClick={onClose}>
             </section>
         </div>
     )
 
 }
 
-
-const generateDialogWindow = (type: DialogType) => {
-    return type === DialogType.Simple ? 'dialog-container-simple' :
-        type === DialogType.Alert ? 'dialog-container-alert' :
-            'dialog-container-form'
-}
 
 
 export default Dialog;

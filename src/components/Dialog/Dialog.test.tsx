@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { render, fireEvent } from '@testing-library/react';
-import Dialog, { DialogType } from './Dialog';
+import Dialog from './Dialog';
 
 describe('Dialog component should work as expected in different conditions', ()=>{
     it('Dialog component should match with the snapshop',()=>{
@@ -10,27 +10,12 @@ describe('Dialog component should work as expected in different conditions', ()=
     });
     // test simple dialog window size
     it('Dialog will change its size to Alert if type prop is set to Alert', ()=>{
-        const wrapper = render(<Dialog type={DialogType.Simple} />);
+        const wrapper = render(<Dialog />);
         const simpleDialog = wrapper.queryByTestId('dialog-window');
         expect(simpleDialog).toBeInTheDocument();
-        expect(simpleDialog).toHaveClass('dialog-container-simple');   
+        expect(simpleDialog).toHaveClass('dialog-window');   
     });
 
-    // test alert dialog window size
-    it('Dialog will change its size to Alert if type prop is set to Alert', ()=>{
-        const wrapper = render(<Dialog type={DialogType.Alert} />);
-        const alertDialog = wrapper.queryByTestId('dialog-window');
-        expect(alertDialog).toBeInTheDocument();
-        expect(alertDialog).toHaveClass('dialog-container-alert');   
-    });
-
-    //test form dialog window size 
-    it('Dialog will change its size to Form if type prop is set to Form', ()=>{
-        const wrapper = render(<Dialog type={DialogType.Form} />);
-        const FormDialog = wrapper.queryByTestId('dialog-window');
-        expect(FormDialog).toBeInTheDocument();
-        expect(FormDialog).toHaveClass('dialog-container-form');   
-    });
 
     //test dimed backdrop
     it('Dialog will open with dim background underearth', ()=>{

@@ -146,3 +146,5 @@ input.large::-webkit-slider-thumb {
 .sliderValue.large span:after {
   @include slider-marker-size('large');
 }
+
+// disabled slider

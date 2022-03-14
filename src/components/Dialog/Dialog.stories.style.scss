@@ -1,0 +1,54 @@
+.dialog-content input {
+    font: inherit;
+    padding: 4px 0px 5px;
+    border: 0px;
+    box-sizing: content-box;
+    height: 1.4375em;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  .dialog-btn {
+    width: 85px;
+    height: 24px;
+  
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+  
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #1976d2;
+    border: white;
+    background-color: transparent;
+  
+    &.hover {
+      background-color: #1976d215;
+    }
+  }
+  .email-row {
+    margin-bottom: 20px;
+    width: 105%;
+    cursor: pointer;
+  
+    &.hover {
+      background-color: #ddd;
+    }
+  }
+  .dialog-actions-simple-row {
+    cursor: pointer;
+    padding: 20px 24px;
+  
+    &.hover {
+      background-color: #ddd;
+    }
+  }
+  
+  span {
+    display: inline-block;
+    width: 60%;
+    margin-left: 10px;
+  }

@@ -61,7 +61,7 @@ export const temporaryDrawer = () => {
   const [anchor, setAnchor] = useState<string>('');
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen); 
   };
   const handleAnchor = (direction: string) => {
     setAnchor(direction);

@@ -6,14 +6,18 @@ export default {
   title: 'Drawer',
   component: Drawer,
 };
- 
+   
+const drawerChildrenStyle: React.CSSProperties = {
+  textAlign: 'left', marginLeft: '1rem'
+};
+    
 export const persistentDrawer = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-
+        
   return (
     <div
       style={{
@@ -30,7 +34,7 @@ export const persistentDrawer = () => {
         variant={'persistent'}
         onToggleCallback={handleToggle}
       >
-        <div style={{ textAlign: 'left', marginLeft: '1rem' }}>
+        <div style={drawerChildrenStyle}>
           <h5>Inbox</h5>
           <h5>All Mail </h5>
           <h5>Send Email</h5>
@@ -56,6 +60,16 @@ export const persistentDrawer = () => {
   );
 };
 
+const tempDrawerBtnStyle: React.CSSProperties = {
+  fontWeight: 'bold',
+  height: '50px',
+  alignSelf: 'center',
+  padding: '0 10px',
+  width: '5rem',
+  lineHeight: '50px',
+  margin: '0 0.5rem'
+};
+
 export const temporaryDrawer = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [anchor, setAnchor] = useState<string>('left');
@@ -75,7 +89,7 @@ export const temporaryDrawer = () => {
         onToggleCallback={handleToggle}
         anchor={anchor}
       >
-        <div style={{ textAlign: 'left', marginLeft: '1rem' }}>
+        <div style={drawerChildrenStyle}>
           <h5>Inbox</h5>
           <h5>All Mail </h5>
           <h5>Send Email</h5>
@@ -101,15 +115,7 @@ export const temporaryDrawer = () => {
             handleToggle();
             handleAnchor('left');
           }}
-          style={{
-            fontWeight: 'bold',
-            height: '50px',
-            alignSelf: 'center',
-            padding: '0 10px',
-            width: '5rem',
-            lineHeight: '50px',
-            margin: '0 0.5rem',
-          }}
+          style={tempDrawerBtnStyle}
         >
           Left
         </Button>
@@ -120,15 +126,7 @@ export const temporaryDrawer = () => {
             handleToggle();
             handleAnchor('right');
           }}
-          style={{
-            fontWeight: 'bold',
-            height: '50px',
-            alignSelf: 'center',
-            padding: '0 10px',
-            width: '5rem',
-            lineHeight: '50px',
-            margin: '0 0.5rem',
-          }}
+          style={tempDrawerBtnStyle}
         >
           Right
         </Button>
@@ -139,15 +137,7 @@ export const temporaryDrawer = () => {
             handleToggle();
             handleAnchor('top');
           }}
-          style={{
-            fontWeight: 'bold',
-            height: '50px',
-            alignSelf: 'center',
-            padding: '0 10px',
-            width: '5rem',
-            lineHeight: '50px',
-            margin: '0 0.5rem',
-          }}
+          style={tempDrawerBtnStyle}
         >
           Top
         </Button>
@@ -158,15 +148,7 @@ export const temporaryDrawer = () => {
             handleToggle();
             handleAnchor('bottom');
           }}
-          style={{
-            fontWeight: 'bold',
-            height: '50px',
-            alignSelf: 'center',
-            padding: '0 10px',
-            width: '5rem',
-            lineHeight: '50px',
-            margin: '0 0.5rem',
-          }}
+          style={tempDrawerBtnStyle}
         >
           Bottom
         </Button>

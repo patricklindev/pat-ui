@@ -8,7 +8,7 @@ exports[`Drawer should match snapshot 1`] = `
       data-testid="dimmed-background"
     />
     <aside
-      class="drawer drawer-openStateFalse"
+      class="drawer drawer__open_false"
       data-testid="drawer"
     />
   </section>

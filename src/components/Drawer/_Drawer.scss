@@ -13,11 +13,11 @@
 
 }
 
-.drawer-openStateFalse {
+.drawer__open_false {
   display: none;
 }
 
-.drawer-left-open {
+.drawer__open_left {
   top: 0;
   left: 0;
   height: 100vh;
@@ -34,7 +34,7 @@
   }
 }
 
-.drawer-right-open {
+.drawer__open_right {
   top: 0;
   right: 0;
   height: 100vh;
@@ -51,7 +51,7 @@
   }
 }
 
-.drawer-top-open {
+.drawer__open_top {
   top: 0;
   width: 100vw;
   height: max-content;
@@ -67,7 +67,7 @@
   }
 }
 
-.drawer-bottom-open {
+.drawer__open_bottom {
   bottom: 0;
   width: 100vw;
   height: max-content;
@@ -83,7 +83,7 @@
   }
 }
 
-.drawer-dimBackground {
+.drawer__temporary_dimBackground {
   position: fixed;
   display: flex;
   -webkit-box-align: center;

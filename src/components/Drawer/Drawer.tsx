@@ -46,7 +46,7 @@ interface IDrawerProps {
  * 
  */
  
-const Drawer: FC<DrawerProps> = ({ 
+const Drawer: FC<IDrawerProps> = ({ 
   anchor = 'left',
   open = false,
   onToggleCallback,
@@ -59,7 +59,8 @@ const Drawer: FC<DrawerProps> = ({
 
   let styleClasses = classNames('drawer', {
 
-    [`${open ? `drawer-${anchor}-open` : 'drawer-openStateFalse'}`]: true,
+    [`${open ? `drawer__open_${anchor}` : 'drawer__open_false'}`]: true,
+  
 
   });
   if (className) {
@@ -79,7 +80,7 @@ const Drawer: FC<DrawerProps> = ({
 
   let dimBackgroundStyle = '';
   if (variant === 'temporary' && open) {
-    dimBackgroundStyle = 'drawer-dimBackground';
+    dimBackgroundStyle = 'drawer__temporary_dimBackground';
   }
 
 

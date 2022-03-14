@@ -74,7 +74,7 @@ body {
 .field .value.right {
   right: -43px;
 }
-.selected-track{
+.selected-track {
   position: absolute;
   height: 3px;
   z-index: 9;
@@ -162,21 +162,28 @@ input.large::-webkit-slider-thumb {
 }
 
 .ui-slider-tick {
-    position: absolute;
-    margin-top: 1em;
-    width: 2px;
-    height: 6px; 
-    background: rgb(170, 170, 170);
+  position: absolute;
+  margin-top: 1em;
+  width: 2px;
+  height: 6px;
+  background: rgb(170, 170, 170);
 }
-.ui-slider-tick-num{
+.ui-slider-tick-num {
   position: absolute;
   font-size: small;
-    margin-top: 2em;
-    margin-left: -0.5em;
-    width: 1px;
-    height: 3px;
-    color: rgb(170, 170, 170);
+  margin-top: 2em;
+  margin-left: -0.5em;
+  width: 1px;
+  height: 3px;
+  color: rgb(170, 170, 170);
 }
 
 // disabled slider
-
+.range {
+  input:disabled::-webkit-slider-thumb {
+    @include slider-webkit(rgb(223, 223, 223));
+  }
+  input:disabled {
+    @include slider-range(rgba(192, 192, 192, 0.418));
+  }
+}

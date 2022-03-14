@@ -54,7 +54,7 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
 
   const [valueRight, setValueRight] = useState((maxValue as number) / 2);
   const [valueLeft, setValueLeft] = useState((maxValue as number) / 3);
-  
+
   const [showOrHide, setShowOrHide] = useState('');
   const [spanlocation, setSpanlocation] = useState('');
 
@@ -131,11 +131,19 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
       ) : null}
       <div className={'field ' + classNamesList.join(' ')}>
         <div className="value left">{minValue}</div>
-        {/* <div className='selected-track' 
-        style={{backgroundColor:`${enableDoubleRange? 'red' : ''}`,
-                left: `${spanlocationLeft}`,
-                width:`${enableDoubleRange? Math.abs(valueRight - valueLeft)/ (maxValue as number) * 260 : 0}px`
-      }}></div> */}
+        {/* <div
+          className="selected-track"
+          style={{
+            backgroundColor: `${enableDoubleRange ? 'red' : ''}`,
+            left: `${spanlocationLeft}`,
+            width: `${
+              enableDoubleRange
+                ? (Math.abs(valueRight - valueLeft) / (maxValue as number)) *
+                  260
+                : 0
+            }px`,
+          }}
+        ></div> */}
         <input
           className={classNamesList.join(' ')}
           id="slider-1"

@@ -88,10 +88,6 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
     setShowOrHide('show');
   };
 
-  const selectedTrackWidth = () => {
-
-  }
-
   const onBlurHandle = () => {
     setShowOrHide('');
   };
@@ -135,11 +131,11 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
       ) : null}
       <div className={'field ' + classNamesList.join(' ')}>
         <div className="value left">{minValue}</div>
-        <div className='selected-track' 
+        {/* <div className='selected-track' 
         style={{backgroundColor:`${enableDoubleRange? 'red' : ''}`,
                 left: `${spanlocationLeft}`,
                 width:`${enableDoubleRange? Math.abs(valueRight - valueLeft)/ (maxValue as number) * 260 : 0}px`
-      }}></div>
+      }}></div> */}
         <input
           className={classNamesList.join(' ')}
           id="slider-1"

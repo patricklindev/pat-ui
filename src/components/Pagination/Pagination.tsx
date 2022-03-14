@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import React, {FC, ReactElement} from 'react';
 
 import {
   PaginationProps,
   usePagination,
 } from '../../utils/hooks/usePagination';
 import TablePagination from './TablePagination';
+import {classNames} from "../../utils/classNames";
+
+type RenderActionFn = (action: ActionType) => ReactElement;
 
 // style classes utils
 const getArrowIconClass = () => {
   return 'pagination__icons__btn-arrow';
-};
-const getBasicIconClass = () => {
-  return 'pagination__icons__btn-icon';
 };
 const getColorFocusedClass = () => {
   return 'pagination__icons__btn--focused';
@@ -19,25 +19,22 @@ const getColorFocusedClass = () => {
 const getDisabledClass = (disabled: boolean | undefined) => {
   return disabled ? 'pagination__icons--disabled' : '';
 };
-const getSizeClass = (size: string | undefined) => {
-  return size === 'lg'
-    ? 'pagination__icons--lg'
-    : size === 'sm'
-    ? 'pagination__icons--sm'
-    : 'pagination__icons--default';
-};
-const getShapeClass = (shape: string | undefined) => {
-  return shape === 'round'
-    ? 'pagination__icons--round'
-    : shape === 'rounded'
-    ? 'pagination__icons--rounded'
-    : '';
-};
-const getColorClass = (color: string | undefined) => {
-  return color === 'primary'
-    ? 'pagination__icons--primary'
-    : 'pagination__icons--secondary';
-};
+
+enum ActionType {
+  Left,
+  Right,
+}
+const leftArrow = (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+);
+
+const rightArrow = (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+    </svg>
+);
 
 // regular pagination
 const BasePagination: FC<PaginationProps> = (props) => {
@@ -56,83 +53,100 @@ const BasePagination: FC<PaginationProps> = (props) => {
 
   let eclipsed = 0;
 
+  let styleClasses = classNames('pagination', {
+      ['pagination__icons__btn-icon']: true,
+      [`pagination__icons--${size}`]: !!size,
+      [`pagination__icons--${shape}`]: !!shape,
+      [`pagination__icons--${color}`]: !!color,
+      [`pagination__icons--disabled`]: !!disabled,
+      disabled: !!(disabled),
+  });
+
+  const renderActionBtn: RenderActionFn = (actionType: ActionType) => {
+    const isLeftDisabled: boolean = disabled || currentPage === 1;
+    const isRightDisabled: boolean =
+        disabled || currentPage === count;
+    switch (actionType) {
+      case ActionType.Left:
+        return (
+            <button
+                data-testid={'prev-btn'}
+                onClick={onPrev}
+                disabled={isLeftDisabled}
+                className={`${styleClasses} ${getDisabledClass(isLeftDisabled)} ${getArrowIconClass()}`}
+                aria-label={'leftArrow'} aria-disabled={isLeftDisabled}>
+              {leftArrow}
+            </button>
+        );
+      case ActionType.Right:
+        return (
+            <button
+                data-testid={'next-btn'}
+                onClick={onNext}
+                disabled={isRightDisabled}
+                className={`${styleClasses} ${getDisabledClass(isRightDisabled)} ${getArrowIconClass()}`}
+                aria-label={'rightArrow'} aria-disabled={isRightDisabled}>
+              {rightArrow}
+            </button>
+        );
+    }
+  };
+
+  const renderEllipsis = (index: number) => {
+    eclipsed += 1;
+    return eclipsed > 1 ? null : (
+        <div key={`pagination_number_${index}`} aria-label={'ellipsis'} className={`${getDisabledClass(disabled)}`}>
+          {'...'}
+        </div>
+    );
+  }
+
+  const renderCurrentPage = (index: Number) => {
+    return (
+        <div key={`pagination_number_${index}`}
+             className={`${styleClasses} ${getColorFocusedClass()}`}
+             aria-label={'currentPage'} aria-disabled={disabled}>
+          {index}
+        </div>
+    );
+  }
+
+  const renderRegularPage = (index: Number ) => {
+    return (
+        <button
+            key={`pagination_number_${index}`}
+            disabled={disabled}
+            onClick={(_) => updateCurrentPage(+index)}
+            className={`${styleClasses}`}
+            aria-label={'page'} aria-disabled={disabled}>
+          <div>{index}</div>
+        </button>
+    );
+  }
+
   return (
-    <div className={'pagination'} data-testid={'pagination'}>
+    <div className={'pagination'} aria-disabled={disabled} aria-label={'pagination'} data-testid={'pagination'}>
       <div>
-        <button
-          data-testid={'prev-btn'}
-          onClick={onPrev}
-          disabled={disabled || currentPage === 1}
-          className={`${getBasicIconClass()} ${getArrowIconClass()} ${getSizeClass(
-            size
-          )} ${getShapeClass(shape)} ${getDisabledClass(disabled)}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-          </svg>
-        </button>
+        {renderActionBtn(ActionType.Left)}
       </div>
-      <div className={'pagination__icons'}>
-        {itemTypes.map((n, i) => {
-          if (n === 'eclipsed') {
-            eclipsed += 1;
-            return eclipsed > 1 ? null : (
-              <div
-                key={`pagination_number_${i}`}
-                className={`${getDisabledClass(disabled)}`}
-              >
-                {'...'}
-              </div>
-            );
-          } else {
-            eclipsed = 0;
-            if (+i === +currentPage) {
-              return (
-                <div
-                  key={`pagination_number_${i}`}
-                  className={`${getBasicIconClass()} 
-                    ${getSizeClass(size)} ${getShapeClass(
-                    shape
-                  )} ${getColorClass(color)} ${getDisabledClass(
-                    disabled
-                  )} ${getColorFocusedClass()}`}
-                >
-                  {i}
-                </div>
-              );
+      <div className={'pagination__icons'} aria-label={'pagination__icons'}>
+        {
+          itemTypes.map((itemType, index) => {
+            if (itemType === 'eclipsed') {
+                return renderEllipsis(index)
             } else {
-              return (
-                <button
-                  key={`pagination_number_${i}`}
-                  disabled={disabled}
-                  onClick={(_) => updateCurrentPage(+i)}
-                  className={`${getBasicIconClass()} ${getSizeClass(
-                    size
-                  )} ${getShapeClass(shape)} ${getColorClass(
-                    color
-                  )} ${getDisabledClass(disabled)}`}
-                >
-                  <div>{i}</div>
-                </button>
-              );
+              eclipsed = 0; // reset eclipsed count
+              if (+index === +currentPage) {
+                return renderCurrentPage(index)
+              } else {
+                return renderRegularPage(index)
+              }
             }
-          }
-        })}
+          })
+        }
       </div>
       <div>
-        <button
-          data-testid={'next-btn'}
-          onClick={onNext}
-          disabled={disabled || currentPage === count}
-          className={`${getBasicIconClass()} ${getArrowIconClass()}
-                     ${getSizeClass(size)} ${getShapeClass(
-            shape
-          )} ${getDisabledClass(disabled)} `}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-          </svg>
-        </button>
+        {renderActionBtn(ActionType.Right)}
       </div>
     </div>
   );
@@ -148,10 +162,9 @@ const Pagination: FC<PaginationProps> = (props) => {
 
   const renderPaginationType = () => {
     switch (paginationType) {
-      case 'default':
-        return <BasePagination {...props} />;
       case 'table':
         return <TablePagination {...props} />;
+      case 'default':
       default:
         return <BasePagination {...props} />;
     }

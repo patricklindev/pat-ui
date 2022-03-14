@@ -49,7 +49,7 @@ const Dropdown: FC<IDropdownProps> = (props) => {
       }
     });
   }
-
+ 
   // if no active child is set, then use the placeholder
   const [currActiveOption, setCurrActiveOption] = useState(
     activeOption ? activeOption : (placeholder as ReactNode)

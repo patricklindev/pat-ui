@@ -1,66 +1,65 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
+import { classNames } from '../../utils/classNames';
 import './_Drawer.scss';
 
-// additional features to work on
-// 1. miniVariantDrawer?: boolean;
+type Variant =  'persistent' | 'temporary';
 
-
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+type Anchor = 'top' | 'left' | 'bottom' | 'right' | string
 
 interface DrawerProps {
   anchor?: Anchor;
-  variant?: boolean;
+  variant?: Variant;
   open?: boolean;
-  onClose?: (e?: React.MouseEvent) => void;
+  onToggleCallback?: () => void;
+  className?: string;
 }
 
 const Drawer: FC<DrawerProps> = ({
   anchor = 'left',
-  open= false,
-  onClose,
-  children
+  open = false,
+  onToggleCallback,
+  variant = 'temporary',
+  children,
+  className,
 }): JSX.Element => {
 
 
-  
+
+  let styleClasses = classNames('drawer', {
+    // [`drawer-${anchor}-open`]: true,
+    [`${open ? `drawer-${anchor}-open` : 'drawer-openStateFalse'}`]: true,
+ 
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
+
+
+  //click on backdrop to close drawer feature
+
+  const handleToggleDrawer = (event: React.MouseEvent) => {
+    if (onToggleCallback) {
+        onToggleCallback();
+    }
+};
+
+  // dimmed background
+
+  let dimBackgroundStyle = '';
+  if (variant === 'temporary' && open) {
+    dimBackgroundStyle = 'drawer-dimBackground';
+  }
+
 
   return (
-    
-    
-  <aside className={`drawer ${anchor} ${open? "": "openStateFalse"}`}>
-      {children}
-  </aside>
-  
-  )
+    <section>
+      <div className={dimBackgroundStyle} onClick={handleToggleDrawer} data-testid='dimmed-background'></div>
+      <aside className={styleClasses} data-testid="drawer">
+        {children}
+      </aside>
+    </section>
+  );
 };
 
 export {Drawer};
 
-
-
-
-const CustomDrawer: FC = (): JSX.Element =>{
-
-
-
-  return(
-    <div>
-      <button>Drawer Btn</button>
-      
-      <Drawer anchor='left' open={false}>
-        <h1>email</h1>
-        <h1>contacts</h1>
-        <h1>drafts</h1>
-        <h1>email</h1>
-        <h1>contacts</h1>
-        <h1>drafts</h1>
-        <h1>email</h1>
-        <h1>contacts</h1>
-        <h1>drafts</h1>
-        </Drawer>
-    </div>
-    
-  )
-}
-
-export {CustomDrawer};

@@ -39,15 +39,6 @@
   }
 }
 
-@keyframes slideOutLeft {
-  100% {
-    transform: translateX(-250px);
-  }
-  0% {
-    transform: translateX(0);
-  }
-}
-
 .drawer-right-open {
   top: 0;
   right: 0;

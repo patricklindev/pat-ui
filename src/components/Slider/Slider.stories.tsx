@@ -31,6 +31,7 @@ export const DiffSizeSlider = () => (
   </div>
 );
 
+
 export const TickMarkSlider = () => (
   <div>
     <Slider RangeSlider={true} Tick={true} min={10} max={100}/>
@@ -42,3 +43,10 @@ export const DoubleRangeSlider = () => (
     <Slider DoubleRangeSlider={true}/>
   </div>
 )
+
+export const DisabledSlider = () => (
+  <div>
+    <Slider disabled />
+  </div>
+);
+

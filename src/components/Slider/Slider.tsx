@@ -16,6 +16,7 @@ interface ISliderProps {
   min?: Number;
   max?: Number;
   step?: Number;
+  disabled?: boolean;
 }
 
 export type NativeSliderProps = ISliderProps &
@@ -32,6 +33,7 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
     min,
     max,
     step,
+    disabled,
     ...rest
   } = props;
 
@@ -52,12 +54,14 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
 
   const [valueRight, setValueRight] = useState((maxValue as number) / 2);
   const [valueLeft, setValueLeft] = useState((maxValue as number) / 3);
-
+  
   const [showOrHide, setShowOrHide] = useState('');
+  const [spanlocation, setSpanlocation] = useState('');
 
-  let classNamesList: string[] = [];
+  let classNamesList: (string | boolean)[] = [];
   if (color) classNamesList.push(color);
   if (size) classNamesList.push(size);
+  if (disabled) classNamesList.push(disabled);
 
   const [spanlocationRight, setSpanlocationRight] = useState('');
   const [spanlocationLeft, setSpanlocationLeft] = useState('');
@@ -146,6 +150,7 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
           step={stepValue}
           onChange={(e) => onInputHandleRight(e)}
           onBlur={onBlurHandle}
+          disabled={disabled}
         />
         {enableDoubleRange ? (
           <input
@@ -158,6 +163,7 @@ const Slider: React.FC<NativeSliderProps> = (props) => {
             step={stepValue}
             onChange={(e) => onInputHandleLeft(e)}
             onBlur={onBlurHandle}
+            disabled={disabled}
           />
         ) : null}
         <div className="value right">{maxValue}</div>

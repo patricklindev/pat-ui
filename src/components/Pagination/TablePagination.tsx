@@ -7,7 +7,7 @@ import {
 
 enum ActionType {
   Left,
-  Rgith,
+  Right,
 }
 
 type RenderActionFn = (actioni: ActionType) => ReactElement;
@@ -24,6 +24,12 @@ const getDefaultBtnClass = () => {
 };
 const getDisabledClass = (disabled: boolean | undefined) => {
   return disabled ? 'pagination__icons--disabled' : '';
+};
+
+const getActionBtnClass = (disabled: boolean) => {
+  return `${getBasicIconClass()} ${getArrowIconClass()} ${getDefaultBtnClass()} ${getDisabledClass(
+    disabled
+  )} `;
 };
 
 /**
@@ -49,7 +55,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
 
   let classes = 'table-pagination';
   if (className) {
-    classes += ' ';
+    classes += ' ' + className;
   }
 
   const [itemSize, setItemSize] = useState<number>(rowsPerPage);
@@ -110,21 +116,17 @@ const TablePagination: FC<IPaginationProps> = (props) => {
           <button
             onClick={onPrev}
             disabled={isLeftDisabled}
-            className={`${getBasicIconClass()} ${getArrowIconClass()} ${getDefaultBtnClass()} ${getDisabledClass(
-              isLeftDisabled
-            )} `}
+            className={getActionBtnClass(isLeftDisabled)}
           >
             {leftArrow}
           </button>
         );
-      case ActionType.Rgith:
+      case ActionType.Right:
         return (
           <button
             onClick={onNext}
             disabled={isRightDisabled}
-            className={`${getBasicIconClass()} ${getArrowIconClass()} ${getDefaultBtnClass()} ${getDisabledClass(
-              isRightDisabled
-            )} `}
+            className={getActionBtnClass(isRightDisabled)}
           >
             {rightArrow}
           </button>
@@ -148,7 +150,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
         </div>
         <div>{renderCurrentRows()}</div>
         <div>{renderActionBtn(ActionType.Left)}</div>
-        <div>{renderActionBtn(ActionType.Rgith)}</div>
+        <div>{renderActionBtn(ActionType.Right)}</div>
       </div>
     </>
   );

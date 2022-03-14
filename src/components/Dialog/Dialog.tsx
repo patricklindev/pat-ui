@@ -51,6 +51,7 @@ const Dialog: FC<DialogProps> = ({ isOpen, onClose, children }) => {
       : (document.body.style.overflow = 'unset');
   }, [isOpen]);
 
+  console.log(isOpen)
   return (
     <div
       className={isOpen ? '' : 'overlay-display'}

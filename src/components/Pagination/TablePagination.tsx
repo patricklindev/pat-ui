@@ -140,7 +140,10 @@ const TablePagination: FC<IPaginationProps> = (props) => {
     <>
       <div style={style} className={classes} data-testid={'table-pagination'}>
         <div>Rows per page:</div>
-        <div className="table-pagination__row__option">
+        <div
+          aria-label="table pagination"
+          className="table-pagination__row__option"
+        >
           <select
             disabled={disabled}
             value={itemSize}
@@ -150,9 +153,11 @@ const TablePagination: FC<IPaginationProps> = (props) => {
             {renderRangeOptions()}
           </select>
         </div>
-        <div>{renderCurrentRows()}</div>
-        <div>{renderActionBtn(ActionType.Left)}</div>
-        <div>{renderActionBtn(ActionType.Right)}</div>
+        <div aria-label="current page">{renderCurrentRows()}</div>
+        <div className="previous button">
+          {renderActionBtn(ActionType.Left)}
+        </div>
+        <div aria-label="next button">{renderActionBtn(ActionType.Right)}</div>
       </div>
     </>
   );

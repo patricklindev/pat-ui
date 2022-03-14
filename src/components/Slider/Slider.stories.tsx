@@ -36,3 +36,9 @@ export const TickMarkSlider = () => (
     <Slider RangeSlider={true} Tick={true} min={10} max={100}/>
   </div>
 )
+
+export const DoubleRangeSlider = () => (
+  <div>
+    <Slider DoubleRangeSlider={true}/>
+  </div>
+)

@@ -74,6 +74,11 @@ body {
 .field .value.right {
   right: -43px;
 }
+.selected-track{
+  position: absolute;
+  height: 3px;
+  z-index: 9;
+}
 .range input {
   @include slider-range($gray-600);
 }

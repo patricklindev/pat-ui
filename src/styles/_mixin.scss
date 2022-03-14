@@ -82,8 +82,11 @@
 
 // for the '.range input' selector
 @mixin slider-range($color) {
+  position: absolute; // for double range
   -webkit-appearance: none;
-  width: 100%;
+  appearance: none;
+  align-items: center;
+  width: 260px;
   height: 3px;
   // track
   background: $color;
@@ -91,7 +94,8 @@
   outline: none;
   //rail
   border: 1px solid $color;
-  z-index: 2222;
+  pointer-events: none;
+  //z-index: 2222;
 }
 
 // for the '.range input::-webkit-slider-thumb' selector
@@ -103,6 +107,8 @@
   background: $color;
   border: 1px solid $color;
   cursor: pointer;
+  pointer-events: auto;
+  z-index: 9999;
 }
 
 // for the '.range input::-moz-range-thumb' selector
@@ -112,6 +118,7 @@
   background: $color;
   border: 1px solid $color;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 @mixin slider-marker($color) {

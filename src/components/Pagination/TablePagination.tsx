@@ -114,6 +114,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
       case ActionType.Left:
         return (
           <button
+            data-testid={'prev-btn'}
             onClick={onPrev}
             disabled={isLeftDisabled}
             className={getActionBtnClass(isLeftDisabled)}
@@ -124,6 +125,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
       case ActionType.Right:
         return (
           <button
+            data-testid={'next-btn'}
             onClick={onNext}
             disabled={isRightDisabled}
             className={getActionBtnClass(isRightDisabled)}

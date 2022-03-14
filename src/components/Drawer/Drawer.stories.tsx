@@ -38,9 +38,9 @@ export const persistentDrawer = () => {
           <h5>Spam</h5>
           <h5>Trash</h5>
         </div>
-      </Drawer> 
+      </Drawer>
       <Button
-         btnType="primary"
+        btnType="primary"
         disabled={false}
         onClick={handleToggle}
         style={{
@@ -58,15 +58,15 @@ export const persistentDrawer = () => {
 
 export const temporaryDrawer = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [anchor, setAnchor] = useState<string>('');
-
+  const [anchor, setAnchor] = useState<string>('left');
+  
   const handleToggle = () => {
-    setIsOpen(!isOpen); 
+    setIsOpen(!isOpen);
   };
   const handleAnchor = (direction: string) => {
     setAnchor(direction);
   };
- 
+
   return (
     <div style={{ marginTop: '2.5rem' }}>
       <Drawer
@@ -93,9 +93,9 @@ export const temporaryDrawer = () => {
           borderRadius: '10px',
           textAlign: 'center',
         }}
-      >  
+      >
         <Button
-           btnType="primary"
+          btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -108,13 +108,13 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
-            margin: "0 0.5rem"
+            margin: '0 0.5rem',
           }}
         >
           Left
         </Button>
         <Button
-           btnType="primary"
+          btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -127,13 +127,13 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
-            margin: "0 0.5rem"
+            margin: '0 0.5rem',
           }}
         >
           Right
         </Button>
         <Button
-           btnType="primary"
+          btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -146,13 +146,13 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
-            margin: "0 0.5rem"
+            margin: '0 0.5rem',
           }}
         >
           Top
         </Button>
         <Button
-           btnType="primary"
+          btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -165,7 +165,7 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
-            margin: "0 0.5rem"
+            margin: '0 0.5rem',
           }}
         >
           Bottom
@@ -174,5 +174,3 @@ export const temporaryDrawer = () => {
     </div>
   );
 };
-
-

@@ -4,7 +4,7 @@ import './_Drawer.scss';
 
 type Variant =  'persistent' | 'temporary';
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right' | string
+type Anchor = 'top' | 'left' | 'bottom' | 'right' 
 
 interface DrawerProps {
   /** Sets the Drawer's position */

@@ -3,21 +3,23 @@
 exports[`Dialog component should work as expected in different conditions Dialog component should match with the snapshop 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body>
+  "baseElement": <body
+    style="overflow: unset;"
+  >
     <div>
       <div
         class="overlay-display"
         data-testid="dialog-window"
       >
-        <section
+        <div
           class="dialog"
         >
           <div
             class="dialog-window"
             data-testid="dialog-children"
           />
-        </section>
-        <section
+        </div>
+        <div
           class="overlay"
           data-testid="dialog-dim-background"
         />
@@ -29,15 +31,15 @@ Object {
       class="overlay-display"
       data-testid="dialog-window"
     >
-      <section
+      <div
         class="dialog"
       >
         <div
           class="dialog-window"
           data-testid="dialog-children"
         />
-      </section>
-      <section
+      </div>
+      <div
         class="overlay"
         data-testid="dialog-dim-background"
       />

@@ -1,71 +1,86 @@
-import React from 'react'
-
+import React, { FC, useEffect } from 'react';
 
 // Define the props
 export interface DialogProps {
-    isOpen?: boolean,
-    onClose?: () => void,
-    children?: React.ReactNode;
+  /** control the open/close of the dialog from props */
+  isOpen?: boolean;
+  /** listen to the close of the dialog by providing the onClose callback function */
+  onClose?: () => void; //e: React.MouseEvent
+  /** Developers can provide title, content, actions of the dialog component from children props of the component */
+  children?: React.ReactNode;
 }
 
 interface DialogTitleProps {
-    children?: React.ReactNode;
+  /** any elements */
+  children?: React.ReactNode;
 }
 
 interface DialogContentProps {
-    children?: React.ReactNode;
+  /** any elements */
+  children?: React.ReactNode;
 }
 
 interface DialogActionsProps {
-    children?: React.ReactNode;
+  /** any elements */
+  children?: React.ReactNode;
 }
 
-export const DialogTitle: React.FC<DialogTitleProps> = ({
-    children
-}) => (
-        <h2 className='dialog-title'>
-            {children}
-        </h2>
-   
+export const DialogTitle: FC<DialogTitleProps> = ({ children }) => (
+  <h2 className="dialog-title">{children}</h2>
 );
 
-export const DialogContent: React.FC<DialogContentProps> = ({
-    children
-}) => (
-    <div className='dialog-content'>
-        {children}
-    </div>
+export const DialogContent: FC<DialogContentProps> = ({ children }) => (
+  <div className="dialog-content">{children}</div>
 );
 
-export const DialogActions: React.FC<DialogActionsProps> = ({
-    children
-}) => (
-    <div className='dialog-actions'>
-        {children}
-    </div>
+export const DialogActions: FC<DialogActionsProps> = ({ children }) => (
+  <div className="dialog-actions">{children}</div>
 );
+/**
+ * Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
+ *
+ * ```js
+ * import {Dialog} from 'pat-ui'
+ * ```
+ */
+const Dialog: FC<DialogProps> = ({ isOpen, onClose, children }) => {
+  //control scroll of body.
+  useEffect(() => {
+    isOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'unset');
+  }, [isOpen]);
 
-
-const Dialog: React.FC<DialogProps> = ({
-    isOpen,
-    onClose,
-    children,
-}) => {
-
-    return (
-        <div className={isOpen?'':'overlay-display'} data-testid='dialog-window'>
-            <section className='dialog'>
-                <div className='dialog-window' data-testid='dialog-children'>
-                    {children}
-                </div>
-            </section>
-            <section className='overlay' onClick={onClose} data-testid='dialog-dim-background'>
-            </section>
+  return (
+    <div
+      className={isOpen ? '' : 'overlay-display'}
+      data-testid="dialog-window"
+    >
+      <div className="dialog">
+        <div className="dialog-window" data-testid="dialog-children">
+          {children}
         </div>
-    )
-
-}
-
-
+      </div>
+      <div
+        className="overlay"
+        onClick={onClose}
+        data-testid="dialog-dim-background"
+      ></div>
+    </div>
+  );
+};
 
 export default Dialog;
+
+// const [open, setOpen] = useState<boolean>(isOpen);
+// const handleClickBackDrop = (e: React.MouseEvent) => {
+//   setOpen(false);
+//   //onClose?.(e); //?
+// };
+// useEffect(() => {
+//   setOpen(isOpen);
+// }, [isOpen]);
+// useEffect(() => {
+//   onClose?.();
+// }, [open]);
+

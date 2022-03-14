@@ -1,8 +1,9 @@
 import React from 'react';
 import Dialog from './Dialog';
-import { DialogActions,  DialogContent, DialogTitle } from './Dialog';
+import { DialogTitle, DialogActions, DialogContent } from './Dialog';
 import UserAccount from '../../asset/icon/account.svg';
 import AddUser from '../../asset/icon/addUser.svg';
+import './Dialog.stories.style.scss';
 
 export default {
   title: 'Dialog',
@@ -22,7 +23,7 @@ export const DefaultDialog = () => {
     <div>
       <button onClick={handleClickOpen}>Open default dialog</button>
 
-      <Dialog  isOpen={open} onClose={handleClose}>
+      <Dialog isOpen={open} onClose={handleClose}>
         <DialogTitle>Dialog header</DialogTitle>
         <DialogContent>Dialog body text</DialogContent>
         <DialogActions>
@@ -53,7 +54,7 @@ export const AlertDialog = () => {
     <div>
       <button onClick={handleClickOpen}>Open alert dialog</button>
 
-      <Dialog  isOpen={open} onClose={handleClose}>
+      <Dialog isOpen={open} onClose={handleClose}>
         <DialogTitle>Use Google's location service?</DialogTitle>
         <DialogContent>
           Let Google help apps determine location. This means sending anonymous
@@ -76,11 +77,9 @@ export const AlertDialog = () => {
 export const FormDialog = () => {
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState('');
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -118,7 +117,6 @@ export const FormDialog = () => {
     </div>
   );
 };
-
 export const SimpleDialog = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   const [open, setOpen] = React.useState(false);
@@ -133,25 +131,21 @@ export const SimpleDialog = () => {
   return (
     <div>
       <button onClick={handleClickOpen}>Open simple dialog</button>
-      <Dialog  isOpen={open} onClose={handleClose}>
+      <Dialog isOpen={open} onClose={handleClose}>
         <DialogTitle>Set backup account</DialogTitle>
         <DialogContent>
-          <div className="dialog-content-simple" onClick={handleClose}>
-            {emails.map((email) => (
-              <div className="email-row">
-                <img src={UserAccount} alt="userAccount" />
-                <span>{email}</span>
-              </div>
-            ))}
-          </div>
+          {emails.map((email) => (
+            <div className="email-row" onClick={handleClose}>
+              <img src={UserAccount} alt="userAccount" />
+              <span>{email}</span>
+            </div>
+          ))}
         </DialogContent>
-        <DialogActions>
-          <div className="dialog-actions-simple-row">
-            <img src={AddUser} alt="addUser" />
-            <span>Add account</span>
-          </div>
-        </DialogActions>
+        <div className="dialog-actions-simple-row">
+          <img src={AddUser} alt="addUser" />
+          <span>Add account</span>
+        </div>
       </Dialog>
-      </div>
-    )
+    </div>
+  );
 };

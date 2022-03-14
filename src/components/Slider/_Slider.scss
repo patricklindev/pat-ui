@@ -14,7 +14,7 @@ body {
   place-items: center;
 }
 .range {
-  height: 80px;
+  height: 100px;
   width: 380px;
   background: #fff;
   border-radius: 10px;
@@ -73,6 +73,11 @@ body {
 }
 .field .value.right {
   right: -43px;
+}
+.selected-track{
+  position: absolute;
+  height: 3px;
+  z-index: 9;
 }
 .range input {
   @include slider-range($gray-600);
@@ -147,4 +152,31 @@ input.large::-webkit-slider-thumb {
   @include slider-marker-size('large');
 }
 
+.range {
+  .field.small .value {
+    font-size: 12px;
+  }
+  input.small {
+    @include slider-track-size('small');
+  }
+}
+
+.ui-slider-tick {
+    position: absolute;
+    margin-top: 1em;
+    width: 2px;
+    height: 6px; 
+    background: rgb(170, 170, 170);
+}
+.ui-slider-tick-num{
+  position: absolute;
+  font-size: small;
+    margin-top: 2em;
+    margin-left: -0.5em;
+    width: 1px;
+    height: 3px;
+    color: rgb(170, 170, 170);
+}
+
 // disabled slider
+

@@ -6,7 +6,7 @@ type Variant =  'persistent' | 'temporary';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right' 
 
-interface DrawerProps {
+interface IDrawerProps {
   /** Sets the Drawer's position */
   anchor?: Anchor;
   /** Allows developer to set the variant of the Drawer, ( persistent | temporary ) */

@@ -6,7 +6,7 @@ export default {
   title: 'Drawer',
   component: Drawer,
 };
-
+ 
 export const persistentDrawer = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

@@ -53,46 +53,13 @@ const Drawer: FC<DrawerProps> = ({
 
   return (
     <section>
-      <div className={dimBackgroundStyle} onClick={handleToggleDrawer}></div>
-      <aside className={styleClasses}>
+      <div className={dimBackgroundStyle} onClick={handleToggleDrawer} data-testid='dimmed-background'></div>
+      <aside className={styleClasses} data-testid="drawer">
         {children}
       </aside>
     </section>
   );
 };
 
-export { Drawer };
+export {Drawer};
 
-const CustomDrawer: FC = (): JSX.Element => {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const handleButtonOnClick = (): void => {
-    setOpen(!open);
-  };
-
-  return (
-    <div>
-      <button
-        onClick={handleButtonOnClick}
-        style={{ marginTop: '300px', marginLeft: '300px' }}
-      >
-        Drawer Btn
-      </button>
-
-      <Drawer anchor="bottom" open={open} variant="persistent" onToggleCallback={handleButtonOnClick}>
-        <h1>email</h1>
-        <h1>contacts</h1>
-        <h1>drafts</h1>
-        <h1>email</h1>
-        <h1>contacts</h1>
-        <h1>drafts</h1>
-        <h1>email</h1>
-        <h1>contacts</h1>
-        <h1>drafts</h1>
-      </Drawer>
-      <div >Hello World</div>
-    </div>
-  );
-};
-
-export { CustomDrawer };

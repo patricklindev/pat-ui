@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Drawer } from './Drawer';
 import Button from '.././Button/Button';
 
@@ -38,9 +38,9 @@ export const persistentDrawer = () => {
           <h5>Spam</h5>
           <h5>Trash</h5>
         </div>
-      </Drawer>
+      </Drawer> 
       <Button
-        btnType="link"
+         btnType="primary"
         disabled={false}
         onClick={handleToggle}
         style={{
@@ -66,7 +66,7 @@ export const temporaryDrawer = () => {
   const handleAnchor = (direction: string) => {
     setAnchor(direction);
   };
-
+ 
   return (
     <div style={{ marginTop: '2.5rem' }}>
       <Drawer
@@ -93,9 +93,9 @@ export const temporaryDrawer = () => {
           borderRadius: '10px',
           textAlign: 'center',
         }}
-      >
+      >  
         <Button
-          btnType="link"
+           btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -108,12 +108,13 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
+            margin: "0 0.5rem"
           }}
         >
           Left
         </Button>
         <Button
-          btnType="link"
+           btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -126,12 +127,13 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
+            margin: "0 0.5rem"
           }}
         >
           Right
         </Button>
         <Button
-          btnType="link"
+           btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -144,12 +146,13 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
+            margin: "0 0.5rem"
           }}
         >
           Top
         </Button>
         <Button
-          btnType="link"
+           btnType="primary"
           disabled={false}
           onClick={() => {
             handleToggle();
@@ -162,6 +165,7 @@ export const temporaryDrawer = () => {
             padding: '0 10px',
             width: '5rem',
             lineHeight: '50px',
+            margin: "0 0.5rem"
           }}
         >
           Bottom
@@ -171,62 +175,4 @@ export const temporaryDrawer = () => {
   );
 };
 
-export const LeftDrawer = () => (
-  <div>
-    <Drawer open={true} anchor={'left'} variant={'persistent'}>
-      <div style={{ textAlign: 'left', marginLeft: '1rem' }}>
-        <h5>Inbox</h5>
-        <h5>All Mail </h5>
-        <h5>Send Email</h5>
-        <hr></hr>
-        <h5>Spam</h5>
-        <h5>Trash</h5>
-      </div>
-    </Drawer>
-  </div>
-);
 
-export const RightDrawer = () => (
-  <div>
-    <Drawer open={true} anchor={'right'} variant={'persistent'}>
-      <div style={{ textAlign: 'left', marginLeft: '1rem' }}>
-        <h5>Inbox</h5>
-        <h5>All Mail </h5>
-        <h5>Send Email</h5>
-        <hr></hr>
-        <h5>Spam</h5>
-        <h5>Trash</h5>
-      </div>
-    </Drawer>
-  </div>
-);
-
-export const TopDrawer = () => (
-  <div>
-    <Drawer open={true} anchor={'top'} variant={'persistent'}>
-      <div style={{ textAlign: 'left', marginLeft: '1rem' }}>
-        <h5>Inbox</h5>
-        <h5>All Mail </h5>
-        <h5>Send Email</h5>
-        <hr></hr>
-        <h5>Spam</h5>
-        <h5>Trash</h5>
-      </div>
-    </Drawer>
-  </div>
-);
-
-export const BottomDrawer = () => (
-  <div>
-    <Drawer open={true} anchor={'bottom'} variant={'persistent'}>
-      <div style={{ textAlign: 'left', marginLeft: '1rem' }}>
-        <h5>Inbox</h5>
-        <h5>All Mail </h5>
-        <h5>Send Email</h5>
-        <hr></hr>
-        <h5>Spam</h5>
-        <h5>Trash</h5>
-      </div>
-    </Drawer>
-  </div>
-);

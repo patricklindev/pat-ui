@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    aria-disabled="false"
+    aria-label="pagination"
+    class="pagination"
+    data-testid="pagination"
+  >
+    <div>
+      <button
+        aria-disabled="true"
+        aria-label="leftArrow"
+        class="pagination pagination__icons__btn-icon pagination__icons--disabled pagination__icons__btn-arrow"
+        data-testid="prev-btn"
+        disabled=""
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      aria-label="pagination__icons"
+      class="pagination__icons"
+    >
+      <div
+        aria-disabled="false"
+        aria-label="currentPage"
+        class="pagination pagination__icons__btn-icon pagination__icons__btn--focused"
+      >
+        1
+      </div>
+      <button
+        aria-disabled="false"
+        aria-label="page"
+        class="pagination pagination__icons__btn-icon"
+      >
+        <div>
+          2
+        </div>
+      </button>
+      <div
+        aria-label="ellipsis"
+        class=""
+      >
+        ...
+      </div>
+      <button
+        aria-disabled="false"
+        aria-label="page"
+        class="pagination pagination__icons__btn-icon"
+      >
+        <div>
+          20
+        </div>
+      </button>
+    </div>
+    <div>
+      <button
+        aria-disabled="false"
+        aria-label="rightArrow"
+        class="pagination pagination__icons__btn-icon  pagination__icons__btn-arrow"
+        data-testid="next-btn"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

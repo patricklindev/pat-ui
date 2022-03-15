@@ -122,6 +122,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
       case ActionType.Left:
         return (
           <button
+            aria-disabled={isLeftDisabled}
             data-testid={'prev-btn'}
             onClick={onPrev}
             disabled={isLeftDisabled}
@@ -133,6 +134,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
       case ActionType.Right:
         return (
           <button
+            aria-disabled={isRightDisabled}
             data-testid={'next-btn'}
             onClick={onNext}
             disabled={isRightDisabled}
@@ -150,6 +152,7 @@ const TablePagination: FC<IPaginationProps> = (props) => {
         <div>Rows per page:</div>
         <div
           aria-label="table pagination"
+          aria-disabled={disabled}
           className="table-pagination__row__option"
         >
           <select

@@ -3,12 +3,16 @@
 exports[`Pagination should match snapshot 1`] = `
 <DocumentFragment>
   <div
+    aria-disabled="false"
+    aria-label="pagination"
     class="pagination"
     data-testid="pagination"
   >
     <div>
       <button
-        class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default  pagination__icons--disabled"
+        aria-disabled="true"
+        aria-label="leftArrow"
+        class="pagination pagination__icons__btn-icon pagination__icons--disabled pagination__icons__btn-arrow"
         data-testid="prev-btn"
         disabled=""
       >
@@ -23,28 +27,35 @@ exports[`Pagination should match snapshot 1`] = `
       </button>
     </div>
     <div
+      aria-label="pagination__icons"
       class="pagination__icons"
     >
       <div
-        class="pagination__icons__btn-icon 
-                    pagination__icons--default  pagination__icons--secondary  pagination__icons__btn--focused"
+        aria-disabled="false"
+        aria-label="currentPage"
+        class="pagination pagination__icons__btn-icon pagination__icons__btn--focused"
       >
         1
       </div>
       <button
-        class="pagination__icons__btn-icon pagination__icons--default  pagination__icons--secondary "
+        aria-disabled="false"
+        aria-label="page"
+        class="pagination pagination__icons__btn-icon"
       >
         <div>
           2
         </div>
       </button>
       <div
+        aria-label="ellipsis"
         class=""
       >
         ...
       </div>
       <button
-        class="pagination__icons__btn-icon pagination__icons--default  pagination__icons--secondary "
+        aria-disabled="false"
+        aria-label="page"
+        class="pagination pagination__icons__btn-icon"
       >
         <div>
           20
@@ -53,8 +64,9 @@ exports[`Pagination should match snapshot 1`] = `
     </div>
     <div>
       <button
-        class="pagination__icons__btn-icon pagination__icons__btn-arrow
-                     pagination__icons--default   "
+        aria-disabled="false"
+        aria-label="rightArrow"
+        class="pagination pagination__icons__btn-icon  pagination__icons__btn-arrow"
         data-testid="next-btn"
       >
         <svg

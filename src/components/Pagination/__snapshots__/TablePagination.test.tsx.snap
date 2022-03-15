@@ -10,6 +10,8 @@ exports[`TablePagination should match snapshot 1`] = `
       Rows per page:
     </div>
     <div
+      aria-disabled="false"
+      aria-label="table pagination"
       class="table-pagination__row__option"
     >
       <select
@@ -37,18 +39,24 @@ exports[`TablePagination should match snapshot 1`] = `
         </option>
       </select>
     </div>
-    <div>
+    <div
+      aria-label="current page"
+    >
       <div>
         1 - 10 of 20 
       </div>
     </div>
-    <div>
+    <div
+      class="previous button"
+    >
       <button
+        aria-disabled="true"
         class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default pagination__icons--disabled "
         data-testid="prev-btn"
         disabled=""
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -58,12 +66,16 @@ exports[`TablePagination should match snapshot 1`] = `
         </svg>
       </button>
     </div>
-    <div>
+    <div
+      aria-label="next button"
+    >
       <button
+        aria-disabled="false"
         class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default  "
         data-testid="next-btn"
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

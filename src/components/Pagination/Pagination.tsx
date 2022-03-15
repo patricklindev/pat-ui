@@ -1,13 +1,15 @@
 import React, {FC, ReactElement} from 'react';
 
 import {
-  PaginationProps,
+  IPaginationProps,
   usePagination,
 } from '../../utils/hooks/usePagination';
 import TablePagination from './TablePagination';
 import {classNames} from "../../utils/classNames";
 
 type RenderActionFn = (action: ActionType) => ReactElement;
+
+export type PatPaginationProps = IPaginationProps;
 
 // style classes utils
 const getArrowIconClass = () => {
@@ -37,16 +39,18 @@ const rightArrow = (
 );
 
 // regular pagination
-const BasePagination: FC<PaginationProps> = (props) => {
+const BasePagination: FC<IPaginationProps> = (props) => {
   const {
-    count,
+    totalPage,
+    className,
+    style,
     currentPage,
     onPrev,
     onNext,
     size,
     color,
     shape,
-    disabled,
+    disabled = false,
     itemTypes,
     updateCurrentPage,
   } = usePagination(props);
@@ -157,7 +161,7 @@ const BasePagination: FC<PaginationProps> = (props) => {
  * import { Pagination } from 'pat-ui';
  * ```
  */
-const Pagination: FC<PaginationProps> = (props) => {
+const Pagination: FC<PatPaginationProps> = (props) => {
   const { paginationType = 'default' } = props;
 
   const renderPaginationType = () => {

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TablePagination should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="table-pagination"
+    data-testid="table-pagination"
+  >
+    <div>
+      Rows per page:
+    </div>
+    <div
+      class="table-pagination__row__option"
+    >
+      <select
+        class="table-pagination__select"
+      >
+        <option
+          value="10"
+        >
+          10
+        </option>
+        <option
+          value="25"
+        >
+          25
+        </option>
+        <option
+          value="50"
+        >
+          50
+        </option>
+        <option
+          value="100"
+        >
+          100
+        </option>
+      </select>
+    </div>
+    <div>
+      <div>
+        1 - 10 of 20 
+      </div>
+    </div>
+    <div>
+      <button
+        class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default pagination__icons--disabled "
+        data-testid="prev-btn"
+        disabled=""
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div>
+      <button
+        class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default  "
+        data-testid="next-btn"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

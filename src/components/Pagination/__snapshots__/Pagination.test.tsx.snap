@@ -8,7 +8,7 @@ exports[`Pagination should match snapshot 1`] = `
   >
     <div>
       <button
-        class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default  "
+        class="pagination__icons__btn-icon pagination__icons__btn-arrow pagination__icons--default  pagination__icons--disabled"
         data-testid="prev-btn"
         disabled=""
       >

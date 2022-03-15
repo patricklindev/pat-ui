@@ -1,7 +1,8 @@
 import React from 'react';
 
+import { IPaginationProps } from '../../utils/hooks/usePagination';
 import Pagination from './Pagination';
-import { PaginationProps } from '../../utils/hooks/usePagination';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('Pagination', () => {
@@ -24,25 +25,29 @@ describe('Pagination', () => {
     const paginationDiv = screen.getByTestId('pagination') as HTMLElement;
 
     expect(paginationDiv).toHaveClass('pagination');
+
+    const arrowButton = screen.getByTestId('prev-btn');
+    expect(arrowButton).toHaveClass('pagination__icons--disabled');
   });
 
-  it('should render table pagination', () => {
-    // enable table pagination
-    const tablePaginationProps: PaginationProps = {
+  it('should render default pagination', () => {
+    // props
+    const lastPageProps = {
       count: 20,
-      paginationType: 'table',
+      page: 20,
     };
-    render(<Pagination {...tablePaginationProps} />);
-    const tablePaginationDiv = screen.getByTestId(
-      'table-pagination'
-    ) as HTMLElement;
+    render(<Pagination {...lastPageProps} />);
+    const paginationDiv = screen.getByTestId('pagination') as HTMLElement;
 
-    expect(tablePaginationDiv).toHaveClass('table-pagination');
+    expect(paginationDiv).toHaveClass('pagination');
+
+    const arrowButton = screen.getByTestId('next-btn');
+    expect(arrowButton).toHaveClass('pagination__icons--disabled');
   });
 
   it('should render primary color', () => {
     // primary
-    const primaryColorProps: PaginationProps = {
+    const primaryColorProps: IPaginationProps = {
       count: 20,
       color: 'primary',
     };
@@ -55,7 +60,7 @@ describe('Pagination', () => {
 
   it('should render secondary color', () => {
     // secondary
-    const secondaryColorProps: PaginationProps = {
+    const secondaryColorProps: IPaginationProps = {
       count: 20,
       color: 'secondary',
     };
@@ -68,7 +73,7 @@ describe('Pagination', () => {
 
   it('should render round shape', () => {
     // round
-    const roundProps: PaginationProps = {
+    const roundProps: IPaginationProps = {
       count: 20,
       shape: 'round',
     };
@@ -81,7 +86,7 @@ describe('Pagination', () => {
 
   it('should render round shape', () => {
     // rounded
-    const roundedProps: PaginationProps = {
+    const roundedProps: IPaginationProps = {
       count: 20,
       shape: 'rounded',
     };
@@ -94,7 +99,7 @@ describe('Pagination', () => {
 
   it('should render small size', () => {
     // small size
-    const smallSizeProps: PaginationProps = {
+    const smallSizeProps: IPaginationProps = {
       count: 20,
       size: 'sm',
     };
@@ -107,7 +112,7 @@ describe('Pagination', () => {
 
   it('should render medium size', () => {
     // medium size
-    const mediumSizeProps: PaginationProps = {
+    const mediumSizeProps: IPaginationProps = {
       count: 20,
       size: 'default',
     };
@@ -120,7 +125,7 @@ describe('Pagination', () => {
 
   it('should render large size', () => {
     // small size
-    const largeSizeProps: PaginationProps = {
+    const largeSizeProps: IPaginationProps = {
       count: 20,
       size: 'lg',
     };
@@ -133,7 +138,7 @@ describe('Pagination', () => {
 
   it('should disable pagination', () => {
     // disabled pagination props
-    const disabledProps: PaginationProps = {
+    const disabledProps: IPaginationProps = {
       count: 20,
       disabled: true,
     };
@@ -146,10 +151,10 @@ describe('Pagination', () => {
 
   it('should go to last page when click on the previous button', () => {
     // previous button test props
-    const prevActionProps: PaginationProps = {
+    const prevActionProps: IPaginationProps = {
       count: 20,
       page: 10,
-      onChangePage: jest.fn(),
+      onPageChange: jest.fn(),
     };
 
     render(<Pagination {...prevActionProps} />);
@@ -157,20 +162,22 @@ describe('Pagination', () => {
 
     expect(currentButton).toHaveClass('pagination__icons__btn-arrow');
 
-    expect(prevActionProps.onChangePage).toHaveBeenCalledTimes(0);
+    expect(prevActionProps.onPageChange).toHaveBeenCalledTimes(0);
     fireEvent.click(currentButton);
-    expect(prevActionProps.onChangePage).toHaveBeenCalledTimes(1);
+    expect(prevActionProps.onPageChange).toHaveBeenCalledTimes(1);
 
-    const focusedPageBtn = screen.getByText('9');
+    const focusedPageBtn = screen.getByText(
+      `${(prevActionProps.page as number) - 1}`
+    );
     expect(focusedPageBtn).toHaveClass('pagination__icons__btn--focused');
   });
 
   it('should go to next page when click on the next button', () => {
     // next button test props
-    const nextActionProps: PaginationProps = {
+    const nextActionProps: IPaginationProps = {
       count: 20,
       page: 10,
-      onChangePage: jest.fn(),
+      onPageChange: jest.fn(),
     };
 
     render(<Pagination {...nextActionProps} />);
@@ -178,11 +185,13 @@ describe('Pagination', () => {
 
     expect(currentButton).toHaveClass('pagination__icons__btn-arrow');
 
-    expect(nextActionProps.onChangePage).toHaveBeenCalledTimes(0);
+    expect(nextActionProps.onPageChange).toHaveBeenCalledTimes(0);
     fireEvent.click(currentButton);
-    expect(nextActionProps.onChangePage).toHaveBeenCalledTimes(1);
+    expect(nextActionProps.onPageChange).toHaveBeenCalledTimes(1);
 
-    const focusedPageBtn = screen.getByText('11');
+    const focusedPageBtn = screen.getByText(
+      `${(nextActionProps.page as number) + 1}`
+    );
     expect(focusedPageBtn).toHaveClass('pagination__icons__btn--focused');
   });
 });

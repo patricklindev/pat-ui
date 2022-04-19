@@ -11,6 +11,10 @@
 	background-repeat: no-repeat;
 	background-size: 1em;
 
+	&:focus {
+		background-color: $tx-background;
+	}
+
 	@include text-style(
 		$tx-background-error,
 		$tx-border-error

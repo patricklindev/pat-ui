@@ -74,3 +74,23 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+@mixin text-style($tx-background-color, $tx-border-focus-color) {
+  background-color: $tx-background-color;
+  border: solid $tx-border-size transparent;
+  padding: $tx-padding-top $tx-padding-right $tx-padding-top $tx-padding-side;
+
+  &:hover {
+    border-color: $tx-border-hover;
+  }
+
+  &:focus {
+    border-color: $tx-border-focus-color;
+    outline: none;
+  }
+
+  &::placeholder, &::-moz-placeholder, &::-webkit-input-placeholder {
+    color: black;
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,18 @@
+.tx {
+	@include text-style(
+		$tx-background,
+		$tx-border-focus
+	)
+}
+
+.tx--error {
+	background-image: url("data:image/svg+xml,%3Csvg class='svg-icon' style='width: 1em%3B height: 1em%3Bvertical-align: middle%3Bfill: red%3Boverflow: hidden%3B' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M512 102.4c225.28 0 409.6 184.32 409.6 409.6s-184.32 409.6-409.6 409.6-409.6-184.32-409.6-409.6 184.32-409.6 409.6-409.6m0-102.4C230.4 0 0 230.4 0 512s230.4 512 512 512 512-230.4 512-512S793.6 0 512 0z' /%3E%3Cpath d='M512 256c30.72 0 51.2 20.48 51.2 51.2v204.8c0 30.72-20.48 51.2-51.2 51.2s-51.2-20.48-51.2-51.2V307.2c0-30.72 20.48-51.2 51.2-51.2z' /%3E%3Cpath d='M512 716.8m-51.2 0a51.2 51.2 0 1 0 102.4 0 51.2 51.2 0 1 0-102.4 0Z' /%3E%3C/svg%3E");
+	background-position: right 8px center;
+	background-repeat: no-repeat;
+	background-size: 1em;
+
+	@include text-style(
+		$tx-background-error,
+		$tx-border-error
+	)
+}

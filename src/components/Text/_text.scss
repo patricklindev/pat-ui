@@ -1,36 +1,31 @@
 .text__group {
   position: relative;
-  width: 10em;
-  height: 2.5em;
-  background-color: #eee;
+  @include text-layout;
   .text {
     max-width: 100%;
     max-height: 100%;
-    padding: 0.5em;
+    padding: $list-inline-padding;
     border: none;
     box-sizing: border-box;
-    border: 1px solid #eee;
+    border: 1px solid $gray-300;
   }
   .text:hover {
-    border-color: #ccc;
+    border-color: $gray-900;
   }
   .text:focus {
-    outline: none;
-    border: 2px solid #000;
-    background-color: #fff;
+    @include text-border-focus($black, $white);
   }
   .text__error {
-    background-color: #ffeaed;
+    background-color: $light-pink;
   }
   .text__error:focus {
-    background-color: #fff;
-    border-color: red;
+    @include text-border-focus($red, $white);
   }
   .text__error-icon {
     position: absolute;
-    height: 1em;
-    right: 0.5em;
+    height: $btn-padding-x-lg;
+    right: $list-inline-padding;
     top: 0;
-    transform: translateY(calc(50% + 0.2em));
+    transform: $align-error;
   }
 }

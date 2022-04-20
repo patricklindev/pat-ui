@@ -1,11 +1,18 @@
 // import "./Text.css";
 // import "./_Text.scss";
-import errorSvg from "../../asset/icon/error.svg";
-import searchSvg from "../../asset/icon/search.svg";
-import React, { useState } from "react";
+import errorSvg from '../../asset/icon/error.svg';
+import searchSvg from '../../asset/icon/search.svg';
+import React, { InputHTMLAttributes, FC } from 'react';
 
-function Text( props: any ) {
-    const { error, ...rest } = props;  
+
+interface ITextProps {
+  /** set customized error */
+  error?: boolean;
+}
+
+// function Text(props: any) {
+const Text: FC<ITextProps> = (props) => {
+  const { error, ...rest } = props;
   return (
     <>
       {!error && (
@@ -13,7 +20,8 @@ function Text( props: any ) {
           <input
             placeholder="Search..."
             className="inputField"
-            {...rest}></input>
+            {...rest}
+          ></input>
           <img src={searchSvg} />
         </div>
       )}
@@ -22,12 +30,14 @@ function Text( props: any ) {
           <input
             placeholder="Enter valid term"
             className="inputField-error"
-            {...rest}></input>
+            {...rest}
+          ></input>
           <img src={errorSvg} />
         </div>
       )}
     </>
   );
+
 }
 
 export default Text;

@@ -1,5 +1,4 @@
-import React, { FC, ReactNode, useState, InputHTMLAttributes } from 'react';
-import { classNames } from '../../utils/classNames';
+import React, { FC, useState, InputHTMLAttributes } from 'react';
 
 
 interface ITextProps {

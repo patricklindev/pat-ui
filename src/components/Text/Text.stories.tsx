@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import Text from './Text.js';
-import { action } from '@storybook/addon-actions';
+import React from "react";
+import Text from './Text';
 
 export default {
     title: 'Text',
@@ -19,7 +18,7 @@ export const DefaultDanger = () =>(
     <div className="input-container">
         <h2>With Error</h2>
         <Text vaild={false} value={undefined} placeholder={undefined} />
-        <Text vaild={false} placeholder="placeholder" value={undefined} />
+        <Text vaild={false} placeholder="placeholders" value={undefined} />
         <Text vaild={false} value={"input"} placeholder={undefined} />
       </div>
 );

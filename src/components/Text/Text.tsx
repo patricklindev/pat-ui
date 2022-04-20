@@ -1,7 +1,7 @@
 // import "./Text.css";
 // import "./_Text.scss";
-import errorSvg from "./error.svg";
-import searchSvg from "./search.svg";
+import errorSvg from "../../asset/icon/error.svg";
+import searchSvg from "../../asset/icon/search.svg";
 import React, { useState } from "react";
 
 function Text( props: any ) {

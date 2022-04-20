@@ -8,24 +8,15 @@ export default {
 };
 export const DefaultText = () => (
   <div>
-    <Text invalid={false}>With Error</Text>
-    <Text invalid={false} placeholder="Placeholder">
-      With Error
-    </Text>
-    <Text invalid={false} value="Input">
-      With Error
-    </Text>
+    <Text invalid={false}></Text>
+    <Text invalid={false} placeholder="Placeholder"></Text>
+    <Text invalid={false} value="Input"></Text>
   </div>
 );
-
-export const ErrortText = () => (
+export const ErrorText = () => (
   <div>
-    <Text invalid={true}>With Error</Text>
-    <Text invalid={true} placeholder="Placeholder">
-      With Error
-    </Text>
-    <Text invalid={true} value="Input">
-      With Error
-    </Text>
+    <Text invalid={true}></Text>
+    <Text invalid={true} placeholder="Placeholder"></Text>
+    <Text invalid={true} value="Input"></Text>
   </div>
 );

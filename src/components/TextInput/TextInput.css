@@ -1,0 +1,31 @@
+/* .InputField {
+  padding: 1rem 1rem;
+  border: none;
+  margin: 0.5rem;
+}
+
+.InputField:hover {
+  outline: 2px solid grey;
+}
+
+.InputField:focus {
+  outline: 2px solid black;
+}
+
+.err:focus {
+  outline: 2px solid red;
+  background-color: white;
+}
+
+.InputField-container img {
+  height: 1.5rem;
+  position: absolute;
+  vertical-align: middle;
+  right: 1rem;
+  top: 1rem;
+}
+
+.err {
+  background-color: rgb(252, 207, 207);
+  color: gray;
+} */

@@ -1,0 +1,32 @@
+@mixin input-padding($padding-y, $padding-x) {
+  padding: $padding-y $padding-x;
+}
+
+.TextInput {
+  position: relative;
+  & > input {
+    border: none;
+    @include input-padding(1rem, 1rem);
+  }
+
+  & > input:hover {
+    outline: 2px solid grey;
+  }
+
+  & > input:focus {
+    outline: 2px solid black;
+  }
+  & .err:focus {
+    outline: 2px solid red;
+    background-color: white;
+  }
+  & .err {
+    background-color: $red-100;
+    color: gray;
+  }
+  & > img {
+    height: 1.5rem;
+    position: relative;
+    left: -2.25rem;
+  }
+}

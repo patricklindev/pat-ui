@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { classNames } from '../../utils/classNames';
 
-//import "./_Text.scss";
-
-interface ITextProps extends React.HTMLAttributes<HTMLInputElement> {
+interface ITextProps  {
 	/** display error styling */
 	error?: boolean
 	/** value set by parent */
 	value?: string
 }
 
-export default function Text({ className = "", value = "", onChange, error, ...rest }: ITextProps) {
-  const [internalValue, setInternalValue] : [string, Function] = useState(value);
+type TextProps = ITextProps & React.HTMLAttributes<HTMLInputElement>
+
+export default function Text({ className, value = '', onChange, error, ...rest }: TextProps) {
+  const [internalValue, setInternalValue] = useState<string>(value);
+
+  let styleClasses = classNames({
+    'tx': !error,
+    'tx--error': !!error
+  });
+
+  if (className) {
+    styleClasses += ' ' + className;
+  }
+
+  // Ensure internal value is synchronized with the value passed in props.
+  if (value !== internalValue) {
+    setInternalValue(value);
+  }
 
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInternalValue(e.currentTarget.value);
@@ -22,13 +37,11 @@ export default function Text({ className = "", value = "", onChange, error, ...r
 
   return (
     <input
-      className={
-        className + " " + (error ? "tx--error" : "tx")
-      }
-      type="text"
+      className={styleClasses}
       value={internalValue}
       onChange={changeValue}
       {...rest}
+      type='text'
     ></input>
   );
 }

@@ -1,0 +1,65 @@
+$text-border: black;
+$error-border: red;
+$error-background: pink;
+
+@mixin border-outline($color) {
+  border: 1px solid $color;
+  outline: 1px solid $color;
+}
+
+.main {
+  width: 60vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-container {
+  position: relative;
+}
+
+.text {
+  height: 30px;
+  padding: 5px;
+  border: 1px solid transparent;
+
+  &:hover {
+    @include border-outline($text-border);
+  }
+
+  &focus {
+    @include border-outline($text-border);
+  }
+}
+
+.error {
+  background-color: $error-background;
+
+  &:hover {
+    @include border-outline($error-border);
+  }
+
+  &:focus {
+    @include border-outline($error-border);
+  }
+}
+
+.icon-container {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  /* border: 1px solid black; */
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon-container img {
+  object-fit: contain;
+}

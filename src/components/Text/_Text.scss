@@ -1,0 +1,48 @@
+.label-and-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.input-row {
+    position: relative;
+    width: 250px;
+}
+
+.text-input {
+    width: 100%;
+    outline: none;
+    padding: 0.8em;
+    font-size: 1em;
+ 
+    @include border($default-border-color);
+    color: $text-color;
+
+    &:hover {
+   
+        @include border($border-color-hover);
+    }
+
+    &:focus {
+    
+        @include border($default-border-color-focus)
+    }
+}
+
+.svg-icon-error {
+    fill: $error-color;
+    position: absolute;
+    top: 25%;
+    right: 0.5em;
+}
+
+.text-input-error {
+    background-color: rgb(245, 215, 215);
+    &:focus {
+      
+        @include border($error-color)
+    }
+}
+

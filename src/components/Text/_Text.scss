@@ -1,0 +1,54 @@
+@mixin field-padding-and-margin {
+  padding: 1rem 1rem;
+  margin: 0.5rem;
+}
+
+$error-color: pink;
+
+.inputField {
+  @include field-padding-and-margin;
+  outline: none;
+  &:hover {
+    border: 2px solid gray;
+  }
+  &:focus,
+  &:active {
+    border: 2px solid black;
+  }
+}
+
+.inputField-error {
+  @include field-padding-and-margin;
+  outline: none;
+  background-color: $error-color;
+  &:hover {
+    border: 2px solid gray;
+  }
+  &:focus,
+  &:active {
+    border: 2px solid red;
+    background-color: white;
+  }
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 40%;
+}
+
+.inputContainer-error {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 40%;
+}
+
+.inputContainer-error img,
+.inputContainer img {
+  height: 1rem;
+  position: relative;
+  right: 250px;
+  top: 1px;
+}

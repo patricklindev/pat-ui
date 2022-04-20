@@ -1,61 +1,61 @@
 .inputField {
-    outline: none;
-    height: 80%;
-    padding: 1rem 1rem;
-    /* border: none; */
-    margin: 0.5rem;
-  }
-  
-  .inputField-error {
-    outline: none;
-    padding: 1rem 1rem;
-    height: 90%;
-    margin: 0.5rem;
-    background-color: pink;
-  }
-  
-  .inputField:hover {
-    outline: none;
-    border: 2px solid gray;
-  }
-  
-  .inputField:focus,
-  .inputField:active {
-    outline: none;
-    border: 2px solid black;
-  }
-  
-  .inputField-error:hover {
-    outline: none;
-    border: 2px solid gray;
-  }
-  
-  .inputField-error:focus,
-  .inputField-error:active {
-    outline: none;
-    border: 2px solid red;
-    background-color: white;
-  }
-  
-  .inputContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 40%;
-    /* margin-bottom: 5px; */
-  }
-  
-  .inputContainer-error {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 40%;
-    /* margin-bottom: 5px; */
-  }
-  
-  .inputContainer-error img, .inputContainer img {
-    height: 1rem;
-    position: relative;
-    right: 250px;
-    top: 1px;
-  }
+  outline: none;
+  height: 80%;
+  padding: 1rem 1rem;
+  /* border: none; */
+  margin: 0.5rem;
+}
+
+.inputField-error {
+  outline: none;
+  padding: 1rem 1rem;
+  height: 90%;
+  margin: 0.5rem;
+  background-color: pink;
+}
+
+.inputField:hover {
+  outline: none;
+  border: 2px solid gray;
+}
+
+.inputField:focus,
+.inputField:active {
+  outline: none;
+  border: 2px solid black;
+}
+
+.inputField-error:hover {
+  outline: none;
+  border: 2px solid gray;
+}
+
+.inputField-error:focus,
+.inputField-error:active {
+  outline: none;
+  border: 2px solid red;
+  background-color: white;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 40%;
+  /* margin-bottom: 5px; */
+}
+
+.inputContainer-error {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 40%;
+  /* margin-bottom: 5px; */
+}
+
+.inputContainer-error img, .inputContainer img {
+  height: 1rem;
+  position: relative;
+  right: 250px;
+  top: 1px;
+}

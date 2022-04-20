@@ -1,4 +1,5 @@
-import "./Text.css";
+// import "./Text.css";
+// import "./_Text.scss";
 import errorSvg from "./error.svg";
 import searchSvg from "./search.svg";
 import React, { useState } from "react";

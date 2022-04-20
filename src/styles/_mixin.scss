@@ -1,3 +1,13 @@
+// @mixin field-padding-and-margin($field-padding, $field-margin) {
+//   padding: 1rem 1rem;
+//   margin: 0.5rem;
+// }
+
+@mixin field-padding-and-margin($field-padding, $field-margin) {
+  padding: $field-padding;
+  margin: $field-margin;
+}
+
 @mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
   padding: $padding-y $padding-x;
   font-size: $font-size;
@@ -74,3 +84,5 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+

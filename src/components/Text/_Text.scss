@@ -1,0 +1,70 @@
+@mixin text-border {
+}
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
+  background-color: $msg-background-color;
+  border-radius: $msg-border-radius;
+  border: $msg-border;
+  padding: $msg-padding;
+  width: $msg-box-width;
+}
+
+@mixin color-message($msg-indent-left, $msg-pg-size) {
+  text-indent: $msg-indent-left;
+  font-size: $msg-pg-size;
+}
+
+.input-container {
+  margin: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  height: 2.7rem;
+  width: 10rem;
+
+  .input-text {
+    border: none;
+    // @include message-style(
+    //   $msg-background-color,
+    //   $msg-border-radius,
+    //   $msg-border,
+    //   $msg-padding,
+    //   10rem
+    // );
+    border: solid 1px rgb(236, 236, 236);
+    border-radius: 0.3rem;
+    padding-left: 0.5rem;
+    &:hover {
+      border: solid 1px rgb(155, 155, 155);
+    }
+    &:focus {
+      outline: none;
+      border: solid 1px black;
+    }
+  }
+
+  .errIcon {
+    fill: red;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(100%, -50%);
+  }
+}
+
+.with-error {
+  .input-text {
+    background-color: rgb(255, 228, 232);
+
+    &:focus {
+      background-color: white;
+      border: solid 1px red;
+    }
+  }
+}

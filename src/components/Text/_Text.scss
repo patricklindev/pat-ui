@@ -1,0 +1,43 @@
+
+.textbox-container {
+    display:flex;
+}
+
+.textbox{
+    @include textbox-size(
+        1rem,
+        1rem,
+        1rem
+    );
+    @include textbox-style(
+        $white,
+        $gray,
+        $black
+    );
+    outline: 1px solid $gray-light;
+    height:30px;
+}
+.textbox.isError{
+    // @include textbox-size(
+    //     1rem,
+    //     1rem,
+    //     1rem
+    // );
+    @include textbox-style(
+        $white-pink,
+        $gray,
+        $black
+    );
+    // outline: 1px solid $gray-light;
+    // height:30px;
+}
+
+.svg-error {
+    color: $red;
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    top:5px;
+    right: 1.5rem;
+}

@@ -1,3 +1,20 @@
+@mixin textbox-size ($padding-y, $padding-x, $font-size) {
+  padding: $padding-x $padding-y;
+  font-size: $font-size;
+}
+@mixin textbox-style ($bgcolor, $hoveroutline, $focusoutline, ) 
+{
+    border:none;
+    background-color: $bgcolor;
+    :hover {
+        outline: 2px solid $hoveroutline;
+    }
+    &:focus {
+        outline: 2px solid $focusoutline;
+        background-color: $white;
+    }
+}
+
 @mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
   padding: $padding-y $padding-x;
   font-size: $font-size;

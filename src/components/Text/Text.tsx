@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classNames } from '../../utils/classNames';
 
 interface ITextProps  {
@@ -22,10 +22,8 @@ export default function Text({ className, value = '', onChange, error, ...rest }
     styleClasses += ' ' + className;
   }
 
-  // Ensure internal value is synchronized with the value passed in props.
-  if (value !== internalValue) {
-    setInternalValue(value);
-  }
+  // Synchronize internal value with prop value.
+  useEffect(() => setInternalValue(value), [value]);
 
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInternalValue(e.currentTarget.value);

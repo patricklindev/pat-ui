@@ -28,6 +28,10 @@ const TextInput: FC<DBTextInputProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
+  if (value !== inputValue) {
+    setInputValue(value);
+  }
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.currentTarget.value);
 

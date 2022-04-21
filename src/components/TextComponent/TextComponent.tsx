@@ -1,26 +1,30 @@
-import React, { useState, useRef } from "react";
+import React, {
+    FC,
+    useState
+  } from 'react';
 // import "./TextInput.css";
 
 type TextInputProps = {
-    inputValue:string,
-    placeholderText: string,
-    error:boolean,
-    // onChange:React.ChangeEvent<HTMLInputElement>,
+    inputValue?:string,
+    placeholderText?: string,
+    error?:boolean,
+    onChange?:Function
+    // onChange?:React.ChangeEvent<HTMLInputElement>,
     // All other props (...rest). Is this right???
-    [x:string]: any;
+    // [x:string]: any;
 }
 
-const TextComponent = ({
+const TextComponent: FC<TextInputProps> = ({
     inputValue = "",
     placeholderText = "",
     error = false,
-    // onChange,
+    onChange,
     ...rest
-}: TextInputProps) => {
+}) => {
 
-  const [input, setInput] = useState(inputValue);
+  const [input, setInput] = useState<string>(inputValue);
 
-        // ERASE?
+        // ?
 //   // updated input value using useRef
 //   const propInputValue = useRef(propsState.inputValue);
 //   propInputValue.current = propsState.inputValue;
@@ -34,6 +38,10 @@ const TextComponent = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
     setInput(e.target.value)
+
+    if (onChange) {
+        onChange(e)
+    }
  }
 
   const classList: ()=>string = () => {
@@ -43,9 +51,7 @@ const TextComponent = ({
   const isTherePlaceholder: ()=>string = () => (!placeholderText ? "" : placeholderText);
 
   return (
-    <div className="">
-      {/* <h1>Text</h1> */}
-      <div className="text-cont">
+    <div className="text__component">
         <input
           placeholder={isTherePlaceholder()}
           className={classList()}
@@ -54,7 +60,6 @@ const TextComponent = ({
           onChange={handleInputChange}
           {...rest}
         />
-      </div>
     </div>
   );
 };

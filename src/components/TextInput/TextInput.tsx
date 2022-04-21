@@ -1,4 +1,5 @@
 import React, { useState, InputHTMLAttributes, FC } from 'react';
+import { classNames } from '../../utils/classNames';
 
 import './TextInput.css';
 import mySVG from '../../asset/icon/circle-exclamation-solid.svg';
@@ -16,13 +17,21 @@ export type DBTextInputProps = ITextInputProps &
   InputHTMLAttributes<HTMLInputElement>;
 
 const TextInput: FC<DBTextInputProps> = (props) => {
-  const { placeholder, value, err, onChange, ...rest } = props;
+  const { className, placeholder, value, err, onChange, ...rest } = props;
   const [inputValue, setInputValue] = useState(value);
+
+  let styleClasses = classNames({
+    'ti-error': !!err,
+  });
+
+  if (className) {
+    styleClasses += ' ' + className;
+  }
 
   return (
     <div className={'TextInput'}>
       <input
-        className={err ? 'err' : ''}
+        className={styleClasses}
         placeholder={placeholder}
         value={inputValue}
         onChange={onChange}

@@ -16,11 +16,11 @@
   & > input:focus {
     outline: 2px solid black;
   }
-  & .err:focus {
+  & .ti-error:focus {
     outline: 2px solid red;
     background-color: white;
   }
-  & .err {
+  & .ti-error {
     background-color: $red-100;
     color: gray;
   }

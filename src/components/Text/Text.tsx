@@ -1,14 +1,33 @@
-import React from 'react';
-// import './Text.scss';
+import React, { useState } from 'react';
 
-type TextTypes = { value?: string; placeholder?: string; error?: boolean };
+interface ITextTypes {
+  value: string;
+  placeholder: string;
+  error: boolean;
+}
 
-function Text({ value, placeholder, error, ...rest }: TextTypes) {
-  //   const { value, placeholder, error, ...rest } = props;
+function Text({
+  value,
+  placeholder = 'Search',
+  onChange,
+  error,
+  ...rest
+}): ITextTypes {
+  const [inputValue, setInputValue] = useState<string>(value);
+  const changeInputValue = (e) => {
+    if (onChange) {
+      setInputValue(e.target.value);
+    }
+  };
+
   return (
-    <div className={`input-text-plain input-text${error ? '-error' : ''}`}>
-      <label>{value ? value + ':' : 'Input:'}</label>
-      <input placeholder={placeholder ? placeholder : 'Search'} {...rest} />
+    <div className={`input-text${error ? '-error' : ''}`}>
+      <input
+        value={inputValue}
+        onChange={changeInputValue}
+        placeholder={placeholder}
+        {...rest}
+      />
     </div>
   );
 }

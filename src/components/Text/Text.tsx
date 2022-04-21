@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ITextTypes {
   value: string;
   placeholder: string;
   error: boolean;
+  onChange: Function;
 }
 
 function Text({
-  value,
-  placeholder = 'Search',
+  value = '',
+  placeholder = 'Placeholder',
   onChange,
   error,
   ...rest
 }): ITextTypes {
   const [inputValue, setInputValue] = useState<string>(value);
   const changeInputValue = (e) => {
+    setInputValue(e.target.value);
     if (onChange) {
-      setInputValue(e.target.value);
+      onChange(e);
     }
   };
-
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
   return (
     <div className={`input-text${error ? '-error' : ''}`}>
       <input
@@ -27,6 +31,7 @@ function Text({
         onChange={changeInputValue}
         placeholder={placeholder}
         {...rest}
+        type="text"
       />
     </div>
   );

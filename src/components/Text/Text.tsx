@@ -16,7 +16,7 @@ const Text: FC<ITextProps> = (props) => {
   return (
     <>
       {!error && (
-        <div className="inputContainer tableRow">
+        <div className="inputContainer">
           <input
             placeholder="Search..."
             className="inputField"
@@ -26,7 +26,7 @@ const Text: FC<ITextProps> = (props) => {
         </div>
       )}
       {error && (
-        <div className="inputContainer-error tableRow">
+        <div className="inputContainer-error">
           <input
             placeholder="Enter valid term"
             className="inputField-error"

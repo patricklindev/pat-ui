@@ -48,6 +48,7 @@ const TextInput: FC<DBTextInputProps> = (props) => {
         value={inputValue}
         onChange={handleChange}
         {...rest}
+        type="text"
       />
       {err && <img src={mySVG} alt="" />}
     </div>

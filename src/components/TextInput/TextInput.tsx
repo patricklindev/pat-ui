@@ -28,13 +28,21 @@ const TextInput: FC<DBTextInputProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.currentTarget.value);
+
+    if (onChange) {
+      onChange(e);
+    }
+  }
+
   return (
     <div className={'TextInput'}>
       <input
         className={styleClasses}
         placeholder={placeholder}
         value={inputValue}
-        onChange={onChange}
+        onChange={handleChange}
         {...rest}
       />
       {err && <img src={mySVG} alt="" />}

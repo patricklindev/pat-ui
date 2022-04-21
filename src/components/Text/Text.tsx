@@ -2,13 +2,9 @@ import React, { FC, useState, InputHTMLAttributes } from 'react';
 
 
 interface ITextProps {
-    /** set message content */
     value?: string;
-    /** set message list */
     vaild?: boolean;
-    /** set message icon */
     placeholder?: string;
-    /** set message click action */
     onChange?: () => void;
 }
 

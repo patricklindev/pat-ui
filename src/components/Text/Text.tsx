@@ -2,9 +2,13 @@ import React, { FC, useState, InputHTMLAttributes } from 'react';
 
 
 interface ITextProps {
+    /** set text content */
     value?: string;
+    /** set text vtype */
     vaild?: boolean;
+    /** set text placeholder */
     placeholder?: string;
+    /** set text change action */
     onChange?: () => void;
 }
 

@@ -4,12 +4,13 @@ import ErrorIcon from "../../asset/icon/ErrorIcon.js";
 interface TextProps {
     placeholder?: string;
     value?: string;
-    onChange?: any;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     error?: boolean;
  
 }
 
-export default function Text({ placeholder, value, onChange, error }:TextProps) {
+
+export default function Text({ placeholder, value, onChange, error, ...rest }:TextProps) {
   return (
     <div className="input-row">
       <input
@@ -17,6 +18,7 @@ export default function Text({ placeholder, value, onChange, error }:TextProps) 
         placeholder={placeholder ? placeholder : ""}
         value={value}
         onChange={onChange}
+        type="text"
       
       />
       {error && <ErrorIcon />}

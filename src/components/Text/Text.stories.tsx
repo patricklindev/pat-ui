@@ -8,9 +8,9 @@ export default {
 };
 export const DefaultText = () => (
   <div>
-    <Text invalid={false}></Text>
-    <Text invalid={false} placeholder="Placeholder"></Text>
-    <Text invalid={false} value="Input"></Text>
+    <Text className=""></Text>
+    <Text placeholder="Placeholder"></Text>
+    <Text value="Input"></Text>
   </div>
 );
 export const ErrorText = () => (

@@ -24,15 +24,17 @@ export const Text: FC<JTextProps> = (props) => {
 
     const [inputValue, setInputValue] = useState(value);
 
+    const udpateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    };
+
     let text = (
             <input
               className={`${vaild ? "input-box" : "error-box"}`}
               type="text"
               value={inputValue}
               placeholder={placeholder}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-              }}
+              onChange={udpateInput}
               {...rest}
             ></input>
     );

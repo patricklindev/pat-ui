@@ -5,7 +5,8 @@ interface Props {
     value?: any,
     error?: boolean,
     placeholder?: any,
-    className?: string
+    className?: string,
+    [x:string]: any
 }
 
 export default function Text(props:Props) {
@@ -23,6 +24,7 @@ export default function Text(props:Props) {
           value={value}
           onChange={handleChange}
           placeholder={props.placeholder}
+          {...props.rest}
         />
         {props.error && (
           <div className="icon-container">

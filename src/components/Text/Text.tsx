@@ -7,7 +7,7 @@ interface ITextProps {
   /** value set by parent */
   value?: string
 }
-type InputProps = ITextProps & React.HTMLAttributes<HTMLInputElement>;
+export type InputProps = ITextProps & React.HTMLAttributes<HTMLInputElement>;
 
 function Text({ className, value='', onChange, error, ...rest }: InputProps) {
   let inputClass;

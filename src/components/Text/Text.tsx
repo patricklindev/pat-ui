@@ -2,7 +2,7 @@
 // import "./_Text.scss";
 import errorSvg from '../../asset/icon/error.svg';
 import searchSvg from '../../asset/icon/search.svg';
-import React, { InputHTMLAttributes, FC } from 'react';
+import React, { useState, useEffect, InputHTMLAttributes, FC } from 'react';
 import { classNames } from '../../utils/classNames';
 
 
@@ -11,13 +11,15 @@ interface ITextProps {
   error?: boolean;
   /** set customized className */
   className?: string;
+  /** set customized value */
+  value?: string;
 }
 
+type TextProps = ITextProps & React.InputHTMLAttributes<HTMLInputElement>
 
 
-// function Text(props: any) {
-const Text: FC<ITextProps> = (props) => {
-  const { error, className, ...rest } = props;
+const Text = ({ className, value = '', onChange, error, ...rest }: TextProps) => {
+  const [internalValue, setInternalValue] = useState<string>(value);
 
   let styleClasses = classNames({
     'inputContainer': !error,
@@ -28,6 +30,17 @@ const Text: FC<ITextProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
+  // Synchronize internal value with prop value.
+  useEffect(() => setInternalValue(value), [value]);
+
+  const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInternalValue(e.currentTarget.value);
+
+    if (onChange) {
+      onChange(e);
+    }
+  };
+
   return (
     <>
       {!error && (
@@ -35,6 +48,7 @@ const Text: FC<ITextProps> = (props) => {
           <input
             placeholder="Search..."
             className="inputField"
+            onChange={changeValue}
             {...rest}
           ></input>
           <img src={searchSvg} />
@@ -45,6 +59,7 @@ const Text: FC<ITextProps> = (props) => {
           <input
             placeholder="Enter valid term"
             className="inputField-error"
+            onChange={changeValue}
             {...rest}
           ></input>
           <img src={errorSvg} />

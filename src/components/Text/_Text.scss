@@ -28,20 +28,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 40%;
+  width: 100px;
 }
 
 .inputContainer-error {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 40%;
+  width: 100px;
 }
 
 .inputContainer-error img,
 .inputContainer img {
   height: 1rem;
   position: relative;
-  right: 250px;
+  right: 45px;
   top: 1px;
 }

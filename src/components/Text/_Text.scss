@@ -18,18 +18,11 @@
     height:30px;
 }
 .textbox.isError{
-    // @include textbox-size(
-    //     1rem,
-    //     1rem,
-    //     1rem
-    // );
     @include textbox-style(
         $white-pink,
         $gray,
-        $black
+        $red-dark
     );
-    // outline: 1px solid $gray-light;
-    // height:30px;
 }
 
 .svg-error {

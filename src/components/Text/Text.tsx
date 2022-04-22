@@ -8,9 +8,9 @@ interface ITextProps  {
 	value?: string
 }
 
-type TextProps = ITextProps & React.HTMLAttributes<HTMLInputElement>
+type PatTextProps = ITextProps & React.HTMLAttributes<HTMLInputElement>
 
-export default function Text({ className, value = '', onChange, error, ...rest }: TextProps) {
+export default function Text({ className, value = '', onChange, error, ...rest }: PatTextProps) {
   const [internalValue, setInternalValue] = useState<string>(value);
 
   let styleClasses = classNames({

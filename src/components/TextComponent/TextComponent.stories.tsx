@@ -19,7 +19,7 @@ export const TextInput = () => {
       <br></br>
       <TextComponent
         inputValue={thisInput}
-        placeholderText="Placeholder"
+        placeholder="Placeholder"
         error={true}
         onChange={thisInputChange}
       />

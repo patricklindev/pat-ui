@@ -8,7 +8,7 @@ export default {
 };
 export const DefaultText = () => (
   <div>
-    <Text className=""></Text>
+    <Text></Text>
     <Text placeholder="Placeholder"></Text>
     <Text value="Input"></Text>
   </div>

@@ -76,11 +76,6 @@
 }
 
 // TextComponent Addition
-@mixin input-color($background-color, $border-width, $border-color) {
-  background-color: $background-color;
-  border: $border-width solid $border-color;
-}
-
 @mixin input-colors($background-color, $border-width, $border-color, $active-border-color, $active-bg-color) {
   background-color: $background-color;
   border: $border-width solid $border-color;
@@ -93,7 +88,3 @@
     outline: none;
   }
 }
-// @mixin input-border()
-
-// border-color: rgb(209, 0, 0);
-        // background-color: white;

@@ -42,8 +42,8 @@ pat-ui is written in TypeScript with complete definitions.
 
 ## Credit
 
-Created by [@YuhanLin1105][1] and an amazing group of [contributors][3].
+Created by [@patricklindev][1] and an amazing group of [contributors][3].
 
 [1]: https://github.com/patricklindev
-[2]: https://github.com/patricklindev/pat-ui
+[2]: https://patricklindev.github.io/pat-ui/
 [3]: https://github.com/patricklindev/pat-ui/graphs/contributors

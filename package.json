@@ -12,10 +12,10 @@
     "React",
     "UI"
   ],
-  "homepage": "https://github.com/YuhanLin1105/pat-ui",
+  "homepage": "https://github.com/patricklindev/pat-ui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YuhanLin1105/pat-ui"
+    "url": "https://github.com/patricklindev/pat-ui"
   },
   "files": [
     "dist"

@@ -2,37 +2,31 @@ import React, { FC } from 'react';
 import { classNames } from '../../utils/classNames';
 
 
-//export type SliderSize = 'lg' | 'sm';
-export enum slideSize {
-    Large = 'lg',
-    Small ='sm',
-}
-
+export type SliderSize = 'lg' | 'sm';
 
 export interface ISliderProps {
-    //Set slider size
-    sliderSize?: slideSize | 'lg' | 'sm';
+    sliderSize?: SliderSize;
+    className?: string;
 }
 
 
 
 export const Slider: FC<ISliderProps> = (props) => {
 
-    const {children, sliderSize} = props;
+    const {className, children, sliderSize} = props;
 
-    let classNameList: string[] = ["slider"]; 
+    let styleClasses = classNames('slider', {
+        [`slider-${sliderSize}`]: !!sliderSize,
+    })
 
-    if(sliderSize === slideSize.Large){
-        classNameList.push('slider-lg')
+
+
+    if (className) {
+        styleClasses += ' ' + classNames;
     }
-    if(sliderSize === slideSize.Small){
-        classNameList.push('slider-sm')
-    }
-
-    const classNames = classNameList.join(' ');
 
     return (
-        <input type="range" min="1" max="100" value="50" className={classNames} id="myRange" />
+        <input type="range" min="1" max="100" value="50" className={styleClasses} id="myRange" />
     );
 
 

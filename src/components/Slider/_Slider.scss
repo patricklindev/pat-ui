@@ -1,0 +1,15 @@
+.slider {
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 15rem;
+}
+
+.slider-primary {
+    background-color: $indigo;
+}
+
+.slider-secondary {
+    background-color: $pink;
+    height: 50%;
+}

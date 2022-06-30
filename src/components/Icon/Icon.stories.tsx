@@ -11,6 +11,8 @@ export const DefaultIcon = () => (
   <div>
     <Icon name="home" />;
     <Icon name="star" />
+    <Icon name="star half" />
+    <Icon name="star regular" />
   </div>
 );
 
@@ -18,6 +20,8 @@ export const DisabledIcon = () => (
   <div>
     <Icon name="users" disabled />
     <Icon name="star" disabled />
+    <Icon name="star half" disabled />
+    <Icon name="star regular" disabled />
   </div>
 );
 

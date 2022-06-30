@@ -1,7 +1,3 @@
-input[type='radio'] {
-  display: none;
-}
-
 .rating_icon-group {
   cursor: pointer;
   &.disabled,
@@ -14,3 +10,9 @@ input[type='radio'] {
     cursor: not-allowed;
   }
 }
+
+// .rating-icon {
+//   &:hover {
+//     height: 40px;
+//   }
+// }

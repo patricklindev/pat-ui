@@ -7,20 +7,29 @@ export default {
   component: Rating,
 };
 
-const ratingStyle: React.CSSProperties = {
+const diffSizeRatingStyle: React.CSSProperties = {
   display: 'flex',
+  height: '50px',
   alignItems: 'center',
 };
 
-const sizeArr = ['mini', 'small', 'medium', 'large'];
+const ratingStyle: React.CSSProperties = {
+  height: '30px',
+};
 
-export const DefaultRating = () => <Rating />;
+const sizeArr = ['small', 'medium', 'large'];
+
+export const DefaultRating = () => (
+  <div style={ratingStyle}>
+    <Rating />
+  </div>
+);
 
 export const DisabledRating = () => <Rating disabled ratingValueControll={3} />;
 
 export const DiffSizeRating = () =>
   sizeArr.map((item, index) => (
-    <div key={index} style={ratingStyle}>
+    <div key={index} style={diffSizeRatingStyle}>
       <Rating size={item as IconSize} />
     </div>
   ));

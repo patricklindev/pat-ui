@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { CSSProperties, FC, useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
+import { animateBySize } from './helper';
 
 interface IRatingProps {
   className?: string;
@@ -15,6 +16,8 @@ interface IRatingProps {
   size?: IconSize;
   /** controll value of filled star ratings */
   ratingValueControll?: number;
+  /** allow half fraction of stars */
+  half?: boolean;
   /** set label after the rating component */
   labelInput?: string;
 }
@@ -49,9 +52,10 @@ export const Rating: FC<IRatingProps> = (props) => {
 
   // create an arr to map star icons
   const starArr = [...Array(ratingCount)];
-  // states to manage save rating value and hover effect
+  // states to manage save rating value, hover effect, and currentHover position
   const [ratingNum, setRatingNum] = useState(ratingValueControll);
-  const [hover, setHover] = useState(0);
+  const [hover, setHoverValue] = useState(0);
+  const [currentHovering, setCurrentHovering] = useState<number | null>(null);
 
   // handle onClick with disabled logic
   const handleOnClick = (rating: number) => {
@@ -62,11 +66,12 @@ export const Rating: FC<IRatingProps> = (props) => {
   };
 
   // handle onMouseEnter with disabled logic
-  const handleOnMouseEnter = (rating: number) => {
+  const handleOnMouseEnter = (rating: number, i: number) => {
     if (disabled || readonly) {
       return;
     }
-    setHover(rating);
+    setHoverValue(rating);
+    setCurrentHovering(i);
   };
 
   // handle onMouseLeave with disabled logic
@@ -74,33 +79,31 @@ export const Rating: FC<IRatingProps> = (props) => {
     if (disabled || readonly) {
       return;
     }
-    setHover(0);
+    setHoverValue(0);
+    setCurrentHovering(null);
   };
 
   const rating = starArr.map((_, index) => {
     const ratingValue = index + 1;
     const isFilled = ratingValue <= (hover || (ratingNum as number));
+    const sizeDetect = animateBySize(size as IconSize, currentHovering, index);
     return (
-      <label key={index}>
-        <input
-          type="radio"
-          name="rating"
-          value={ratingValue}
-          onClick={() => handleOnClick(ratingValue)}
+      <div
+        style={{ display: 'inline-block' }}
+        key={index}
+        className={styleClasses}
+        onMouseEnter={() => handleOnMouseEnter(ratingValue, index)}
+        onMouseLeave={handleOnMouseLeave}
+        onClick={() => handleOnClick(ratingValue)}
+      >
+        <Icon
+          name={isFilled ? 'star' : 'star regular'}
+          color={isFilled ? 'orange' : 'grey'}
+          disabled={disabled}
+          size={sizeDetect}
+          className="rating-icon"
         />
-        <div
-          className={styleClasses}
-          onMouseEnter={() => handleOnMouseEnter(ratingValue)}
-          onMouseLeave={handleOnMouseLeave}
-        >
-          <Icon
-            name="star"
-            color={isFilled ? 'orange' : 'grey'}
-            disabled={disabled}
-            size={size}
-          />
-        </div>
-      </label>
+      </div>
     );
   });
 
@@ -116,6 +119,7 @@ export const Rating: FC<IRatingProps> = (props) => {
 
 Rating.defaultProps = {
   ratingCount: 5,
+  size: 'medium',
   ratingValueControll: 0,
 };
 

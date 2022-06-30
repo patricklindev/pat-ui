@@ -1,0 +1,91 @@
+.checkbox {
+    position: relative;
+    padding: 0 10px 0 25px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+  }
+  
+  /* When the checkbox is checked, add a background */
+  .checkbox input:checked ~ .checkmark {
+    background-color: lightgrey;
+  }
+
+  .checkbox input:indeterminate ~ .checkmark {
+    background-color: lightgrey;
+  }
+
+  .checkbox input:disabled ~ .checkmark {
+    background-color: grey;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .checkbox input:indeterminate ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkbox input:checked ~ .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .checkbox input:indeterminate ~ .checkmark:after {
+    left: 2px;
+    top: 6px;
+    width: 12px;
+    height: 4px;
+    border: solid white;
+    background-color: white;
+  }
+  
+  
+
+// .check-sm {
+//     @include checkbox-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $border-radius-sm);
+// }
+
+// .check-md {
+//     @include checkbox-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $border-radius-lg);
+// }

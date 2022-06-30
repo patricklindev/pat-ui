@@ -1,12 +1,14 @@
 import React, { FC, ReactNode,useEffect,useState } from 'react';
 import { classNames } from '../../utils/classNames';
+// What is below this comment is opptional for imports and dependent on your component
 import Button from '../Button/Button';
+import Progress from '../Progress/Progress';
 
 export type StepperSize = 'lg' | 'md' | 'sm'
-export type StepperType =  "circle" | "square"
+export type StepperType =  "circle" | "square" | "progress"
 // JASON MA 6/29/2022
 // Code below is for when I develop a stepper variation for row vs vertical display
-// export type StepperOrientaion = "row" | "vertical"
+export type StepperOrientaion = "row" | "vertical"
 
 export interface IStepperProps {
     // set customized Stepper //
@@ -15,6 +17,7 @@ export interface IStepperProps {
     stepperSize?: StepperSize;
     // set StepperType //
     stepperType?: StepperType;
+    stepperOrientation: StepperOrientaion;
     // Allow the user to define specific sets of strings
     item1?: string;
     item2?: string;
@@ -84,8 +87,11 @@ export const Stepper: FC<patStepperProps> = (props) => {
          let target = document.getElementById("Step-"+index)
          let htmlInner = target?.textContent
          console.log(htmlInner)
-         console.log(index)
-         target?.setAttribute('class', "progress-stepper-completed") 
+         console.log(index) 
+         if (stepperType == "circle") {
+            target?.setAttribute('class', "progress-circle-completed") 
+         } else {target?.setAttribute('class', "progress-stepper-completed") }
+         
          if (index<totalIndex) {
             setCurrentIndex(index+1)
          }
@@ -100,7 +106,10 @@ export const Stepper: FC<patStepperProps> = (props) => {
         let htmlInner = target?.textContent
         console.log(htmlInner)
         console.log(index)
-        target?.setAttribute('class', "progress-stepper") 
+        if (stepperType == "circle") {
+            target?.setAttribute('class', "dot progress-stepper") 
+         } else {target?.setAttribute('class', "progress-stepper") }
+        
        setCurrentIndex(index-1)
 
        
@@ -125,7 +134,14 @@ export const Stepper: FC<patStepperProps> = (props) => {
                      <div className = {styleClasses + ' flex-element-container'}>
                         <div className={styleClasses + ' flex-element'}>  
                         <p className="progress-description"> {item} </p>
-                        <p className="progress-stepper" id={"Step-"+index}>---------- Step {index + 1} ----------</p>
+                        {stepperType === 'circle' ? (
+                            <div>
+                        <span className="dot progress-stepper" id={"Step-"+index}> { index + 1} </span>
+                            </div>
+                        ): (
+                            <p className="progress-stepper" id={"Step-"+index}>---------- Step {index + 1} ----------</p>
+                        )}
+                       
                          </div>
                     </div>
                 </div>
@@ -134,7 +150,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
         </div>
 
     {/* This is the button menu for NEXT and previous */}
-       
+            {stepperType === 'progress'} {
+                
+            }
              <div className ={'flex-row-container'} >
                     
                         {/* <button className={styleClasses + ' button'} data-testid="button-next"> NEXT </button>
@@ -167,6 +185,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
 Stepper.defaultProps = {
     stepperType: 'circle',
+    stepperOrientation: 'row'
     // currentIndex: 0
   };
 

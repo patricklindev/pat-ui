@@ -42,3 +42,19 @@ export const SquareStepper = () => (
         </Stepper>
     </div>
 )
+
+export const ExampleStepper = () => (
+    <div>
+        <Stepper
+            stepperType={"square"}
+            stepperElements={[
+                "This is an example",
+                "Another example",
+                "11111111111111111111"
+            ]}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+        >
+        </Stepper>
+    </div>
+)

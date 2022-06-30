@@ -1,15 +1,107 @@
+.slider-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-value-cont {
+  margin-bottom: 15px;
+  background-color: blue;
+  width: 200px;
+}
+
+.slider-value__num-box {
+  background-color: $gray-500;
+  transform: rotate(45deg);
+  width: 25px;
+  height: 25px;
+  border-radius: 50% 50% 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-value__num{
+  transform: rotate(-45deg);
+}
+
 .slider {
-    -webkit-appearance: none;
-    background: transparent;
-    cursor: pointer;
-    width: 15rem;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 5px;
+  width: 200px;
 }
 
-.slider-primary {
-    background-color: $indigo;
+.slider::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border-radius: 0.7rem;
+  background-color: $gray-500;
 }
 
-.slider-secondary {
-    background-color: $pink;
-    height: 50%;
+.slider-primary::-moz-range-track {
+  background: $indigo;
+  border-radius: 0.7rem;
+  background-color: $gray-500;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -5.5px; /* Centers thumb on the track */
+  border-radius: 50%;
+  height: 1.25rem;
+  width: 1.25rem;
+  background-color: $gray-500;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 8px $gray-500;
+}
+
+.slider::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 12px $gray-500;
+}
+
+.slider::-moz-range-thumb {
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0; /*Removes default border-radius that FF applies*/
+  height: 2rem;
+  width: 1rem;
+}
+
+//PRIMARY
+.slider-primary::-webkit-slider-runnable-track {
+  background: $indigo;
+}
+
+.slider-primary::-moz-range-track {
+  background: $indigo;
+}
+
+.slider-primary::-webkit-slider-thumb {
+  background-color: $indigo;
+}
+
+.slider-primary::-moz-range-thumb {
+  background-color: $indigo;
+}
+
+//SECONDARY
+.slider-secondary::-webkit-slider-runnable-track {
+  background: $pink;
+}
+
+.slider-secondary::-moz-range-track {
+  background: $pink;
+}
+
+.slider-secondary::-webkit-slider-thumb {
+  background-color: $pink;
+}
+
+.slider-secondary::-moz-range-thumb {
+  background-color: $pink;
 }

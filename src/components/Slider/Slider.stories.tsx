@@ -11,3 +11,11 @@ export default {
   export const DefaultSlider = () => (
     <Slider />
   );
+
+  export const DiffTypeSliders = () => (
+    <div>
+    <Slider sliderColor='primary' />
+    <Slider sliderColor='secondary' />
+    </div>
+
+  )

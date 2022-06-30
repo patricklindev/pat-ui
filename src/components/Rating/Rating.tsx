@@ -7,6 +7,8 @@ interface IRatingProps {
   className?: string;
   /** set rating to be disabled */
   disabled?: boolean;
+  /** set rating to be readonly */
+  readonly?: boolean;
   /** set number of stars */
   ratingCount?: number;
   /** set size of stars */
@@ -29,6 +31,7 @@ export const Rating: FC<IRatingProps> = (props) => {
   const {
     className,
     disabled,
+    readonly,
     ratingCount,
     size,
     ratingValueControll,
@@ -38,6 +41,7 @@ export const Rating: FC<IRatingProps> = (props) => {
   // managing classnames
   let styleClasses = classNames('rating_icon-group', {
     disabled: !!disabled,
+    readonly: !!readonly,
   });
   if (className) {
     styleClasses += ' ' + className;
@@ -51,7 +55,7 @@ export const Rating: FC<IRatingProps> = (props) => {
 
   // handle onClick with disabled logic
   const handleOnClick = (rating: number) => {
-    if (disabled) {
+    if (disabled || readonly) {
       return;
     }
     setRatingNum(rating);
@@ -59,7 +63,7 @@ export const Rating: FC<IRatingProps> = (props) => {
 
   // handle onMouseEnter with disabled logic
   const handleOnMouseEnter = (rating: number) => {
-    if (disabled) {
+    if (disabled || readonly) {
       return;
     }
     setHover(rating);
@@ -67,7 +71,7 @@ export const Rating: FC<IRatingProps> = (props) => {
 
   // handle onMouseLeave with disabled logic
   const handleOnMouseLeave = () => {
-    if (disabled) {
+    if (disabled || readonly) {
       return;
     }
     setHover(0);

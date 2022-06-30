@@ -3,20 +3,23 @@ import { classNames } from '../../utils/classNames';
 
 
 export type SliderSize = 'lg' | 'sm';
+export type SliderTheme = 'primary' | 'secondary' | 'danger' | 'dark'
 
 export interface ISliderProps {
     sliderSize?: SliderSize;
     className?: string;
+    sliderTheme?: SliderTheme;
 }
 
 
 
 export const Slider: FC<ISliderProps> = (props) => {
 
-    const {className, children, sliderSize} = props;
+    const {className, children, sliderSize, sliderTheme} = props;
 
     let styleClasses = classNames('slider', {
         [`slider-${sliderSize}`]: !!sliderSize,
+        [`slider-${sliderTheme}`]: true
     })
 
 
@@ -26,7 +29,7 @@ export const Slider: FC<ISliderProps> = (props) => {
     }
 
     return (
-        <input type="range" min="1" max="100" value="50" className={styleClasses} id="myRange" />
+        <input type="range" min="1" max="100" className={styleClasses} id="myRange" />
     );
 
 

@@ -1,11 +1,43 @@
-.slider{
-    border: 10px solid red;
+.slider {
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    border-radius: 15px;
+
+    @include slider-size(
+        $slider-width,
+        $slider-height
+    );
 }
 
-.slider-sm{
+.slider-primary {
+    @include slider-style($gray-100, $primary, $primary)
+}
+
+.slider-secondary {
+    @include slider-style($gray-100, $secondary, $secondary)
+}
+
+.slider-info {
+    @include slider-style($gray-100, $secondary, $secondary)
+} 
+
+.slider-danger{
+    @include slider-style($warning, $warning, $warning)
+}
+
+.slider-sm {
+    @include slider-size(
+        $slider-width-sm,
+        $slider-height-sm
+    );
 
 }
 
-.slider-lg{
-    
+.slider-lg {
+    @include slider-size(
+        $slider-width-sm,
+        $slider-height-lg
+    );
 }

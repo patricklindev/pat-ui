@@ -21,6 +21,8 @@ export default function App(){
             <Slider sliderTheme='danger'/>
             <h2>Dark Slider</h2>
             <Slider sliderSize="lg" sliderTheme='dark'/>
+            <h2>Veritcal Slider</h2>
+            <Slider sliderOrientation='vertical'/>
 
 
         </div>

@@ -13,6 +13,14 @@
 
 }
 
+//TODO: Fix vertical slider
+.slider-vertical{
+    position: relative;
+    height: $slider-height;
+    width: 10%;
+    transform: rotate(270deg);
+}
+
 .slider-sm {
     @include slider-size($slider-width-sm, $slider-height-sm, $thumb-width-sm, $thumb-height-sm );
 

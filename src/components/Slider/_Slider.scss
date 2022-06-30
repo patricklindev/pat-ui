@@ -8,6 +8,9 @@
 
     @include slider-size($slider-width,
         $slider-height );
+
+    @include slider-style($blue, #367ce5 );
+
 }
 
 .slider-sm {
@@ -30,7 +33,7 @@
     @include slider-style($secondary, #9b9fa4);
 }
 
-.slider-warning{
+.slider-warning {
     @include slider-style($warning, #f9e457);
 }
 
@@ -38,6 +41,6 @@
     @include slider-style($danger, #dd5e6a);
 }
 
-.slider-dark{
+.slider-dark {
     @include slider-style($dark, $black)
 }

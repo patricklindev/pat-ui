@@ -3,7 +3,7 @@ import { classNames } from '../../utils/classNames';
 
 
 export type SliderSize = 'lg' | 'sm';
-export type SliderTheme = 'primary' | 'secondary' | 'warning' | 'danger' | 'dark'
+export type SliderTheme = 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
 
 export interface ISliderProps {
     sliderSize?: SliderSize;

@@ -20,7 +20,7 @@ export default function App(){
             <h2>Danger Slider</h2>
             <Slider sliderTheme='danger'/>
             <h2>Dark Slider</h2>
-            <Slider sliderTheme='dark'/>
+            <Slider sliderSize="lg" sliderTheme='dark'/>
 
 
         </div>

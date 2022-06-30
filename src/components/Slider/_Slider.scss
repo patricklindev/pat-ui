@@ -7,21 +7,19 @@
     border-radius: 15px;
 
     @include slider-size($slider-width,
-        $slider-height );
+        $slider-height, $thumb-width, $thumb-height);
 
     @include slider-style($blue, #367ce5 );
 
 }
 
 .slider-sm {
-    @include slider-size($slider-width-sm,
-        $slider-height-sm );
+    @include slider-size($slider-width-sm, $slider-height-sm, $thumb-width-sm, $thumb-height-sm );
 
 }
 
 .slider-lg {
-    @include slider-size($slider-width-sm,
-        $slider-height-lg );
+    @include slider-size($slider-width-sm, $slider-height-lg, $thumb-width-lg, $thumb-height-lg);
 }
 
 

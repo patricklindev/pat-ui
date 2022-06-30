@@ -80,7 +80,7 @@
   height: $slider-height;
 }
 
-@mixin slider-style($background, $hover-color, $hover-background-color){
+@mixin slider-style($background, $hover-background-color){
   background: $background;
   &:hover {
     background: $hover-background-color;

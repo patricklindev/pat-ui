@@ -1,43 +1,43 @@
 .slider {
+    -webkit-appearance: none;
     outline: none;
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
     border-radius: 15px;
 
-    @include slider-size(
-        $slider-width,
-        $slider-height
-    );
-}
-
-.slider-primary {
-    @include slider-style($gray-100, $primary, $primary)
-}
-
-.slider-secondary {
-    @include slider-style($gray-100, $secondary, $secondary)
-}
-
-.slider-info {
-    @include slider-style($gray-100, $secondary, $secondary)
-} 
-
-.slider-danger{
-    @include slider-style($warning, $warning, $warning)
+    @include slider-size($slider-width,
+        $slider-height );
 }
 
 .slider-sm {
-    @include slider-size(
-        $slider-width-sm,
-        $slider-height-sm
-    );
+    @include slider-size($slider-width-sm,
+        $slider-height-sm );
 
 }
 
 .slider-lg {
-    @include slider-size(
-        $slider-width-sm,
-        $slider-height-lg
-    );
+    @include slider-size($slider-width-sm,
+        $slider-height-lg );
+}
+
+
+.slider-primary {
+    @include slider-style($primary, #19dfa4);
+}
+
+.slider-secondary {
+    @include slider-style($secondary, #9b9fa4);
+}
+
+.slider-warning{
+    @include slider-style($warning, #f9e457);
+}
+
+.slider-danger {
+    @include slider-style($danger, #dd5e6a);
+}
+
+.slider-dark{
+    @include slider-style($dark, $black)
 }

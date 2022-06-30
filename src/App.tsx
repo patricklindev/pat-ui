@@ -13,8 +13,14 @@ export default function App(){
             <Slider sliderSize='sm'/>
             <h2>Primary Slider</h2>
             <Slider sliderTheme='primary'/>
+            <h2>Secondary Slider</h2>
+            <Slider sliderTheme='secondary'/>
+            <h2>Warning Slider</h2>
+            <Slider sliderTheme='warning'/>
             <h2>Danger Slider</h2>
             <Slider sliderTheme='danger'/>
+            <h2>Dark Slider</h2>
+            <Slider sliderTheme='dark'/>
 
 
         </div>

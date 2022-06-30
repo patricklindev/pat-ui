@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Checkbox, {checkBoxState, checkboxSize} from './Checkbox';
+import Checkbox, {checkBoxState, checkboxSize, checkboxType} from './Checkbox';
 
 export default {
   title: 'Checkbox',
@@ -29,5 +29,13 @@ export const DiffSizeCheckbox = () => (
     <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked}/>
     <Checkbox checkSize={checkboxSize.Small} checkedState={checkBoxState.checked}/>
     <Checkbox checkSize={checkboxSize.Small} checkedState={checkBoxState.indeterminate} />
+  </div>
+);
+
+export const DiffTypeCheckbox = () => (
+  <div>
+    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked} checkType={checkboxType.Primary} label='primary'/>
+    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked} checkType={checkboxType.Secondary} label='secondary'/>
+    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked} checkType={checkboxType.Default} label='default'/>
   </div>
 );

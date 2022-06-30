@@ -26,6 +26,9 @@
   border-radius: $check-border-radius;
   border: $checkmark-border;
   @include checkbox-size(18px, 18px);
+  // &:hover {
+  //   background-color: yellow;
+  // }
 }
 
 /* When the checkbox is checked, add a background */
@@ -38,7 +41,9 @@
 }
 
 .checkbox input:disabled ~ .checkmark {
-  background-color: $gray-600;
+  // background-color: $gray-300;
+  border: 2px solid $gray-300;
+  cursor: not-allowed;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -50,7 +55,7 @@
 
 /* Style the checkmark/indicator */
 .checkbox input:checked ~ .checkmark:after {
-  @include checkmark-style(block, 5px, 0px, 6px, 13px, $checkmark-icon-border);
+  @include checkmark-style(block, 4px, 0px, 6px, 11px, $checkmark-icon-border);
   border-width: $checkmark-border-width; 
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -58,7 +63,7 @@
 }
 
 .checkbox input:indeterminate ~ .checkmark:after {
-  @include checkmark-style(block, 2px, 6px, 12px, 4px, $checkmark-icon-border);
+  @include checkmark-style(block, 2px, 6px, 10px, 2px, $checkmark-icon-border);
   background-color: $white;
 }
 
@@ -69,11 +74,45 @@
   }
 
   input:checked ~ .checkmark:after {
-    @include checkmark-style(block, 4px, 1px, 5px, 10px, $checkmark-icon-border);
-    border-width: $checkmark-border-width; 
+    @include checkmark-style(block, 4px, 1px, 4px, 8px, $checkmark-icon-border);
+    border-width: 0 2px 2px 0; 
   }
 
   input:indeterminate ~ .checkmark:after {
-    @include checkmark-style(block, 2px, 5px, 9px, 2px, $checkmark-icon-border);
+    @include checkmark-style(block, 1px, 4px, 8.5px, 1px, $checkmark-icon-border);
+  }
+}
+
+.check-default {
+  input:checked ~ .checkmark {
+    background-color: $gray-600;
+  }
+  
+  input:indeterminate ~ .checkmark {
+    background-color: $gray-600;
+  }
+}
+
+.check-primary {
+  input:checked ~ .checkmark {
+    background-color: #3F51B5;
+    border: 2px solid #3F51B5;
+  }
+  
+  input:indeterminate ~ .checkmark {
+    background-color: #3F51B5;
+    border: 2px solid #3F51B5;
+  }
+}
+
+.check-secondary {
+  input:checked ~ .checkmark {
+    background-color: #F50057;
+    border: 2px solid #F50057;
+  }
+  
+  input:indeterminate ~ .checkmark {
+    background-color: #F50057;
+    border: 2px solid #F50057;
   }
 }

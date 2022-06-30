@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Rating = () => {
+export const Rating = () => {
   return <div>Rating</div>;
 };
 

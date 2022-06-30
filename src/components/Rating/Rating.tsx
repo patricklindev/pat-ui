@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
@@ -110,10 +110,10 @@ export const Rating: FC<IRatingProps> = (props) => {
   const label = labelInput && <label>{labelInput}</label>;
 
   return (
-    <>
+    <div className="rating-container">
       {rating}
       {label}
-    </>
+    </div>
   );
 };
 

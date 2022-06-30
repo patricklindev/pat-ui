@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { IconSize } from '../Icon/Icon';
 import Rating from './Rating';
@@ -7,14 +8,10 @@ export default {
   component: Rating,
 };
 
-const diffSizeRatingStyle: React.CSSProperties = {
-  display: 'flex',
-  height: '50px',
-  alignItems: 'center',
-};
-
 const ratingStyle: React.CSSProperties = {
-  height: '30px',
+  display: 'flex',
+  height: '40px',
+  alignItems: 'center',
 };
 
 const sizeArr = ['small', 'medium', 'large'];
@@ -25,15 +22,21 @@ export const DefaultRating = () => (
   </div>
 );
 
-export const DisabledRating = () => <Rating disabled ratingValueControll={3} />;
+export const DisabledRating = () => (
+  <div style={ratingStyle}>
+    <Rating disabled ratingValueControll={3} />
+  </div>
+);
 
 export const DiffSizeRating = () =>
   sizeArr.map((item, index) => (
-    <div key={index} style={diffSizeRatingStyle}>
+    <div key={index} style={ratingStyle}>
       <Rating size={item as IconSize} />
     </div>
   ));
 
 export const ReadyOnlyRating = () => (
-  <Rating readonly ratingValueControll={3} />
+  <div style={ratingStyle}>
+    <Rating readonly ratingValueControll={3} />
+  </div>
 );

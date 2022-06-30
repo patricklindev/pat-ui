@@ -11,8 +11,12 @@
   }
 }
 
-// .rating-icon {
-//   &:hover {
-//     height: 40px;
-//   }
-// }
+.rating-icon {
+  transition: 200ms;
+}
+
+.rating-container {
+  display: flex;
+  height: 2px;
+  align-items: center;
+}

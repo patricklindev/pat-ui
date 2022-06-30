@@ -12,7 +12,7 @@ interface IRatingProps {
   /** controll value of filled star ratings */
   ratingValueControll?: number;
   /** set label after the rating component */
-  labelInput?: HTMLLabelElement;
+  labelInput?: string;
 }
 
 /**
@@ -32,6 +32,30 @@ export const Rating: FC<IRatingProps> = (props) => {
   const [ratingNum, setRatingNum] = useState(ratingValueControll ?? 0);
   const [hover, setHover] = useState(0);
 
+  // handle onClick with disabled logic
+  const handleOnClick = (rating: number) => {
+    if (disabled) {
+      return;
+    }
+    setRatingNum(rating);
+  };
+
+  // handle onMouseEnter with disabled logic
+  const handleOnMouseEnter = (rating: number) => {
+    if (disabled) {
+      return;
+    }
+    setHover(rating);
+  };
+
+  // handle onMouseLeave with disabled logic
+  const handleOnMouseLeave = () => {
+    if (disabled) {
+      return;
+    }
+    setHover(0);
+  };
+
   const rating = starArr.map((_, index) => {
     const ratingValue = index + 1;
     const isFilled = ratingValue <= (hover || ratingNum);
@@ -41,12 +65,12 @@ export const Rating: FC<IRatingProps> = (props) => {
           type="radio"
           name="rating"
           value={ratingValue}
-          onClick={() => setRatingNum(ratingValue)}
+          onClick={() => handleOnClick(ratingValue)}
         />
         <div
           className="rating_icon-group"
-          onMouseEnter={() => setHover(ratingValue)}
-          onMouseLeave={() => setHover(0)}
+          onMouseEnter={() => handleOnMouseEnter(ratingValue)}
+          onMouseLeave={handleOnMouseLeave}
         >
           <Icon
             name="star"

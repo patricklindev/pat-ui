@@ -6,4 +6,6 @@ export default {
   component: Rating,
 };
 
-export const DefaultRating = () => <Rating />;
+// export const DefaultRating = () => <Rating />;
+
+// export const DisabledRating = () => <Rating disabled />;

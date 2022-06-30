@@ -8,4 +8,4 @@ export default {
 
 export const DefaultRating = () => <Rating />;
 
-// export const DisabledRating = () => <Rating disabled />;
+export const DisabledRating = () => <Rating disabled ratingValueControll={3} />;

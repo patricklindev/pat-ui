@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react';
+import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
 
 interface IRatingProps {
+  className?: string;
   /** set rating to be disabled */
   disabled?: boolean;
   /** set number of stars */
@@ -24,8 +26,23 @@ interface IRatingProps {
  */
 
 export const Rating: FC<IRatingProps> = (props) => {
-  const { disabled, ratingCount, size, ratingValueControll, labelInput } =
-    props;
+  const {
+    className,
+    disabled,
+    ratingCount,
+    size,
+    ratingValueControll,
+    labelInput,
+  } = props;
+
+  // managing classnames
+  let styleClasses = classNames('rating_icon-group', {
+    disabled: !!disabled,
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
+
   // create an arr to map star icons
   const starArr = [...Array(ratingCount ?? 5)];
   // states to manage save rating value and hover effect
@@ -68,7 +85,7 @@ export const Rating: FC<IRatingProps> = (props) => {
           onClick={() => handleOnClick(ratingValue)}
         />
         <div
-          className="rating_icon-group"
+          className={styleClasses}
           onMouseEnter={() => handleOnMouseEnter(ratingValue)}
           onMouseLeave={handleOnMouseLeave}
         >

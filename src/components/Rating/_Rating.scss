@@ -4,4 +4,8 @@ input[type='radio'] {
 
 .rating_icon-group {
   cursor: pointer;
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+  }
 }

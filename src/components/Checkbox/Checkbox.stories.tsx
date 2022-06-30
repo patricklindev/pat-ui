@@ -1,0 +1,33 @@
+import React from 'react';
+import { action } from '@storybook/addon-actions';
+import Checkbox, {checkBoxState, checkboxSize} from './Checkbox';
+
+export default {
+  title: 'Checkbox',
+  component: Checkbox,
+};
+
+const checkBoxStyle: React.CSSProperties = {
+  marginRight: '5px',
+  marginTop: '5px',
+};
+
+export const DefaultCheckBox = () => (
+    <div>
+        <Checkbox checkedState={checkBoxState.checked} />
+        <Checkbox checkedState={checkBoxState.indeterminate} />
+        <Checkbox />
+        <Checkbox disabled/>
+        <Checkbox disabled checkedState={checkBoxState.indeterminate}/>
+        <Checkbox label="Label" />
+        <Checkbox label="Disabled" disabled/>
+    </div>
+);
+
+export const DiffSizeCheckbox = () => (
+  <div>
+    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked}/>
+    <Checkbox checkSize={checkboxSize.Small} checkedState={checkBoxState.checked}/>
+    <Checkbox checkSize={checkboxSize.Small} checkedState={checkBoxState.indeterminate} />
+  </div>
+);

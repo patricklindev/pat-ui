@@ -48,9 +48,9 @@ export const Rating: FC<IRatingProps> = (props) => {
   }
 
   // create an arr to map star icons
-  const starArr = [...Array(ratingCount ?? 5)];
+  const starArr = [...Array(ratingCount)];
   // states to manage save rating value and hover effect
-  const [ratingNum, setRatingNum] = useState(ratingValueControll ?? 0);
+  const [ratingNum, setRatingNum] = useState(ratingValueControll);
   const [hover, setHover] = useState(0);
 
   // handle onClick with disabled logic
@@ -79,7 +79,7 @@ export const Rating: FC<IRatingProps> = (props) => {
 
   const rating = starArr.map((_, index) => {
     const ratingValue = index + 1;
-    const isFilled = ratingValue <= (hover || ratingNum);
+    const isFilled = ratingValue <= (hover || (ratingNum as number));
     return (
       <label key={index}>
         <input
@@ -112,6 +112,11 @@ export const Rating: FC<IRatingProps> = (props) => {
       {label}
     </>
   );
+};
+
+Rating.defaultProps = {
+  ratingCount: 5,
+  ratingValueControll: 0,
 };
 
 export default Rating;

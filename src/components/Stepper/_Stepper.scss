@@ -1,7 +1,45 @@
-.stepper-circle-element {
+
+.all-container {
     width:100%;
+    margin:auto;
 }
 
-.stepper-square-element{
+.flex-row-container {
+    display: flex;
     width:100%;
+    margin:auto;
+}
+
+.flex-element-container{
+    width:250px;
+    margin:auto;
+}
+
+.Stepper-Button {
+    width:350px;
+    margin:auto;
+}
+
+.flex-element {
+    width:200px;
+    margin:auto;
+   
+}
+
+.progress-stepper{
+    margin:auto;
+    text-align:center
+}
+
+.progress-description{
+    margin:auto;
+    text-align:center;
+    border-color:black;
+    border-style: double;
+}
+
+.progress-stepper-completed {
+    margin:auto;
+    text-align:center;
+    color:$green;
 }

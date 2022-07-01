@@ -1,0 +1,40 @@
+// checkbox wrapper style 
+.basicCheckboxWrapper{
+  width: 50%;
+  display:  flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.puCheckbox{
+  &:checked{
+    background-color: tomato;
+  }
+
+  &-ex-small{
+    width: $cb-ex-small-width;
+    height: $cb-ex-small-height;
+  }
+
+  &-small{
+    width: $cb-small-width;
+    height: $cb-small-height;
+  }
+
+  &-normal{
+    width: $cb-normal-width;
+    height: $cb-normal-height;
+  }
+
+  &-large{
+    width: $cb-large-width;
+    height: $cb-large-height;
+  }
+
+  &-ex-larger{
+    width: $cb-ex-large-width;
+    height: $cb-ex-large-height;
+  }
+
+}

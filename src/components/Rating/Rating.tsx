@@ -1,4 +1,11 @@
-import React, { FC, HTMLAttributes, useState } from 'react';
+import React, {
+  FC,
+  HTMLAttributes,
+  MouseEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
@@ -21,7 +28,7 @@ interface IRatingProps {
   /** set label after the rating component */
   labelInput?: string;
   /** get the current rating value outside of component */
-  onChange?: () => number;
+  onChange?: (rating: any) => void;
 }
 
 export type RatingProps = IRatingProps & HTMLAttributes<HTMLElement>;
@@ -43,6 +50,7 @@ export const Rating: FC<RatingProps> = (props) => {
     size,
     ratingValueControll,
     labelInput,
+    onChange,
   } = props;
 
   // managing classnames
@@ -59,18 +67,24 @@ export const Rating: FC<RatingProps> = (props) => {
   // states to manage save rating value, hover effect, and currentHover position
   const [ratingNum, setRatingNum] = useState(ratingValueControll);
   const [hover, setHoverValue] = useState(0);
-  const [currentHovering, setCurrentHovering] = useState<number | null>(null);
+  const [currentHovering, setCurrentHovering] = useState<number | null>(-1);
+
+  const iconRef = useRef<any>(null);
 
   // handle onClick with disabled logic
   const handleOnClick = (rating: number) => {
     if (disabled || readonly) {
       return;
     }
+    // callback function get rating value from outside of component
+    if (onChange) {
+      onChange(rating);
+    }
     setRatingNum(rating);
   };
 
   // handle onMouseEnter with disabled logic
-  const handleOnMouseEnter = (rating: number, i: number) => {
+  const handleOnMouseEnter = (rating: number, i: number, e: any) => {
     if (disabled || readonly) {
       return;
     }
@@ -87,18 +101,17 @@ export const Rating: FC<RatingProps> = (props) => {
     setCurrentHovering(null);
   };
 
-  const handleOnChange = () => {};
-
   const rating = starArr.map((_, index) => {
     const ratingValue = index + 1;
     const isFilled = ratingValue <= (hover || (ratingNum as number));
     const sizeDetect = animateBySize(size as IconSize, currentHovering, index);
+
     return (
       <div
-        style={{ display: 'inline-block' }}
         key={index}
+        ref={iconRef}
         className={styleClasses}
-        onMouseEnter={() => handleOnMouseEnter(ratingValue, index)}
+        onMouseEnter={(e) => handleOnMouseEnter(ratingValue, index, e)}
         onMouseLeave={handleOnMouseLeave}
         onClick={() => handleOnClick(ratingValue)}
       >

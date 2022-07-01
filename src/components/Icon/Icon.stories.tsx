@@ -13,6 +13,8 @@ export const DefaultIcon = () => (
     <Icon name="star" />
     <Icon name="star half" />
     <Icon name="star regular" />
+    <Icon name="star solid half left" />
+
   </div>
 );
 

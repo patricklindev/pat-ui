@@ -13,15 +13,22 @@ export const DefaultStepper = () => (
         <Stepper
             stepperType={"circle"}
             stepperElements={[
-                "Lets begin planning",
-                "Lets start developing",
-                "Lets begin live deployment",
-                "Lets conduct usability tests",
-                "Lets revise our product",
-                "Lets market our product"
+                {
+                 title: "Default array length 3",
+                 description: ""
+                },
+                {
+                  title: "Define props in component",
+                  description: ""
+                },
+                {
+                  title: "Feed an string array",
+                description: ""
+                },
             ]}
             buttonTitleNext={"NEXT"}
             buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
         >
         </Stepper>
     </div>
@@ -32,26 +39,79 @@ export const SquareStepper = () => (
         <Stepper
             stepperType={"square"}
             stepperElements={[
-                "Lets begin planning",
-                "Lets start developing",
-                "Lets begin live deployment"
+                {
+                 title: "Default array length 3",
+                 description: ""
+                },
+                {
+                  title: "Define props in component",
+                  description: ""
+                },
+                {
+                  title: "Feed an string array",
+                description: ""
+                },
             ]}
             buttonTitleNext={"NEXT"}
             buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
         >
         </Stepper>
     </div>
 )
 
-export const ExampleStepper = () => (
+export const AdditionalStepsStepper = () => (
     <div>
         <Stepper
             stepperType={"square"}
             stepperElements={[
-                "This is an example",
-                "Another example",
-                "11111111111111111111"
+                {
+                    title:  "Lets begin planning",
+                    description: "" 
+                  },
+                  {
+                    title:  "Lets start developing",
+                    description: ""  
+                  },
+                  {
+                    title:   "Lets begin live deployment",
+                    description: ""  
+                  },
+                  {
+                    title:  "Lets market our product",
+                    description: ""
+                  }
             ]}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
+        >
+        </Stepper>
+    </div>
+)
+
+export const VerticalStepper = () => (
+    <div>
+        <Stepper
+            stepperElements={[
+                {
+                    title:  "Lets begin planning",
+                    description: "" 
+                  },
+                  {
+                    title:  "Lets start developing",
+                    description: ""  
+                  },
+                  {
+                    title:   "Lets begin live deployment",
+                    description: ""  
+                  },
+                  {
+                    title:  "Lets market our product",
+                    description: ""
+                  }
+            ]}
+            stepperOrientation={"vertical"}
             buttonTitleNext={"NEXT"}
             buttonTitlePrev={"PREV"}
         >

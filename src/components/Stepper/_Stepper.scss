@@ -1,65 +1,171 @@
 
 .all-container {
     width:100%;
+}
+
+
+.center-main-body {
+    width:fit-content;
+    border-style:groove;
+    border-radius:12.5px;
     margin:auto;
 }
 
 .flex-row-container {
     display: flex;
-    width:100%;
-    margin:auto;
 }
 
-.flex-element-container{
-    width:250px;
-    margin:auto;
-}
+// .progress-circle-completed {
+//     height: 25px;
+//     width: 25px;
+//     background-color: green;
+//     border-radius: 50%;
+//     display: inline-block;
+//     text-align:center;
+//     margin:auto;
+// }
 
-.Stepper-Button {
-    width:350px;
-    margin:auto;
-}
+//DESCRIPTION FOR HTML ARRAY
+// .progress-stepper{
+//     border-radius:$border-radius;
+//     margin-left:45%;
+// }
 
-.flex-element {
-    width:200px;
-    margin:auto;
-   
-}
-
-.progress-stepper{
-    margin:auto;
-    text-align:center
-}
+.progress-container {
+    padding-right:1%;
+  }
 
 .progress-description{
-    margin:auto;
-    text-align:center;
-    border-color:black;
-    border-style: double;
+    width:400px;
+    margin-left:5%;
 }
 
-.progress-stepper-completed {
-    margin:auto;
-    text-align:center;
-    color:$green;
-}
-
-.progress-circle-completed {
-    height: 25px;
-    width: 25px;
-    background-color: green;
-    border-radius: 50%;
-    display: inline-block;
-    text-align:center;
-    margin:auto;
-}
-
+//STEPPERTYPE==CIRCLE
+//FOR WHEN STEPPERTYPE IS "CIRCLE"
 .dot {
     height: 25px;
-    width: 25px;
-    background-color: #bbb;
+    width: 50px;
+    background-color: $gray-600;
     border-radius: 50%;
     display: inline-block;
     text-align:center;
-    margin:auto;
+    z-index: 1;
+    color:$gray-100;
+    margin-left:10%;
   }
+
+  .dot-last {
+    height: 25px;
+    width: 32px;
+    background-color: $gray-600;
+    border-radius: 50%;
+    display: inline-block;
+    text-align:center;
+    z-index: 1;
+    color:$gray-100;
+    margin-left:10%;
+  }
+
+  .dot-vertical {
+    height: 25px;
+    width: 25px;
+    background-color: $gray-600;
+    border-radius: 50%;
+    display: inline-block;
+    text-align:center;
+    z-index: 1;
+    color:$gray-100;
+    margin-left:10%;
+  }
+
+//STEPPERTYPE==SQUARE
+//FOR WHEN STEPPERTYPE IS "SQUARE"
+.square {
+    height: 25px;
+    width: 50px;
+    background-color: $gray-600;
+    display: inline-block;
+    text-align:center;
+    border-radius: 20%;
+    color:$gray-100;
+    margin-left:10%;
+}
+
+.square-last {
+    height: 25px;
+    width: 32px;
+    background-color: $gray-600;
+    display: inline-block;
+    text-align:center;
+    border-radius: 20%;
+    color:$gray-100;
+    margin-left:10%;
+}
+
+.square-vertical {
+    height: 25px;
+    width: 25px;
+    background-color: $gray-600;
+    display: inline-block;
+    text-align:center;
+    border-radius: 20%;
+    color:$gray-100;
+    margin-left:10%;
+}
+
+// BUTTON
+
+.Stepper-Button-Left {
+    margin-left:5%;
+    width:20%;
+ 
+}
+
+.spacer {
+    width:50%;
+}
+
+.Stepper-Button-Right {
+    width:20%;
+    margin-right:5%;
+
+}
+
+.button-row-centered {
+    padding:1%;
+    width:fit-content;
+
+}
+
+// LINEBAR
+
+.completed {
+    background-color: green;
+    color:$gray-100;
+}
+
+
+.bar {
+    background-color: $gray-600;
+    width:50%;
+    min-width:20%;
+    height:5px;
+  margin:auto;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.bar-completed {
+    background-color: green;
+    width:50%;
+    min-width:20%;
+    height:5px;
+    margin:auto;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+
+
+
+//ORIENTATION

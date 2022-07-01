@@ -10,14 +10,15 @@ export interface ISliderProps {
     sliderSize?: SliderSize;
     className?: string;
     sliderTheme?: SliderTheme;
-    sliderOrientation? : SliderOrientation;
+    sliderOrientation?: SliderOrientation;
+    onChange?: Function;
 }
 
 
 
 export const Slider: FC<ISliderProps> = (props) => {
 
-    const {className, children, sliderSize, sliderTheme, sliderOrientation} = props;
+    const { className, onChange, sliderSize, sliderTheme, sliderOrientation } = props;
 
     let styleClasses = classNames('slider', {
         [`slider-${sliderSize}`]: !!sliderSize,
@@ -33,7 +34,16 @@ export const Slider: FC<ISliderProps> = (props) => {
     }
 
     return (
-        <input type="range" min="1" max="100" className={styleClasses} id="myRange" />
+        <input
+            type="range"
+            min="1"
+            max="100"
+            className={styleClasses}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                if (onChange) {
+                    onChange();
+                }
+            }} />
     );
 
 

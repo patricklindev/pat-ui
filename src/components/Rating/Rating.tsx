@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, HTMLAttributes, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
@@ -20,7 +20,11 @@ interface IRatingProps {
   half?: boolean;
   /** set label after the rating component */
   labelInput?: string;
+  /** get the current rating value outside of component */
+  onChange?: () => number;
 }
+
+export type RatingProps = IRatingProps & HTMLAttributes<HTMLElement>;
 
 /**
  * Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.
@@ -30,7 +34,7 @@ interface IRatingProps {
  * ```
  */
 
-export const Rating: FC<IRatingProps> = (props) => {
+export const Rating: FC<RatingProps> = (props) => {
   const {
     className,
     disabled,
@@ -82,6 +86,8 @@ export const Rating: FC<IRatingProps> = (props) => {
     setHoverValue(0);
     setCurrentHovering(null);
   };
+
+  const handleOnChange = () => {};
 
   const rating = starArr.map((_, index) => {
     const ratingValue = index + 1;

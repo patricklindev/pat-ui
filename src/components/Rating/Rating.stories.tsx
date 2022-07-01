@@ -18,7 +18,7 @@ const sizeArr = ['small', 'medium', 'large'];
 
 export const DefaultRating = () => (
   <div style={ratingStyle}>
-    <Rating />
+    <Rating onClick={action('hi')} />
   </div>
 );
 

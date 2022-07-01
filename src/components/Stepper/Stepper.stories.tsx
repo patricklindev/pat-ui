@@ -96,22 +96,52 @@ export const VerticalStepper = () => (
             stepperElements={[
                 {
                     title:  "Lets begin planning",
-                    description: "" 
+                    description: "This is the step where you need to define your application goals,wireframe, and development path"
                   },
                   {
                     title:  "Lets start developing",
-                    description: ""  
+                    description: "This is the step where the team begins to parcel out development tasks and begin coding"  
                   },
                   {
                     title:   "Lets begin live deployment",
-                    description: ""  
+                    description: "This is the step where you begin to test your product on live servers"  
                   },
                   {
                     title:  "Lets market our product",
-                    description: ""
+                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more."
                   }
             ]}
             stepperOrientation={"vertical"}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+        >
+        </Stepper>
+    </div>
+)
+
+export const VerticalSquareStepper = () => (
+    <div>
+        <Stepper
+            stepperElements={[
+                {
+                    title:  "Lets begin planning",
+                    description: "This is the step where you need to define your application goals,wireframe, and development path"
+                  },
+                  {
+                    title:  "Lets start developing",
+                    description: "This is the step where the team begins to parcel out development tasks and begin coding"  
+                  },
+                  {
+                    title:   "Lets begin live deployment",
+                    description: "This is the step where you begin to test your product on live servers"  
+                  },
+                  {
+                    title:  "Lets market our product",
+                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more."
+                  }
+            ]}
+            stepperOrientation={"vertical"}
+            stepperType={"square"}
             buttonTitleNext={"NEXT"}
             buttonTitlePrev={"PREV"}
         >

@@ -37,7 +37,7 @@
 
 .progress-description{
     width:400px;
-    margin-left:5%;
+    margin-left:5%;  
 }
 
 //STEPPERTYPE==CIRCLE
@@ -125,10 +125,14 @@
     width:50%;
 }
 
+.vertical-spacer {
+    width:25%;
+}
+
 .Stepper-Button-Right {
     width:20%;
     margin-right:5%;
-
+    display:inline-block;
 }
 
 .button-row-centered {
@@ -165,7 +169,23 @@
     display: inline-block;
 }
 
-
-
-
 //ORIENTATION
+
+.vertical {
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.progress-description-vertical{
+    width:400px;
+    margin-left:5%;  
+}
+
+
+.container-vertical {
+    height:200px;
+    transition: height 2s;
+    border-style: solid;
+  }
+
+

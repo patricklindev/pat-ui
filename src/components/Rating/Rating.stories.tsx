@@ -24,7 +24,7 @@ export const DefaultRating = () => (
 
 export const DisabledRating = () => (
   <div style={ratingStyle}>
-    <Rating disabled ratingValueControll={3} />
+    <Rating disabled ratingValueControll={4} />
   </div>
 );
 
@@ -37,6 +37,6 @@ export const DiffSizeRating = () =>
 
 export const ReadyOnlyRating = () => (
   <div style={ratingStyle}>
-    <Rating readonly ratingValueControll={3} />
+    <Rating readonly ratingValueControll={3.5} />
   </div>
 );

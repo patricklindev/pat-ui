@@ -88,3 +88,15 @@
   height: $height;
   border: $border;
 }
+
+@mixin checkmark-type($bg-color, $border) {
+  background-color: $bg-color;
+  border: $border;
+}
+
+@mixin hoverCircle-style($left, $top, $height, $width) {
+  left: $left;
+  top: $top;
+  height: $height;
+  width: $width;
+}

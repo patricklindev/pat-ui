@@ -26,10 +26,11 @@ interface ICheckboxProps {
     label?: string;
     disabled?: boolean;
     checkedState?: checkBoxState;
+    icon?: ReactNode;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
-    const {children, checkSize, checkType, label, disabled, checkedState, className} = props;
+    const {children, checkSize, checkType, label, disabled, checkedState, className, icon} = props;
     const checkRef = useRef<any>();
     useEffect(() => {
         checkRef.current.checked = checkedState === 1
@@ -44,13 +45,30 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         styleClasses += ' ' + className;
     }
 
-    return (
-        <label className={styleClasses}>
-            <input type='checkbox' disabled={disabled} ref={checkRef} />
-            <span className='checkmark'></span>
-            {label}
-        </label>
-    )
+    let checkbox;
+    if (icon) {
+        console.log(icon);
+        checkbox = (
+            <label className={styleClasses}>
+                <input type='checkbox' disabled={disabled} ref={checkRef} />
+                {icon}
+                <span className='hoverCircle icon-hover'></span>
+            </label>
+        )
+    }
+    else {
+        console.log("no icon");
+        checkbox = (
+            <label className={styleClasses}>
+                <input type='checkbox' disabled={disabled} ref={checkRef} />
+                <span className='checkmark'></span>
+                {label}
+                <span className='hoverCircle'></span>
+            </label>
+        )
+    }
+
+    return checkbox;
 }
 
 Checkbox.defaultProps = {

@@ -2,7 +2,7 @@
   position: relative;
   padding: $check-default-padding;
   margin-bottom: 30px;
-  cursor: pointer;
+  // cursor: pointer;
   font-size: $check-label-font-size;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -14,9 +14,25 @@
 .checkbox input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
+}
+
+.hoverCircle {
+  background-color: $gray-300;
+  border-radius: 50px;
+  position: absolute;
+  opacity: 0;
+  @include hoverCircle-style(2px, 4px, 15px, 15px);
+  cursor: pointer;
+  &:hover {
+    transform: scale(3);
+    opacity: 0.3;
+  }
+}
+
+.icon-hover {
+  @include hoverCircle-style(37px, 4px, 18px, 18px);
 }
 
 .checkmark {
@@ -26,9 +42,6 @@
   border-radius: $check-border-radius;
   border: $checkmark-border;
   @include checkbox-size(18px, 18px);
-  // &:hover {
-  //   background-color: yellow;
-  // }
 }
 
 /* When the checkbox is checked, add a background */
@@ -41,9 +54,15 @@
 }
 
 .checkbox input:disabled ~ .checkmark {
-  // background-color: $gray-300;
-  border: 2px solid $gray-300;
+  border: $checkmark-border-default;
+}
+
+.checkbox input:disabled ~ .hoverCircle {
+  border: $checkmark-border-default;
   cursor: not-allowed;
+  &:hover {
+    opacity: 0;
+  }
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -81,6 +100,15 @@
   input:indeterminate ~ .checkmark:after {
     @include checkmark-style(block, 1px, 4px, 8.5px, 1px, $checkmark-icon-border);
   }
+
+  .hoverCircle {
+    left: 0;
+    top: 3px;
+  }
+
+  .hoverCircle:hover {
+    transform: scale(2);
+  }
 }
 
 .check-default {
@@ -94,25 +122,40 @@
 }
 
 .check-primary {
-  input:checked ~ .checkmark {
+  .hoverCircle {
     background-color: #3F51B5;
-    border: 2px solid #3F51B5;
+  }
+
+  input:checked ~ .checkmark {
+    @include checkmark-type(#3F51B5, $checkmark-border-primary);
   }
   
   input:indeterminate ~ .checkmark {
-    background-color: #3F51B5;
-    border: 2px solid #3F51B5;
+    @include checkmark-type(#3F51B5, $checkmark-border-primary);
   }
 }
 
 .check-secondary {
-  input:checked ~ .checkmark {
+  .hoverCircle {
     background-color: #F50057;
-    border: 2px solid #F50057;
+  }
+
+  input:checked ~ .checkmark {
+    @include checkmark-type(#F50057, $checkmark-border-secondary);
   }
   
   input:indeterminate ~ .checkmark {
-    background-color: #F50057;
-    border: 2px solid #F50057;
+    @include checkmark-type(#F50057, $checkmark-border-secondary);
   }
+}
+
+.checkbox svg {
+  stroke-width: 2.5;
+  stroke: black;
+  fill: white;
+  cursor: pointer;
+}
+
+.checkbox input:checked ~ svg {
+  fill: black;
 }

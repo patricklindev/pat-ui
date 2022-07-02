@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
+import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
@@ -10,7 +10,7 @@ import {
   getFullStars,
   getIconColor,
   getIconName,
-  getSizeName,
+  getSizeName
 } from './helper';
 import { useCurrentRatingLabel } from './hooks';
 
@@ -85,9 +85,6 @@ export const Rating: FC<RatingProps> = (props) => {
   const [currentHovering, setCurrentHovering] = useState<number>(-1);
   const [stars, setStars] = useState<IStars>(starArr);
 
-  // target Icon element to get offsetX
-  const iconRef = useRef<any>(null);
-
   // custom hooks
   const { labelName } = useCurrentRatingLabel(
     currentTotalRating as number,
@@ -101,7 +98,7 @@ export const Rating: FC<RatingProps> = (props) => {
     }
     const newStarRating = getCurrentStarRating(stars);
     setCurrentTotalRating(newStarRating);
-
+    // onChange callback
     if (onChange) {
       onChange(rating);
     }
@@ -162,7 +159,6 @@ export const Rating: FC<RatingProps> = (props) => {
       <div
         key={star.index + 'star'}
         className={styleClasses}
-        ref={iconRef}
         onMouseLeave={handleOnMouseLeave}
         onMouseMove={(e) => handleOnMouseMove(e, ratingValue)}
         onClick={() => handleOnClick(ratingValue)}

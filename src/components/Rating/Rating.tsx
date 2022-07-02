@@ -95,12 +95,16 @@ export const Rating: FC<RatingProps> = (props) => {
   );
 
   // handle onClick with disabled logic
-  const handleOnClick = () => {
+  const handleOnClick = (rating: number) => {
     if (disabled || readonly) {
       return;
     }
     const newStarRating = getCurrentStarRating(stars);
     setCurrentTotalRating(newStarRating);
+
+    if (onChange) {
+      onChange(rating);
+    }
   };
 
   // handle onMouseLeave with disabled logic
@@ -161,7 +165,7 @@ export const Rating: FC<RatingProps> = (props) => {
         ref={iconRef}
         onMouseLeave={handleOnMouseLeave}
         onMouseMove={(e) => handleOnMouseMove(e, ratingValue)}
-        onClick={handleOnClick}
+        onClick={() => handleOnClick(ratingValue)}
       >
         <Icon
           name={getIconName(star.value)}

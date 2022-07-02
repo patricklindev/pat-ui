@@ -12,8 +12,8 @@ export default {
 //SECTION 3: Define what is shown on Storybook
 
 export const DefaultSwitch = () => (
-    <Switch>Basic Switches</Switch>
-    // <Switch onClick={action('Default Switch clicked')}>Basic Switches</Switch>
+    // <Switch>Basic Switches</Switch>
+    <Switch onClick={action('Default Switch clicked')}>Basic Switches</Switch>
 )        
 
 export const DiffSizeSwitch = () => (

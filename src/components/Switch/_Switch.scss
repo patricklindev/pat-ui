@@ -25,7 +25,9 @@ $spotThree: #ff0000;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    height:14px;
+    width: 34px;
+    background-color: #E0E0E0;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -33,11 +35,11 @@ $spotThree: #ff0000;
   .slider:before{
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
+    height: 20px;
+    width: 20px;
+    left: -1px;
+    bottom: -3px;
+    background-color: #BDBDBD;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -51,23 +53,17 @@ $spotThree: #ff0000;
   }
   
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
   }
   
   /* Rounded sliders */
   .slider.round {
-    color: #fdec6e;
-    text-shadow:0px 0px 30px #fdec6e;
-    -moz-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    -webkit-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-    border-radius: 34px;
+    border-radius: 7px;
   }
 
-  
+
   .slider.round:before {
     border-radius: 50%;
   }

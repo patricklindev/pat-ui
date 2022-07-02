@@ -1,9 +1,14 @@
   //SECTION 1:
-import React, { FC, ReactNode,useEffect,useState } from 'react';
+  import React, {
+    HTMLAttributes,
+    AnchorHTMLAttributes,
+    FC,
+    MouseEvent,
+  } from 'react';
 import { classNames } from '../../utils/classNames';
 
 //SECTION 2: 
-// DEWFINE OPTIONS AVAILABLE TO YOUR END USER
+// DEFINE OPTIONS AVAILABLE TO YOUR END USER
 
 export type SwitchSize = 'lg' | 'sm';
 export type SwitchColor =
@@ -11,6 +16,7 @@ export type SwitchColor =
   | 'secondary'
   | 'danger'
   | 'default'
+export type Disabled = false
 
 //SECTION 3:
 // INTERFACE 
@@ -23,13 +29,16 @@ export interface ISwitchProps {
     /** set switch type */
     switchColor?: SwitchColor;
     /** set disabled switch */
-    disabled?: boolean;
+    disabled?: Disabled;
+    /**set action click*/
   }
 
 //SECTION 4: 
 // MAke sure your props are exported
 
-export type patSwitchProps = ISwitchProps
+// type NativeSwtichProps = ISwitchProps & HTMLAttributes<HTMLButtonElement>;
+// type NativeAchorSwitchProps = ISwitchProps & AnchorHTMLAttributes<HTMLAnchorElement>;
+export type SwitchProps = ISwitchProps & HTMLAttributes<HTMLElement>
 
 // import Example from '../Component/Example'
 // <Example
@@ -39,7 +48,7 @@ export type patSwitchProps = ISwitchProps
 
 //SECTION 5: DEFINE HTML/ LOGIC/ PROPS/ VARIABLE DECLARATIONS
 
-export const Switch: FC<patSwitchProps> = (props) => {
+export const Switch: FC<SwitchProps> = (props) => {
 
     //SECTION 5.1: Make sure the components are carried over into your component
     // 
@@ -53,7 +62,11 @@ export const Switch: FC<patSwitchProps> = (props) => {
     let Switch =
         <>
             <label className="switch">  
-                <input type="checkbox" onClick={ChangeColor}/>
+                <input 
+                    type="checkbox" 
+                    defaultChecked
+                    {...(rest )}
+                />
                 <span 
                     className="slider round"
                     color="danger">

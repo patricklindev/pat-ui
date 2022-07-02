@@ -43,7 +43,7 @@ export const getSizeName = (size: IconSize, isHovering: boolean): IconSize => {
   }
 };
 
-export const getSizeNumberByName = (size: IconSize): number => {
+export const convertSizeNameToSizeNumber = (size: IconSize): number => {
   switch (size) {
     case 'small':
       return 20;
@@ -55,3 +55,5 @@ export const getSizeNumberByName = (size: IconSize): number => {
       return 28;
   }
 };
+
+

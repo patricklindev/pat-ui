@@ -3,10 +3,10 @@ import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
 import {
+  convertSizeNameToSizeNumber,
   getIconColor,
   getIconName,
   getSizeName,
-  getSizeNumberByName,
 } from './helper';
 
 interface IRatingProps {
@@ -23,8 +23,8 @@ interface IRatingProps {
   defaultRating?: number;
   /** allow half fraction of stars */
   half?: boolean;
-  /** set label after the rating component */
-  labelInput?: string;
+  /** set label with satisfaction words after the rating component */
+  isLabel?: boolean;
   /** get the current rating value outside of component */
   onChange?: (rating: any) => void;
 }
@@ -47,7 +47,7 @@ export const Rating: FC<RatingProps> = (props) => {
     ratingCount,
     size,
     defaultRating,
-    labelInput,
+    isLabel,
     half,
     onChange,
   } = props;
@@ -72,6 +72,7 @@ export const Rating: FC<RatingProps> = (props) => {
     };
   });
   const [stars, setStars] = useState(starArr);
+  const [labelName, setLabelName] = useState('');
 
   const iconRef = useRef<any>(null);
 
@@ -111,9 +112,17 @@ export const Rating: FC<RatingProps> = (props) => {
 
     setCurrentHovering(index);
 
+    const newStarRating = stars
+      .map((star) => star.value)
+      .reduce((value, count) => {
+        return (value += count);
+      }, 0);
+
+    setCurrentTotalRating(newStarRating);
+
     if (half) {
       const { offsetX } = e.nativeEvent;
-      const currentSize = getSizeNumberByName(size as IconSize);
+      const currentSize = convertSizeNameToSizeNumber(size as IconSize);
 
       //  if star index === current index
       // if offsetX === 0 (star index - 1) number of  stars value to be 1, rest will be 0
@@ -252,6 +261,25 @@ export const Rating: FC<RatingProps> = (props) => {
     }
   }, [defaultRating, half]);
 
+  useEffect(() => {
+    // rating label will change according to currentRating
+    const getCurrentRatingLabel = (currentRating: number) => {
+      const lowTile = Math.round((ratingCount as number) / 4);
+      const midTile = Math.round((ratingCount as number) / 2);
+      if (currentRating <= lowTile) {
+        setLabelName('Poor');
+      } else if (currentRating <= midTile) {
+        setLabelName('Good');
+      } else {
+        setLabelName('Excellent!');
+      }
+    };
+
+    if (currentTotalRating) {
+      getCurrentRatingLabel(currentTotalRating);
+    }
+  }, [currentTotalRating, ratingCount]);
+
   const newRating = stars.map((star, index) => {
     const ratingValue = index + 1;
     const currentSize = getSizeName(
@@ -278,16 +306,7 @@ export const Rating: FC<RatingProps> = (props) => {
     );
   });
 
-  // rating label according to currentRating
-  // const getCurrentRatingLabel = (currentRating: number) => {
-  //   switch(currentRating){
-  //     case 0.5 :
-  //       return 'Very poor'
-  //     case 1:
-  //       return ''
-  //   }
-  // };
-  const label = labelInput && <label>{}</label>;
+  const label = isLabel && <label>{labelName}</label>;
 
   return (
     <div className="rating-container">

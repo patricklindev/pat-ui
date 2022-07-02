@@ -56,3 +56,14 @@ export const HalfFractionRating = () => (
     <Rating defaultRating={3.5} half />
   </div>
 );
+
+export const LabelRating = () => (
+  <>
+    <div style={ratingStyle}>
+      <Rating isLabel defaultRating={1} />
+    </div>
+    <div style={ratingStyle}>
+      <Rating isLabel half defaultRating={2.5} />
+    </div>
+  </>
+);

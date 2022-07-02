@@ -67,3 +67,14 @@ export const LabelRating = () => (
     </div>
   </>
 );
+
+export const CustomCountsRating = () => (
+  <>
+    <div style={ratingStyle}>
+      <Rating ratingCount={10} defaultRating={5} />
+    </div>
+    <div style={ratingStyle}>
+      <Rating ratingCount={10} defaultRating={6.5} half />
+    </div>
+  </>
+);

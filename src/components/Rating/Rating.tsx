@@ -2,7 +2,12 @@ import React, { FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
-import { getIconColor, getIconName, getSizeName } from './helper';
+import {
+  getIconColor,
+  getIconName,
+  getSizeName,
+  getSizeNumberByName,
+} from './helper';
 
 interface IRatingProps {
   className?: string;
@@ -14,7 +19,7 @@ interface IRatingProps {
   ratingCount?: number;
   /** set size of stars */
   size?: IconSize;
-  /** controll value of filled star ratings */
+  /** controll value of filled star ratings (rating value can be .5 fraction when "half" prop is added) */
   defaultRating?: number;
   /** allow half fraction of stars */
   half?: boolean;
@@ -108,7 +113,7 @@ export const Rating: FC<RatingProps> = (props) => {
 
     if (half) {
       const { offsetX } = e.nativeEvent;
-      const tempSize = 28;
+      const currentSize = getSizeNumberByName(size as IconSize);
 
       //  if star index === current index
       // if offsetX === 0 (star index - 1) number of  stars value to be 1, rest will be 0
@@ -130,7 +135,7 @@ export const Rating: FC<RatingProps> = (props) => {
           };
         }
 
-        if (offsetX <= tempSize / 2) {
+        if (offsetX <= currentSize / 2) {
           if (star.index < index) {
             return {
               ...star,
@@ -151,7 +156,7 @@ export const Rating: FC<RatingProps> = (props) => {
           };
         }
 
-        if (offsetX >= tempSize / 2) {
+        if (offsetX >= currentSize / 2) {
           if (star.index <= index) {
             return {
               ...star,
@@ -273,7 +278,16 @@ export const Rating: FC<RatingProps> = (props) => {
     );
   });
 
-  const label = labelInput && <label>{labelInput}</label>;
+  // rating label according to currentRating
+  // const getCurrentRatingLabel = (currentRating: number) => {
+  //   switch(currentRating){
+  //     case 0.5 :
+  //       return 'Very poor'
+  //     case 1:
+  //       return ''
+  //   }
+  // };
+  const label = labelInput && <label>{}</label>;
 
   return (
     <div className="rating-container">

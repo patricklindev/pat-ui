@@ -1,6 +1,6 @@
-import { IconSize } from '../Icon/Icon';
+import { IconColor, IconSize } from '../Icon/Icon';
 
-export const getIconName = (starValue: number) => {
+export const getIconName = (starValue: number): string => {
   switch (starValue) {
     case 0:
       return 'star regular';
@@ -11,14 +11,14 @@ export const getIconName = (starValue: number) => {
   }
 };
 
-export const getIconColor = (starValue: number) => {
+export const getIconColor = (starValue: number): IconColor => {
   if (starValue !== 0) {
     return 'orange';
   }
   return 'grey';
 };
 
-export const getSizeName = (size: IconSize, isHovering: boolean) => {
+export const getSizeName = (size: IconSize, isHovering: boolean): IconSize => {
   switch (size) {
     case 'small':
       if (isHovering) {
@@ -40,5 +40,18 @@ export const getSizeName = (size: IconSize, isHovering: boolean) => {
 
     default:
       return size;
+  }
+};
+
+export const getSizeNumberByName = (size: IconSize): number => {
+  switch (size) {
+    case 'small':
+      return 20;
+    case 'medium':
+      return 28;
+    case 'large':
+      return 42;
+    default:
+      return 28;
   }
 };

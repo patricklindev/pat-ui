@@ -1,11 +1,4 @@
-import React, {
-  FC,
-  HTMLAttributes,
-  MouseEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, HTMLAttributes, useRef, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
@@ -62,34 +55,42 @@ export const Rating: FC<RatingProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
-  // create an arr to map star icons
-  const starArr = [...Array(ratingCount)];
   // states to manage save rating value, hover effect, and currentHover position
-  const [ratingNum, setRatingNum] = useState(ratingValueControll);
-  const [hover, setHoverValue] = useState(0);
-  const [currentHovering, setCurrentHovering] = useState<number | null>(-1);
+  const [currentTotalRating, setCurrentTotalRating] =
+    useState(ratingValueControll);
+  const [currentHovering, setCurrentHovering] = useState<number>(-1);
+  // rating arr
+  const starArr = new Array(ratingCount).fill(0).map((item, index) => {
+    return {
+      value: 0,
+      index,
+    };
+  });
+  const [stars, setStars] = useState(starArr);
 
   const iconRef = useRef<any>(null);
 
-  // handle onClick with disabled logic
-  const handleOnClick = (rating: number) => {
-    if (disabled || readonly) {
-      return;
-    }
-    // callback function get rating value from outside of component
-    if (onChange) {
-      onChange(rating);
-    }
-    setRatingNum(rating);
-  };
+  console.log(stars);
+  console.log(currentHovering);
 
-  // handle onMouseEnter with disabled logic
-  const handleOnMouseEnter = (rating: number, i: number, e: any) => {
+  // handle onClick with disabled logic
+  const handleOnClick = () => {
     if (disabled || readonly) {
       return;
     }
-    setHoverValue(rating);
-    setCurrentHovering(i);
+
+    const newStarRating = stars
+      .map((star) => star.value)
+      .reduce((value, count) => {
+        return (value += count);
+      }, 0);
+
+    setCurrentTotalRating(newStarRating);
+
+    // callback function get rating value from outside of component
+    // if (onChange) {
+    //   onChange(ratingNum);
+    // }
   };
 
   // handle onMouseLeave with disabled logic
@@ -97,29 +98,127 @@ export const Rating: FC<RatingProps> = (props) => {
     if (disabled || readonly) {
       return;
     }
-    setHoverValue(0);
-    setCurrentHovering(null);
+    setCurrentHovering(-1);
   };
 
-  const rating = starArr.map((_, index) => {
-    const ratingValue = index + 1;
-    const isFilled = ratingValue <= (hover || (ratingNum as number));
-    const sizeDetect = animateBySize(size as IconSize, currentHovering, index);
+  // half star logic
+  const handleOnMouseMove = (e: any, index: number) => {
+    if (disabled || readonly) {
+      return;
+    }
 
+    setCurrentHovering(index);
+
+    const { offsetX } = e.nativeEvent;
+    const tempSize = 28;
+
+    //  if star index === current index
+    // if offsetX === 0 (star index - 1) number of  stars value to be 1, rest will be 0
+    // if offsetX <= size / 2 (star index - 1) number of stars value to be 1 but current index star value to be .5 and rest will be 0
+    // if offsetX >= size / 2 star index number of stars value to be 1 and rest will be 0
+
+    const newStars = stars.map((star) => {
+      if (offsetX === 0) {
+        if (star.index < index) {
+          return {
+            ...star,
+            value: 1,
+          };
+        }
+
+        return {
+          ...star,
+          value: 0,
+        };
+      }
+
+      if (offsetX <= tempSize / 2) {
+        if (star.index < index) {
+          return {
+            ...star,
+            value: 1,
+          };
+        }
+
+        if (star.index === index) {
+          return {
+            ...star,
+            value: 0.5,
+          };
+        }
+
+        return {
+          ...star,
+          value: 0,
+        };
+      }
+
+      if (offsetX >= tempSize / 2) {
+        if (star.index <= index) {
+          return {
+            ...star,
+            value: 1,
+          };
+        }
+
+        return {
+          ...star,
+          value: 0,
+        };
+      }
+      return star;
+    });
+
+    setStars(newStars);
+
+    const newStarRating = stars
+      .map((star) => star.value)
+      .reduce((value, count) => {
+        return (value += count);
+      }, 0);
+
+    setCurrentTotalRating(newStarRating);
+  };
+
+  const newRating = stars.map((star, index) => {
+    const getIconName = (starValue: number) => {
+      if (starValue === 0) {
+        return 'star regular';
+      }
+
+      if (starValue === 0.5) {
+        return 'star half';
+      }
+
+      return 'star';
+    };
+
+    const getIconColor = (starValue: number) => {
+      if (starValue !== 0) {
+        return 'orange';
+      }
+
+      return 'grey';
+    };
+
+    const currentSize = animateBySize(
+      size as IconSize,
+      currentHovering === index
+    );
     return (
       <div
-        key={index}
-        ref={iconRef}
+        key={star.index + 'star'}
         className={styleClasses}
-        onMouseEnter={(e) => handleOnMouseEnter(ratingValue, index, e)}
+        ref={iconRef}
         onMouseLeave={handleOnMouseLeave}
-        onClick={() => handleOnClick(ratingValue)}
+        onMouseMove={(e) => handleOnMouseMove(e, index)}
+        onClick={handleOnClick}
       >
         <Icon
-          name={isFilled ? 'star' : 'star regular'}
-          color={isFilled ? 'orange' : 'grey'}
+          name={getIconName(star.value)}
+          color={getIconColor(star.value)}
           disabled={disabled}
-          size={sizeDetect}
+          size={currentSize}
           className="rating-icon"
         />
       </div>
@@ -130,7 +229,7 @@ export const Rating: FC<RatingProps> = (props) => {
 
   return (
     <div className="rating-container">
-      {rating}
+      {newRating}
       {label}
     </div>
   );

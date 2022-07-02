@@ -1,29 +1,25 @@
 import { IconSize } from '../Icon/Icon';
 
-export const animateBySize = (
-  size: IconSize,
-  currentHovering: number | null,
-  index: number
-) => {
+export const animateBySize = (size: IconSize, isHovering: boolean) => {
   switch (size) {
     case 'small':
-      if (currentHovering === index) {
+      if (isHovering) {
         return 'medium';
-      } else {
-        return size;
       }
+      return size;
+
     case 'medium':
-      if (currentHovering === index) {
+      if (isHovering) {
         return 'large';
-      } else {
-        return size;
       }
+      return size;
+
     case 'large':
-      if (currentHovering === index) {
+      if (isHovering) {
         return 'big';
-      } else {
-        return size;
       }
+      return size;
+
     default:
       return size;
   }

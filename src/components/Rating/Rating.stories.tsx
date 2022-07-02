@@ -23,9 +23,14 @@ export const DefaultRating = () => (
 );
 
 export const DisabledRating = () => (
-  <div style={ratingStyle}>
-    <Rating disabled ratingValueControll={4} />
-  </div>
+  <>
+    <div style={ratingStyle}>
+      <Rating disabled defaultRating={4} />
+    </div>
+    <div style={ratingStyle}>
+      <Rating disabled defaultRating={2.5} half />
+    </div>
+  </>
 );
 
 export const DiffSizeRating = () =>
@@ -36,7 +41,18 @@ export const DiffSizeRating = () =>
   ));
 
 export const ReadyOnlyRating = () => (
+  <>
+    <div style={ratingStyle}>
+      <Rating readonly defaultRating={4} />
+    </div>
+    <div style={ratingStyle}>
+      <Rating readonly defaultRating={2.5} half />
+    </div>
+  </>
+);
+
+export const HalfFractionRating = () => (
   <div style={ratingStyle}>
-    <Rating readonly ratingValueControll={3.5} />
+    <Rating defaultRating={3.5} half />
   </div>
 );

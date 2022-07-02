@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
-import { animateBySize } from './helper';
+import { getIconColor, getIconName, getSizeName } from './helper';
 
 interface IRatingProps {
   className?: string;
@@ -15,7 +15,7 @@ interface IRatingProps {
   /** set size of stars */
   size?: IconSize;
   /** controll value of filled star ratings */
-  ratingValueControll?: number;
+  defaultRating?: number;
   /** allow half fraction of stars */
   half?: boolean;
   /** set label after the rating component */
@@ -41,8 +41,9 @@ export const Rating: FC<RatingProps> = (props) => {
     readonly,
     ratingCount,
     size,
-    ratingValueControll,
+    defaultRating,
     labelInput,
+    half,
     onChange,
   } = props;
 
@@ -56,9 +57,7 @@ export const Rating: FC<RatingProps> = (props) => {
   }
 
   // states to manage save rating value, hover effect, and currentHover position
-  const [currentTotalRating, setCurrentTotalRating] =
-    useState(ratingValueControll);
-  console.log(currentTotalRating);
+  const [currentTotalRating, setCurrentTotalRating] = useState(defaultRating);
   const [currentHovering, setCurrentHovering] = useState<number>(-1);
   // rating arr
   const starArr = new Array(ratingCount).fill(0).map((item, index) => {
@@ -107,51 +106,70 @@ export const Rating: FC<RatingProps> = (props) => {
 
     setCurrentHovering(index);
 
-    const { offsetX } = e.nativeEvent;
-    const tempSize = 28;
+    if (half) {
+      const { offsetX } = e.nativeEvent;
+      const tempSize = 28;
 
-    //  if star index === current index
-    // if offsetX === 0 (star index - 1) number of  stars value to be 1, rest will be 0
-    // if offsetX <= size / 2 (star index - 1) number of stars value to be 1 but current index star value to be .5 and rest will be 0
-    // if offsetX >= size / 2 star index number of stars value to be 1 and rest will be 0
+      //  if star index === current index
+      // if offsetX === 0 (star index - 1) number of  stars value to be 1, rest will be 0
+      // if offsetX <= size / 2 (star index - 1) number of stars value to be 1 but current index star value to be .5 and rest will be 0
+      // if offsetX >= size / 2 star index number of stars value to be 1 and rest will be 0
 
-    const newStars = stars.map((star) => {
-      if (offsetX === 0) {
-        if (star.index < index) {
+      const newStars = stars.map((star) => {
+        if (offsetX === 0) {
+          if (star.index < index) {
+            return {
+              ...star,
+              value: 1,
+            };
+          }
+
           return {
             ...star,
-            value: 1,
+            value: 0,
           };
         }
 
-        return {
-          ...star,
-          value: 0,
-        };
-      }
+        if (offsetX <= tempSize / 2) {
+          if (star.index < index) {
+            return {
+              ...star,
+              value: 1,
+            };
+          }
 
-      if (offsetX <= tempSize / 2) {
-        if (star.index < index) {
+          if (star.index === index) {
+            return {
+              ...star,
+              value: 0.5,
+            };
+          }
+
           return {
             ...star,
-            value: 1,
+            value: 0,
           };
         }
 
-        if (star.index === index) {
+        if (offsetX >= tempSize / 2) {
+          if (star.index <= index) {
+            return {
+              ...star,
+              value: 1,
+            };
+          }
+
           return {
             ...star,
-            value: 0.5,
+            value: 0,
           };
         }
+        return star;
+      });
 
-        return {
-          ...star,
-          value: 0,
-        };
-      }
-
-      if (offsetX >= tempSize / 2) {
+      setStars(newStars);
+    } else {
+      const newStars = stars.map((star) => {
         if (star.index <= index) {
           return {
             ...star,
@@ -163,28 +181,18 @@ export const Rating: FC<RatingProps> = (props) => {
           ...star,
           value: 0,
         };
-      }
-      return star;
-    });
-
-    setStars(newStars);
-
-    const newStarRating = stars
-      .map((star) => star.value)
-      .reduce((value, count) => {
-        return (value += count);
-      }, 0);
-
-    setCurrentTotalRating(newStarRating);
+      });
+      setStars(newStars);
+    }
   };
 
   //
 
   useEffect(() => {
-    if (ratingValueControll) {
+    if (defaultRating && !Number.isInteger(defaultRating) && half) {
       const newStars = stars.map((star) => {
-        if (ratingValueControll % 2 === 0) {
-          if (star.index <= ratingValueControll) {
+        if (Number.isInteger(defaultRating)) {
+          if (star.index <= defaultRating) {
             return {
               ...star,
               value: 1,
@@ -195,15 +203,14 @@ export const Rating: FC<RatingProps> = (props) => {
             value: 0,
           };
         }
-
-        if (ratingValueControll % 2 !== 0) {
-          if (star.index <= ratingValueControll) {
+        if (!Number.isInteger(defaultRating)) {
+          if (star.index <= defaultRating) {
             return {
               ...star,
               value: 1,
             };
           }
-          if (star.index === ratingValueControll + 0.5) {
+          if (star.index === defaultRating + 0.5) {
             return {
               ...star,
               value: 0.5,
@@ -220,31 +227,29 @@ export const Rating: FC<RatingProps> = (props) => {
 
       setStars(newStars);
     }
-  }, [ratingValueControll]);
+
+    if (defaultRating && Number.isInteger(defaultRating)) {
+      const newStars = stars.map((star) => {
+        if (star.index <= defaultRating) {
+          return {
+            ...star,
+            value: 1,
+          };
+        }
+
+        return {
+          ...star,
+          value: 0,
+        };
+      });
+
+      setStars(newStars);
+    }
+  }, [defaultRating, half]);
 
   const newRating = stars.map((star, index) => {
     const ratingValue = index + 1;
-    const getIconName = (starValue: number) => {
-      if (starValue === 0) {
-        return 'star regular';
-      }
-
-      if (starValue === 0.5) {
-        return 'star half';
-      }
-
-      return 'star';
-    };
-
-    const getIconColor = (starValue: number) => {
-      if (starValue !== 0) {
-        return 'orange';
-      }
-
-      return 'grey';
-    };
-
-    const currentSize = animateBySize(
+    const currentSize = getSizeName(
       size as IconSize,
       currentHovering === ratingValue
     );
@@ -281,7 +286,7 @@ export const Rating: FC<RatingProps> = (props) => {
 Rating.defaultProps = {
   ratingCount: 5,
   size: 'medium',
-  ratingValueControll: 0,
+  defaultRating: 0,
 };
 
 export default Rating;

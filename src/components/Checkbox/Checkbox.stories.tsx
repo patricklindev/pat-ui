@@ -8,23 +8,17 @@ export default {
   component: Checkbox,
 };
 
-
 export const BasicCheckboxes = () => (
   <div className='basicCheckboxWrapper'>
-      <Checkbox 
-      checkboxSize="normal" />
-      <Checkbox checked checkboxSize="normal" />
-      <Checkbox 
-      checkboxSize="large" />
-      <Checkbox checked checkboxSize="large" />
-      <Checkbox 
-      checkboxSize="ex-larger"/>
-      <Checkbox checked checkboxSize="ex-larger"/>
+      <Checkbox />
+      <br />
+      <Checkbox checked/>
+      <br />
+      <Checkbox checkboxSize='large'/>
   </div>
 );
 
-
-export const DiffCheckbox = () => (
+export const DiffThemeCheckbox = () => (
   <div>
     <Checkbox>DiffCheckbox</Checkbox>
   </div>

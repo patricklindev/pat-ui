@@ -1,5 +1,8 @@
-import React,{useState}from 'react'
+import React,{useState,useEffect}from 'react'
 import { classNames } from '../../utils/classNames';
+import { IconPath } from './Icons';
+
+import Icon from "./Icon"
 
 interface ICheckboxProps {
   /** set customized style */
@@ -18,28 +21,66 @@ interface ICheckboxProps {
   checkBoxLabel?: string
   /**change event */
   onChange?: ()=> void
+  // id value 
+  checkboxId?: number
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props)=> {
-  const { className,checkboxSize,checked,...rest } = props;
-  const [check,setCheck] = useState(checked ? true : false)
-  const styleClassName = classNames('puCheckbox',{
-    [`puCheckbox-${checkboxSize}`]: true
+  const {children,className,checkboxSize,checked,icon,...rest } = props;
+
+
+  const [id,setId] = useState(Date.now().toString())
+  const [check,setCheck] = useState(icon ? icon : "check")
+  const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : "normal")
+  const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
+  const [svg,setSvg] = useState({
+    viewBox:"",
+    path:""
   })
 
-  const handleCheck = (event:React.ChangeEvent<HTMLInputElement>)=>{
-    setCheck(!check)
+
+  const styleClassName = classNames('checkbox',{
+    [`checkbox-${boxSize}`]: true
+  })
+
+  const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setIsCheck(event.target.checked)
   }
 
+  useEffect(()=>{
+    const svg = {
+      viewBox: IconPath[`${check}`].viewBox,
+      path: IconPath[`${check}`].path
+    }
+    setSvg(svg)
+  },[])
+
   return (
-    <>
-      <input type="checkbox" checked={check} className={styleClassName} onChange={handleCheck}/>
-    </>
+    <div className='checkbox-container'>
+      <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck}/>
+      <label htmlFor={id}>
+        <span className={styleClassName}>
+          {
+          isCheck 
+          ? <Icon viewBox={svg.viewBox} path={svg.path}/> 
+          : null
+          }
+        </span>
+      </label> 
+    </div>
   )
 }
 
 Checkbox.defaultProps = {
-  checkboxSize: "normal"
 }
 
 export default Checkbox
+
+
+{/* <svg
+className={styleClasses}
+viewBox={IconPath[name].viewBox}
+height={height}
+>
+<path fill={color} fill-opacity=".25" d={IconPath[name].path} />
+</svg> */}

@@ -1,40 +1,77 @@
+//custom property
+:root {
+  --boxSize: #{$cb-normal};
+}
+
+
 // checkbox wrapper style 
 .basicCheckboxWrapper{
   width: 50%;
   display:  flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
 }
 
 
-.puCheckbox{
-  &:checked{
-    background-color: tomato;
-  }
+
+// hide default checkbox
+.checkbox-container input[type="checkbox"]{
+  cursor: pointer;
+  opacity:0;
+  position: absolute;
+}
+
+
+.checkbox-container{
+  display:flex;
+  align-items:center;
+}
+
+.checkbox-container label{
+  cursor:pointer;
+  display:flex;
+}
+
+.checkbox-container label span{
+  content: "";
+  border-radius:.15em;
+  margin-right: .5em;
+  border: .05em solid black;
+}
+
+// .checkbox-container input[type='checkbox']:checked + label span{
+//   color:white;
+//   background-image: url('../../asset/icon/check-solid.svg');
+// }
+
+.checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &-ex-small{
-    width: $cb-ex-small-width;
-    height: $cb-ex-small-height;
+    width: $cb-ex-small;
+    height: $cb-ex-small;
   }
 
   &-small{
-    width: $cb-small-width;
-    height: $cb-small-height;
+    width: $cb-small;
+    height: $cb-small;
   }
 
   &-normal{
-    width: $cb-normal-width;
-    height: $cb-normal-height;
+    width: $cb-normal;
+    height: $cb-normal;
   }
 
   &-large{
-    width: $cb-large-width;
-    height: $cb-large-height;
+    width: $cb-large;
+    height: $cb-large;
   }
 
   &-ex-larger{
-    width: $cb-ex-large-width;
-    height: $cb-ex-large-height;
+    width: $cb-ex-large;
+    height: $cb-ex-large;
   }
 
 }

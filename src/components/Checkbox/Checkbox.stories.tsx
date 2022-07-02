@@ -27,23 +27,26 @@ export const DefaultCheckBox = () => (
 
 export const DiffSizeCheckbox = () => (
   <div>
-    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked}/>
-    <Checkbox checkSize={checkboxSize.Small} checkedState={checkBoxState.checked}/>
-    <Checkbox checkSize={checkboxSize.Small} checkedState={checkBoxState.indeterminate} />
+    <Checkbox checkSize='md' checkedState={checkBoxState.checked}/>
+    <Checkbox checkSize='sm' checkedState={checkBoxState.checked}/>
+    <Checkbox checkSize='sm' checkedState={checkBoxState.indeterminate} />
   </div>
 );
 
 export const DiffTypeCheckbox = () => (
   <div>
-    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked} checkType={checkboxType.Primary} label='primary'/>
-    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked} checkType={checkboxType.Secondary} label='secondary'/>
-    <Checkbox checkSize={checkboxSize.Medium} checkedState={checkBoxState.checked} checkType={checkboxType.Default} label='default'/>
+    <Checkbox checkedState={checkBoxState.checked} checkType='primary' label='primary'/>
+    <Checkbox checkedState={checkBoxState.checked} checkType='secondary' label='secondary'/>
+    <Checkbox checkedState={checkBoxState.checked} checkType='default' label='default'/>
   </div>
 );
 
 export const DiffIconCheckbox = () => (
   <div>
     <Checkbox icon={<Icon name="bookmark"/>} />
+    <Checkbox icon={<Icon name="bookmark"/>} checkType='primary'/>
+    <Checkbox icon={<Icon name="bookmark"/>} checkType='secondary'/>
     <Checkbox icon={<Icon name="heart"/>} checkedState={checkBoxState.checked}/>
+    <Checkbox icon={<Icon name="heart"/>} checkedState={checkBoxState.checked} checkSize='sm'/>
   </div>
 )

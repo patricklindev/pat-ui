@@ -1,16 +1,20 @@
 import React, { FC, ReactNode, useEffect, useRef } from 'react';
 import { classNames } from '../../utils/classNames';
 
-export enum checkboxType {
-    Primary = 'primary',
-    Secondary = 'secondary',
-    Default = 'default'
-}
+// export enum checkboxType {
+//     Primary = 'primary',
+//     Secondary = 'secondary',
+//     Default = 'default'
+// }
 
-export enum checkboxSize {
-    Medium = 'md',
-    Small = 'sm'
-}
+export type checkboxType = | 'primary' | 'secondary' | 'default';
+
+// export enum checkboxSize {
+//     Medium = 'md',
+//     Small = 'sm'
+// }
+
+export type checkboxSize = | 'md' | 'sm';
 
 export enum checkBoxState {
     checked = 1,
@@ -47,7 +51,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
 
     let checkbox;
     if (icon) {
-        console.log(icon);
+        // console.log(icon);
         checkbox = (
             <label className={styleClasses}>
                 <input type='checkbox' disabled={disabled} ref={checkRef} />
@@ -57,7 +61,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         )
     }
     else {
-        console.log("no icon");
+        // console.log("no icon");
         checkbox = (
             <label className={styleClasses}>
                 <input type='checkbox' disabled={disabled} ref={checkRef} />
@@ -74,7 +78,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
 Checkbox.defaultProps = {
     disabled: false,
     checkedState: checkBoxState.unchecked,
-    checkSize: checkboxSize.Medium
+    checkSize: 'md'
 }
 
 export default Checkbox;

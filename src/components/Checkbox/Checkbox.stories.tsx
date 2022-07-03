@@ -12,9 +12,9 @@ export const BasicCheckboxes = () => (
   <div className='basicCheckboxWrapper'>
       <Checkbox />
       <br />
-      <Checkbox checked/>
+      <Checkbox checked />
       <br />
-      <Checkbox checkboxSize='large'/>
+      <Checkbox checkboxSize='large' checkboxId={2}/>
   </div>
 );
 

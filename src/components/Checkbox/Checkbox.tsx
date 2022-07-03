@@ -1,6 +1,8 @@
 import React,{useState,useEffect}from 'react'
 import { classNames } from '../../utils/classNames';
+import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
+
 
 import Icon from "./Icon"
 
@@ -26,18 +28,13 @@ interface ICheckboxProps {
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props)=> {
-  const {children,className,checkboxSize,checked,icon,...rest } = props;
+  const {children,className,checkboxSize,checked,icon,checkboxId,...rest } = props;
 
 
-  const [id,setId] = useState(Date.now().toString())
-  const [check,setCheck] = useState(icon ? icon : "check")
+  const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
+  const [checkMark,setCheckMark] = useState(icon ? icon : "check")
   const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : "normal")
   const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
-  const [svg,setSvg] = useState({
-    viewBox:"",
-    path:""
-  })
-
 
   const styleClassName = classNames('checkbox',{
     [`checkbox-${boxSize}`]: true
@@ -47,14 +44,6 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
     setIsCheck(event.target.checked)
   }
 
-  useEffect(()=>{
-    const svg = {
-      viewBox: IconPath[`${check}`].viewBox,
-      path: IconPath[`${check}`].path
-    }
-    setSvg(svg)
-  },[])
-
   return (
     <div className='checkbox-container'>
       <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck}/>
@@ -62,7 +51,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
         <span className={styleClassName}>
           {
           isCheck 
-          ? <Icon viewBox={svg.viewBox} path={svg.path}/> 
+          ? <Icon viewBox={IconPath[`${checkMark}`].viewBox} path={IconPath[`${checkMark}`].path}/> 
           : null
           }
         </span>

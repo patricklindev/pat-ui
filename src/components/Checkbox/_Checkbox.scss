@@ -8,7 +8,8 @@
 .basicCheckboxWrapper,
 .diffIconCheckboxWrapper,
 .diffThemeCheckboxWrapper,
-.diffIconThemeCheckboxWrapper{
+.diffIconThemeCheckboxWrapper,
+.checkboxWithLabelWrapper{
   width: 50%;
   display:  flex;
   justify-content: flex-start;
@@ -26,6 +27,7 @@
 .checkbox-container{
   display:flex;
   align-items:center;
+  margin-right: 1rem;
 }
 
 .checkbox-container label{
@@ -105,5 +107,10 @@
 
   &-dark{
     background-color: $dark;
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
   }
 }

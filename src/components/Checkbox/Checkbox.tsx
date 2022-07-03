@@ -28,10 +28,12 @@ interface ICheckboxProps {
   onChange?: ()=> void
   // id value 
   checkboxId?: number
+  // id value 
+  label?: string
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props)=> {
-  const {children,className,checkboxSize,checked,icon,checkboxId,checkboxColor,iconTheme,...rest } = props;
+  const {children,className,checkboxSize,checked,icon,checkboxId,checkboxColor,iconTheme,disabled,label,...rest } = props;
 
 
   const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
@@ -45,6 +47,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
   const styleClassName = classNames('checkbox',{
     [`checkbox-${boxSize}`]: !!boxSize,
     [`checkbox-${checkboxColor}`]: isCheck,
+    [`checkbox-disable`]: !!disabled
   })
 
   useEffect(()=>{
@@ -105,19 +108,15 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
         default:
           setFillIcon("#000")
         }
-
-
   },[])
 
   const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
     setIsCheck(event.target.checked)
   }
 
-  console.log("it me",styleClassName)
-
   return (
     <div className='checkbox-container'>
-      <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck}/>
+      <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck} disabled={disabled}/>
       <label htmlFor={id}>
         <span className={styleClassName} style={{border: checkMark !== "check" ? "none" : ""}}>
           {
@@ -136,6 +135,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
           : null
           }
         </span>
+        {label}
       </label> 
     </div>
   )

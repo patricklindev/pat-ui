@@ -63,9 +63,11 @@ export const DiffIconThemeCheckbox = () => (
 );
 
 
-export const OtherDiffCheckbox2 = () => (
-  <div>
-    <Checkbox>DiffCheckbox</Checkbox>
+export const CheckboxWithLabel = () => (
+  <div className='checkboxWithLabelWrapper'>
+    <Checkbox label='Hello,World' />
+    <Checkbox icon="home" checked label='Hello,World'/>
+    <Checkbox icon="users" iconTheme="warning" checked label='Hello,World'/>
   </div>
 );
 

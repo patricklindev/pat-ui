@@ -12,7 +12,10 @@
   align-items: center;
 }
 
-
+//diff theme checkbox wrapper
+.diffThemeCheckboxWrapper{
+  display: flex;
+}
 
 // hide default checkbox
 .checkbox-container input[type="checkbox"]{
@@ -74,4 +77,35 @@
     height: $cb-ex-large;
   }
 
+  &-primary{
+    background-color: $primary; 
+  }
+
+  &-secondary{
+    background-color: $secondary; 
+  }
+
+  &-success{
+    background-color: $success; 
+  }
+
+  &-info{
+    background-color: $info;
+  }
+
+  &-warning{
+    background-color:$warning;
+  }
+
+  &-danger{
+    background-color: $danger;
+  }
+
+  &-light{
+    background-color: $light;
+  }
+
+  &-dark{
+    background-color: $dark;
+  }
 }

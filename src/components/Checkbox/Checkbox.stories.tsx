@@ -19,8 +19,15 @@ export const BasicCheckboxes = () => (
 );
 
 export const DiffThemeCheckbox = () => (
-  <div>
-    <Checkbox>DiffCheckbox</Checkbox>
+  <div className='diffThemeCheckboxWrapper'>
+    <Checkbox checkboxColor="primary" checked />
+    <Checkbox checkboxColor="secondary" checked/>
+    <Checkbox checkboxColor="success" checked/>
+    <Checkbox checkboxColor="info" checked/>
+    <Checkbox checkboxColor="warning" checked/>
+    <Checkbox checkboxColor="danger" checked/>
+    <Checkbox checkboxColor="light" checked/>
+    <Checkbox checkboxColor="dark" checked/>
   </div>
 );
 

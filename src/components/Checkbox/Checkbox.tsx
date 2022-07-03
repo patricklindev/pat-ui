@@ -28,21 +28,57 @@ interface ICheckboxProps {
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props)=> {
-  const {children,className,checkboxSize,checked,icon,checkboxId,...rest } = props;
+  const {children,className,checkboxSize,checked,icon,checkboxId,checkboxColor,...rest } = props;
 
 
   const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
   const [checkMark,setCheckMark] = useState(icon ? icon : "check")
   const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : "normal")
   const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
+  const [theme,setTheme] = useState(checkboxColor === undefined ? null : checkboxColor)
+  const [fill,setFill] = useState("")
 
   const styleClassName = classNames('checkbox',{
-    [`checkbox-${boxSize}`]: true
+    [`checkbox-${boxSize}`]: !!boxSize,
+    [`checkbox-${checkboxColor}`]: isCheck,
   })
+
+  useEffect(()=>{
+    switch(theme) {
+      case "primary":
+        setFill("white")
+        break;
+      case "secondary":
+        setFill("white")
+        break;
+      case "success":
+        setFill("white")
+        break
+      case "info":
+        setFill("white")
+        break
+      case "warning":
+        setFill("white")
+        break
+      case "danger":
+        setFill("white")
+        break
+      case "light":
+        setFill("#000")
+        break
+      case "dark":
+        setFill("white")
+        break
+      default:
+        setFill("#000")
+      }
+  },[])
 
   const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
     setIsCheck(event.target.checked)
   }
+
+  console.log("it me",styleClassName)
 
   return (
     <div className='checkbox-container'>
@@ -51,7 +87,11 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
         <span className={styleClassName}>
           {
           isCheck 
-          ? <Icon viewBox={IconPath[`${checkMark}`].viewBox} path={IconPath[`${checkMark}`].path}/> 
+          ? <Icon 
+          viewBox={IconPath[`${checkMark}`].viewBox} 
+          path={IconPath[`${checkMark}`].path}
+          fill={fill}
+          /> 
           : null
           }
         </span>

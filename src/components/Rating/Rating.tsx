@@ -104,7 +104,7 @@ export const Rating: FC<RatingProps> = (props) => {
     }
   };
 
-  // handle onMouseLeave with disabled logic
+  // reset animation effect
   const handleOnMouseLeave = () => {
     if (disabled || readonly) {
       return;

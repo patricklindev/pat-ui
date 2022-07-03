@@ -69,7 +69,7 @@ export const CheckboxWithLabel = () => (
 
 
 export const checkboxDisabled = () => (
-  <div>
+  <div className='checkboxDisableWrapper'>
     <Checkbox label='disabled' disabled/>
     <Checkbox label='disabled' checked disabled/>
     <Checkbox icon="users" iconTheme="warning" disabled label='disabled'/>

@@ -10,12 +10,19 @@
     @include slider-size($slider-width,
         $slider-height, $thumb-width, $thumb-height);
 
-    @include slider-style($blue, #367ce5 );
+    @include slider-style($blue, #367ce5);
+}
 
+.showLimits-false .limit{
+    display: none;
+}
+
+.showLimits-true .limit{
+    display: inline-block;
 }
 
 //TODO: Fix vertical slider
-.slider-vertical{
+.slider-vertical {
     position: relative;
     height: $slider-height;
     width: 10%;

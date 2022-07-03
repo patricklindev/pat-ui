@@ -8,7 +8,7 @@ export default function App(){
             <h1>Default Slider</h1>
             <Slider/>
             <h2>Large slider</h2>
-            <Slider sliderSize='lg'/>
+            <Slider sliderSize='lg' showLimits={true}/>
             <h2>Small slider</h2>
             <Slider sliderSize='sm'/>
             <h2>Primary Slider</h2>

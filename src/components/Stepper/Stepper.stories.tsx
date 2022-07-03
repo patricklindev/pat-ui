@@ -29,6 +29,34 @@ export const DefaultStepper = () => (
             buttonTitleNext={"NEXT"}
             buttonTitlePrev={"PREV"}
             stepperOrientation={"row"}
+            allowSkip={false}
+        >
+        </Stepper>
+    </div>
+)
+
+export const SkipStep = () => (
+    <div>
+        <Stepper
+            stepperType={"circle"}
+            stepperElements={[
+                {
+                 title: "Default array length 3",
+                 description: ""
+                },
+                {
+                  title: "Define props in component",
+                  description: ""
+                },
+                {
+                  title: "Feed an string array",
+                description: ""
+                },
+            ]}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
+            allowSkip={true}
         >
         </Stepper>
     </div>
@@ -78,6 +106,10 @@ export const AdditionalStepsStepper = () => (
                     description: ""  
                   },
                   {
+                    title:   "Lets begin public testing",
+                    description: ""  
+                  },
+                  {
                     title:  "Lets market our product",
                     description: ""
                   }
@@ -85,6 +117,7 @@ export const AdditionalStepsStepper = () => (
             buttonTitleNext={"NEXT"}
             buttonTitlePrev={"PREV"}
             stepperOrientation={"row"}
+            allowSkip={true}
         >
         </Stepper>
     </div>

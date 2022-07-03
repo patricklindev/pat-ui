@@ -24,6 +24,7 @@ export type TitleAndDescription<Type> = {
 export interface IStepperProps {
     // set customized Stepper //
     className?: string;
+    allowSkip?: boolean;
     // set Steppersize  //
     stepperSize?: StepperSize;
     // set StepperType //
@@ -50,6 +51,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         buttonTitleNext,
         buttonTitlePrev,
         stepperLinear,
+        allowSkip,
         // currentIndex,
         ...rest
     } = props;
@@ -77,116 +79,185 @@ export const Stepper: FC<patStepperProps> = (props) => {
     // We will map through this HTML array to generate a row of "steps"
     // let HTMLarray = []
     // let TitleAndDescription = stepperElements
-    const [index, setCurrentIndex] = useState(0)
-    const [active, setActive] = useState(0)
-    const [dotComplete, setDotComplete] = useState('dot')
-    let totalIndex = stepperElements!.length - 1
+    const [Currentindex, setCurrentIndex] = useState(0)
+    const [CurrentStep, setCurrentStep] = useState(1)
+    const [skipButtonActive, setSkipButtonActive] = useState(false)
+    const [Initialize, setIntialize] = useState(true)
+    const [Finish, setFinish] = useState(false);
 
-    function changeStatus(e) {
-        console.log("Testing")
-        console.log(index)
-        console.log(e.target.id)
-    }
+
+    // WARNING - Using state to set color in HTML affects all square/dots.
+    // I reverted to using HTML to designate specific segments of the stepper.
+    const [Color,setColor] = useState('gray');
+    let totalSteps = stepperElements!.length
+    let renderSteps = totalSteps - 1
+
+   
+    useEffect(() => {
+        if(allowSkip == true) {
+            setSkipButtonActive(true)
+        }
+        
+        console.log("we have initialized")
+      }, [Initialize]);
 
 
     function completion() {
-        let target = document.getElementById("Step-" + index)
-        let htmlInner2 = document.getElementById("Solid-" + index)
-        console.log(htmlInner2)
-        if (stepperType == "circle") {
-            if (index != totalIndex) {
-                target?.setAttribute('class', "dot completed")
-                htmlInner2?.setAttribute('class', "bar-completed")
+        let next = Currentindex + 1
+        let stepNow = document.getElementById("Index-" + Currentindex)
+        let displayBarNow = document.getElementById("bar-" + Currentindex)
+        let nextStep = document.getElementById("Index-" + next)
+        setIntialize(false)
+            if (CurrentStep == totalSteps) {
+                stepNow!.innerHTML="✔"
+                setCurrentStep(totalSteps)
             } else {
-                target?.setAttribute('class', "dot-last completed")
-                htmlInner2?.setAttribute('class', "bar-completed")
+                stepNow!.innerHTML="✔"
+                setCurrentStep(CurrentStep+1)
+                setCurrentIndex(Currentindex+1)
+                displayBarNow?.setAttribute('class', `bar + green`)
+                if (CurrentStep == totalSteps-1) {
+                    // IF THE SECOND TO LAST DOT/SQUARE IS DETECTED, WE ONLY NEED TO CHANGE THE STATE TO GREEN
+                    // We only need to change the state of the dot/square color, since the last dot/square has different width
+                    setColor('green');
+                } else {
+                    // YOU MUST SPECIFICALLY ONLY CHANGE THE NEXT DOT OVER
+                    nextStep?.setAttribute('class', `${stepperType} + green`)
+                }
             }
-        } else {
-            if (index != totalIndex) {
-                target?.setAttribute('class', "square completed")
-                htmlInner2?.setAttribute('class', "bar-completed")
-            } else {
-                target?.setAttribute('class', "square-last progress-stepper completed")
-                htmlInner2?.setAttribute('class', "bar-completed")
-            }
-        }
-        if (index < totalIndex) {
-            setCurrentIndex(index + 1)
-        }
-
-        if (index > totalIndex) {
-            setCurrentIndex(0)
-        }
     }
 
     function revert() {
-        let target = document.getElementById("Step-" + index)
-        let htmlInner2 = document.getElementById("Solid-" + index)
-        if (stepperType == "circle") {
-            if (index != totalIndex) {
-                target?.setAttribute('class', "dot progress-stepper")
-                htmlInner2?.setAttribute('class', "bar")
+        setFinish(false)
+        let prev = Currentindex + 1
+        let stepNow = document.getElementById("Index-" + Currentindex)
+        let displayBarNow = document.getElementById("bar-" + Currentindex)
+        let prevStep = document.getElementById("Index-" + prev)
+            if (CurrentStep == totalSteps) {
+
+                stepNow!.innerHTML= CurrentStep +""
+                stepNow?.setAttribute('class', `${stepperType +'-last'} + green`)
+                displayBarNow?.setAttribute('class', "bar hide")
+                setCurrentStep(CurrentStep-1);
+                setCurrentIndex(Currentindex-1)
+            } else if ( Currentindex == 0) {
+                prevStep?.setAttribute('class', `${stepperType}`)
+                stepNow!.innerHTML= CurrentStep +""
+                stepNow?.setAttribute('class', `${stepperType} + completed`)
+                displayBarNow?.setAttribute('class', "bar-completed ")
+                // setColor('gray');
+                setIntialize(true)
             } else {
-                target?.setAttribute('class', "dot-last progress-stepper")
-                htmlInner2?.setAttribute('class', "bar")
+                stepNow!.innerHTML= CurrentStep +""
+                stepNow?.setAttribute('class', `${stepperType} + completed`)
+                // setColor('gray');
+                // if the current step is the second to last step in the array,
+                // we are going to adjust the second to last icon (dot / square)
+                if (CurrentStep == totalSteps-1) {
+                    // prevStep?.setAttribute('class', `${stepperType +'-last'}`)
+                } else {
+                    prevStep?.setAttribute('class', `${stepperType}` + ` ${Color}`)
+                }
+                displayBarNow?.setAttribute('class', "bar ")
+                setCurrentStep(CurrentStep-1);
+                setCurrentIndex(Currentindex-1)
             }
+
+    }
+
+    function finishStepper() {
+        completion()
+        setFinish(true)
+    }
+
+    function reset() {
+        setIntialize(true)
+        setFinish(false)
+        setCurrentStep(1)
+        setCurrentIndex(0)
+        setColor('gray')
+        stepperElements?.forEach(function(item:any,index:any) {
+            
+            let currentStep = document.getElementById("Index-" + index)
+            let displayBarNow = document.getElementById("bar-" + index)
+            currentStep!.setAttribute('class', `${stepperType}`)
+            currentStep!.innerHTML=index+1
+            displayBarNow?.setAttribute('class', "bar ")
+            if (index == 0 ) {
+                currentStep!.setAttribute('class',  `${stepperType} + completed`)
+                displayBarNow?.setAttribute('class', "bar-completed ")
+            }
+            if (index == renderSteps ) {
+                currentStep!.setAttribute('class',  `${stepperType +'-last'}`)
+                displayBarNow?.setAttribute('class', "bar-completed hide")
+            }
+        })
+    }
+
+    function skip() {
+        let skippedIndex = Currentindex + 2
+        let skippedStepNumber = CurrentStep + 2;
+        let currentStep = document.getElementById("Index-" + Currentindex)
+        let skippedStep = document.getElementById("Index-" + skippedIndex)
+         let displayBarNow = document.getElementById("bar-" + skippedIndex)
+        // let nextStep = document.getElementById("Index-" + next)
+        setIntialize(false)
+        if (skippedIndex == totalSteps-1) {
+            currentStep!.innerHTML="✔"
+            skippedStep!.innerHTML="✔"
+            skippedStep?.setAttribute('class', `${stepperType +'-last'} + completed`)
+            setSkipButtonActive(false)
+            setCurrentStep(CurrentStep+2)
+            setCurrentIndex(skippedIndex)
+            setFinish(true)
+            // displayBarNow?.setAttribute('class', "bar-completed hide")  
         } else {
-            if (index != totalIndex) {
-                target?.setAttribute('class', "square progress-stepper")
-                htmlInner2?.setAttribute('class', "bar")
-            } else {
-                target?.setAttribute('class', "square-last progress-stepper")
-                htmlInner2?.setAttribute('class', "bar")
-            }
-        }
-        setCurrentIndex(index - 1)
-
-
-        if (index <= 0) {
-            setCurrentIndex(0)
+            currentStep!.innerHTML="✔"
+            skippedStep!.innerHTML= skippedStepNumber + ""
+            skippedStep?.setAttribute('class', `${stepperType} + completed`)
+            // if the current step is the second to last step in the array,
+            // we are going to adjust the second to last icon (dot / square)
+            displayBarNow?.setAttribute('class', "bar-completed")
+            setCurrentIndex(skippedIndex)
+            setCurrentStep(CurrentStep+2)
         }
     }
 
     function completionVertical() {
-        let target = document.getElementById("Step-" + index)
-        let htmlInner2 = document.getElementById("Solid-" + index)
+        let target = document.getElementById("Index-" + Currentindex)
+        let htmlInner2 = document.getElementById("bar-" + Currentindex)
         console.log(htmlInner2)
-        if (stepperType == "circle") {
-            target?.setAttribute('class', "dot-vertical completed")
+       
+            target!.innerHTML="✔"
+            target?.setAttribute('class', `${stepperType+"-vertical"} + completed `)
             htmlInner2?.setAttribute('class', "bar-completed")
-        } else {
-            target?.setAttribute('class', "square-vertical progress-stepper completed")
-            htmlInner2?.setAttribute('class', "bar-completed")
-
-        }
-        if (index < totalIndex) {
-            setCurrentIndex(index + 1)
-            setActive(index + 1)
+       
+        if (Currentindex < totalSteps) {
+            setCurrentIndex(Currentindex + 1)
+          
         }
 
-        if (index > totalIndex) {
+        if (Currentindex > totalSteps) {
             setCurrentIndex(0)
-            setActive(0)
+           
         }
     }
 
     function revertVertical() {
-        let target = document.getElementById("Step-" + index)
-        let htmlInner2 = document.getElementById("Solid-" + index)
-        if (stepperType == "circle") {
-            target?.setAttribute('class', "dot-vertical progress-stepper")
+        let target = document.getElementById("Index-" + Currentindex)
+        let htmlInner2 = document.getElementById("bar-" + Currentindex)
+            target!.innerHTML= Currentindex+1 +""
+            target?.setAttribute('class', `${stepperType+"-vertical"}`)
             htmlInner2?.setAttribute('class', "bar")
-        } else {
+      
+        setCurrentIndex(Currentindex - 2)
+       
+      
+        console.log('This is the current index', Currentindex)
 
-            target?.setAttribute('class', "square-vertical progress-stepper")
-            htmlInner2?.setAttribute('class', "bar")
-        }
-        setCurrentIndex(index - 1)
-        setActive(index - 1)
-
-        if (index <= 0) {
+        if (Currentindex <= 0) {
             setCurrentIndex(0)
-            setActive(0)
+          
         }
     }
 
@@ -197,56 +268,86 @@ export const Stepper: FC<patStepperProps> = (props) => {
         <div className='all-container' data-testid="stepper-element" >
             <div className="center-main-body">
                 {/* First detect if the Stepper is going to be horizontal */}
-                {stepperOrientation === 'row' ? (
+                {stepperOrientation == 'row' ? (
                     <div className={styleClasses + ' flex-row-container'}>
-                        {stepperElements!.map(function (item: any, index: any) {
-                            console.log("This is the value", item)
-                            console.log("This is the index", index)
+                        {stepperElements!.map(function (item: any, index:any) {
                             return (
                                 <div className="progress-container" >
-                                    {index != totalIndex ? (
-                                        <div className={'flex-row-container'} id={"item-" + index} onClick={changeStatus}>
-                                            {stepperType === 'circle' ? (
-                                                <span className="dot progress-stepper" id={"Step-" + index}> {index + 1} </span>
-                                            ) : (
-                                                <span className="square progress-stepper" id={"Step-" + index}> {index + 1} </span>
-                                            )}
-                                            <p className="progress-description"> {item.title} </p>
-                                            <span className="bar" id={"Solid-" + index}> </span>
+                                    {index != renderSteps ? (
+                                        <div>
+
+                                    {/* REACT MUI STEPPER renders the first value highlighted in green/blue */}
+                                        {index == 0 ? ( 
+                                            <div className={'flex-row-container'} id={"item-" + index}>
+                                            <span className={`${stepperType} + green`} id={"Index-" + index}> {index+1} </span>
+                                            <p className={stepperOrientation+"-description"}> {item.title} </p>
+                                            <span className="bar-completed" id={"bar-" + index}> </span>
+                                        </div>
+                                        ) : ( <div className={'flex-row-container'} id={"item-" + index}>
+                                        <span className={`${stepperType}` + ` ${Color}`} id={"Index-" + index}> {index+1} </span>
+                                        <p className={stepperOrientation+"-description"}> {item.title} </p>
+                                        <span className="bar" id={"bar-" + index}> </span>
+                                    </div> )}
+                                       
                                         </div>
                                     ) : (
                                         <div className={styleClasses + ' flex-row-container'}>
-                                            {stepperType === 'circle' ? (
-                                                <span className="dot-last progress-stepper " id={"Step-" + index}> {index + 1} </span>
-                                            ) : (
-                                                <span className="square-last progress-stepper " id={"Step-" + index}> {index + 1} </span>
-                                            )}
-                                            <p className="progress-description"> {item.title} </p>
+                                                <span className={`${stepperType +'-last'}` + ` ${Color}`} id={"Index-" + index}> {index+1} </span>
+                                                <p className={stepperOrientation+"-description"}> {item.title} </p>
+                                                <span className="bar hide" id={"bar-" + index}> </span>
                                         </div>
                                     )}
                                 </div>
                             )
                         })}
+                       
                     </div>
                 ) : (
-                    <div className={"progress-container"}>
-                        
+                    <div className={stepperOrientation+"-container"}> 
                         {/* If the stepper is not horizontal, then the stepper must be Vertical */}
-                        {stepperElements!.map(function (item: any, index: any) {
+                        {stepperElements!.map(function (item: any, index:any) {
                             return (
-                                <div className={'flex-row-container'}>
-                                    
-                                    {stepperType === 'circle' ? (
-                                        <span className="dot-vertical progress-stepper" id={"Step-" + index}> {index + 1} </span>
-                                    ) : (
-                                        <span className="square-vertical progress-stepper" id={"Step-" + index}> {index + 1} </span>
-                                    )}
-                                    {/* <div className = "container-vertical"> */}
-                                    <div className="progress-description ">
-                                        <p> {item.title} </p>
-                                        {active == index ? (
-                                            <div >
-                                                <p> {item.description}</p>
+                                    <div className={stepperOrientation+"-description"}>
+                                        <div className={'flex-row-container'} id={"item-" + index}>
+                                            <span className={stepperType + "-" + stepperOrientation} id={"Index-" + index}> {index+1} </span>
+                                            <div className={stepperOrientation+"-description-inner"}>
+                                            <p> {item.title} </p>
+                                            { index == Currentindex ? ( 
+                                                <div>
+                                                <p className=''> {item.description}</p>
+                                                <Button
+                                                        className="Stepper-Button-Left"
+                                                        btnType='primary'
+                                                        data-testid='button-element'
+                                                        onClick={revertVertical}
+                                                    >
+                                                        {props.buttonTitlePrev}
+                                                    </Button>
+                                                    <span className="vertical-spacer"></span>
+                                                <Button
+                                                        className="Stepper-Button-Right"
+                                                        btnType='primary'
+                                                        data-testid='button-element'
+                                                        onClick={completionVertical}
+                                                    >
+                                                        {props.buttonTitleNext}
+                                                    </Button>
+                                                </div>
+                                            ) : (
+                                                <br></br>
+                                            ) }
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    )
+                                    })}  
+                    </div>
+                )}
+                                    {/* <div> */}
+                                      
+                                        {/* {Currentindex== index ? (
+                                             <div className={stepperOrientation+"-description"}>
+                                                
                                                 <div className={'flex-row-container'} >
                                                     <Button
                                                         className="Stepper-Button-Left"
@@ -270,44 +371,105 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
                                         ) : (
                                             <p>  </p>
-                                        )}
+                                        )} */}
 
-                                    </div>
-                                   
-                                </div>
-                                // </div>
-                            )
-                        })}
-                        
-                    </div>
+                                    {/* </div> */}
+              
+                
+                {Finish == true ? (
+                <div className="stepper-display"> 
+                <p> You finished all your steps </p>
+                </div>
+                ) : (
+                    <div className="stepper-display"> 
+                <p> Step {CurrentStep} </p>
+                </div>
                 )}
+                
 
-
+ {/* if orientation == row  */}
+                
                 {stepperOrientation === 'row' ? (
-
                     <div className={'flex-row-container'} >
-                        <Button
-                            className="Stepper-Button-Left"
-                            btnType='primary'
-                            data-testid='button-element'
-                            onClick={revert}
-                        >
-                            {props.buttonTitlePrev}
-                        </Button>
+                {Finish == true ? (
+                     <Button
+                     className="Stepper-Button-Left"
+                     btnType='primary'
+                     data-testid='button-element'
+                     onClick={reset}
+                 >
+                     {"RESET"}
+                 </Button>
+                ) : ( 
+                    <div className={'flex-row-container'} > 
+{/* Determine if we are starting from index 0 aka step 1 */}                      
+{Initialize == false ? (
+                            <Button
+                                className="Stepper-Button-Left"
+                                btnType='primary'
+                                data-testid='button-element'
+                                onClick={revert}
+                            >
+                                {props.buttonTitlePrev}
+                            </Button>
+                        ) : (
+                            <Button
+                                className="Stepper-Button-Left"
+                                btnType='primary'
+                                data-testid='button-element'
+                                disabled={true}
+                            >
+                                {props.buttonTitlePrev}
+                            </Button>
+
+                        )}
+
                         <span className="spacer"></span>
-                        <Button
-                            className="Stepper-Button-Right"
-                            btnType='primary'
-                            data-testid='button-element'
-                            onClick={completion}
-                        >
-                            {props.buttonTitleNext}
-                        </Button>
+
+{/* Check to see if we pass in skipButton */}    
+                        {skipButtonActive == false ? (
+                            <div>
+                            </div>
+                        ) : (
+                            <Button
+                                className="Stepper-Button-Skip"
+                                btnType='primary'
+                                data-testid='button-element'
+                                onClick={skip}
+                            >
+                                {"Skip"}
+                            </Button>
+                        )}
+
+{/* if we hit the last step, do we display finish or not */}    
+                        {CurrentStep == totalSteps ? (
+                            <Button
+                                className="Stepper-Button-Right"
+                                btnType='primary'
+                                data-testid='button-element'
+                                onClick={finishStepper}
+                            >
+                                {"FINISH"}
+                            </Button>
+                        ) : (
+                            <Button
+                                className="Stepper-Button-Right"
+                                btnType='primary'
+                                data-testid='button-element'
+                                onClick={completion}
+                            >
+                                {props.buttonTitleNext}
+                            </Button>)}
                     </div>
+              
+                
+                )}
+                        </div>
                 ) : (
                     <footer> Vertical Component </footer>
                 )}
             </div>
+
         </div>
 
 

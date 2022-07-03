@@ -12,37 +12,49 @@
 }
 
 .flex-row-container {
+    width:100%;
     display: flex;
 }
 
-// .progress-circle-completed {
-//     height: 25px;
-//     width: 25px;
-//     background-color: green;
-//     border-radius: 50%;
-//     display: inline-block;
-//     text-align:center;
-//     margin:auto;
-// }
 
 //DESCRIPTION FOR HTML ARRAY
-// .progress-stepper{
-//     border-radius:$border-radius;
-//     margin-left:45%;
-// }
 
 .progress-container {
     padding-right:1%;
+    width:fit-content;
   }
 
 .progress-description{
-    width:400px;
+  
     margin-left:5%;  
 }
 
+.row-description{
+    width:100%;
+    margin-left:5%;  
+}
+
+.vertical-container{
+    width:100%;
+   
+}
+
+.vertical-description{
+    width:100%;
+    
+}
+
+.vertical-description-inner{
+    background-color:red;
+    width:300px;
+}
+
+
+
 //STEPPERTYPE==CIRCLE
 //FOR WHEN STEPPERTYPE IS "CIRCLE"
-.dot {
+
+  .circle {
     height: 25px;
     width: 50px;
     background-color: $gray-600;
@@ -54,9 +66,9 @@
     margin-left:10%;
   }
 
-  .dot-last {
+  .circle-last {
     height: 25px;
-    width: 32px;
+    width: 34px;
     background-color: $gray-600;
     border-radius: 50%;
     display: inline-block;
@@ -66,7 +78,7 @@
     margin-left:10%;
   }
 
-  .dot-vertical {
+  .circle-last-completed {
     height: 25px;
     width: 25px;
     background-color: $gray-600;
@@ -77,6 +89,18 @@
     color:$gray-100;
     margin-left:10%;
   }
+
+  .circle-vertical{
+    height: 25px;
+    width: 30px;
+    background-color: $gray-600;
+    border-radius: 50%;
+    display: inline-block;
+    text-align:center;
+    z-index: 1;
+    color:$gray-100;
+  }
+
 
 //STEPPERTYPE==SQUARE
 //FOR WHEN STEPPERTYPE IS "SQUARE"
@@ -121,6 +145,13 @@
  
 }
 
+.Stepper-Button-Null {
+    margin-left:5%;
+    width:20%;
+    background-color: $gray-600;
+    border-color:$gray-600;
+}
+
 .spacer {
     width:50%;
 }
@@ -132,13 +163,11 @@
 .Stepper-Button-Right {
     width:20%;
     margin-right:5%;
-    display:inline-block;
 }
 
-.button-row-centered {
-    padding:1%;
-    width:fit-content;
-
+.Stepper-Button-Skip {
+    width:100px;
+    margin-right:10px;
 }
 
 // LINEBAR
@@ -148,13 +177,12 @@
     color:$gray-100;
 }
 
-
 .bar {
     background-color: $gray-600;
     width:50%;
     min-width:20%;
     height:5px;
-  margin:auto;
+    margin:auto;
     border-radius: 10px;
     display: inline-block;
 }
@@ -171,21 +199,16 @@
 
 //ORIENTATION
 
-.vertical {
-    border-style: solid;
-    border-radius: 10px;
-}
-
-.progress-description-vertical{
-    width:400px;
-    margin-left:5%;  
-}
-
-
-.container-vertical {
-    height:200px;
-    transition: height 2s;
-    border-style: solid;
+  .hide {
+    display:none;
   }
 
+//COLOR OF STATUS
 
+.gray {
+    background-color: $gray-600
+}
+
+.green {
+    background-color: green;
+}

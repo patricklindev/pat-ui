@@ -11,9 +11,7 @@ export default {
 export const BasicCheckboxes = () => (
   <div className='basicCheckboxWrapper'>
       <Checkbox />
-      <br />
       <Checkbox checked />
-      <br />
       <Checkbox checkboxSize='large' checkboxId={2}/>
   </div>
 );
@@ -32,7 +30,47 @@ export const DiffThemeCheckbox = () => (
 );
 
 
-export const OtherDiffCheckbox = () => (
+export const DiffIconCheckbox = () => (
+  <div className='diffIconCheckboxWrapper'>
+    <Checkbox icon="home" />
+    <Checkbox icon="spinner" />
+    <Checkbox icon="angle down" />
+    <Checkbox icon="plus" />
+    <Checkbox icon="home" />
+    <Checkbox icon="users" />
+    <Checkbox icon="times" />
+    <Checkbox icon="search" />
+    <Checkbox icon="star" />
+    <Checkbox icon="moon" />
+    <Checkbox icon="heart" />
+    <Checkbox icon="smile wink" />
+    <Checkbox icon="truck" />
+    <Checkbox icon="credit card" />
+  </div>
+);
+
+
+export const DiffIconThemeCheckbox = () => (
+  <div className='diffIconThemeCheckboxWrapper'>
+    <Checkbox icon="home" iconTheme="primary" checked/>
+    <Checkbox icon="spinner" iconTheme="secondary" checked/>
+    <Checkbox icon="angle down" iconTheme="success" checked/>
+    <Checkbox icon="plus" iconTheme="info" checked/>
+    <Checkbox icon="home" iconTheme="warning" checked/>
+    <Checkbox icon="users" iconTheme="danger" checked/>
+    <Checkbox icon="search" iconTheme="dark" checked/>
+  </div>
+);
+
+
+export const OtherDiffCheckbox2 = () => (
+  <div>
+    <Checkbox>DiffCheckbox</Checkbox>
+  </div>
+);
+
+
+export const OtherDiffCheckbox3 = () => (
   <div>
     <Checkbox>DiffCheckbox</Checkbox>
   </div>

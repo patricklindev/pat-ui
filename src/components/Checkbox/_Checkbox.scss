@@ -5,16 +5,14 @@
 
 
 // checkbox wrapper style 
-.basicCheckboxWrapper{
+.basicCheckboxWrapper,
+.diffIconCheckboxWrapper,
+.diffThemeCheckboxWrapper,
+.diffIconThemeCheckboxWrapper{
   width: 50%;
   display:  flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-//diff theme checkbox wrapper
-.diffThemeCheckboxWrapper{
-  display: flex;
 }
 
 // hide default checkbox

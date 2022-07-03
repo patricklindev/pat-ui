@@ -25,7 +25,7 @@ interface ICheckboxProps {
   /**checkbox label */
   checkBoxLabel?: string
   /**change event */
-  onChange?: ()=> void
+  onChange?: ()=> {}
   // id value 
   checkboxId?: number
   // id value 
@@ -33,7 +33,7 @@ interface ICheckboxProps {
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props)=> {
-  const {children,className,checkboxSize,checked,icon,checkboxId,checkboxColor,iconTheme,disabled,label,...rest } = props;
+  const {children,className,checkboxSize,checked,icon,checkboxId,checkboxColor,iconTheme,disabled,label,onChange,...rest } = props;
 
 
   const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
@@ -47,7 +47,8 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
   const styleClassName = classNames('checkbox',{
     [`checkbox-${boxSize}`]: !!boxSize,
     [`checkbox-${checkboxColor}`]: isCheck,
-    [`checkbox-disable`]: !!disabled
+    [`checkbox-disable`]: !!disabled,
+    [`${className}}`] : !!className
   })
 
   useEffect(()=>{
@@ -110,15 +111,19 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
         }
   },[])
 
-  const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
+const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
     setIsCheck(event.target.checked)
-  }
+}
 
   return (
     <div className='checkbox-container'>
-      <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck} disabled={disabled}/>
-      <label htmlFor={id}>
-        <span className={styleClassName} style={{border: checkMark !== "check" ? "none" : ""}}>
+      <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck} disabled={disabled} style={{cursor: disabled ? "not-allowed" : ""}}/>
+      <label htmlFor={id} style={{cursor: disabled ? "not-allowed" : ""}}>
+        <span className={styleClassName} style={{
+          border: checkMark !== "check" ? "none" : "",
+          borderColor: disabled ? "gray" : "",
+          backgroundColor: disabled ? "gray" : "",
+          }}>
           {
           isCheck 
           ? <Icon 

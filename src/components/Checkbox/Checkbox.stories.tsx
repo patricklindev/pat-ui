@@ -2,7 +2,6 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Checkbox from './Checkbox';
 
-
 export default {
   title: 'Checkbox',
   component: Checkbox,
@@ -29,7 +28,6 @@ export const DiffThemeCheckbox = () => (
   </div>
 );
 
-
 export const DiffIconCheckbox = () => (
   <div className='diffIconCheckboxWrapper'>
     <Checkbox icon="home" />
@@ -49,7 +47,6 @@ export const DiffIconCheckbox = () => (
   </div>
 );
 
-
 export const DiffIconThemeCheckbox = () => (
   <div className='diffIconThemeCheckboxWrapper'>
     <Checkbox icon="home" iconTheme="primary" checked/>
@@ -62,7 +59,6 @@ export const DiffIconThemeCheckbox = () => (
   </div>
 );
 
-
 export const CheckboxWithLabel = () => (
   <div className='checkboxWithLabelWrapper'>
     <Checkbox label='Hello,World' />
@@ -72,8 +68,17 @@ export const CheckboxWithLabel = () => (
 );
 
 
-export const OtherDiffCheckbox3 = () => (
+export const checkboxDisabled = () => (
   <div>
-    <Checkbox>DiffCheckbox</Checkbox>
+    <Checkbox label='disabled' disabled/>
+    <Checkbox label='disabled' checked disabled/>
+    <Checkbox icon="users" iconTheme="warning" disabled label='disabled'/>
+  </div>
+);
+
+
+export const ControlCheckStateByCallbackFunc = () => (
+  <div>
+    <Checkbox label='check control by callback' />
   </div>
 );

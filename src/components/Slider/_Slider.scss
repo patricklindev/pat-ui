@@ -1,11 +1,11 @@
 .slider {
-    margin: 10px;
-    -webkit-appearance: none;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-    border-radius: 15px;
+     margin: 10px;
+     -webkit-appearance: none;
+     outline: none;
+     opacity: 0.7;
+     -webkit-transition: 0.2s;
+     transition: opacity 0.2s;
+     border-radius: 15px;
 
     @include slider-size($slider-width,
         $slider-height, $thumb-width, $thumb-height);

@@ -6,26 +6,13 @@ export default function App(){
     return(
         <div className='App'>
             <h1>Default Slider</h1>
-            <Slider/>
+            <Slider min={0} max={5} showLimits={true} ticks={5}/>
             <h2>Large slider</h2>
-            <Slider sliderSize='lg' showLimits={true}/>
-            <h2>Small slider</h2>
-            <Slider sliderSize='sm'/>
-            <h2>Primary Slider</h2>
-            <Slider sliderTheme='primary'/>
-            <h2>Secondary Slider</h2>
-            <Slider sliderTheme='secondary'/>
+            <Slider sliderSize='lg' showLimits={true} ticks={100}/>
             <h2>Warning Slider</h2>
-            <Slider sliderTheme='warning'/>
-            <h2>Danger Slider</h2>
-            <Slider sliderTheme='danger'/>
-            <h2>Dark Slider</h2>
-            <Slider sliderSize="lg" sliderTheme='dark'/>
-            <h2>Vertical Slider</h2>
-            <Slider sliderOrientation='vertical'/>
-
+            <Slider sliderTheme='warning' min={10} max={20} showLimits={true}/>
             <h2>Slider from 1-500 by 50's</h2>
-            <Slider initialValue={100} min={0} max={500} step={50} />
+            <Slider initialValue={100} min={0} max={500} step={50} showLimits={true} />
 
 
         </div>

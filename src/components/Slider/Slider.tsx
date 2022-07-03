@@ -27,13 +27,15 @@ export interface ISliderProps {
     step?: number;
     /**Whether or not to show range limit values */
     showLimits?: boolean;
+    /**How many tick marks to show */
+    ticks?: number;
 }
 
 
 
 export const Slider: FC<ISliderProps> = (props) => {
 
-    const { className, onChange, sliderSize, sliderTheme, sliderOrientation, min, max, initialValue, step, showLimits } = props;
+    const { className, onChange, sliderSize, sliderTheme, sliderOrientation, min, max, initialValue, step, showLimits, ticks } = props;
 
     const [value, setValue] = useState(props.initialValue)
 
@@ -48,11 +50,33 @@ export const Slider: FC<ISliderProps> = (props) => {
     if (className) {
         styleClasses += ' ' + classNames;
     }
-    
-    let slider = <div className= {`showLimits-${showLimits}`}>
+
+    // if(max && min){
+    //     let tickIncrement = max - min
+    //     console.log("ti  ", tickIncrement)
+    // }
+
+    //Fill tickArr with the locations we want tick marks
+    let tickArr = []
+    if (ticks) {
+        let tickIncrement = ((max || 100) - (min || 0)) / ticks
+        for (let i = (min || 0); i <= (max || 100); i += tickIncrement) {
+            tickArr.push(i)
+        }
+    }
+
+    let slider = <div className={`showLimits-${showLimits}`}>
         <span className="limit">{min}</span>
+
+        <datalist id="custom-data">
+            {tickArr.map((item) =>
+                <option key={item} value={item} label="tick" />
+            )}
+        </datalist>
+
         <input
             type="range"
+            list="custom-data"
             min={min}
             max={max}
             defaultValue={initialValue}
@@ -64,8 +88,8 @@ export const Slider: FC<ISliderProps> = (props) => {
                     onChange();
                 }
                 console.log("Val ", value);
-
-            }} />
+            }}
+        />
         <span className="limit">{max}</span>
 
 
@@ -77,7 +101,7 @@ export const Slider: FC<ISliderProps> = (props) => {
 Slider.defaultProps = {
     min: 0,
     max: 100,
-    initialValue: 24,
+    initialValue: 0,
     step: 1,
     showLimits: false
 }

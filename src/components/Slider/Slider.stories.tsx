@@ -37,12 +37,13 @@ export const DifferentThemedSliders = () => (
 
 export const DifferentValuedSliders = () => (
     <div>
-        <h2>Step, Max, and Min Props</h2>
+        <h2>Step, Max, Min, and InitialValue Props</h2>
         <p>Users can use step, max, and min to set possible values of the slider</p>
         <h3>Slider from 1-500 by 50's</h3>
-        <Slider initialValue={100} min={0} max={500} step={50} />
+        <Slider initialValue={250} min={0} max={500} step={50} />
         <h3>Users can also use the showLimits prop to show the limits of the slider's range</h3>
-        <Slider initialValue={100} min={0} max={500} step={50} showLimits={true} />
+        <Slider initialValue={250} min={0} max={500} step={50} showLimits={true} />
+        <Slider initialValue={2001} min={1900} max={2022} step={1} showLimits={true} />
 
     </div>
 );

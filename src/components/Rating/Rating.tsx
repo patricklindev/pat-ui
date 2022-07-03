@@ -10,7 +10,7 @@ import {
   getFullStars,
   getIconColor,
   getIconName,
-  getSizeName
+  getSizeName,
 } from './helper';
 import { useCurrentRatingLabel } from './hooks';
 
@@ -72,7 +72,7 @@ export const Rating: FC<RatingProps> = (props) => {
   if (className) {
     styleClasses += ' ' + className;
   }
-  // rating arr
+  // rating array as the default to stars state
   const starArr = new Array(ratingCount).fill(0).map((item, index) => {
     return {
       value: 0,
@@ -80,22 +80,22 @@ export const Rating: FC<RatingProps> = (props) => {
     };
   });
 
-  // states to manage save rating value, hover effect, and currentHover position
+  // states to manage save current rating value,currentHover position, and stars value
   const [currentTotalRating, setCurrentTotalRating] = useState(defaultRating);
   const [currentHovering, setCurrentHovering] = useState<number>(-1);
   const [stars, setStars] = useState<IStars>(starArr);
 
-  // custom hooks
+  // custom hook to track the current rating label
   const { labelName } = useCurrentRatingLabel(
     currentTotalRating as number,
     ratingCount as number
   );
 
-  // handle onClick with disabled logic
   const handleOnClick = (rating: number) => {
     if (disabled || readonly) {
       return;
     }
+    // get current total star rating
     const newStarRating = getCurrentStarRating(stars);
     setCurrentTotalRating(newStarRating);
     // onChange callback
@@ -112,7 +112,7 @@ export const Rating: FC<RatingProps> = (props) => {
     setCurrentHovering(-1);
   };
 
-  // half star logic
+  // hovering effect with half and full stars preview
   const handleOnMouseMove = (e: any, index: number) => {
     if (disabled || readonly) {
       return;
@@ -122,8 +122,7 @@ export const Rating: FC<RatingProps> = (props) => {
     // get current star ratings
     const newStarRating = getCurrentStarRating(stars);
     setCurrentTotalRating(newStarRating);
-
-    // half stars logi
+    // half stars logic
     if (half) {
       const { offsetX } = e.nativeEvent;
       const currentSize = convertSizeNameToSizeNumber(size as IconSize);
@@ -140,10 +139,8 @@ export const Rating: FC<RatingProps> = (props) => {
     if (defaultRating && !Number.isInteger(defaultRating) && half) {
       const newStars = getDefaultHalfStars(stars, defaultRating);
       setStars(newStars);
-    }
-
-    if (defaultRating && Number.isInteger(defaultRating) && !half) {
-      const newStars = getFullStars(stars, defaultRating);
+    } else {
+      const newStars = getFullStars(stars, defaultRating as number);
       setStars(newStars);
     }
   }, [defaultRating, half]);

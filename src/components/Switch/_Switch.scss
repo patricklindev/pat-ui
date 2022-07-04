@@ -4,24 +4,20 @@ $switch-height: 34px;
 $switch-margin-right: 75px;
 /*switch shadow*/
 $switch-disabled-opacity: 0.65 !default;
+
 /*mixin*/
 @mixin slider-background-color($color){
     background-color: $color;
+    // opacity: 0.7;
+    flex-grow: 0;
 }
-
-@mixin slider-checked-background-color($color){
-  input:checked + .slider {
-    background-color: $color;
-    // @include slider-background-color($primary);
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px $color;
-  }
+@mixin slider-round-background-color($color){
+  background-color: $color;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
 }
-
-// @include slider-background-color($primary);
-
+@mixin slider-transition($speed){
+  transition: $speed;
+}
 
 /* The switch - the box around the slider */
 .switch{
@@ -51,8 +47,18 @@ $switch-disabled-opacity: 0.65 !default;
   width: 34px;
   // background-color: #E0E0E0;
   @include slider-background-color(#E0E0E0);
-  -webkit-transition: .4s;
-  transition: .4s;
+  @include slider-transition(.2s)
+}
+
+.slider.round.sm{
+  height: 10px;
+  width: 26px;
+  top: 3px;
+}
+.slider.round.sm::before{
+  height: 16px;
+  width: 16px;
+  bottom: -3px;
 }
 
 .slider:before{
@@ -64,21 +70,26 @@ $switch-disabled-opacity: 0.65 !default;
   bottom: -3px;
   // background-color: #BDBDBD;
   @include slider-background-color(#BDBDBD);
-  -webkit-transition: .4s;
-  transition: .4s;
+  @include slider-transition(.2s)
 }
 
+/*For all other switches*/
 input:checked + .slider {
-  // background-color: $primary;
   @include slider-background-color($primary);
 }
 
-//color switches
+/*Color for sliders */
 input:checked + span[color="primary"] {
     @include slider-background-color($primary);
 }
 input:checked + span[color="secondary"] {
     @include slider-background-color($secondary);
+}
+input:checked + span[color="success"] {
+    @include slider-background-color($success);
+}
+input:checked + span[color="info"] {
+    @include slider-background-color($info);
 }
 input:checked + span[color="warning"] {
     @include slider-background-color($warning);
@@ -86,15 +97,44 @@ input:checked + span[color="warning"] {
 input:checked + span[color="danger"] {
     @include slider-background-color($danger);
 }
+input:checked + span[color="light"] {
+    @include slider-background-color($light);
+}
+input:checked + span[color="dark"] {
+    @include slider-background-color($dark);
+}
+/*Color for rounded sliders */
+input:checked + .slider.round.primary::before {
+    @include slider-round-background-color($primary);
+}
+input:checked + .slider.round.secondary::before {
+    @include slider-round-background-color($secondary);
+}
+input:checked + .slider.round.success::before {
+    @include slider-round-background-color($success);
+}
+input:checked + .slider.round.info::before {
+    @include slider-round-background-color($info);
+}
+input:checked + .slider.round.warning::before {
+    @include slider-round-background-color($warning);
+}
+input:checked + .slider.round.danger::before {
+    @include slider-round-background-color($danger);
+}
+input:checked + .slider.round.light::before {
+    @include slider-round-background-color($light);
+}
+input:checked + .slider.round.dark::before {
+    @include slider-round-background-color($dark);
+}
 
 input:focus + .slider {
   box-shadow: 0 0 1px $primary;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(17px);
-  -ms-transform: translateX(17px);
-  transform: translateX(17px);
+  transform: translate(17px);
 }
 
 /* Rounded sliders */
@@ -107,9 +147,7 @@ input:checked + .slider:before {
   cursor: not-allowed;
   opacity: $switch-disabled-opacity;
   box-shadow: none;
-  opacity: 0.5;
 }
-
 
 .slider.round:before {
   border-radius: 50%;

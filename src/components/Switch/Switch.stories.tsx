@@ -8,6 +8,7 @@ export default {
     title: 'Switch',
     component: Switch
 }
+// const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 //SECTION 3: Define what is shown on Storybook
 
@@ -25,7 +26,7 @@ export const DisabledSwitch = () => (
     <div>
         <h1>Disabled Switches</h1>
         <br/>
-        <Switch disabled/>
+        <Switch disabled></Switch>
         <Switch disabled defaultChecked/>
     </div>
     
@@ -37,8 +38,12 @@ export const DiffColorSwitch = () => (
         <br/>
         <Switch color="primary" defaultChecked>primary</Switch>
         <Switch color="secondary" defaultChecked>secondary</Switch>
+        <Switch color="success" defaultChecked>success</Switch>
+        <Switch color="info" defaultChecked>info</Switch>
         <Switch color="warning" defaultChecked>warning</Switch>
         <Switch color="danger" defaultChecked>danger</Switch>
+        <Switch color="light" defaultChecked>light</Switch>
+        <Switch color="dark" defaultChecked>dark</Switch>
     </div>  
 )
 
@@ -47,7 +52,7 @@ export const DiffSizeSwitch = () => (
         <h1>Size Switches</h1>
         <br/>
         <Switch size="sm">small</Switch>
-        <Switch>large</Switch>
+        <Switch>default</Switch>
     </div>
 )
 

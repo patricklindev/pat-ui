@@ -1,46 +1,62 @@
-import React,{useState,useEffect}from 'react'
+import React,{useState,useEffect,FC}from 'react'
 import { classNames } from '../../utils/classNames';
 import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
 
-
 import Icon from "./Icon"
-import { url } from 'inspector';
 
-interface ICheckboxProps {
+export type boxSize = 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
+export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card';
+export type themeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'light';
+
+export interface ICheckboxProps {
   /** set customized style */
   className?: string;
   /** set checkbox size */
-  checkboxSize?: 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
+  checkboxSize?: boxSize
   /** make checkbox bar always check */
-  checked?: boolean;
+  checked?: boolean | undefined;
   /** disabled the checkbox */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /** add specific icon to input bar */
-  icon?: string ;
+  icon?: iconType ;
   /** add specific icon to input bar */
-  iconTheme?: string;
+  iconTheme?: themeColor;
   /**customize checkbox color */
-  checkboxColor? : string
-  /**checkbox label */
-  checkBoxLabel?: string
-  /**change event */
-  onChange?: ()=> {}
-  // id value 
-  checkboxId?: number
-  // id value 
-  label?: string
+  checkboxColor? : themeColor;
+  /** pass a callback function out-site of props */
+  onChange?: ()=> void | undefined;
+  /** set label and input id value */
+  checkboxId?: number;
+  /** set label value */ 
+  label?: string;
 }
 
-const Checkbox: React.FC<ICheckboxProps> = (props)=> {
-  const {children,className,checkboxSize,checked,icon,checkboxId,checkboxColor,iconTheme,disabled,label,onChange,...rest } = props;
+/**
+ * Checkbox allow user to implement different styles and features
+ *
+ * ```js
+ * import {Checkbox} from 'pat-ui'
+ * ```
+ */
 
+export const Checkbox:FC<ICheckboxProps> = (props)=> {
+  const {
+    className,
+    checkboxSize,
+    checked,
+    icon,
+    checkboxId,
+    checkboxColor,
+    iconTheme,
+    disabled,
+    label,
+    onChange : onCheck} = props;
 
   const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
-  const [checkMark,setCheckMark] = useState(icon ? icon : "check")
+  const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : "check")
   const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : "normal")
   const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
-  // const [themeIcon, setThemeIcon] = useState(iconTheme === undefined ?  )
   const [fillCheck,setFillCheck] = useState("")
   const [fillIcon,setFillIcon] = useState("")
 
@@ -53,32 +69,14 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
 
   useEffect(()=>{
     switch(checkboxColor) {
-      case "primary":
-        setFillCheck("white")
-        break;
-      case "secondary":
-        setFillCheck("white")
-        break;
-      case "success":
-        setFillCheck("white")
-        break
-      case "info":
-        setFillCheck("white")
-        break
-      case "warning":
-        setFillCheck("white")
-        break
-      case "danger":
-        setFillCheck("white")
-        break
       case "light":
         setFillCheck("#000")
         break
-      case "dark":
-        setFillCheck("white")
+      case undefined:
+        setFillCheck("#000")
         break
       default:
-        setFillCheck("#000")
+        setFillCheck("white")
       }
 
       switch(iconTheme) {
@@ -111,30 +109,40 @@ const Checkbox: React.FC<ICheckboxProps> = (props)=> {
         }
   },[])
 
-const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
-    setIsCheck(event.target.checked)
-}
+  const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
+      setIsCheck(event.target.checked)
+  }
 
   return (
     <div className='checkbox-container'>
-      <input type="checkbox" id={id} checked={isCheck} onChange={handleCheck} disabled={disabled} style={{cursor: disabled ? "not-allowed" : ""}}/>
-      <label htmlFor={id} style={{cursor: disabled ? "not-allowed" : ""}}>
-        <span className={styleClassName} style={{
-          border: checkMark !== "check" ? "none" : "",
-          borderColor: disabled ? "gray" : "",
-          backgroundColor: disabled ? "gray" : "",
+      <input 
+        type="checkbox" 
+        id={id} 
+        checked={isCheck} 
+        onChange={handleCheck} 
+        disabled={disabled} 
+        style={{cursor: disabled ? "not-allowed" : ""}}/>
+      <label 
+        htmlFor={id} 
+        style={{cursor: disabled ? "not-allowed" : ""}}>
+        <span 
+          className={styleClassName} 
+          style={{
+            border: checkMarkIcon !== "check" ? "none" : "",
+            borderColor: disabled ? "gray" : "",
+            backgroundColor: disabled ? "gray" : "",
           }}>
           {
           isCheck 
           ? <Icon 
-          viewBox={IconPath[`${checkMark}`].viewBox} 
-          path={IconPath[`${checkMark}`].path}
-          fill={checkMark === "check" ? fillCheck : fillIcon}
+          viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
+          path={IconPath[`${checkMarkIcon}`].path}
+          fill={checkMarkIcon === "check" ? fillCheck : fillIcon}
           /> 
-          : checkMark !== "check" 
+          : checkMarkIcon !== "check" 
           ? <Icon 
-          viewBox={IconPath[`${checkMark}`].viewBox} 
-          path={IconPath[`${checkMark}`].path}
+          viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
+          path={IconPath[`${checkMarkIcon}`].path}
           fill="lightgray"
           />
           : null
@@ -146,16 +154,4 @@ const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
   )
 }
 
-Checkbox.defaultProps = {
-}
-
-export default Checkbox
-
-
-{/* <svg
-className={styleClasses}
-viewBox={IconPath[name].viewBox}
-height={height}
->
-<path fill={color} fill-opacity=".25" d={IconPath[name].path} />
-</svg> */}
+export default Checkbox;

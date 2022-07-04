@@ -27,7 +27,7 @@ export interface ICheckboxProps {
   /** pass a callback function out-site of props */
   onChange?: ()=> void | undefined;
   /** set label and input id value */
-  checkboxId?: number;
+  checkboxId?: string;
   /** set label value */ 
   label?: string;
 }
@@ -53,13 +53,25 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
     label,
     onChange : handleCheck} = props;
 
-  const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
+  // define a unique id when the function is mounted
+  const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId)
+
+  // define a default icon value
   const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : "check")
+
+  // define a default checkboxSize
   const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : "normal")
+
+  // toggle the checked state
   const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
+
+  //state for check icon color
   const [fillCheck,setFillCheck] = useState("")
+
+  //state for other icon color
   const [fillIcon,setFillIcon] = useState("")
 
+  // add class name
   const styleClassName = classNames('checkbox',{
     [`checkbox-${boxSize}`]: !!boxSize,
     [`checkbox-${checkboxColor}`]: isCheck,
@@ -67,7 +79,10 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
     [`${className}}`] : !!className
   })
 
+  
   useEffect(()=>{
+
+    // set check icon color when mounted
     switch(checkboxColor) {
       case "light":
         setFillCheck("#000")
@@ -79,6 +94,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         setFillCheck("white")
       }
 
+      // set icon color when mounted
       switch(iconTheme) {
         case "primary":
           setFillIcon("#20c997")
@@ -109,6 +125,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         }
   },[])
 
+  //event handler for check input
   const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
       setIsCheck(event.target.checked)
   }
@@ -119,28 +136,28 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         type="checkbox" 
         id={id} 
         checked={isCheck} 
-        onChange={handleCheck ? handleCheck : handleChange} 
+        onChange={handleCheck ? handleCheck : handleChange} // replace onChange CB if onChange prop exist
         disabled={disabled} 
-        style={{cursor: disabled ? "not-allowed" : ""}}/>
+        style={{cursor: disabled ? "not-allowed" : ""}}/> {/** change cursor to not-allowed when disabled */}
       <label 
         htmlFor={id} 
-        style={{cursor: disabled ? "not-allowed" : ""}}>
+        style={{cursor: disabled ? "not-allowed" : ""}}>{/** change cursor to not-allowed when disabled */}
         <span 
           className={styleClassName} 
           style={{
-            border: checkMarkIcon !== "check" ? "none" : "",
-            borderColor: disabled ? "gray" : "",
-            backgroundColor: disabled ? "gray" : "",
+            border: checkMarkIcon !== "check" ? "none" : "", // remove border when icon is not check icon
+            borderColor: disabled ? "gray" : "", // change border color to gray when disabled
+            backgroundColor: disabled ? "gray" : "", // change background color to gray when disable
           }}>
           {
           isCheck 
-          ? <Icon 
+          ? <Icon  // if input check is true render the icon 
           viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
           path={IconPath[`${checkMarkIcon}`].path}
-          fill={checkMarkIcon === "check" ? fillCheck : fillIcon}
+          fill={checkMarkIcon === "check" ? fillCheck : fillIcon} // if icon is check icon implement color with fillCheck state else implement color with fillIcon state
           /> 
           : checkMarkIcon !== "check" 
-          ? <Icon 
+          ? <Icon  // if check input icon is not check icon render icon
           viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
           path={IconPath[`${checkMarkIcon}`].path}
           fill="lightgray"

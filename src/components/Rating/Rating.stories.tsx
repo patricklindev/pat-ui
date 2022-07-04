@@ -17,64 +17,46 @@ const ratingStyle: React.CSSProperties = {
 const sizeArr = ['small', 'medium', 'large'];
 
 export const DefaultRating = () => (
-  <div style={ratingStyle}>
-    <Rating onClick={action('hi')} onChange={action('rating value is')} />
-  </div>
+  <Rating
+    onClick={action('hi')}
+    onChange={action('rating value is')}
+    style={ratingStyle}
+  />
 );
 
 export const DisabledRating = () => (
   <div>
-    <div style={ratingStyle}>
-      <Rating disabled defaultRating={4} />
-    </div>
-    <div style={ratingStyle}>
-      <Rating disabled defaultRating={2.5} half />
-    </div>
+    <Rating disabled defaultRating={4} style={ratingStyle} />
+    <Rating disabled defaultRating={2.5} half style={ratingStyle} />
   </div>
 );
 
 export const DiffSizeRating = () =>
   sizeArr.map((item, index) => (
-    <div key={index} style={ratingStyle}>
-      <Rating size={item as IconSize} />
-    </div>
+    <Rating size={item as IconSize} style={ratingStyle} key={index} />
   ));
 
 export const ReadyOnlyRating = () => (
   <div>
-    <div style={ratingStyle}>
-      <Rating readonly defaultRating={4} />
-    </div>
-    <div style={ratingStyle}>
-      <Rating readonly defaultRating={2.5} half />
-    </div>
+    <Rating readonly defaultRating={4} style={ratingStyle} />
+    <Rating readonly defaultRating={2.5} half style={ratingStyle} />
   </div>
 );
 
 export const HalfFractionRating = () => (
-  <div style={ratingStyle}>
-    <Rating defaultRating={3.5} half />
-  </div>
+  <Rating defaultRating={3.5} half style={ratingStyle} />
 );
 
 export const LabelRating = () => (
   <div>
-    <div style={ratingStyle}>
-      <Rating isLabel defaultRating={1} />
-    </div>
-    <div style={ratingStyle}>
-      <Rating isLabel half defaultRating={2.5} />
-    </div>
+    <Rating isLabel defaultRating={1} style={ratingStyle} />
+    <Rating isLabel half defaultRating={2.5} style={ratingStyle} />
   </div>
 );
 
 export const CustomCountsRating = () => (
   <div>
-    <div style={ratingStyle}>
-      <Rating ratingCount={10} defaultRating={5} />
-    </div>
-    <div style={ratingStyle}>
-      <Rating ratingCount={10} defaultRating={6.5} half />
-    </div>
+    <Rating ratingCount={10} defaultRating={5} style={ratingStyle} />
+    <Rating ratingCount={10} defaultRating={6.5} half style={ratingStyle} />
   </div>
 );

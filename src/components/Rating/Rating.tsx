@@ -1,4 +1,10 @@
-import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
+import React, {
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 import { IconSize } from '../Icon/Icon';
@@ -15,6 +21,7 @@ import {
 import { useCurrentRatingLabel } from './hooks';
 
 interface IRatingProps {
+  /** set className to the component */
   className?: string;
   /** set rating to be disabled */
   disabled?: boolean;
@@ -30,6 +37,8 @@ interface IRatingProps {
   half?: boolean;
   /** set label with satisfaction words after the rating component */
   isLabel?: boolean;
+  /** set inline style to the component */
+  style?: CSSProperties;
   /** get the current rating value outside of component */
   onChange?: (rating: any) => void;
 }
@@ -61,6 +70,7 @@ export const Rating: FC<RatingProps> = (props) => {
     defaultRating,
     isLabel,
     half,
+    style,
     onChange,
   } = props;
 
@@ -174,7 +184,7 @@ export const Rating: FC<RatingProps> = (props) => {
   const label = isLabel && <label>{labelName}</label>;
 
   return (
-    <div className="rating-container">
+    <div className="rating-container" style={style}>
       {renderedRating}
       {label}
     </div>

@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { classNames } from '../../utils/classNames';
 
-export type messageType = 
+export type messageType =
     | 'basic'
     | 'list'
     | 'icon'
@@ -50,13 +50,13 @@ export interface IMessagesProps {
 }
 
 export const Message: FC<IMessagesProps> = (props) => {
-    const { 
-        className, 
+    const {
+        className,
         msgType,
-        msgSize, 
+        msgSize,
         msgColor,
         ...rest } = props;
-    
+
     let styleClasses = classNames('msg', {
         [`msg-${msgType}`]: true,
         [`msg-${msgSize}`]: !!msgSize,

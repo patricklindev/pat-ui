@@ -3,190 +3,181 @@ import Message from './Message';
 import { Icon } from '../../index';
 
 export default {
-    title: 'Message',
-    component: Message,
+  title: 'Message',
+  component: Message,
 };
 
-export const testDiv = () => {
-  <Message
-    className='basic-message'
-    msgHeader='Test Message'
-    msgContent='This is me testing to see if I can render a message on the page'
-  >
-  </Message>
-};
+export const testMessage = () => (
+  <div>
+    <h3>Test Message</h3>
+    <Message
+      className="test-message"
+      msgHeader="Test Message"
+      msgContent="This should now render on the storybook page. I hope this works, it took me a minute to figure out why it wasn't rendering."
+    ></Message>
+  </div>
+);
 
 export const DefaultMessage = () => (
   <Message
-    className='basic-message'
-    msgHeader='Basic Message'
-    msgContent='This is a basic message for you to use, you can change it to any message you want.'
-  >
-  </Message>
+    className="basic-message"
+    msgHeader="Basic Message"
+    msgContent="This is a basic message for you to use, you can change it to any message you want."
+  ></Message>
 );
 
 export const DiffTypeMessage = () => (
   <div>
     <h3>Basic Message</h3>
-      <Message
-        className='basic-message'
-        msgHeader='Basic Message'
-        msgContent='This is a basic message for you to use, you can change it to any message you want.'
-      >
-      </Message>
+    <Message
+      className="basic-message"
+      msgHeader="Basic Message"
+      msgContent="This is a basic message for you to use, you can change it to any message you want."
+    ></Message>
     <br />
     <br />
     <h3>List Message</h3>
-      <Message
-        className='list-message'
-        msgList={true}
-        msgHeader='List Message'
-        msgContent='This is the first bullet point for you to use, you can change it to any message you want.'
-        msgBulletContent='This is the second bullet point for you to use, you can change it to any message you want.'
-      >
-      </Message>
+    <Message
+      className="list-message"
+      msgList={true}
+      msgHeader="List Message"
+      msgContent="This is the first bullet point for you to use, you can change it to any message you want."
+      msgBulletContent="This is the second bullet point for you to use, you can change it to any message you want."
+    ></Message>
     <br />
     <br />
     <h3>Icon Message</h3>
-      <Message
-        className='icon-message'
-        msgIcon={
-          <Icon disabled={false} loading={true} name='spinner' size='large' color='black' />
-          }
-        msgHeader='Icon Message'
-        msgContent='This is an icon message for you to use, you can change it to any message you want.'
-        >
-      </Message>
+    <Message
+      className="icon-message"
+      msgIcon={
+        <Icon
+          disabled={false}
+          loading={true}
+          name="spinner"
+          size="large"
+          color="black"
+        />
+      }
+      msgHeader="Icon Message"
+      msgContent="This is an icon message for you to use, you can change it to any message you want."
+    ></Message>
     <br />
     <br />
     <h3>Dismiss Message</h3>
     <Message
-      className='dismiss-message'
+      className="dismiss-message"
       msgIcon={
-        <Icon disabled={false} loading={false} name='times' size='mini' color='black' />
-        }
-      msgHeader='Dismiss Message'
-      msgContent='This is a dismiss message for you to use, you can change it to any message you want. You can click the delete button to dismiss this message.'
+        <Icon
+          disabled={false}
+          loading={false}
+          name="times"
+          size="mini"
+          color="black"
+        />
+      }
+      msgHeader="Dismiss Message"
+      msgContent="This is a dismiss message for you to use, you can change it to any message you want. You can click the delete button to dismiss this message."
       msgOnClick={() => {
         const element = document.querySelector('.dismiss-message');
         return element?.remove();
       }}
-    >
-    </Message>
+    ></Message>
   </div>
 );
 
-
 export const DiffSizeMessage = () => (
-  <div className='size-message'>
+  <div className="size-message">
     <br />
     <br />
     <Message
-      className='mini-message'
-      msgSize='mini'
-      msgContent='This is a mini message.'
-    >
-    </Message>
+      className="mini-message"
+      msgSize="mini"
+      msgContent="This is a mini message."
+    ></Message>
     <br />
     <br />
     <Message
-      className='tiny-message'
-      msgSize='tiny'
-      msgContent='This is a tiny message.'
-    >
-    </Message>
+      className="tiny-message"
+      msgSize="tiny"
+      msgContent="This is a tiny message."
+    ></Message>
     <br />
     <br />
     <Message
-      className='small-message'
-      msgSize='small'
-      msgContent='This is a small message.'
-    >
-    </Message>
+      className="small-message"
+      msgSize="small"
+      msgContent="This is a small message."
+    ></Message>
     <br />
     <br />
     <Message
-      className='large-message'
-      msgSize='large'
-      msgContent='This is a large message.'
-    >
-    </Message>
+      className="large-message"
+      msgSize="large"
+      msgContent="This is a large message."
+    ></Message>
     <br />
     <br />
     <Message
-      className='big-message'
-      msgSize='big'
-      msgContent='This is a big message.'
-    >
-    </Message>
+      className="big-message"
+      msgSize="big"
+      msgContent="This is a big message."
+    ></Message>
     <br />
     <br />
     <Message
-      className='huge-message'
-      msgSize='huge'
-      msgContent='This is a huge message.'
-    >
-    </Message>
+      className="huge-message"
+      msgSize="huge"
+      msgContent="This is a huge message."
+    ></Message>
     <br />
     <br />
     <Message
-      className='massive-message'
-      msgSize='massive'
-      msgContent='This is a massive message.'
-    >
-    </Message>
+      className="massive-message"
+      msgSize="massive"
+      msgContent="This is a massive message."
+    ></Message>
   </div>
 );
 
 export const DiffColorMessage = () => (
-  <div className='color-message'>
+  <div className="color-message">
     <br />
     <br />
     <Message
-      className='white-message'
-      msgColor='white'
-      msgContent='White'
-    >
-    </Message>
+      className="white-message"
+      msgColor="white"
+      msgContent="White"
+    ></Message>
+    <br />
+    <br />
+    <Message className="red-message" msgColor="red" msgContent="Red"></Message>
     <br />
     <br />
     <Message
-      className='red-message'
-      msgColor='red'
-      msgContent='Red'
-    >
-    </Message>
+      className="orange-message"
+      msgColor="orange"
+      msgContent="Orange"
+    ></Message>
     <br />
     <br />
     <Message
-      className='orange-message'
-      msgColor='orange'
-      msgContent='Orange'
-    >
-    </Message>
+      className="blue-message"
+      msgColor="blue"
+      msgContent="Blue"
+    ></Message>
     <br />
     <br />
     <Message
-      className='blue-message'
-      msgColor='blue'
-      msgContent='Blue'
-    >
-    </Message>
+      className="pink-message"
+      msgColor="pink"
+      msgContent="Pink"
+    ></Message>
     <br />
     <br />
     <Message
-      className='pink-message'
-      msgColor='pink'
-      msgContent='Pink'
-    >
-    </Message>
-    <br />
-    <br />
-    <Message
-      className='black-message'
-      msgColor='black'
-      msgContent='Black'
-    >
-    </Message>
+      className="black-message"
+      msgColor="black"
+      msgContent="Black"
+    ></Message>
   </div>
 );

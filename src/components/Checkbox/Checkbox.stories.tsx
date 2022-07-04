@@ -76,9 +76,8 @@ export const checkboxDisabled = () => (
   </div>
 );
 
-
 export const ControlCheckStateByCallbackFunc = () => (
   <div>
-    <Checkbox label='check control by callback' />
+    <Checkbox label='Check Control by Callback' onChange={()=>{console.log("GG")}}/>
   </div>
 );

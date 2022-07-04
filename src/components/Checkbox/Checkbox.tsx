@@ -18,9 +18,9 @@ export interface ICheckboxProps {
   checked?: boolean | undefined;
   /** disabled the checkbox */
   disabled?: boolean | undefined;
-  /** add specific icon to input bar */
+  /** add specific icon to input */
   icon?: iconType ;
-  /** add specific icon to input bar */
+  /** add specific icon theme to input */
   iconTheme?: themeColor;
   /**customize checkbox color */
   checkboxColor? : themeColor;
@@ -36,7 +36,7 @@ export interface ICheckboxProps {
  * Checkbox allow user to implement different styles and features
  *
  * ```js
- * import {Checkbox} from 'pat-ui'
+ * import { Checkbox } from 'pat-ui'
  * ```
  */
 
@@ -51,7 +51,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
     iconTheme,
     disabled,
     label,
-    onChange : onCheck} = props;
+    onChange : handleCheck} = props;
 
   const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId.toString())
   const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : "check")
@@ -109,7 +109,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         }
   },[])
 
-  const handleCheck = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
       setIsCheck(event.target.checked)
   }
 
@@ -119,7 +119,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         type="checkbox" 
         id={id} 
         checked={isCheck} 
-        onChange={handleCheck} 
+        onChange={handleCheck ? handleCheck : handleChange} 
         disabled={disabled} 
         style={{cursor: disabled ? "not-allowed" : ""}}/>
       <label 

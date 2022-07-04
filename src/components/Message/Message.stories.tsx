@@ -7,8 +7,17 @@ export default {
     component: Message,
 };
 
+export const testDiv = () => {
+  <Message
+    className='basic-message'
+    msgHeader='Test Message'
+    msgContent='This is me testing to see if I can render a message on the page'
+  >
+  </Message>
+};
+
 export const DefaultMessage = () => (
-  <Message 
+  <Message
     className='basic-message'
     msgHeader='Basic Message'
     msgContent='This is a basic message for you to use, you can change it to any message you want.'
@@ -28,7 +37,7 @@ export const DiffTypeMessage = () => (
     <br />
     <br />
     <h3>List Message</h3>
-      <Message 
+      <Message
         className='list-message'
         msgList={true}
         msgHeader='List Message'

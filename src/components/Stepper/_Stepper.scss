@@ -29,10 +29,6 @@
     margin-left:5%;  
 }
 
-.row-description{
-    width:100%;
-    margin-left:5%;  
-}
 
 .vertical-container{
     width:100%;
@@ -54,10 +50,20 @@
 //STEPPERTYPE==CIRCLE
 //FOR WHEN STEPPERTYPE IS "CIRCLE"
 
+  .circle-start {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align:center;
+    z-index: 1;
+    color:$gray-100;
+    margin-left:10%;
+  }
+
   .circle {
     height: 25px;
-    width: 50px;
-    background-color: $gray-600;
+    width: 25px;
     border-radius: 50%;
     display: inline-block;
     text-align:center;
@@ -68,20 +74,7 @@
 
   .circle-last {
     height: 25px;
-    width: 34px;
-    background-color: $gray-600;
-    border-radius: 50%;
-    display: inline-block;
-    text-align:center;
-    z-index: 1;
-    color:$gray-100;
-    margin-left:10%;
-  }
-
-  .circle-last-completed {
-    height: 25px;
     width: 25px;
-    background-color: $gray-600;
     border-radius: 50%;
     display: inline-block;
     text-align:center;
@@ -93,7 +86,6 @@
   .circle-vertical{
     height: 25px;
     width: 30px;
-    background-color: $gray-600;
     border-radius: 50%;
     display: inline-block;
     text-align:center;
@@ -104,10 +96,20 @@
 
 //STEPPERTYPE==SQUARE
 //FOR WHEN STEPPERTYPE IS "SQUARE"
+
+.square-start {
+    height: 25px;
+    width: 30px;
+    display: inline-block;
+    text-align:center;
+    border-radius: 20%;
+    color:$gray-100;
+    margin-left:10%;
+}
+
 .square {
     height: 25px;
-    width: 50px;
-    background-color: $gray-600;
+    width: 30px;
     display: inline-block;
     text-align:center;
     border-radius: 20%;
@@ -118,7 +120,6 @@
 .square-last {
     height: 25px;
     width: 32px;
-    background-color: $gray-600;
     display: inline-block;
     text-align:center;
     border-radius: 20%;
@@ -145,13 +146,6 @@
  
 }
 
-.Stepper-Button-Null {
-    margin-left:5%;
-    width:20%;
-    background-color: $gray-600;
-    border-color:$gray-600;
-}
-
 .spacer {
     width:50%;
 }
@@ -172,13 +166,7 @@
 
 // LINEBAR
 
-.completed {
-    background-color: green;
-    color:$gray-100;
-}
-
 .bar {
-    background-color: $gray-600;
     width:50%;
     min-width:20%;
     height:5px;
@@ -187,17 +175,7 @@
     display: inline-block;
 }
 
-.bar-completed {
-    background-color: green;
-    width:50%;
-    min-width:20%;
-    height:5px;
-    margin:auto;
-    border-radius: 10px;
-    display: inline-block;
-}
 
-//ORIENTATION
 
   .hide {
     display:none;
@@ -211,4 +189,28 @@
 
 .green {
     background-color: green;
+}
+
+// FONT Style
+
+.font-variant-main{
+    font-size: $font-size-sm;
+    list-style: none;
+}
+
+.font-variant-secondary{
+    font-size: $font-size-sm;
+    font-style:italic;
+    list-style: none;
+}
+
+.font-variant-error{
+    font-size: $font-size-sm;
+    list-style: none;
+    color:red;
+}
+
+
+.description-area {
+    width:350px;
 }

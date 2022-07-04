@@ -1,9 +1,3 @@
-//custom property
-:root {
-  --boxSize: #{$cb-normal};
-}
-
-
 // checkbox wrapper style 
 .basicCheckboxWrapper,
 .diffIconCheckboxWrapper,
@@ -11,10 +5,7 @@
 .diffIconThemeCheckboxWrapper,
 .checkboxWithLabelWrapper,
 .checkboxDisableWrapper{
-  width: 50%;
-  display:  flex;
-  justify-content: flex-start;
-  align-items: center;
+@include displayWrapper
 }
 
 // hide default checkbox
@@ -54,28 +45,23 @@
   align-items: center;
 
   &-ex-small{
-    width: $cb-ex-small;
-    height: $cb-ex-small;
+    @include check-box-size($cb-ex-small)
   }
 
   &-small{
-    width: $cb-small;
-    height: $cb-small;
+    @include check-box-size($cb-small)
   }
 
   &-normal{
-    width: $cb-normal;
-    height: $cb-normal;
+    @include check-box-size($cb-normal)
   }
 
   &-large{
-    width: $cb-large;
-    height: $cb-large;
+    @include check-box-size($cb-large)
   }
 
   &-ex-larger{
-    width: $cb-ex-large;
-    height: $cb-ex-large;
+    @include check-box-size($cb-ex-large)
   }
 
   &-primary{

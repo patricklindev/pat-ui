@@ -9,13 +9,18 @@ export default {
 
 
 export const DefaultSlider = () => (
-    <Slider onChange={action("Slider was moved")} />
+    <Slider onChange={action("Default Slider was moved")}/>
+
+
 );
 
 export const DifferentSizedSliders = () => (
     <div>
+        <h2>Small Slider</h2>
         <Slider sliderSize='sm' onChange={action("Small Slider was moved")} />
+        <h2>Default Slider</h2>
         <Slider onChange={action("Default Slider was moved")}/>
+        <h2>Large Slider</h2>
         <Slider sliderSize='lg' onChange={action("Large Slider was moved")} />
     </div>
 );
@@ -23,15 +28,15 @@ export const DifferentSizedSliders = () => (
 export const DifferentThemedSliders = () => (
     <div>
         <h2>Primary Slider</h2>
-        <Slider sliderTheme='primary' />
+        <Slider sliderTheme='primary' onChange={action("Primary Slider was moved")}/>
         <h2>Secondary Slider</h2>
-        <Slider sliderTheme='secondary' />
+        <Slider sliderTheme='secondary' onChange={action("Secondary Slider was moved")}/>
         <h2>Warning Slider</h2>
-        <Slider sliderTheme='warning' />
+        <Slider sliderTheme='warning' onChange={action("Warning Slider was moved")}/>
         <h2>Danger Slider</h2>
-        <Slider sliderTheme='danger' />
+        <Slider sliderTheme='danger' onChange={action("Danger Slider was moved")}/>
         <h2>Dark Slider</h2>
-        <Slider sliderTheme='dark' />
+        <Slider sliderTheme='dark' onChange={action("Dark Slider was moved")}/>
         <h2>Disabled Slider</h2>
         <Slider disabled={true}/>
     </div>
@@ -41,20 +46,17 @@ export const DifferentValuedSliders = () => (
     <div>
         <h2>Tick Marks</h2>
         <p>Users can decide how many tick marks to include on the slider</p>
-        <Slider ticks={2}></Slider>
-        <Slider ticks={5}></Slider>
+        <Slider ticks={2} onChange={action("Slider was moved")}/>
+        <Slider ticks={5} onChange={action("Slider was moved")}/>
 
 
 
         <h2>Step, Max, Min, and InitialValue Props</h2>
         <p>Users can use step, max, and min to set possible values of the slider</p>
         <h5>Slider with custom min, max, and inital value</h5>
-        <Slider initialValue={1990} min={1900} max={2022} step={1} ticks={2}/>
-
+        <Slider initialValue={1990} min={1900} max={2022} step={1} ticks={2} onChange={action("Slider was moved")}/>
 
         <h5>Slider from 1-30 by 10's</h5>
-        <Slider initialValue={0} min={0} max={30} step={10} ticks={4}/>
-
-
+        <Slider initialValue={0} min={0} max={30} step={10} ticks={4} onChange={action("Slider was moved")}/>
     </div>
 );

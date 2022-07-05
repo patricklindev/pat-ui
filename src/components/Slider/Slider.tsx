@@ -74,9 +74,8 @@ export const Slider: FC<ISliderProps> = (props) => {
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         setValue(parseInt(event.target.value))
                         if (onChange) {
-                            onChange();
+                            onChange(value);
                         }
-                        console.log("Val ", value);
                     }}
                 />
                 <div className='tickLine'>

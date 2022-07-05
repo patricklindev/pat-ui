@@ -1,46 +1,67 @@
 import React from 'react';
 import Rating from './Rating';
+import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'Rating',
     component: Rating,
   };
 
-  export const PreviewTheRating = () => (
+  export const DefaultRating = () => (
     <div>
-    Preview the rating by hovering
     <Rating />
     </div>
   );
   
-  export const DisableTheRating = () => (
+  export const DisabledRating = () => (
     <div>
-    Disable the component from props
-    <Rating disable/>
+    <Rating edit={false}/>
     </div>
   );
 
-  const sizeArr = [30, 40, 50];
-  export const ChooseSizeOfTheRating = () => (sizeArr.map(
-    (size, index) => (
+  export const SetThePrecisionOfTheRating = () => (
     <div>
-      {size}px
-      <Rating size={size}/> 
+    <Rating half={true}/>
     </div>
-  )));
+  );
 
-  const totalNumberArr = [3, 5, 10];
-  export const DicideTheNumberOfStars = () => totalNumberArr.map((totalNumber, index) => (
+  export const ChooseSizesOfTheRating = () => (
     <div>
-     Total Number Of Stars: {totalNumber}
-      <Rating totalNumber={totalNumber}/>
+      <div>30px</div>
+      <Rating size={30}/>
+      <div>35px</div>
+      <Rating size={35}/>
+      <div>40px</div>
+      <Rating size={40}/>
     </div>
-  ));
+  );
 
-  const valueArr = [1, 2, 3];
-  export const ControlTheValueOfTheRating = () => valueArr.map((value, index) => (
+  export const ProvideTheLabelForRating = () => (
     <div>
-     The Value Of The Rating: {value}
-      <Rating ratingValue={value}/>
+    <Rating labels/>
+    <Rating half labels/>
     </div>
-  ));
+  );
+
+  export const DecideTheNumberOfStars = () => (
+    <div>
+    <Rating count={3}/>
+    <Rating count={6}/>
+    <Rating count={9}/>
+    </div>
+  );
+
+  export const ControlTheValueOfTheRating = () => (
+    <div>
+    <Rating value={2}/>
+    <Rating half={true} value={2.5}/>
+    <Rating value={3}/>
+    </div>
+  );
+
+  export const ListenToTheChangeOfTheRalue = () => (
+    <div>
+    <Rating half onChange={action('New Rating is')}/>
+    </div>
+  );
+  

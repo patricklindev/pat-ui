@@ -1,26 +1,46 @@
-import React, { Component } from 'react';
-import CSS from 'csstype';
+import React, { Component } from 'react'
+import CSS from "csstype";
 
 interface propTypes {
-  disable: boolean;
-  ratingValue: number;
-  totalNumber: number
+  className?: string;
+  edit?: boolean;
+  half?: boolean;
+  value: number;
+  count: number;
+  char?: string;
   size: number;
+  color1?: string;
+  color2?: string;
+  onChange: any;
+  labels: boolean;
+  index: number;
 }
 
 interface stateTypes {
-  ratingValue: number;
-  stars: {active: boolean} [];
+  uniqueness?: string;
+  value: number;
+  stars: {active: boolean}[];
+  halfStar: {
+    at?: number;
+    hidden?: boolean;
+  };
   config: {
-    disable: boolean;
-    totalNumber: number;
+    count: number;
     size: number;
-  }
+    char?: string;
+    // default color of inactive star
+    color1?: string;
+    // color of an active star
+    color2?: string;
+    half?: boolean;
+    edit?: boolean;
+  };
+  index: number;
 }
 
 const parentStyles: CSS.Properties = {
-  position: 'relative',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  position: 'relative'
 }
 
 const defaultStyles: CSS.Properties = {
@@ -28,138 +48,260 @@ const defaultStyles: CSS.Properties = {
   overflow: 'hidden',
   cursor: 'pointer',
   display: 'block',
-  float: 'left',
+  float: 'left'
+}
+
+const getHalfStarStyles = (color: any, uniqueness: any) => {
+  return `
+    .react-stars-${uniqueness}:before {
+      position: absolute;
+      overflow: hidden;
+      display: block;
+      z-index: 1;
+      top: 0; left: 0;
+      width: 50%;
+      content: attr(data-forhalf);
+      color: ${color};
+  }`
 }
 
 class Rating extends Component<propTypes, stateTypes> {
+
   static defaultProps = {
-    disable: false,
-    ratingValue: 0,
-    totalNumber: 5,
-    size: 30
+    edit: true,
+    half: false,
+    value: 0,
+    count: 5,
+    char: '★',
+    size: 30,
+    color1: 'gray',
+    color2: 'orange',
+  
+    onChange: () => { },
+    labels: false,
+    index: null
   };
 
-  constructor(props: propTypes) {
-    super(props);
+  constructor(props:propTypes) {
 
-    props = Object.assign({}, this.props);
+    super(props)
+
+    // set defaults
+
+    props = Object.assign({}, props)
 
     this.state = {
-      ratingValue: props.ratingValue,
+      uniqueness: (Math.random() + '').replace('.', ''),
+      value: props.value || 0,
       stars: [],
+      halfStar: {
+        at: Math.floor(props.value),
+        hidden: props.half && props.value % 1 < 0.5
+      },
       config: {
-        disable: props.disable,
-        totalNumber: props.totalNumber,
-        size: props.size
-      }
+        count: props.count,
+        size: props.size,
+        char: props.char,
+        // default color of inactive star
+        color1: props.color1,
+        // color of an active star
+        color2: props.color2,
+        half: props.half,
+        edit: props.edit,
+      },
+      index: props.index
     }
+
   }
 
   componentDidMount() {
     this.setState({
-      stars: this.getStars(this.state.ratingValue)
+      stars: this.getStars(this.state.value)
     })
   }
 
   componentWillReceiveProps(props: propTypes) {
     this.setState({
-      ratingValue: props.ratingValue,
-      stars: this.getStars(props.ratingValue),
-
+      stars: this.getStars(props.value),
+      value: props.value,
+      halfStar: {
+        at: Math.floor(props.value),
+        hidden: this.state.config.half && props.value % 1 < 0.5
+      },
       config: Object.assign({}, this.state.config, {
-        disable: props.disable,
-        totalNumber: props.totalNumber,
-        size: props.size
+        count: props.count,
+        size: props.size,
+        char: props.char,
+        color1: props.color1,
+        color2: props.color2,
+        half: props.half,
+        edit: props.edit,
       })
     })
   }
 
-  getActiveStars() {
-    let activeStars = Math.floor(this.state.ratingValue);
-    return activeStars;
+  isDecimal(value: number) {
+    return value % 1 !== 0
   }
 
-  getStars(activeStars?: number) {
-    if (typeof activeStars === 'undefined') {
-      activeStars = this.getActiveStars();
+  getRate() {
+    let stars
+    if (this.state.config.half) {
+      stars = Math.floor(this.state.value)
+    } else {
+      stars = Math.round(this.state.value)
     }
+    return stars
+  }
 
-    let stars = [];
-    for (let i = 0; i < this.state.config.totalNumber; i++) {
+  getStars(activeCount: number | undefined) {
+    if (typeof activeCount === 'undefined') {
+      activeCount = this.getRate()
+    }
+    let stars = []
+    for (let i = 0; i < this.state.config.count; i++) {
       stars.push({
-        active: i <= activeStars - 1
+        active: i <= activeCount - 1
       })
     }
-    return stars;
+    return stars
   }
 
   mouseOver(event: any) {
-    const config = this.state.config;
-
-    if (config.disable) return;
-    
-    let index = Number(event.target.getAttribute('star-index'));
-    index++;
-
+    let { config, halfStar } = this.state
+    if (!config.edit) return;
+    let index = Number(event.target.getAttribute('data-index'))
+    if (config.half) {
+      const isAtHalf = this.moreThanHalf(event, config.size)
+      halfStar.hidden = isAtHalf
+      if (isAtHalf) index = index + 1;
+      halfStar.at = index
+    } else {
+      index = index + 1
+    }
     this.setState({
-      stars: this.getStars(index)
+      stars: this.getStars(index),
+      index: index
     })
   }
 
+  moreThanHalf(event: any, size: any) {
+    let { target } = event
+    var mouseAt = event.clientX - target.getBoundingClientRect().left
+    mouseAt = Math.round(Math.abs(mouseAt))
+    return mouseAt > size / 2
+  }
+
   mouseLeave() {
-    const config = this.state.config;
-
-    if (config.disable) return;
-
-    let index;
-
+    const { value, halfStar, config } = this.state
+    if (!config.edit) return
+    if (config.half) {
+      halfStar.hidden = !this.isDecimal(value)
+      halfStar.at = Math.floor(this.state.value)
+    }
+    let index: number | undefined;
     this.setState({
-      stars: this.getStars(index)
+      stars: this.getStars(index),
+      index: this.props.index
     })
   }
 
   clicked(event: any) {
-    const config = this.state.config;
-    
-    if (config.disable) return;
-
-    let index = Number(event.target.getAttribute('star-index'))
-    let ratingValue = index + 1;
-
+    const { config, halfStar } = this.state
+    if (!config.edit) return
+    let index = Number(event.target.getAttribute('data-index'))
+    let value
+    if (config.half) {
+      const isAtHalf = this.moreThanHalf(event, config.size)
+      halfStar.hidden = isAtHalf
+      if (isAtHalf) index = index + 1
+      value = isAtHalf ? index : index + .5
+      halfStar.at = index
+    } else {
+      value = index = index + 1
+    }
     this.setState({
-      ratingValue: ratingValue,
+      value: value,
       stars: this.getStars(index)
     })
+    this.props.onChange(value)
+  }
+
+  renderHalfStarStyleElement() {
+    const { config, uniqueness } = this.state
+    return (
+      <style dangerouslySetInnerHTML={{
+        __html: getHalfStarStyles(config.color2, uniqueness)
+      }}></style>
+    )
   }
 
   renderStars() {
-    const { stars, config } = this.state;
-    const { disable, size } = config;
-
-    return stars.map((star: {active: boolean}, i: number) => {
+    const { halfStar, stars, uniqueness, config } = this.state
+    const { color1, color2, size, char, half, edit } = config
+    return stars.map((star: { active: any; }, i: React.Key | undefined) => {
+      let starClass = ''
+      if (half && !halfStar.hidden && halfStar.at === i) {
+        starClass = `react-stars-${uniqueness}`
+      }
       const style = Object.assign({}, defaultStyles, {
-        color: star.active ? '#ffd700' : 'gray',
-        cursor: disable ? 'default' : 'pointer',
-        fontSize: `${size}px`
+        color: star.active ? color2 : color1,
+        cursor: edit ? 'pointer' : 'default',
+        fontSize: star.active ? `${size + 5}px` : `${size}px`
       })
-      
       return (
-        <span 
-        style={style}
-        star-index={i}
-        onMouseOver={this.mouseOver.bind(this)}
-        onMouseMove={this.mouseOver.bind(this)}
-        onMouseLeave={this.mouseLeave.bind(this)}
-        onClick={this.clicked.bind(this)}>
-          ★
+        <span
+          className={starClass}
+          style={style}
+          key={i}
+          data-index={i}
+          data-forhalf={char}
+          onMouseOver={this.mouseOver.bind(this)}
+          onMouseMove={this.mouseOver.bind(this)}
+          onMouseLeave={this.mouseLeave.bind(this)}
+          onClick={this.clicked.bind(this)}>
+          {char}
         </span>
       )
     })
   }
 
   render() {
-    return <div style={parentStyles}>{this.renderStars()}</div>
+
+    const {
+      className
+    } = this.props
+
+    const labels = this.props.labels;
+    const count = this.props.count;
+    const value = this.state.value;
+    let index = this.state.index;
+    let label = "";
+
+    if(labels) {
+        if(value !== 0) {
+        index = this.state.value
+        }
+        if(index === null){
+        }else if(index > (count/3*2)){
+          label = 'Good';
+        } else if(index < (count/3*2) && index > (count/3)){
+          label = 'No bad';
+        } else if(index < (count/3)){
+          label = 'Poor';
+        }
+    }
+
+    return (
+      <div className={className} style={parentStyles}>
+        {this.state.config.half ?
+          this.renderHalfStarStyleElement() : ''}
+        {this.renderStars()}
+        {label}
+      </div>
+    )
   }
+
 }
 
 export default Rating;

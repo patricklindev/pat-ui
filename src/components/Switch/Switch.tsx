@@ -1,10 +1,9 @@
   //SECTION 1:
   import React, {
-    HTMLAttributes,
-    AnchorHTMLAttributes,
     FC,
     MouseEvent,
-    EventHandler
+    EventHandler,
+    ChangeEvent,
   } from 'react';
 import { classNames } from '../../utils/classNames';
 
@@ -21,8 +20,8 @@ export type SwitchColor =
 | 'danger'
 | 'light'
 | 'dark'
-
 export type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
+export type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
 
 //SECTION 3:
 // INTERFACE 
@@ -34,11 +33,13 @@ export interface ISwitchProps {
     color?: SwitchColor;
     /** set switch size */
     size?: SwitchSize;
-    /** set disabled*/
-    disabled?: boolean;
     /** set switch checked*/
     defaultChecked?: boolean;
-     /** set switch onClick*/
+    /** set switch disabled*/
+    disabled?: boolean;
+    /** set switch onChange*/
+    onChange?: ChangeEventHandler;
+    /** set switch click action */
     onClick?: MouseEventHandler;
   }
 
@@ -65,7 +66,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
 
     //SECTION 5.1: Make sure the components are carried over into your component
     // 
-    const { className, color, size, disabled, children, ...rest} = props;
+    const { className, color, size, disabled, onChange, children, ...rest} = props;
     let styleClasses = classNames('slider round', {
         [`${color}`]: !!color,
         [`${size}`]: !!size,
@@ -74,12 +75,13 @@ export const Switch: FC<ISwitchProps> = (props) => {
     if (className) {
         styleClasses += ' ' + className;
     }
+
     //SECTION 5.2 - YOUR ACTUAL HTML ELEMENTS
     
     // if/else statement
     let Switch;
-    // if (disabled) {
-        disabled ? 
+    if (disabled) {
+        // disabled ? 
         Switch = (
             <>
                 <label className={strSwitch}>  
@@ -95,8 +97,24 @@ export const Switch: FC<ISwitchProps> = (props) => {
                 </label>
             </>
         )
-    // } else { 
-       : Switch = (
+    } else if(onChange) { 
+        Switch = (
+            <>
+                <label className={strSwitch}>  
+                    <input
+                        type={strCheckbox}
+                        onChange={onChange}
+                        {...(rest )}
+                    />
+                 <span color={color} className={styleClasses}/>
+                    <div>
+                        {props.children}
+                    </div>
+                </label>
+            </>
+        )
+    } else {
+        Switch = (
             <>
                 <label className={strSwitch}>  
                     <input 
@@ -110,7 +128,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
                 </label>
             </>
         )
-    // }
+    }
     
     return Switch;
 }

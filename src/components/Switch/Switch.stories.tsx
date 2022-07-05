@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { action } from '@storybook/addon-actions';
 import Switch from './Switch';
 // SECTION 1 Import your component and REACT libary
@@ -9,6 +9,7 @@ export default {
     component: Switch
 }
 // const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
 
 //SECTION 3: Define what is shown on Storybook
 
@@ -56,4 +57,19 @@ export const DiffSizeSwitch = () => (
     </div>
 )
 
+export const OnChangeSwitch = () => {
+    const [checked, setChecked] = useState(false);
+    const switchHandler = (event: any): void => {
+        setChecked(event.target.checked);
+        console.log('Checked:', event.target.checked)
+      };
+    
+    return(
 
+    <div>
+        <h1>OnChange Switch</h1>
+        <br/>
+        <Switch defaultChecked={checked} onChange={switchHandler} onClick={action('Default Switch clicked')}>default</Switch>
+    </div>
+    )
+}

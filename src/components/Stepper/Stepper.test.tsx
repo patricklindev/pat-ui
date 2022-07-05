@@ -6,10 +6,11 @@ describe ('Stepper', () => {
 
     it('should render default stepper', () => {
         const stepperProps : patStepperProps = {
-
+            stepperType: 'circle',
+            stepperOrientation: 'row'
         }
         const wrapper = render(<Stepper {...stepperProps}></Stepper>)
         const stepperElement = screen.getByTestId('stepper-element')
-        expect(stepperElement).toHaveClass('stepper all-container');
+        expect(stepperElement).toHaveClass('all-container');
     })
 })

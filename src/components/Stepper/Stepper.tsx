@@ -17,6 +17,7 @@ export type StepperObject = {
     label?: string;
 }
 
+
 export type TitleAndDescription<Type> = {
     [Property in keyof Type]: string;
 }
@@ -26,6 +27,7 @@ export interface IStepperProps {
     // set customized Stepper //
     className?: string;
     allowSkip?: boolean;
+    skipArray?: number []
     // set Steppersize  //
     stepperSize?: StepperSize;
     // set StepperType //
@@ -53,6 +55,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         buttonTitlePrev,
         stepperLinear,
         allowSkip,
+        skipArray,
         // currentIndex,
         ...rest
     } = props;
@@ -82,7 +85,8 @@ export const Stepper: FC<patStepperProps> = (props) => {
     // let TitleAndDescription = stepperElements
     const [Currentindex, setCurrentIndex] = useState(0)
     const [CurrentStep, setCurrentStep] = useState(1)
-    const [skipIndex, setSkipIndex] = useState(9999999)
+    const [skipIndex, setSkipIndex] = useState<number>(9999999)
+    const [IndexArray, setIndexArray] = useState<number[]>([])
     const [skipButtonActive, setSkipButtonActive] = useState(false)
     const [Initialize, setIntialize] = useState(true)
     const [Finish, setFinish] = useState(false);
@@ -93,7 +97,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
     const [Color, setColor] = useState('green');
     let totalSteps = stepperElements!.length
     let renderSteps = totalSteps - 1
-
+    let skipIndexArrayHolder: any = []
 
 
     useEffect(() => {
@@ -102,6 +106,11 @@ export const Stepper: FC<patStepperProps> = (props) => {
         }
         console.log("we have initialized")
     }, [Initialize]);
+
+    useEffect(() => {
+        console.log(IndexArray)
+        console.log("We have added to the array of indexes to be skipped")
+    }, [IndexArray]);
 
     useEffect(() => {
         if (stepperOrientation == 'vertical') {
@@ -124,7 +133,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         }
 
         if (stepperOrientation === 'vertical') {
-            setCurrentIndex(value)
+            setCurrentIndex(value+1)
             setCurrentStep(value+1)
             let currentTarget = 'description-' + `${value}`
             let prevTarget = 'description-' + `${value-1}`
@@ -221,16 +230,18 @@ export const Stepper: FC<patStepperProps> = (props) => {
         setColor('green')
         console.log("Current index", Currentindex)
         console.log("Current Steps", CurrentStep)
-        let skipthisStep = CurrentStep + 1
+        let skipthisStep:number = CurrentStep + 1
         let skipthisIndex = Currentindex + 1
-
+        
 
         console.log("We will attempt to skip this step", skipthisStep)
         console.log("We will attempt to skip this index", skipthisIndex)
-
+     
         setSkipIndex(skipthisIndex)
-        setCurrentStep(CurrentStep + 2)
-        setCurrentIndex(Currentindex + 2)
+        setCurrentStep(CurrentStep + 1)
+        setCurrentIndex(Currentindex + 1)
+        setIndexArray( arr => [...arr, skipthisIndex])
+        console.log("This is the indexarray,", IndexArray)
 
         if (Currentindex >= renderSteps) {
             setCurrentIndex(renderSteps)
@@ -260,25 +271,28 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                         <div className={'flex-row-container'} id={"item-" + index}>
                                             <div className="icon-area" onClick={() => nonLinear(index)}>
                                                 {/* Test 1 Did the user click / "mark" this index for skip */}
-                                                {skipIndex === index ? (
-                                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                ) : (
+                                                {IndexArray.includes(index) == false? (
+                                                    // <div>
+                                                    // {index===skipIndex &&
+                                                    
                                                     <div className="check-index-preliminary">
-                                                        {/* Logic Test 2, is the current step greater than the index of the array */}
-                                                        {CurrentStep > index ? (
-                                                            <div className="check-index-secondary">
-                                                                {/* Logic Test 3, Related to skip. Once skip is pressed, the index is incremented by 2 */}
-                                                                {/* Logic Test 3, This test checks to see if skip has pushed index by 2 */}
-                                                                {index + 1 < CurrentStep ? (
-                                                                    <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                                                ) : (
-                                                                    <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-                                                                )}
-                                                            </div>
-                                                        ) : (
-                                                            <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                        )}
-                                                    </div>
+                                                    {/* Logic Test 2, is the current step greater than the index of the array */}
+                                                    {CurrentStep > index ? (
+                                                        <div className="check-index-secondary">
+                                                            {/* Logic Test 3, Related to skip. Once skip is pressed, the index is incremented by 2 */}
+                                                            {/* Logic Test 3, This test checks to see if skip has pushed index by 2 */}
+                                                            {index + 1 < CurrentStep ? (
+                                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                                            ) : (
+                                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                                            )}
+                                                        </div>
+                                                    ) : (
+                                                        <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                                    )}
+                                                </div>
+                                                ) : (
+                                                   <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                                 )}
                                             </div>
                                             <div className="description-area"  >
@@ -340,9 +354,8 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     <div className={'flex-row-container item'} id={"item-" + index}>
 
                                         <div className="icon-area" onClick={() => nonLinear(index)}>
-                                            {skipIndex === index ? (
-                                                <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                            ) : (
+                                            {IndexArray.includes(index) == false? (
+                                                
                                                 <div className="check-index-preliminary">
                                                     {CurrentStep > index ? (
                                                         <div className="check-index-secondary">
@@ -356,6 +369,8 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                                         <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                                     )}
                                                 </div>
+                                            ) : (
+                                                <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                             )}
                                         </div>
                                         <div className="description-area" id={"description-" + `${index}`}  >

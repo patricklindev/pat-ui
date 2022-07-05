@@ -78,55 +78,47 @@ export const Switch: FC<ISwitchProps> = (props) => {
 
     //SECTION 5.2 - YOUR ACTUAL HTML ELEMENTS
     
-    // if/else statement
     let Switch;
     if (disabled) {
-        // disabled ? 
         Switch = (
-            <>
-                <label className={strSwitch}>  
-                    <input 
-                        type={strCheckbox}
-                        disabled={true}
-                        {...(rest)}
-                    />
-                    <span className={styleClasses}/>
-                    <div>
-                        {props.children}
-                    </div>
-                </label>
-            </>
+            <label className={strSwitch}>  
+                <input 
+                    type={strCheckbox}
+                    disabled={true}
+                    {...(rest)}
+                />
+                <span className={styleClasses}/>
+                <div>
+                    {props.children}
+                </div>
+            </label>
         )
     } else if(onChange) { 
         Switch = (
-            <>
-                <label className={strSwitch}>  
-                    <input
-                        type={strCheckbox}
-                        onChange={onChange}
-                        {...(rest )}
-                    />
-                 <span color={color} className={styleClasses}/>
-                    <div>
-                        {props.children}
-                    </div>
-                </label>
-            </>
+            <label className={strSwitch}>  
+                <input
+                    type={strCheckbox}
+                    onChange={onChange}
+                    {...(rest )}
+                />
+                <span color={color} className={styleClasses}/>
+                <div>
+                    {props.children}
+                </div>
+            </label>
         )
     } else {
         Switch = (
-            <>
-                <label className={strSwitch}>  
-                    <input 
-                        type={strCheckbox}
-                        {...(rest )}
-                    />
-                 <span color={color} className={styleClasses}/>
-                    <div>
-                        {props.children}
-                    </div>
-                </label>
-            </>
+            <label className={strSwitch}>  
+                <input 
+                    type={strCheckbox}
+                    {...(rest )}
+                />
+                <span color={color} className={styleClasses}/>
+                <div>
+                    {props.children}
+                </div>
+            </label>
         )
     }
     
@@ -135,7 +127,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
 
 // 
 Switch.defaultProps = { 
-    // color: 'default',
+    color: 'primary',
     // disabled: false,
 };
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import { action } from '@storybook/addon-actions';
 import Switch from './Switch';
 // SECTION 1 Import your component and REACT libary
@@ -57,9 +57,9 @@ export const DiffSizeSwitch = () => (
     </div>
 )
 
-export const OnChangeSwitch = () => {
-    const [checked, setChecked] = useState(false);
-    const switchHandler = (event: any): void => {
+export const OnChangeEvent = () => {
+    const [checked, setChecked] = useState<boolean>(false);
+    const switchHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
         console.log('Checked:', event.target.checked)
       };
@@ -67,9 +67,9 @@ export const OnChangeSwitch = () => {
     return(
 
     <div>
-        <h1>OnChange Switch</h1>
+        <h2>Controlled: Add onChange Prop</h2>
         <br/>
-        <Switch defaultChecked={checked} onChange={switchHandler} onClick={action('Default Switch clicked')}>default</Switch>
+        <Switch defaultChecked={checked} onChange={switchHandler} onClick={action('Controlled Switch clicked')}/>
     </div>
     )
 }

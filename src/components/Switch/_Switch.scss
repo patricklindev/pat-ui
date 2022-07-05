@@ -92,7 +92,7 @@ input:checked + span[color="light"] {
 input:checked + span[color="dark"] {
     @include slider-background-color($dark);
 }
-/*Color for rounded sliders */
+/*Color for rounded object of slider */
 input:checked + .slider.round.primary::before {
     @include slider-round-background-color($primary);
 }

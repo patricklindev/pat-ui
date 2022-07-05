@@ -6,13 +6,16 @@ export default {
   component: Dialogue
 }
 
-export const TestDialogue = () => {
+export const DefaultDialogue = () => {
   const [modalShown, setModalShown] = useState(false);
 
   const toggleModal = () => setModalShown(!modalShown);
 
   return (
-    <div className="test">
+    <div className="default-dlg">
+      <button className="modal-btn" onClick={toggleModal}>
+          Click me!
+      </button>
       <Dialogue
         className='list-dlg'
         title='Set backup account'
@@ -22,9 +25,6 @@ export const TestDialogue = () => {
         isOpen={modalShown}
         dlgOnClick={toggleModal}
       >
-        <button className="modal-btn" onClick={toggleModal}>
-          Click me!
-        </button>
       </Dialogue>
     </div>
   );

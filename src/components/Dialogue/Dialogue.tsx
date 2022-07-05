@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, useEffect } from 'react';
 
 import { FaUserCircle } from 'react-icons/fa';
 import { IoAddCircle } from 'react-icons/io5';
@@ -39,6 +39,15 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
     // ...rest
   } = props;
 
+  useEffect(() => {
+    if (props.isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    }
+  }, [props.isOpen])
+
   const overlayRef = useRef(null);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -55,7 +64,7 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
 
         </div>
         {className ? (
-          <div className={`modal-box ${className}`}>
+          <div onClick={e => e.stopPropagation()} className={`modal-box ${className}`}>
             <h3 className='modal-title'>
               {title}
             </h3>
@@ -72,7 +81,7 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
                 </span>
                 {props.dlgBulletPoint}
               </li>
-              <li className='list-content'>
+              <li onClick={dlgOnClick} className='list-content'>
                 <span className='dlg-icon'>
                   <IoAddCircle />
                 </span>
@@ -82,9 +91,7 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
           </div>
         ) : <div className='test'></div>}
       </div>
-    ) : <>
-      {children}
-    </>;
+    ) : null;
   }
 
   let dialogue = (

@@ -1532,16 +1532,11 @@ main {
   color: #dc3545;
 }
 
-.test {
-  border: solid red 2px;
+.default-dlg {
   height: 40vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1582,6 +1577,7 @@ main {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1593,8 +1589,7 @@ main {
           justify-content: center;
   width: 100vw;
   height: 100vh;
-  color: #000;
-  border: yellow solid 2px;
+  color: #fff;
 }
 
 .modal-overlay {
@@ -1613,7 +1608,6 @@ main {
   height: fit-content;
   width: 15rem;
   position: relative;
-  color: #fff;
   background-color: #383838;
 }
 

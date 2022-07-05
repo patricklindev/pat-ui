@@ -29,13 +29,15 @@ export interface ISliderProps {
     showLimits?: boolean;
     /**How many tick marks to show */
     ticks?: number;
+    /**Set the slider to be disabled */
+    disabled?: boolean;
 }
 
 
 
 export const Slider: FC<ISliderProps> = (props) => {
 
-    const { className, onChange, sliderSize, sliderTheme, sliderOrientation, min, max, initialValue, step, showLimits, ticks } = props;
+    const { className, onChange, sliderSize, sliderTheme, sliderOrientation, min, max, initialValue, step, showLimits, ticks, disabled} = props;
 
     const [value, setValue] = useState(props.initialValue)
 
@@ -70,18 +72,19 @@ export const Slider: FC<ISliderProps> = (props) => {
 
         <datalist id="custom-data">
             {tickArr.map((item) =>
-                <option key={item} value={item} label="tick" />
+                <option key={item} value={item}/>
             )}
         </datalist>
 
         <input
             type="range"
-            list="custom-data"
+            //list="custom-data"
             min={min}
             max={max}
             defaultValue={initialValue}
             step={step}
             className={styleClasses}
+            disabled={disabled}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setValue(parseInt(event.target.value))
                 if (onChange) {
@@ -103,7 +106,8 @@ Slider.defaultProps = {
     max: 100,
     initialValue: 0,
     step: 1,
-    showLimits: false
+    showLimits: false,
+    disabled: false
 }
 
 export default Slider; 

@@ -96,8 +96,14 @@
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background: $background;
+    background: $black;
   }
+
+
+  &::-moz-range-track {
+    background: $red;
+  }
+
 }
 
 @mixin thumb-size($thumb-width, $thumb-height) {

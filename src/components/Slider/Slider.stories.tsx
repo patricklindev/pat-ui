@@ -15,7 +15,7 @@ export const DefaultSlider = () => (
 export const DifferentSizedSliders = () => (
     <div>
         <Slider sliderSize='sm' onChange={action("Small Slider was moved")} />
-
+        <Slider onChange={action("Default Slider was moved")}/>
         <Slider sliderSize='lg' onChange={action("Large Slider was moved")} />
     </div>
 );
@@ -39,13 +39,22 @@ export const DifferentThemedSliders = () => (
 
 export const DifferentValuedSliders = () => (
     <div>
+        <h2>Tick Marks</h2>
+        <p>Users can decide how many tick marks to include on the slider</p>
+        <Slider ticks={2}></Slider>
+        <Slider ticks={5}></Slider>
+
+
+
         <h2>Step, Max, Min, and InitialValue Props</h2>
         <p>Users can use step, max, and min to set possible values of the slider</p>
-        <h3>Slider from 1-500 by 50's</h3>
-        <Slider initialValue={250} min={0} max={500} step={50} />
-        <h3>Users can also use the showLimits prop to show the limits of the slider's range</h3>
-        <Slider initialValue={250} min={0} max={500} step={50} showLimits={true} />
-        <Slider initialValue={2001} min={1900} max={2022} step={1} showLimits={true} />
+        <h5>Slider with custom min, max, and inital value</h5>
+        <Slider initialValue={1990} min={1900} max={2022} step={1} ticks={2}/>
+
+
+        <h5>Slider from 1-30 by 10's</h5>
+        <Slider initialValue={0} min={0} max={30} step={10} ticks={4}/>
+
 
     </div>
 );

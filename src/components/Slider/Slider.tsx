@@ -25,8 +25,6 @@ export interface ISliderProps {
     initialValue?: number;
     /**Set a step value */
     step?: number;
-    /**Whether or not to show range limit values */
-    showLimits?: boolean;
     /**How many tick marks to show */
     ticks?: number;
     /**Set the slider to be disabled */
@@ -37,7 +35,7 @@ export interface ISliderProps {
 
 export const Slider: FC<ISliderProps> = (props) => {
 
-    const { className, onChange, sliderSize, sliderTheme, sliderOrientation, min, max, initialValue, step, showLimits, ticks, disabled} = props;
+    const { className, onChange, sliderSize, sliderTheme, sliderOrientation, min, max, initialValue, step, ticks, disabled } = props;
 
     const [value, setValue] = useState(props.initialValue)
 
@@ -45,7 +43,6 @@ export const Slider: FC<ISliderProps> = (props) => {
         [`slider-${sliderSize}`]: !!sliderSize,
         [`slider-${sliderTheme}`]: true,
         [`slider-${sliderOrientation}`]: true,
-        [`showLimits-${showLimits}`]: true,
 
     })
 
@@ -53,50 +50,48 @@ export const Slider: FC<ISliderProps> = (props) => {
         styleClasses += ' ' + classNames;
     }
 
-    // if(max && min){
-    //     let tickIncrement = max - min
-    //     console.log("ti  ", tickIncrement)
-    // }
 
     //Fill tickArr with the locations we want tick marks
     let tickArr = []
     if (ticks) {
-        let tickIncrement = ((max || 100) - (min || 0)) / ticks
+        let tickIncrement = ((max || 100) - (min || 0)) / (ticks-1)
         for (let i = (min || 0); i <= (max || 100); i += tickIncrement) {
             tickArr.push(i)
         }
     }
 
-    let slider = <div className={`showLimits-${showLimits}`}>
-        <span className="limit">{min}</span>
+    let slider =
+        <div className='slider_div'>
+            <div>
+                <input
+                    type="range"
+                    min={min}
+                    max={max}
+                    defaultValue={initialValue}
+                    step={step}
+                    className={styleClasses}
+                    disabled={disabled}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        setValue(parseInt(event.target.value))
+                        if (onChange) {
+                            onChange();
+                        }
+                        console.log("Val ", value);
+                    }}
+                />
+                <div className='tickLine'>
+                    {ticks
+                        ? tickArr.map((e) => (
+                            <div className='tickItem'>
+                                <p className="tickMark">|</p>
+                                <p>{e}</p>
+                            </div>
+                        ))
+                        : null}
+                </div>
+            </div>
 
-        <datalist id="custom-data">
-            {tickArr.map((item) =>
-                <option key={item} value={item}/>
-            )}
-        </datalist>
-
-        <input
-            type="range"
-            //list="custom-data"
-            min={min}
-            max={max}
-            defaultValue={initialValue}
-            step={step}
-            className={styleClasses}
-            disabled={disabled}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setValue(parseInt(event.target.value))
-                if (onChange) {
-                    onChange();
-                }
-                console.log("Val ", value);
-            }}
-        />
-        <span className="limit">{max}</span>
-
-
-    </div>
+        </div>
 
     return slider;
 }
@@ -106,7 +101,7 @@ Slider.defaultProps = {
     max: 100,
     initialValue: 0,
     step: 1,
-    showLimits: false,
+    ticks: 0,
     disabled: false
 }
 

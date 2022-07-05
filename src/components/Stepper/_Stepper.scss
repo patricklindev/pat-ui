@@ -16,6 +16,16 @@
     display: flex;
 }
 
+//COLOR OF STATUS
+
+.gray {
+    background-color: $gray-600
+}
+
+.green {
+    background-color: green;
+}
+
 
 //DESCRIPTION FOR HTML ARRAY
 
@@ -29,21 +39,6 @@
     margin-left:5%;  
 }
 
-
-.vertical-container{
-    width:100%;
-   
-}
-
-.vertical-description{
-    width:100%;
-    
-}
-
-.vertical-description-inner{
-    background-color:red;
-    width:300px;
-}
 
 
 
@@ -83,23 +78,13 @@
     margin-left:10%;
   }
 
-  .circle-vertical{
-    height: 25px;
-    width: 30px;
-    border-radius: 50%;
-    display: inline-block;
-    text-align:center;
-    z-index: 1;
-    color:$gray-100;
-  }
-
 
 //STEPPERTYPE==SQUARE
 //FOR WHEN STEPPERTYPE IS "SQUARE"
 
 .square-start {
     height: 25px;
-    width: 30px;
+    width: 25px;
     display: inline-block;
     text-align:center;
     border-radius: 20%;
@@ -109,7 +94,7 @@
 
 .square {
     height: 25px;
-    width: 30px;
+    width: 25px;
     display: inline-block;
     text-align:center;
     border-radius: 20%;
@@ -119,18 +104,7 @@
 
 .square-last {
     height: 25px;
-    width: 32px;
-    display: inline-block;
-    text-align:center;
-    border-radius: 20%;
-    color:$gray-100;
-    margin-left:10%;
-}
-
-.square-vertical {
-    height: 25px;
     width: 25px;
-    background-color: $gray-600;
     display: inline-block;
     text-align:center;
     border-radius: 20%;
@@ -151,7 +125,11 @@
 }
 
 .vertical-spacer {
-    width:25%;
+    width:30%;
+}
+
+.button-vertical-margin {
+    margin-left:5%;
 }
 
 .Stepper-Button-Right {
@@ -181,15 +159,8 @@
     display:none;
   }
 
-//COLOR OF STATUS
 
-.gray {
-    background-color: $gray-600
-}
 
-.green {
-    background-color: green;
-}
 
 // FONT Style
 
@@ -212,5 +183,26 @@
 
 
 .description-area {
-    width:350px;
+    width:300px;
+    transition:height 2.5s;
+    height:50px;
 }
+
+// 
+.icon-area {
+    margin-left: 2.5%;
+}
+
+
+
+
+
+.display-in-vertical {
+    margin-top:10%;
+    height:50px;
+}
+.display-in-row {
+    margin-top:5%;
+    margin-left:37.5%
+}
+

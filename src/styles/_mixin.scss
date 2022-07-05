@@ -107,6 +107,14 @@
 }
 
 @mixin thumb-size($thumb-width, $thumb-height) {
-  width: $thumb-width;
-  height: $thumb-height;
+  &::-webkit-slider-thumb {
+    width: $thumb-width;
+    height: $thumb-height;
+  }
+}
+
+@mixin thumb-style($background){
+  &::-webkit-slider-thumb {
+    background: $background;
+  }
 }

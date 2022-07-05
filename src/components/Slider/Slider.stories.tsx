@@ -10,8 +10,6 @@ export default {
 
 export const DefaultSlider = () => (
     <Slider onChange={action("Default Slider was moved")}/>
-
-
 );
 
 export const DifferentSizedSliders = () => (
@@ -22,11 +20,19 @@ export const DifferentSizedSliders = () => (
         <Slider onChange={action("Default Slider was moved")}/>
         <h2>Large Slider</h2>
         <Slider sliderSize='lg' onChange={action("Large Slider was moved")} />
+        <br></br>
+        <br></br>
+        <h2>Small Slider Large Thumb</h2>
+        <Slider sliderSize='sm' thumbSize='lg' onChange={action("Slider was moved")} />
+        <h2>Large Slider Small Thumb</h2>
+        <Slider sliderSize='lg' thumbSize='sm' onChange={action("Slider was moved")} />
+
     </div>
 );
 
 export const DifferentThemedSliders = () => (
     <div>
+        <h1>Themed Sliders</h1>
         <h2>Primary Slider</h2>
         <Slider sliderTheme='primary' onChange={action("Primary Slider was moved")}/>
         <h2>Secondary Slider</h2>
@@ -39,6 +45,17 @@ export const DifferentThemedSliders = () => (
         <Slider sliderTheme='dark' onChange={action("Dark Slider was moved")}/>
         <h2>Disabled Slider</h2>
         <Slider disabled={true}/>
+        <br></br>
+        <br></br>
+        <h1>Themed Thumbs</h1>
+        <h2>Primary Thumb</h2>
+        <Slider thumbTheme='primary' onChange={action("Primary Slider was moved")}/>
+        <h2>Secondary Thumb</h2>
+        <Slider thumbTheme='secondary' onChange={action("Secondary Slider was moved")}/>
+        <h2>Warning Thumb</h2>
+        <Slider thumbTheme='warning' onChange={action("Warning Slider was moved")}/>
+        <h2>Danger Thumb</h2>
+        <Slider thumbTheme='danger' onChange={action("Danger Slider was moved")}/>
     </div>
 );
 

@@ -1,6 +1,6 @@
 .slider {
     -webkit-appearance: none;
-    border-radius: 15px;
+    border-radius: $slider-border-radius;
 
     @include slider-size($slider-width,
         $slider-height, $thumb-width, $thumb-height);
@@ -17,7 +17,6 @@
 .slider-lg {
     @include slider-size($slider-width, $slider-height-lg, $thumb-width-lg, $thumb-height-lg);
 }
-
 
 .slider-primary {
     @include slider-style($primary, #19dfa4);
@@ -39,6 +38,38 @@
     @include slider-style($dark, $black)
 }
 
+.thumb-lg{
+    @include thumb-size($thumb-width-lg, $thumb-height-lg)
+}
+
+.thumb-med{
+    @include thumb-size($thumb-width, $thumb-height)
+}
+
+.thumb-sm{
+    @include thumb-size($thumb-width-sm, $thumb-height-sm)
+}
+
+.thumb-primary {
+    @include thumb-style($primary);
+}
+
+.thumb-secondary {
+    @include thumb-style($secondary);
+}
+
+.thumb-warning {
+    @include thumb-style($warning);
+}
+
+.thumb-danger {
+    @include thumb-style($danger);
+}
+
+.thumb-dark {
+    @include thumb-style($dark)
+}
+
 .tickLine{
     display: flex;
     flex-direction: row;
@@ -50,9 +81,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 0px;
-    margin-left: 0px;
-
 }
 
 .tickMark{

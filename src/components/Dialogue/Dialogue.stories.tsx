@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Dialogue from "./Dialogue";
 
 export default {
@@ -6,10 +6,24 @@ export default {
   component: Dialogue
 }
 
-export const testDialogue = () => (
+export const TestDialogue = () => {
+  const [modalShown, setModalShown] = useState(false);
+
+  const toggleModal = () => setModalShown(!modalShown);
+
+  return (
   <Dialogue
-    className='test-dialogue'
-    dlgContent='I hope to god this works. I am very excited to get it started now that I know what to do.'
+    className='list-dlg'
+    title='List Title'
+    dlgList={true}
+    dlgListContent='Hello'
+    dlgBulletPoint="World"
+    isOpen={modalShown}
+    dlgOnClick={toggleModal}
   >
+    <button className="modal-btn" onClick={toggleModal}>
+      Click me!
+    </button>
   </Dialogue>
-);
+  );
+};

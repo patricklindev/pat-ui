@@ -7,17 +7,6 @@ export default {
   component: Message,
 };
 
-export const testMessage = () => (
-  <div>
-    <h3>Test Message</h3>
-    <Message
-      className="test-message"
-      msgHeader="Test Message"
-      msgContent="This should now render on the storybook page. I hope this works, it took me a minute to figure out why it wasn't rendering."
-    ></Message>
-  </div>
-);
-
 export const DefaultMessage = () => (
   <Message
     className="basic-message"

@@ -1,35 +1,78 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 
 export type dialogueType =
   | 'basic'
   | 'alert'
   | 'form'
-  |'list';
+  | 'list';
 
 export interface DlgMessageProps {
   // set class
   className?: string;
   // set dialogue type
   dlgType?: dialogueType;
-  // set content
-  dlgContent?: string;
+  // set dialogue message content
+  children?: React.ReactNode;
   // set on click action
-  dlgOnClick?: () => void;
+  dlgOnClick: () => void;
+  // set is open
+  isOpen?: boolean;
+  // set title
+  title?: string;
+  // check if it's a list
+  dlgList?: boolean;
+  // set bullet point
+  dlgBulletPoint?: string;
+  // set bullet content
+  dlgListContent?: string;
 }
 
 export const Dialogue: FC<DlgMessageProps> = (props) => {
   const {
     className,
-    dlgContent,
+    children,
+    title,
+    dlgOnClick
+    // ...rest
   } = props;
 
-  return (
-    <div className={className}>
-      <h3>Hello world!</h3>
-      <p>{dlgContent}</p>
-    </div>
+  const overlayRef = useRef(null);
+
+  const handleOverlayClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (e.target === overlayRef.current) {
+      dlgOnClick()
+    }
+  };
+
+
+  if (props.dlgList) {
+    return props.isOpen ? (
+      <div className='modal'>
+        <div className='modal-overlay' onClick={handleOverlayClick} ref={overlayRef}>
+
+        </div>
+        {className ? (
+          <div className={className}>
+            <div className='modal-title'>
+              {title}
+            </div>
+            <ul className='modal-list'>
+              <li onClick={dlgOnClick} className='list-content'>{props.dlgListContent}</li>
+              <li onClick={dlgOnClick} className='list-content'>{props.dlgBulletPoint}</li>
+            </ul>
+          </div>
+        ) : <div className='test'></div>}
+      </div>
+    ) : <>
+      {children}
+    </>;
+  }
+
+  let dialogue = (
+    <h4>Nothing is populated yet</h4>
   )
 
+  return dialogue;
 };
 
 // Dialogue.defaultProps = {

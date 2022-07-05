@@ -3,7 +3,7 @@ import { classNames } from '../../utils/classNames';
 import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
 
-import Icon from "./Icon"
+import Icon from './Icon'
 
 export type boxSize = 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
 export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card';
@@ -57,25 +57,24 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
   const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId)
 
   // define a default icon value
-  const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : "check")
+  const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : 'check')
 
   // define a default checkboxSize
-  const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : "normal")
+  const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : 'normal')
 
   // toggle the checked state
   const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
 
   //state for check icon color
-  const [fillCheck,setFillCheck] = useState("")
+  const [fillCheck,setFillCheck] = useState('')
 
   //state for other icon color
-  const [fillIcon,setFillIcon] = useState("")
+  const [fillIcon,setFillIcon] = useState('')
 
   // add class name
   const styleClassName = classNames('checkbox',{
     [`checkbox-${boxSize}`]: !!boxSize,
     [`checkbox-${checkboxColor}`]: isCheck,
-    [`checkbox-disable`]: !!disabled,
     [`${className}}`] : !!className
   })
 
@@ -84,44 +83,44 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
     // set check icon color when mounted
     switch(checkboxColor) {
-      case "light":
-        setFillCheck("#000")
+      case 'light':
+        setFillCheck('#000')
         break
       case undefined:
-        setFillCheck("#000")
+        setFillCheck('#000')
         break
       default:
-        setFillCheck("white")
+        setFillCheck('white')
       }
 
       // set icon color when mounted
       switch(iconTheme) {
-        case "primary":
-          setFillIcon("#20c997")
+        case 'primary':
+          setFillIcon('#20c997')
           break;
-        case "secondary":
-          setFillIcon("#6c757d")
+        case 'secondary':
+          setFillIcon('#6c757d')
           break;
-        case "success":
-          setFillIcon("#52c41a")
+        case 'success':
+          setFillIcon('#52c41a')
           break
-        case "info":
-          setFillIcon("#17a2b8")
+        case 'info':
+          setFillIcon('#17a2b8')
           break
-        case "warning":
-          setFillIcon("#fadb14")
+        case 'warning':
+          setFillIcon('#fadb14')
           break
-        case "danger":
-          setFillIcon("#dc3545")
+        case 'danger':
+          setFillIcon('#dc3545')
           break
-        case "light":
-          setFillIcon("#f8f9fa")
+        case 'light':
+          setFillIcon('#f8f9fa')
           break
-        case "dark":
-          setFillIcon("#343a40")
+        case 'dark':
+          setFillIcon('#343a40')
           break
         default:
-          setFillIcon("#000")
+          setFillIcon('#000')
         }
   },[])
 
@@ -138,29 +137,29 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         checked={isCheck} 
         onChange={handleCheck ? handleCheck : handleChange} // replace onChange CB if onChange prop exist
         disabled={disabled} 
-        style={{cursor: disabled ? "not-allowed" : ""}}/> {/** change cursor to not-allowed when disabled */}
+        style={{cursor: disabled ? 'not-allowed' : ''}}/> {/** change cursor to not-allowed when disabled */}
       <label 
         htmlFor={id} 
-        style={{cursor: disabled ? "not-allowed" : ""}}>{/** change cursor to not-allowed when disabled */}
+        style={{cursor: disabled ? 'not-allowed' : ''}}>{/** change cursor to not-allowed when disabled */}
         <span 
           className={styleClassName} 
           style={{
-            border: checkMarkIcon !== "check" ? "none" : "", // remove border when icon is not check icon
-            borderColor: disabled ? "gray" : "", // change border color to gray when disabled
-            backgroundColor: disabled ? "gray" : "", // change background color to gray when disable
+            border: checkMarkIcon !== 'check' ? 'none' : '', // remove border when icon is not check icon
+            borderColor: disabled ? 'gray' : '', // change border color to gray when disabled
+            backgroundColor: disabled ? 'gray' : '', // change background color to gray when disable
           }}>
           {
           isCheck 
           ? <Icon  // if input check is true render the icon 
           viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
           path={IconPath[`${checkMarkIcon}`].path}
-          fill={checkMarkIcon === "check" ? fillCheck : fillIcon} // if icon is check icon implement color with fillCheck state else implement color with fillIcon state
+          fill={checkMarkIcon === 'check' ? fillCheck : fillIcon} // if icon is check icon implement color with fillCheck state else implement color with fillIcon state
           /> 
-          : checkMarkIcon !== "check" 
+          : checkMarkIcon !== 'check' 
           ? <Icon  // if check input icon is not check icon render icon
           viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
           path={IconPath[`${checkMarkIcon}`].path}
-          fill="lightgray"
+          fill='lightgray'
           />
           : null
           }

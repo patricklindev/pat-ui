@@ -32,6 +32,8 @@ export const DifferentThemedSliders = () => (
         <Slider sliderTheme='danger' />
         <h2>Dark Slider</h2>
         <Slider sliderTheme='dark' />
+        <h2>Disabled Slider</h2>
+        <Slider disabled={true}/>
     </div>
 );
 

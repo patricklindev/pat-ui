@@ -169,6 +169,7 @@ export const Rating: FC<RatingProps> = (props) => {
         onMouseLeave={handleOnMouseLeave}
         onMouseMove={(e) => handleOnMouseMove(e, ratingValue)}
         onClick={() => handleOnClick(ratingValue)}
+        role="button"
       >
         <Icon
           name={getIconName(star.value)}

@@ -87,6 +87,12 @@ export const getFullStars = (stars: IStars, index: number): IStars => {
 // if offsetX === 0 (star index - 1) number of  stars value to be 1, rest will be 0
 // if offsetX <= size / 2 (star index - 1) number of stars value to be 1 but current index star value to be .5 and rest will be 0
 // if offsetX >= size / 2 star index number of stars value to be 1 and rest will be 0
+
+// const stars = [{ id: 1, value: 1 }, { id: 2, value: 1 }, {3}, {}, {}];
+
+// if x === 0 and target star is first star set the fisrt star's value : 0 (empty star)
+// if x <= 20 and star is first star set the first star's value : 0.5 (half star)
+// if x > 20  and star is first star set the first star's value : 1 (full star)
 export const getCurrentHalfStars = (
   offsetX: number,
   stars: IStars,

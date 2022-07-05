@@ -1,5 +1,13 @@
 
-.all-container {
+.all-container-sm {
+    width:25%;
+}
+
+.all-container-md {
+    width:75%;
+}
+
+.all-container-lg {
     width:100%;
 }
 
@@ -9,6 +17,7 @@
     border-style:groove;
     border-radius:12.5px;
     margin:auto;
+    padding:5%;
 }
 
 .flex-row-container {
@@ -25,6 +34,11 @@
 .green {
     background-color: green;
 }
+
+.blue {
+    background-color: blue;
+} 
+
 
 
 //DESCRIPTION FOR HTML ARRAY
@@ -117,6 +131,7 @@
 .Stepper-Button-Left {
     margin-left:5%;
     width:20%;
+    padding:1%
  
 }
 
@@ -135,6 +150,7 @@
 .Stepper-Button-Right {
     width:20%;
     margin-right:5%;
+    padding:1%;
 }
 
 .Stepper-Button-Skip {
@@ -184,18 +200,18 @@
 
 .description-area {
     width:300px;
-    transition:height 2.5s;
-    height:50px;
+    transition:height 2s;
+    height:75px;
+    z-index: 2;
+    background-color: white;
+    margin-bottom:1%;
+    margin-left:1%;
 }
 
 // 
 .icon-area {
     margin-left: 2.5%;
 }
-
-
-
-
 
 .display-in-vertical {
     margin-top:10%;

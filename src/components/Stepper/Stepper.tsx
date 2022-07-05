@@ -119,7 +119,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         let initialresetHTML = document.getElementById(initialreset)
         let laststepHTML = document.getElementById(laststep)
         initialresetHTML!.style.height="175px"
-        laststepHTML!.style.height="50px"
+        laststepHTML!.style.height="75px"
         }
     }, [])
 
@@ -151,6 +151,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
         setIntialize(false)
         setCurrentStep(CurrentStep + 1)
         setCurrentIndex(Currentindex + 1)
+        let target = Currentindex+1
+        let removeSkip = IndexArray.filter(function(element){return(element == target)})
+        setIndexArray( removeSkip )
 
         if (Currentindex >= renderSteps) {
             setCurrentIndex(renderSteps)
@@ -166,7 +169,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
             let nextElement = document.getElementById(nextTarget)
             let currentElement = document.getElementById(currentTarget)
             nextElement!.style.height="175px"
-            currentElement!.style.height="50px"
+            nextElement!.style.zIndex="1"
+            currentElement!.style.height="75px"
+            nextElement!.style.zIndex="0"
         }
     }
 
@@ -174,7 +179,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
         setFinish(false)
         setCurrentStep(CurrentStep - 1)
         setCurrentIndex(Currentindex - 1)
-
+        let target = Currentindex-1
+        let removeSkip = IndexArray.filter(function(element){return(element == target)})
+        setIndexArray( removeSkip )
         if (Currentindex <= 0) {
             setCurrentIndex(0)
             setSkipIndex(999999999)
@@ -190,21 +197,16 @@ export const Stepper: FC<patStepperProps> = (props) => {
             let nextElement = document.getElementById(nextTarget)
             let currentElement = document.getElementById(currentTarget)
             nextElement!.style.height="175px"
-            currentElement!.style.height="50px"
+            nextElement!.style.zIndex="1"
+            currentElement!.style.height="75px"
+            nextElement!.style.zIndex="0"
         }
     }
 
     function finishStepper() {
       
         setFinish(true)
-
-        if (stepperOrientation === 'vertical') {
-            next();
-        }
-
-        if (stepperOrientation === 'row') {
-            next();
-        }
+        next()
     }
 
     function reset() {
@@ -213,6 +215,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         setCurrentStep(1)
         setCurrentIndex(0)
         setSkipIndex(9999999)
+        setIndexArray([])
 
         if (stepperOrientation === 'vertical') {
            let laststep = 'description-' + renderSteps
@@ -220,13 +223,14 @@ export const Stepper: FC<patStepperProps> = (props) => {
            let initialresetHTML = document.getElementById(initialreset)
            let laststepHTML = document.getElementById(laststep)
            initialresetHTML!.style.height="175px"
-           laststepHTML!.style.height="50px"
+           laststepHTML!.style.height="75px"
            }
            
         
     }
 
     function skip() {
+        setIntialize(false)
         setColor('green')
         console.log("Current index", Currentindex)
         console.log("Current Steps", CurrentStep)
@@ -238,8 +242,8 @@ export const Stepper: FC<patStepperProps> = (props) => {
         console.log("We will attempt to skip this index", skipthisIndex)
      
         setSkipIndex(skipthisIndex)
-        setCurrentStep(CurrentStep + 1)
-        setCurrentIndex(Currentindex + 1)
+        setCurrentStep(CurrentStep + 2)
+        setCurrentIndex(Currentindex + 2)
         setIndexArray( arr => [...arr, skipthisIndex])
         console.log("This is the indexarray,", IndexArray)
 
@@ -258,7 +262,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         // JASON MA 6/29/2022
         // ====> Main Code for the Stepper Component
         // This component has to first detect which variation of stepper we are going to be using
-        <div className='all-container' data-testid="stepper-element" >
+        <div className={'all-container-' + stepperSize} data-testid="stepper-element" >
             <div className="center-main-body" data-testid="stepper-main-body">
                 {/* First detect if the Stepper is going to be horizontal */}
                 {stepperOrientation == 'row' ? (
@@ -295,7 +299,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                                 )}
                                             </div>
-                                            <div className="description-area"  >
+                                            <div className="description-area "  >
                                                 <ul>
                                                     <li className="font-variant-main"> {item.title} </li>
                                                     {/* Logic Test 1, This test checks to see if error has been denoted */}

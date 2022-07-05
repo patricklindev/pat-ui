@@ -12,6 +12,7 @@ export const DefaultStepper = () => (
     <div>
         <Stepper
             stepperType={"circle"}
+            stepperSize={"sm"}
             stepperElements={[
                 {
                  title: "Default array length 3",
@@ -42,6 +43,7 @@ export const SkipStep = () => (
     <div>
         <Stepper
             stepperType={"circle"}
+            stepperSize={"md"}
             stepperElements={[
               {
                 title: "Skip Stepper Variation",
@@ -72,6 +74,7 @@ export const ErrorStep = () => (
   <div>
       <Stepper
           stepperType={"circle"}
+          stepperSize={"md"}
           stepperElements={[
             {
               title: "Error Stepper Variation",
@@ -89,8 +92,8 @@ export const ErrorStep = () => (
              label: "Keep strings short"
              }, 
           ]}
-          buttonTitleNext={"NEXT"}
-          buttonTitlePrev={"PREV"}
+          buttonTitleNext={"Continue"}
+          buttonTitlePrev={"Previous"}
           stepperOrientation={"row"}
           allowSkip={true}
       >
@@ -102,6 +105,7 @@ export const SquareStepper = () => (
     <div>
         <Stepper
             stepperType={"square"}
+            stepperSize={"md"}
             stepperElements={[
               {
                 title: "Square Stepper Variation",

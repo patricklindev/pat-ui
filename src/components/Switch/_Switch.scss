@@ -50,17 +50,6 @@ $switch-disabled-opacity: 0.65 !default;
   @include slider-transition(.2s)
 }
 
-.slider.round.sm{
-  height: 10px;
-  width: 26px;
-  top: 3px;
-}
-.slider.round.sm::before{
-  height: 16px;
-  width: 16px;
-  bottom: -3px;
-}
-
 .slider:before{
   position: absolute;
   content: "";
@@ -151,4 +140,16 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/*Small switch*/
+.slider.round.sm{
+  height: 10px;
+  width: 26px;
+  top: 3px;
+}
+.slider.round.sm::before{
+  height: 16px;
+  width: 16px;
+  bottom: -3px;
 }

@@ -36,14 +36,14 @@ export const DiffColorSwitch = () => (
     <div>
         <h1>Color Switches</h1>
         <br/>
-        <Switch color="primary" defaultChecked>primary</Switch>
-        <Switch color="secondary" defaultChecked>secondary</Switch>
-        <Switch color="success" defaultChecked>success</Switch>
-        <Switch color="info" defaultChecked>info</Switch>
-        <Switch color="warning" defaultChecked>warning</Switch>
-        <Switch color="danger" defaultChecked>danger</Switch>
-        <Switch color="light" defaultChecked>light</Switch>
-        <Switch color="dark" defaultChecked>dark</Switch>
+        <Switch color="primary" defaultChecked onClick={action('Primary Switch clicked')}>primary</Switch>
+        <Switch color="secondary" defaultChecked onClick={action('Secondary Switch clicked')}>secondary</Switch>
+        <Switch color="success" defaultChecked onClick={action('Success Switch clicked')}>success</Switch>
+        <Switch color="info" defaultChecked onClick={action('Info Switch clicked')}>info</Switch>
+        <Switch color="warning" defaultChecked onClick={action('Warning Switch clicked')}>warning</Switch>
+        <Switch color="danger" defaultChecked onClick={action('Danger Switch clicked')}>danger</Switch>
+        <Switch color="light" defaultChecked onClick={action('Light Switch clicked')}>light</Switch>
+        <Switch color="dark" defaultChecked onClick={action('Dark Switch clicked')}>dark</Switch>
     </div>  
 )
 
@@ -51,8 +51,8 @@ export const DiffSizeSwitch = () => (
     <div>
         <h1>Size Switches</h1>
         <br/>
-        <Switch size="sm">small</Switch>
-        <Switch>default</Switch>
+        <Switch size="sm" onClick={action('Small Switch clicked')}>small</Switch>
+        <Switch onClick={action('Default Switch clicked')}>default</Switch>
     </div>
 )
 

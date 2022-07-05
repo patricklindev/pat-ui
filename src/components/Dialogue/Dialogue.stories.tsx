@@ -12,18 +12,20 @@ export const TestDialogue = () => {
   const toggleModal = () => setModalShown(!modalShown);
 
   return (
-  <Dialogue
-    className='list-dlg'
-    title='List Title'
-    dlgList={true}
-    dlgListContent='Hello'
-    dlgBulletPoint="World"
-    isOpen={modalShown}
-    dlgOnClick={toggleModal}
-  >
-    <button className="modal-btn" onClick={toggleModal}>
-      Click me!
-    </button>
-  </Dialogue>
+    <div className="test">
+      <Dialogue
+        className='list-dlg'
+        title='Set backup account'
+        dlgList={true}
+        dlgListContent='janedoe@gmail.com'
+        dlgBulletPoint="johndoe@yahoo.com"
+        isOpen={modalShown}
+        dlgOnClick={toggleModal}
+      >
+        <button className="modal-btn" onClick={toggleModal}>
+          Click me!
+        </button>
+      </Dialogue>
+    </div>
   );
 };

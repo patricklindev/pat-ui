@@ -1,5 +1,8 @@
 import React, { FC, useRef } from 'react';
 
+import { FaUserCircle } from 'react-icons/fa';
+import { IoAddCircle } from 'react-icons/io5';
+
 export type dialogueType =
   | 'basic'
   | 'alert'
@@ -52,13 +55,29 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
 
         </div>
         {className ? (
-          <div className={className}>
-            <div className='modal-title'>
+          <div className={`modal-box ${className}`}>
+            <h3 className='modal-title'>
               {title}
-            </div>
+            </h3>
             <ul className='modal-list'>
-              <li onClick={dlgOnClick} className='list-content'>{props.dlgListContent}</li>
-              <li onClick={dlgOnClick} className='list-content'>{props.dlgBulletPoint}</li>
+              <li onClick={dlgOnClick} className='list-content'>
+                <span className='dlg-icon'>
+                  <FaUserCircle />
+                </span>
+                {props.dlgListContent}
+              </li>
+              <li onClick={dlgOnClick} className='list-content'>
+                <span className='dlg-icon'>
+                  <FaUserCircle />
+                </span>
+                {props.dlgBulletPoint}
+              </li>
+              <li className='list-content'>
+                <span className='dlg-icon'>
+                  <IoAddCircle />
+                </span>
+                Add Account
+              </li>
             </ul>
           </div>
         ) : <div className='test'></div>}

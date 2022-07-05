@@ -11,7 +11,7 @@ export const BasicCheckboxes = () => (
   <div className='basicCheckboxWrapper'>
       <Checkbox />
       <Checkbox checked />
-      <Checkbox checkboxSize='large' checkboxId="2"/>
+      <Checkbox checkboxSize='large' />
   </div>
 );
 
@@ -78,6 +78,6 @@ export const checkboxDisabled = () => (
 
 export const ControlCheckStateByCallbackFunc = () => (
   <div>
-    <Checkbox label='Check Control by Callback' onChange={()=>{console.log("GG")}}/>
+    <Checkbox label='Check Control by Callback'  onChange={()=>{action('place your function here')()}}/>
   </div>
 );

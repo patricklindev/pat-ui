@@ -6,7 +6,7 @@ import { IconPath } from './Icons';
 import Icon from './Icon'
 
 export type boxSize = 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
-export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card';
+export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card' | 'check';
 export type themeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'light';
 
 export interface ICheckboxProps {
@@ -19,17 +19,17 @@ export interface ICheckboxProps {
   /** disabled the checkbox */
   disabled?: boolean | undefined;
   /** add specific icon to input */
-  icon?: iconType ;
+  icon?: iconType;
   /** add specific icon theme to input */
   iconTheme?: themeColor;
   /**customize checkbox color */
   checkboxColor? : themeColor;
   /** pass a callback function out-site of props */
   onChange?: ()=> void | undefined;
-  /** set label and input id value */
-  checkboxId?: string;
   /** set label value */ 
   label?: string;
+  /** onClick */
+  onClick?: ()=>void;
 }
 
 /**
@@ -46,7 +46,6 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
     checkboxSize,
     checked,
     icon,
-    checkboxId,
     checkboxColor,
     iconTheme,
     disabled,
@@ -54,7 +53,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
     onChange : handleCheck} = props;
 
   // define a unique id when the function is mounted
-  const [id,setId] = useState<string | undefined>(checkboxId === undefined ? uid(): checkboxId)
+  const [id,setId] = useState('')
 
   // define a default icon value
   const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : 'check')
@@ -80,7 +79,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
   
   useEffect(()=>{
-
+    setId(uid())
     // set check icon color when mounted
     switch(checkboxColor) {
       case 'light':
@@ -122,7 +121,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
         default:
           setFillIcon('#000')
         }
-  },[])
+  },[checkboxColor,iconTheme])
 
   //event handler for check input
   const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {

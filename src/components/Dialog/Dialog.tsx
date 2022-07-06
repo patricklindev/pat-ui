@@ -1,6 +1,7 @@
 
 import React, { Children } from 'react'
 import Button from '../Button'
+import Input from '../Input'
 
 
 export enum DialogType {
@@ -48,12 +49,19 @@ const Dialog: React.FC<IDialogProps> = (props) => {
             <h3 className='dialogTitle'>{dialogTitle}</h3>
             {children}
             <p className='dialogParagraph'>{dialogParagraph}</p>
-            {dialogType === DialogType.Form ? <input></input> : null}
 
-            {dialogType === DialogType.Form ? <Button>{buttonOneText}</Button> : null}
-            {dialogType === DialogType.Form ? <Button>{buttonTwoText}</Button> : null}
+            <div>
+                {dialogType === DialogType.Form ? <input
+                    placeholder="Email Address"
+                /> : null}
+            </div>
+            <div className='dlg-btns'>
+                {dialogType === DialogType.Form ? <Button btnType="link"
+                    disabled={false}>{buttonOneText}</Button> : null}
+                {dialogType === DialogType.Form ? <Button btnType="link"
+                    disabled={false}>{buttonTwoText}</Button> : null}
 
-
+            </div>
         </div>
     )
 }

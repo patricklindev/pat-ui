@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Dialog from './index';
 import Button from '../Button';
@@ -70,5 +70,24 @@ export const DialogForm = () => {
         buttonTwoText='disagree'
       >
       </Dialog>
+    </div>)
+};
+
+export const DialogFormInUse = () => {
+  const exampPara: string = "Sed fringilla tortor arcu, vel malesuada dui molestie vitae. In efficitur odio eget odio tempus vehicula vitae vitae sem."
+  const [showModal, setshowModal] = useState(false)
+
+  return (
+    <div>
+      <Button onClick={()=>setshowModal(showModal=>!showModal)}>Show Dialog</Button>
+
+      {showModal ? <Dialog
+        dialogType='form'
+        dialogTitle='Subscribe'
+        dialogParagraph={exampPara}
+        buttonOneText="agree"
+        buttonTwoText='disagree'
+      >
+      </Dialog> : null}
     </div>)
 };

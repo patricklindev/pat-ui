@@ -82,6 +82,7 @@ export const Slider: FC<ISliderProps> = (props) => {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setValue(parseInt(event.target.value))
                     if (onChange) {
+                        //Call the onchange function with value as an argument
                         onChange(value);
                     }
                 }}

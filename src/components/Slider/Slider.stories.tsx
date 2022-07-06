@@ -10,7 +10,7 @@ export default {
 
 export const DefaultSlider = () => (
     <div>
-        <h2>Default Slider with no Props Used</h2>
+        <h2>Default Slider With Only Default Props Used</h2>
         <Slider onChange={action("Default Slider was moved")} />
     </div>
 );

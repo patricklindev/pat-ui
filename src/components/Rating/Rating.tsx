@@ -20,7 +20,7 @@ import {
 } from './helper';
 import { useCurrentRatingLabel } from './hooks';
 
-interface IRatingProps {
+export interface IRatingProps {
   /** set className to the component */
   className?: string;
   /** set rating to be disabled */

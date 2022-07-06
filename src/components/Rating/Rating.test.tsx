@@ -1,6 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { IconSize } from '../Icon/Icon';
 import Rating, { IRatingProps } from './Rating';
 
 describe('Rating', () => {
@@ -136,5 +135,21 @@ describe('Rating', () => {
         );
       }
     }
+  });
+
+  it('should be able to listen to the change of the value of the component from outside of the component by providing the onChange callback function as a prop', () => {
+    const iconProps: IRatingProps = {
+      onChange: jest.fn(),
+    };
+    const { getAllByRole } = render(<Rating {...iconProps} />);
+    const allIcons = getAllByRole('button');
+    expect(allIcons.length).toBe(5);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
+    expect(iconProps.onChange).toHaveBeenCalledTimes(0);
+    fireEvent.click(allIcons[4]);
+    expect(iconProps.onChange).toHaveBeenCalledTimes(1);
   });
 });

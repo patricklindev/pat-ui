@@ -1,11 +1,17 @@
 .dlg {
     border-radius: $border-radius;
-
+    background: $white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: $spacer;
     margin: $spacer ;
     z-index: 999;
     //   width: fit-content;
+    width: 50%;
+    overflow: hidden;
+    position: sticky;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
 
 }
 
@@ -57,4 +63,17 @@
 .dlg-btns {
     text-align: end;
     margin-bottom: 0;
+}
+
+.dlg-container {
+    background: rgba(0, 0, 0, .5);
+    //  position: sticky;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+   
+}
+
+.dialogBody {
+    min-height: fit-content;
 }

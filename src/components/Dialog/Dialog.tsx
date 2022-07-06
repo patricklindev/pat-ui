@@ -1,5 +1,5 @@
 
-import React, { Children } from 'react'
+import React, { Children, useState } from 'react'
 import Button from '../Button'
 import Input from '../Input'
 
@@ -25,7 +25,7 @@ interface IDialogProps {
 
 const Dialog: React.FC<IDialogProps> = (props) => {
     const { children, dialogType, dialogTitle, dialogParagraph, buttonOneText, buttonTwoText } = props
-
+    const [showModal, setshowModal] = useState(false)
     //default classname  
     let classNameList: string[] = ['dlg']
 
@@ -44,26 +44,39 @@ const Dialog: React.FC<IDialogProps> = (props) => {
     }
 
     return (
+        <div className='dialogBody'>
 
-        <div className={classNameList.join(" ")} >
-            <h3 className='dialogTitle'>{dialogTitle}</h3>
-            {children}
-            <p className='dialogParagraph'>{dialogParagraph}</p>
+            {showModal ?
 
-            <div>
-                {dialogType === DialogType.Form ? <input
-                    placeholder="Email Address"
-                /> : null}
-            </div>
-            <div className='dlg-btns'>
-                {dialogType === DialogType.Form ? <Button btnType="link"
-                    disabled={false}>{buttonOneText}</Button> : null}
-                {dialogType === DialogType.Form ? <Button btnType="link"
-                    disabled={false}>{buttonTwoText}</Button> : null}
+                <div className='dlg-container' onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                        setshowModal(showModal => !showModal)
+                    }
 
-            </div>
-        </div>
-    )
+                }
+                }>
+                    < div className={classNameList.join(" ")} >
+                        <h3 className='dialogTitle'>{dialogTitle}</h3>
+                        {children}
+                        <p className='dialogParagraph'>{dialogParagraph}</p>
+
+                        <div>
+                            {dialogType === DialogType.Form ? <input
+                                placeholder="Email Address"
+                            /> : null}
+                        </div>
+                        <div className='dlg-btns'>
+                            {dialogType === DialogType.Form ? <Button btnType="link"
+                                disabled={false}>{buttonOneText}</Button> : null}
+                            {dialogType === DialogType.Form ? <Button btnType="link"
+                                disabled={false}>{buttonTwoText}</Button> : null}
+
+                        </div>
+
+                    </div >
+                </div >
+                : <Button onClick={() => setshowModal(showModal => !showModal)}>Show Dialog</Button>}
+        </div >)
 }
 
 export default Dialog

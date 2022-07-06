@@ -171,17 +171,21 @@ class Rating extends Component<propTypes, stateTypes> {
     let { config, halfStar } = this.state
     if (!config.edit) return;
     let index = Number(event.target.getAttribute('data-index'))
+    let halfIndex = 0;
     if (config.half) {
       const isAtHalf = this.moreThanHalf(event, config.size)
       halfStar.hidden = isAtHalf
-      if (isAtHalf) index = index + 1;
+      if (isAtHalf) {
+        index = index + 1;} else {
+          halfIndex = 0.5;
+        }
       halfStar.at = index
     } else {
       index = index + 1
     }
     this.setState({
       stars: this.getStars(index),
-      labelIndex: index
+      labelIndex: index + halfIndex
     })
   }
 
@@ -270,14 +274,27 @@ class Rating extends Component<propTypes, stateTypes> {
     const labels = this.props.labels;
     const count = this.props.count;
     const value = this.state.value;
+    const half = this.props.half;
     let labelIndex = this.state.labelIndex;
     let label = '';
 
-    if(labels.length !== 0 && labels.length === count){
-      if(value !== 0){
-        labelIndex = value;
+    if(half){
+      if(labels.length !== 0 && labels.length === count * 2){
+        if(value !== 0){
+          labelIndex = value * 2;
+          label = labels[labelIndex-1];
+        } else {
+          label = labels[labelIndex * 2 - 1];
+        }
+        
       }
-      label = labels[labelIndex-1];
+    }else{
+      if(labels.length !== 0 && labels.length === count){
+        if(value !== 0){
+          labelIndex = value;
+        }
+        label = labels[labelIndex-1];
+      }
     }
 
     return label;

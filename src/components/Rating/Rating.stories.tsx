@@ -22,10 +22,12 @@ export default {
   );
 
   const labels = ['Very bad','Bad','Okay','Good','Great'];
+  const labels2 = ['Very bad','Very bad+','Bad','Bad+','Okay','Okay+','Good','Good+','Great','Great+'];
   export const ProvideTheLabelForRating = () => (
     <div>
       <div>Developers should be able to provide the label of the component from props</div>
       <Rating labels = {labels}/>
+      <Rating half={true} labels = {labels2}/>
     </div>
   );
 

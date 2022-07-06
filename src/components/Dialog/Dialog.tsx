@@ -4,43 +4,36 @@ import Button from '../Button'
 import Input from '../Input'
 
 
-export enum DialogType {
-    Simple = 'simple',
-    Alert = 'alert',
-    Form = 'form'
-
-}
-
-
 interface IDialogProps {
-    dialogType?: DialogType
+    dialogType?: string
     dialogTitle?: string
     dialogParagraph?: string
     buttonOneText?: string
     buttonTwoText?: string
+    closeHandlerProps?: any
+
 }
 
 
 
 
 const Dialog: React.FC<IDialogProps> = (props) => {
-    const { children, dialogType, dialogTitle, dialogParagraph, buttonOneText, buttonTwoText } = props
+    const { children, dialogType, dialogTitle, dialogParagraph, buttonOneText, buttonTwoText, closeHandlerProps } = props
     const [showModal, setshowModal] = useState(false)
     //default classname  
     let classNameList: string[] = ['dlg']
 
     const classNames = classNameList.join(" ")
 
-    if (dialogType === DialogType.Simple) {
-        console.log("i ran ");
+    if (dialogType === 'simple') classNameList.push('dlg-simple')
+    if (dialogType === 'alert') classNameList.push('dlg-alert')
+    if (dialogType === 'form') classNameList.push('dlg-form')
 
-        classNameList.push('dlg-simple')
-    }
-    if (dialogType === DialogType.Alert) {
-        classNameList.push('dlg-alert')
-    }
-    if (dialogType === DialogType.Form) {
-        classNameList.push('dlg-form')
+
+
+  const onClose = () => {
+        setshowModal(showModal => !showModal)
+        if (typeof closeHandlerProps === 'function') { closeHandlerProps() }
     }
 
     return (
@@ -49,30 +42,22 @@ const Dialog: React.FC<IDialogProps> = (props) => {
             {showModal ?
 
                 <div className='dlg-container' onClick={(e) => {
-                    if (e.target === e.currentTarget) {
-                        setshowModal(showModal => !showModal)
-                    }
-
+                    if (e.target === e.currentTarget) onClose()
                 }
                 }>
                     < div className={classNameList.join(" ")} >
-                        <h3 className='dialogTitle'>{dialogTitle}</h3>
-                        {children}
-                        <p className='dialogParagraph'>{dialogParagraph}</p>
-
-                        <div>
-                            {dialogType === DialogType.Form ? <input
-                                placeholder="Email Address"
-                            /> : null}
-                        </div>
+                        {dialogTitle ? <h3 className='dialogTitle'>{dialogTitle}</h3> : null}
+                        {dialogParagraph ? <p className='dialogParagraph'>{dialogParagraph}</p> : null}
+                        {dialogType === 'form' ? <div>
+                            <input placeholder="Email Address" />
+                        </div> : null}
                         <div className='dlg-btns'>
-                            {dialogType === DialogType.Form ? <Button btnType="link"
+                            {buttonOneText ? <Button btnType="link"
                                 disabled={false}>{buttonOneText}</Button> : null}
-                            {dialogType === DialogType.Form ? <Button btnType="link"
+                            {buttonTwoText ? <Button btnType="link"
                                 disabled={false}>{buttonTwoText}</Button> : null}
-
                         </div>
-
+                        {children}
                     </div >
                 </div >
                 : <Button onClick={() => setshowModal(showModal => !showModal)}>Show Dialog</Button>}

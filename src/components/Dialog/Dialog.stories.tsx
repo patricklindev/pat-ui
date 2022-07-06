@@ -9,6 +9,9 @@ export default {
   component: Dialog,
 };
 
+const exampPara: string = "Sed fringilla tortor arcu, vel malesuada dui molestie vitae. In efficitur odio eget odio tempus vehicula vitae vitae sem."
+
+
 export const DialogSimple = () => (
   <div>
     <Dialog
@@ -46,20 +49,18 @@ export const DialogAlert = () => (
   <div>
     <Dialog
       dialogType='alert'
+      buttonOneText='agree'
+      buttonTwoText='disagree'
+      dialogTitle='Vestibulum porta quam in euismod fringilla'
+      dialogParagraph={exampPara}
     >
-      <h2>Vestibulum porta quam in euismod fringilla </h2>
-      <p> Nullam gravida imperdiet neque, eget efficitur tortor dictum vel. Nam nec condimentum nisi. Quisque nec ultrices elit. Nam viverra augue maximus cursus lacinia. Pellentesque ut dui vitae ex hendrerit blandit eget vitae lectus. </p>
-
-      <a href='#'>Disagree</a>
-      <a href='#'>Agree</a>
-
+     
     </Dialog>
   </div>
 );
 
 
 export const DialogForm = () => {
-  const exampPara: string = "Sed fringilla tortor arcu, vel malesuada dui molestie vitae. In efficitur odio eget odio tempus vehicula vitae vitae sem."
   return (
     <div>
       <Dialog
@@ -68,6 +69,7 @@ export const DialogForm = () => {
         dialogParagraph={exampPara}
         buttonOneText="agree"
         buttonTwoText='disagree'
+        closeHandlerProps={ ()=>alert("send alert when closing the Dialog") }
       >
       </Dialog>
     </div>)

@@ -16,28 +16,11 @@
 }
 
 .dlg-alert {
-    min-width: 60rem;
 
-    a {
-        text-align: end;
-        display: inline;
-        font-weight: bold;
-        color: $blue;
-    }
+
 }
 
 .dlg-simple {
-    display: flex;
-    flex-direction: column;
-    min-width: 60rem;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-        text-align: center;
-    }
 }
 
 .dlg-form {

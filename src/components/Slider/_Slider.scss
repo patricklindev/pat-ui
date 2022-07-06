@@ -5,7 +5,7 @@
     @include slider-size($slider-width,
         $slider-height, $thumb-width, $thumb-height);
 
-    @include slider-style($blue, #367ce5);
+    @include slider-style($primary, rgb(85, 221, 180));
 }
 
 

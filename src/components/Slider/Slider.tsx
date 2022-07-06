@@ -41,6 +41,7 @@ export interface ISliderProps {
 
 export const Slider: FC<ISliderProps> = (props) => {
 
+    //Destructor. Destructs into props object
     const { className, onChange, sliderSize, thumbSize, sliderTheme, thumbTheme, sliderOrientation, min, max, initialValue, step, ticks, disabled } = props;
 
     //State variable for value of the slider
@@ -81,8 +82,9 @@ export const Slider: FC<ISliderProps> = (props) => {
                 disabled={disabled}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setValue(parseInt(event.target.value))
+                    // console.log(value)
                     if (onChange) {
-                        //Call the onchange function with value as an argument
+                        //Trigger callback function
                         onChange(value);
                     }
                 }}

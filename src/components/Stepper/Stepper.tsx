@@ -169,14 +169,14 @@ export const Stepper: FC<patStepperProps> = (props) => {
         
     }  
     
-function next() {
+    function next() {
         console.log("Current index", Currentindex)
         console.log("Current Steps", CurrentStep)
         setIntialize(false)
         setCurrentStep(CurrentStep + 1)
         setCurrentIndex(Currentindex + 1)
         let target = Currentindex+1
-        let removeSkip = SkipIndexArray.filter(function(element){return(element == target)})
+        let removeSkip = SkipIndexArray.filter(function(element){return(element != target)})
         setSkipIndexArray( removeSkip )
 
         if (stepperOrientation === 'vertical') {
@@ -196,10 +196,17 @@ function next() {
         setFinish(false)
         setCurrentStep(CurrentStep - 1)
         setCurrentIndex(Currentindex - 1)
-        // let target = Currentindex-1
-        // let removeSkip = SkipIndexArray.filter(function(element){return(element == target)})
-        // setSkipIndexArray( removeSkip )
 
+        
+        let filterArrayCheck = SkipIndexArray.includes(Currentindex-1)
+        if (filterArrayCheck === true) {
+        let skipArrayLength = SkipIndexArray.length
+        let lastValue = SkipIndexArray[skipArrayLength-1]
+        console.log(lastValue)
+        let removeSkip = SkipIndexArray.filter(function(element){return(element != lastValue)})
+        setSkipIndexArray( removeSkip )
+
+        }
 
         if (stepperOrientation === 'vertical') {
             let currentTarget = 'description-' + `${Currentindex}`
@@ -235,26 +242,67 @@ function next() {
            } 
     }
 
+    // function skip() {
+    //     setIntialize(false)
+    //     console.log("Current index", Currentindex)
+    //     console.log("Current Steps", CurrentStep)
+    //     let skipthisStep:number = CurrentStep
+    //     let skipthisIndex = Currentindex + 1
+        
+    //     console.log("We will attempt to skip this step", skipthisStep)
+    //     console.log("We will attempt to skip this index", skipthisIndex)
+     
+    //     setSkipIndex(skipthisIndex)
+    //     setCurrentStep(CurrentStep + 2)
+    //     setCurrentIndex(Currentindex + 2)
+    //     setSkipIndexArray( arr => [...arr, skipthisIndex])
+
+    //     if (stepperOrientation === 'vertical') {
+
+    //         if (Currentindex == renderSteps-1) {
+    //             let currentTarget = 'description-' + `${Currentindex}`
+    //             let nextTarget = 'description-' + `${Currentindex+1}`
+    //             let nextElement = document.getElementById(nextTarget)
+    //             let currentElement = document.getElementById(currentTarget)
+    //             nextElement!.style.height="175px"
+    //             currentElement!.style.height="75px"
+    //             nextElement!.style.zIndex="1"
+    //             } else {
+    //         let currentTarget = 'description-' + `${Currentindex}`
+    //         let nextTarget = 'description-' + `${Currentindex+2}`
+    //         let nextElement = document.getElementById(nextTarget)
+    //         let currentElement = document.getElementById(currentTarget)
+    //         nextElement!.style.height="175px"
+    //         currentElement!.style.height="75px"
+    //         nextElement!.style.zIndex="0"
+    //         }
+
+            
+    //     }
+    // }
+
     function skip() {
         setIntialize(false)
-        console.log("Current index", Currentindex)
-        console.log("Current Steps", CurrentStep)
         let skipthisStep:number = CurrentStep
-        let skipthisIndex = Currentindex + 1
+        let skipthisIndex = Currentindex 
         
         console.log("We will attempt to skip this step", skipthisStep)
         console.log("We will attempt to skip this index", skipthisIndex)
      
         setSkipIndex(skipthisIndex)
-        setCurrentStep(CurrentStep + 2)
-        setCurrentIndex(Currentindex + 2)
+        if (CurrentStep == totalSteps-1) {
+            setSkipIndexArray( arr => [...arr, skipthisIndex])
+        } else {
+        setCurrentStep(CurrentStep + 1)
+        setCurrentIndex(Currentindex + 1)
         setSkipIndexArray( arr => [...arr, skipthisIndex])
+        }
 
         if (stepperOrientation === 'vertical') {
 
             if (Currentindex == renderSteps-1) {
                 let currentTarget = 'description-' + `${Currentindex}`
-                let nextTarget = 'description-' + `${Currentindex+1}`
+                let nextTarget = 'description-' + `${Currentindex}`
                 let nextElement = document.getElementById(nextTarget)
                 let currentElement = document.getElementById(currentTarget)
                 nextElement!.style.height="175px"
@@ -262,7 +310,7 @@ function next() {
                 nextElement!.style.zIndex="1"
                 } else {
             let currentTarget = 'description-' + `${Currentindex}`
-            let nextTarget = 'description-' + `${Currentindex+2}`
+            let nextTarget = 'description-' + `${Currentindex+1}`
             let nextElement = document.getElementById(nextTarget)
             let currentElement = document.getElementById(currentTarget)
             nextElement!.style.height="175px"
@@ -395,7 +443,59 @@ function next() {
                                     )}
                                 </div>
                              )}
+                        </div>
+                        {/* <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
+                        {SkipIndexArray.includes(index) == true?(
+                             <div className="test-1a">
+                                 <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
                             </div>
+                            ) : (
+                            <div className="test-1b" >
+                                 { item.label != 'error' ? (
+                                  <div className="test-2a">
+                                    {CurrentStep > index ? (
+                                        <div className="test-3a">
+                                        {CurrentStep == totalSteps? (
+                                            <div className = "test-4A">
+                                            {Finish == true ? (
+                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                             ) : (
+                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                            )}
+                                            </div>
+                                        ) : (
+                                            <div className = "test-4b">
+                                             {CurrentStep > index +1 ? (
+                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                            ) : (
+                                                <div>
+                                                {CurrentStep > index ? (
+                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                                ) : (
+                                                <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                                )}
+                                                </div>
+                                            )}
+                                        </div>
+                                        )}
+                                        </div>
+                                    ) : (
+                                        <div className="test -3b">
+                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                    </div>
+                                     )}
+                                </div>
+                                ) : (
+                                    <div className="test-2b">
+                               <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                                </div>
+                            )}
+                            </div>
+                                
+                            )}
+                           
+                          
+                </div> */}
                         </div>
                     </div>
                     <div className="description-area"  >
@@ -453,7 +553,7 @@ function next() {
                                         </div>
                                     ) : (
                                         <div className="test -3b">
-                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>\
+                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                     </div>
                                      )}
                                 </div>

@@ -103,4 +103,17 @@ describe('Rating', () => {
       'icon big orange star rating-icon'
     );
   });
+
+  it('should decide the number of stars in total from props ', () => {
+    const iconProps = {
+      ratingCount: 15,
+    };
+    const { getAllByRole } = render(<Rating {...iconProps} />);
+    const allIcons = getAllByRole('button');
+    expect(allIcons.length).toBe(iconProps.ratingCount);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
+  });
 });

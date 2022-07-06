@@ -98,5 +98,9 @@ describe('Rating', () => {
     expect(allIcons[3].firstElementChild as HTMLElement).toHaveClass(
       'icon large grey star regular rating-icon'
     );
+    fireEvent.mouseMove(allIcons[3]);
+    expect(allIcons[3].firstElementChild as HTMLElement).toHaveClass(
+      'icon big orange star rating-icon'
+    );
   });
 });

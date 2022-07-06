@@ -86,3 +86,10 @@
 .tickMark{
     margin:0px;
 }
+
+.slider-vertical{
+    width: $vertical-slider-width;
+    margin-top: $vertical-slider-margin;
+    margin-bottom: $vertical-slider-margin;
+    transform: rotate(270deg); 
+}

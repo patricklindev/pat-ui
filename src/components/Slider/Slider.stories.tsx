@@ -33,6 +33,8 @@ export const DifferentSizedSliders = () => (
 export const DifferentThemedSliders = () => (
     <div>
         <h1>Themed Sliders</h1>
+        <h2>Default Slider</h2>
+        <Slider onChange={action("Default Slider was moved")}/>
         <h2>Primary Slider</h2>
         <Slider sliderTheme='primary' onChange={action("Primary Slider was moved")}/>
         <h2>Secondary Slider</h2>
@@ -66,8 +68,6 @@ export const DifferentValuedSliders = () => (
         <Slider ticks={2} onChange={action("Slider was moved")}/>
         <Slider ticks={5} onChange={action("Slider was moved")}/>
 
-
-
         <h2>Step, Max, Min, and InitialValue Props</h2>
         <p>Users can use step, max, and min to set possible values of the slider</p>
         <h5>Slider with custom min, max, and inital value</h5>
@@ -77,3 +77,10 @@ export const DifferentValuedSliders = () => (
         <Slider initialValue={0} min={0} max={30} step={10} ticks={4} onChange={action("Slider was moved")}/>
     </div>
 );
+
+export const VerticalSliders = () =>(
+    <div>
+        <Slider sliderOrientation='vertical' initialValue={50} onChange={action("Vertical slider was moved")}/>
+        <Slider sliderOrientation='vertical' sliderTheme='primary' thumbTheme='danger' thumbSize='lg' onChange={action("Vertical slider was moved")}/>
+    </div>
+)

@@ -3,10 +3,9 @@ import { classNames } from '../../utils/classNames';
 
 
 export type SliderSize = 'lg' | 'sm';
-export type SliderTheme = 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
+export type Themes = 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
 export type SliderOrientation = 'vertical';
 export type ThumbSize = "lg" | "med" | "sm"
-export type ThumbTheme = 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
 
 
 export interface ISliderProps {
@@ -17,9 +16,9 @@ export interface ISliderProps {
     /**Set customized style */
     className?: string;
     /**Set slider theme */
-    sliderTheme?: SliderTheme;
+    sliderTheme?: Themes;
     /**Set thumb theme */
-    thumbTheme?: ThumbTheme;
+    thumbTheme?: Themes;
     /**Set slider to be vertical */
     sliderOrientation?: SliderOrientation;
     /**Set an onChange function */
@@ -44,6 +43,7 @@ export const Slider: FC<ISliderProps> = (props) => {
 
     const { className, onChange, sliderSize, thumbSize, sliderTheme, thumbTheme, sliderOrientation, min, max, initialValue, step, ticks, disabled } = props;
 
+    //State variable for value of the slider
     const [value, setValue] = useState(props.initialValue)
 
     let styleClasses = classNames('slider', {

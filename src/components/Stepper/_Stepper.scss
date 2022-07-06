@@ -1,10 +1,10 @@
 
 .all-container-sm {
-    width:25%;
+    width:10%;
 }
 
 .all-container-md {
-    width:75%;
+    width:50%;
 }
 
 .all-container-lg {
@@ -14,10 +14,10 @@
 
 .center-main-body {
     width:fit-content;
+    min-width:300px;
     border-style:groove;
     border-radius:12.5px;
-    margin:auto;
-    padding:5%;
+    padding:7.5%;
 }
 
 .flex-row-container {
@@ -35,24 +35,26 @@
     background-color: green;
 }
 
-.blue {
-    background-color: blue;
-} 
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange
+}
 
 
 
 //DESCRIPTION FOR HTML ARRAY
 
 .progress-container {
-    padding-right:1%;
-    width:fit-content;
+    margin-left:5%;
+    width:500px;
   }
 
 .progress-description{
-  
     margin-left:5%;  
 }
-
 
 
 
@@ -129,14 +131,12 @@
 // BUTTON
 
 .Stepper-Button-Left {
-    margin-left:5%;
-    width:20%;
-    padding:1%
- 
+    width:25%;
+    margin-left:10%;
 }
 
 .spacer {
-    width:50%;
+    width:100%;
 }
 
 .vertical-spacer {
@@ -144,81 +144,101 @@
 }
 
 .button-vertical-margin {
-    margin-left:5%;
+    margin-left:1%;
 }
 
 .Stepper-Button-Right {
-    width:20%;
-    margin-right:5%;
-    padding:1%;
+    width:25%;
+    margin-right:10%;;
 }
 
 .Stepper-Button-Skip {
-    width:100px;
-    margin-right:10px;
+    width:25%;
+    margin-right:1%;
+}
+
+.Stepper-Button-Reset {
+    width:25%;
+    margin:auto;
 }
 
 // LINEBAR
 
 .bar {
-    width:50%;
+    width:100%;
     min-width:20%;
     height:5px;
-    margin:auto;
     border-radius: 10px;
     display: inline-block;
 }
 
-
-
   .hide {
     display:none;
   }
-
-
-
 
 // FONT Style
 
 .font-variant-main{
     font-size: $font-size-sm;
     list-style: none;
+    text-align: center;
+
 }
 
-.font-variant-secondary{
+.font-variant-vertical{
     font-size: $font-size-sm;
     font-style:italic;
     list-style: none;
+    text-align: justify;
+}
+
+.font-variant-row{
+    font-size: $font-size-sm;
+    font-style:italic;
+    list-style: none;
+    text-align: center;
 }
 
 .font-variant-error{
     font-size: $font-size-sm;
     list-style: none;
     color:red;
+    text-indent: 1%;
+    text-align: center;
 }
 
+.icon-area {
+    
+}
 
 .description-area {
     width:300px;
     transition:height 2s;
     height:75px;
-    z-index: 2;
     background-color: white;
     margin-bottom:1%;
     margin-left:1%;
+    z-index: 0;
 }
 
-// 
-.icon-area {
-    margin-left: 2.5%;
+
+.bar-area {
+    width:50%;
+    min-width:20%;
+    height:5px;
+    margin-left:5%;
+
 }
 
 .display-in-vertical {
     margin-top:10%;
     height:50px;
 }
-.display-in-row {
+.display-in- {
     margin-top:5%;
     margin-left:37.5%
 }
 
+.stepper-display {
+  text-align: center;
+}

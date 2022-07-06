@@ -26,8 +26,8 @@ export type TitleAndDescription<Type> = {
 export interface IStepperProps {
     // set customized Stepper //
     className?: string;
+    // Will the user allow skip button to appear
     allowSkip?: boolean;
-    skipArray?: number []
     // set Steppersize  //
     stepperSize?: StepperSize;
     // set StepperType //
@@ -55,7 +55,6 @@ export const Stepper: FC<patStepperProps> = (props) => {
         buttonTitlePrev,
         stepperLinear,
         allowSkip,
-        skipArray,
         // currentIndex,
         ...rest
     } = props;
@@ -86,20 +85,19 @@ export const Stepper: FC<patStepperProps> = (props) => {
     const [Currentindex, setCurrentIndex] = useState(0)
     const [CurrentStep, setCurrentStep] = useState(1)
     const [skipIndex, setSkipIndex] = useState<number>(9999999)
-    const [IndexArray, setIndexArray] = useState<number[]>([])
+    const [SkipIndexArray, setSkipIndexArray] = useState<number[]>([])
     const [skipButtonActive, setSkipButtonActive] = useState(false)
     const [Initialize, setIntialize] = useState(true)
     const [Finish, setFinish] = useState(false);
-
-
+    // const [zpriority, setzpriority] = useState('nopriority');
+    
     // WARNING - Using state to set color in HTML affects all square/dots.
     // I previoused to using HTML to designate specific segments of the stepper.
-    const [Color, setColor] = useState('green');
     let totalSteps = stepperElements!.length
     let renderSteps = totalSteps - 1
-    let skipIndexArrayHolder: any = []
 
 
+    // Jason Ma 7/5/2022 On load, we check to see if the user has allowed the display of the skip button.
     useEffect(() => {
         if (allowSkip == true) {
             setSkipButtonActive(true)
@@ -107,67 +105,78 @@ export const Stepper: FC<patStepperProps> = (props) => {
         console.log("we have initialized")
     }, [Initialize]);
 
+    // Jason Ma 7/5/2022 Each time we add an index to the SkipIndexArray, we produce a console.log.
     useEffect(() => {
-        console.log(IndexArray)
-        console.log("We have added to the array of indexes to be skipped")
-    }, [IndexArray]);
+        console.log("We have added to the array of indexes to be skipped", SkipIndexArray)
+    }, [SkipIndexArray]);
 
     useEffect(() => {
         if (stepperOrientation == 'vertical') {
-        let laststep = 'description-' + renderSteps
         let initialreset = 'description-0'
         let initialresetHTML = document.getElementById(initialreset)
-        let laststepHTML = document.getElementById(laststep)
         initialresetHTML!.style.height="175px"
-        laststepHTML!.style.height="75px"
+        initialresetHTML!.style.zIndex="2"
         }
     }, [])
 
+    useEffect(() => {
+        if (Currentindex <= 0) {
+            setCurrentIndex(0)
+            setSkipIndex(999999999)
+            setCurrentStep(1)
+            setIntialize(true)
+        }
+        if (Currentindex >= renderSteps) {
+            setCurrentIndex(renderSteps)
+            setCurrentStep(totalSteps)
+        }
+    }, [Currentindex])
 
-    const nonLinear = (value:number) => {
-        console.log("non-linaer")
+
+    const select = (value:number) => {
+        setIntialize(false)
+        if (stepperLinear == 'linear') {
+            console.log("You have not declared stepperLinear props as nonlinear")
+        }
+
+        if (stepperLinear == 'nonlinear') {
+            if (stepperOrientation === 'row') {
+                setCurrentIndex(value)
+                setCurrentStep(value+1)
+            }
+    
+            if (stepperOrientation === 'vertical') {
+                setCurrentIndex(value)
+                setCurrentStep(value+1)
+                let currentTarget = 'description-' + `${value}`
+                let prevTarget = 'description-' + `${value-1}`
+                let prevElement = document.getElementById(prevTarget)
+                let currentElement = document.getElementById(currentTarget)
+                prevElement!.style.height="50px"
+                currentElement!.style.height="175px"
+            }
+        }
         
-        if (stepperOrientation === 'row') {
-            setCurrentIndex(value+1)
-            setCurrentStep(value+1)
-        }
-
-        if (stepperOrientation === 'vertical') {
-            setCurrentIndex(value+1)
-            setCurrentStep(value+1)
-            let currentTarget = 'description-' + `${value}`
-            let prevTarget = 'description-' + `${value-1}`
-            let prevElement = document.getElementById(prevTarget)
-            let currentElement = document.getElementById(currentTarget)
-            prevElement!.style.height="50px"
-            currentElement!.style.height="175px"
-        }
+        
     }  
     
     function next() {
-        setColor('green')
         console.log("Current index", Currentindex)
         console.log("Current Steps", CurrentStep)
         setIntialize(false)
         setCurrentStep(CurrentStep + 1)
         setCurrentIndex(Currentindex + 1)
         let target = Currentindex+1
-        let removeSkip = IndexArray.filter(function(element){return(element == target)})
-        setIndexArray( removeSkip )
-
-        if (Currentindex >= renderSteps) {
-            setCurrentIndex(renderSteps)
-        }
-
-        if (CurrentStep >= totalSteps) {
-            setCurrentStep(totalSteps)
-        }
+        let removeSkip = SkipIndexArray.filter(function(element){return(element == target)})
+        setSkipIndexArray( removeSkip )
+        console.log(SkipIndexArray)
 
         if (stepperOrientation === 'vertical') {
             let currentTarget = 'description-' + `${Currentindex}`
             let nextTarget = 'description-' + `${Currentindex+1}`
             let nextElement = document.getElementById(nextTarget)
             let currentElement = document.getElementById(currentTarget)
+            
             nextElement!.style.height="175px"
             nextElement!.style.zIndex="1"
             currentElement!.style.height="75px"
@@ -179,17 +188,10 @@ export const Stepper: FC<patStepperProps> = (props) => {
         setFinish(false)
         setCurrentStep(CurrentStep - 1)
         setCurrentIndex(Currentindex - 1)
-        let target = Currentindex-1
-        let removeSkip = IndexArray.filter(function(element){return(element == target)})
-        setIndexArray( removeSkip )
-        if (Currentindex <= 0) {
-            setCurrentIndex(0)
-            setSkipIndex(999999999)
-        }
+        // let target = Currentindex-1
+        // let removeSkip = SkipIndexArray.filter(function(element){return(element == target)})
+        // setSkipIndexArray( removeSkip )
 
-        if (CurrentStep <= 1) {
-            setCurrentStep(1)
-        }
 
         if (stepperOrientation === 'vertical') {
             let currentTarget = 'description-' + `${Currentindex}`
@@ -197,16 +199,13 @@ export const Stepper: FC<patStepperProps> = (props) => {
             let nextElement = document.getElementById(nextTarget)
             let currentElement = document.getElementById(currentTarget)
             nextElement!.style.height="175px"
-            nextElement!.style.zIndex="1"
             currentElement!.style.height="75px"
             nextElement!.style.zIndex="0"
         }
     }
 
     function finishStepper() {
-      
         setFinish(true)
-        next()
     }
 
     function reset() {
@@ -215,7 +214,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         setCurrentStep(1)
         setCurrentIndex(0)
         setSkipIndex(9999999)
-        setIndexArray([])
+        setSkipIndexArray([])
 
         if (stepperOrientation === 'vertical') {
            let laststep = 'description-' + renderSteps
@@ -223,186 +222,300 @@ export const Stepper: FC<patStepperProps> = (props) => {
            let initialresetHTML = document.getElementById(initialreset)
            let laststepHTML = document.getElementById(laststep)
            initialresetHTML!.style.height="175px"
+           initialresetHTML!.style.zIndex="1"
            laststepHTML!.style.height="75px"
-           }
-           
-        
+           } 
     }
 
     function skip() {
         setIntialize(false)
-        setColor('green')
         console.log("Current index", Currentindex)
         console.log("Current Steps", CurrentStep)
-        let skipthisStep:number = CurrentStep + 1
+        let skipthisStep:number = CurrentStep
         let skipthisIndex = Currentindex + 1
         
-
         console.log("We will attempt to skip this step", skipthisStep)
         console.log("We will attempt to skip this index", skipthisIndex)
      
         setSkipIndex(skipthisIndex)
         setCurrentStep(CurrentStep + 2)
         setCurrentIndex(Currentindex + 2)
-        setIndexArray( arr => [...arr, skipthisIndex])
-        console.log("This is the indexarray,", IndexArray)
-
-        if (Currentindex >= renderSteps) {
-            setCurrentIndex(renderSteps)
-        }
-
-        if (CurrentStep >= totalSteps) {
-            setCurrentStep(totalSteps)
-        }
+        setSkipIndexArray( arr => [...arr, skipthisIndex])
     }
 
 
 
-    let Stepper =
+let Stepper =
         // JASON MA 6/29/2022
         // ====> Main Code for the Stepper Component
         // This component has to first detect which variation of stepper we are going to be using
-        <div className={'all-container-' + stepperSize} data-testid="stepper-element" >
-            <div className="center-main-body" data-testid="stepper-main-body">
-                {/* First detect if the Stepper is going to be horizontal */}
-                {stepperOrientation == 'row' ? (
-                    <div className={styleClasses + ' flex-row-container'}>
-                        {/* iterate through the array of strings*/}
-                        {stepperElements!.map(function (item: any, index: any) {
-                            return (
-                                <div className="progress-container">
-                                    {index != renderSteps ? (
-                                        <div className={'flex-row-container'} id={"item-" + index}>
-                                            <div className="icon-area" onClick={() => nonLinear(index)}>
-                                                {/* Test 1 Did the user click / "mark" this index for skip */}
-                                                {IndexArray.includes(index) == false? (
-                                                    // <div>
-                                                    // {index===skipIndex &&
-                                                    
-                                                    <div className="check-index-preliminary">
-                                                    {/* Logic Test 2, is the current step greater than the index of the array */}
-                                                    {CurrentStep > index ? (
-                                                        <div className="check-index-secondary">
-                                                            {/* Logic Test 3, Related to skip. Once skip is pressed, the index is incremented by 2 */}
-                                                            {/* Logic Test 3, This test checks to see if skip has pushed index by 2 */}
-                                                            {index + 1 < CurrentStep ? (
-                                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                                            ) : (
-                                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-                                                            )}
-                                                        </div>
-                                                    ) : (
-                                                        <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                    )}
-                                                </div>
-                                                ) : (
-                                                   <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                )}
-                                            </div>
-                                            <div className="description-area "  >
-                                                <ul>
-                                                    <li className="font-variant-main"> {item.title} </li>
-                                                    {/* Logic Test 1, This test checks to see if error has been denoted */}
-                                                    {item.label == "error" ? (
-                                                        <li className="font-variant-error"> Warning: Step {index + 1}  </li>
-                                                    ) : (
-                                                        <li className="font-variant-secondary"> {item.label} </li>
-                                                    )
-                                                    }
-                                                </ul>
-                                            </div>
+    <div className={'all-container-' + stepperSize} data-testid="stepper-element" >
+        <div className="center-main-body" data-testid="stepper-main-body">
+            {/* First detect if the Stepper is going to be horizontal */}
+            {stepperOrientation == 'row' ? (
+            <div className={'flex-row-container'} data-testid="flex-row-container">
+            {/* iterate through the array of strings*/}
+            {stepperElements!.map(function (item: any, index: any) {
+                return (
+                <div className="progress-container" data-testid="progress-container">
+                    {index != renderSteps ? (
+                    <div className={'flex-row-container'} id={"item-" + index}>
 
-
-                                            {index < CurrentStep ? (
-                                                <span className="bar green" id={"bar-" + index}> </span>
-                                            ) : (
-                                                <span className="bar gray" id={"bar-" + index}> </span>
-                                            )}
-
-                                        </div>
+                        {item.label == 'error' ? (
+                            <div className="icon-area" onClick={() => select(index)}>
+                                <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                            </div>
+                         ) : (
+                        <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
+                        {/* Test 1 Did the user click / "mark" this index for skip */}
+                        {SkipIndexArray.includes(index) == false? (
+                            <div className="check-index-preliminary">
+                            {/* Logic Test 2, is the current step greater than the index of the array */}
+                            {CurrentStep > index ? (
+                                <div className="check-index-secondary">
+                                {/* Logic Test 3, Related to skip. Once skip is pressed, the index is incremented by 2 */}
+                                {/* Logic Test 3, This test checks to see if skip has pushed index by 2 */}
+                                    {index + 1 < CurrentStep ? (
+                                        <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
                                     ) : (
-                                        <div className={styleClasses + ' flex-row-container'}>
-                                            {/* Specific code for the very last section / string in the array */}
-                                            <div className="icon-area" onClick={() => nonLinear(index)}>
-                                                {index < CurrentStep ? (
-                                                    <span className={`${stepperType + '-last'}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                                ) : (
-                                                    <span className={`${stepperType + '-last'}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                )}
-                                            </div>
-                                            <div className="description-area"  >
-                                                <ul>
-                                                    <li className="font-variant-main"> {item.title} </li>
-                                                    {item.label === "error" ?
-                                                        (<li className="font-variant-error"> Warning: Step {index + 1} </li>
-                                                        ) : (
-                                                            <li className="font-variant-secondary"> {item.label} </li>
-                                                            
-                                                        )}
-                                                    
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
                                     )}
                                 </div>
-                            )
-                        })}
+                            ) : (
+                                <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                            )}
+                            </div>
+                        ) : (
+                        <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                        )}
+                        </div>
+                        )}
+                        <div className="description-area" data-testid="stepper-description-area" >
+                            <ul>
+                                <li className="font-variant-main"> {item.title} </li>
+                                {/* Logic Test 1, This test checks to see if error has been denoted */}
+                                {item.label == "error" ? (
+                                <li className="font-variant-error"> Warning: Step {index + 1}  </li>
+                                ) : (
+                                <li className="font-variant-row"> {item.label} </li>
+                                )}
+                            </ul>
+                        </div>
+                     
+                        <div className="bar-area">
+                        {SkipIndexArray.includes(index) == false? (
+                            <div>
+                            {index < CurrentStep ? (
+                                <span className="bar green" id={"bar-" + index}> </span>
+                                ) : (
+                                <span className="bar gray" id={"bar-" + index}> </span>
+                                 )}
+                            </div>
+                         ) : (
+                            <span className="bar gray" id={"bar-" + index}> </span>
+                         )}
+                             
+                        </div>
                     </div>
+            ) : (
+            <div className={styleClasses + ' flex-row-container'}>
+            {/* Specific code for the very last section / string in the array */}
+                <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
+                    <div className="check-index-preliminary">
+                        {item.label == 'error' ? (
+                            <div className="icon-area" onClick={() => select(index)}>
+                                <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                            </div>
+                             ) : (
+                             <div>
+                                {CurrentStep == totalSteps ? (
+                                     <div className="check-index-secondary">
+                                    {/* Logic Test 3, Related to skip. Once skip is pressed, the index is incremented by 2 */}
+                                    {/* Logic Test 3, This test checks to see if skip has pushed index by 2 */}
+                                    {Finish ===  true? (
+                                    <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                    ) : (
+                                    <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                    )}
+                                    </div>
+                                ) : (
+                                <span className={`${stepperType + '-last'}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                )}
+                            </div>
+                         )}
+                    </div>
+                </div>
+                <div className="description-area"  >
+                    <ul>
+                        <li className="font-variant-main"> {item.title} </li>
+                        {item.label === "error" ?(
+                            <li className="font-variant-error"> Warning: Step {index + 1} </li>
+                        ) : (
+                            <li className="font-variant-row"> {item.label} </li>     
+                        )}                
+                    </ul>
+                </div>
+            </div>
+            )}
+        </div>
+        )
+        })}
+        </div>
 
-                ) : (
-                    <div className={stepperOrientation + "-container"}>
-                        {/* VERTICAL CODE */}
-                        {stepperElements!.map(function (item: any, index: any) {
-                            return (
-                                <div className={stepperOrientation + "-description"} >
-                                    <div className={'flex-row-container item'} id={"item-" + index}>
-
-                                        <div className="icon-area" onClick={() => nonLinear(index)}>
-                                            {IndexArray.includes(index) == false? (
-                                                
-                                                <div className="check-index-preliminary">
-                                                    {CurrentStep > index ? (
-                                                        <div className="check-index-secondary">
-                                                            {index + 1 < CurrentStep ? (
-                                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+            ) : (
+            <div className={stepperOrientation + "-container"}>
+            {/* VERTICAL CODE */}
+            {stepperElements!.map(function (item: any, index: any) {
+                return (
+                    <div className={stepperOrientation + "-description"} >
+                        <div className={'flex-row-container item'} id={"item-" + index}>
+                            <div className="icon-area" onClick={() => select(index)}>
+                            {SkipIndexArray.includes(index) == false ? (
+                                <div className="check-index-preliminary">
+                                {CurrentStep == totalSteps? (
+                                    <div className="check-index-secondary">
+                                        {index + 1  < CurrentStep ? (
+                                        <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                        ) : (
+                                         <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                         )} 
+                                    </div>
+                                ) : (
+                                 <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                )}
+                                </div>
+                            ) : (
+                                <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                            )}
+                        </div>
+                            <div className={"description-area "} id={"description-" + `${index}`}>
+                                <ul>
+                                    <li className="font-variant-main"> {item.title} </li>
+                                    {item.label === "error" ?(
+                                        <li className="font-variant-error"> Warning: Step {index + 1} </li>
+                                        ):(
+                                        <li className="font-variant-vertical"> {item.label} </li>
+                                        )}
+                                    {index === Currentindex && <li className="font-variant-vertical"> {item.description} </li>}
+                                </ul>
+                                {index == Currentindex ? (
+                                    <div className={'flex-row-container button-vertical-margin'} >
+                                        {Finish == true ? (
+                                                    <Button
+                                                        className="Stepper-Button-Reset"
+                                                        btnType='primary'
+                                                        data-testid='button-element'
+                                                        onClick={reset}
+                                                        btnSize='sm'
+                                                    >
+                                                        {"Reset"}
+                                                    </Button>
+                                        ) : (
+                                                    <div className={'flex-row-container'} >
+                                                        {/* Determine if we are starting from index 0 aka step 1 */}
+                                                        {Initialize == false ? (
+                                                                <Button
+                                                                    className="Stepper-Button-Left"
+                                                                    btnType='primary'
+                                                                    data-testid='button-element'
+                                                                    onClick={previous}
+                                                                >
+                                                                    {props.buttonTitlePrev}
+                                                                </Button>
                                                             ) : (
-                                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                                                <Button
+                                                                    className="Stepper-Button-Left"
+                                                                    btnType='primary'
+                                                                    data-testid='button-element'
+                                                                    disabled={true}
+                                                                >
+                                                                    {props.buttonTitlePrev}
+                                                                </Button>
+
                                                             )}
-                                                        </div>
-                                                    ) : (
-                                                        <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                    )}
-                                                </div>
-                                            ) : (
-                                                <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                            )}
-                                        </div>
-                                        <div className="description-area" id={"description-" + `${index}`}  >
-                                            <ul>
-                                                <li className="font-variant-main"> {item.title} </li>
-                                                {item.label === "error" ?
-                                                    (<li className="font-variant-error"> Warning: Step {index + 1} </li>)
-                                                    :
-                                                    (<li className="font-variant-secondary"> {item.label} </li>)
-                                                }
-                                                {index === Currentindex &&  <li className="font-variant-secondary"> {item.description} </li>}
-                                               
-                                            </ul>
-                                            {index == Currentindex ? (
-                                                <div className={'flex-row-container button-vertical-margin'} >
-                                                    {Finish == true ? (
-                                                        <Button
-                                                            className="Stepper-Button-Left"
-                                                            btnType='primary'
-                                                            data-testid='button-element'
-                                                            onClick={reset}
-                                                        >
-                                                            {"RESET"}
-                                                        </Button>
-                                                    ) : (
-                                                        <div className={'flex-row-container'} >
-                                                            {/* Determine if we are starting from index 0 aka step 1 */}
-                                                            {Initialize == false ? (
+                                                        <span className="vertical-spacer"></span>
+
+                                                        {/* Check to see if we pass in skipButton */}
+                                                        {skipButtonActive == true &&  
+                                                            <Button
+                                                                className="Stepper-Button-Skip"
+                                                                btnType='primary'
+                                                                data-testid='button-element'
+                                                                onClick={skip}
+                                                                btnSize='sm'
+                                                            >
+                                                                {"Skip"}
+                                                            </Button>
+                                                        }
+
+                                                        {/* if we hit the last step, do we display finish or not */}
+                                                        {CurrentStep == totalSteps ? (
+                                                            <Button
+                                                                className="Stepper-Button-Right"
+                                                                btnType='primary'
+                                                                data-testid='button-element'
+                                                                onClick={finishStepper}
+                                                                btnSize='sm'
+                                                            >
+                                                                {"Finish"}
+                                                            </Button>
+                                                        ) : (
+                                                            <Button
+                                                                className="Stepper-Button-Right"
+                                                                btnType='primary'
+                                                                data-testid='button-element'
+                                                                onClick={next}
+                                                                btnSize='sm'
+                                                            >
+                                                                {props.buttonTitleNext}
+                                                            </Button>)}
+                                                    </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <br></br>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
+            </div>
+            )}
+
+                 {stepperOrientation  == 'row' && 
+                 <div className="display-in-row">
+                {Finish == true ? (
+                    <div className="stepper-display">
+                        <p> You finished all your steps </p>
+                    </div>
+                ) : (
+                    <div className="stepper-display">
+                        <p> You are currently on step {CurrentStep} </p>
+                    </div>
+                )}
+                </div>
+                }
+
+
+                {/* if orientation == row  */}
+
+                {stepperOrientation === 'row' &&
+                    <div className={'flex-row-container'} >
+                        {Finish == true ? (
+                            <Button
+                                className="Stepper-Button-Reset"
+                                btnType='primary'
+                                data-testid='button-element'
+                                onClick={reset}
+                                btnSize='sm'
+                            >
+                                {"Reset"}
+                            </Button>
+                        ) : (
+                            <div className={'flex-row-container'} >
+                                {/* Determine if we are starting from index 0 aka step 1 */}
+                                {Initialize == false ? (
                                                                 <Button
                                                                     className="Stepper-Button-Left"
                                                                     btnType='primary'
@@ -423,125 +536,20 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
                                                             )}
 
-                                                            <span className="vertical-spacer"></span>
-
-                                                            {/* Check to see if we pass in skipButton */}
-                                                            {skipButtonActive == false ? (
-                                                                <div>
-                                                                </div>
-                                                            ) : (
-                                                                <Button
-                                                                    className="Stepper-Button-Skip"
-                                                                    btnType='primary'
-                                                                    data-testid='button-element'
-                                                                    onClick={skip}
-                                                                >
-                                                                    {"Skip"}
-                                                                </Button>
-                                                            )}
-
-                                                            {/* if we hit the last step, do we display finish or not */}
-                                                            {CurrentStep == totalSteps ? (
-                                                                <Button
-                                                                    className="Stepper-Button-Right"
-                                                                    btnType='primary'
-                                                                    data-testid='button-element'
-                                                                    onClick={finishStepper}
-                                                                >
-                                                                    {"FINISH"}
-                                                                </Button>
-                                                            ) : (
-                                                                <Button
-                                                                    className="Stepper-Button-Right"
-                                                                    btnType='primary'
-                                                                    data-testid='button-element'
-                                                                    onClick={next}
-                                                                >
-                                                                    {props.buttonTitleNext}
-                                                                </Button>)}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            ) : (
-                                            <br></br>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                )}
-
-                 {stepperOrientation  == 'row' && 
-                 <div className="display-in-row">
-                {Finish == true ? (
-                    <div className="stepper-display">
-                        <p> You finished all your steps </p>
-                    </div>
-                ) : (
-                    <div className="stepper-display">
-                        <p> You are currently on step {CurrentStep} </p>
-                        
-                    </div>
-                )}
-                </div>
-                }
-
-
-                {/* if orientation == row  */}
-
-                {stepperOrientation === 'row' ? (
-                    <div className={'flex-row-container'} >
-                        {Finish == true ? (
-                            <Button
-                                className="Stepper-Button-Left"
-                                btnType='primary'
-                                data-testid='button-element'
-                                onClick={reset}
-                            >
-                                {"RESET"}
-                            </Button>
-                        ) : (
-                            <div className={'flex-row-container'} >
-                                {/* Determine if we are starting from index 0 aka step 1 */}
-                                {Initialize == false ? (
-                                    <Button
-                                        className="Stepper-Button-Left"
-                                        btnType='primary'
-                                        data-testid='button-element'
-                                        onClick={previous}
-                                    >
-                                        {props.buttonTitlePrev}
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        className="Stepper-Button-Left"
-                                        btnType='primary'
-                                        data-testid='button-element'
-                                        disabled={true}
-                                    >
-                                        {props.buttonTitlePrev}
-                                    </Button>
-
-                                )}
-
                                 <span className="spacer"></span>
 
                                 {/* Check to see if we pass in skipButton */}
-                                {skipButtonActive == false ? (
-                                    <div>
-                                    </div>
-                                ) : (
-                                    <Button
-                                        className="Stepper-Button-Skip"
-                                        btnType='primary'
-                                        data-testid='button-element'
-                                        onClick={skip}
-                                    >
-                                        {"Skip"}
-                                    </Button>
-                                )}
+                                {skipButtonActive == true &&  
+                                                            <Button
+                                                                className="Stepper-Button-Skip"
+                                                                btnType='primary'
+                                                                data-testid='button-element'
+                                                                onClick={skip}
+                                                                btnSize='sm'
+                                                            >
+                                                                {"Skip"}
+                                                            </Button>
+                                                        }
 
                                 {/* if we hit the last step, do we display finish or not */}
                                 {CurrentStep == totalSteps ? (
@@ -550,15 +558,18 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                         btnType='primary'
                                         data-testid='button-element'
                                         onClick={finishStepper}
+                                        btnSize='sm'
                                     >
-                                        {"FINISH"}
+                                        {"Finish"}
                                     </Button>
+                                    
                                 ) : (
                                     <Button
                                         className="Stepper-Button-Right"
                                         btnType='primary'
-                                        data-testid='button-element'
+                                        data-testid='button-element-next'
                                         onClick={next}
+                                        btnSize='sm'
                                     >
                                         {props.buttonTitleNext}
                                     </Button>)}
@@ -567,20 +578,24 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
                         )}
                     </div>
-                ) : (
-                    <div className="display-in-vertical">
+                }
+
+
+
+
+                    
                     {stepperOrientation == 'vertical' && 
-                    <div>
+                    <div className="display-in-vertical">
                     {Finish === true && 
                         <div className="stepper-display">
-                            
                             <p> You finished all your steps </p>
                         </div>
                     }
-                    </div> }
-                    </div>
-                )}
-            </div>
+                    </div> 
+                    }
+                   
+               
+        </div>
 
         </div>
 
@@ -592,7 +607,27 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
 Stepper.defaultProps = {
     stepperType: 'circle',
-    stepperOrientation: 'row'
+    stepperOrientation: 'row',
+    stepperSize: 'sm',
+    allowSkip: false,
+    stepperElements: [  
+        {
+        title: "Step 1",
+        description: "",
+        label: ""
+       },
+       {
+         title: "Step 2",
+         description: "",
+         label: ''
+       },
+       {
+         title: "Step 3",
+       description: "",
+       label: ""
+       },
+    ]
+
 };
 
 export default Stepper;

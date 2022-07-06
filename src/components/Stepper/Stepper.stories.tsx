@@ -13,6 +13,104 @@ export const DefaultStepper = () => (
         <Stepper
             stepperType={"circle"}
             stepperSize={"sm"}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
+            allowSkip={false}
+        >
+        </Stepper>
+    </div>
+)
+
+export const DefaultSquareStepper = () => (
+  <div>
+      <Stepper
+          stepperType={"square"}
+          stepperSize={"sm"}
+          stepperElements={[
+            {
+              title: "Square Stepper Variation",
+              description: "",
+              label: "stepperType={`square`}",
+             },
+             {
+               title: "Icon is now square",
+               description: "",
+               label: 'Square Example',
+             },
+             {
+               title: "Will add more variations",
+             description: "",
+             label: "Thinking about progress bar",
+             }, 
+          ]}
+          buttonTitleNext={"NEXT"}
+          buttonTitlePrev={"PREV"}
+          stepperOrientation={"row"}
+          allowSkip={false}
+      >
+      </Stepper>
+  </div>
+)
+
+export const ConfiguringStepperSize = () => (
+  <div>
+        <Stepper
+            stepperType={"circle"}
+            stepperSize={"sm"}
+            stepperElements={[
+                {
+                 title: "Default array length 3",
+                 description: "",
+                 label: "Vertical for arrays > 3"
+                },
+                {
+                  title: "Define props in component",
+                  description: "",
+                  label: 'Mandatory'
+                },
+                {
+                  title: "Feed an string array",
+                description: "",
+                label: "Keep strings short"
+                },
+            ]}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
+            allowSkip={false}
+        >
+        </Stepper>
+
+        <Stepper
+            stepperType={"circle"}
+            stepperSize={"md"}
+            stepperElements={[
+                {
+                 title: "Default array length is 3",
+                 description: "",
+                 label: "Vertical for arrays > 3"
+                },
+                {
+                  title: "Define props in component",
+                  description: "",
+                  label: 'Mandatory'
+                },
+                {
+                  title: "Feed an string array",
+                description: "",
+                label: "Keep strings short"
+                },
+            ]}
+            buttonTitleNext={"NEXT"}
+            buttonTitlePrev={"PREV"}
+            stepperOrientation={"row"}
+            allowSkip={false}
+        >
+        </Stepper>
+        <Stepper
+            stepperType={"circle"}
+            stepperSize={"lg"}
             stepperElements={[
                 {
                  title: "Default array length 3",
@@ -43,7 +141,7 @@ export const SkipStep = () => (
     <div>
         <Stepper
             stepperType={"circle"}
-            stepperSize={"md"}
+            stepperLinear={"nonlinear"}
             stepperElements={[
               {
                 title: "Skip Stepper Variation",
@@ -74,7 +172,6 @@ export const ErrorStep = () => (
   <div>
       <Stepper
           stepperType={"circle"}
-          stepperSize={"md"}
           stepperElements={[
             {
               title: "Error Stepper Variation",
@@ -82,14 +179,14 @@ export const ErrorStep = () => (
               label: "type Error into label"
              },
              {
-               title: "This step is now an error",
+               title: "You can still define title",
                description: "",
                label: 'error'
              },
              {
-               title: "error variation",
+               title: "props should have label:`error`",
              description: "",
-             label: "Keep strings short"
+             label: "error"
              }, 
           ]}
           buttonTitleNext={"Continue"}
@@ -101,35 +198,6 @@ export const ErrorStep = () => (
   </div>
 )
 
-export const SquareStepper = () => (
-    <div>
-        <Stepper
-            stepperType={"square"}
-            stepperSize={"md"}
-            stepperElements={[
-              {
-                title: "Square Stepper Variation",
-                description: "",
-                label: "stepperType={`square`}",
-               },
-               {
-                 title: "Icon is now square",
-                 description: "",
-                 label: 'Square Example',
-               },
-               {
-                 title: "Will add more variations",
-               description: "",
-               label: "Thinking about progress bar",
-               }, 
-            ]}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
-            stepperOrientation={"row"}
-        >
-        </Stepper>
-    </div>
-)
 
 export const AdditionalStepsStepper = () => (
     <div>
@@ -171,7 +239,38 @@ export const AdditionalStepsStepper = () => (
     </div>
 )
 
-export const VerticalStepper = () => (
+export const ManualSelect = () => (
+  <div>
+      <Stepper
+          stepperType={"square"}
+          stepperElements={[
+              {
+                  title:  "Manual Select",
+                  description: "",
+                  label: "Manual Select allows you to bypass Next"
+                },
+                {
+                  title:  "Not Like Skip",
+                  description: "",
+                  label: "Skip increments, select accepts index value of map"  
+                },
+                {
+                  title:   "Manual Select Differance",
+                  description: "",
+                  label: "Manual selecting defines useState to index and step of selected icon"   
+                },
+          ]}
+          buttonTitleNext={"NEXT"}
+          buttonTitlePrev={"PREV"}
+          stepperOrientation={"row"}
+          stepperLinear="nonlinear"
+          allowSkip={true}
+      >
+      </Stepper>
+  </div>
+)
+
+export const DefaultVerticalStepper = () => (
     <div>
         <Stepper
             stepperElements={[
@@ -200,32 +299,3 @@ export const VerticalStepper = () => (
     </div>
 )
 
-export const VerticalSquareStepper = () => (
-    <div>
-        <Stepper
-            stepperElements={[
-                {
-                    title:  "Lets begin planning",
-                    description: "This is the step where you need to define your application goals,wireframe, and development path"
-                  },
-                  {
-                    title:  "Lets start developing",
-                    description: "This is the step where the team begins to parcel out development tasks and begin coding"  
-                  },
-                  {
-                    title:   "Lets begin live deployment",
-                    description: "This is the step where you begin to test your product on live servers"  
-                  },
-                  {
-                    title:  "Lets market our product",
-                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more."
-                  }
-            ]}
-            stepperOrientation={"vertical"}
-            stepperType={"square"}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
-        >
-        </Stepper>
-    </div>
-)

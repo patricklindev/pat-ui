@@ -1545,6 +1545,10 @@ main {
           justify-content: center;
 }
 
+.default-dlg img {
+  width: 10%;
+}
+
 .modal-btn {
   border: solid #6c757d 2px;
   width: 25vw;

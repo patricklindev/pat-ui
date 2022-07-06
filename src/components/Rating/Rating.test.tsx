@@ -1,5 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
+import { IconSize } from '../Icon/Icon';
 import Rating from './Rating';
 
 describe('Rating', () => {
@@ -69,11 +70,33 @@ describe('Rating', () => {
     );
   });
 
-  // it('should be able to set the precision of the rating component', () => {
-  //   const iconProps = {
-  //     half: true,
-  //   };
-  //   const { getAllByRole } = render(<Rating {...iconProps} />);
-  //   const allIcons = getAllByRole('button');
-  // });
+  it('should be able to set the precision of the rating component', () => {
+    fail('to be done...');
+    const iconProps = {
+      half: true,
+    };
+    const { getAllByRole } = render(<Rating {...iconProps} />);
+    const allIcons = getAllByRole('button');
+    expect(allIcons.length).toBe(5);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
+  });
+
+  it('should choose sizes of the rating component among various predefined options from props ', () => {
+    const iconProps = {
+      size: 'large' as IconSize,
+    };
+    const { getAllByRole } = render(<Rating {...iconProps} />);
+    const allIcons = getAllByRole('button');
+    expect(allIcons.length).toBe(5);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
+    expect(allIcons[3].firstElementChild as HTMLElement).toHaveClass(
+      'icon large grey star regular rating-icon'
+    );
+  });
 });

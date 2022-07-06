@@ -1,19 +1,29 @@
 /*variables*/
 $switch-width: 34px;
 $switch-height: 34px;
-$switch-margin-right: 75px;
+$switch-thumb-height: 20px;
+$switch-thumb-width: 20px;
+$switch-thumb-left: -1px;
+$switch-thumb-bottom: -3px;
+$switch-margin-right: 50px;
 /*switch shadow*/
-$switch-disabled-opacity: 0.65 !default;
+$switch-disabled-opacity: 0.4 !default;
 
 /*mixin*/
 @mixin slider-background-color($color){
     background-color: $color;
     // opacity: 0.7;
+    flex: none;
+    order: 0;
     flex-grow: 0;
 }
 @mixin slider-round-background-color($color){
   background-color: $color;
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  // opacity: 1.0;
 }
 @mixin slider-transition($speed){
   transition: $speed;
@@ -26,6 +36,7 @@ $switch-disabled-opacity: 0.65 !default;
     width: $switch-width;
     height: $switch-height;
     margin-right: $switch-margin-right;
+    // padding: 30px;
 }
   
 /* Hide default HTML checkbox */
@@ -50,14 +61,14 @@ $switch-disabled-opacity: 0.65 !default;
   @include slider-transition(.2s)
 }
 
+/*Slider movement: palette action*/
 .slider:before{
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
-  left: -1px;
-  bottom: -3px;
-  // background-color: #BDBDBD;
+  height: $switch-thumb-height;
+  width: $switch-thumb-width;
+  left: $switch-thumb-left;
+  bottom: $switch-thumb-bottom;
   @include slider-background-color(#BDBDBD);
   @include slider-transition(.2s)
 }
@@ -67,7 +78,7 @@ input:checked + .slider {
   @include slider-background-color($primary);
 }
 
-/*Color for sliders */
+/*Color of palettes of sliders */
 input:checked + span[color="primary"] {
     @include slider-background-color($primary);
 }
@@ -92,7 +103,7 @@ input:checked + span[color="light"] {
 input:checked + span[color="dark"] {
     @include slider-background-color($dark);
 }
-/*Color for rounded object of slider */
+/*Color of rounded thumbs of sliders */
 input:checked + .slider.round.primary::before {
     @include slider-round-background-color($primary);
 }
@@ -122,6 +133,7 @@ input:focus + .slider {
   box-shadow: 0 0 1px $primary;
 }
 
+/*Slider movement: thumb action*/
 input:checked + .slider:before {
   transform: translate(17px);
 }
@@ -153,3 +165,5 @@ input:checked + .slider:before {
   width: 16px;
   bottom: -3px;
 }
+
+

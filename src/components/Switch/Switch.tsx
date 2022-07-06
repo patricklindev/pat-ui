@@ -1,14 +1,15 @@
-  //SECTION 1:
-  import React, {
+//SECTION 1:
+import React, {
     FC,
     MouseEvent,
     EventHandler,
     ChangeEvent,
-  } from 'react';
+} from 'react';
 import { classNames } from '../../utils/classNames';
 
+
 //SECTION 2: 
-// DEFINE OPTIONS AVAILABLE TO YOUR END USER
+//DEFINE OPTIONS AVAILABLE TO YOUR END USER
 
 export type SwitchSize = 'sm';
 export type SwitchColor = 
@@ -24,11 +25,13 @@ export type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
 export type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
 
 //SECTION 3:
-// INTERFACE 
+//INTERFACE 
 
 export interface ISwitchProps {
     /** set customized style */
     className?: string;
+     /** set switch label */
+    label?: string;
     /** set switch color */
     color?: SwitchColor;
     /** set switch size */
@@ -41,11 +44,11 @@ export interface ISwitchProps {
     onChange?: ChangeEventHandler;
     /** set switch click action */
     onClick?: MouseEventHandler;
+   
   }
 
 //SECTION 4: 
 // MAke sure your props are exported
-
 // type NativeSwtichProps = ISwitchProps & HTMLAttributes<HTMLButtonElement>;
 // type NativeAchorSwitchProps = ISwitchProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 // export type SwitchProps = ISwitchProps & HTMLAttributes<HTMLElement>
@@ -65,18 +68,19 @@ export const Switch: FC<ISwitchProps> = (props) => {
     let strSwitch: string = 'switch'
 
     //SECTION 5.1: Make sure the components are carried over into your component
-    // 
-    const { className, color, size, disabled, onChange, children, ...rest} = props;
+    const { className, color, size, disabled, onChange, label, children, ...rest} = props;
     let styleClasses = classNames('slider round', {
         [`${color}`]: !!color,
         [`${size}`]: !!size,
+        [`${label}`]: !!label,
         disabled: !!disabled
     })
+
     if (className) {
         styleClasses += ' ' + className;
     }
 
-    //SECTION 5.2 - YOUR ACTUAL HTML ELEMENTS
+    //SECTION 5.2 - HTML ELEMENTS
     
     let Switch;
     if (disabled) {
@@ -89,7 +93,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
                 />
                 <span className={styleClasses}/>
                 <div>
-                    {props.children}
+                    {label}
                 </div>
             </label>
         )
@@ -102,9 +106,19 @@ export const Switch: FC<ISwitchProps> = (props) => {
                     {...(rest )}
                 />
                 <span color={color} className={styleClasses}/>
-                <div>
-                    {props.children}
-                </div>
+                <span>{label}</span>
+            </label>
+        )
+    } else if(label) { 
+        Switch = (
+            <label className={strSwitch}>  
+                <input
+                    type={strCheckbox}
+                    onChange={onChange}
+                    {...(rest )}
+                />
+                <span color={color} className={styleClasses}/>
+                <span>{label}</span>
             </label>
         )
     } else {
@@ -115,13 +129,14 @@ export const Switch: FC<ISwitchProps> = (props) => {
                     {...(rest )}
                 />
                 <span color={color} className={styleClasses}/>
-                <div>
-                    {props.children}
-                </div>
+                <span>
+                    {label}
+                </span>
+                <br/>
+                <br/>
             </label>
         )
     }
-    
     return Switch;
 }
 

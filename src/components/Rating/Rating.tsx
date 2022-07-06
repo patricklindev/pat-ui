@@ -12,8 +12,8 @@ interface propTypes {
   color1?: string;
   color2?: string;
   onChange: any;
-  labels: boolean;
-  index: number;
+  labels: string[];
+  labelIndex: number;
 }
 
 interface stateTypes {
@@ -35,7 +35,7 @@ interface stateTypes {
     half?: boolean;
     edit?: boolean;
   };
-  index: number;
+  labelIndex: number;
 }
 
 const parentStyles: CSS.Properties = {
@@ -78,8 +78,8 @@ class Rating extends Component<propTypes, stateTypes> {
     color2: 'orange',
   
     onChange: () => { },
-    labels: false,
-    index: null
+    labels: [],
+    labelIndex: null
   };
 
   constructor(props:propTypes) {
@@ -109,7 +109,7 @@ class Rating extends Component<propTypes, stateTypes> {
         half: props.half,
         edit: props.edit,
       },
-      index: props.index
+      labelIndex: props.labelIndex
     }
 
   }
@@ -181,7 +181,7 @@ class Rating extends Component<propTypes, stateTypes> {
     }
     this.setState({
       stars: this.getStars(index),
-      index: index
+      labelIndex: index
     })
   }
 
@@ -202,7 +202,7 @@ class Rating extends Component<propTypes, stateTypes> {
     let index: number | undefined;
     this.setState({
       stars: this.getStars(index),
-      index: this.props.index
+      labelIndex: this.props.labelIndex
     })
   }
 
@@ -266,31 +266,30 @@ class Rating extends Component<propTypes, stateTypes> {
     })
   }
 
+  getLabel() {
+    const labels = this.props.labels;
+    const count = this.props.count;
+    const value = this.state.value;
+    let labelIndex = this.state.labelIndex;
+    let label = '';
+
+    if(labels.length !== 0 && labels.length === count){
+      if(value !== 0){
+        labelIndex = value;
+      }
+      label = labels[labelIndex-1];
+    }
+
+    return label;
+  }
+
   render() {
 
     const {
       className
     } = this.props
 
-    const labels = this.props.labels;
-    const count = this.props.count;
-    const value = this.state.value;
-    let index = this.state.index;
-    let label = "";
-
-    if(labels) {
-        if(value !== 0) {
-        index = this.state.value
-        }
-        if(index === null){
-        }else if(index > (count/3*2)){
-          label = 'Good';
-        } else if(index < (count/3*2) && index > (count/3)){
-          label = 'No bad';
-        } else if(index < (count/3)){
-          label = 'Poor';
-        }
-    }
+    const label = this.getLabel();
 
     return (
       <div className={className} style={parentStyles}>

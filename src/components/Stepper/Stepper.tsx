@@ -2,6 +2,7 @@ import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 // What is below this comment is opptional for imports and dependent on your component
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 // import Progress from '../Progress/Progress';
 
 export type StepperSize = 'lg' | 'md' | 'sm'
@@ -290,41 +291,51 @@ function next() {
                 <div className="progress-container" data-testid="progress-container">
                     {index < renderSteps ? (
                     <div className={'flex-row-container'} data-testid="progress-container">
+                        <div className="icon-area" onClick={() => select(index)} >
                        {/* Error Check, if error, dont even bother rendering the other conditionals */}
                         {item.label == 'error' ? (
-                            <div className="icon-area" onClick={() => select(index)}>
-                                <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
-                            </div>
+                        <div className="test-1a">
+                            <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                        </div>
                          ) : (
-                        <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
+                        <div className="test-1b">
                         {/* Test 1 Did the user click / "mark" this index for skip */}
-                        {SkipIndexArray.includes(index) == false? (
-                            <div className="check-index-preliminary">
+                            {SkipIndexArray.includes(index) == false? (
+                            <div className="test-2a">
                             {/* Logic Test 2, is the current step greater than the index of the array */}
                             {CurrentStep > index ? (
-                                <div className="check-index-secondary">
+                                <div className="test-3a">
                                 {/* If the current step is greater than the index of this item */}
                                 {/* This logic will deterimine if you will see a checkmark or a number*/}
                                  {/* If the current step is 1 higher than the index of this item, this means */}
                                  {/* ---> The next element in line should be marked green, with a number */}
                                  {/* ---> This current element should be marked green, with a checkmark */}
                                     {CurrentStep > index + 1 ? (
+                                        <div className="test-4a">
                                         <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                        </div>
                                     ) : (
+                                        <div className="test-4b">
                                         <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                        </div>
                                     )}
                                      {/* Logic Test 2 conclusion, if the current step is not greater than the index of this item, we need to 
                                      mark this gray */}
                                 </div>
                             ) :(
+                                <div className="test-3b">
                                 <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                </div>
                             )}
                             </div>
-                        ) : (
-                        <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                            ) : (
+                            <div className="test-2b">
+                            <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                            </div>
                         )}
                         </div>
                         )}
+                        </div>
 
 
                         <div className="description-area" data-testid="stepper-description-area" >
@@ -361,8 +372,9 @@ function next() {
 {/* Specific code for the very last section / string in the array */}
                     <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
                         <div className="check-index-preliminary">
+                        <div className="icon-area" onClick={() => select(index)}>
                             {item.label == 'error' ? (
-                                <div className="icon-area" onClick={() => select(index)}>
+                                <div className="test-1a">
                                     <span className={stepperType + ` red`} id={"Index-" + index}> ! </span>
                                 </div>
                                  ) : (
@@ -372,7 +384,8 @@ function next() {
                                         {/* If the current step is equal to the total length of array passed */}
                                         {/* If Finish is true, render checkmark, otherwise leave it at step in progress */}
                                         {Finish ===  true? (
-                                        <span className={stepperType + ` green`} id={"Index-" + index}> ✔ </span>
+                                         <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                         // <Icon name="check" size="small" className={`${stepperType}` + ` green`}/>
                                         ) : (
                                         <span className={stepperType + ` green`} id={"Index-" + index}> {index + 1} </span>
                                         )}
@@ -382,6 +395,7 @@ function next() {
                                     )}
                                 </div>
                              )}
+                            </div>
                         </div>
                     </div>
                     <div className="description-area"  >
@@ -408,27 +422,45 @@ function next() {
             return (
             <div className={stepperOrientation + "-description"} data-testid={`stepper-vertical-` + `${index}`} >
                 <div className={'flex-row-container item'} >
-                    <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
+                <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
                         {item.label == 'error' ? (
+                             <div className="test-1a">
                             <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                            </div>
                             ) : (
-                            <div className="check-skip-array" >
+                            <div className="test-1b" >
                                  {SkipIndexArray.includes(index) == false ? (
-                                <div className="check-index-primary">
-                                {CurrentStep > index ? (
-                                    <div className="check-index-secondary">
-                                        {CurrentStep > index + 1 ? (
+                                  <div className="test-2a">
+                                    {CurrentStep > index ? (
+                                        <div className="test-3a">
+                                        {CurrentStep > index ? (
+                                            <div className = "test-4A">
+                                         {CurrentStep == totalSteps ? (
                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
                                         ) : (
                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
                                         )}
+                                        </div>
+                                        ) : (
+                                            <div className = "test-4b">
+                                         {CurrentStep > index + 1 ? (
+                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                        ) : (
+                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                        )}
+                                        </div>
+                                        )}
+                                        </div>
+                                    ) : (
+                                        <div className="test -3b">
+                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>\
                                     </div>
-                                ) : (
-                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                )}
+                                     )}
                                 </div>
                                 ) : (
+                                    <div className="test-2b">
                                 <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                                </div>
                             )}
                             </div>
                                 

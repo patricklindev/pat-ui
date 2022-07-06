@@ -3,24 +3,22 @@
     background: $white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: $spacer;
-    margin: $spacer ;
     z-index: 999;
     //   width: fit-content;
-    width: 50%;
     overflow: hidden;
     position: sticky;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%)
-
+  
+  
 }
 
 .dlg-alert {
-
+width: 70%;
 
 }
 
 .dlg-simple {
+    width: fit-content;
+    padding: 2*$spacer;
 }
 
 .dlg-form {
@@ -54,9 +52,12 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-   
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dialogBody {
     min-height: fit-content;
+
 }

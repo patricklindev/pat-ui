@@ -1,26 +1,50 @@
 
-import React, { Children, useState } from 'react'
+import React, { Children, DialogHTMLAttributes, useEffect, useState } from 'react'
+
 import Button from '../Button'
 import Input from '../Input'
 
 
-interface IDialogProps {
-    dialogType?: string
-    dialogTitle?: string
-    dialogParagraph?: string
-    buttonOneText?: string
-    buttonTwoText?: string
-    closeHandlerProps?: any
+export type DialogType= 
+| "simple"
+|'alert'
+|'form';
 
+
+
+export interface IDialogProps {
+    /**Set Dialog type  */
+    dialogType?: DialogType
+    /**Set Dialog title  */
+    dialogTitle?: string
+    /**Set Dialog main text  */
+    dialogParagraph?: string
+    /**Set Dialog button ones text  */
+    buttonOneText?: string
+    /**Set Dialog button twos text  */
+    buttonTwoText?: string
+    /**add a function to the Dialog closing handler   */
+    closeHandlerProps?: ()=>{}
+ /**add a function to the Dialog closing handler   */
+    showDialog?: boolean
 }
 
+type NativeDialogProps = IDialogProps & DialogHTMLAttributes<HTMLDialogElement>;
+
+export type PatDialogProps = NativeDialogProps;
 
 
-
-const Dialog: React.FC<IDialogProps> = (props) => {
-    const { children, dialogType, dialogTitle, dialogParagraph, buttonOneText, buttonTwoText, closeHandlerProps } = props
-    const [showModal, setshowModal] = useState(false)
+export const Dialog: React.FC<PatDialogProps> = (props) => {
+    const { children, dialogType, dialogTitle, dialogParagraph, buttonOneText, buttonTwoText, closeHandlerProps, showDialog = false, ...rest} = props
+    const [showModal, setshowModal] = useState(true)
     //default classname  
+useEffect(() => {
+
+  setshowModal(showModal => showModal = showDialog)
+
+}, [showDialog])
+
+
     let classNameList: string[] = ['dlg']
 
     const classNames = classNameList.join(" ")
@@ -30,18 +54,20 @@ const Dialog: React.FC<IDialogProps> = (props) => {
     if (dialogType === 'form') classNameList.push('dlg-form')
 
 
-
-  const onClose = () => {
+    const onClose = () => {
         setshowModal(showModal => !showModal)
         if (typeof closeHandlerProps === 'function') { closeHandlerProps() }
     }
 
     return (
-        <div className='dialogBody'>
+        <>
 
             {showModal ?
 
-                <div className='dlg-container' onClick={(e) => {
+                <dialog 
+                className='dlg-container' 
+               { ...rest}
+                onClick={(e) => {
                     if (e.target === e.currentTarget) onClose()
                 }
                 }>
@@ -59,9 +85,14 @@ const Dialog: React.FC<IDialogProps> = (props) => {
                         </div>
                         {children}
                     </div >
-                </div >
-                : <Button onClick={() => setshowModal(showModal => !showModal)}>Show Dialog</Button>}
-        </div >)
+                </dialog >
+                : null}
+        </>)
 }
+
+Dialog.defaultProps = {
+    showDialog: false
+    
+  };
 
 export default Dialog

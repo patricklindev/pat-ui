@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    style="overflow: hidden; position: relative;"
+  >
+    <span
+      class=""
+      data-forhalf="★"
+      data-index="0"
+      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+    >
+      ★
+    </span>
+    <span
+      class=""
+      data-forhalf="★"
+      data-index="1"
+      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+    >
+      ★
+    </span>
+    <span
+      class=""
+      data-forhalf="★"
+      data-index="2"
+      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+    >
+      ★
+    </span>
+    <span
+      class=""
+      data-forhalf="★"
+      data-index="3"
+      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+    >
+      ★
+    </span>
+    <span
+      class=""
+      data-forhalf="★"
+      data-index="4"
+      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+    >
+      ★
+    </span>
+  </div>
+</DocumentFragment>
+`;

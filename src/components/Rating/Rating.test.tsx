@@ -12,6 +12,10 @@ describe('Rating', () => {
     const { getAllByRole } = render(<Rating />);
     const allIcons = getAllByRole('button');
     expect(allIcons.length).toBe(5);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
     // svg child elements should have height and class before hovering
     expect(
       (allIcons[2].firstElementChild as HTMLElement).getAttribute('height')
@@ -36,6 +40,10 @@ describe('Rating', () => {
     const { getAllByRole } = render(<Rating {...iconProps} />);
     const allIcons = getAllByRole('button');
     expect(allIcons.length).toBe(5);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
     // div icon-containers should have disabled class
     for (let i = 0; i < allIcons.length; i++) {
       expect(allIcons[i]).toHaveClass('disabled');
@@ -48,7 +56,24 @@ describe('Rating', () => {
     }
   });
 
-  // it('should be able to provide the label of the component from props  ', () => {
-  //   fail('it needs to be done');
+  it('should be able to provide the label of the component from props  ', () => {
+    const iconProps = {
+      isLabel: true,
+    };
+    const { getByRole } = render(<Rating {...iconProps} />);
+    const allIconsContainer = getByRole('group');
+    expect(allIconsContainer).toBeInTheDocument();
+    // if isLabel is true last child of container should have label tag
+    expect((allIconsContainer.lastElementChild as HTMLElement).tagName).toBe(
+      'LABEL'
+    );
+  });
+
+  // it('should be able to set the precision of the rating component', () => {
+  //   const iconProps = {
+  //     half: true,
+  //   };
+  //   const { getAllByRole } = render(<Rating {...iconProps} />);
+  //   const allIcons = getAllByRole('button');
   // });
 });

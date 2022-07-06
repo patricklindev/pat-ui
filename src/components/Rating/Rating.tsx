@@ -185,7 +185,7 @@ export const Rating: FC<RatingProps> = (props) => {
   const label = isLabel && <label>{labelName}</label>;
 
   return (
-    <div className="rating-container" style={style}>
+    <div className="rating-container" style={style} role="group">
       {renderedRating}
       {label}
     </div>

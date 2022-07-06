@@ -4,6 +4,7 @@ exports[`Rating should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="rating-container"
+    role="group"
   >
     <div
       class="rating_icon-group"

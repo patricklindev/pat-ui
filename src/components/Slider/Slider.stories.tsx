@@ -12,10 +12,21 @@ export default {
     <Slider />
   );
 
-  export const DiffTypeSliders = () => (
+  export const DiffColorSliders = () => (
     <div>
-    <Slider sliderColor='primary' />
-    <Slider sliderColor='secondary' />
+    <Slider color='primary' />
+    <Slider color='secondary' />
     </div>
+  )
 
+  export const DiffSizeSliders = () => (
+    <div>
+      <Slider setSize='sm' />
+      <Slider setSize='md' />
+      <Slider setSize='lg' />
+    </div>
+  )
+
+  export const DisabledSlider = () => (
+    <Slider disabled={true} />
   )

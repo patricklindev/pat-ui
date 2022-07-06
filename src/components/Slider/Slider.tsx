@@ -1,73 +1,161 @@
 import React, {
   FC,
-  useEffect,
+  InputHTMLAttributes,
   useRef,
   MutableRefObject,
   useState,
+  useEffect,
 } from 'react';
 
-// export enum SlideType {
-//     Primary = 'primary',
-//     Secondary = 'secondary'
-// }
 
 type SlideColor = 'primary' | 'secondary';
+type SlideSize = 'sm' | 'md' | 'lg' ;
 
 interface ISliderProps {
-  sliderColor?: SlideColor;
+  setSize?: SlideSize;
+  color?: SlideColor;
   defaultValue?: number;
+  disabled?: boolean;
+  range?: number[];
+  max?: number;
+  min?: number;
+  step?: number;
+  onChange?: Function;
 }
 
-export const Slider: FC<ISliderProps> = (props) => {
-  const { sliderColor, defaultValue } = props;
+type NativeInputProps = ISliderProps & InputHTMLAttributes<HTMLInputElement>;
+
+export const Slider: FC<NativeInputProps> = (props) => {
+  let { color, setSize, defaultValue, disabled, range, max, min, step, onChange } = props;
 
   const ref = (useRef() as MutableRefObject<HTMLInputElement>) || null;
   const bubbleRef = (useRef() as MutableRefObject<HTMLDivElement>) || null;
 
-  const [sliderValue, setSliderValue] = useState<String | null>();
-  const [position, setPosition] = useState(0)
+  let initValue = defaultValue ? defaultValue : max ? Math.ceil(max * 0.5) : 50;
+  let initValueStr = initValue.toString();
+
+  const [sliderValue, setSliderValue] = useState(initValueStr);
+
 
   useEffect(() => {
-    setSliderValue(ref.current.value);
+    ref.current.style.setProperty('--progress', ref.current.value + '%');
+    bubbleRef.current.style.setProperty('--bubble', ref.current.value + '%');
   }, []);
 
-  const showChange = () => {
-    setSliderValue(ref.current.value);
-    let value = Number.parseInt(ref.current.value)
-    value = value - value * .1;
-    let position = (value / 100) * 100
-    
-    bubbleRef.current.style.marginLeft = position.toString() + '%'
+  const showChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSliderValue(e.target.value);
+    bubbleRef.current.style.setProperty('--bubble', sliderValue + '%');
+    ref.current.style.setProperty('--progress', sliderValue + '%');
+    if (onChange) onChange(e)
   };
+
+  //handling color
   let classNameList: string[] = ['slider'];
-  if (sliderColor === 'primary') {
+  let sliderNumCList: string[] = ['slider-value__num-box'];
+  if(disabled) {
+    classNameList.push('slider-disabled')
+  }
+  if (color === 'primary') {
     classNameList.push('slider-primary');
+    sliderNumCList.push('slidernum-primary');
   }
-  if (sliderColor === 'secondary') {
+  if (color === 'secondary') {
     classNameList.push('slider-secondary');
+    sliderNumCList.push('slidernum-secondary');
   }
-  let classNames = classNameList.join(' ');
+  let inpClassNames = classNameList.join(' ');
+  let sliderNumClass = sliderNumCList.join(' ');
+
+  //handling size
+  let contClassNameList: string[] = ['slider-cont'];
+  if (!setSize) {
+    contClassNameList.push('slider-md')
+  }
+  if (setSize === 'sm') {
+    contClassNameList.push('slider-sm')
+  }
+  if (setSize === 'md') {
+    contClassNameList.push('slider-md')
+  }
+  if (setSize === 'lg') {
+    contClassNameList.push('slider-lg')
+  }
+  let contClassName = contClassNameList.join(' ')
 
 
-
-
-  return (
-    <div className='slider-cont'>
-      <div className="slider-value-cont">
-        <div className="slider-value__num-box" style={{marginLeft: '45%'}} ref={bubbleRef}>
-          <div className="slider-value__num">
-            {sliderValue != null ? ref.current.value : ''}
+  if (range) {
+    return (
+      <div className={contClassName}>
+        <div className="slider-value-cont">
+          <div
+            className="slider-value__num-box"
+            style={{ marginLeft: '47%' }}
+            ref={bubbleRef}
+          >
+            <div className="slider-value__num">
+              {sliderValue != null ? sliderValue : ''}
+            </div>
           </div>
         </div>
+        <input
+          type="range"
+          value={sliderValue}
+          className={inpClassNames}
+          ref={ref}
+          defaultValue={defaultValue}
+          min={range[0]}
+          max={range[range.length - 1]}
+          step={step}
+          disabled={disabled}
+          onChange={(e) => showChange(e)}
+        />
+        {
+          <div
+            className="tickmarks"
+           
+          >
+            {range.map((item, index) => {
+              console.log(item);
+              return (
+                <div
+                  className="range__tick"
+                
+                >{item}</div>
+              );
+            })}
+          </div>
+        }
       </div>
-      <input
-        type="range"
-        className={classNames}
-        ref={ref}
-        onChange={showChange}
-      />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className={contClassName}>
+        <div className="slider-value-cont">
+          <div
+            className={sliderNumClass}
+            // style={{ marginLeft: '47%' }}
+            ref={bubbleRef}
+          >
+            <div className="slider-value__num">
+              {sliderValue != null ? sliderValue : ''}
+            </div>
+          </div>
+        </div>
+        <input
+          type="range"
+          value={sliderValue}
+          className={inpClassNames}
+          ref={ref}
+          defaultValue={defaultValue}
+          min={min}
+          max={max}
+          step={step}
+          disabled={disabled}
+          onChange={(e) => showChange(e)}
+        />
+      </div>
+    );
+  }
 };
 
 export default Slider;

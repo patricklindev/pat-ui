@@ -3,9 +3,10 @@ import * as ReactDOM from 'react-dom'
 import Slider from './components/Slider/Slider'
 import './styles/index.scss'
 
+
 let app = <div>
     <h1>test</h1>
-    <Slider />
+    <Slider color='secondary' setSize='sm' />
 </div>
 
 ReactDOM.render(app, document.getElementById('root'))

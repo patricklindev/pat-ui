@@ -1,3 +1,6 @@
+$light-indigo: hsl(263, 90%, 70%) !default;
+$light-pink: hsl(330, 67%, 70%) !default;
+
 .slider-cont {
   display: flex;
   flex-direction: column;
@@ -5,10 +8,21 @@
   align-items: center;
 }
 
+.slider-sm {
+  width: 100px;
+}
+
+.slider-md {
+  width: 200px;
+}
+
+.slider-lg {
+  width: 400px;
+}
+
 .slider-value-cont {
   margin-bottom: 15px;
-  background-color: blue;
-  width: 200px;
+  width: 100%;
 }
 
 .slider-value__num-box {
@@ -20,6 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: var(--bubble)
 }
 
 .slider-value__num{
@@ -32,76 +47,87 @@
   background: transparent;
   cursor: pointer;
   margin-left: 5px;
-  width: 200px;
+  width: 100%;
+  outline: 0;
+  height: 10px;
+  border-radius: 40px;
+  background: linear-gradient(to right, $gray-500 0%, $gray-500 var(--progress), $gray-100 var(--progress), $gray-100 100%);
+  z-index: 0;
 }
 
-.slider::-webkit-slider-runnable-track {
-  height: 0.5rem;
-  border-radius: 0.7rem;
-  background-color: $gray-500;
-}
-
-.slider-primary::-moz-range-track {
-  background: $indigo;
-  border-radius: 0.7rem;
-  background-color: $gray-500;
+.slider-disabled {
+  pointer-events: none;
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  margin-top: -5.5px; /* Centers thumb on the track */
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: $gray-500;
   border-radius: 50%;
-  height: 1.25rem;
-  width: 1.25rem;
-  background-color: $gray-500;
+  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.5);
 }
 
 .slider::-webkit-slider-thumb:hover {
-  box-shadow: 0px 0px 0px 8px $gray-500;
+  box-shadow: 0px 0px 0px 6px rgba($color: $gray-500, $alpha: .4);
 }
 
 .slider::-webkit-slider-thumb:active {
-  box-shadow: 0px 0px 0px 12px $gray-500;
+  box-shadow: 0px 0px 0px 10px rgba($color: $gray-500, $alpha: .4);
 }
 
-.slider::-moz-range-thumb {
-  border: none; /*Removes extra border that FF applies*/
-  border-radius: 0; /*Removes default border-radius that FF applies*/
-  height: 2rem;
-  width: 1rem;
-}
 
 //PRIMARY
-.slider-primary::-webkit-slider-runnable-track {
-  background: $indigo;
+.slidernum-primary{
+  background-color: $indigo;
+  color: white;
 }
 
-.slider-primary::-moz-range-track {
-  background: $indigo;
+.slider-primary {
+  background: linear-gradient(to right, $indigo 0%, $indigo var(--progress), $light-indigo var(--progress), $light-indigo 100%);
 }
 
 .slider-primary::-webkit-slider-thumb {
-  background-color: $indigo;
+  background: $indigo;
 }
 
-.slider-primary::-moz-range-thumb {
-  background-color: $indigo;
+.slider-primary::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $indigo, $alpha: .4);
+}
+
+.slider-primary::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $indigo, $alpha: .4);
 }
 
 //SECONDARY
-.slider-secondary::-webkit-slider-runnable-track {
-  background: $pink;
+.slidernum-secondary{
+  background-color: $pink;
+  color: white;
 }
 
-.slider-secondary::-moz-range-track {
-  background: $pink;
+.slider-secondary {
+  background: linear-gradient(to right, $pink 0%, $pink var(--progress), $light-pink var(--progress), $light-pink 100%);
 }
 
 .slider-secondary::-webkit-slider-thumb {
-  background-color: $pink;
+  background: $pink;
 }
 
-.slider-secondary::-moz-range-thumb {
-  background-color: $pink;
+.slider-secondary::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $pink, $alpha: .4);
+}
+
+.slider-secondary::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $pink, $alpha: .4);
+}
+
+.tickmarks {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.range__tick{
+
 }

@@ -1,5 +1,6 @@
-import React, { FC, ReactNode, useEffect, useRef } from 'react';
+import React, { FC, ReactNode, useEffect, useRef, ChangeEventHandler } from 'react';
 import { classNames } from '../../utils/classNames';
+import Icon from '../Icon';
 
 // export enum checkboxType {
 //     Primary = 'primary',
@@ -22,19 +23,19 @@ export enum checkBoxState {
     indeterminate = -1
 }
 
-interface ICheckboxProps {
-    children?: ReactNode;
+export interface ICheckboxProps {
     className?: string;
     checkSize?: checkboxSize;  // ? gives user option to provide this attribute or not
     checkType?: checkboxType;
     label?: string;
     disabled?: boolean;
     checkedState?: checkBoxState;
-    icon?: ReactNode;
+    icon?: string;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
-    const {children, checkSize, checkType, label, disabled, checkedState, className, icon} = props;
+    const {checkSize, checkType, label, disabled, checkedState, className, icon, onChange} = props;
     const checkRef = useRef<any>();
     useEffect(() => {
         checkRef.current.checked = checkedState === 1
@@ -55,7 +56,8 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         checkbox = (
             <label className={styleClasses}>
                 <input type='checkbox' disabled={disabled} ref={checkRef} />
-                {icon}
+                <Icon name={icon} />
+                {label}
                 <span className='hoverCircle icon-hover'></span>
             </label>
         )
@@ -64,7 +66,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         // console.log("no icon");
         checkbox = (
             <label className={styleClasses}>
-                <input type='checkbox' disabled={disabled} ref={checkRef} />
+                <input aria-label='test-input' type='checkbox' disabled={disabled} ref={checkRef} onChange={onChange}/>
                 <span className='checkmark'></span>
                 {label}
                 <span className='hoverCircle'></span>
@@ -78,7 +80,8 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
 Checkbox.defaultProps = {
     disabled: false,
     checkedState: checkBoxState.unchecked,
-    checkSize: 'md'
+    checkSize: 'md',
+    checkType: 'default'
 }
 
 export default Checkbox;

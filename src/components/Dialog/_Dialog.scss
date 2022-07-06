@@ -1,0 +1,50 @@
+.dlg {
+    border-radius: $border-radius;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: $spacer;
+    margin: $spacer ;
+ //   width: fit-content;
+    min-height: 20rem;
+    display: flex;
+    flex-direction: column;
+    div{
+        margin-bottom: 2*$paragraph-margin-bottom;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        padding: $spacer;
+        margin-bottom: 2*$headings-margin-bottom;
+    }
+
+    p {
+        font-size: 1.4 *$font-size-lg;
+        padding: $spacer;
+        display: inline;
+    }
+
+}
+.dlg-alert{
+min-width: 60rem;
+a{
+        text-align: end;
+        display: inline;
+        font-weight: bold;
+        color: $blue;
+}
+}
+.dlg-simple{
+ 
+    min-width: 60rem;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        text-align: center;
+    }
+    }

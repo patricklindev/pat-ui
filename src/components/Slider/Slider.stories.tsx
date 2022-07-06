@@ -38,8 +38,8 @@ export const DifferentThemedSliders = () => (
         <h1>Themed Sliders</h1>
         <h2>Default Slider</h2>
         <Slider onChange={action("Default Slider was moved")} />
-        <h2>Primary Slider</h2>
-        <Slider sliderTheme='primary' onChange={action("Primary Slider was moved")} />
+        <h2>Success Slider</h2>
+        <Slider sliderTheme='success' onChange={action("Success Slider was moved")} />
         <h2>Secondary Slider</h2>
         <Slider sliderTheme='secondary' onChange={action("Secondary Slider was moved")} />
         <h2>Warning Slider</h2>
@@ -54,7 +54,9 @@ export const DifferentThemedSliders = () => (
         <br></br>
         <h1>Themed Thumbs</h1>
         <h2>Primary Thumb</h2>
-        <Slider thumbTheme='primary' onChange={action("Primary Slider was moved")} />
+        <Slider thumbTheme='primary' onChange={action("Success Slider was moved")} />
+        <h2>Success Thumb</h2>
+        <Slider thumbTheme='success' onChange={action("Success Slider was moved")} />
         <h2>Secondary Thumb</h2>
         <Slider thumbTheme='secondary' onChange={action("Secondary Slider was moved")} />
         <h2>Warning Thumb</h2>

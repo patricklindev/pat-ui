@@ -18,8 +18,8 @@
     @include slider-size($slider-width, $slider-height-lg, $thumb-width-lg, $thumb-height-lg);
 }
 
-.slider-primary {
-    @include slider-style($primary, #19dfa4);
+.slider-success {
+    @include slider-style($success, rgb(56, 206, 76));
 }
 
 .slider-secondary {
@@ -52,6 +52,10 @@
 
 .thumb-primary {
     @include thumb-style($primary);
+}
+
+.thumb-success {
+    @include thumb-style($success);
 }
 
 .thumb-secondary {

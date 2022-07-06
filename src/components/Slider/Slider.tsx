@@ -3,7 +3,7 @@ import { classNames } from '../../utils/classNames';
 
 
 export type SliderSize = 'lg' | 'sm';
-export type Themes = 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
+export type Themes = 'success' | 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
 export type SliderOrientation = 'vertical';
 export type ThumbSize = "lg" | "med" | "sm"
 

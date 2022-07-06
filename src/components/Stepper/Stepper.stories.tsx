@@ -10,6 +10,7 @@ export default {
 
 export const DefaultStepper = () => (
     <div>
+      <h3>Default Stepper </h3>
         <Stepper
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
@@ -21,6 +22,7 @@ export const DefaultStepper = () => (
 
 export const DefaultSquareStepper = () => (
   <div>
+     <h3>Default Square Stepper </h3>
       <Stepper
           stepperType={"square"}
           stepperSize={"sm"}
@@ -52,6 +54,7 @@ export const DefaultSquareStepper = () => (
 
 export const ConfiguringStepperSize = () => (
   <div>
+       <h3> Change size sm, md, lg </h3>
         <Stepper
             stepperType={"circle"}
             stepperSize={"sm"}
@@ -136,6 +139,7 @@ export const ConfiguringStepperSize = () => (
 
 export const SkipStep = () => (
     <div>
+      <h3> Skip Steps </h3>
         <Stepper
             stepperType={"circle"}
             stepperElements={[
@@ -166,6 +170,7 @@ export const SkipStep = () => (
 
 export const ErrorStep = () => (
   <div>
+    <h3> Error Steps </h3>
       <Stepper
           stepperType={"circle"}
           stepperElements={[
@@ -196,6 +201,7 @@ export const ErrorStep = () => (
 
 export const AdditionalStepsStepper = () => (
     <div>
+       <h3> Additional Steps </h3>
         <Stepper
             stepperType={"square"}
             stepperElements={[
@@ -237,6 +243,7 @@ export const AdditionalStepsStepper = () => (
 
 export const ManualSelect = () => (
   <div>
+    <h3> Manual Select </h3>
       <Stepper
           stepperType={"square"}
           stepperElements={[
@@ -268,6 +275,7 @@ export const ManualSelect = () => (
 
 export const DefaultVerticalStepper = () => (
     <div>
+      <h3> Default Vertical Stepper </h3>
         <Stepper
             stepperElements={[
                 {
@@ -284,7 +292,7 @@ export const DefaultVerticalStepper = () => (
                   },
                   {
                     title:  "Lets market our product",
-                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more."
+                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions."
                   }
             ]}
             stepperOrientation={"vertical"}
@@ -297,6 +305,7 @@ export const DefaultVerticalStepper = () => (
 
 export const VerticalStepperFancy = () => (
   <div>
+    <h3> Vertrical Stepper with Error,Skip </h3>
       <Stepper
           stepperElements={[
               {
@@ -321,7 +330,7 @@ export const VerticalStepperFancy = () => (
                 },
                 {
                   title:  "Lets market our product",
-                  description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more.",
+                  description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions",
                   label: ""
                 }
           ]}

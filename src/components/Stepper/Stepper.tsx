@@ -240,7 +240,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
            let initialresetHTML = document.getElementById(initialreset)
            let laststepHTML = document.getElementById(laststep)
            initialresetHTML!.style.height="175px"
-           initialresetHTML!.style.zIndex="1"
+           initialresetHTML!.style.zIndex="2"
            laststepHTML!.style.height="75px"
            } 
     }
@@ -438,12 +438,11 @@ export const Stepper: FC<patStepperProps> = (props) => {
                 <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
                         {SkipIndexArray.includes(index) == true ? (
                              <div className="test-1a">
-                            
                             <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
                             </div>
                             ) : (
                             <div className="test-1b" >
-                                 {  item.label != 'error' ?(
+                                 { item.label != 'error' ?(
                                   <div className="test-2a">
                                     {CurrentStep > index ? (
                                         <div className="test-3a">
@@ -456,7 +455,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                                 )}
                                             </div>
                                             ) : (
-                                        <   div className = "test-4b">
+                                            <div className = "test-4b">
                                              {CurrentStep == totalSteps? (
                                                 <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
                                                 // <Icon name="check" size="small" className={`${stepperType}` + ` green`}/>
@@ -466,8 +465,8 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                             </div>
                                         )}
                                         </div>
-                                    ) : (
-                                    <div className="test -3b">
+                                        ) : (
+                                        <div className="test -3b">
                                         <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                     </div>
                                      )}
@@ -476,7 +475,6 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
                                     )}
                             </div>
-                                
                             )}
                            
                           

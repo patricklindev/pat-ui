@@ -64,7 +64,7 @@ export const Button: FC<PatButtonProps> = (props) => {
       <button
         className={styleClasses}
         disabled={disabled}
-        {...(rest as NativeButtonProps)}
+         {...(rest as NativeButtonProps)}
       >
         {props.children}
       </button>

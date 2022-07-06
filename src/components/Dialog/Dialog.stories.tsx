@@ -59,11 +59,12 @@ export const DialogAlert = () => {
 
 
       <Dialog
-      showDialog={show}
+        showDialog={show}
         dialogType='alert'
         buttonOneText='agree'
         buttonTwoText='disagree'
         dialogTitle='Vestibulum porta quam in euismod fringilla'
+        closeHandlerProps={() => setshow(false)}
         dialogParagraph={exampPara}
       >
 
@@ -74,23 +75,27 @@ export const DialogAlert = () => {
 
 
 export const DialogForm = () => {
-   const [show, setshow] = useState(false)
+  const [show, setshow] = useState(false)
   return (
     <div>
-{show?
-      <Dialog
-      onClick={() => setshow(show => !show)}
-      showDialog={show}
-        dialogType='form'
-        dialogTitle='Subscribe'
-        dialogParagraph={exampPara}
-        buttonOneText="agree"
-        buttonTwoText='disagree'
-        closeHandlerProps={() => alert("send alert when closing the Dialog")}
-      >
-      </Dialog>:
-     <Button onClick={() => setshow(show => !show)}>Show</Button>
+      {show ?
+        <Dialog
+          id='example'
+          showDialog={show}
+          dialogType='form'
+          dialogTitle='Subscribe'
+          dialogParagraph={exampPara}
+          buttonOneText="agree"
+          buttonTwoText='disagree'
+          closeHandlerProps={() => {
+            setshow(false)
+            alert("send alert when closing the Dialog")
+          }
+          }
+        >
+        </Dialog> :
+        <Button onClick={() => setshow(show => !show)}>Show</Button>
 
-}
+      }
     </div>)
 };

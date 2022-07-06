@@ -47,8 +47,8 @@ export const Slider: FC<ISliderProps> = (props) => {
     const [value, setValue] = useState(props.initialValue)
 
     let styleClasses = classNames('slider', {
-        [`slider-${sliderSize}`]: !!sliderSize,
-        [`thumb-${thumbSize}`]: !!thumbSize,
+        [`slider-${sliderSize}`]: true,
+        [`thumb-${thumbSize}`]: true,
         [`slider-${sliderTheme}`]: true,
         [`thumb-${thumbTheme}`]: true,
         [`slider-${sliderOrientation}`]: true,
@@ -74,6 +74,7 @@ export const Slider: FC<ISliderProps> = (props) => {
                 type="range"
                 min={min}
                 max={max}
+                value={value}
                 defaultValue={initialValue}
                 step={step}
                 className={styleClasses}

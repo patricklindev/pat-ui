@@ -1,12 +1,8 @@
-import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons'
-import React, { Children } from 'react'
-// import { Styles } from './_dialog.scss'
-//needed???
-export enum DialogSize {
-    Large = 'lg',
-    Small = 'sm'
 
-}
+import React, { Children } from 'react'
+import Button from '../Button'
+
+
 export enum DialogType {
     Simple = 'simple',
     Alert = 'alert',
@@ -16,32 +12,27 @@ export enum DialogType {
 
 
 interface IDialogProps {
-    dlgSize?: DialogSize
     dialogType?: DialogType
+    dialogTitle?: string
+    dialogParagraph?: string
+    buttonOneText?: string
+    buttonTwoText?: string
 }
 
 
 
 
 const Dialog: React.FC<IDialogProps> = (props) => {
-    const { children, dlgSize,dialogType } = props
+    const { children, dialogType, dialogTitle, dialogParagraph, buttonOneText, buttonTwoText } = props
 
     //default classname  
     let classNameList: string[] = ['dlg']
 
     const classNames = classNameList.join(" ")
 
-    // if (dlgSize === DialogSize.Large) {
-    //     classNameList.push('dlg-lg')
-    // }
-
-    // if (dlgSize === DialogSize.Small) {
-    //     classNameList.push('dlg-sm')
-    // }
-    console.log(dialogType,props)
     if (dialogType === DialogType.Simple) {
         console.log("i ran ");
-        
+
         classNameList.push('dlg-simple')
     }
     if (dialogType === DialogType.Alert) {
@@ -51,10 +42,17 @@ const Dialog: React.FC<IDialogProps> = (props) => {
         classNameList.push('dlg-form')
     }
 
-    console.log(classNameList)
     return (
+
         <div className={classNameList.join(" ")} >
+            <h3 className='dialogTitle'>{dialogTitle}</h3>
             {children}
+            <p className='dialogParagraph'>{dialogParagraph}</p>
+            {dialogType === DialogType.Form ? <input></input> : null}
+
+            {dialogType === DialogType.Form ? <Button>{buttonOneText}</Button> : null}
+            {dialogType === DialogType.Form ? <Button>{buttonTwoText}</Button> : null}
+
 
         </div>
     )

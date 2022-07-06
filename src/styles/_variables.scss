@@ -23,14 +23,14 @@ $green: #52c41a !default;
 $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
-$primary: $teal !default;
-$secondary: $gray-600 !default;
-$success: $green !default;
-$info: $cyan !default;
-$warning: $yellow !default;
-$danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-800 !default;
+$primary: $teal  !default;
+$secondary: $gray-600  !default;
+$success: $green  !default;
+$info: $cyan  !default;
+$warning: $yellow  !default;
+$danger: $red  !default;
+$light: $gray-100  !default;
+$dark: $gray-800  !default;
 
 // font
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -38,7 +38,7 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
   'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   'Liberation Mono', 'Courier New', monospace !default;
-$font-family-base: $font-family-sans-serif !default;
+$font-family-base: $font-family-sans-serif  !default;
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: $font-size-base * 1.25 !default;
@@ -50,7 +50,7 @@ $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
-$font-weight-base: $font-weight-normal !default;
+$font-weight-base: $font-weight-normal  !default;
 
 // line
 $line-height-base: 1.5 !default;
@@ -63,17 +63,17 @@ $h2-font-size: $font-size-base * 2 !default;
 $h3-font-size: $font-size-base * 1.75 !default;
 $h4-font-size: $font-size-base * 1.5 !default;
 $h5-font-size: $font-size-base * 1.25 !default;
-$h6-font-size: $font-size-base !default;
+$h6-font-size: $font-size-base  !default;
 
 // link
-$link-color: $primary !default;
+$link-color: $primary  !default;
 $link-decoration: none !default;
 $link-hover-color: darken($link-color, 15%) !default;
 $link-hover-decoration: underline !default;
 
 // body
-$body-bg: $white !default;
-$body-color: $gray-900 !default;
+$body-bg: $white  !default;
+$body-color: $gray-900  !default;
 $body-text-align: null !default;
 
 // Spacing
@@ -100,7 +100,7 @@ $display1-weight: 300 !default;
 $display2-weight: 300 !default;
 $display3-weight: 300 !default;
 $display4-weight: 300 !default;
-$display-line-height: $headings-line-height !default;
+$display-line-height: $headings-line-height  !default;
 
 $lead-font-size: $font-size-base * 1.25 !default;
 $lead-font-weight: 300 !default;
@@ -109,12 +109,12 @@ $small-font-size: 0.875em !default;
 
 $sub-sup-font-size: 0.75em !default;
 
-$text-muted: $gray-600 !default;
+$text-muted: $gray-600  !default;
 
-$initialism-font-size: $small-font-size !default;
+$initialism-font-size: $small-font-size  !default;
 
-$blockquote-small-color: $gray-600 !default;
-$blockquote-small-font-size: $small-font-size !default;
+$blockquote-small-color: $gray-600  !default;
+$blockquote-small-font-size: $small-font-size  !default;
 $blockquote-font-size: $font-size-base * 1.25 !default;
 
 $hr-color: inherit !default;
@@ -127,20 +127,20 @@ $legend-font-weight: null !default;
 
 $mark-padding: 0.2em !default;
 
-$dt-font-weight: $font-weight-bold !default;
+$dt-font-weight: $font-weight-bold  !default;
 
-$nested-kbd-font-weight: $font-weight-bold !default;
+$nested-kbd-font-weight: $font-weight-bold  !default;
 
 $list-inline-padding: 0.5rem !default;
 
 $mark-bg: #fcf8e3 !default;
 
-$hr-margin-y: $spacer !default;
+$hr-margin-y: $spacer  !default;
 
 // Code
 
-$code-font-size: $small-font-size !default;
-$code-color: $pink !default;
+$code-font-size: $small-font-size  !default;
+$code-color: $pink  !default;
 $pre-color: null !default;
 
 // options
@@ -149,7 +149,7 @@ $enable-pointer-cursor-for-buttons: true !default;
 // border
 
 $border-width: 1px !default;
-$border-color: $gray-300 !default;
+$border-color: $gray-300  !default;
 
 $border-radius: 0.25rem !default;
 $border-radius-lg: 0.3rem !default;
@@ -160,50 +160,50 @@ $btn-font-weight: 400;
 $btn-padding-y: 0.375rem !default;
 $btn-padding-x: 0.75rem !default;
 
-$btn-font-family: $font-family-base !default;
-$btn-font-size: $font-size-base !default;
-$btn-line-height: $line-height-base !default;
+$btn-font-family: $font-family-base  !default;
+$btn-font-size: $font-size-base  !default;
+$btn-line-height: $line-height-base  !default;
 
 // button small
 $btn-padding-y-sm: 0.25rem !default;
 $btn-padding-x-sm: 0.5rem !default;
-$btn-font-size-sm: $font-size-sm !default;
+$btn-font-size-sm: $font-size-sm  !default;
 
 // button large
 $btn-padding-y-lg: 0.5rem !default;
 $btn-padding-x-lg: 1rem !default;
-$btn-font-size-lg: $font-size-lg !default;
+$btn-font-size-lg: $font-size-lg  !default;
 
 // button border
-$btn-border-width: $border-width !default;
+$btn-border-width: $border-width  !default;
 
 // button shadow
 $btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
 $btn-disabled-opacity: 0.65 !default;
 
 // button link
-$btn-link-color: $link-color !default;
-$btn-link-hover-color: $link-hover-color !default;
-$btn-link-disabled-color: $gray-600 !default;
+$btn-link-color: $link-color  !default;
+$btn-link-hover-color: $link-hover-color  !default;
+$btn-link-disabled-color: $gray-600  !default;
 
 // button radius
-$btn-border-radius: $border-radius !default;
-$btn-border-radius-lg: $border-radius-lg !default;
-$btn-border-radius-sm: $border-radius-sm !default;
+$btn-border-radius: $border-radius  !default;
+$btn-border-radius-lg: $border-radius-lg  !default;
+$btn-border-radius-sm: $border-radius-sm  !default;
 
 // button animation
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
   border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
 // message style
-$msg-background-color: $gray-100 !default;
-$msg-border-radius: $border-radius-lg !default;
-$msg-border: 0.05rem solid $gray-500 !default;
+$msg-background-color: $gray-100  !default;
+$msg-border-radius: $border-radius-lg  !default;
+$msg-border: 0.05rem solid $gray-500  !default;
 $msg-padding: 1rem !default;
 $msg-box-width: 95% !default;
 
 // message header
-$msg-header-size: $h4-font-size !default;
+$msg-header-size: $h4-font-size  !default;
 
 // message content
 $msg-pg-size: 1.2rem !default;
@@ -244,13 +244,13 @@ $dropdown-padding-x: 1rem !default;
 
 // dropdown font
 $dropdown-font-weight: 300;
-$dropdown-font-family: $font-family-base !default;
-$dropdown-font-size: $font-size-base !default;
-$dropdown-line-height: $line-height-base !default;
+$dropdown-font-family: $font-family-base  !default;
+$dropdown-font-size: $font-size-base  !default;
+$dropdown-line-height: $line-height-base  !default;
 $dropdown-font-color: #3b3b3b;
 
 // dropdown border
-$dropdown-border-width: $border-width !default;
+$dropdown-border-width: $border-width  !default;
 $dropdown-border-radius: 0.28571429rem !default;
 $dropdown-onopen-color: #96c8da;
 

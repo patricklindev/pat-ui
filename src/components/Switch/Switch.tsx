@@ -25,7 +25,6 @@ export type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
 export type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
 
 //SECTION 3:
-//INTERFACE 
 
 export interface ISwitchProps {
     /** set customized style */
@@ -44,12 +43,11 @@ export interface ISwitchProps {
     onChange?: ChangeEventHandler;
     /** set switch click action */
     onClick?: MouseEventHandler;
-   
-  }
+}
 
 //SECTION 4: 
 // MAke sure your props are exported
-// type NativeSwtichProps = ISwitchProps & HTMLAttributes<HTMLButtonElement>;
+// type NativeSwtichProps = ISwitchProps & HTMLAttributes<HTMLElement>;
 // type NativeAchorSwitchProps = ISwitchProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 // export type SwitchProps = ISwitchProps & HTMLAttributes<HTMLElement>
 
@@ -92,9 +90,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
                     {...(rest)}
                 />
                 <span className={styleClasses}/>
-                <div>
-                    {label}
-                </div>
+                <span>{label}</span>
             </label>
         )
     } else if(onChange) { 
@@ -129,21 +125,15 @@ export const Switch: FC<ISwitchProps> = (props) => {
                     {...(rest )}
                 />
                 <span color={color} className={styleClasses}/>
-                <span>
-                    {label}
-                </span>
-                <br/>
-                <br/>
+                <span>{label}</span>
             </label>
         )
     }
     return Switch;
 }
 
-// 
 Switch.defaultProps = { 
     color: 'primary',
-    // disabled: false,
 };
 
 export default Switch;

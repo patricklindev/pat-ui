@@ -5,6 +5,12 @@ $switch-thumb-height: 20px;
 $switch-thumb-width: 20px;
 $switch-thumb-left: -1px;
 $switch-thumb-bottom: -3px;
+$switch-palette-height: 14px;
+$switch-palette-width: 34px;
+$switch-sm-palette-height: 10px;
+$switch-sm-palette-width: 26px;
+$switch-sm-thumb-height: 16px;
+$switch-sm-thumb-width: 16px;
 $switch-margin-right: 50px;
 /*switch shadow*/
 $switch-disabled-opacity: 0.4 !default;
@@ -17,7 +23,7 @@ $switch-disabled-opacity: 0.4 !default;
     order: 0;
     flex-grow: 0;
 }
-@mixin slider-round-background-color($color){
+@mixin slider-thumb-background-color($color){
   background-color: $color;
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
   flex: none;
@@ -54,8 +60,8 @@ $switch-disabled-opacity: 0.4 !default;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 14px;
-  width: 34px;
+  height: $switch-palette-height;
+  width: $switch-palette-width;
   // background-color: #E0E0E0;
   @include slider-background-color(#E0E0E0);
   @include slider-transition(.2s)
@@ -105,28 +111,28 @@ input:checked + span[color="dark"] {
 }
 /*Color of rounded thumbs of sliders */
 input:checked + .slider.round.primary::before {
-    @include slider-round-background-color($primary);
+    @include slider-thumb-background-color($primary);
 }
 input:checked + .slider.round.secondary::before {
-    @include slider-round-background-color($secondary);
+    @include slider-thumb-background-color($secondary);
 }
 input:checked + .slider.round.success::before {
-    @include slider-round-background-color($success);
+    @include slider-thumb-background-color($success);
 }
 input:checked + .slider.round.info::before {
-    @include slider-round-background-color($info);
+    @include slider-thumb-background-color($info);
 }
 input:checked + .slider.round.warning::before {
-    @include slider-round-background-color($warning);
+    @include slider-thumb-background-color($warning);
 }
 input:checked + .slider.round.danger::before {
-    @include slider-round-background-color($danger);
+    @include slider-thumb-background-color($danger);
 }
 input:checked + .slider.round.light::before {
-    @include slider-round-background-color($light);
+    @include slider-thumb-background-color($light);
 }
 input:checked + .slider.round.dark::before {
-    @include slider-round-background-color($dark);
+    @include slider-thumb-background-color($dark);
 }
 
 input:focus + .slider {
@@ -156,13 +162,13 @@ input:checked + .slider:before {
 
 /*Small switch*/
 .slider.round.sm{
-  height: 10px;
-  width: 26px;
+  height: $switch-sm-palette-height;
+  width: $switch-sm-palette-width;
   top: 3px;
 }
 .slider.round.sm::before{
-  height: 16px;
-  width: 16px;
+  height: $switch-sm-thumb-height;
+  width: $switch-sm-thumb-width;
   bottom: -3px;
 }
 

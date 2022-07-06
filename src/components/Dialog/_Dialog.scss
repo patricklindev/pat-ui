@@ -4,15 +4,16 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: $spacer;
     z-index: 999;
-    //   width: fit-content;
-    overflow: hidden;
     position: sticky;
-  
-  
+    position: absolute;
+
+    h3 {
+        padding-left: $spacer;
+    }
 }
 
 .dlg-alert {
-width: 70%;
+    width: 70%;
 
 }
 
@@ -41,23 +42,28 @@ width: 70%;
 
 }
 
-.dlg-btns {
-    text-align: end;
-    margin-bottom: 0;
+.btn {
+
 }
 
 .dlg-container {
     background: rgba(0, 0, 0, .5);
-    //  position: sticky;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
+     overflow-x: hidden;
+    overflow-y: hidden;
+    position: absolute;
+
 }
 
-.dialogBody {
-    min-height: fit-content;
+#btn-one {
+    color: $blue  !important;
+}
 
+#btn-two {
+    color: $blue  !important;
 }

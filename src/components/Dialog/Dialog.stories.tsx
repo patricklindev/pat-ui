@@ -25,36 +25,39 @@ export const DialogSimple = () => {
           setshow(show => !show)
         }
         }>Show</Button>
-      <Dialog
-        dialogType='simple'
-        showDialog={show}
-        onMouseDown={action('Dialog closed')}
-      >
-        <h2>Hi </h2>
+      {show ?
+        <Dialog
+          //   style={{"width":"2000px"}}
+          dialogType='simple'
+          showDialog={show}
+          onMouseDown={action('Dialog closed')}
+          closeHandlerProps={() => setshow(false)}
+        >
+          <h2>Hi </h2>
 
-        <div>
-          <Icon
-            disabled={false}
-            loading={false}
-            name="users"
-          /><p>username@gmail.com </p>
-        </div>
+          <div>
+            <Icon
+              disabled={false}
+              loading={false}
+              name="users"
+            /><p>username@gmail.com </p>
+          </div>
 
-        <div>
-          <Icon
-            disabled={false}
-            loading={false}
-            name="users"
-          /><p>user02@gmail.com </p>
-        </div>
-        <div>
-          <Icon
-            disabled={false}
-            loading={false}
-            name="plus"
-          /><p>Add acount </p>
-        </div>
-      </Dialog>
+          <div>
+            <Icon
+              disabled={false}
+              loading={false}
+              name="users"
+            /><p>user02@gmail.com </p>
+          </div>
+          <div>
+            <Icon
+              disabled={false}
+              loading={false}
+              name="plus"
+            /><p>Add acount </p>
+          </div>
+        </Dialog> : null}
     </div>
   )
 };
@@ -67,22 +70,21 @@ export const DialogAlert = () => {
       <Button
         onMouseDown={action('Dialog opened')}
         onClick={() => { setshow(show => !show) }}>Show</Button>
-
-
-      <Dialog
+      {show ? <Dialog
         onMouseDown={action('Dialog closed')}
         showDialog={show}
         dialogType='alert'
-        buttonOneText='agree'
-        buttonTwoText='disagree'
         dialogTitle='Vestibulum porta quam in euismod fringilla'
         closeHandlerProps={() => {
           setshow(false)
         }}
         dialogParagraph={exampPara}
       >
-
-      </Dialog>
+      
+            <Button btnType="link"> Disagree</Button>
+            <Button btnType="link" onClick={() => setshow(false)}> Agree and Close</Button>
+         
+      </Dialog> : null}
     </div>
   )
 };
@@ -90,6 +92,7 @@ export const DialogAlert = () => {
 
 export const DialogForm = () => {
   const [show, setshow] = useState(false)
+  const [inputValue, setinputvalue] = useState("")
   return (
     <div>
       {show ?
@@ -99,22 +102,23 @@ export const DialogForm = () => {
           dialogType='form'
           dialogTitle='Subscribe'
           dialogParagraph={exampPara}
-          buttonOneText="agree"
-          buttonTwoText='disagree'
           onMouseDown={action('Dialog closed')}
           closeHandlerProps={() => {
+            //   alert("send alert when closing the Dialog")
             setshow(false)
-            alert("send alert when closing the Dialog")
-          }
-          }
-        >
+          }} >
+            <input onChange={(e)=> setinputvalue(e.target.value)} value={inputValue}placeholder="Enter email here"></input>
+          <div >
+            <Button btnType="link"> Disagree</Button>
+            <Button btnType="link" onClick={() => {
+              console.log(inputValue)
+              alert(`The Value is: ${inputValue}`)
+              setshow(false)}}> Agree and Close</Button>
+          </div>
         </Dialog> :
-        <Button 
-        onMouseDown={action('Dialog opened')}
-        onClick={() => setshow(show => !show)}>Show</Button>
-
+        <Button
+          onMouseDown={action('Dialog opened')}
+          onClick={() => setshow(show => !show)}>Show</Button>
       }
     </div>)
 };
-
-

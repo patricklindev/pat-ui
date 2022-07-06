@@ -143,7 +143,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
         }
 
         if (SkipIndexArray.includes(value) == true) {
-            let target = Currentindex+1
+            let target = value-1
             let removeSkip = SkipIndexArray.filter(function(element){return(element == target)})
             setSkipIndexArray( removeSkip )
         }
@@ -242,45 +242,6 @@ export const Stepper: FC<patStepperProps> = (props) => {
            } 
     }
 
-    // function skip() {
-    //     setIntialize(false)
-    //     console.log("Current index", Currentindex)
-    //     console.log("Current Steps", CurrentStep)
-    //     let skipthisStep:number = CurrentStep
-    //     let skipthisIndex = Currentindex + 1
-        
-    //     console.log("We will attempt to skip this step", skipthisStep)
-    //     console.log("We will attempt to skip this index", skipthisIndex)
-     
-    //     setSkipIndex(skipthisIndex)
-    //     setCurrentStep(CurrentStep + 2)
-    //     setCurrentIndex(Currentindex + 2)
-    //     setSkipIndexArray( arr => [...arr, skipthisIndex])
-
-    //     if (stepperOrientation === 'vertical') {
-
-    //         if (Currentindex == renderSteps-1) {
-    //             let currentTarget = 'description-' + `${Currentindex}`
-    //             let nextTarget = 'description-' + `${Currentindex+1}`
-    //             let nextElement = document.getElementById(nextTarget)
-    //             let currentElement = document.getElementById(currentTarget)
-    //             nextElement!.style.height="175px"
-    //             currentElement!.style.height="75px"
-    //             nextElement!.style.zIndex="1"
-    //             } else {
-    //         let currentTarget = 'description-' + `${Currentindex}`
-    //         let nextTarget = 'description-' + `${Currentindex+2}`
-    //         let nextElement = document.getElementById(nextTarget)
-    //         let currentElement = document.getElementById(currentTarget)
-    //         nextElement!.style.height="175px"
-    //         currentElement!.style.height="75px"
-    //         nextElement!.style.zIndex="0"
-    //         }
-
-            
-    //     }
-    // }
-
     function skip() {
         setIntialize(false)
         let skipthisStep:number = CurrentStep
@@ -291,6 +252,8 @@ export const Stepper: FC<patStepperProps> = (props) => {
      
         setSkipIndex(skipthisIndex)
         if (CurrentStep == totalSteps-1) {
+            setCurrentStep(CurrentStep + 1)
+            setCurrentIndex(Currentindex + 1)
             setSkipIndexArray( arr => [...arr, skipthisIndex])
         } else {
         setCurrentStep(CurrentStep + 1)
@@ -300,15 +263,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
         if (stepperOrientation === 'vertical') {
 
-            if (Currentindex == renderSteps-1) {
-                let currentTarget = 'description-' + `${Currentindex}`
-                let nextTarget = 'description-' + `${Currentindex}`
-                let nextElement = document.getElementById(nextTarget)
-                let currentElement = document.getElementById(currentTarget)
-                nextElement!.style.height="175px"
-                currentElement!.style.height="75px"
-                nextElement!.style.zIndex="1"
-                } else {
+        
             let currentTarget = 'description-' + `${Currentindex}`
             let nextTarget = 'description-' + `${Currentindex+1}`
             let nextElement = document.getElementById(nextTarget)
@@ -316,7 +271,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
             nextElement!.style.height="175px"
             currentElement!.style.height="75px"
             nextElement!.style.zIndex="0"
-            }
+            
 
             
         }
@@ -341,14 +296,15 @@ export const Stepper: FC<patStepperProps> = (props) => {
                     <div className={'flex-row-container'} data-testid="progress-container">
                         <div className="icon-area" onClick={() => select(index)} >
                        {/* Error Check, if error, dont even bother rendering the other conditionals */}
-                        {item.label == 'error' ? (
+                        { SkipIndexArray.includes(index) == true?(
                         <div className="test-1a">
-                            <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                            <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                           
                         </div>
                          ) : (
                         <div className="test-1b">
                         {/* Test 1 Did the user click / "mark" this index for skip */}
-                            {SkipIndexArray.includes(index) == false? (
+                            { item.label != 'error' ?(
                             <div className="test-2a">
                             {/* Logic Test 2, is the current step greater than the index of the array */}
                             {CurrentStep > index ? (
@@ -378,7 +334,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                             </div>
                             ) : (
                             <div className="test-2b">
-                            <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                             <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
                             </div>
                         )}
                         </div>
@@ -420,14 +376,19 @@ export const Stepper: FC<patStepperProps> = (props) => {
 {/* Specific code for the very last section / string in the array */}
                     <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
                         <div className="check-index-preliminary">
-                        <div className="icon-area" onClick={() => select(index)}>
                             {item.label == 'error' ? (
                                 <div className="test-1a">
                                     <span className={stepperType + ` red`} id={"Index-" + index}> ! </span>
                                 </div>
                                  ) : (
-                                 <div>
-                                    {CurrentStep == totalSteps ? (
+                                 <div className="test-1b">
+                                     {SkipIndexArray.includes(index) == true? (
+                                        <div className="test-2b">
+                                        <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                                        </div>
+                                     ) : (
+                                        <div className="test-3b">
+                                            {CurrentStep == totalSteps ? (
                                          <div className="check-index-secondary">
                                         {/* If the current step is equal to the total length of array passed */}
                                         {/* If Finish is true, render checkmark, otherwise leave it at step in progress */}
@@ -438,64 +399,13 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                         <span className={stepperType + ` green`} id={"Index-" + index}> {index + 1} </span>
                                         )}
                                         </div>
-                                    ) : (
-                                    <span className={stepperType + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                    )}
-                                </div>
-                             )}
-                        </div>
-                        {/* <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
-                        {SkipIndexArray.includes(index) == true?(
-                             <div className="test-1a">
-                                 <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
-                            </div>
-                            ) : (
-                            <div className="test-1b" >
-                                 { item.label != 'error' ? (
-                                  <div className="test-2a">
-                                    {CurrentStep > index ? (
-                                        <div className="test-3a">
-                                        {CurrentStep == totalSteps? (
-                                            <div className = "test-4A">
-                                            {Finish == true ? (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                             ) : (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                            ) : (
+                                            <span className={stepperType + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                             )}
                                             </div>
-                                        ) : (
-                                            <div className = "test-4b">
-                                             {CurrentStep > index +1 ? (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                            ) : (
-                                                <div>
-                                                {CurrentStep > index ? (
-                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-                                                ) : (
-                                                <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                                )}
-                                                </div>
-                                            )}
-                                        </div>
-                                        )}
-                                        </div>
-                                    ) : (
-                                        <div className="test -3b">
-                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-                                    </div>
-                                     )}
-                                </div>
-                                ) : (
-                                    <div className="test-2b">
-                               <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
-                                </div>
-                            )}
-                            </div>
-                                
-                            )}
-                           
-                          
-                </div> */}
+                                    )}
+                                 </div>
+                                 )}
                         </div>
                     </div>
                     <div className="description-area"  >
@@ -510,9 +420,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
                     </div>
                 </div>
             )}
-        </div>
-        )
-        })}
+                </div>
+                )})}
+       
         </div>
 
         ) : (
@@ -523,45 +433,45 @@ export const Stepper: FC<patStepperProps> = (props) => {
             <div className={stepperOrientation + "-description"} data-testid={`stepper-vertical-` + `${index}`} >
                 <div className={'flex-row-container item'} >
                 <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
-                        {item.label == 'error' ? (
+                        {SkipIndexArray.includes(index) == true ? (
                              <div className="test-1a">
-                            <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                            
+                            <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
                             </div>
                             ) : (
                             <div className="test-1b" >
-                                 {SkipIndexArray.includes(index) == false ? (
+                                 {  item.label != 'error' ?(
                                   <div className="test-2a">
                                     {CurrentStep > index ? (
                                         <div className="test-3a">
-                                        {CurrentStep > index ? (
+                                        {CurrentStep != totalSteps ? (
                                             <div className = "test-4A">
-                                         {CurrentStep == totalSteps ? (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                        ) : (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-                                        )}
-                                        </div>
-                                        ) : (
-                                            <div className = "test-4b">
-                                         {CurrentStep > index + 1 ? (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-                                        ) : (
-                                            <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-                                        )}
-                                        </div>
+                                            {CurrentStep > 1 + index  ? (
+                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                                ) : (
+                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                                )}
+                                            </div>
+                                            ) : (
+                                        <   div className = "test-4b">
+                                             {CurrentStep == totalSteps? (
+                                                <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+                                                // <Icon name="check" size="small" className={`${stepperType}` + ` green`}/>
+                                                ) : (
+                                                <span className={stepperType + ` green`} id={"Index-" + index}> {index + 1} </span>
+                                                )}
+                                            </div>
                                         )}
                                         </div>
                                     ) : (
-                                        <div className="test -3b">
-                                    <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+                                    <div className="test -3b">
+                                        <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
                                     </div>
                                      )}
                                 </div>
-                                ) : (
-                                    <div className="test-2b">
-                                <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
-                                </div>
-                            )}
+                                    ) : (
+                                    <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+                                    )}
                             </div>
                                 
                             )}

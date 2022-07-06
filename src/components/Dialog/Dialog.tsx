@@ -11,13 +11,11 @@ import Icon from '../Icon/Icon'
 
 
 export interface IButtonProps {
-  /** set customized style */
+  /** set open/close style */
   open?: boolean;
-  /** set button size */
+  /** set window full size */
   fullScreen?: boolean;
-  /** set button type */
-  ariaDescribedby?: String;
-  /** set disabled button */
+  /** set scroll option  */
   scroll?: boolean;
 }
 

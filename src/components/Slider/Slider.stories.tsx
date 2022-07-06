@@ -70,10 +70,10 @@ export const DifferentValuedSliders = () => (
 
         <h2>Step, Max, Min, and InitialValue Props</h2>
         <p>Users can use step, max, and min to set possible values of the slider</p>
-        <h5>Slider with custom min, max, and inital value</h5>
+        <h5>Continuous Slider with custom min, max, and inital value</h5>
         <Slider initialValue={1990} min={1900} max={2022} step={1} ticks={2} onChange={action("Slider was moved")}/>
 
-        <h5>Slider from 1-30 by 10's</h5>
+        <h5>Discrete Slider from 1-30 by 10's</h5>
         <Slider initialValue={0} min={0} max={30} step={10} ticks={4} onChange={action("Slider was moved")}/>
     </div>
 );

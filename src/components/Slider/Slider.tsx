@@ -62,7 +62,7 @@ export const Slider: FC<ISliderProps> = (props) => {
     //Fill tickArr with the locations we want tick marks
     let tickArr = []
     if (ticks) {
-        let tickIncrement = ((max || 100) - (min || 0)) / (ticks-1)
+        let tickIncrement = ((max || 100) - (min || 0)) / (ticks - 1)
         for (let i = (min || 0); i <= (max || 100); i += tickIncrement) {
             tickArr.push(i)
         }
@@ -70,32 +70,29 @@ export const Slider: FC<ISliderProps> = (props) => {
 
     let slider =
         <div className='slider_div'>
-            <div>
-                <input
-                    type="range"
-                    min={min}
-                    max={max}
-                    defaultValue={initialValue}
-                    step={step}
-                    className={styleClasses}
-                    disabled={disabled}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setValue(parseInt(event.target.value))
-                        if (onChange) {
-                            onChange(value);
-                        }
-                    }}
-                />
-                <div className='tickLine'>
-                    {ticks
-                        ? tickArr.map((e) => (
-                            <div className='tickItem'>
-                                <p className="tickMark">|</p>
-                                <p>{e}</p>
-                            </div>
-                        ))
-                        : null}
-                </div>
+            <input
+                type="range"
+                min={min}
+                max={max}
+                defaultValue={initialValue}
+                step={step}
+                className={styleClasses}
+                disabled={disabled}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setValue(parseInt(event.target.value))
+                    if (onChange) {
+                        onChange(value);
+                    }
+                }}
+            />
+            <div className='tickLine'>
+                {tickArr.map((e) => (
+                    <div className='tickItem'>
+                        <p className="tickMark">|</p>
+                        <p>{e}</p>
+                    </div>
+                ))
+                }
             </div>
 
         </div>
@@ -103,6 +100,7 @@ export const Slider: FC<ISliderProps> = (props) => {
     return slider;
 }
 
+//Default props for basic slider
 Slider.defaultProps = {
     min: 0,
     max: 100,

@@ -11,12 +11,9 @@ export default {
 export const DefaultStepper = () => (
     <div>
         <Stepper
-            stepperType={"circle"}
-            stepperSize={"sm"}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
             stepperOrientation={"row"}
-            allowSkip={false}
         >
         </Stepper>
     </div>
@@ -44,8 +41,8 @@ export const DefaultSquareStepper = () => (
              label: "Thinking about progress bar",
              }, 
           ]}
-          buttonTitleNext={"NEXT"}
-          buttonTitlePrev={"PREV"}
+          buttonTitleNext={"Next"}
+          buttonTitlePrev={"Back"}
           stepperOrientation={"row"}
           allowSkip={false}
       >
@@ -75,8 +72,8 @@ export const ConfiguringStepperSize = () => (
                 label: "Keep strings short"
                 },
             ]}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
             stepperOrientation={"row"}
             allowSkip={false}
         >
@@ -102,8 +99,8 @@ export const ConfiguringStepperSize = () => (
                 label: "Keep strings short"
                 },
             ]}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
             stepperOrientation={"row"}
             allowSkip={false}
         >
@@ -128,8 +125,8 @@ export const ConfiguringStepperSize = () => (
                 label: "Keep strings short"
                 },
             ]}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
             stepperOrientation={"row"}
             allowSkip={false}
         >
@@ -141,7 +138,6 @@ export const SkipStep = () => (
     <div>
         <Stepper
             stepperType={"circle"}
-            stepperLinear={"nonlinear"}
             stepperElements={[
               {
                 title: "Skip Stepper Variation",
@@ -159,8 +155,8 @@ export const SkipStep = () => (
                label: "Keep strings short"
                }, 
             ]}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
             stepperOrientation={"row"}
             allowSkip={true}
         >
@@ -198,7 +194,6 @@ export const ErrorStep = () => (
   </div>
 )
 
-
 export const AdditionalStepsStepper = () => (
     <div>
         <Stepper
@@ -207,32 +202,33 @@ export const AdditionalStepsStepper = () => (
                 {
                     title:  "Lets begin planning",
                     description: "",
-                    label: "Container can be fed more strings"
+                    label: ""
                   },
                   {
                     title:  "Lets start developing",
                     description: "",
-                    label: "However not ideal for mobile or small screens"  
+                    label: ""  
                   },
                   {
                     title:   "Lets begin live deployment",
                     description: "",
-                    label: "Component will not flex-wrap strings to next line"   
+                    label: ""   
                   },
                   {
                     title:   "Lets begin public testing",
                     description: "",
-                    label: "Recommendendation: Less than 4 strings"    
+                    label: ""    
                   },
                   {
-                    title:  "Lets market our product",
+                    title:   "Let market our product",
                     description: "",
-                    label: "Or continue to vertical variation"   
-                  }
+                    label: ""    
+                  },
             ]}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
             stepperOrientation={"row"}
+            stepperLinear={'nonlinear'}
             allowSkip={true}
         >
         </Stepper>
@@ -260,8 +256,8 @@ export const ManualSelect = () => (
                   label: "Manual selecting defines useState to index and step of selected icon"   
                 },
           ]}
-          buttonTitleNext={"NEXT"}
-          buttonTitlePrev={"PREV"}
+          buttonTitleNext={"Next"}
+          buttonTitlePrev={"Back"}
           stepperOrientation={"row"}
           stepperLinear="nonlinear"
           allowSkip={true}
@@ -292,10 +288,49 @@ export const DefaultVerticalStepper = () => (
                   }
             ]}
             stepperOrientation={"vertical"}
-            buttonTitleNext={"NEXT"}
-            buttonTitlePrev={"PREV"}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
         >
         </Stepper>
     </div>
+)
+
+export const VerticalStepperFancy = () => (
+  <div>
+      <Stepper
+          stepperElements={[
+              {
+                  title:  "Lets begin planning",
+                  description: "This is the step where you need to define your application goals,wireframe, and development path",
+                  label: "" 
+                },
+                {
+                  title:  "Lets start developing",
+                  description: "This is the step where the team begins to parcel out development tasks and begin coding",
+                  label: "" 
+                },
+                {
+                  title:   "Lets begin live deployment",
+                  description: "This is the step where you begin to test your product on live servers" ,
+                  label: "" 
+                },
+                {
+                  title:   "Vertical Error Example",
+                  description: "This is an example of an error",
+                  label: "error"
+                },
+                {
+                  title:  "Lets market our product",
+                  description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more.",
+                  label: ""
+                }
+          ]}
+          stepperOrientation={"vertical"}
+          buttonTitleNext={"Next"}
+          buttonTitlePrev={"Back"}
+          allowSkip={true}
+      >
+      </Stepper>
+  </div>
 )
 

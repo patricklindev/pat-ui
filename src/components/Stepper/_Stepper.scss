@@ -1,3 +1,5 @@
+// @mixin font-package($font-size, ){}
+//   }
 
 .all-container-sm {
     width:10%;
@@ -44,7 +46,6 @@
 }
 
 
-
 //DESCRIPTION FOR HTML ARRAY
 
 .progress-container {
@@ -61,29 +62,8 @@
 //STEPPERTYPE==CIRCLE
 //FOR WHEN STEPPERTYPE IS "CIRCLE"
 
-  .circle-start {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    display: inline-block;
-    text-align:center;
-    z-index: 1;
-    color:$gray-100;
-    margin-left:10%;
-  }
 
   .circle {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    display: inline-block;
-    text-align:center;
-    z-index: 1;
-    color:$gray-100;
-    margin-left:10%;
-  }
-
-  .circle-last {
     height: 25px;
     width: 25px;
     border-radius: 50%;
@@ -98,15 +78,7 @@
 //STEPPERTYPE==SQUARE
 //FOR WHEN STEPPERTYPE IS "SQUARE"
 
-.square-start {
-    height: 25px;
-    width: 25px;
-    display: inline-block;
-    text-align:center;
-    border-radius: 20%;
-    color:$gray-100;
-    margin-left:10%;
-}
+
 
 .square {
     height: 25px;
@@ -118,15 +90,6 @@
     margin-left:10%;
 }
 
-.square-last {
-    height: 25px;
-    width: 25px;
-    display: inline-block;
-    text-align:center;
-    border-radius: 20%;
-    color:$gray-100;
-    margin-left:10%;
-}
 
 // BUTTON
 
@@ -149,7 +112,7 @@
 
 .Stepper-Button-Right {
     width:25%;
-    margin-right:10%;;
+    margin-right:10%;
 }
 
 .Stepper-Button-Skip {
@@ -172,9 +135,6 @@
     display: inline-block;
 }
 
-  .hide {
-    display:none;
-  }
 
 // FONT Style
 
@@ -182,7 +142,7 @@
     font-size: $font-size-sm;
     list-style: none;
     text-align: center;
-
+    border-radius: 25px;
 }
 
 .font-variant-vertical{
@@ -212,7 +172,7 @@
 }
 
 .description-area {
-    width:300px;
+    width:275px;
     transition:height 2s;
     height:75px;
     background-color: white;
@@ -227,7 +187,6 @@
     min-width:20%;
     height:5px;
     margin-left:5%;
-
 }
 
 .display-in-vertical {

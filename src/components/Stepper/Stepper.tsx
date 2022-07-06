@@ -127,7 +127,6 @@ export const Stepper: FC<patStepperProps> = (props) => {
             setCurrentIndex(0)
             setSkipIndex(999999999)
             setCurrentStep(1)
-            setIntialize(true)
         }
         if (Currentindex >= renderSteps) {
             setCurrentIndex(renderSteps)
@@ -205,7 +204,11 @@ export const Stepper: FC<patStepperProps> = (props) => {
         console.log(lastValue)
         let removeSkip = SkipIndexArray.filter(function(element){return(element != lastValue)})
         setSkipIndexArray( removeSkip )
+        } 
 
+        if ( Currentindex == 0 ) {
+            let removeSkip = SkipIndexArray.filter(function(element){return(element != 0)})
+            setSkipIndexArray( removeSkip )
         }
 
         if (stepperOrientation === 'vertical') {
@@ -375,16 +378,16 @@ export const Stepper: FC<patStepperProps> = (props) => {
                 <div className={styleClasses + ' flex-row-container'}>
 {/* Specific code for the very last section / string in the array */}
                     <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
-                        <div className="check-index-preliminary">
-                            {item.label == 'error' ? (
+                     
+                            {SkipIndexArray.includes(index) == true? (
                                 <div className="test-1a">
-                                    <span className={stepperType + ` red`} id={"Index-" + index}> ! </span>
+                                    <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
                                 </div>
                                  ) : (
                                  <div className="test-1b">
-                                     {SkipIndexArray.includes(index) == true? (
+                                     {item.label == 'error' ? (
                                         <div className="test-2b">
-                                        <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                                            <span className={stepperType + ` red`} id={"Index-" + index}> ! </span>
                                         </div>
                                      ) : (
                                         <div className="test-3b">
@@ -406,7 +409,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     )}
                                  </div>
                                  )}
-                        </div>
+                       
                     </div>
                     <div className="description-area"  >
                         <ul>

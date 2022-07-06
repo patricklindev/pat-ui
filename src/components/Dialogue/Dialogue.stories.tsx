@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Dialogue from "./Dialogue";
 
-import testIcon from '../../asset/icon/plus-solid.svg';
+// use pat-ui icons
+import userIcon from '../../../asset/icon/users-solid.svg'
+import addIcon from '../../../asset/icon/plus-solid.svg'
 
 export default {
   title: 'Dialogue',
@@ -29,7 +31,6 @@ export const SimpleDialogue = () => {
       <button className="modal-btn" onClick={toggleModal}>
           Click me!
       </button>
-      <img src={testIcon} alt='test' />
       {/* you need to pass title, content, and actions via children props */}
       {/* you had the right idea, just have to make some tweaks for it to pass the test! */}
       <Dialogue

@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { IconSize } from '../Icon/Icon';
-import Rating from './Rating';
+import Rating, { IRatingProps } from './Rating';
 
 describe('Rating', () => {
   it('should match snapshot', () => {
@@ -35,7 +35,7 @@ describe('Rating', () => {
   });
 
   it('should be able to disable the component from props ', () => {
-    const iconProps = {
+    const iconProps: IRatingProps = {
       disabled: true,
     };
     const { getAllByRole } = render(<Rating {...iconProps} />);
@@ -58,7 +58,7 @@ describe('Rating', () => {
   });
 
   it('should be able to provide the label of the component from props  ', () => {
-    const iconProps = {
+    const iconProps: IRatingProps = {
       isLabel: true,
     };
     const { getByRole } = render(<Rating {...iconProps} />);
@@ -85,8 +85,8 @@ describe('Rating', () => {
   });
 
   it('should choose sizes of the rating component among various predefined options from props ', () => {
-    const iconProps = {
-      size: 'large' as IconSize,
+    const iconProps: IRatingProps = {
+      size: 'large',
     };
     const { getAllByRole } = render(<Rating {...iconProps} />);
     const allIcons = getAllByRole('button');
@@ -105,7 +105,7 @@ describe('Rating', () => {
   });
 
   it('should decide the number of stars in total from props ', () => {
-    const iconProps = {
+    const iconProps: IRatingProps = {
       ratingCount: 15,
     };
     const { getAllByRole } = render(<Rating {...iconProps} />);
@@ -114,6 +114,27 @@ describe('Rating', () => {
     // all the child elements should in the document
     for (let i = 0; i < allIcons.length; i++) {
       expect(allIcons[i]).toBeInTheDocument();
+    }
+  });
+
+  it('should be able to control the value of the rating from outside of the component by providing a prop.  ', () => {
+    const iconProps: IRatingProps = {
+      defaultRating: 3,
+    };
+    const { getAllByRole } = render(<Rating {...iconProps} />);
+    const allIcons = getAllByRole('button');
+    expect(allIcons.length).toBe(5);
+    // all the child elements should in the document
+    for (let i = 0; i < allIcons.length; i++) {
+      expect(allIcons[i]).toBeInTheDocument();
+    }
+    // the index of stars less than defaultRating should be turned to orange
+    if (iconProps.defaultRating) {
+      for (let i = 0; i < iconProps.defaultRating; i++) {
+        expect(allIcons[i].firstElementChild as HTMLElement).toHaveClass(
+          'icon medium orange star rating-icon'
+        );
+      }
     }
   });
 });

@@ -43,13 +43,9 @@ describe('Rating', () => {
     // all the child elements should in the document
     for (let i = 0; i < allIcons.length; i++) {
       expect(allIcons[i]).toBeInTheDocument();
-    }
-    // div icon-containers should have disabled class
-    for (let i = 0; i < allIcons.length; i++) {
+      // div icon-containers should have disabled class
       expect(allIcons[i]).toHaveClass('disabled');
-    }
-    //svg child elements should have disabled class
-    for (let i = 0; i < allIcons.length; i++) {
+      //svg child elements should have disabled class
       expect(allIcons[i].firstElementChild as HTMLElement).toHaveClass(
         'disabled'
       );
@@ -123,11 +119,11 @@ describe('Rating', () => {
     };
     const { getAllByRole } = render(<Rating {...iconProps} />);
     const allIcons = getAllByRole('button');
-    expect(allIcons.length).toBe(iconProps.ratingCount);
     // all the child elements should in the document
     for (let i = 0; i < allIcons.length; i++) {
       expect(allIcons[i]).toBeInTheDocument();
     }
+    expect(allIcons.length).toBe(iconProps.ratingCount);
   });
 
   it('should be able to control the value of the rating from outside of the component by providing a prop.  ', () => {

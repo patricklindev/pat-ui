@@ -21,7 +21,7 @@ export interface IDialogProps {
     buttonTwoText?: string;
     /**add a function to the Dialog closing handler   */
     closeHandlerProps?: any;
-    /**add a function to the Dialog closing handler   */
+    /**Boolean for controling if the dialog is shown   */
     showDialog?: boolean;
 
 };
@@ -32,7 +32,7 @@ export type PatDialogProps = NativeDialogProps;
 
 
 /**
-* A dialog is used for a high priority meggase
+* A dialog allows user to select from multiple actions.
 *
 * ```js
 * import {Dialog} from 'pat-ui'
@@ -72,8 +72,10 @@ export const Dialog: FC<PatDialogProps> = (props) => {
 
                 <dialog
                     className='dlg-container'
-                    {...(rest as NativeDialogProps)}
-                    onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
+                     {...(rest as NativeDialogProps)}
+                    onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+                    
+                    >
                     < div className={classNameList.join(" ")} >
                         {dialogTitle ? <h3 className='dialogTitle'>{dialogTitle}</h3> : null}
                         {dialogParagraph ? <p className='dialogParagraph'>{dialogParagraph}</p> : null}
@@ -89,7 +91,7 @@ export const Dialog: FC<PatDialogProps> = (props) => {
                         {children}
                     </div >
                 </dialog >
-                : null}
+                : <></>}
         </>)
 
 }

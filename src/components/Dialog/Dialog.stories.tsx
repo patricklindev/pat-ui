@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Dialog from './index';
 import Icon from '../Icon';
+import { action } from '@storybook/addon-actions';
 import Button from '../Button';
 
 export default {
   title: 'Dialog',
   component: Dialog,
+  argTypes: { onClick: { action: 'clicked' } },
 };
 
 const exampPara: string = "Sed fringilla tortor arcu, vel malesuada dui molestie vitae. In efficitur odio eget odio tempus vehicula vitae vitae sem."
@@ -13,13 +15,20 @@ const exampPara: string = "Sed fringilla tortor arcu, vel malesuada dui molestie
 
 export const DialogSimple = () => {
   const [show, setshow] = useState(false)
+
   return (
     <div>
 
-      <Button onClick={() => setshow(show => !show)}>Show</Button>
+      <Button
+        onMouseDown={action('Dialog opened')}
+        onClick={() => {
+          setshow(show => !show)
+        }
+        }>Show</Button>
       <Dialog
         dialogType='simple'
         showDialog={show}
+        onMouseDown={action('Dialog closed')}
       >
         <h2>Hi </h2>
 
@@ -55,16 +64,21 @@ export const DialogAlert = () => {
   return (
     <div>
 
-      <Button onClick={() => setshow(show => !show)}>Show</Button>
+      <Button
+        onMouseDown={action('Dialog opened')}
+        onClick={() => { setshow(show => !show) }}>Show</Button>
 
 
       <Dialog
+        onMouseDown={action('Dialog closed')}
         showDialog={show}
         dialogType='alert'
         buttonOneText='agree'
         buttonTwoText='disagree'
         dialogTitle='Vestibulum porta quam in euismod fringilla'
-        closeHandlerProps={() => setshow(false)}
+        closeHandlerProps={() => {
+          setshow(false)
+        }}
         dialogParagraph={exampPara}
       >
 
@@ -87,6 +101,7 @@ export const DialogForm = () => {
           dialogParagraph={exampPara}
           buttonOneText="agree"
           buttonTwoText='disagree'
+          onMouseDown={action('Dialog closed')}
           closeHandlerProps={() => {
             setshow(false)
             alert("send alert when closing the Dialog")
@@ -94,8 +109,12 @@ export const DialogForm = () => {
           }
         >
         </Dialog> :
-        <Button onClick={() => setshow(show => !show)}>Show</Button>
+        <Button 
+        onMouseDown={action('Dialog opened')}
+        onClick={() => setshow(show => !show)}>Show</Button>
 
       }
     </div>)
 };
+
+

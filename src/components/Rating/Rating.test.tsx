@@ -70,17 +70,31 @@ describe('Rating', () => {
   });
 
   it('should be able to set the precision of the rating component', () => {
-    fail('to be done...');
-    const iconProps = {
+    const iconProps: IRatingProps = {
       half: true,
+      defaultRating: 3.5,
     };
     const { getAllByRole } = render(<Rating {...iconProps} />);
     const allIcons = getAllByRole('button');
+    const indexOfHalfStar = (iconProps.defaultRating as number) - 0.5;
     expect(allIcons.length).toBe(5);
     // all the child elements should in the document
     for (let i = 0; i < allIcons.length; i++) {
       expect(allIcons[i]).toBeInTheDocument();
     }
+
+    if (iconProps.defaultRating) {
+      //  all the stars should be full star before the indexOfHalfStar
+      for (let i = 0; i < iconProps.defaultRating; i++) {
+        expect(allIcons[i].firstElementChild as HTMLElement).toHaveClass(
+          'icon medium orange star rating-icon'
+        );
+      }
+    }
+    // the star at indexOfHalfStar should be half star
+    expect(
+      allIcons[indexOfHalfStar].firstElementChild as HTMLElement
+    ).toHaveClass('icon medium orange star half rating-icon');
   });
 
   it('should choose sizes of the rating component among various predefined options from props ', () => {

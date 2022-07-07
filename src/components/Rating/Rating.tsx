@@ -1,11 +1,9 @@
 import React, {
-  BaseSyntheticEvent,
-  ChangeEvent,
   CSSProperties,
   FC,
   HTMLAttributes,
   useEffect,
-  useState,
+  useState
 } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
@@ -18,7 +16,7 @@ import {
   getFullStars,
   getIconColor,
   getIconName,
-  getSizeName,
+  getSizeName
 } from './helper';
 import { useCurrentRatingLabel } from './hooks';
 

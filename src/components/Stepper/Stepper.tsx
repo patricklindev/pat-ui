@@ -60,6 +60,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
     const [Currentindex, setCurrentIndex] = useState(0)
     const [triggerVertical, setTriggerVertical] = useState("flex-container")
     const [Initialize, setInitialize] = useState(true)
+    const [ExpandBy, setExpandBy] = useState('20vh')
     let totalSteps = StepperElements!.length
     let renderSteps = totalSteps - 1
 
@@ -96,41 +97,44 @@ export const Stepper: FC<patStepperProps> = (props) => {
         console.log("Direction",direction)
         console.log("Value of increment",value)
 
-        let current = 'description-area-' + `${Currentindex}`
-        let currentStep = document.getElementById(current)
-        let previous = 'description-area-' + `${Currentindex-1}`
-        let previousStep = document.getElementById(previous)
-        let next = 'description-area-' + `${Currentindex+1}`
-        let nextStep = document.getElementById(next)
-        let skipto = 'description-area-' + `${Currentindex+2}`
-        let skiptoStep = document.getElementById(skipto)
+        // let current = 'description-area-' + `${Currentindex}`
+        // let currentStep = document.getElementById(current)
+        // let previous = 'description-area-' + `${Currentindex-1}`
+        // let previousStep = document.getElementById(previous)
+        // let next = 'description-area-' + `${Currentindex+1}`
+        // let nextStep = document.getElementById(next)
+        // let skipto = 'description-area-' + `${Currentindex+2}`
+        // let skiptoStep = document.getElementById(skipto)
 
         if (direction === 'back') {
             if(Currentindex===0) {
-            currentStep!.style.height="25vh"
-            currentStep!.style.zIndex="0"
+                setExpandBy('25vh')
+            // currentStep!.style.height="25vh"
+            // currentStep!.style.zIndex="0"
             } else {
-                currentStep!.style.height="20vh"
-                previousStep!.style.height="25vh"
-                currentStep!.style.zIndex="0"
-                previousStep!.style.zIndex="1" 
+                // currentStep!.style.height="20vh"
+                // previousStep!.style.height="25vh"
+                // currentStep!.style.zIndex="0"
+                // previousStep!.style.zIndex="1" 
             }
         
         }
         if (direction === 'next') {
             if (Currentindex < renderSteps) {
-            currentStep!.style.height="20vh"
-            currentStep!.style.zIndex="0"
-            nextStep!.style.height="25vh"
-            nextStep!.style.zIndex="1" 
+                setExpandBy('25vh')
+            // currentStep!.style.height="20vh"
+            // currentStep!.style.zIndex="0"
+            // nextStep!.style.height="25vh"
+            // nextStep!.style.zIndex="1" 
             }
         }
 
         if (direction === 'skip') {
-            currentStep!.style.height="20vh"
-            nextStep!.style.height="20vh"
-            skiptoStep!.style.height="25vh"
-            skiptoStep!.style.zIndex="0"  
+            setExpandBy('25vh')
+            // currentStep!.style.height="20vh"
+            // nextStep!.style.height="20vh"
+            // skiptoStep!.style.height="25vh"
+            // skiptoStep!.style.zIndex="0"  
         }  
     }
 
@@ -199,8 +203,13 @@ export const Stepper: FC<patStepperProps> = (props) => {
             <div className={triggerVertical} data-testid="element-render-2">
              {StepperElements!.map(function (item: any, index: number) {
                 return (
-                        <div className={"description-area " + StepperSize } id={"description-area-" + index } data-testid={`description-area-` + `${index}`}>
-                            <div className={"expand"} id={`expand-` + index} data-testid={`expand-` + `${index}`}>
+                    <div>
+                        {StepperOrientation == 'vertical' &&
+                        <div className={"description-area " + StepperSize }
+                        style={{height: `${index === Currentindex ? '25vh' : '20vh'}` }}
+                        id={"description-area-" + index } 
+                        data-testid={`description-area-` + `${index}`}>
+                            
                                 {index === Currentindex ? (
                                     <div>
                                      <div className="flex-container">
@@ -230,8 +239,47 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     <p className={`font-variant-secondary `}> {item.description}</p>
                                 </div>
                                 }
-                            </div>
+                        
                         </div> 
+                        }
+                         {StepperOrientation == 'row' &&
+                        <div className={"description-area " + StepperSize }
+                        id={"description-area-" + index } 
+                        data-testid={`description-area-` + `${index}`}>
+                            
+                                {index === Currentindex ? (
+                                    <div>
+                                     <div className="flex-container">
+                                        {item.iconCompleted}
+                                     </div>
+                                     <p className={`font-variant-main`}> {item.title} </p>
+                                     </div>
+                                ): (
+                                    <div>
+                                    <div className="flex-container">
+                                        {item.icon}
+                                     </div>
+                                    <p className="font-variant-main"> {item.title} </p>
+                                    </div>
+                                )}
+
+                                <div className="label-container">
+                                {item.label === 'error' ? (
+                                    <p className={`font-variant-secondary red`}> {item.label} </p>
+                                ) : (
+                                    <p className={`font-variant-secondary `}> {item.label} </p>
+                                )}
+                                </div>
+
+                                {index === Currentindex && 
+                                <div>
+                                    <p className={`font-variant-secondary `}> {item.description}</p>
+                                </div>
+                                }
+                        
+                        </div> 
+                        }
+                    </div>  
                 )
              })}
              </div>

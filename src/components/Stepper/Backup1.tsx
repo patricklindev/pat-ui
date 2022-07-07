@@ -191,15 +191,15 @@
 //             setSkipIndexArray( removeSkip )
 //         }
 
-//         if (stepperOrientation === 'vertical') {
-//             let currentTarget = 'description-' + `${Currentindex}`
-//             let nextTarget = 'description-' + `${Currentindex-1}`
-//             let nextElement = document.getElementById(nextTarget)
-//             let currentElement = document.getElementById(currentTarget)
-//             nextElement!.style.height="175px"
-//             currentElement!.style.height="75px"
-//             nextElement!.style.zIndex="0"
-//         }
+        // if (stepperOrientation === 'vertical') {
+        //     let currentTarget = 'description-' + `${Currentindex}`
+        //     let nextTarget = 'description-' + `${Currentindex-1}`
+        //     let nextElement = document.getElementById(nextTarget)
+        //     let currentElement = document.getElementById(currentTarget)
+        //     nextElement!.style.height="175px"
+        //     currentElement!.style.height="75px"
+        //     nextElement!.style.zIndex="0"
+        // }
 //     }
 
 //     function finishStepper() {
@@ -244,20 +244,20 @@
 //         setSkipIndexArray( arr => [...arr, skipthisIndex])
 //         }
 
-//         if (stepperOrientation === 'vertical') {
+        // if (stepperOrientation === 'vertical') {
 
         
-//             let currentTarget = 'description-' + `${Currentindex}`
-//             let nextTarget = 'description-' + `${Currentindex+1}`
-//             let nextElement = document.getElementById(nextTarget)
-//             let currentElement = document.getElementById(currentTarget)
-//             nextElement!.style.height="175px"
-//             currentElement!.style.height="75px"
-//             nextElement!.style.zIndex="0"
+        //     let currentTarget = 'description-' + `${Currentindex}`
+        //     let nextTarget = 'description-' + `${Currentindex+1}`
+        //     let nextElement = document.getElementById(nextTarget)
+        //     let currentElement = document.getElementById(currentTarget)
+        //     nextElement!.style.height="175px"
+        //     currentElement!.style.height="75px"
+        //     nextElement!.style.zIndex="0"
             
 
             
-//         }
+        // }
 //     }
 
 

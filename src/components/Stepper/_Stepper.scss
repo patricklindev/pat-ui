@@ -3,6 +3,7 @@
     border-style:groove;
     border-radius:12.5px;
     padding: 1%;
+    height:100%;
 }
 
 .component-display{
@@ -13,7 +14,6 @@
 .component-display-inner {
     width:100%;
     margin:auto;
-    background-color:gray;
 }
 
 .flex-container {
@@ -24,10 +24,9 @@
 
 .description-area {
     transition:height 2s;
-    height:75px;
-    background-color: white;
     z-index: 0;
     margin-top:1%;
+    background-color:white;
 }
 
 .font-variant-main{
@@ -42,22 +41,6 @@
     font-style:italic;
     list-style: none;
     text-align: center;
-}
-
-.gray {
-    background-color: $gray-600
-}
-
-.green {
-    background-color: green;
-}
-
-.red {
-    background-color: red;
-}
-
-.orange {
-    background-color: orange
 }
 
 .ul {
@@ -80,16 +63,20 @@
 
 .sm {
     width:15vw;
-    height:fit-content;
+    height:7.5vw;
 }
 
 .md {
     width:20vw;
-    height:100%; 
+    height:8.5vw; 
 }
 
 .lg {
     width:25vw;
+    height:9.5vw;
+}
+
+.vertical {
     height:100%;
 }
 
@@ -99,3 +86,8 @@
     height:50%;
     margin-left:25%;
 }
+
+.error {
+    color:red
+}
+

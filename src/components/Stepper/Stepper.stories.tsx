@@ -1,12 +1,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Stepper from './Stepper';
-
-import Card from '../Card/Card'
 import Icon from '../Icon/Icon'
-import Dropdown from '../Dropdown/Dropdown';
 import Button from '../Button/Button';
-import { render } from '@testing-library/react';
+
 
 const buttonStyle: React.CSSProperties = {
   marginRight: '5px',
@@ -32,35 +29,44 @@ export const DefaultStepper = () => (
             label: "We need unique images",
             component: <Button
                          style={buttonStyle}
+                         className="example"
                          btnType='primary'
-                          onClick={action('Primary Button clicked')}
+                         onClick={action('Primary Button clicked')}
                             >
                           Primary Button
-                        </Button>
+                        </Button>,
+            icon: <Icon name="plus" />,
+            iconCompleted: <Icon name="plus" color="green"/>
            },
            {
              title: "Card 2",
              description: "",
              label: 'All images are mock',
              component: <Button
-             style={buttonStyle}
-             btnType='secondary'
-             onClick={action('Primary Button clicked')}
-           >
-             Primary Button
-           </Button>
+                         style={buttonStyle}
+                         className="example"
+                         btnType='secondary'
+                         onClick={action('Primary Button clicked')}
+                        >
+                        Primary Button
+                        </Button>,
+            icon: <Icon name="plus"  />,
+            iconCompleted: <Icon name="plus" color="green"/>
            },
            {
-             title: "Card 3",
+          title: "Card 3",
            description: "",
            label: "How far can we take usability?",
            component: <Button
-           style={buttonStyle}
-           btnType='danger'
-           onClick={action('Primary Button clicked')}
-         >
-           Primary Button
-         </Button>
+                       style={buttonStyle}
+                       className="example"
+                       btnType='danger'
+                       onClick={action('Primary Button clicked')}
+                      >
+                      Primary Button
+                      </Button>,
+            icon: <Icon name="plus"  />,
+            iconCompleted: <Icon name="plus" color="green"/>
            }, 
         ]}
         >
@@ -79,19 +85,25 @@ export const DefaultSquareStepper = () => (
               title: "Card 1",
               description: "",
               label: "We need unique images",
-              component: <h1> This is a test </h1>
+              component: <h2  className="example"> We can pass in HTML elements </h2>,
+              icon: <Icon name="check"  />,
+              iconCompleted: <Icon name="check" color="green"/>
              },
              {
                title: "Card 2",
                description: "",
                label: 'All images are mock',
-               component: <h2> This is a test </h2>
+               component: <h2  className="example"> This HTML element is a H2 </h2>,
+               icon: <Icon name="check"  />,
+               iconCompleted: <Icon name="check" color="green"/>
              },
              {
-               title: "Card 3",
+             title: "Card 3",
              description: "",
              label: "How far can we take usability?",
-             component: <h3> This is a test </h3>
+             component: <h2  className="example"> StepperElements, component </h2>,
+             icon: <Icon name="check"  />,
+             iconCompleted: <Icon name="check" color="green"/>
              }, 
           ]}
           StepperOrientation={"row"}
@@ -111,17 +123,23 @@ export const ConfiguringStepperSize = () => (
                 {
                  title: "Default array length 3",
                  description: "",
-                 label: "Vertical for arrays > 3"
+                 label: "Vertical for arrays > 3",
+                 icon: <Icon name="check"  />,
+                 iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title: "Define props in component",
                   description: "",
-                  label: 'Mandatory'
+                  label: 'Mandatory',
+                  icon: <Icon name="check"  />,
+                  iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title: "Feed an string array",
                 description: "",
-                label: "Keep strings short"
+                label: "Keep strings short",
+                icon: <Icon name="check"  />,
+                iconCompleted: <Icon name="check" color="green"/>
                 },
             ]}
             buttonTitleNext={"Next"}
@@ -138,18 +156,23 @@ export const ConfiguringStepperSize = () => (
                 {
                  title: "Default array length is 3",
                  description: "",
-                 label: "Vertical for arrays > 3"
-                
+                 label: "Vertical for arrays > 3",
+                 icon: <Icon name="check"  />,
+                 iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title: "Define props in component",
                   description: "",
-                  label: 'Mandatory'
+                  label: 'Mandatory',
+                  icon: <Icon name="check"  />,
+                  iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title: "Feed an string array",
                 description: "",
-                label: "Keep strings short"
+                label: "Keep strings short",
+                icon: <Icon name="check"  />,
+                 iconCompleted: <Icon name="check" color="green"/>
                 },
             ]}
             buttonTitleNext={"Next"}
@@ -165,17 +188,23 @@ export const ConfiguringStepperSize = () => (
                 {
                  title: "Default array length 3",
                  description: "",
-                 label: "Vertical for arrays > 3"
+                 label: "Vertical for arrays > 3",
+                 icon: <Icon name="check"  />,
+                 iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title: "Define props in component",
                   description: "",
-                  label: 'Mandatory'
+                  label: 'Mandatory',
+                  icon: <Icon name="check"  />,
+                  iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title: "Feed an string array",
                 description: "",
-                label: "Keep strings short"
+                label: "Keep strings short",
+                icon: <Icon name="check"  />,
+                iconCompleted: <Icon name="check" color="green"/>
                 },
             ]}
             buttonTitleNext={"Next"}
@@ -191,22 +220,28 @@ export const SkipStep = () => (
     <div>
       <h3> Skip Steps </h3>
         <Stepper
-            StepperType={"circle"}
+            // StepperType={"circle"}
             StepperElements={[
               {
                 title: "Skip Stepper Variation",
                 description: "",
-                label: "Click Skip"
+                label: "Click Skip",
+                icon: <Icon name="check"  />,
+                iconCompleted: <Icon name="check" color="green"/>
                },
                {
                  title: "Skip this step",
                  description: "",
-                 label: 'Skip this step'
+                 label: 'Skip this step',
+                 icon: <Icon name="check"  />,
+                 iconCompleted: <Icon name="check" color="green"/>
                },
                {
                  title: "Also works in higher variations",
                description: "",
-               label: "Keep strings short"
+               label: "Keep strings short",
+               icon: <Icon name="check"  />,
+               iconCompleted: <Icon name="check" color="green"/>
                }, 
             ]}
             buttonTitleNext={"Next"}
@@ -222,22 +257,28 @@ export const ErrorStep = () => (
   <div>
     <h3> Error Steps </h3>
       <Stepper
-          StepperType={"circle"}
+          // StepperType={"circle"}
           StepperElements={[
             {
               title: "Error Stepper Variation",
               description: "",
-              label: "type Error into label"
+              label: "type Error into label",
+              icon: <Icon name="check"  />,
+              iconCompleted: <Icon name="check" color="green"/>
              },
              {
                title: "You can still define title",
                description: "",
-               label: 'error'
+               label: 'error',
+               icon: <Icon name="times" color="red"/>,
+               iconCompleted: <Icon name="times" color="red"/>
              },
              {
                title: "props should have label:`error`",
              description: "",
-             label: "error"
+             label: "error",
+             icon: <Icon name="check"  />,
+             iconCompleted: <Icon name="check" color="green"/>
              }, 
           ]}
           buttonTitleNext={"Continue"}
@@ -253,37 +294,53 @@ export const AdditionalStepsStepper = () => (
     <div>
        <h3> Additional Steps </h3>
         <Stepper
-            StepperType={"square"}
+            // StepperType={"square"}
             StepperElements={[
                   {
                     title:  "The Office - Asian Jim 1",
                     description: "",
                     label: "Scene 1",
-                    component: <img className="example" src='https://i.imgur.com/vH7yTh2.jpeg'></img>
+                    component: <img className="example" src='https://i.imgur.com/vH7yTh2.jpeg'></img>,
+                    icon: <Icon name="check"  />,
+                    iconCompleted: <Icon name="check" color="green"/>
                   },
                   {
                     title:   "The Office - Asian Jim 2",
                     description: "",
                     label: "Scene 2",
-                    component: <img className="example" src='https://i.imgur.com/KN6aNzr.jpeg'></img> 
+                    component: <img className="example" src='https://i.imgur.com/KN6aNzr.jpeg'></img>,
+                    icon: <Icon name="check"  />,
+                    iconCompleted: <Icon name="check" color="green"/>
                   },
                   {
                     title:   "The Office - Asian Jim 3",
                     description: "",
                     label: "Scene 3",
-                    component: <img className="example" src='https://i.imgur.com/sU87w79.jpeg'></img> 
+                    component: <img className="example" src='https://i.imgur.com/sU87w79.jpeg'></img>,
+                    icon: <Icon name="check"  />,
+                    iconCompleted: <Icon name="check" color="green"/>
                   },
                    {
                     title:  "The Office - Asian Jim 4",
                     description: "",
                     label: "Scene 4",
-                    component: <img className="example" src='https://i.imgur.com/XSqiT6V.jpeg'></img>
+                    component: <img className="example" src='https://i.imgur.com/XSqiT6V.jpeg'></img>,
+                    icon: <Icon name="check"  />,
+                    iconCompleted: <Icon name="check" color="green"/>
+                  },
+                  {
+                    title:  "The Office - Asian Jim 4",
+                    description: "",
+                    label: "Scene 4",
+                    component: <img className="example" src='https://i.imgur.com/RTJbcIb.jpeg'></img>,
+                    icon: <Icon name="check"  />,
+                    iconCompleted: <Icon name="check" color="green"/>
                   },
             ]}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
             StepperOrientation={"row"}
-            StepperLinear={'nonlinear'}
+            // StepperLinear={'nonlinear'}
             allowSkip={true}
         >
         </Stepper>
@@ -294,28 +351,34 @@ export const ManualSelect = () => (
   <div>
     <h3> Manual Select </h3>
       <Stepper
-          StepperType={"square"}
+          // StepperType={"square"}
           StepperElements={[
               {
                   title:  "Manual Select",
                   description: "",
-                  label: "Manual Select allows you to bypass Next"
+                  label: "Manual Select allows you to bypass Next",
+                  icon: <Icon name="check"  />,
+                  iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title:  "Not Like Skip",
                   description: "",
-                  label: "Skip increments, select accepts index value of map"  
+                  label: "Skip increments, select accepts index value of map", 
+                  icon: <Icon name="check"  />,
+                  iconCompleted: <Icon name="check" color="green"/>
                 },
                 {
                   title:   "Manual Select Differance",
                   description: "",
-                  label: "Manual selecting defines useState to index and step of selected icon"   
+                  label: "Manual selecting defines useState to index and step of selected icon",
+                  icon: <Icon name="check"  />,
+                  iconCompleted: <Icon name="check" color="green"/> 
                 },
           ]}
           buttonTitleNext={"Next"}
           buttonTitlePrev={"Back"}
           StepperOrientation={"row"}
-          StepperLinear="nonlinear"
+          // StepperLinear="nonlinear"
           allowSkip={true}
       >
       </Stepper>
@@ -329,19 +392,27 @@ export const DefaultVerticalStepper = () => (
             StepperElements={[
                 {
                     title:  "Lets begin planning",
-                    description: "This is the step where you need to define your application goals,wireframe, and development path"
+                    description: "This is the step where you need to define your application goals,wireframe, and development path",
+                    icon: <Icon name="check"  />,
+                   iconCompleted: <Icon name="check" color="green"/>
                   },
                   {
                     title:  "Lets start developing",
-                    description: "This is the step where the team begins to parcel out development tasks and begin coding"  
+                    description: "This is the step where the team begins to parcel out development tasks and begin coding",
+                    icon: <Icon name="check"  />,
+                   iconCompleted: <Icon name="check" color="green"/> 
                   },
                   {
                     title:   "Lets begin live deployment",
-                    description: "This is the step where you begin to test your product on live servers"  
+                    description: "This is the step where you begin to test your product on live servers" ,
+                    icon: <Icon name="check"  />,
+                   iconCompleted: <Icon name="check" color="green"/>
                   },
                   {
                     title:  "Lets market our product",
-                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions."
+                    description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions.",
+                    icon: <Icon name="check"  />,
+                   iconCompleted: <Icon name="check" color="green"/>
                   }
             ]}
             StepperOrientation={"vertical"}
@@ -359,25 +430,25 @@ export const VerticalStepperFancy = () => (
                  StepperElements={[
                   {
                     title:  "The Office - Asian Jim 1",
-                    description: "",
+                    description: "Narration: Tell a story. Go chronologically, from start to finish. (See an example.)",
                     label: "Scene 1",
                     component: <img className="example" src='https://i.imgur.com/vH7yTh2.jpeg'></img>
                   },
                   {
                     title:   "The Office - Asian Jim 2",
-                    description: "",
+                    description: "Description: Provide specific details about what something looks, smells, tastes, sounds, or feels like. Organize spatially, in order of appearance, or by topic.",
                     label: "Scene 2",
                     component: <img className="example" src='https://i.imgur.com/KN6aNzr.jpeg'></img> 
                   },
                   {
                     title:   "The Office - Asian Jim 3",
-                    description: "",
+                    description: "Process: Explain how something works, step by step. Perhaps follow a sequence—first, second, third.",
                     label: "Scene 3",
                     component: <img className="example" src='https://i.imgur.com/sU87w79.jpeg'></img> 
                   },
                    {
                     title:  "The Office - Asian Jim 4",
-                    description: "",
+                    description: "Classification: Separate into groups or explain the various parts of a topic.",
                     label: "Scene 4",
                     component: <img className="example" src='https://i.imgur.com/XSqiT6V.jpeg'></img>
                   },
@@ -385,7 +456,7 @@ export const VerticalStepperFancy = () => (
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
             StepperOrientation={"vertical"}
-            StepperLinear={'nonlinear'}
+            // StepperLinear={'nonlinear'}
             allowSkip={true}
         >
       </Stepper>

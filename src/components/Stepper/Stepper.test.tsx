@@ -6,15 +6,15 @@ import Button from '../Button'
 
 describe ('Stepper', () => {
 
-// THE FOLLOWING 2 TESTS VERIFIES THE HTML STRUCTURE OF STEPPER
-// THE FIRST TEST VERIFIES THE HTML STRUCTURE OF A "ROW" STEPPER
-    it('should render a default horizontal stepper', () => {
-        const stepperProps : patStepperProps = {
-            stepperType: 'circle',
-            stepperOrientation: 'row',
-            stepperSize: 'sm',
+// THE FOLLOWING 2 TESTS VERIFIES THE HTML STRUCTURE OF Stepper
+// THE FIRST TEST VERIFIES THE HTML STRUCTURE OF A "ROW" Stepper
+    it('should render a default horizontal Stepper', () => {
+        const StepperProps : patStepperProps = {
+            // StepperType: 'circle',
+            StepperOrientation: 'row',
+            StepperSize: 'sm',
             allowSkip: false,
-            stepperElements: [
+            StepperElements: [
                 {
                  title: "Step 1",
                  description: "",
@@ -36,34 +36,25 @@ describe ('Stepper', () => {
             ]
         }
 
-        const wrapper = render(<Stepper {...stepperProps}></Stepper>)
+        const wrapper = render(<Stepper {...StepperProps}></Stepper>)
         // THESE ARE THE DIV CONTAINERS
-        const stepperElement = screen.getByTestId('stepper-element')
-        const centermainbody = screen.getByTestId("stepper-main-body")
-        const flexcontainer = screen.getByTestId("flex-row-container")
-        expect(stepperElement).toHaveClass('all-container-sm');
-        expect(centermainbody).toHaveClass('center-main-body');
-        expect(flexcontainer).toHaveClass('flex-row-container');
+        const centermainbody = screen.getByTestId("center-main-body")
+        const rowelementRenderCheck1 = screen.getByTestId("element-render-1")
+        const rowelementRenderCheck2 = screen.getByTestId("element-render-2")
+        expect(centermainbody).toHaveClass('center-main-body row');
+        expect(rowelementRenderCheck1).toBeInTheDocument();
+        expect(rowelementRenderCheck1).toHaveClass('component-display');
+        expect(rowelementRenderCheck2).toBeInTheDocument();
+        expect(rowelementRenderCheck2).toHaveClass('flex-container');
 
-    
-        // IF YOU ITERATE THROUGH THE STEPPERELEMENT OBJECT< WE SHOULD HAVE
-        // HTML GENERATED VIA TEMPLATES
-        const title1 = screen.queryByText('Step 1') as HTMLElement;
-        const title2 = screen.queryByText('Step 2') as HTMLElement;
-        const title3 = screen.queryByText('Step 3') as HTMLElement;
-        const label1 = screen.queryByText('This is a test for step 1') as HTMLElement;
-        const label2 = screen.queryByText('This is a test for step 2') as HTMLElement;
-        const label3= screen.queryByText('This is a test for step 3') as HTMLElement;
-        expect(title1).toBeInTheDocument();
-        expect(title2).toBeInTheDocument();
-        expect(title3).toBeInTheDocument();
-        expect(label1).toBeInTheDocument();
-        expect(label2).toBeInTheDocument();
-        expect(label3).toBeInTheDocument();
+        // Does the description area render, and does it contain a class that represents the size of the stepper
+        const checkmaprender = screen.getByTestId('description-area-0')
+        expect(checkmaprender).toBeInTheDocument();
+        expect(checkmaprender).toHaveClass('description-area sm')
 
-        // LETS TEST PRESENCE FUNCTIONS
-        // NEXT()
-        // PREV()
+    //     // LETS TEST PRESENCE FUNCTIONS
+    //     // NEXT()
+    //     // PREV()
 
         const nextFunction = wrapper.getByTestId("button-element-next")
         const prevFunction = wrapper.getByTestId("button-element-prev")
@@ -74,13 +65,13 @@ describe ('Stepper', () => {
         
     })
 
-    it( 'should render a default vertical stepper', () => {
-      const stepperProps : patStepperProps = {
-        stepperType: 'circle',
-        stepperOrientation: 'vertical',
-        stepperSize: 'sm',
+    it( 'should render a default vertical Stepper', () => {
+      const StepperProps : patStepperProps = {
+        // StepperType: 'circle',
+        StepperOrientation: 'vertical',
+        StepperSize: 'sm',
         allowSkip: false,
-        stepperElements: [
+        StepperElements: [
           {
             title: "Step 1",
             description: "",
@@ -101,68 +92,16 @@ describe ('Stepper', () => {
            },
         ]
     }
-    const wrapper = render(<Stepper {...stepperProps}></Stepper>)
-    const verticalstepper0 = screen.getByTestId("stepper-vertical-0")
-    const verticalstepper1 = screen.getByTestId("stepper-vertical-1")
-    const verticalstepper2 = screen.getByTestId("stepper-vertical-2")
-    expect(verticalstepper0).toHaveClass('vertical-description');
-    expect(verticalstepper1).toHaveClass('vertical-description');
-    expect(verticalstepper2).toHaveClass('vertical-description');
-
-    // IS There a icon area produced?
-    const verticalIconArea0 = screen.getByTestId('icon-area-0');
-    const verticalIconArea1 = screen.getByTestId('icon-area-1');
-    const verticalIconArea2 = screen.getByTestId('icon-area-2');
-    expect(verticalIconArea0).toHaveClass('icon-area');
-    expect(verticalIconArea1).toHaveClass('icon-area');
-    expect(verticalIconArea2).toHaveClass('icon-area');
-
-    // At initial load
-    const nextFunction = wrapper.getByTestId("button-element-next")
-    const prevFunction = wrapper.getByTestId("button-element-prev")
-    expect(nextFunction).toBeInTheDocument();
-    expect(nextFunction).toBeDefined()
-    expect(prevFunction).toBeInTheDocument();
-    expect(prevFunction).toBeDefined()
-
-
-    })
-
-
-    const exampleFunction = jest.fn
-    it("We should be able to see certain functions load initially", (exampleFunction) => {
-      const stepperProps : patStepperProps = {
-        stepperType: 'circle',
-        stepperOrientation: 'row',
-        stepperSize: 'sm',
-        allowSkip: false,
-        stepperElements: [
-            {
-             title: "Step 1",
-             description: "",
-             label: 'This is a test for step 1',
-             component: ""
-            },
-            {
-              title: "Step 2",
-              description: "",
-              label: 'This is a test for step 2',
-              component: ""
-            },
-            {  
-              title: "Step 3",
-              description: '',
-              label:'This is a test for step 3',
-              component: ""
-            },
-        ]
-    }
-    // const wrapper = render(<Stepper {...stepperProps}></Stepper>)
-    // const next = jest.fn
-    // const prev = jest.fn
-    // const nextFunction = wrapper.getByTestId("button-element-next")
-    // const spy = jest.spyOn(next);
-    // const isNext= Stepper.next()
-    // expect(spy).toHaveBeenCalled();
+        const wrapper = render(<Stepper {...StepperProps}></Stepper>)
+        const centermainbody = screen.getByTestId("center-main-body")
+        expect(centermainbody).toHaveClass('center-main-body vertical');
+  
+        const rowelementRenderCheck2 = wrapper.getByTestId("element-render-2")
+        const rowelementRenderCheck3 = wrapper.getByTestId("element-render-3")
+       
+        expect(rowelementRenderCheck2).toBeInTheDocument();
+        expect(rowelementRenderCheck2).toHaveClass('vertical');
+        expect(rowelementRenderCheck3).toBeInTheDocument();
+        expect(rowelementRenderCheck3).toHaveClass('component-display');
     })
 })

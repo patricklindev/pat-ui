@@ -1,5 +1,11 @@
 import { IconSize } from '../Icon/Icon';
-import { getIconColor, getIconName, getSizeName } from './helper';
+import {
+  getCurrentStarRating,
+  getIconColor,
+  getIconName,
+  getSizeName,
+} from './helper';
+import { IStars } from './Rating';
 
 describe('getIconName', () => {
   it('should return a star name string based on star value number arg', () => {
@@ -70,5 +76,39 @@ describe('getSizeName', () => {
     const expectedResult6 = 'large';
     const result6 = getSizeName(...mockArg6);
     expect(result6).toBe(expectedResult6);
+  });
+});
+
+describe('getCurrentStarRating', () => {
+  it('should return a total star rating number based on stars array', () => {
+    const mockArg1: IStars = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index,
+      };
+    });
+    const expectedResult1 = 0;
+    const result1 = getCurrentStarRating(mockArg1);
+    expect(result1).toBe(expectedResult1);
+
+    const mockArg2: IStars = new Array(10).fill(0).map((_, index) => {
+      return {
+        value: 1,
+        index,
+      };
+    });
+    const expectedResult2 = 10;
+    const result2 = getCurrentStarRating(mockArg2);
+    expect(result2).toBe(expectedResult2);
+
+    const mockArg3: IStars = new Array(15).fill(0).map((_, index) => {
+      return {
+        value: 0.5,
+        index,
+      };
+    });
+    const expectedResult3 = 7.5;
+    const result3 = getCurrentStarRating(mockArg3);
+    expect(result3).toBe(expectedResult3);
   });
 });

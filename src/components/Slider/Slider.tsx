@@ -4,7 +4,7 @@ import { classNames } from '../../utils/classNames';
 
 export type SliderSize = 'lg' | 'sm';
 export type Themes = 'success' | 'primary' | 'secondary' | 'warning' | 'danger' | 'dark';
-export type SliderOrientation = 'vertical';
+export type SliderOrientation = 'vertical' | 'horizontal';
 export type ThumbSize = "lg" | "med" | "sm"
 
 
@@ -52,7 +52,8 @@ export const Slider: FC<ISliderProps> = (props) => {
         [`thumb-${thumbSize}`]: true,
         [`slider-${sliderTheme}`]: true,
         [`thumb-${thumbTheme}`]: true,
-        [`slider-${sliderOrientation}`]: true,
+        [`orientation-${sliderOrientation}`]: true,
+        [`disabled-${disabled}`]:true,
     })
 
     if (className) {
@@ -72,10 +73,11 @@ export const Slider: FC<ISliderProps> = (props) => {
     let slider =
         <div className='slider_div'>
             <input
+                data-testid="slider-element"
                 type="range"
                 min={min}
                 max={max}
-                value={value}
+                //value={value}
                 defaultValue={initialValue}
                 step={step}
                 className={styleClasses}
@@ -83,7 +85,7 @@ export const Slider: FC<ISliderProps> = (props) => {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setValue(parseInt(event.target.value))
                     // console.log(value)
-                    if (onChange) {
+                    if (onChange && !disabled) {
                         //Trigger callback function
                         onChange(value);
                     }
@@ -106,6 +108,7 @@ export const Slider: FC<ISliderProps> = (props) => {
 
 //Default props for basic slider
 Slider.defaultProps = {
+    sliderTheme: "primary",
     min: 0,
     max: 100,
     initialValue: 0,

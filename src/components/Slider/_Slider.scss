@@ -5,7 +5,7 @@
     @include slider-size($slider-width,
         $slider-height, $thumb-width, $thumb-height);
 
-    @include slider-style($primary, rgb(85, 221, 180));
+    // @include slider-style($primary, rgb(85, 221, 180));
 }
 
 
@@ -20,6 +20,10 @@
 
 .slider-success {
     @include slider-style($success, rgb(56, 206, 76));
+}
+
+.slider-primary {
+    @include slider-style($primary, rgb(85, 221, 180))
 }
 
 .slider-secondary {
@@ -38,15 +42,15 @@
     @include slider-style($dark, $black)
 }
 
-.thumb-lg{
+.thumb-lg {
     @include thumb-size($thumb-width-lg, $thumb-height-lg)
 }
 
-.thumb-med{
+.thumb-med {
     @include thumb-size($thumb-width, $thumb-height)
 }
 
-.thumb-sm{
+.thumb-sm {
     @include thumb-size($thumb-width-sm, $thumb-height-sm)
 }
 
@@ -74,26 +78,35 @@
     @include thumb-style($dark)
 }
 
-.tickLine{
+.tickLine {
     display: flex;
     flex-direction: row;
     width: $slider-width;
     justify-content: space-between;
 }
 
-.tickItem{
+.tickItem {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.tickMark{
-    margin:0px;
+.tickMark {
+    margin: 0px;
 }
 
-.slider-vertical{
+.orientation-vertical {
     width: $vertical-slider-width;
     margin-top: $vertical-slider-margin;
     margin-bottom: $vertical-slider-margin;
-    transform: rotate(270deg); 
+    transform: rotate(270deg);
+}
+
+.disabled-true {
+    @include slider-style($gray-600, $gray-600);
+    @include thumb-style($gray-600);
+
+    &::-webkit-slider-thumb {
+        cursor: not-allowed;
+    }
 }

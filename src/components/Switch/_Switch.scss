@@ -11,7 +11,7 @@ $switch-sm-palette-height: 10px;
 $switch-sm-palette-width: 26px;
 $switch-sm-thumb-height: 16px;
 $switch-sm-thumb-width: 16px;
-$switch-margin-right: 4rem;
+$switch-margin-right: 50px;
 $switch-disabled-opacity: 0.4 !default;
 
 /*mixin*/
@@ -177,7 +177,6 @@ input:checked + .slider:before {
 //   background: rgba(63, 81, 181, 0.08);
 //   border-radius: 19px;
 // }
-
 
 /*Small switch*/
 .slider.round.sm{

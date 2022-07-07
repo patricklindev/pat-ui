@@ -1,6 +1,5 @@
 import React, {
     AllHTMLAttributes,
-    AriaAttributes,
     FC,
     MouseEvent,
     EventHandler,
@@ -10,9 +9,7 @@ import React, {
 import { classNames } from '../../utils/classNames';
 
 
-//SECTION 2: 
-//DEFINE OPTIONS AVAILABLE TO YOUR END USER
-
+//Types for props
 export type SwitchSize = 'sm';
 export type SwitchColor = 
 | 'primary' 
@@ -27,8 +24,7 @@ export type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
 export type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
 export type Toggle = 'on' | 'off'
 
-//SECTION 3:
-
+//Props provided for users
 export interface ISwitchProps {
     /** set customized style */
     className?: string;
@@ -44,16 +40,15 @@ export interface ISwitchProps {
     disabled?: boolean;
     /** set switch onChecked*/
     onChecked?: MouseEventHandler;
-    /** set switch onChange*/
-    onChange?: ChangeEventHandler;
-    /** set switch  */
-    onClick?: MouseEventHandler;
+    /** set switch action  */
+    onAction?: MouseEventHandler;
+    // /** set switch onChange*/
+    // onChange?: ChangeEventHandler;
+    /** set switch onClick */
+    // onClick?: MouseEventHandler;
+
 }
 
-//SECTION 4: 
-// MAke sure your props are exported
-// type NativeSwtichProps = ISwitchProps & HTMLAttributes<HTMLElement>;
-// type NativeAchorSwitchProps = ISwitchProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
 
 /**
@@ -64,37 +59,36 @@ export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
  * ```
  */
 
-//SECTION 5: DEFINE HTML/ LOGIC/ PROPS/ VARIABLE DECLARATIONS
-
 export const Switch: FC<SwitchProps> = (props) => {
-    const { className, color, size, disabled, toggle, onChecked, onChange, onClick, label, children, ...rest} = props;
+    const { className, color, sizes, disabled, toggle, onChecked, onAction, label, ...rest} = props;
+    const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
+    console.log('internal:', isChecked)
+
     let styleClasses = classNames('slider round', {
         [`${color}`]: !!color,
-        [`${size}`]: !!size,
+        [`${sizes}`]: !!sizes,
         disabled: !!disabled
     })
-
-    let strSwitch: string = 'switch'
-
-    const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
 
     const onInputChange = () => {
         setIsChecked(!isChecked);
       };
-
+    
     if (className) {
         styleClasses += ' ' + className;
     }
-    
+
+    let strSwitch: string = 'switch'
+
     let Switch = (
         <label className={strSwitch}>  
             <input 
                 type="checkbox"
                 checked={isChecked}
                 disabled={disabled}
-                size={size}
                 onChange={onInputChange}
                 onClick={onChecked}
+                onClickCapture={onAction}
                 {...(rest )}
             />
             <span color={color} className={styleClasses}/>

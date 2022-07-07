@@ -24,13 +24,14 @@ const emails = [
   },
 ];
 
-export const SimpleDialogue = () => {
+export const SimpleDialog = () => {
   const [modalShown, setModalShown] = useState(false);
 
   const toggleModal = () => setModalShown(!modalShown);
 
   return (
-    <div className="simple-dlg">
+    <div className="simple-dlg dlg-box">
+      {/* add Selected: {selectedValue later.} */}
       <Button
         btnType="default"
         disabled={false}
@@ -67,5 +68,50 @@ export const SimpleDialogue = () => {
         </DialogList>
       </Dialogue>
     </div>
+  );
+};
+
+export const DiffTypeDialog = () => {
+  const [modalShown, setModalShown] = useState(false);
+
+  const toggleModal = () => setModalShown(!modalShown);
+
+  return (
+    <>
+      <h3>Simple Dialog: </h3>
+      <SimpleDialog />
+      <h3>Alert Dialog: </h3>
+      <div className="alert-dlg dlg-box">
+        <Button
+          btnType="default"
+          disabled={false}
+          onClick={toggleModal}
+        >
+          Alert Dialog
+        </Button>
+        <Dialogue
+          isOpen={modalShown}
+          dlgOnClick={toggleModal}
+        >
+          <DialogTitle>Alert Heading</DialogTitle>
+        </Dialogue>
+      </div>
+      <h3>Form Dialog: </h3>
+      <div className="form-dlg dlg-box">
+        <Button
+          btnType="default"
+          disabled={false}
+          onClick={toggleModal}
+        >
+          Form Dialog
+        </Button>
+        <Dialogue
+          isOpen={modalShown}
+          dlgOnClick={toggleModal}
+        >
+          <DialogTitle>Form Heading</DialogTitle>
+        </Dialogue>
+      </div>
+    </>
   );
 };

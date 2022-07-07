@@ -1,4 +1,4 @@
-.simple-dlg {
+.dlg-box {
   height: 40vh;
   display: flex;
   align-items: center;
@@ -34,7 +34,6 @@
 
 .modal-box {
   height: fit-content;
-  width: 15rem;
   position: relative;
   background-color: #383838;
 }

@@ -42,7 +42,6 @@ $switch-disabled-opacity: 0.4 !default;
     width: $switch-width;
     height: $switch-height;
     margin-right: $switch-margin-right;
-    // padding: 30px;
 }
   
 /* Hide default HTML checkbox */
@@ -144,7 +143,7 @@ input:checked + .slider:before {
   transform: translate(17px);
 }
 
-/* Rounded sliders */
+/* Rounded palettes */
 .slider.round {
   border-radius: 7px;
 }
@@ -156,9 +155,30 @@ input:checked + .slider:before {
   box-shadow: none;
 }
 
+/* Rounded thumbs */
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* thumb-wrapper */
+// span.slider.round:before {
+//   /* Auto layout */
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 9px;
+
+//   position: absolute;
+//   width: 38px;
+//   height: 38px;
+//   right: 0px;
+//   top: calc(50% - 38px/2);
+
+//   /* palette / primary / background */
+//   background: rgba(63, 81, 181, 0.08);
+//   border-radius: 19px;
+// }
+
 
 /*Small switch*/
 .slider.round.sm{

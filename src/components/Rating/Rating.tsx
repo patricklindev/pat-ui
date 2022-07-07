@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CSS from "csstype";
 
-interface propTypes {
+export interface propTypes {
   className?: string;
   edit?: boolean;
   half?: boolean;
@@ -79,7 +79,7 @@ class Rating extends Component<propTypes, stateTypes> {
   
     onChange: () => { },
     labels: [],
-    labelIndex: null
+    labelIndex: 0
   };
 
   constructor(props:propTypes) {
@@ -240,13 +240,15 @@ class Rating extends Component<propTypes, stateTypes> {
     )
   }
 
-  renderStars() {
-    const { halfStar, stars, uniqueness, config } = this.state
+  renderStars(label: string) {
+    const { halfStar, stars, uniqueness, config, labelIndex } = this.state
     const { color1, color2, size, char, half, edit } = config
     return stars.map((star: { active: any; }, i: React.Key | undefined) => {
       let starClass = ''
+      let active = star.active;
       if (half && !halfStar.hidden && halfStar.at === i) {
         starClass = `react-stars-${uniqueness}`
+        active = true;
       }
       const style = Object.assign({}, defaultStyles, {
         color: star.active ? color2 : color1,
@@ -258,8 +260,13 @@ class Rating extends Component<propTypes, stateTypes> {
           className={starClass}
           style={style}
           key={i}
+          role='star'
+          data-label = {label}
+          data-active = {active}
+          data-edit={edit}
           data-index={i}
           data-forhalf={char}
+          data-halfIndex={labelIndex}
           onMouseOver={this.mouseOver.bind(this)}
           onMouseMove={this.mouseOver.bind(this)}
           onMouseLeave={this.mouseLeave.bind(this)}
@@ -312,7 +319,7 @@ class Rating extends Component<propTypes, stateTypes> {
       <div className={className} style={parentStyles}>
         {this.state.config.half ?
           this.renderHalfStarStyleElement() : ''}
-        {this.renderStars()}
+        {this.renderStars(label)}
         {label}
       </div>
     )

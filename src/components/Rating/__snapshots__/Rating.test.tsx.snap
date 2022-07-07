@@ -3,45 +3,70 @@
 exports[`Rating should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    style="overflow: hidden; position: relative;"
+    style="overflow: hidden;"
   >
     <span
       class=""
+      data-active="false"
+      data-edit="true"
       data-forhalf="★"
+      data-halfindex="0"
       data-index="0"
-      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+      data-label=""
+      role="star"
+      style="position: relative; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
     >
       ★
     </span>
     <span
       class=""
+      data-active="false"
+      data-edit="true"
       data-forhalf="★"
+      data-halfindex="0"
       data-index="1"
-      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+      data-label=""
+      role="star"
+      style="position: relative; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
     >
       ★
     </span>
     <span
       class=""
+      data-active="false"
+      data-edit="true"
       data-forhalf="★"
+      data-halfindex="0"
       data-index="2"
-      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+      data-label=""
+      role="star"
+      style="position: relative; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
     >
       ★
     </span>
     <span
       class=""
+      data-active="false"
+      data-edit="true"
       data-forhalf="★"
+      data-halfindex="0"
       data-index="3"
-      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+      data-label=""
+      role="star"
+      style="position: relative; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
     >
       ★
     </span>
     <span
       class=""
+      data-active="false"
+      data-edit="true"
       data-forhalf="★"
+      data-halfindex="0"
       data-index="4"
-      style="position: relative; overflow: hidden; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
+      data-label=""
+      role="star"
+      style="position: relative; cursor: pointer; display: block; float: left; color: gray; font-size: 30px;"
     >
       ★
     </span>

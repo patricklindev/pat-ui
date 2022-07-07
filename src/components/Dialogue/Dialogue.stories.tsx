@@ -27,22 +27,8 @@ export const SimpleDialogue = () => {
   const toggleModal = () => setModalShown(!modalShown);
 
   return (
-    <div className="default-dlg">
-      <button className="modal-btn" onClick={toggleModal}>
-          Click me!
-      </button>
-      {/* you need to pass title, content, and actions via children props */}
-      {/* you had the right idea, just have to make some tweaks for it to pass the test! */}
-      <Dialogue
-        className='list-dlg'
-        title='Set backup account'
-        dlgList={true}
-        dlgListContent='janedoe@gmail.com'
-        dlgBulletPoint="johndoe@yahoo.com"
-        isOpen={modalShown}
-        dlgOnClick={toggleModal}
-      >
-      </Dialogue>
+    <div className="simple-dlg">
+      Under construction!!!
     </div>
   );
 };

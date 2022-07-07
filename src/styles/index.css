@@ -1532,7 +1532,7 @@ main {
   color: #dc3545;
 }
 
-.default-dlg {
+.simple-dlg {
   height: 40vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1545,7 +1545,7 @@ main {
           justify-content: center;
 }
 
-.default-dlg img {
+.simple-dlg img {
   width: 10%;
 }
 

@@ -40,12 +40,12 @@ interface stateTypes {
 
 const parentStyles: CSS.Properties = {
   overflow: 'hidden',
-  position: 'relative'
+  // position: 'relative'
 }
 
 const defaultStyles: CSS.Properties = {
   position: 'relative',
-  overflow: 'hidden',
+  // overflow: 'hidden',
   cursor: 'pointer',
   display: 'block',
   float: 'left'

@@ -2,6 +2,7 @@ import { IconSize } from '../Icon/Icon';
 import {
   convertSizeNameToSizeNumber,
   getCurrentStarRating,
+  getFullStars,
   getIconColor,
   getIconName,
   getSizeName,
@@ -85,7 +86,7 @@ describe('getCurrentStarRating', () => {
     const mockArg1: IStars = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
-        index,
+        index: index + 1,
       };
     });
     const expectedResult1 = 0;
@@ -95,7 +96,7 @@ describe('getCurrentStarRating', () => {
     const mockArg2: IStars = new Array(10).fill(0).map((_, index) => {
       return {
         value: 1,
-        index,
+        index: index + 1,
       };
     });
     const expectedResult2 = 10;
@@ -105,7 +106,7 @@ describe('getCurrentStarRating', () => {
     const mockArg3: IStars = new Array(15).fill(0).map((_, index) => {
       return {
         value: 0.5,
-        index,
+        index: index + 1,
       };
     });
     const expectedResult3 = 7.5;
@@ -130,5 +131,26 @@ describe('convertSizeNameToSizeNumber', () => {
     const expectedResult3 = 42;
     const result3 = convertSizeNameToSizeNumber(mockArg3);
     expect(result3).toBe(expectedResult3);
+  });
+});
+
+describe('getFullStars', () => {
+  it('should return a new stars array based on prev stars array and index number', () => {
+    const starArr = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index: index + 1,
+      };
+    });
+    const mockArg1: [IStars, number] = [starArr, 3];
+    const expectedResult1 = [
+      { value: 1, index: 1 },
+      { value: 1, index: 2 },
+      { value: 1, index: 3 },
+      { value: 0, index: 4 },
+      { value: 0, index: 5 },
+    ];
+    const result1 = getFullStars(...mockArg1);
+    expect(result1).toEqual(expectedResult1);
   });
 });

@@ -1,32 +1,29 @@
-import React from 'react';
-import {useState} from 'react';
-import { action } from '@storybook/addon-actions';
+import React, { useState, FC } from 'react';
 import Accordion from './Accordion';
-import Items from './ItemsComponent/Items';
-
+import './_Accordion.scss'
 
 export default {
   title: 'Accordion',
   component: Accordion,
 };
 
-const buttonStyle: React.CSSProperties = {
+const accordionStyle: React.CSSProperties = {
   marginRight: '5px',
   marginTop: '5px',
 };
 
-export const DefaultAccordion = () => (
-  <Items/>
-);
+  export const DefaultAccordion = (props) => {
+    return (
+      <React.Fragment>
+        <Accordion/>
+      </React.Fragment>
+    );
+  };
 
-// export const DiffSizeAccordion = () => (
-//   <div>
-//     Test
-//   </div>
-// );
-
-// export const DiffTypeAccordion = () => (
-//   <div>
-//     Hello
-//   </div>
-// );
+export const DisabledAccordion = (props) => {
+  return (
+    <Accordion
+      disabled
+    />
+    )
+  };

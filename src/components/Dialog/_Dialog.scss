@@ -12,6 +12,9 @@
     z-index: 999;
     position: sticky;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
 
     h3 {
         padding-left: $spacer;
@@ -19,17 +22,8 @@
 }
 
 .dlg-alert {
-    width: 70%;
+    width: 60%;
 
-    #child-container {
-        display: flex;
-        justify-content: end;
-
-        a {
-
-            color: $blue  !important;
-        }
-    }
 }
 
 .dlg-simple {
@@ -38,36 +32,6 @@
 
 }
 
-.dlg-form {
-    padding: .25$spacer;
-
-    input {
-        margin-bottom: $spacer;
-        padding: $spacer;
-        width: 100%;
-        border: none;
-        border-bottom: 1px $gray-800 solid;
-    }
-
-    p {
-        padding: $spacer;
-        font-size: $font-size-sm;
-        color: #757575;
-    }
-
-    #child-container {
-
-        div {
-            display: flex;
-            justify-content: end;
-        }
-
-        a {
-            padding-left: $spacer;
-            color: $blue  !important;
-        }
-    }
-}
 
 // overlay 
 
@@ -99,5 +63,37 @@
 
 .dlg-alert-container {
     background: rgba(0, 0, 0, .9);
+}
 
+.dialog-content {
+    p {
+        padding: $spacer;
+        font-size: $font-size-sm;
+        color: $dark;
+    }
+
+}
+
+.dialog-title {
+    // font-weight: $bold;
+}
+
+.dialog-actions {
+    input {
+        margin-bottom: $spacer;
+        padding: $spacer;
+        width: 100%;
+        border: none;
+        border-bottom: 1px $gray-800 solid;
+    }
+
+    div {
+        display: flex;
+        justify-content: end;
+    }
+
+    a{
+        padding-left: $spacer;
+        color: $blue  !important;
+    }
 }

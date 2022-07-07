@@ -95,8 +95,10 @@ export const DialogAlert = () => {
             {exampPara}
           </DialogContents>
           <DialogActions>
+            <div>
             <Button btnType="link"> Disagree</Button>
             <Button btnType="link" onClick={() => setshow(false)}> Agree and Close</Button>
+            </div>
           </DialogActions>
         </Dialog> : null}
     </div>
@@ -113,20 +115,52 @@ export const DialogForm = () => {
         <Dialog
           id='example'
           dialogType='form'
-          dialogTitle='Subscribe'
-          dialogParagraph={exampPara}
           onClick={action('Dialog closed')}
           closeHandlerProps={() => {
             setshow(false)
           }} >
-          <input onChange={(e) => setinputvalue(e.target.value)} value={inputValue} placeholder="Enter email here"></input>
-          <div >
-            <a onClick={action('Dialog closed')}> Disagree</a>
-            <a onClick={() => {
-              alert(`The Value is: ${inputValue}`)
-              setshow(false)
-            }}> Agree and Close</a>
-          </div>
+          <DialogTitle>
+            <h1>A Super Google Title</h1>
+          </DialogTitle>
+
+          <DialogContents>
+          <p> {exampPara + exampPara}</p> 
+          </DialogContents>
+
+          <DialogActions>
+            <input onChange={(e) => setinputvalue(e.target.value)} value={inputValue} placeholder="Enter email here"></input>
+            <div >
+              <a onClick={action('Dialog closed')}> Disagree</a>
+              <a onClick={() => {
+                alert(`The Value is: ${inputValue}`)
+                setshow(false)
+              }}> Agree and Close</a>
+            </div>
+          </DialogActions>
+        </Dialog> :
+        <Button
+          onMouseDown={action('Dialog opened')}
+          onClick={() => setshow(show => !show)}>Show</Button>
+      }
+    </div>)
+};
+
+export const DialogOther = () => {
+  const [show, setshow] = useState(false)
+  const [inputValue, setinputvalue] = useState("")
+  return (
+    <div>
+      {show ?
+        <Dialog
+          id='example'
+          dialogType='form'
+          onClick={action('Dialog closed')}
+          closeHandlerProps={() => {
+            setshow(false)
+          }} >
+          <DialogTitle>
+            <h1>A Super Google Title</h1>
+          </DialogTitle>
         </Dialog> :
         <Button
           onMouseDown={action('Dialog opened')}

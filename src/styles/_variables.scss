@@ -148,7 +148,7 @@ $enable-pointer-cursor-for-buttons: true !default;
 
 // border
 
-$border-width: 1px !default;
+$border-width: 2px !default;
 $border-color: $gray-300 !default;
 
 $border-radius: 0.25rem !default;
@@ -293,3 +293,24 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+// different pagination background color
+$pagination-primary-background-outlined: rgba($cyan, 0.2);
+$pagination-primary-background-outlined-hover: rgba($cyan, 0.5);
+$pagination-secondary-background-outlined: rgba($secondary, 0.2);
+$pagination-secondary-background-outlined-hover: rgba($secondary, 0.5);
+$pagination-primary-background-filled: rgba($cyan, 0.8);
+$pagination-primary-background-filled-hover: rgba($cyan, 0.9);
+$pagination-secondary-background-filled: rgba($secondary, 0.8);
+$pagination-secondary-background-outlined-hover: rgba($secondary, 0.9);
+$pagination-disabled-background: rgba($gray-400, 0.65);
+
+// different pagination button size
+$small-pagination-button-size: 32px;
+$medium-pagination-button-size: 36px;
+$large-pagination-button-size: 40px;
+
+// different pagination font size
+$small-pagination-font-size: 0.875em;
+$medium-pagination-font-size: 1.2em;
+$large-pagination-font-size: 1.4em;

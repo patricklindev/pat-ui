@@ -1,8 +1,8 @@
 import React from 'react';
 import { render,fireEvent } from '@testing-library/react';
 import Checkbox from './Checkbox';
-import { icon } from '@fortawesome/fontawesome-svg-core';
-
+import { IconPath } from './Icons';
+import {ICheckboxProps} from './Checkbox';
 
 describe('<Checkbox />',()=>{
 
@@ -100,11 +100,81 @@ describe('<Checkbox />',()=>{
     expect(iconSVG.firstChild).toHaveClass('bg-iChecked-path-secondary')
   })
 
-  it.todo('should be able to decide the icons to represent check/unchecked state from props')
+  it('should be able to decide the icons to represent check/unchecked state from props',()=>{
+    const {getByTestId} = render(<Checkbox icon='home'/>)
 
-  it.todo('should be able to define the label from the props')
+    const iconSVG = getByTestId('iconSVG')
+    const iconSVGPath = getByTestId('iconSVGPath')
 
-  it.todo('can control the check/uncheck state from the props')
+    expect(iconSVG.getAttribute('viewBox')).toBe(IconPath['home'].viewBox)
+    expect(iconSVGPath.getAttribute('d')).toBe(IconPath['home'].path)
+  })
 
-  it.todo('can listen to the change of check/uncheck state from outside of the component by passing the onChange callback from props')
+  test('when user define icon props, not define iconTheme props, svg path fill value will be default when uncheck',()=>{
+    const {getByTestId} = render(<Checkbox icon='home'/>)
+
+    const iconSVG = getByTestId('iconSVG')
+    expect(iconSVG.firstChild).toHaveClass('bg-iOther-path-default')
+  })
+
+  test('when user define icon props, not define iconTheme props, svg path fill value will be default when check',()=>{
+    const {getByTestId} = render(<Checkbox icon='home'/>)
+
+    const iconSVG = getByTestId('iconSVG')
+    const checkBoxInput = getByTestId('inputCheckBox')
+
+    expect(iconSVG.firstChild).not.toHaveClass('bg-iOther-check-path-default')
+
+    fireEvent.click(checkBoxInput)
+
+    expect(iconSVG.firstChild).toHaveClass('bg-iOther-check-path-default')
+  })
+
+  test('when user define iconTheme and icon props,svg path fill value should be iconTheme value when check',()=>{
+    const {getByTestId} = render(<Checkbox iconTheme = 'primary' icon='home'/>)
+
+    const checkBoxInput = getByTestId('inputCheckBox')
+    const iconSVG = getByTestId('iconSVG')
+
+    expect(iconSVG.firstChild).not.toHaveClass('bg-iOther-check-path-primary')
+    fireEvent.click(checkBoxInput)
+    expect(iconSVG.firstChild).toHaveClass('bg-iOther-check-path-primary')
+  })
+
+  test('when user define icon props, svg wrapper will remove border',()=>{
+    const {getByTestId} = render(<Checkbox icon='home'/>)
+
+    const targetElement = getByTestId('iconSpan')
+    expect(targetElement).toHaveClass('bg-iOther-default')
+  })
+
+  it('should be able to define the label from the props',()=>{
+    const {getByText} = render(<Checkbox label='hello,world'/>)
+
+    expect(getByText('hello,world')).toBeInTheDocument()
+  })
+
+  it('can control the check/uncheck state from the props',()=>{
+    const {getByTestId} = render(<Checkbox checked/>)
+    const checkBoxInput = getByTestId('inputCheckBox')
+
+    expect(checkBoxInput).toBeChecked()
+  })
+
+  it('can listen to the change of check/uncheck state from outside of the component by passing the onChange callback from props',()=>{
+
+    const btnLinkProps: ICheckboxProps = {
+      onChange: jest.fn(),
+    };
+
+    const {getByTestId} = render(<Checkbox {...btnLinkProps}/>)
+
+    const checkBoxInput = getByTestId('inputCheckBox')
+
+    fireEvent.change(checkBoxInput, {target: {checked: false}});
+    expect(checkBoxInput).not.toBeChecked()
+
+    fireEvent.change(checkBoxInput, {target: {checked: true}});
+    expect(checkBoxInput).toBeChecked()
+  })
 })

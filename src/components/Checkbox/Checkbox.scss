@@ -185,6 +185,56 @@
   }
 }
 
+.bg-iOther-path-default{
+  fill: $gray-500;
+}
+
+.bg-iOther-check-path{
+  &-primary{
+    fill: $primary; 
+  }
+
+  &-secondary{
+    fill: $secondary; 
+  }
+
+  &-success{
+    fill: $success; 
+  }
+
+  &-info{
+    fill: $info;
+  }
+
+  &-warning{
+    fill:$warning;
+  }
+
+  &-danger{
+    fill: $danger;
+  }
+
+  &-default{
+    fill: $black;
+  }
+
+  &-dark{
+    fill: $dark;
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
+    color: #000;
+  }
+}
+
+
+.bg-iOther-default{
+  border: none !important; 
+  border-radius: 30% !important;
+}
+
 
 .bg-iCheck{
   &-primary{

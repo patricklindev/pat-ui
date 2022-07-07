@@ -3,8 +3,6 @@ import { classNames } from '../../utils/classNames';
 import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
 
-import Icon from './Icon'
-
 export type boxSize = 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
 export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card' | 'check';
 export type themeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'default';
@@ -42,7 +40,7 @@ export interface ICheckboxProps {
 
 export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
-  const { checkSize, checked, checkBgTheme,checkedBgTheme } = props;
+  const { checkSize, checked, checkBgTheme,checkedBgTheme, icon, iconTheme,label } = props;
 
   // toggle the checked state
   const [isCheck,setIsCheck] = useState(checked ? checked : false)
@@ -58,9 +56,17 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
       [`bg-iCheck-${checkedBgTheme}`]: isCheck,
     }
   }else{
-    classNameSpan = {
-      [`checkbox-${checkSize}`]: !!checkSize,
-      [`bg-iCheck-${checkBgTheme}`]: !!checkBgTheme,
+
+    if(icon !== 'check'){
+      classNameSpan = {
+        [`checkbox-${checkSize}`]: !!checkSize,
+        'bg-iOther-default': true,
+      }
+    }else{
+      classNameSpan = {
+        [`checkbox-${checkSize}`]: !!checkSize,
+        [`bg-iCheck-${checkBgTheme}`]: !!checkBgTheme,
+      }
     }
   }
   // add class name
@@ -74,9 +80,23 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
       [`bg-iChecked-path-${checkedBgTheme}`]: isCheck,
     }
   }else{
-    classNameSVG = {
-      [`bg-iCheck-path-${checkBgTheme}`]: !isCheck,
-      [`bg-iChecked-path-${checkBgTheme}`]: isCheck,
+    if(icon !== 'check'){
+      if(iconTheme){
+        classNameSVG = {
+          'bg-iOther-path-default': !isCheck,
+          [`bg-iOther-check-path-${iconTheme}`]: isCheck
+        }
+      }else{
+        classNameSVG = {
+          'bg-iOther-path-default': !isCheck,
+          'bg-iOther-check-path-default': isCheck
+        }
+      }
+    }else{
+      classNameSVG = {
+        [`bg-iCheck-path-${checkBgTheme}`]: !isCheck,
+        [`bg-iChecked-path-${checkBgTheme}`]: isCheck,
+      }
     }
   }
 
@@ -88,13 +108,14 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
   return (
     <div className='checkbox-container'>
-      <input type='checkbox' onChange={handleChange} id={id} data-testid='inputCheckBox'/> 
-      <label htmlFor={id}>
+      <input type='checkbox' onChange={handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
+      <label htmlFor={id} data-testid='iconLabel'>
         <span className={styleClassNameSpan} data-testid='iconSpan'>
-          <svg viewBox={IconPath['check'].viewBox} role="img" data-testid='iconSVG'>
-            <path d={IconPath['check'].path} className={styleClassNameSVG}/>
+          <svg viewBox={IconPath[`${icon}`].viewBox} role="img" data-testid='iconSVG'>
+            <path d={IconPath[`${icon}`].path} className={styleClassNameSVG} data-testid='iconSVGPath'/>
           </svg>
         </span>
+        {label}
       </label> 
     </div>
   )
@@ -102,7 +123,8 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
 Checkbox.defaultProps = {
   checkBgTheme : 'default',
-  checkSize: 'normal'
+  checkSize: 'normal',
+  icon: 'check'
 }
 
 export default Checkbox;

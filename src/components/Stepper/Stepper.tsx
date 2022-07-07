@@ -49,14 +49,13 @@ export const Stepper: FC<patStepperProps> = (props) => {
     } = props;
 
 
-    // let styleClasses = classNames('Stepper', {
-    //     [`Stepper-${StepperType}`]: true,
-    //     [`Stepper-${StepperSize}`]: !!StepperSize
-    // });
+    let styleClasses = classNames('Stepper', {
+        [`Stepper-${StepperSize}`]: !!StepperSize
+    });
 
-    // if (className) {
-    //     styleClasses += ' ' + className;
-    // }
+    if (className) {
+        styleClasses += ' ' + className;
+    }
 
     const [Currentindex, setCurrentIndex] = useState(0)
     const [triggerVertical, setTriggerVertical] = useState("flex-container")
@@ -65,8 +64,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
     // LEGACY CODE FROM PREVIOUS VERSION OF STEPPER
     // const [skipIndex, setSkipIndex] = useState<number>(9999999)
     // const [SkipIndexArray, setSkipIndexArray] = useState<number[]>([])
-    // const [Initialize, setIntialize] = useState(true)
-    // const [Finish, setFinish] = useState(false);
+    const [Initialize, setInitialize] = useState(true)
     let totalSteps = StepperElements!.length
     let renderSteps = totalSteps - 1
 
@@ -81,63 +79,63 @@ export const Stepper: FC<patStepperProps> = (props) => {
         if (StepperOrientation == 'vertical') {
             let currentTarget = 'description-area-' + `${Currentindex}`
             let currentElement = document.getElementById(currentTarget)
-            currentElement!.style.height="100px"
+            currentElement!.style.height="20vh"
         }
         
     }, []);
+
+    useEffect(() => {  
+        if (Currentindex > 0) {
+        setInitialize(false) 
+        }
+
+        if (Currentindex == 0) {
+            setInitialize(true) 
+            }
+    }, [Currentindex]);
 
 
     function expand(direction:string,value:number) {
         console.log("Currentindex", Currentindex)
         console.log("Direction",direction)
         console.log("Value of increment",value)
+
+        let current = 'description-area-' + `${Currentindex}`
+        let currentStep = document.getElementById(current)
+        let previous = 'description-area-' + `${Currentindex-1}`
+        let previousStep = document.getElementById(previous)
+        let next = 'description-area-' + `${Currentindex+1}`
+        let nextStep = document.getElementById(next)
+        let skipto = 'description-area-' + `${Currentindex+2}`
+        let skiptoStep = document.getElementById(skipto)
+
         if (direction == 'back') {
-       
-           
-
             if(Currentindex==0) {
-            let nextTarget = 'description-area-' + `${Currentindex}`
-            let nextElement = document.getElementById(nextTarget)
-            nextElement!.style.height="150px"
-            nextElement!.style.zIndex="0"
+            currentStep!.style.height="25vh"
+            currentStep!.style.zIndex="0"
             } else {
-                let currentTarget = 'description-area-' + `${Currentindex}`
-                let currentElement = document.getElementById(currentTarget)
-                let previousTarget = 'description-area-' + `${Currentindex-1}`
-                let previousElement = document.getElementById(previousTarget)
-                currentElement!.style.height="75px"
-                previousElement!.style.height="150px"
-                currentElement!.style.zIndex="1"
-                previousElement!.style.zIndex="0" 
+                currentStep!.style.height="20vh"
+                previousStep!.style.height="25vh"
+                currentStep!.style.zIndex="0"
+                previousStep!.style.zIndex="1" 
             }
         
         }
-
         if (direction == 'next') {
-           
-
-            if(Currentindex==0) {
-            let previousTarget = 'description-area-0'
-            let previousElement = document.getElementById(previousTarget)
-            let currentTarget = 'description-area-1'
-            let currentElement = document.getElementById(currentTarget)
-            previousElement!.style.height="75px"
-            currentElement!.style.height="150px"
-            currentElement!.style.zIndex="1"
-            previousElement!.style.zIndex="0" 
-            } else {
-            let previousTarget = 'description-area-' + `${Currentindex}`
-            let nextTarget = 'description-area-' + `${Currentindex+1}`
-            let previousElement = document.getElementById(previousTarget)
-            let nextElement = document.getElementById(nextTarget)
-            nextElement!.style.height="150px"
-            previousElement!.style.height="75px"
-            previousElement!.style.zIndex="0"  
-            nextElement!.style.zIndex="1"  
+            if (Currentindex < renderSteps) {
+            currentStep!.style.height="20vh"
+            currentStep!.style.zIndex="0"
+            nextStep!.style.height="25vh"
+            nextStep!.style.zIndex="1" 
             }
-        
         }
-        
+
+        if (direction == 'skip') {
+            currentStep!.style.height="20vh"
+            nextStep!.style.height="20vh"
+            skiptoStep!.style.height="25vh"
+            skiptoStep!.style.zIndex="0"  
+        }  
     }
 
     function next(value:number) {
@@ -161,7 +159,12 @@ export const Stepper: FC<patStepperProps> = (props) => {
            console.log("you cannot skip past")
         } else {
             setCurrentIndex(Currentindex+value)
+            if (StepperOrientation == 'vertical') {
+                expand('skip',value)
+            }
         }
+
+       
         
     }
 
@@ -191,6 +194,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                 {item.component}
                                 </div>
                             }
+                            
                         </div>
                     )})}
             </div>
@@ -200,7 +204,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
              {StepperElements!.map(function (item: any, index: number) {
                 return (
                         <div className={"description-area " + StepperSize } id={"description-area-" + index } data-testid={`description-area-` + `${index}`}>
-                            
+                            <div className={"expand"} id={`expand-` + index} data-testid={`expand-` + `${index}`}>
                                 {index == Currentindex ? (
                                     <div>
                                      <div className="flex-container">
@@ -217,18 +221,20 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     </div>
                                 )}
 
+                                <div className="label-container">
                                 {item.label == 'error' ? (
                                     <p className={`font-variant-secondary red`}> {item.label} </p>
                                 ) : (
                                     <p className={`font-variant-secondary `}> {item.label} </p>
                                 )}
+                                </div>
 
                                 {index == Currentindex && 
                                 <div>
                                     <p className={`font-variant-secondary `}> {item.description}</p>
                                 </div>
                                 }
-
+                            </div>
                         </div> 
                 )
              })}
@@ -240,18 +246,20 @@ export const Stepper: FC<patStepperProps> = (props) => {
              </div>
             }
 
-             <div className={"flex-container"}>    
+             <div className={"flex-container"}>  
                         <Button
                                 className={props.buttonTitlePrev}
                                 btnType='primary'
                                 data-testid='button-element-prev'
                                 onClick={()=>prev(1)}
                                 btnSize={'sm'}
+                                disabled={Initialize}
                                 >
                                 {props.buttonTitlePrev}
                         </Button>
-                        <span className="spacer"></span>
-                        {skipButtonActive == true &&  
+                        
+                        {skipButtonActive == true && 
+                       
                                 <Button
                                     className="Stepper-Button-Skip"
                                     btnType='primary'
@@ -262,8 +270,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                 >
                                 {"Skip Next"}
                                 </Button>
+                            
+                            
                         }
-                        <span className="spacer"></span>
                         <Button
                                 className={props.buttonTitleNext}
                                 btnType='primary'
@@ -275,6 +284,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                         </Button>
             </div>
         </div>
+
         {triggerVertical == 'vertical' &&
             <div className="component-display" data-test-id="element-render-3">
                 {StepperElements!.map(function (item: any, index: number) {

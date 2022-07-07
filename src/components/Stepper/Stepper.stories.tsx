@@ -79,7 +79,7 @@ export const DefaultSquareStepper = () => (
   <div>
      <h3>Default Square Stepper </h3>
       <Stepper
-          StepperType={"square"}
+          // StepperType={"square"}
           StepperElements={[
             {
               title: "Card 1",
@@ -117,7 +117,7 @@ export const ConfiguringStepperSize = () => (
   <div>
        <h3> Change size sm, md, lg </h3>
         <Stepper
-            StepperType={"circle"}
+            // StepperType={"circle"}
             StepperSize={"sm"}
             StepperElements={[
                 {
@@ -150,7 +150,7 @@ export const ConfiguringStepperSize = () => (
         </Stepper>
 
         <Stepper
-            StepperType={"circle"}
+            // StepperType={"circle"}
             StepperSize={"md"}
             StepperElements={[
                 {
@@ -182,7 +182,7 @@ export const ConfiguringStepperSize = () => (
         >
         </Stepper>
         <Stepper
-            StepperType={"circle"}
+            // StepperType={"circle"}
             StepperSize={"lg"}
             StepperElements={[
                 {
@@ -406,7 +406,7 @@ export const DefaultVerticalStepper = () => (
                     title:   "Lets begin live deployment",
                     description: "This is the step where you begin to test your product on live servers" ,
                     icon: <Icon name="check"  />,
-                   iconCompleted: <Icon name="check" color="green"/>
+                    iconCompleted: <Icon name="check" color="green"/>
                   },
                   {
                     title:  "Lets market our product",

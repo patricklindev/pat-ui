@@ -1,5 +1,6 @@
 import { IconSize } from '../Icon/Icon';
 import {
+  convertSizeNameToSizeNumber,
   getCurrentStarRating,
   getIconColor,
   getIconName,
@@ -109,6 +110,25 @@ describe('getCurrentStarRating', () => {
     });
     const expectedResult3 = 7.5;
     const result3 = getCurrentStarRating(mockArg3);
+    expect(result3).toBe(expectedResult3);
+  });
+});
+
+describe('convertSizeNameToSizeNumber', () => {
+  it('should return a size number based on a size name string arg', () => {
+    const mockArg1: IconSize = 'small';
+    const expectedResult1 = 20;
+    const result1 = convertSizeNameToSizeNumber(mockArg1);
+    expect(result1).toBe(expectedResult1);
+
+    const mockArg2: IconSize = 'medium';
+    const expectedResult2 = 28;
+    const result2 = convertSizeNameToSizeNumber(mockArg2);
+    expect(result2).toBe(expectedResult2);
+
+    const mockArg3: IconSize = 'large';
+    const expectedResult3 = 42;
+    const result3 = convertSizeNameToSizeNumber(mockArg3);
     expect(result3).toBe(expectedResult3);
   });
 });

@@ -1,0 +1,29 @@
+.star-btn {
+    border:none;
+    background: none;
+    padding:0;
+}
+
+.star-btn:focus{
+    outline: none;
+}
+
+.star-btn:hover{
+    transform: scale(1.1);
+}
+
+.disabled{
+    cursor: not-allowed;
+}
+
+.sm {
+    width: 2rem;
+}
+
+.md {
+    width: 3rem;
+}
+
+.lg {
+    width: 4rem;
+}

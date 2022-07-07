@@ -78,6 +78,7 @@ export const DialogAlert = () => {
   const [show, setshow] = useState(false)
   return (
     <div>
+      
       <Button
         onMouseDown={action('Dialog opened')}
         onClick={() => { setshow(show => !show) }}>Show</Button>
@@ -145,26 +146,35 @@ export const DialogForm = () => {
     </div>)
 };
 
-export const DialogOther = () => {
-  const [show, setshow] = useState(false)
-  const [inputValue, setinputvalue] = useState("")
+export const TestDialog = () => {
+
   return (
     <div>
-      {show ?
-        <Dialog
+       <Dialog
           id='example'
-          dialogType='form'
+          dialogType='test'
           onClick={action('Dialog closed')}
-          closeHandlerProps={() => {
-            setshow(false)
-          }} >
+          style={{'top':"0"}}
+         
+         // overlayFunctions={`style={{"display" :"none"}}`}
+    >
           <DialogTitle>
             <h1>A Super Google Title</h1>
           </DialogTitle>
-        </Dialog> :
-        <Button
-          onMouseDown={action('Dialog opened')}
-          onClick={() => setshow(show => !show)}>Show</Button>
-      }
+          <DialogContents>
+          <p> {exampPara + exampPara}</p> 
+          </DialogContents>
+
+          <DialogActions>
+          <input placeholder="Enter email here"></input>
+            <div >
+              <a onClick={action('Dialog closed')}> Disagree</a>
+              <a onClick={() => {
+      
+              }}> Agree and Close</a>
+            </div>
+          </DialogActions>
+        </Dialog>
+      
     </div>)
 };

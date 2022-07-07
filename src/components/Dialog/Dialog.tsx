@@ -2,7 +2,8 @@ import React, { DialogHTMLAttributes, FC } from 'react'
 export type DialogType =
     | 'simple'
     | 'alert'
-    | 'form';
+    | 'form'
+    | 'test';
 
 export const DialogTitle = (props: any) => (
     <div className='dialog-title'>
@@ -75,6 +76,7 @@ export const Dialog: FC<PatDialogProps> = (props) => {
     if (dialogType === 'simple') classNameList.push('dlg-simple') && containerClassNameList.push('dlg-simple-container')
     if (dialogType === 'alert') classNameList.push('dlg-alert') && containerClassNameList.push('dlg-alert-container')
     if (dialogType === 'form') classNameList.push('dlg-form') && containerClassNameList.push('dlg-form-container')
+    if (dialogType === 'test') classNameList.push('dlg-test') && containerClassNameList.push('dlg-test-container')
 
 
     // Allows users to add a function on close of the Dialog
@@ -84,12 +86,12 @@ export const Dialog: FC<PatDialogProps> = (props) => {
     }
 
     document.body.style.overflow = "hidden" //disables scrolling 
- console.log(children)
+
     return (
         // overlay
         <div
             // {...rest as NativeDialogProps}
-            {...overlayFunctions}
+            //{...overlayFunctions as NativeDialogProps}
             className={containerClassNameList.join(" ")}
             onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
         >
@@ -98,14 +100,14 @@ export const Dialog: FC<PatDialogProps> = (props) => {
                 {...rest as NativeDialogProps}
                 open={true} // this helps to avoid some bugs
                 className={classNameList.join(" ")} >
-          
-          {/* checks ato see if children are an array, if so it runs a map function */}
-            {  
-            // children?.length> 1?
-            //   children?.map((child: Element) => (child))
-            // : 
-            children
-            }
+
+                {/* checks ato see if children are an array, if so it runs a map function */}
+                {
+                    // children?.length> 1?
+                    //   children?.map((child: Element) => (child))
+                    // : 
+                    children
+                }
 
             </dialog >
         </div>)

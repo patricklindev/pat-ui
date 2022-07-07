@@ -33,6 +33,7 @@ export interface IButtonProps {
   btnType?: ButtonType;
   /** set disabled button */
   disabled?: boolean;
+
 }
 
 type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;

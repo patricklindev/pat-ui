@@ -1,11 +1,25 @@
-
-
-import React, { DialogHTMLAttributes,FC } from 'react'
-import Button from '../Button'
+import React, { DialogHTMLAttributes, FC } from 'react'
 export type DialogType =
     | 'simple'
     | 'alert'
     | 'form';
+
+export const DialogTitle = (props:Element) => (
+    <div className='dialog-title'>
+        {props.children}
+    </div>)
+
+export const DialogActions = (props:Element) => (
+    <div className='dialog-actions'>
+        {props.children}
+    </div>)
+
+export const DialogContents = (props:Element) => (
+    <div className='dialog-actions'>
+        {props.children}
+    </div>)
+
+
 
 export interface IDialogProps {
 
@@ -17,19 +31,21 @@ export interface IDialogProps {
     dialogParagraph?: string;
     /**add a function to the Dialog closing handler   */
     closeHandlerProps?: any;
-    /**Boolean for controling if the dialog is shown   */
-    showDialog?: boolean;
-    onClick?: ()=> void
-
+    /**Depreicated to be removed   */
+    showDialog?: boolean
+    /**Allows users to effect overlay  */
+    overlayFunctions?: any
+    DialogTitle?: object
+    DialogActions?: object
+    DialogContents?: object
 };
 
-
+//type NativeDivProps = DivHTMLElements<HTMLDivElement>;
 type NativeDialogProps = IDialogProps & DialogHTMLAttributes<HTMLDialogElement>;
 export type PatDialogProps = NativeDialogProps;
 
-
 /**
-* A dialog allows user to select from multiple actions.
+* A dialog allows for high priority messgaes for users.
 *
 * ```js
 * import {Dialog} from 'pat-ui'
@@ -37,42 +53,72 @@ export type PatDialogProps = NativeDialogProps;
 */
 
 
+
+
 export const Dialog: FC<PatDialogProps> = (props) => {
-    const { children, dialogType, dialogTitle, dialogParagraph, closeHandlerProps, ...rest } = props
+    const { children,
+        dialogType,
+        dialogTitle,
+        DialogTitle,
+        dialogParagraph,
+        closeHandlerProps,
+        showDialog,
+        DialogActions,
+        overlayFunctions,
+        DialogContents,
+        ...rest } = props
+
+    // below we handle the classname for the dialog and overlay 
     let classNameList: string[] = ['dlg']
-    const classNames = classNameList.join(" ")
+    let containerClassNameList: string[] = ['dlg-container']
 
-    if (dialogType === 'simple') classNameList.push('dlg-simple')
-    if (dialogType === 'alert') classNameList.push('dlg-alert')
-    if (dialogType === 'form') classNameList.push('dlg-form')
 
+    if (dialogType === 'simple') classNameList.push('dlg-simple') && containerClassNameList.push('dlg-simple-container')
+    if (dialogType === 'alert') classNameList.push('dlg-alert') && containerClassNameList.push('dlg-alert-container')
+    if (dialogType === 'form') classNameList.push('dlg-form') && containerClassNameList.push('dlg-form-container')
+
+
+    // Allows users to add a function on close of the Dialog
     const onClose = () => {
-        if (typeof closeHandlerProps === 'function') { closeHandlerProps() }
-
+        document.body.style.overflow = "scroll" // allows scrolling again
+        closeHandlerProps()
     }
 
-    
+
+    document.body.style.overflow = "hidden" //disables scrolling 
+    //document.body.style.background = 'rgba(0, 0, 0, .99)'
+
     return (
+        // Container with an onClick handler 
+        <div
+            // {...rest as NativeDialogProps}
+            {...overlayFunctions}
+            className={containerClassNameList.join(" ")}
+            onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+        >
 
-                <div
-
-        
-                    className='dlg-container'
-                    onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
-                    
-                    >
-                    < dialog 
-                      open={true}
-                  
-                    className={classNameList.join(" ")} >
-                        {dialogTitle ? <h3 className='dialogTitle'>{dialogTitle}</h3> : null}
-                        {dialogParagraph ? <p className='dialogParagraph'>{dialogParagraph}</p> : null}
+            < dialog
+                {...rest as NativeDialogProps}
+                open={true} // this helps to avoid some bugs
+                className={classNameList.join(" ")} >
+                {dialogTitle ? <h3 className='dialogTitle'>{dialogTitle}</h3> : null}
+                {dialogParagraph ? <p className='dialogParagraph'>{dialogParagraph}</p> : null}
 
 
-                        {children}
-                    </dialog >
-                </div>)}
+                {DialogTitle}
+                {DialogActions}
+                {DialogContents}
 
+                <div id='child-container'>
+                    {children}
+                </div>
+            </dialog >
+        </div>)
+}
+
+Dialog.defaultProps = {
+    dialogType: 'alert'
+};
 
 
 

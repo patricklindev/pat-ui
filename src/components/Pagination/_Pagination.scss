@@ -1,0 +1,88 @@
+.pagination {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+
+    .page-btn:hover {
+        cursor: pointer;
+    }
+
+    &.disabled,
+    &[disabled] {
+        @include pagination-style($border-width, $gray-500, $pagination-disabled-background, $pagination-disabled-background, black);
+
+        .selected:hover {
+            cursor: not-allowed;
+        }
+        .page-btn:hover{
+            cursor: not-allowed;
+        }
+        .page-icon:hover {
+            cursor: not-allowed;
+            background-color: $white
+        }
+    }
+}
+
+.page-btn {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-icon {
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-icon:hover {
+    cursor: pointer;
+    background-color: $gray-200;
+}
+
+.page-rowsperpage {
+    margin: 0 20px;
+}
+
+.page-filled {
+
+    &.page-primary {
+        @include pagination-style($border-width, $primary, $pagination-primary-background-filled, $pagination-primary-background-filled-hover, $white)
+    }
+
+    &.page-secondary {
+        @include pagination-style($border-width, $secondary, $pagination-secondary-background-filled, $pagination-secondary-background-outlined-hover, $white)
+    }
+}
+
+.page-outlined {
+
+    &.page-primary {
+        @include pagination-style($border-width, $cyan, $pagination-primary-background-outlined, $pagination-primary-background-outlined-hover, $cyan)
+    }
+
+    &.page-secondary {
+        @include pagination-style($border-width, $secondary, $pagination-secondary-background-outlined, $pagination-secondary-background-outlined-hover, $secondary)
+    }
+}
+
+.page-small {
+    @include pagination-btn-style($small-pagination-button-size, $small-pagination-font-size)
+}
+
+.page-medium {
+    @include pagination-btn-style($medium-pagination-button-size, $medium-pagination-font-size)
+}
+
+.page-large {
+    @include pagination-btn-style($large-pagination-button-size, $large-pagination-font-size)
+}
+
+.rows-dropdown {
+    width: 200px;
+    margin-left: 20px;
+}

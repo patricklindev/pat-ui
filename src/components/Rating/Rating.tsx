@@ -1,4 +1,6 @@
 import React, {
+  BaseSyntheticEvent,
+  ChangeEvent,
   CSSProperties,
   FC,
   HTMLAttributes,
@@ -101,7 +103,7 @@ export const Rating: FC<RatingProps> = (props) => {
     ratingCount as number
   );
 
-  const handleOnClick = (rating: number) => {
+  const handleOnClick = () => {
     if (disabled || readonly) {
       return;
     }
@@ -110,7 +112,7 @@ export const Rating: FC<RatingProps> = (props) => {
     setCurrentTotalRating(newStarRating);
     // onChange callback
     if (onChange) {
-      onChange(rating);
+      onChange(currentTotalRating);
     }
   };
 
@@ -168,7 +170,7 @@ export const Rating: FC<RatingProps> = (props) => {
         className={styleClasses}
         onMouseLeave={handleOnMouseLeave}
         onMouseMove={(e) => handleOnMouseMove(e, ratingValue)}
-        onClick={() => handleOnClick(ratingValue)}
+        onClick={handleOnClick}
         role="button"
       >
         <Icon

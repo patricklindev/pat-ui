@@ -31,7 +31,9 @@ export const ReadyOnlyRating = () => (
   </div>
 );
 
-export const HalfFractionRating = () => <Rating defaultRating={3.5} half />;
+export const HalfFractionRating = () => (
+  <Rating defaultRating={3.5} half onChange={action('rating value is')} />
+);
 
 export const LabelRating = () => (
   <div>

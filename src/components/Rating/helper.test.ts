@@ -3,6 +3,7 @@ import {
   convertSizeNameToSizeNumber,
   getCurrentHalfStars,
   getCurrentStarRating,
+  getDefaultHalfStars,
   getFullStars,
   getIconColor,
   getIconName,
@@ -185,7 +186,6 @@ describe('getFullStars', () => {
 
 describe('getCurrentHalfStars', () => {
   it('should return a correct new stars array based on args when offsetX === 0 ', () => {
-    // first step test when offsetX === 0
     const starArr = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
@@ -213,7 +213,6 @@ describe('getCurrentHalfStars', () => {
   });
 
   it('should return a correct new stars array based on args when offsetX <= currentSize / 2 ', () => {
-    // first step test when offsetX === 0
     const starArr = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
@@ -241,7 +240,6 @@ describe('getCurrentHalfStars', () => {
   });
 
   it('should return a correct new stars array based on args when offsetX >= currentSize / 2 ', () => {
-    // first step test when offsetX === 0
     const starArr = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
@@ -265,6 +263,48 @@ describe('getCurrentHalfStars', () => {
       { value: 0, index: 5 },
     ];
     const result = getCurrentHalfStars(...mockArg);
+    expect(result).toEqual(expectedResult);
+  });
+});
+
+describe('getDefaultHalfStars', () => {
+  it('should return a correct new stars array based on args when star.index <= default rating ', () => {
+    const starArr = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index: index + 1,
+      };
+    });
+    const defaultRating = 4;
+    const mockArg: [IStars, number] = [starArr, defaultRating];
+    const expectedResult = [
+      { value: 1, index: 1 },
+      { value: 1, index: 2 },
+      { value: 1, index: 3 },
+      { value: 1, index: 4 },
+      { value: 0, index: 5 },
+    ];
+    const result = getDefaultHalfStars(...mockArg);
+    expect(result).toEqual(expectedResult);
+  });
+
+  it('should return a correct new stars array based on args when star.index === default rating + 0.5 ', () => {
+    const starArr = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index: index + 1,
+      };
+    });
+    const defaultRating = 3.5;
+    const mockArg: [IStars, number] = [starArr, defaultRating];
+    const expectedResult = [
+      { value: 1, index: 1 },
+      { value: 1, index: 2 },
+      { value: 1, index: 3 },
+      { value: 0.5, index: 4 },
+      { value: 0, index: 5 },
+    ];
+    const result = getDefaultHalfStars(...mockArg);
     expect(result).toEqual(expectedResult);
   });
 });

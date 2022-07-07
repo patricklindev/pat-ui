@@ -115,15 +115,19 @@
     color:$sw-disabled-color;
   }
 
-  .sw-labeled{
+
+  .switch-symbol{
     display: flex;
   }
   
   .switch-labels{
+    display: flex;
     margin-left: 4rem;
     margin-top: -0.3rem;
+    cursor: pointer;
   }
 
+ 
 
 
 

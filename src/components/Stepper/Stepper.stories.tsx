@@ -2,20 +2,69 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Stepper from './Stepper';
 
+import Card from '../Card/Card'
+import Icon from '../Icon/Icon'
+import Dropdown from '../Dropdown/Dropdown';
+import Button from '../Button/Button';
+import { render } from '@testing-library/react';
+
+const buttonStyle: React.CSSProperties = {
+  marginRight: '5px',
+  marginTop: '5px',
+};
 
 export default {
     title: 'Stepper',
     component: Stepper
 }
 
+
 export const DefaultStepper = () => (
     <div>
       <h3>Default Stepper </h3>
         <Stepper
-            buttonTitleNext={"Next"}
-            buttonTitlePrev={"Back"}
-            stepperOrientation={"row"}
+         StepperSize={'sm'}
+         StepperOrientation={"row"}
+         StepperElements={[
+          {
+            title: "Card 1",
+            description: "",
+            label: "We need unique images",
+            component: <Button
+                         style={buttonStyle}
+                         btnType='primary'
+                          onClick={action('Primary Button clicked')}
+                            >
+                          Primary Button
+                        </Button>
+           },
+           {
+             title: "Card 2",
+             description: "",
+             label: 'All images are mock',
+             component: <Button
+             style={buttonStyle}
+             btnType='secondary'
+             onClick={action('Primary Button clicked')}
+           >
+             Primary Button
+           </Button>
+           },
+           {
+             title: "Card 3",
+           description: "",
+           label: "How far can we take usability?",
+           component: <Button
+           style={buttonStyle}
+           btnType='danger'
+           onClick={action('Primary Button clicked')}
+         >
+           Primary Button
+         </Button>
+           }, 
+        ]}
         >
+       
         </Stepper>
     </div>
 )
@@ -24,41 +73,41 @@ export const DefaultSquareStepper = () => (
   <div>
      <h3>Default Square Stepper </h3>
       <Stepper
-          stepperType={"square"}
-          stepperSize={"sm"}
-          stepperElements={[
+          StepperType={"square"}
+          StepperElements={[
             {
-              title: "Square Stepper Variation",
+              title: "Card 1",
               description: "",
-              label: "stepperType={`square`}",
+              label: "We need unique images",
+              component: <h1> This is a test </h1>
              },
              {
-               title: "Icon is now square",
+               title: "Card 2",
                description: "",
-               label: 'Square Example',
+               label: 'All images are mock',
+               component: <h2> This is a test </h2>
              },
              {
-               title: "Will add more variations",
+               title: "Card 3",
              description: "",
-             label: "Thinking about progress bar",
+             label: "How far can we take usability?",
+             component: <h3> This is a test </h3>
              }, 
           ]}
-          buttonTitleNext={"Next"}
-          buttonTitlePrev={"Back"}
-          stepperOrientation={"row"}
-          allowSkip={false}
+          StepperOrientation={"row"}
       >
       </Stepper>
   </div>
 )
 
+
 export const ConfiguringStepperSize = () => (
   <div>
        <h3> Change size sm, md, lg </h3>
         <Stepper
-            stepperType={"circle"}
-            stepperSize={"sm"}
-            stepperElements={[
+            StepperType={"circle"}
+            StepperSize={"sm"}
+            StepperElements={[
                 {
                  title: "Default array length 3",
                  description: "",
@@ -77,19 +126,20 @@ export const ConfiguringStepperSize = () => (
             ]}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
-            stepperOrientation={"row"}
+            StepperOrientation={"row"}
             allowSkip={false}
         >
         </Stepper>
 
         <Stepper
-            stepperType={"circle"}
-            stepperSize={"md"}
-            stepperElements={[
+            StepperType={"circle"}
+            StepperSize={"md"}
+            StepperElements={[
                 {
                  title: "Default array length is 3",
                  description: "",
                  label: "Vertical for arrays > 3"
+                
                 },
                 {
                   title: "Define props in component",
@@ -104,14 +154,14 @@ export const ConfiguringStepperSize = () => (
             ]}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
-            stepperOrientation={"row"}
+            StepperOrientation={"row"}
             allowSkip={false}
         >
         </Stepper>
         <Stepper
-            stepperType={"circle"}
-            stepperSize={"lg"}
-            stepperElements={[
+            StepperType={"circle"}
+            StepperSize={"lg"}
+            StepperElements={[
                 {
                  title: "Default array length 3",
                  description: "",
@@ -130,7 +180,7 @@ export const ConfiguringStepperSize = () => (
             ]}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
-            stepperOrientation={"row"}
+            StepperOrientation={"row"}
             allowSkip={false}
         >
         </Stepper>
@@ -141,8 +191,8 @@ export const SkipStep = () => (
     <div>
       <h3> Skip Steps </h3>
         <Stepper
-            stepperType={"circle"}
-            stepperElements={[
+            StepperType={"circle"}
+            StepperElements={[
               {
                 title: "Skip Stepper Variation",
                 description: "",
@@ -161,7 +211,7 @@ export const SkipStep = () => (
             ]}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
-            stepperOrientation={"row"}
+            StepperOrientation={"row"}
             allowSkip={true}
         >
         </Stepper>
@@ -172,8 +222,8 @@ export const ErrorStep = () => (
   <div>
     <h3> Error Steps </h3>
       <Stepper
-          stepperType={"circle"}
-          stepperElements={[
+          StepperType={"circle"}
+          StepperElements={[
             {
               title: "Error Stepper Variation",
               description: "",
@@ -192,7 +242,7 @@ export const ErrorStep = () => (
           ]}
           buttonTitleNext={"Continue"}
           buttonTitlePrev={"Previous"}
-          stepperOrientation={"row"}
+          StepperOrientation={"row"}
           allowSkip={true}
       >
       </Stepper>
@@ -203,38 +253,37 @@ export const AdditionalStepsStepper = () => (
     <div>
        <h3> Additional Steps </h3>
         <Stepper
-            stepperType={"square"}
-            stepperElements={[
-                {
-                    title:  "Lets begin planning",
+            StepperType={"square"}
+            StepperElements={[
+                  {
+                    title:  "The Office - Asian Jim 1",
                     description: "",
-                    label: ""
+                    label: "Scene 1",
+                    component: <img className="example" src='https://i.imgur.com/vH7yTh2.jpeg'></img>
                   },
                   {
-                    title:  "Lets start developing",
+                    title:   "The Office - Asian Jim 2",
                     description: "",
-                    label: ""  
+                    label: "Scene 2",
+                    component: <img className="example" src='https://i.imgur.com/KN6aNzr.jpeg'></img> 
                   },
                   {
-                    title:   "Lets begin live deployment",
+                    title:   "The Office - Asian Jim 3",
                     description: "",
-                    label: ""   
+                    label: "Scene 3",
+                    component: <img className="example" src='https://i.imgur.com/sU87w79.jpeg'></img> 
                   },
-                  {
-                    title:   "Lets begin public testing",
+                   {
+                    title:  "The Office - Asian Jim 4",
                     description: "",
-                    label: ""    
-                  },
-                  {
-                    title:   "Let market our product",
-                    description: "",
-                    label: ""    
+                    label: "Scene 4",
+                    component: <img className="example" src='https://i.imgur.com/XSqiT6V.jpeg'></img>
                   },
             ]}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
-            stepperOrientation={"row"}
-            stepperLinear={'nonlinear'}
+            StepperOrientation={"row"}
+            StepperLinear={'nonlinear'}
             allowSkip={true}
         >
         </Stepper>
@@ -245,8 +294,8 @@ export const ManualSelect = () => (
   <div>
     <h3> Manual Select </h3>
       <Stepper
-          stepperType={"square"}
-          stepperElements={[
+          StepperType={"square"}
+          StepperElements={[
               {
                   title:  "Manual Select",
                   description: "",
@@ -265,8 +314,8 @@ export const ManualSelect = () => (
           ]}
           buttonTitleNext={"Next"}
           buttonTitlePrev={"Back"}
-          stepperOrientation={"row"}
-          stepperLinear="nonlinear"
+          StepperOrientation={"row"}
+          StepperLinear="nonlinear"
           allowSkip={true}
       >
       </Stepper>
@@ -277,7 +326,7 @@ export const DefaultVerticalStepper = () => (
     <div>
       <h3> Default Vertical Stepper </h3>
         <Stepper
-            stepperElements={[
+            StepperElements={[
                 {
                     title:  "Lets begin planning",
                     description: "This is the step where you need to define your application goals,wireframe, and development path"
@@ -295,7 +344,7 @@ export const DefaultVerticalStepper = () => (
                     description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions."
                   }
             ]}
-            stepperOrientation={"vertical"}
+            StepperOrientation={"vertical"}
             buttonTitleNext={"Next"}
             buttonTitlePrev={"Back"}
         >
@@ -307,38 +356,38 @@ export const VerticalStepperFancy = () => (
   <div>
     <h3> Vertrical Stepper with Error,Skip </h3>
       <Stepper
-          stepperElements={[
-              {
-                  title:  "Lets begin planning",
-                  description: "This is the step where you need to define your application goals,wireframe, and development path",
-                  label: "" 
-                },
-                {
-                  title:  "Lets start developing",
-                  description: "This is the step where the team begins to parcel out development tasks and begin coding",
-                  label: "" 
-                },
-                {
-                  title:   "Lets begin live deployment",
-                  description: "This is the step where you begin to test your product on live servers" ,
-                  label: "" 
-                },
-                {
-                  title:   "Vertical Error Example",
-                  description: "This is an example of an error",
-                  label: "error"
-                },
-                {
-                  title:  "Lets market our product",
-                  description: "For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions",
-                  label: ""
-                }
-          ]}
-          stepperOrientation={"vertical"}
-          buttonTitleNext={"Next"}
-          buttonTitlePrev={"Back"}
-          allowSkip={true}
-      >
+                 StepperElements={[
+                  {
+                    title:  "The Office - Asian Jim 1",
+                    description: "",
+                    label: "Scene 1",
+                    component: <img className="example" src='https://i.imgur.com/vH7yTh2.jpeg'></img>
+                  },
+                  {
+                    title:   "The Office - Asian Jim 2",
+                    description: "",
+                    label: "Scene 2",
+                    component: <img className="example" src='https://i.imgur.com/KN6aNzr.jpeg'></img> 
+                  },
+                  {
+                    title:   "The Office - Asian Jim 3",
+                    description: "",
+                    label: "Scene 3",
+                    component: <img className="example" src='https://i.imgur.com/sU87w79.jpeg'></img> 
+                  },
+                   {
+                    title:  "The Office - Asian Jim 4",
+                    description: "",
+                    label: "Scene 4",
+                    component: <img className="example" src='https://i.imgur.com/XSqiT6V.jpeg'></img>
+                  },
+            ]}
+            buttonTitleNext={"Next"}
+            buttonTitlePrev={"Back"}
+            StepperOrientation={"vertical"}
+            StepperLinear={'nonlinear'}
+            allowSkip={true}
+        >
       </Stepper>
   </div>
 )

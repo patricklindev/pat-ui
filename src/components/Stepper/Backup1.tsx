@@ -1,9 +1,7 @@
 // import React, { FC, ReactNode, useEffect, useState } from 'react';
 // import { classNames } from '../../utils/classNames';
-// // What is below this comment is opptional for imports and dependent on your component
 // import Button from '../Button/Button';
-// import Icon from '../Icon/Icon';
-// // import Progress from '../Progress/Progress';
+
 
 // export type StepperSize = 'lg' | 'md' | 'sm'
 // export type StepperType = "circle" | "square" | "progress"
@@ -16,16 +14,13 @@
 //     title?: string;
 //     description?: string;
 //     label?: string;
-// }
-
-// export type TitleAndDescription<Type> = {
-//     [Property in keyof Type]: string;
+//     component?:any
 // }
 
 // export interface IStepperProps {
 //     // set customized Stepper //
 //     className?: string;
-//     // Will the user allow skip button to appear
+//     // Will the user allow  button to appear
 //     allowSkip?: boolean;
 //     // set Steppersize  //
 //     stepperSize?: StepperSize;
@@ -38,16 +33,6 @@
 //     stepperElements?: StepperObject[];
 //     buttonTitleNext?: string;
 //     buttonTitlePrev?: string;
-//     // DEVELOPMENT PHILOSOPHY
-//     // I COULD LET END USERS DEFINE THEIR OWN FUNCTIONS TO BE PASSED AS PROPS INTO THIS COMPONENT
-//     // HOWEVER, THIS SEEMS TO BE WASTEFUL.
-//     // WOULD YOU HAVE A TEAM OF DEVELOPERS DEFINE THEIR OWN FUNCTION NAME / VARIABLES FOR NEXT, WHEN 
-//     // ALL FUNCTIONS BOIL DOWN TO A INCREMENT OF A VALUE?
-//     // skipOnClick?: () => void;
-//     // nextOnClick?: () => void;
-//     // prevOnClick?: () => void;
-//     // finishOnClick?: ()=> void;
-//     // resetOnClick?: ()=> void;
 // }
 
 // export type patStepperProps = IStepperProps;
@@ -83,8 +68,7 @@
 //     // JASON MA 6/29/2022
 //     // HTMLarray is an array containing multiple strings
 //     // We will map through this HTML array to generate a row of "steps"
-//     // let HTMLarray = []
-//     // let TitleAndDescription = stepperElements
+
 //     const [Currentindex, setCurrentIndex] = useState(0)
 //     const [CurrentStep, setCurrentStep] = useState(1)
 //     const [skipIndex, setSkipIndex] = useState<number>(9999999)
@@ -92,10 +76,6 @@
 //     const [skipButtonActive, setSkipButtonActive] = useState(false)
 //     const [Initialize, setIntialize] = useState(true)
 //     const [Finish, setFinish] = useState(false);
-//     // const [zpriority, setzpriority] = useState('nopriority');
-    
-//     // WARNING - Using state to set color in HTML affects all square/dots.
-//     // I previoused to using HTML to designate specific segments of the stepper.
 //     let totalSteps = stepperElements!.length
 //     let renderSteps = totalSteps - 1
 
@@ -118,7 +98,7 @@
 //         let initialreset = 'description-0'
 //         let initialresetHTML = document.getElementById(initialreset)
 //         initialresetHTML!.style.height="175px"
-//         initialresetHTML!.style.zIndex="2"
+//         initialresetHTML!.style.zIndex="0"
 //         }
 //     }, [])
 
@@ -127,15 +107,13 @@
 //             setCurrentIndex(0)
 //             setSkipIndex(999999999)
 //             setCurrentStep(1)
+//             setCurrentIndex(0)
 //             setIntialize(true)
 //         }
 //         if (Currentindex >= renderSteps) {
 //             setCurrentIndex(renderSteps)
 //             setCurrentStep(totalSteps)
 //         }
-
-        
-
 //     }, [Currentindex])
 
 
@@ -146,7 +124,7 @@
 //         }
 
 //         if (SkipIndexArray.includes(value) == true) {
-//             let target = Currentindex+1
+//             let target = value-1
 //             let removeSkip = SkipIndexArray.filter(function(element){return(element == target)})
 //             setSkipIndexArray( removeSkip )
 //         }
@@ -172,9 +150,7 @@
         
 //     }  
     
-// function next() {
-//         console.log("Current index", Currentindex)
-//         console.log("Current Steps", CurrentStep)
+//     function next() {
 //         setIntialize(false)
 //         setCurrentStep(CurrentStep + 1)
 //         setCurrentIndex(Currentindex + 1)
@@ -208,7 +184,11 @@
 //         console.log(lastValue)
 //         let removeSkip = SkipIndexArray.filter(function(element){return(element != lastValue)})
 //         setSkipIndexArray( removeSkip )
+//         } 
 
+//         if ( Currentindex == 0 ) {
+//             let removeSkip = SkipIndexArray.filter(function(element){return(element != 0)})
+//             setSkipIndexArray( removeSkip )
 //         }
 
 //         if (stepperOrientation === 'vertical') {
@@ -240,7 +220,7 @@
 //            let initialresetHTML = document.getElementById(initialreset)
 //            let laststepHTML = document.getElementById(laststep)
 //            initialresetHTML!.style.height="175px"
-//            initialresetHTML!.style.zIndex="1"
+//            initialresetHTML!.style.zIndex="0"
 //            laststepHTML!.style.height="75px"
 //            } 
 //     }
@@ -255,6 +235,8 @@
      
 //         setSkipIndex(skipthisIndex)
 //         if (CurrentStep == totalSteps-1) {
+//             setCurrentStep(CurrentStep + 1)
+//             setCurrentIndex(Currentindex + 1)
 //             setSkipIndexArray( arr => [...arr, skipthisIndex])
 //         } else {
 //         setCurrentStep(CurrentStep + 1)
@@ -264,15 +246,7 @@
 
 //         if (stepperOrientation === 'vertical') {
 
-//             if (Currentindex == renderSteps-1) {
-//                 let currentTarget = 'description-' + `${Currentindex}`
-//                 let nextTarget = 'description-' + `${Currentindex}`
-//                 let nextElement = document.getElementById(nextTarget)
-//                 let currentElement = document.getElementById(currentTarget)
-//                 nextElement!.style.height="175px"
-//                 currentElement!.style.height="75px"
-//                 nextElement!.style.zIndex="1"
-//                 } else {
+        
 //             let currentTarget = 'description-' + `${Currentindex}`
 //             let nextTarget = 'description-' + `${Currentindex+1}`
 //             let nextElement = document.getElementById(nextTarget)
@@ -280,7 +254,7 @@
 //             nextElement!.style.height="175px"
 //             currentElement!.style.height="75px"
 //             nextElement!.style.zIndex="0"
-//             }
+            
 
             
 //         }
@@ -301,59 +275,55 @@
 //             {stepperElements!.map(function (item: any, index: any) {
 //                 return (
 //                 <div className="progress-container" data-testid="progress-container">
+//                     {index < renderSteps ? (
 //                     <div className={'flex-row-container'} data-testid="progress-container">
-//                     <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
-//                         {SkipIndexArray.includes(index) == true?(
-//                              <div className="test-1a">
-//                                  <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
-//                             </div>
-//                             ) : (
-//                             <div className="test-1b" >
-//                                  { item.label != 'error' ? (
-//                                   <div className="test-2a">
-//                                     {CurrentStep > index ? (
-//                                         <div className="test-3a">
-//                                         {CurrentStep == totalSteps? (
-//                                             <div className = "test-4A">
-//                                             {Finish == true ? (
-//                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-//                                              ) : (
-//                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-//                                             )}
-//                                             </div>
-//                                         ) : (
-//                                             <div className = "test-4b">
-//                                              {CurrentStep > index +1 ? (
-//                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-//                                             ) : (
-//                                                 <div>
-//                                                 {CurrentStep > index ? (
-//                                                 <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-//                                                 ) : (
-//                                                 <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-//                                                 )}
-//                                                 </div>
-//                                             )}
-//                                         </div>
-//                                         )}
+//                         <div className="icon-area" onClick={() => select(index)} >
+//                        {/* Error Check, if error, dont even bother rendering the other conditionals */}
+//                         { SkipIndexArray.includes(index) == true?(
+//                         <div className="test-1a">
+//                             <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+                           
+//                         </div>
+//                          ) : (
+//                         <div className="test-1b">
+//                         {/* Test 1 Did the user click / "mark" this index for skip */}
+//                             { item.label != 'error' ?(
+//                             <div className="test-2a">
+//                             {/* Logic Test 2, is the current step greater than the index of the array */}
+//                             {CurrentStep > index ? (
+//                                 <div className="test-3a">
+//                                 {/* If the current step is greater than the index of this item */}
+//                                 {/* This logic will deterimine if you will see a checkmark or a number*/}
+//                                  {/* If the current step is 1 higher than the index of this item, this means */}
+//                                  {/* ---> The next element in line should be marked green, with a number */}
+//                                  {/* ---> This current element should be marked green, with a checkmark */}
+//                                     {CurrentStep > index + 1 ? (
+//                                         <div className="test-4a">
+//                                         <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
 //                                         </div>
 //                                     ) : (
-//                                     <div className="test -3b">
-//                                     <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
-//                                     </div>
-//                                      )}
+//                                         <div className="test-4b">
+//                                         <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+//                                         </div>
+//                                     )}
+//                                      {/* Logic Test 2 conclusion, if the current step is not greater than the index of this item, we need to 
+//                                      mark this gray */}
 //                                 </div>
-//                                 ) : (
-//                                     <div className="test-2b">
-//                                <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+//                             ) :(
+//                                 <div className="test-3b">
+//                                 <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
 //                                 </div>
 //                             )}
 //                             </div>
-                                
-//                             )}
-                           
-                          
-//                      </div>
+//                             ) : (
+//                             <div className="test-2b">
+//                              <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+//                             </div>
+//                         )}
+//                         </div>
+//                         )}
+//                         </div>
+
 
 //                         <div className="description-area" data-testid="stepper-description-area" >
 //                             <ul>
@@ -367,7 +337,7 @@
 //                             </ul>
 //                         </div>
                      
-//                         {index < renderSteps && 
+                       
 //                         <div className="bar-area">
 //                         {SkipIndexArray.includes(index) == false? (
 //                             <div>
@@ -382,11 +352,60 @@
 //                          )}
                              
 //                         </div>
-//                         }
+                        
 //                     </div>
-//         </div>
-//         )
-//         })}
+//                     ) : (
+//                 <div className={styleClasses + ' flex-row-container'}>
+// {/* Specific code for the very last section / string in the array */}
+//                     <div className="icon-area" onClick={() => select(index)} data-testid="select-function">
+                     
+//                             {SkipIndexArray.includes(index) == true? (
+//                                 <div className="test-1a">
+//                                     <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+//                                 </div>
+//                                  ) : (
+//                                  <div className="test-1b">
+//                                      {item.label == 'error' ? (
+//                                         <div className="test-2b">
+//                                             <span className={stepperType + ` red`} id={"Index-" + index}> ! </span>
+//                                         </div>
+//                                      ) : (
+//                                         <div className="test-3b">
+//                                             {CurrentStep == totalSteps ? (
+//                                          <div className="check-index-secondary">
+//                                         {/* If the current step is equal to the total length of array passed */}
+//                                         {/* If Finish is true, render checkmark, otherwise leave it at step in progress */}
+//                                         {Finish ===  true? (
+//                                          <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+//                                          // <Icon name="check" size="small" className={`${stepperType}` + ` green`}/>
+//                                         ) : (
+//                                         <span className={stepperType + ` green`} id={"Index-" + index}> {index + 1} </span>
+//                                         )}
+//                                         </div>
+//                                             ) : (
+//                                             <span className={stepperType + ` gray`} id={"Index-" + index}> {index + 1} </span>
+//                                             )}
+//                                             </div>
+//                                     )}
+//                                  </div>
+//                                  )}
+                       
+//                     </div>
+//                     <div className="description-area"  >
+//                         <ul>
+//                             <li className="font-variant-main"> {item.title} </li>
+//                             {item.label === "error" ?(
+//                                 <li className="font-variant-error"> Warning: Step {index + 1} </li>
+//                             ) : (
+//                                 <li className="font-variant-row"> {item.label} </li>     
+//                             )}                
+//                         </ul>
+//                     </div>
+//                 </div>
+//             )}
+//                 </div>
+//                 )})}
+       
 //         </div>
 
 //         ) : (
@@ -397,58 +416,49 @@
 //             <div className={stepperOrientation + "-description"} data-testid={`stepper-vertical-` + `${index}`} >
 //                 <div className={'flex-row-container item'} >
 //                 <div className="icon-area" onClick={() => select(index)} data-testid={`icon-area-` + `${index}`}>
-//                         {SkipIndexArray.includes(index) == true?(
+//                         {SkipIndexArray.includes(index) == true ? (
 //                              <div className="test-1a">
-//                                  <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
+//                             <span className={`${stepperType}` + ` orange`} id={"Index-" + index}> X </span>
 //                             </div>
 //                             ) : (
 //                             <div className="test-1b" >
-//                                  { item.label != 'error' ? (
+//                                  { item.label != 'error' ?(
 //                                   <div className="test-2a">
 //                                     {CurrentStep > index ? (
 //                                         <div className="test-3a">
-//                                         {CurrentStep == totalSteps? (
+//                                         {CurrentStep != totalSteps ? (
 //                                             <div className = "test-4A">
-//                                             {Finish == true ? (
-//                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-//                                              ) : (
-//                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
-//                                             )}
-//                                             </div>
-//                                         ) : (
-//                                             <div className = "test-4b">
-//                                              {CurrentStep > index +1 ? (
-//                                             <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
-//                                             ) : (
-//                                                 <div>
-//                                                 {CurrentStep > index ? (
-//                                                 <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
+//                                             {CurrentStep > 1 + index  ? (
+//                                                 <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
 //                                                 ) : (
-//                                                 <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+//                                                 <span className={`${stepperType}` + ` green`} id={"Index-" + index}> {index + 1} </span>
 //                                                 )}
-//                                                 </div>
-//                                             )}
-//                                         </div>
+//                                             </div>
+//                                             ) : (
+//                                             <div className = "test-4b">
+//                                              {CurrentStep == totalSteps? (
+//                                                 <span className={`${stepperType}` + ` green`} id={"Index-" + index}> ✔ </span>
+//                                                 // <Icon name="check" size="small" className={`${stepperType}` + ` green`}/>
+//                                                 ) : (
+//                                                 <span className={stepperType + ` green`} id={"Index-" + index}> {index + 1} </span>
+//                                                 )}
+//                                             </div>
 //                                         )}
 //                                         </div>
-//                                     ) : (
+//                                         ) : (
 //                                         <div className="test -3b">
-//                                     <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
+//                                         <span className={`${stepperType}` + ` gray`} id={"Index-" + index}> {index + 1} </span>
 //                                     </div>
 //                                      )}
 //                                 </div>
-//                                 ) : (
-//                                     <div className="test-2b">
-//                                <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
-//                                 </div>
-//                             )}
+//                                     ) : (
+//                                     <span className={`${stepperType}` + ` red`} id={"Index-" + index}> ! </span>
+//                                     )}
 //                             </div>
-                                
 //                             )}
                            
                           
-//                 </div>
-
+//                     </div>
 //                     <div className={"description-area "} id={"description-" + `${index}`}>
 //                         <ul>
 //                             <li className="font-variant-main "> {item.title} </li>
@@ -544,19 +554,26 @@
 //             </div>
 //             )}
 
-//             {stepperOrientation  == 'row' && 
+//             {/* {stepperOrientation  == 'row' && 
 //             <div className="display-in-row">
-//                 {Finish == true ? (
+//                 {Finish == true && 
 //                     <div className="stepper-display">
 //                         <p> You finished all your steps </p>
 //                     </div>
-//                 ) : (
-//                     <div className="stepper-display">
-//                         <p> You are currently on step {CurrentStep} </p>
-//                     </div>
-//                 )}
+//                 }
+//             </div>} */}
+
+//             {stepperOrientation  == 'row' && 
+//             <div className="display-in-row">
+//             {Currentindex <= renderSteps && 
+//             <div className="stepper-display">
+//                    {stepperElements![Currentindex].component}      
 //             </div>
 //             }
+//             </div>
+//             }
+            
+            
 
 // {/* if orientation == row  */}
 
@@ -579,7 +596,6 @@
 //                                 <Button
 //                                     className="Stepper-Button-Left"
 //                                     btnType='primary'
-//                                     data-testid='button-element-prev'
 //                                     onClick={previous}
 //                                     // onClick={props.prevOnClick}
 //                                 >
@@ -659,21 +675,26 @@
 //     stepperOrientation: 'row',
 //     stepperSize: 'sm',
 //     allowSkip: false,
+//     buttonTitleNext:"Next",
+//     buttonTitlePrev:"Back",
 //     stepperElements: [  
 //         {
 //         title: "Step 1",
-//         description: "",
-//         label: ""
+//         description: "Vertical only",
+//         label: "<h1> Test </h1>",
+//         component: ""
 //        },
 //        {
 //          title: "Step 2",
 //          description: "",
-//          label: ''
+//          label: '',
+//          component: ""
 //        },
 //        {
 //          title: "Step 3",
 //        description: "",
-//        label: ""
+//        label: "",
+//        component: ""
 //        },
 //     ]
 // };

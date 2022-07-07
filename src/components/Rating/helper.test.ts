@@ -39,11 +39,36 @@ describe('getIconColor', () => {
   });
 });
 
-// describe('getSizeName', () => {
-//   it('should return an icon size string based on icon size string and isHovering boolean', () => {
-//     const mockArg1: [IconSize, boolean] = ['small', true];
-//     const expectedResult1 = 'medium';
-//     const result1 = getSizeName(...mockArg1);
-//     expect(result1).toBe(expectedResult1);
-//   });
-// });
+describe('getSizeName', () => {
+  it('should return an icon size string based on icon size string and isHovering boolean', () => {
+    const mockArg1: [IconSize, boolean] = ['small', true];
+    const expectedResult1 = 'medium';
+    const result1 = getSizeName(...mockArg1);
+    expect(result1).toBe(expectedResult1);
+
+    const mockArg2: [IconSize, boolean] = ['small', false];
+    const expectedResult2 = 'small';
+    const result2 = getSizeName(...mockArg2);
+    expect(result2).toBe(expectedResult2);
+
+    const mockArg3: [IconSize, boolean] = ['medium', true];
+    const expectedResult3 = 'large';
+    const result3 = getSizeName(...mockArg3);
+    expect(result3).toBe(expectedResult3);
+
+    const mockArg4: [IconSize, boolean] = ['medium', false];
+    const expectedResult4 = 'medium';
+    const result4 = getSizeName(...mockArg4);
+    expect(result4).toBe(expectedResult4);
+
+    const mockArg5: [IconSize, boolean] = ['large', true];
+    const expectedResult5 = 'big';
+    const result5 = getSizeName(...mockArg5);
+    expect(result5).toBe(expectedResult5);
+
+    const mockArg6: [IconSize, boolean] = ['large', false];
+    const expectedResult6 = 'large';
+    const result6 = getSizeName(...mockArg6);
+    expect(result6).toBe(expectedResult6);
+  });
+});

@@ -1,5 +1,6 @@
 import React, {
     AllHTMLAttributes,
+    AriaAttributes,
     FC,
     MouseEvent,
     EventHandler,
@@ -45,7 +46,7 @@ export interface ISwitchProps {
     onChecked?: MouseEventHandler;
     /** set switch onChange*/
     onChange?: ChangeEventHandler;
-    /** set switch onClick */
+    /** set switch  */
     onClick?: MouseEventHandler;
 }
 
@@ -53,7 +54,7 @@ export interface ISwitchProps {
 // MAke sure your props are exported
 // type NativeSwtichProps = ISwitchProps & HTMLAttributes<HTMLElement>;
 // type NativeAchorSwitchProps = ISwitchProps & AnchorHTMLAttributes<HTMLAnchorElement>;
-export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement> 
+export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
 
 /**
  * A Switch indicates a possible user action.
@@ -77,7 +78,7 @@ export const Switch: FC<SwitchProps> = (props) => {
 
     const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
 
-    const switchHandler = () => {
+    const onInputChange = () => {
         setIsChecked(!isChecked);
       };
 
@@ -92,12 +93,12 @@ export const Switch: FC<SwitchProps> = (props) => {
                 checked={isChecked}
                 disabled={disabled}
                 size={size}
-                onChange={switchHandler}
+                onChange={onInputChange}
                 onClick={onChecked}
                 {...(rest )}
             />
             <span color={color} className={styleClasses}/>
-            <span id="switch__label">{label}</span>
+            <span id="switch-label">{label}</span>
         </label>
     )
     return Switch;

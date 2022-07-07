@@ -9,8 +9,6 @@ export default {
     title: 'Switch',
     component: Switch
 }
-// const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
 
 //SECTION 3: Define what is shown on Storybook
 
@@ -74,11 +72,10 @@ export const OnChangeEvent = () => {
     return(
 
     <div>
-        <h2>Controlled: Pass the onChecked and checked props</h2>
+        <h3>Controlled: Pass the onChecked and checked props</h3>
         <br/>
         <Switch checked={checked} onChecked={switchHandler}/>
     </div>
     )
 }
 
-//Property 'checked' does not exist on type 'IntrinsicAttributes & ISwitchProps & { children?: ReactNode; }'.ts(2322)

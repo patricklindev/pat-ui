@@ -1,6 +1,6 @@
 import React, { FC, useRef, useEffect } from 'react';
 
-export type dialogueType = 'basic' | 'alert' | 'form' | 'list';
+import ModalContainer from './Children/ModalContainer';
 
 export interface DlgMessageProps {
   // set dialogue message content
@@ -31,7 +31,18 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
     }
   };
 
-  return props.isOpen ? <>ModalContainer coming soon.</> : null;
+  return isOpen ? (
+    <div className="modal">
+      <div
+        className="modal-overlay"
+        onClick={handleOverlayClick}
+        ref={overlayRef}
+      ></div>
+      <ModalContainer dlgOnClick={dlgOnClick}>
+        {children}
+      </ModalContainer>
+    </div>
+  ) : null;
 };
 
 // Dialogue.defaultProps = {

@@ -162,7 +162,7 @@ describe('convertSizeNameToSizeNumber', () => {
 });
 
 describe('getFullStars', () => {
-  it('should return a new stars array based on prev stars array and index number args', () => {
+  it('should return a correct new stars array based on prev stars array and index number args', () => {
     const starArr = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
@@ -183,32 +183,88 @@ describe('getFullStars', () => {
   });
 });
 
-// describe('getCurrentHalfStars', () => {
-//   it('should return a new stars array based on args when offsetX === 0 ', () => {
-//     // first step test when offsetX === 0
-//     const starArr = new Array(5).fill(0).map((_, index) => {
-//       return {
-//         value: 0,
-//         index: index + 1,
-//       };
-//     });
-//     const offsetX = 0;
-//     const index = 3;
-//     const currentSize = 40;
-//     const mockArg: [number, IStars, number, number] = [
-//       offsetX,
-//       starArr,
-//       index,
-//       currentSize,
-//     ];
-//     const expectedResult = [
-//       { value: 1, index: 1 },
-//       { value: 1, index: 2 },
-//       { value: 0, index: 3 },
-//       { value: 0, index: 4 },
-//       { value: 0, index: 5 },
-//     ];
-//     const result = getCurrentHalfStars(...mockArg);
-//     expect(result).toEqual(expectedResult);
-//   });
-// });
+describe('getCurrentHalfStars', () => {
+  it('should return a correct new stars array based on args when offsetX === 0 ', () => {
+    // first step test when offsetX === 0
+    const starArr = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index: index + 1,
+      };
+    });
+    const offsetX = 0;
+    const index = 3;
+    const currentSize = 40;
+    const mockArg: [number, IStars, number, number] = [
+      offsetX,
+      starArr,
+      index,
+      currentSize,
+    ];
+    const expectedResult = [
+      { value: 1, index: 1 },
+      { value: 1, index: 2 },
+      { value: 0, index: 3 },
+      { value: 0, index: 4 },
+      { value: 0, index: 5 },
+    ];
+    const result = getCurrentHalfStars(...mockArg);
+    expect(result).toEqual(expectedResult);
+  });
+
+  it('should return a correct new stars array based on args when offsetX <= currentSize / 2 ', () => {
+    // first step test when offsetX === 0
+    const starArr = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index: index + 1,
+      };
+    });
+    const offsetX = 10;
+    const index = 3;
+    const currentSize = 40;
+    const mockArg: [number, IStars, number, number] = [
+      offsetX,
+      starArr,
+      index,
+      currentSize,
+    ];
+    const expectedResult = [
+      { value: 1, index: 1 },
+      { value: 1, index: 2 },
+      { value: 0.5, index: 3 },
+      { value: 0, index: 4 },
+      { value: 0, index: 5 },
+    ];
+    const result = getCurrentHalfStars(...mockArg);
+    expect(result).toEqual(expectedResult);
+  });
+
+  it('should return a correct new stars array based on args when offsetX >= currentSize / 2 ', () => {
+    // first step test when offsetX === 0
+    const starArr = new Array(5).fill(0).map((_, index) => {
+      return {
+        value: 0,
+        index: index + 1,
+      };
+    });
+    const offsetX = 30;
+    const index = 3;
+    const currentSize = 40;
+    const mockArg: [number, IStars, number, number] = [
+      offsetX,
+      starArr,
+      index,
+      currentSize,
+    ];
+    const expectedResult = [
+      { value: 1, index: 1 },
+      { value: 1, index: 2 },
+      { value: 1, index: 3 },
+      { value: 0, index: 4 },
+      { value: 0, index: 5 },
+    ];
+    const result = getCurrentHalfStars(...mockArg);
+    expect(result).toEqual(expectedResult);
+  });
+});

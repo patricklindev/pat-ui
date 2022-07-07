@@ -1,6 +1,7 @@
 import { IconSize } from '../Icon/Icon';
 import {
   convertSizeNameToSizeNumber,
+  getCurrentHalfStars,
   getCurrentStarRating,
   getFullStars,
   getIconColor,
@@ -10,147 +11,204 @@ import {
 import { IStars } from './Rating';
 
 describe('getIconName', () => {
-  it('should return a star name string based on star value number arg', () => {
-    const mockArg2: number = 0;
-    const expectedResult2 = 'star regular';
-    const result2 = getIconName(mockArg2);
-    expect(result2).toBe(expectedResult2);
+  it('should return star regular string based on star value number arg', () => {
+    const mockArg: number = 0;
+    const expectedResult = 'star regular';
+    const result = getIconName(mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg1: number = 0.5;
-    const expectedResult1 = 'star half';
-    const result1 = getIconName(mockArg1);
-    expect(result1).toBe(expectedResult1);
+  it('should return star half string based on star value number arg', () => {
+    const mockArg: number = 0.5;
+    const expectedResult = 'star half';
+    const result = getIconName(mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg3: number = 1;
-    const expectedResult3 = 'star';
-    const result3 = getIconName(mockArg3);
-    expect(result3).toBe(expectedResult3);
+  it('should return star string based on star value number arg', () => {
+    const mockArg: number = 1;
+    const expectedResult = 'star';
+    const result = getIconName(mockArg);
+    expect(result).toBe(expectedResult);
   });
 });
 
 describe('getIconColor', () => {
-  it('should return an icon color string based on star value number arg ', () => {
-    const mockArg1: number = 0;
-    const expectedResult1 = 'grey';
-    const result1 = getIconColor(mockArg1);
-    expect(result1).toBe(expectedResult1);
+  it('should return grey color string based on star value number arg ', () => {
+    const mockArg: number = 0;
+    const expectedResult = 'grey';
+    const result = getIconColor(mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg2: number = 0.5;
-    const expectedResult2 = 'orange';
-    const result2 = getIconColor(mockArg2);
-    expect(result2).toBe(expectedResult2);
+  it('should return orange color string based on star value number arg', () => {
+    const mockArg: number = 0.5;
+    const expectedResult = 'orange';
+    const result = getIconColor(mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg3: number = 1;
-    const expectedResult3 = 'orange';
-    const result3 = getIconColor(mockArg3);
-    expect(result3).toBe(expectedResult3);
+  it('should return orange color string based on star value number arg', () => {
+    const mockArg: number = 1;
+    const expectedResult = 'orange';
+    const result = getIconColor(mockArg);
+    expect(result).toBe(expectedResult);
   });
 });
 
 describe('getSizeName', () => {
-  it('should return an icon size string based on icon size string and isHovering boolean', () => {
-    const mockArg1: [IconSize, boolean] = ['small', true];
-    const expectedResult1 = 'medium';
-    const result1 = getSizeName(...mockArg1);
-    expect(result1).toBe(expectedResult1);
+  it('should return medium string based on icon size string and isHovering boolean', () => {
+    const mockArg: [IconSize, boolean] = ['small', true];
+    const expectedResult = 'medium';
+    const result = getSizeName(...mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg2: [IconSize, boolean] = ['small', false];
-    const expectedResult2 = 'small';
-    const result2 = getSizeName(...mockArg2);
-    expect(result2).toBe(expectedResult2);
+  it('should return small string based on icon size string and isHovering boolean ', () => {
+    const mockArg: [IconSize, boolean] = ['small', false];
+    const expectedResult = 'small';
+    const result = getSizeName(...mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg3: [IconSize, boolean] = ['medium', true];
-    const expectedResult3 = 'large';
-    const result3 = getSizeName(...mockArg3);
-    expect(result3).toBe(expectedResult3);
+  it('should return large string based on icon size string and isHovering boolean ', () => {
+    const mockArg: [IconSize, boolean] = ['medium', true];
+    const expectedResult = 'large';
+    const result = getSizeName(...mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg4: [IconSize, boolean] = ['medium', false];
-    const expectedResult4 = 'medium';
-    const result4 = getSizeName(...mockArg4);
-    expect(result4).toBe(expectedResult4);
+  it('should return medium string based on icon size string and isHovering boolean', () => {
+    const mockArg: [IconSize, boolean] = ['medium', false];
+    const expectedResult = 'medium';
+    const result = getSizeName(...mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg5: [IconSize, boolean] = ['large', true];
-    const expectedResult5 = 'big';
-    const result5 = getSizeName(...mockArg5);
-    expect(result5).toBe(expectedResult5);
+  it('should return big string based on icon size string and isHovering boolean', () => {
+    const mockArg: [IconSize, boolean] = ['large', true];
+    const expectedResult = 'big';
+    const result = getSizeName(...mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg6: [IconSize, boolean] = ['large', false];
-    const expectedResult6 = 'large';
-    const result6 = getSizeName(...mockArg6);
-    expect(result6).toBe(expectedResult6);
+  it('should return large string based on icon size string and isHovering boolean', () => {
+    const mockArg: [IconSize, boolean] = ['large', false];
+    const expectedResult = 'large';
+    const result = getSizeName(...mockArg);
+    expect(result).toBe(expectedResult);
   });
 });
 
 describe('getCurrentStarRating', () => {
-  it('should return a total star rating number based on stars array', () => {
-    const mockArg1: IStars = new Array(5).fill(0).map((_, index) => {
+  it('should return a total star rating of 0 number based on stars array', () => {
+    const mockArg: IStars = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
         index: index + 1,
       };
     });
-    const expectedResult1 = 0;
-    const result1 = getCurrentStarRating(mockArg1);
-    expect(result1).toBe(expectedResult1);
+    const expectedResult = 0;
+    const result1 = getCurrentStarRating(mockArg);
+    expect(result1).toBe(expectedResult);
+  });
 
-    const mockArg2: IStars = new Array(10).fill(0).map((_, index) => {
+  it('should return a total star rating of 10 number based on stars array ', () => {
+    const mockArg: IStars = new Array(10).fill(0).map((_, index) => {
       return {
         value: 1,
         index: index + 1,
       };
     });
-    const expectedResult2 = 10;
-    const result2 = getCurrentStarRating(mockArg2);
-    expect(result2).toBe(expectedResult2);
+    const expectedResult = 10;
+    const result = getCurrentStarRating(mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg3: IStars = new Array(15).fill(0).map((_, index) => {
+  it('should return a total star rating of 10 number based on stars array', () => {
+    const mockArg: IStars = new Array(15).fill(0).map((_, index) => {
       return {
         value: 0.5,
         index: index + 1,
       };
     });
-    const expectedResult3 = 7.5;
-    const result3 = getCurrentStarRating(mockArg3);
-    expect(result3).toBe(expectedResult3);
+    const expectedResult = 7.5;
+    const result = getCurrentStarRating(mockArg);
+    expect(result).toBe(expectedResult);
   });
 });
 
 describe('convertSizeNameToSizeNumber', () => {
-  it('should return a size number based on a size name string arg', () => {
+  it('should return 20 based on small string arg', () => {
     const mockArg1: IconSize = 'small';
     const expectedResult1 = 20;
     const result1 = convertSizeNameToSizeNumber(mockArg1);
     expect(result1).toBe(expectedResult1);
+  });
 
-    const mockArg2: IconSize = 'medium';
-    const expectedResult2 = 28;
-    const result2 = convertSizeNameToSizeNumber(mockArg2);
-    expect(result2).toBe(expectedResult2);
+  it('should return 28 based on medium string arg ', () => {
+    const mockArg: IconSize = 'medium';
+    const expectedResult = 28;
+    const result = convertSizeNameToSizeNumber(mockArg);
+    expect(result).toBe(expectedResult);
+  });
 
-    const mockArg3: IconSize = 'large';
-    const expectedResult3 = 42;
-    const result3 = convertSizeNameToSizeNumber(mockArg3);
-    expect(result3).toBe(expectedResult3);
+  it('should return 42 based on large string arg ', () => {
+    const mockArg: IconSize = 'large';
+    const expectedResult = 42;
+    const result = convertSizeNameToSizeNumber(mockArg);
+    expect(result).toBe(expectedResult);
   });
 });
 
 describe('getFullStars', () => {
-  it('should return a new stars array based on prev stars array and index number', () => {
+  it('should return a new stars array based on prev stars array and index number args', () => {
     const starArr = new Array(5).fill(0).map((_, index) => {
       return {
         value: 0,
         index: index + 1,
       };
     });
-    const mockArg1: [IStars, number] = [starArr, 3];
-    const expectedResult1 = [
+    const index = 3;
+    const mockArg: [IStars, number] = [starArr, index];
+    const expectedResult = [
       { value: 1, index: 1 },
       { value: 1, index: 2 },
       { value: 1, index: 3 },
       { value: 0, index: 4 },
       { value: 0, index: 5 },
     ];
-    const result1 = getFullStars(...mockArg1);
-    expect(result1).toEqual(expectedResult1);
+    const result = getFullStars(...mockArg);
+    expect(result).toEqual(expectedResult);
   });
 });
+
+// describe('getCurrentHalfStars', () => {
+//   it('should return a new stars array based on args when offsetX === 0 ', () => {
+//     // first step test when offsetX === 0
+//     const starArr = new Array(5).fill(0).map((_, index) => {
+//       return {
+//         value: 0,
+//         index: index + 1,
+//       };
+//     });
+//     const offsetX = 0;
+//     const index = 3;
+//     const currentSize = 40;
+//     const mockArg: [number, IStars, number, number] = [
+//       offsetX,
+//       starArr,
+//       index,
+//       currentSize,
+//     ];
+//     const expectedResult = [
+//       { value: 1, index: 1 },
+//       { value: 1, index: 2 },
+//       { value: 0, index: 3 },
+//       { value: 0, index: 4 },
+//       { value: 0, index: 5 },
+//     ];
+//     const result = getCurrentHalfStars(...mockArg);
+//     expect(result).toEqual(expectedResult);
+//   });
+// });

@@ -30,44 +30,49 @@ export const SimpleDialog = () => {
   const toggleModal = () => setModalShown(!modalShown);
 
   return (
-    <div className="simple-dlg dlg-box">
-      {/* add Selected: {selectedValue later.} */}
-      <Button
-        btnType="default"
-        disabled={false}
-        onClick={toggleModal}
-      >
-        Simple Dialog
-      </Button>
-      <Dialogue
-        isOpen={modalShown}
-        dlgOnClick={toggleModal}
-      >
-        <DialogTitle>Set backup account</DialogTitle>
-        <DialogList>
-          {emails.map(email => (
-            <ListItem itemOnClick={toggleModal} key={email.id}>
+    <>
+      <h3>Simple Dialog:</h3>
+      <p>Developers can provide title, content, actions of the dialog component from children props of the component.</p>
+      <p>Users shouldn’t be able to scroll the page when the dialog is open</p>
+      <div className="simple-dlg dlg-box">
+        {/* add Selected: {selectedValue later.} */}
+        <Button
+          btnType="default"
+          disabled={false}
+          onClick={toggleModal}
+        >
+          Simple Dialog
+        </Button>
+        <Dialogue
+          isOpen={modalShown}
+          dlgOnClick={toggleModal}
+        >
+          <DialogTitle>Set backup account</DialogTitle>
+          <DialogList>
+            {emails.map(email => (
+              <ListItem itemOnClick={toggleModal} key={email.id}>
+                <Icon
+                  disabled={false}
+                  loading={false}
+                  name='users'
+                  className="dlg-icon"
+                />
+                {email.email}
+              </ListItem>
+            ))}
+            <ListItem itemOnClick={toggleModal}>
               <Icon
                 disabled={false}
                 loading={false}
-                name='users'
-                className="dlg-icon"
+                name='plus'
+                className="dlg-icon dlg-add"
               />
-              {email.email}
+              Add account
             </ListItem>
-          ))}
-          <ListItem itemOnClick={toggleModal}>
-            <Icon
-              disabled={false}
-              loading={false}
-              name='plus'
-              className="dlg-icon dlg-add"
-            />
-            Add account
-          </ListItem>
-        </DialogList>
-      </Dialogue>
-    </div>
+          </DialogList>
+        </Dialogue>
+      </div>
+    </>
   );
 };
 
@@ -78,9 +83,10 @@ export const DiffTypeDialog = () => {
 
   return (
     <>
-      <h3>Simple Dialog: </h3>
       <SimpleDialog />
       <h3>Alert Dialog: </h3>
+      <p>Alert Dialogs requires acknowledgement to disregard interruption. They either ask a question or make a statement related to the action buttons.</p>
+      <p>If you use a title, use a clear question/statement with an explanation.</p>
       <div className="alert-dlg dlg-box">
         <Button
           btnType="default"
@@ -97,6 +103,7 @@ export const DiffTypeDialog = () => {
         </Dialogue>
       </div>
       <h3>Form Dialog: </h3>
+      <p>Form dialogs usually require a response from the user to fill out via a form field. (i.e name field to personalize web page.)</p>
       <div className="form-dlg dlg-box">
         <Button
           btnType="default"

@@ -14,8 +14,6 @@ export interface ICheckboxProps {
   checkSize?: boxSize
   /** make checkbox bar always check */
   checked?: boolean | undefined;
-  /** disabled the checkbox */
-  disabled?: boolean | undefined;
   /** add specific icon to input */
   icon?: iconType;
   /** add specific icon theme to input */

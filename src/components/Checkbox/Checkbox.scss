@@ -108,3 +108,122 @@
     cursor:not-allowed;
   }
 }
+
+
+.bg-iChecked-path{
+  &-primary{
+    fill: invert($primary); 
+  }
+
+  &-secondary{
+    fill: invert($secondary); 
+  }
+
+  &-success{
+    fill: invert($success); 
+  }
+
+  &-info{
+    fill: invert($info); 
+  }
+
+  &-warning{
+    fill: invert($warning); 
+  }
+
+  &-danger{
+    fill: invert($danger); 
+  }
+
+  &-default{
+    fill: invert($white); 
+  }
+
+  &-dark{
+    fill: invert($dark); 
+  }
+}
+
+.bg-iCheck-path{
+  &-primary{
+    fill: $primary; 
+  }
+
+  &-secondary{
+    fill: $secondary; 
+  }
+
+  &-success{
+    fill: $success; 
+  }
+
+  &-info{
+    fill: $info;
+  }
+
+  &-warning{
+    fill:$warning;
+  }
+
+  &-danger{
+    fill: $danger;
+  }
+
+  &-default{
+    fill: $white;
+  }
+
+  &-dark{
+    fill: $dark;
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
+
+    color: #000;
+  }
+}
+
+
+.bg-iCheck{
+  &-primary{
+    background-color: $primary; 
+  }
+
+  &-secondary{
+    background-color: $secondary; 
+  }
+
+  &-success{
+    background-color: $success; 
+  }
+
+  &-info{
+    background-color: $info;
+  }
+
+  &-warning{
+    background-color:$warning;
+  }
+
+  &-danger{
+    background-color: $danger;
+  }
+
+  &-default{
+    background-color: $white;
+  }
+
+  &-dark{
+    background-color: $dark;
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
+
+    color: #000;
+  }
+}
+

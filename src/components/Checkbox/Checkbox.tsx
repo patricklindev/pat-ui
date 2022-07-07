@@ -1,4 +1,4 @@
-import React,{useState,useEffect,FC}from 'react'
+import React,{useState,FC}from 'react'
 import { classNames } from '../../utils/classNames';
 import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
@@ -7,13 +7,13 @@ import Icon from './Icon'
 
 export type boxSize = 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
 export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card' | 'check';
-export type themeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'light';
+export type themeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'default';
 
 export interface ICheckboxProps {
   /** set customized style */
   className?: string;
   /** set checkbox size */
-  checkboxSize?: boxSize
+  checkSize?: boxSize
   /** make checkbox bar always check */
   checked?: boolean | undefined;
   /** disabled the checkbox */
@@ -23,13 +23,13 @@ export interface ICheckboxProps {
   /** add specific icon theme to input */
   iconTheme?: themeColor;
   /**customize checkbox color */
-  checkboxColor? : themeColor;
+  checkBgTheme? : themeColor;
+  //**set background theme when check on check icon */
+  checkedBgTheme? : themeColor;
   /** pass a callback function out-site of props */
-  onChange?: ()=> void | undefined;
+  onChange?: any;
   /** set label value */ 
   label?: string;
-  /** onClick */
-  onClick?: ()=>void;
 }
 
 /**
@@ -41,132 +41,68 @@ export interface ICheckboxProps {
  */
 
 export const Checkbox:FC<ICheckboxProps> = (props)=> {
-  const {
-    className,
-    checkboxSize,
-    checked,
-    icon,
-    checkboxColor,
-    iconTheme,
-    disabled,
-    label,
-    onChange : handleCheck} = props;
 
-  // define a unique id when the function is mounted
-  const [id,setId] = useState('')
-
-  // define a default icon value
-  const [checkMarkIcon,setCheckMarkIcon] = useState(icon ? icon : 'check')
-
-  // define a default checkboxSize
-  const [boxSize,setBoxSize] = useState(checkboxSize? checkboxSize : 'normal')
+  const { checkSize, checked, checkBgTheme,checkedBgTheme } = props;
 
   // toggle the checked state
-  const [isCheck,setIsCheck] = useState(checked !== undefined ? true : false)
+  const [isCheck,setIsCheck] = useState(checked ? checked : false)
 
-  //state for check icon color
-  const [fillCheck,setFillCheck] = useState('')
+  // define a unique id when the function is mounted
+  const [id,setId] = useState(uid())
 
-  //state for other icon color
-  const [fillIcon,setFillIcon] = useState('')
+  let classNameSpan;
 
+  if(checkedBgTheme){
+    classNameSpan = {
+      [`checkbox-${checkSize}`]: !!checkSize,
+      [`bg-iCheck-${checkedBgTheme}`]: isCheck,
+    }
+  }else{
+    classNameSpan = {
+      [`checkbox-${checkSize}`]: !!checkSize,
+      [`bg-iCheck-${checkBgTheme}`]: !!checkBgTheme,
+    }
+  }
   // add class name
-  const styleClassName = classNames('checkbox',{
-    [`checkbox-${boxSize}`]: !!boxSize,
-    [`checkbox-${checkboxColor}`]: isCheck,
-    [`${className}}`] : !!className
-  })
+  const styleClassNameSpan = classNames('checkbox',classNameSpan)
 
-  
-  useEffect(()=>{
-    setId(uid())
-    // set check icon color when mounted
-    switch(checkboxColor) {
-      case 'light':
-        setFillCheck('#000')
-        break
-      case undefined:
-        setFillCheck('#000')
-        break
-      default:
-        setFillCheck('white')
-      }
+  let classNameSVG;
 
-      // set icon color when mounted
-      switch(iconTheme) {
-        case 'primary':
-          setFillIcon('#20c997')
-          break;
-        case 'secondary':
-          setFillIcon('#6c757d')
-          break;
-        case 'success':
-          setFillIcon('#52c41a')
-          break
-        case 'info':
-          setFillIcon('#17a2b8')
-          break
-        case 'warning':
-          setFillIcon('#fadb14')
-          break
-        case 'danger':
-          setFillIcon('#dc3545')
-          break
-        case 'light':
-          setFillIcon('#f8f9fa')
-          break
-        case 'dark':
-          setFillIcon('#343a40')
-          break
-        default:
-          setFillIcon('#000')
-        }
-  },[checkboxColor,iconTheme])
+  if(checkedBgTheme){
+    classNameSVG = {
+      [`bg-iCheck-path-${checkBgTheme}`]: !isCheck,
+      [`bg-iChecked-path-${checkedBgTheme}`]: isCheck,
+    }
+  }else{
+    classNameSVG = {
+      [`bg-iCheck-path-${checkBgTheme}`]: !isCheck,
+      [`bg-iChecked-path-${checkBgTheme}`]: isCheck,
+    }
+  }
 
-  //event handler for check input
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
-      setIsCheck(event.target.checked)
+  const styleClassNameSVG = classNames(classNameSVG)
+
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setIsCheck(e.target.checked)
   }
 
   return (
     <div className='checkbox-container'>
-      <input 
-        type="checkbox" 
-        id={id} 
-        checked={isCheck} 
-        onChange={handleCheck ? handleCheck : handleChange} // replace onChange CB if onChange prop exist
-        disabled={disabled} 
-        style={{cursor: disabled ? 'not-allowed' : ''}}/> {/** change cursor to not-allowed when disabled */}
-      <label 
-        htmlFor={id} 
-        style={{cursor: disabled ? 'not-allowed' : ''}}>{/** change cursor to not-allowed when disabled */}
-        <span 
-          className={styleClassName} 
-          style={{
-            border: checkMarkIcon !== 'check' ? 'none' : '', // remove border when icon is not check icon
-            borderColor: disabled ? 'gray' : '', // change border color to gray when disabled
-            backgroundColor: disabled ? 'gray' : '', // change background color to gray when disable
-          }}>
-          {
-          isCheck 
-          ? <Icon  // if input check is true render the icon 
-          viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
-          path={IconPath[`${checkMarkIcon}`].path}
-          fill={checkMarkIcon === 'check' ? fillCheck : fillIcon} // if icon is check icon implement color with fillCheck state else implement color with fillIcon state
-          /> 
-          : checkMarkIcon !== 'check' 
-          ? <Icon  // if check input icon is not check icon render icon
-          viewBox={IconPath[`${checkMarkIcon}`].viewBox} 
-          path={IconPath[`${checkMarkIcon}`].path}
-          fill='lightgray'
-          />
-          : null
-          }
+      <input type='checkbox' onChange={handleChange} id={id} data-testid='inputCheckBox'/> 
+      <label htmlFor={id}>
+        <span className={styleClassNameSpan} data-testid='iconSpan'>
+          <svg viewBox={IconPath['check'].viewBox} role="img" data-testid='iconSVG'>
+            <path d={IconPath['check'].path} className={styleClassNameSVG}/>
+          </svg>
         </span>
-        {label}
       </label> 
     </div>
   )
+}
+
+Checkbox.defaultProps = {
+  checkBgTheme : 'default',
+  checkSize: 'normal'
 }
 
 export default Checkbox;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface IIcon{
+export interface IIcon{
     path: string;
     viewBox: string;
     fill?:string
@@ -11,8 +11,8 @@ const Icon:React.FC<IIcon> =(props)=> {
   const {viewBox,path,fill} = props
 
   return (
-    <svg viewBox={viewBox}>
-      <path fill={fill} fillOpacity="1" d={path} />
+    <svg viewBox={viewBox} data-testid={viewBox} role="img">
+      <path fill={fill} fillOpacity="1" d={path} data-testid={path}/>
     </svg>
   )
 }

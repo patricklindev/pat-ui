@@ -11,8 +11,7 @@ $switch-sm-palette-height: 10px;
 $switch-sm-palette-width: 26px;
 $switch-sm-thumb-height: 16px;
 $switch-sm-thumb-width: 16px;
-$switch-margin-right: 50px;
-/*switch shadow*/
+$switch-margin-right: 4rem;
 $switch-disabled-opacity: 0.4 !default;
 
 /*mixin*/
@@ -190,6 +189,10 @@ input:checked + .slider:before {
   height: $switch-sm-thumb-height;
   width: $switch-sm-thumb-width;
   bottom: -3px;
+}
+
+#switch__label{
+  cursor: pointer
 }
 
 

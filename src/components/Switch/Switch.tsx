@@ -1,4 +1,3 @@
-//SECTION 1:
 import React, {
     AllHTMLAttributes,
     FC,
@@ -42,11 +41,11 @@ export interface ISwitchProps {
     toggle?: Toggle;
     /** set switch disabled*/
     disabled?: boolean;
-    /** set switch onChange*/
-    callback?: any;
+    /** set switch onChecked*/
+    onChecked?: MouseEventHandler;
     /** set switch onChange*/
     onChange?: ChangeEventHandler;
-    /** set switch click action */
+    /** set switch onClick */
     onClick?: MouseEventHandler;
 }
 
@@ -67,7 +66,7 @@ export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
 //SECTION 5: DEFINE HTML/ LOGIC/ PROPS/ VARIABLE DECLARATIONS
 
 export const Switch: FC<SwitchProps> = (props) => {
-    const { className, color, size, disabled, toggle, callback, onChange, onClick, label, children, ...rest} = props;
+    const { className, color, size, disabled, toggle, onChecked, onChange, onClick, label, children, ...rest} = props;
     let styleClasses = classNames('slider round', {
         [`${color}`]: !!color,
         [`${size}`]: !!size,
@@ -77,19 +76,14 @@ export const Switch: FC<SwitchProps> = (props) => {
     let strSwitch: string = 'switch'
 
     const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
-    console.log(isChecked);
 
     const switchHandler = () => {
         setIsChecked(!isChecked);
       };
 
-    //SECTION 5.1: Make sure the components are carried over into your component
-
     if (className) {
         styleClasses += ' ' + className;
     }
-
-    //SECTION 5.2 - HTML ELEMENTS
     
     let Switch = (
         <label className={strSwitch}>  
@@ -99,11 +93,11 @@ export const Switch: FC<SwitchProps> = (props) => {
                 disabled={disabled}
                 size={size}
                 onChange={switchHandler}
-                onClick={callback}
+                onClick={onChecked}
                 {...(rest )}
             />
             <span color={color} className={styleClasses}/>
-            <span>{label}</span>
+            <span id="switch__label">{label}</span>
         </label>
     )
     return Switch;

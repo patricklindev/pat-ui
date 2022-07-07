@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox should match snapshot 1`] = `
+<DocumentFragment>
+  <label
+    class="checkbox check-default check-md"
+  >
+    <input
+      aria-label="test-input"
+      type="checkbox"
+    />
+    <span
+      class="checkmark"
+    />
+    <span
+      class="hoverCircle"
+    />
+  </label>
+</DocumentFragment>
+`;

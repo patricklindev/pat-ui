@@ -1,27 +1,10 @@
-import React, { FC, ReactNode, useEffect, useRef, ChangeEventHandler } from 'react';
+import React, { FC, useEffect, useRef, ChangeEventHandler, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 
-// export enum checkboxType {
-//     Primary = 'primary',
-//     Secondary = 'secondary',
-//     Default = 'default'
-// }
-
 export type checkboxType = | 'primary' | 'secondary' | 'default';
 
-// export enum checkboxSize {
-//     Medium = 'md',
-//     Small = 'sm'
-// }
-
 export type checkboxSize = | 'md' | 'sm';
-
-export enum checkBoxState {
-    checked = 1,
-    unchecked = 2,
-    indeterminate = -1
-}
 
 export interface ICheckboxProps {
     className?: string;
@@ -29,18 +12,18 @@ export interface ICheckboxProps {
     checkType?: checkboxType;
     label?: string;
     disabled?: boolean;
-    checkedState?: checkBoxState;
+    checkedState?: boolean;
     icon?: string;
     onChange?: ChangeEventHandler<HTMLInputElement>;
+    indeterminate?: boolean;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
-    const {checkSize, checkType, label, disabled, checkedState, className, icon, onChange} = props;
-    const checkRef = useRef<any>();
-    useEffect(() => {
-        checkRef.current.checked = checkedState === 1
-        checkRef.current.indeterminate = checkedState === -1
-    }, [checkedState]);
+    const {checkSize, checkType, label, disabled, checkedState, className, icon, onChange, indeterminate} = props;
+    const checkRef = useRef<any>(); // maintains reference to input so can manage indeterminate property directly
+    useEffect(() => { // upon render set input to checked if indeterminate        
+        checkRef.current.indeterminate = indeterminate === true;
+    }, [indeterminate]);
 
     let styleClasses = classNames('checkbox', {
         [`check-${checkType}`]: true,
@@ -55,7 +38,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         // console.log(icon);
         checkbox = (
             <label className={styleClasses}>
-                <input type='checkbox' disabled={disabled} ref={checkRef} />
+                <input type='checkbox' disabled={disabled} ref={checkRef} checked={checkedState} onChange={onChange} />
                 <Icon name={icon} />
                 {label}
                 <span className='hoverCircle icon-hover'></span>
@@ -66,7 +49,14 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         // console.log("no icon");
         checkbox = (
             <label className={styleClasses}>
-                <input aria-label='test-input' type='checkbox' disabled={disabled} ref={checkRef} onChange={onChange}/>
+                <input 
+                    aria-label='test-input' 
+                    type='checkbox' 
+                    ref={checkRef} 
+                    disabled={disabled} 
+                    checked={checkedState} 
+                    onChange={onChange}
+                />
                 <span className='checkmark'></span>
                 {label}
                 <span className='hoverCircle'></span>
@@ -79,7 +69,6 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
 
 Checkbox.defaultProps = {
     disabled: false,
-    checkedState: checkBoxState.unchecked,
     checkSize: 'md',
     checkType: 'default'
 }

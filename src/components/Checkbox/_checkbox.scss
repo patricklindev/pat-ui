@@ -143,46 +143,46 @@
 
 .check-primary {
   .hoverCircle {
-    background-color: #3F51B5;
+    background-color: $primary;
   }
 
   input:checked ~ .checkmark {
-    @include checkmark-type(#3F51B5, $checkmark-border-primary);
+    @include checkmark-type($primary, $checkmark-border-primary);
   }
   
   input:indeterminate ~ .checkmark {
-    @include checkmark-type(#3F51B5, $checkmark-border-primary);
+    @include checkmark-type($primary, $checkmark-border-primary);
   }
 
   svg {
     stroke-width: 2.5;
-    stroke: #3F51B5;
+    stroke: $primary;
   }
   
   input:checked ~ svg {
-    fill: #3F51B5;
+    fill: $primary;
   }
 }
 
 .check-secondary {
   .hoverCircle {
-    background-color: #F50057;
+    background-color: $pink;
   }
 
   input:checked ~ .checkmark {
-    @include checkmark-type(#F50057, $checkmark-border-secondary);
+    @include checkmark-type($pink, $checkmark-border-secondary);
   }
   
   input:indeterminate ~ .checkmark {
-    @include checkmark-type(#F50057, $checkmark-border-secondary);
+    @include checkmark-type($pink, $checkmark-border-secondary);
   }
 
   svg {
     stroke-width: 2.5;
-    stroke: #F50057;
+    stroke: $pink;
   }
   
   input:checked ~ svg {
-    fill: #F50057;
+    fill: $pink;
   }
 }

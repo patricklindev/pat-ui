@@ -1,53 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import Checkbox, {checkBoxState} from './Checkbox';
-import Icon from '../Icon';
+import Checkbox from './Checkbox';
 
 export default {
   title: 'Checkbox',
   component: Checkbox,
 };
 
-const checkBoxStyle: React.CSSProperties = {
-  marginRight: '5px',
-  marginTop: '5px',
-};
-
-export const DefaultCheckBox = () => (
+export const DefaultCheckBox = () => {
+  const [checked, setChecked] = useState(true);
+  
+  return (
     <div>
-        <Checkbox checkedState={checkBoxState.checked} />
-        <Checkbox checkedState={checkBoxState.indeterminate} />
-        <Checkbox />
-        <Checkbox disabled/>
-        <Checkbox disabled checkedState={checkBoxState.indeterminate}/>
-        <Checkbox label="Label" />
+        <Checkbox label='Default'/>
         <Checkbox label="Disabled" disabled/>
+        <Checkbox label='indeterminate' indeterminate />
         <Checkbox label="Function" onChange={action('Checkbox clicked')}/>
-    </div>
-);
+        <Checkbox checkedState={checked} onChange={() => setChecked(!checked)} label='two way data binding'/>
+    </div>)
+};
 
 export const DiffSizeCheckbox = () => (
   <div>
-    <Checkbox checkSize='md' checkedState={checkBoxState.checked}/>
-    <Checkbox checkSize='sm' checkedState={checkBoxState.checked}/>
-    <Checkbox checkSize='sm' checkedState={checkBoxState.indeterminate} />
+    <Checkbox checkSize='md' label='medium'/>
+    <Checkbox checkSize='sm' label='small'/>
   </div>
 );
 
-export const DiffTypeCheckbox = () => (
-  <div>
-    <Checkbox checkedState={checkBoxState.checked} checkType='primary' label='primary'/>
-    <Checkbox checkedState={checkBoxState.checked} checkType='secondary' label='secondary'/>
-    <Checkbox checkedState={checkBoxState.checked} checkType='default' label='default'/>
-  </div>
-);
+export const DiffTypeCheckbox = () => {
 
-export const DiffIconCheckbox = () => (
-  <div>
-    <Checkbox icon='bookmark' />
-    <Checkbox icon='bookmark' checkType='primary'/>
-    <Checkbox icon='bookmark' checkType='secondary'/>
-    <Checkbox icon='heart' checkedState={checkBoxState.checked}/>
-    <Checkbox icon='heart' checkedState={checkBoxState.checked} checkSize='sm'/>
-  </div>
-)
+  return (
+    <div>
+      <Checkbox checkType='primary' label='primary' />
+      <Checkbox checkType='secondary' label='secondary'/>
+      <Checkbox checkType='default' label='default'/>
+    </div>
+  )
+};
+
+export const DiffIconCheckbox = () => {
+  const [checked, setChecked] = useState(true);
+
+  return (
+    <div>
+      <Checkbox icon='bookmark' />
+      <Checkbox icon='bookmark' checkType='primary' checkedState={checked} onChange={() => setChecked(!checked)}/>
+      <Checkbox icon='bookmark' checkType='secondary'/>
+      <Checkbox icon='heart'/>
+      <Checkbox icon='heart' checkSize='sm'/>
+    </div>
+  )
+}

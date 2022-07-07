@@ -301,6 +301,6 @@ $check-border-radius: $border-radius !default;
 $checkmark-border-width: 0 3px 3px 0 !default;
 $checkmark-border: 2px solid $gray-600 !default;
 $checkmark-icon-border: solid $white !default; 
-$checkmark-border-primary: 2px solid #3F51B5;
-$checkmark-border-secondary: 2px solid #F50057;
+$checkmark-border-primary: 2px solid $primary;
+$checkmark-border-secondary: 2px solid $pink;
 $checkmark-border-default: 2px solid $gray-300;

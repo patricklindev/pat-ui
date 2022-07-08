@@ -3,7 +3,7 @@ import React, {
   FC,
   HTMLAttributes,
   useEffect,
-  useState
+  useState,
 } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
@@ -16,7 +16,7 @@ import {
   getFullStars,
   getIconColor,
   getIconName,
-  getSizeName
+  getSizeName,
 } from './helper';
 import { useCurrentRatingLabel } from './hooks';
 
@@ -102,9 +102,7 @@ export const Rating: FC<RatingProps> = (props) => {
   );
 
   const handleOnClick = () => {
-    if (disabled || readonly) {
-      return;
-    }
+    if (disabled || readonly) return;
     // get current total star rating
     const newStarRating = getCurrentStarRating(stars);
     setCurrentTotalRating(newStarRating);
@@ -116,17 +114,13 @@ export const Rating: FC<RatingProps> = (props) => {
 
   // reset animation effect
   const handleOnMouseLeave = () => {
-    if (disabled || readonly) {
-      return;
-    }
+    if (disabled || readonly) return;
     setCurrentHovering(-1);
   };
 
   // hovering effect with half and full stars preview
   const handleOnMouseMove = (e: any, index: number) => {
-    if (disabled || readonly) {
-      return;
-    }
+    if (disabled || readonly) return;
     // set current hovering position
     setCurrentHovering(index);
     // get current star ratings

@@ -1,0 +1,13 @@
+.checkboxes {
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
+input[type='checkbox']:disabled {
+  cursor: not-allowed;
+}

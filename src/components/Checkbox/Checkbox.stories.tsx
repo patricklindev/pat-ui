@@ -31,3 +31,11 @@ export const DiffColorCheckbox = () => (
     <Checkbox label="Default" color="default" defaultChecked />
   </div>
 );
+
+// export const DiffIconCheckbox = () => (
+//   <div className="checkboxes">
+//     <Checkbox icon="heart" />
+//     <Checkbox />
+//     <Checkbox icon="bookmark" />
+//   </div>
+// );

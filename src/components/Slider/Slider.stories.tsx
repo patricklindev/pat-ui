@@ -3,30 +3,51 @@ import { action } from '@storybook/addon-actions';
 import Slider from './Slider';
 
 export default {
-    title: 'Slider',
-    component: Slider,
-  };
-  
-  
-  export const DefaultSlider = () => (
-    <Slider />
-  );
+  title: 'Slider',
+  component: Slider,
+};
 
-  export const DiffColorSliders = () => (
-    <div>
-    <Slider color='primary' />
-    <Slider color='secondary' />
-    </div>
-  )
+export const DefaultSlider = () => <div>
+  <Slider onChange={action('value changed')} />
+  <h3>Default Slider</h3>
+  </div>;
 
-  export const DiffSizeSliders = () => (
-    <div>
-      <Slider setSize='sm' />
-      <Slider setSize='md' />
-      <Slider setSize='lg' />
-    </div>
-  )
+export const DiffColorSliders = () => (
+  <div>
+    <Slider color="primary" />
+    <h3>Primary Color</h3>
+    <Slider color="secondary" />
+    <h3>Secondary Color</h3>
+  </div>
+);
 
-  export const DisabledSlider = () => (
-    <Slider disabled={true} />
-  )
+export const DiffSizeSliders = () => (
+  <div>
+    <Slider setSize="sm" />
+    <h3>Small</h3>
+    <Slider setSize="md" />
+    <h3>Medium (Default)</h3>
+    <Slider setSize="lg" />
+    <h3>Large</h3>
+  </div>
+);
+
+export const DisabledSlider = () => <Slider disabled={true} />;
+
+export const MarkedSliders = () => (
+  <div>
+    <Slider range={[1, 2, 3, 4]} />
+    <h3>Continuous Marking</h3>
+    <Slider range={[0, 32, 100]} />
+    <h3>Arbitrary Marking</h3>
+  </div>
+);
+
+export const VerticalSliders = () => (
+  <div style={{display: 'flex', alignItems: 'center', padding: '180px' }}>
+    <Slider orientation='vertical' setSize='sm'  />
+    <Slider orientation='vertical' setSize='md' />
+    <Slider orientation='vertical' setSize='lg' />
+
+  </div>
+)

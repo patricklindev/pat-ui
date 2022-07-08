@@ -6,7 +6,13 @@ import './styles/index.scss'
 
 let app = <div>
     <h1>test</h1>
-    <Slider color='secondary' setSize='sm' />
+    <div className='slider-cont'>
+    <input type='range' className='slider slider__range-left'/>
+    <input type="range" className='slider slider__range-right'/>
+    </div>
+
+
+
 </div>
 
 ReactDOM.render(app, document.getElementById('root'))

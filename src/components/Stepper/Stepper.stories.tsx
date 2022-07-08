@@ -15,10 +15,19 @@ export default {
     component: Stepper
 }
 
-
 export const DefaultStepper = () => (
+  <div>
+     <h3>Default Stepper </h3>
+      <Stepper
+          StepperOrientation={"row"}
+      >
+      </Stepper>
+  </div>
+)
+
+export const InputComponentsStepper = () => (
     <div>
-      <h3>Default Stepper </h3>
+      <h3>Passing Components </h3>
         <Stepper
          StepperSize={'sm'}
          StepperOrientation={"row"}
@@ -75,42 +84,7 @@ export const DefaultStepper = () => (
     </div>
 )
 
-export const DefaultSquareStepper = () => (
-  <div>
-     <h3>Default Square Stepper </h3>
-      <Stepper
-          // StepperType={"square"}
-          StepperElements={[
-            {
-              title: "Card 1",
-              description: "",
-              label: "We need unique images",
-              component: <h2  className="example"> We can pass in HTML elements </h2>,
-              icon: <Icon name="check"  />,
-              iconCompleted: <Icon name="check" color="green"/>
-             },
-             {
-               title: "Card 2",
-               description: "",
-               label: 'All images are mock',
-               component: <h2  className="example"> This HTML element is a H2 </h2>,
-               icon: <Icon name="check"  />,
-               iconCompleted: <Icon name="check" color="green"/>
-             },
-             {
-             title: "Card 3",
-             description: "",
-             label: "How far can we take usability?",
-             component: <h2  className="example"> StepperElements, component </h2>,
-             icon: <Icon name="check"  />,
-             iconCompleted: <Icon name="check" color="green"/>
-             }, 
-          ]}
-          StepperOrientation={"row"}
-      >
-      </Stepper>
-  </div>
-)
+
 
 
 export const ConfiguringStepperSize = () => (

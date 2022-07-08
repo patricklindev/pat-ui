@@ -2,7 +2,7 @@ import { nextTick } from 'process';
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import Button from '../Button/Button';
-
+import Icon from '../Icon/Icon';
 
 export type StepperSize = 'lg' | 'md' | 'sm'
 export type StepperType = "circle" | "square" | "progress"
@@ -357,23 +357,26 @@ Stepper.defaultProps = {
     buttonTitlePrev:"Back",
     StepperElements: [  
         {
-        title: "Step 1",
-        description: "Vertical only",
-        label: "Label 1",
-        component: ""
-       },
-       {
-         title: "Step 2",
-         description: "",
-         label: "Label 2",
-         component: ""
-       },
-       {
-         title: "Step 3",
-       description: "",
-       label: "Label 3",
-       component: ""
-       },
+            title: "Default array length 3",
+            description: "",
+            label: "Vertical for arrays > 3",
+            icon: <Icon name="check"  />,
+            iconCompleted: <Icon name="check" color="green"/>
+           },
+           {
+             title: "Define props in component",
+             description: "",
+             label: 'Mandatory',
+             icon: <Icon name="check"  />,
+             iconCompleted: <Icon name="check" color="green"/>
+           },
+           {
+             title: "Feed an string array",
+           description: "",
+           label: "Keep strings short",
+           icon: <Icon name="check"  />,
+           iconCompleted: <Icon name="check" color="green"/>
+           },
     ]
 };
 

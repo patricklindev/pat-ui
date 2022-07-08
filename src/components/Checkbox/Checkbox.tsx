@@ -38,7 +38,7 @@ export interface ICheckboxProps {
 
 export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
-  const { checkSize, checked, checkBgTheme,checkedBgTheme, icon, iconTheme,label } = props;
+  const { checkSize, checked, checkBgTheme,checkedBgTheme, icon, iconTheme,label,onChange } = props;
 
   // toggle the checked state
   const [isCheck,setIsCheck] = useState(checked ? checked : false)
@@ -106,7 +106,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
   return (
     <div className='checkbox-container'>
-      <input type='checkbox' onChange={handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
+      <input type='checkbox' onChange={onChange ? onChange : handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
       <label htmlFor={id} data-testid='iconLabel'>
         <span className={styleClassNameSpan} data-testid='iconSpan'>
           <svg viewBox={IconPath[`${icon}`].viewBox} role="img" data-testid='iconSVG'>

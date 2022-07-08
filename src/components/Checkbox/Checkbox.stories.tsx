@@ -6,13 +6,23 @@ export default {
   component: Checkbox,
 };
 
-export const BasicCheckBox = () => {
+export const BasicCheckbox = () => {
   return (
     <div className="checkboxes">
       <Checkbox label="Default Checked" defaultChecked />
       <Checkbox label="Default" />
       <Checkbox label="Disabled" disabled />
       <Checkbox label="Disabled Checked" disabled checked />
+    </div>
+  );
+};
+
+export const DiffSizeCheckbox = () => {
+  return (
+    <div className="checkboxes">
+      <Checkbox label="Small" size="small" defaultChecked />
+      <Checkbox label="Default" defaultChecked />
+      <Checkbox label="Large" size="large" defaultChecked />
     </div>
   );
 };

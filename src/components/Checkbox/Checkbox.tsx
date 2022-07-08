@@ -1,31 +1,42 @@
 import React, { FC, useState } from 'react';
+import { classNames } from '../../utils/classNames';
+
+export type CheckboxSize = 'small' | 'large';
 
 export interface ICheckboxProps {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
   label: string;
+  size?: CheckboxSize;
+  className?: string;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
-  const { disabled, checked, defaultChecked, label } = props;
+  const { disabled, checked, defaultChecked, label, size, className } = props;
 
   const [check, setCheck] = useState(!!defaultChecked || !!checked);
+
+  let styleClasses = classNames('checkbox', {
+    [`checkbox-${size}`]: !!size,
+  });
+  if (className) {
+    styleClasses += ' ' + className;
+  }
 
   const onClickHandler = () => {
     setCheck((prev) => !prev);
   };
 
   return (
-    <div>
+    <div className={styleClasses}>
       <input
-        id={label}
         type="checkbox"
         disabled={disabled}
         checked={check}
         onClick={onClickHandler}
       />
-      <label htmlFor={label}>{label}</label>
+      <label>{label}</label>
     </div>
   );
 };

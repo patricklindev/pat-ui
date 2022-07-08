@@ -15,3 +15,11 @@ input[type='checkbox']:disabled {
 input + label {
   margin-left: 1vw;
 }
+
+.checkbox-small {
+  transform: scale(0.75);
+}
+
+.checkbox-large {
+  transform: scale(1.25);
+}

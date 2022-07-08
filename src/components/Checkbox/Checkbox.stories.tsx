@@ -9,10 +9,10 @@ export default {
 export const BasicCheckBox = () => {
   return (
     <div className="checkboxes">
-      <Checkbox defaultChecked />
-      <Checkbox />
-      <Checkbox disabled />
-      <Checkbox disabled checked />
+      <Checkbox label="Default Checked" defaultChecked />
+      <Checkbox label="Default" />
+      <Checkbox label="Disabled" disabled />
+      <Checkbox label="Disabled Checked" disabled checked />
     </div>
   );
 };

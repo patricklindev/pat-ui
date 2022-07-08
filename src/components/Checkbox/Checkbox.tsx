@@ -1,13 +1,14 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 export interface ICheckboxProps {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
+  label: string;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
-  const { disabled, checked, defaultChecked } = props;
+  const { disabled, checked, defaultChecked, label } = props;
 
   const [check, setCheck] = useState(!!defaultChecked || !!checked);
 
@@ -16,14 +17,16 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
   };
 
   return (
-    <Fragment>
+    <div>
       <input
+        id={label}
         type="checkbox"
         disabled={disabled}
         checked={check}
         onClick={onClickHandler}
       />
-    </Fragment>
+      <label htmlFor={label}>{label}</label>
+    </div>
   );
 };
 

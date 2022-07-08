@@ -1,14 +1,14 @@
 import React, { FC, ReactNode } from 'react';
 
 export interface ModalContainerProps {
-  dlgOnClick: () => void;
+  className?: string;
   children?: ReactNode;
 };
 
 export const ModalContainer: FC<ModalContainerProps> = (props) => {
   const {
+    className,
     children,
-    dlgOnClick
   } = props;
 
   return (

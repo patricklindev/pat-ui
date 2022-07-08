@@ -38,7 +38,7 @@ export const Dialogue: FC<DlgMessageProps> = (props) => {
         onClick={handleOverlayClick}
         ref={overlayRef}
       ></div>
-      <ModalContainer dlgOnClick={dlgOnClick}>
+      <ModalContainer>
         {children}
       </ModalContainer>
     </div>

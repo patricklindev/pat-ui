@@ -7,9 +7,25 @@ export default {
   component: Icon,
 };
 
-export const DefaultIcon = () => <Icon name="home" />;
+export const DefaultIcon = () => (
+  <div>
+    <Icon name="home" />;
+    <Icon name="star" />
+    <Icon name="star half" />
+    <Icon name="star regular" />
+    <Icon name="star solid half left" />
 
-export const DisabledIcon = () => <Icon name="users" disabled />;
+  </div>
+);
+
+export const DisabledIcon = () => (
+  <div>
+    <Icon name="users" disabled />
+    <Icon name="star" disabled />
+    <Icon name="star half" disabled />
+    <Icon name="star regular" disabled />
+  </div>
+);
 
 export const DiffSizeIcon = () => (
   <div>
@@ -26,6 +42,7 @@ export const DiffSizeIcon = () => (
 
 export const DiffColorIcon = () => (
   <div>
+    <Icon color="orange" name="star" />
     <Icon color="red" name="users" />
     <Icon color="orange" name="users" />
     <Icon color="yellow" name="users" />

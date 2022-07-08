@@ -1,0 +1,29 @@
+.rating_icon-group {
+  cursor: pointer;
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &.readonly,
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.rating-icon {
+  transition: 200ms;
+}
+
+.rating-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 40px;
+}
+
+.rating-container label {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-weight: $font-weight-bold;
+}

@@ -1,6 +1,6 @@
 .checkboxes {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   gap: 5vw;
 }
 
@@ -22,4 +22,16 @@ input + label {
 
 .checkbox-large {
   transform: scale(1.25);
+}
+
+.checkbox-secondary {
+  accent-color: purple;
+}
+
+.checkbox-success {
+  accent-color: green;
+}
+
+.checkbox-default {
+  accent-color: gray;
 }

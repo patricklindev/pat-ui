@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export type CheckboxSize = 'small' | 'large';
+export type CheckboxColor = 'secondary' | 'success' | 'default';
 
 export interface ICheckboxProps {
   defaultChecked?: boolean;
@@ -10,14 +11,17 @@ export interface ICheckboxProps {
   label: string;
   size?: CheckboxSize;
   className?: string;
+  color?: CheckboxColor;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
-  const { disabled, checked, defaultChecked, label, size, className } = props;
+  const { disabled, checked, defaultChecked, label, size, className, color } =
+    props;
 
   const [check, setCheck] = useState(!!defaultChecked || !!checked);
 
   let styleClasses = classNames('checkbox', {
+    [`checkbox-${color}`]: !!color,
     [`checkbox-${size}`]: !!size,
   });
   if (className) {

@@ -32,9 +32,11 @@ describe('Rating', () => {
             value: 0,
             count: 5,
             size: 30,
-            onChange: undefined,
             labels: [],
-            labelIndex: 0
+            labelIndex: 0,
+            onChange: function (value: number): void {
+                throw new Error('Function not implemented.');
+            }
         }
         const { getAllByRole } = render(<Rating {...starProps}/>);
         const stars = getAllByRole('star');
@@ -54,9 +56,11 @@ describe('Rating', () => {
             value: 0,
             count: 5,
             size: 30,
-            onChange: undefined,
             labels: labels,
-            labelIndex: 0
+            labelIndex: 0,
+            onChange: function (value: number): void {
+                throw new Error('Function not implemented.');
+            }
         }
         const { getAllByRole } = render(<Rating {...starProps}/>);
         const stars = getAllByRole('star');
@@ -73,9 +77,11 @@ describe('Rating', () => {
             value: 3.5,
             count: 5,
             size: 30,
-            onChange: undefined,
             labels: [],
-            labelIndex: 0
+            labelIndex: 0,
+            onChange: function (value: number): void {
+                throw new Error('Function not implemented.');
+            }
         }
         const { getAllByRole } = render(<Rating {...starProps}/>);
         const stars = getAllByRole('star');
@@ -88,9 +94,11 @@ describe('Rating', () => {
             value: 0,
             count: 5,
             size: 50,
-            onChange: undefined,
             labels: [],
-            labelIndex: 0
+            labelIndex: 0,
+            onChange: function (value: number): void {
+                throw new Error('Function not implemented.');
+            }
         }
         const { getAllByRole } = render(<Rating {...starProps}/>);
         const stars = getAllByRole('star');
@@ -106,9 +114,11 @@ describe('Rating', () => {
             value: 0,
             count: count,
             size: 30,
-            onChange: undefined,
             labels: [],
-            labelIndex: 0
+            labelIndex: 0,
+            onChange: function (value: number): void {
+                throw new Error('Function not implemented.');
+            }
         }
         const { getAllByRole } = render(<Rating {...starProps}/>);
         const stars = getAllByRole('star');
@@ -123,9 +133,11 @@ describe('Rating', () => {
             value: 4,
             count: 5,
             size: 30,
-            onChange: undefined,
             labels: [],
-            labelIndex: 0
+            labelIndex: 0,
+            onChange: function (value: number): void {
+                throw new Error('Function not implemented.');
+            }
         }
         const { getAllByRole } = render(<Rating {...starProps}/>);
         const stars = getAllByRole('star');

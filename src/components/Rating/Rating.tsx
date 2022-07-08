@@ -1,43 +1,47 @@
 import React, { Component } from 'react'
 import CSS from "csstype";
 
+// Set default types
 export interface propTypes {
   className?: string;
   edit?: boolean;
   half?: boolean;
-  value: number;
-  count: number;
+  value?: number;
+  count?: number;
   char?: string;
-  size: number;
-  color1?: string;
-  color2?: string;
-  onChange: any;
-  labels: string[];
-  labelIndex: number;
+  size?: number;
+  inactivecColor?: string;
+  activeColor?: string;
+  onChange?: (value: number)=>void;
+  labels?: string[];
+  labelIndex?: number;
+}
+
+interface config {
+  count?: number;
+    size?: number;
+    char?: string;
+    // default color of inactive star
+    inactivecColor?: string;
+    // color of an active star
+    activeColor?: string;
+    half?: boolean;
+    edit?: boolean;
 }
 
 interface stateTypes {
-  uniqueness?: string;
-  value: number;
-  stars: {active: boolean}[];
-  halfStar: {
-    at?: number;
+  idForEachStar?: string;
+  value?: number;
+  stars?: {active: boolean}[];
+  halfStar?: {
+    currentPosition?: number;
     hidden?: boolean;
   };
-  config: {
-    count: number;
-    size: number;
-    char?: string;
-    // default color of inactive star
-    color1?: string;
-    // color of an active star
-    color2?: string;
-    half?: boolean;
-    edit?: boolean;
-  };
-  labelIndex: number;
+  config: config;
+  labelIndex?: number;
 }
 
+// Set default styles
 const parentStyles: CSS.Properties = {
   overflow: 'hidden',
   // position: 'relative'
@@ -48,12 +52,16 @@ const defaultStyles: CSS.Properties = {
   // overflow: 'hidden',
   cursor: 'pointer',
   display: 'block',
-  float: 'left'
+  float: 'left',
+
+  transition: '200ms',
+  alignItems: 'center'
 }
 
-const getHalfStarStyles = (color: any, uniqueness: any) => {
+// set HalfStarStyles
+const getHalfStarStyles = (color: string, idForEachStar: string) => {
   return `
-    .react-stars-${uniqueness}:before {
+    .react-stars-${idForEachStar}:before {
       position: absolute;
       overflow: hidden;
       display: block;
@@ -65,6 +73,7 @@ const getHalfStarStyles = (color: any, uniqueness: any) => {
   }`
 }
 
+// Rating component
 class Rating extends Component<propTypes, stateTypes> {
 
   static defaultProps = {
@@ -74,14 +83,15 @@ class Rating extends Component<propTypes, stateTypes> {
     count: 5,
     char: '★',
     size: 30,
-    color1: 'gray',
-    color2: 'orange',
+    inactivecColor: 'gray',
+    activeColor: 'orange',
   
     onChange: () => { },
     labels: [],
     labelIndex: 0
   };
 
+  // constructor
   constructor(props:propTypes) {
 
     super(props)
@@ -91,65 +101,68 @@ class Rating extends Component<propTypes, stateTypes> {
     props = Object.assign({}, props)
 
     this.state = {
-      uniqueness: (Math.random() + '').replace('.', ''),
+      idForEachStar: (Math.random() + '').replace('.', ''),
       value: props.value || 0,
       stars: [],
       halfStar: {
-        at: Math.floor(props.value),
-        hidden: props.half && props.value % 1 < 0.5
+        currentPosition: Math.floor(props.value!),
+        hidden: props.half && props.value! % 1 < 0.5
       },
       config: {
-        count: props.count,
-        size: props.size,
+        count: props.count!,
+        size: props.size!,
         char: props.char,
         // default color of inactive star
-        color1: props.color1,
+        inactivecColor: props.inactivecColor,
         // color of an active star
-        color2: props.color2,
+        activeColor: props.activeColor,
         half: props.half,
         edit: props.edit,
       },
-      labelIndex: props.labelIndex
+      labelIndex: props.labelIndex!
     }
 
   }
 
+  // componentDidMount
   componentDidMount() {
     this.setState({
       stars: this.getStars(this.state.value)
     })
   }
 
+  // componentWillReceiveProps
   componentWillReceiveProps(props: propTypes) {
     this.setState({
       stars: this.getStars(props.value),
       value: props.value,
       halfStar: {
-        at: Math.floor(props.value),
-        hidden: this.state.config.half && props.value % 1 < 0.5
+        currentPosition: Math.floor(props.value!),
+        hidden: this.state.config.half && props.value! % 1 < 0.5
       },
       config: Object.assign({}, this.state.config, {
         count: props.count,
         size: props.size,
         char: props.char,
-        color1: props.color1,
-        color2: props.color2,
+        inactivecColor: props.inactivecColor,
+        activeColor: props.activeColor,
         half: props.half,
         edit: props.edit,
       })
     })
   }
 
-  isDecimal(value: number) {
-    return value % 1 !== 0
-  }
+  // isDecimal(value: number) {
+  //   return value % 1 !== 0
+  // }
 
+  // functions used to set Stars
   getRate() {
     let stars
     if (this.state.config.half) {
-      stars = Math.floor(this.state.value)
+      stars = Math.floor(this.state.value!)
     } else {
-      stars = Math.round(this.state.value)
+      stars = Math.round(this.state.value!)
     }
     return stars
   }
@@ -159,7 +172,7 @@ class Rating extends Component<propTypes, stateTypes> {
       activeCount = this.getRate()
     }
     let stars = []
-    for (let i = 0; i < this.state.config.count; i++) {
+    for (let i = 0; i < this.state.config.count!; i++) {
       stars.push({
         active: i <= activeCount - 1
       })
@@ -167,6 +180,7 @@ class Rating extends Component<propTypes, stateTypes> {
     return stars
   }
 
+  // mouseOver event handler
   mouseOver(event: any) {
     let { config, halfStar } = this.state
     if (!config.edit) return;
@@ -174,12 +188,12 @@ class Rating extends Component<propTypes, stateTypes> {
     let halfIndex = 0;
     if (config.half) {
       const isAtHalf = this.moreThanHalf(event, config.size)
-      halfStar.hidden = isAtHalf
+      halfStar!.hidden = isAtHalf!
       if (isAtHalf) {
         index = index + 1;} else {
           halfIndex = 0.5;
         }
-      halfStar.at = index
+      halfStar!.currentPosition = index
     } else {
       index = index + 1
     }
@@ -189,6 +203,7 @@ class Rating extends Component<propTypes, stateTypes> {
     })
   }
 
+  // function used to handle half-star
   moreThanHalf(event: any, size: any) {
     let { target } = event
     var mouseAt = event.clientX - target.getBoundingClientRect().left
@@ -196,20 +211,22 @@ class Rating extends Component<propTypes, stateTypes> {
     return mouseAt > size / 2
   }
 
+  // mouseLeave event handler
   mouseLeave() {
     const { value, halfStar, config } = this.state
     if (!config.edit) return
     if (config.half) {
-      halfStar.hidden = !this.isDecimal(value)
-      halfStar.at = Math.floor(this.state.value)
+      halfStar!.hidden = Number.isInteger(value!)
+      halfStar!.currentPosition = Math.floor(this.state.value!)
     }
-    let index: number | undefined;
+    // let index: number | undefined;
     this.setState({
-      stars: this.getStars(index),
-      labelIndex: this.props.labelIndex
+      stars: this.getStars(Math.floor(this.state.value!)),
+      labelIndex: this.props.labelIndex!
     })
   }
 
+  // clicked event handler
   clicked(event: any) {
     const { config, halfStar } = this.state
     if (!config.edit) return
@@ -217,10 +234,10 @@ class Rating extends Component<propTypes, stateTypes> {
     let value
     if (config.half) {
       const isAtHalf = this.moreThanHalf(event, config.size)
-      halfStar.hidden = isAtHalf
+      halfStar!.hidden = isAtHalf
       if (isAtHalf) index = index + 1
       value = isAtHalf ? index : index + .5
-      halfStar.at = index
+      halfStar!.currentPosition = index
     } else {
       value = index = index + 1
     }
@@ -228,33 +245,45 @@ class Rating extends Component<propTypes, stateTypes> {
       value: value,
       stars: this.getStars(index)
     })
-    this.props.onChange(value)
+    this.props.onChange!(value)
   }
 
+  // function used to render half-star
   renderHalfStarStyleElement() {
-    const { config, uniqueness } = this.state
+    const { config, idForEachStar } = this.state
     return (
       <style dangerouslySetInnerHTML={{
-        __html: getHalfStarStyles(config.color2, uniqueness)
+        __html: getHalfStarStyles(config.activeColor!, idForEachStar!)
       }}></style>
     )
   }
 
+  // function used to render stars
   renderStars(label: string) {
-    const { halfStar, stars, uniqueness, config, labelIndex } = this.state
-    const { color1, color2, size, char, half, edit } = config
-    return stars.map((star: { active: any; }, i: React.Key | undefined) => {
+    const { halfStar, stars, idForEachStar, config, labelIndex } = this.state
+    const { inactivecColor, activeColor, size, char, half, edit } = config
+    return stars!.map((star: { active: any; }, i: React.Key | undefined) => {
       let starClass = ''
       let active = star.active;
-      if (half && !halfStar.hidden && halfStar.at === i) {
-        starClass = `react-stars-${uniqueness}`
+      if (half && !halfStar!.hidden && halfStar!.currentPosition === i) {
+        starClass = `react-stars-${idForEachStar}`
         active = true;
       }
-      const style = Object.assign({}, defaultStyles, {
-        color: star.active ? color2 : color1,
-        cursor: edit ? 'pointer' : 'default',
-        fontSize: star.active ? `${size + 5}px` : `${size}px`
+      let style: React.CSSProperties | undefined;
+      if(edit){
+          style = Object.assign({}, defaultStyles, {
+            color: star.active ? activeColor : inactivecColor,
+            cursor: 'pointer',
+            fontSize: star.active ? `${size! + 5}px` : `${size}px`
+        })
+      } else {
+        style = Object.assign({}, defaultStyles, {
+          color: star.active ? 'GoldenRod' : 'Dark',
+          cursor: 'not-allowed',
+          fontSize: star.active ? `${size! + 5}px` : `${size}px`
       })
+      }
+      
       return (
         <span
           className={starClass}
@@ -277,6 +306,7 @@ class Rating extends Component<propTypes, stateTypes> {
     })
   }
 
+  // function used to get label
   getLabel() {
     const labels = this.props.labels;
     const count = this.props.count;
@@ -286,21 +316,21 @@ class Rating extends Component<propTypes, stateTypes> {
     let label = '';
 
     if(half){
-      if(labels.length !== 0 && labels.length === count * 2){
+      if(labels!.length !== 0 && labels!.length === count! * 2){
         if(value !== 0){
-          labelIndex = value * 2;
-          label = labels[labelIndex-1];
+          labelIndex = value! * 2;
+          label = labels![labelIndex-1];
         } else {
-          label = labels[labelIndex * 2 - 1];
+          label = labels![labelIndex! * 2 - 1];
         }
         
       }
     }else{
-      if(labels.length !== 0 && labels.length === count){
+      if(labels!.length !== 0 && labels!.length === count){
         if(value !== 0){
-          labelIndex = value;
+          labelIndex = value!;
         }
-        label = labels[labelIndex-1];
+        label = labels![labelIndex!-1];
       }
     }
 

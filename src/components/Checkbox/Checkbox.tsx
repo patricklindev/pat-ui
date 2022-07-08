@@ -23,7 +23,7 @@ export interface ICheckboxProps {
   //**set background theme when check on check icon */
   checkedBgTheme? : themeColor;
   /** pass a callback function out-site of props */
-  onChange?: React.ChangeEvent<HTMLInputElement>;
+  onChange?: ()=> void;
   /** set label value */ 
   label?: string;
 }
@@ -102,11 +102,16 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setIsCheck(e.target.checked)
+
+    // when user define onChange props call it
+    if(onChange){
+      onChange()
+    }
   }
 
   return (
     <div className='checkbox-container'>
-      <input type='checkbox' onChange={onChange ? onChange : handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
+      <input type='checkbox' onChange={handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
       <label htmlFor={id} data-testid='iconLabel'>
         <span className={styleClassNameSpan} data-testid='iconSpan'>
           <svg viewBox={IconPath[`${icon}`].viewBox} role="img" data-testid='iconSVG'>

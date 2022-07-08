@@ -4,6 +4,12 @@ import Checkbox from './Checkbox';
 import { IconPath } from './Icons';
 import {ICheckboxProps} from './Checkbox';
 
+
+it('should match snapshot',()=>{
+  const {asFragment} = render(<Checkbox />)
+  expect(asFragment()).toMatchSnapshot()
+})
+
 describe('<Checkbox />',()=>{
 
   it('should able to change the check/uncheck state by default',()=>{

@@ -82,7 +82,7 @@ input:checked + .slider {
   @include slider-background-color($primary);
 }
 
-/*Color of palettes of sliders */
+/*Color of palettes*/
 input:checked + span[color="primary"] {
     @include slider-background-color($primary);
 }
@@ -107,7 +107,7 @@ input:checked + span[color="light"] {
 input:checked + span[color="dark"] {
     @include slider-background-color($dark);
 }
-/*Color of rounded thumbs of sliders */
+/*Color of rounded thumbs*/
 input:checked + .slider.round.primary::before {
     @include slider-thumb-background-color($primary);
 }

@@ -1,13 +1,11 @@
 import React, {
     AllHTMLAttributes,
     FC,
-    MouseEvent,
     EventHandler,
     ChangeEvent,
     useState,
 } from 'react';
 import { classNames } from '../../utils/classNames';
-
 
 //Types for props
 export type SwitchSize = 'sm';
@@ -20,11 +18,10 @@ export type SwitchColor =
 | 'danger'
 | 'light'
 | 'dark'
-export type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
 export type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
 export type Toggle = 'on' | 'off'
 
-//Props provided for users
+//API provided for users
 export interface ISwitchProps {
     /** set customized style */
     className?: string;
@@ -38,15 +35,8 @@ export interface ISwitchProps {
     toggle?: Toggle;
     /** set switch disabled*/
     disabled?: boolean;
-    /** set switch onChecked*/
-    onChecked?: MouseEventHandler;
-    /** set switch action  */
-    onAction?: MouseEventHandler;
-    // /** set switch onChange*/
-    // onChange?: ChangeEventHandler;
-    /** set switch onClick */
-    // onClick?: MouseEventHandler;
-
+    /** set switch onChange*/
+    onChange?: ChangeEventHandler;
 }
 
 export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
@@ -60,9 +50,8 @@ export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
  */
 
 export const Switch: FC<SwitchProps> = (props) => {
-    const { className, color, sizes, disabled, toggle, onChecked, onAction, label, ...rest} = props;
+    const { className, label, color, sizes, toggle, disabled, onChange, ...rest} = props;
     const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
-    console.log('internal:', isChecked)
 
     let styleClasses = classNames('slider round', {
         [`${color}`]: !!color,
@@ -70,7 +59,7 @@ export const Switch: FC<SwitchProps> = (props) => {
         disabled: !!disabled
     })
 
-    const onInputChange = () => {
+    const handleClick = () => {
         setIsChecked(!isChecked);
       };
     
@@ -86,9 +75,8 @@ export const Switch: FC<SwitchProps> = (props) => {
                 type="checkbox"
                 checked={isChecked}
                 disabled={disabled}
-                onChange={onInputChange}
-                onClick={onChecked}
-                onClickCapture={onAction}
+                onChange={onChange}
+                onClick={handleClick}
                 {...(rest )}
             />
             <span color={color} className={styleClasses}/>

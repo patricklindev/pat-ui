@@ -23,7 +23,7 @@ export interface ICheckboxProps {
   //**set background theme when check on check icon */
   checkedBgTheme? : themeColor;
   /** pass a callback function out-site of props */
-  onChange?: any;
+  onChange?: ()=> void;
   /** set label value */ 
   label?: string;
 }

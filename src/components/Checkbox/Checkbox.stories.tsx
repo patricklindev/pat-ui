@@ -10,6 +10,7 @@ export const BasicCheckbox = () => (
   <div className="checkboxes">
     <Checkbox label="Default Checked" defaultChecked />
     <Checkbox label="Default" />
+    <Checkbox label="Indeterminate" />
     <Checkbox label="Disabled" disabled />
     <Checkbox label="Disabled Checked" disabled checked />
   </div>

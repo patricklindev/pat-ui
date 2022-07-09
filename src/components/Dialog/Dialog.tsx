@@ -1,9 +1,5 @@
-import React, { DialogHTMLAttributes, FC } from 'react'
-export type DialogType =
-    | 'simple'
-    | 'alert'
-    | 'form'
-    | 'test';
+import React, { DialogHTMLAttributes, HTMLAttributes, FC, useEffect } from 'react'
+
 
 export const DialogTitle = (props: any) => (
     <div className='dialog-title'>
@@ -23,29 +19,17 @@ export const DialogContents = (props: any) => (
 
 
 export interface IDialogProps {
-
-    /**A  Dialog type  */
-    dialogType?: DialogType;
-    /**a Div for the Dialogs title  */
-    DialogTitle?: Element
-    /**a Div for the  main text  */
-    DialogContents?: Element
-    /**A div for the Dialog actions */
-    DialogActions?: Element
     /**add a function to the Dialog closing handler   */
-    closeHandlerProps?: any;
+    onClose?: () => void;
     /**Depreicated to be removed   */
     showDialog?: boolean
     /**Allows users to effect overlay  */
-    overlayFunctions?: any
-
-
-
+    OverlayAtributes?: any
 };
 
-//type NativeDivProps = DivHTMLElements<HTMLDivElement>;
+type NativeDivProps = HTMLAttributes<HTMLDivElement>;
 type NativeDialogProps = IDialogProps & DialogHTMLAttributes<HTMLDialogElement>;
-export type PatDialogProps = NativeDialogProps;
+export type PatDialogProps = NativeDialogProps & NativeDivProps
 
 /**
 * A dialog allows for high priority messgaes for users.
@@ -56,66 +40,48 @@ export type PatDialogProps = NativeDialogProps;
 */
 
 
-
-
 export const Dialog: FC<PatDialogProps> = (props) => {
     const { children,
-        dialogType,
-        DialogTitle,
-        closeHandlerProps,
+        onClose,
         showDialog,
-        DialogActions,
-        overlayFunctions,
-        DialogContents,
+        OverlayAtributes,
         ...rest } = props
 
     // below we handle the classname for the dialog and overlay 
     let classNameList: string[] = ['dlg']
     let containerClassNameList: string[] = ['dlg-container']
 
-    if (dialogType === 'simple') classNameList.push('dlg-simple') && containerClassNameList.push('dlg-simple-container')
-    if (dialogType === 'alert') classNameList.push('dlg-alert') && containerClassNameList.push('dlg-alert-container')
-    if (dialogType === 'form') classNameList.push('dlg-form') && containerClassNameList.push('dlg-form-container')
-    if (dialogType === 'test') classNameList.push('dlg-test') && containerClassNameList.push('dlg-test-container')
-
-
     // Allows users to add a function on close of the Dialog
-    const onClose = () => {
-        document.body.style.overflow = "scroll" // allows scrolling again
-        closeHandlerProps()
+    const closeHandlerProps = () => {
+        if (onClose != undefined) { onClose() }
     }
 
-    document.body.style.overflow = "hidden" //disables scrolling 
+
+
+    { showDialog ? document.body.style.overflow = "hidden" : document.body.style.overflow = 'inherit' }
 
     return (
         // overlay
         <div
-            // {...rest as NativeDialogProps}
-            //{...overlayFunctions as NativeDialogProps}
+            hidden={!showDialog}
+            {...OverlayAtributes as NativeDivProps}
             className={containerClassNameList.join(" ")}
-            onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+            onClick={(e) => { if (e.target === e.currentTarget) closeHandlerProps() }}
         >
 
             < dialog //Dialog
                 {...rest as NativeDialogProps}
-                open={true} // this helps to avoid some bugs
+                open={!showDialog}
+                hidden={!showDialog}
                 className={classNameList.join(" ")} >
 
-                {/* checks ato see if children are an array, if so it runs a map function */}
-                {
-                    // children?.length> 1?
-                    //   children?.map((child: Element) => (child))
-                    // : 
-                    children
-                }
+                {children}
 
             </dialog >
         </div>)
 }
 
-Dialog.defaultProps = {
-    dialogType: 'alert'
-};
+
 
 
 

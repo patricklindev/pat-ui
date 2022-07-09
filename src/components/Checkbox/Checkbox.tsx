@@ -48,21 +48,28 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
   let classNameSpan;
 
+  //if user defined a background theme on component for checked state
   if(checkedBgTheme){
     classNameSpan = {
+      //class for control box size if user define checkSize prop
       [`checkbox-${checkSize}`]: !!checkSize,
+      //change the background color depend on checkedBgTheme when user checked
       [`bg-iCheck-${checkedBgTheme}`]: isCheck,
     }
-  }else{
+  }else{ //when user not provide any background theme for check state
 
-    if(icon !== 'check'){
+    if(icon !== 'check'){ //if the icon is not check icon
       classNameSpan = {
+        //class for control box size
         [`checkbox-${checkSize}`]: !!checkSize,
+        // remove the span border
         'bg-iOther-default': true,
       }
-    }else{
+    }else{ // if the icon is check icon
       classNameSpan = {
+        // class for control box size
         [`checkbox-${checkSize}`]: !!checkSize,
+        // class that is control the background color when user pass checkBgTheme prop for check icon when uncheck
         [`bg-iCheck-${checkBgTheme}`]: !!checkBgTheme,
       }
     }
@@ -72,27 +79,36 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
 
   let classNameSVG;
 
+  // when user define a background theme on check
   if(checkedBgTheme){
     classNameSVG = {
+      // define the check icon path value depends on the checkBgTheme when uncheck 
       [`bg-iCheck-path-${checkBgTheme}`]: !isCheck,
+
+      // define the check icon path value depends on the checkBgTheme when check 
       [`bg-iChecked-path-${checkedBgTheme}`]: isCheck,
     }
-  }else{
-    if(icon !== 'check'){
+  }else{ // when user don't provide checkedBgTheme
+    if(icon !== 'check'){ // if the icon is not check
       if(iconTheme){
         classNameSVG = {
+          //set default icon color when uncheck
           'bg-iOther-path-default': !isCheck,
+          // set icon color when check
           [`bg-iOther-check-path-${iconTheme}`]: isCheck
         }
-      }else{
+      }else{ // if you don't define icon color
         classNameSVG = {
+          // set both check and uncheck to be default color
           'bg-iOther-path-default': !isCheck,
           'bg-iOther-check-path-default': isCheck
         }
       }
-    }else{
+    }else{ // if the icon is check
       classNameSVG = {
+        //set check icon uncheck color depends on checkBgTheme props
         [`bg-iCheck-path-${checkBgTheme}`]: !isCheck,
+        //set check icon check color depends on checkBgTheme props
         [`bg-iChecked-path-${checkBgTheme}`]: isCheck,
       }
     }

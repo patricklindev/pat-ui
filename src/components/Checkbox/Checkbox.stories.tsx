@@ -11,6 +11,7 @@ export const BasicCheckboxes = () => {
   return (
     <div className='basicCheckboxWrapper'>
       <Checkbox />
+      <Checkbox checkBgTheme='primary'/>
       <Checkbox checkSize='large'/>
     </div>
   );

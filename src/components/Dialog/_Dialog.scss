@@ -21,16 +21,6 @@
     }
 }
 
-.dlg-alert {
-    width: 60%;
-
-}
-
-.dlg-simple {
-    // width: 40%;
-    //  padding: 2*$spacer;
-
-}
 
 
 // overlay 
@@ -49,7 +39,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-   
+
     z-index: 99;
     display: flex;
     justify-content: center;
@@ -60,11 +50,8 @@
 
 }
 
-.dlg-alert-container {
-    background: rgba(0, 0, 0, .9);
-}
 
-.dialog-content {
+.dialog-contents {
     p {
         padding: $spacer;
         font-size: $font-size-sm;
@@ -72,13 +59,6 @@
     }
 
 }
-.dlg-test-container{
-    background: rgba(0, 0, 0, 0);
-   // position: fixed;
-    /* Sit on top of the page content */
-
-}
-
 
 // containers 
 .dialog-title {
@@ -99,8 +79,8 @@
         justify-content: end;
     }
 
-    a{
+    a {
         padding-left: $spacer;
-        color: $blue  !important;
+        //color: $blue  !important;
     }
 }

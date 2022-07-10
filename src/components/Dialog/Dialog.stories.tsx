@@ -19,25 +19,19 @@ export const DialogSimple = () => {
 
   return (
     <div>
-
-      <Button
+      <button
         onMouseDown={action('Dialog opened')}
-        
-        onClick={() => {
-          setshow(show => !show)
-        }
-        }>Show</Button>
+        onClick={() => { setshow(show => !show) }
+        }>Show</button>
 
 
       <Dialog
         showDialog={show}
         id='ide'
-        OverlayAtributes   ={{id:'id'}}
+        OverlayAtributes={{ id: 'id' }}
         onMouseDown={action('Dialog closed')}
-        onClose={() => {
+        closeHandler={() => {
           setshow(show => !show)
-          console.log(show)
-          console.log('hi')
         }
         }
       >
@@ -87,28 +81,29 @@ export const DialogAlert = () => {
   return (
     <div>
 
-      <Button
+      <button
         onMouseDown={action('Dialog opened')}
-        onClick={() => { setshow(show => !show) }}>Show</Button>
-      {show ?
+        onClick={() => { setshow(show => !show) }}>Show</button>
 
-        <Dialog
-          onClick={action('Dialog closed')}
-          onClose={() => {
-            setshow(false)
-          }}
-        >
-          <DialogTitle><h3>Vestibulum porta quam in euismod fringilla</h3></DialogTitle>
-          <DialogContents>
-            {exampPara}
-          </DialogContents>
-          <DialogActions>
-            <div>
-              <Button btnType="link"> Disagree</Button>
-              <Button btnType="link" onClick={() => setshow(false)}> Agree and Close</Button>
-            </div>
-          </DialogActions>
-        </Dialog> : null}
+
+      <Dialog
+        onClick={action('Dialog closed')}
+        showDialog={show}
+        closeHandler={() => {
+          setshow(false)
+        }}
+      >
+        <DialogTitle><h3>Vestibulum porta quam in euismod fringilla</h3></DialogTitle>
+        <DialogContents>
+          {exampPara}
+        </DialogContents>
+        <DialogActions>
+          <div>
+            <button > Disagree</button>
+            <button onClick={() => setshow(false)}> Agree and Close</button>
+          </div>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 };
@@ -119,19 +114,20 @@ export const DialogForm = () => {
   const [inputValue, setinputvalue] = useState("")
   return (
     <div>
-      <Button
+      <button
 
-        onClick={() => setshow(show => !show)}>Show</Button>
+        onClick={() => setshow(show => !show)}>Show</button>
 
 
       <Dialog
         id='example'
         onClick={action('Dialog closed')}
         showDialog={show}
-        onClose={() => {
+        closeHandler={() => {
           setshow(false)
         }} >
-        <DialogTitle>
+        <DialogTitle
+          id='Hello!'>
           <h1>A Super Google Title</h1>
         </DialogTitle>
 
@@ -155,34 +151,52 @@ export const DialogForm = () => {
     </div>)
 };
 
-export const TestDialog = () => {
+
+export const DialogTest = () => {
+
+  const [showModal, setShowModal] = useState(false)
+
+  return (
+
+    <div>
+      <button
+        onClick={() => setShowModal(true)}
+
+      >Show Modal </button>
+      <Dialog
+        closeHandler={() => setShowModal(false)}
+
+        showDialog={showModal}
+      >
+
+      </Dialog>
+
+    </div>
+  )
+}
+
+export const DialogExample = () => {
+  const [show, setshow] = useState(false)
 
   return (
     <div>
+      <button onClick={() => setshow(show => !show)}>show dialog</button>
       <Dialog
-        id='example'
-        onClick={action('Dialog closed')}
-        style={{ 'top': "0" }}
-
-      // OverlayAtributes={`style={{"display" :"none"}}`}
+        showDialog={show}
+        closeHandler={() => {
+          alert("I am I have closed ")
+          setshow(false)
+        }
+        }
       >
-        <DialogTitle>
-          <h1>A Super Google Title</h1>
-        </DialogTitle>
-        <DialogContents>
-          <p> {exampPara + exampPara}</p>
+        Hi how are you
+
+        <DialogContents onClick={() => setshow(false)} style={{ 'border': '1px red solid', 'width': '100px', 'height': '100px', 'margin': '100px' }}>
+
+          Click to close!
         </DialogContents>
-
-        <DialogActions>
-          <input placeholder="Enter email here"></input>
-          <div >
-            <a onClick={action('Dialog closed')}> Disagree</a>
-            <a onClick={() => {
-
-            }}> Agree and Close</a>
-          </div>
-        </DialogActions>
       </Dialog>
+    </div>
+  )
 
-    </div>)
-};
+}

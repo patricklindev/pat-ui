@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 export interface IDialogProps {
     /**add a function to the Dialog closing handler   */
-    closeHandler?: () => void;
+    onClose?: () => void;
     /*variable to determain if the dialog is closed or open */
     showDialog?: boolean
     /** attribur for the overlay  */
@@ -27,7 +27,7 @@ export type PatDialogProps = NativeDialogProps & NativeDivProps
 
 export const Dialog: FC<PatDialogProps> = (props) => {
     const { children,
-        closeHandler,
+        onClose,
         showDialog,
         OverlayAtributes,
         ...rest } = props
@@ -36,19 +36,19 @@ export const Dialog: FC<PatDialogProps> = (props) => {
     let classNameList: string[] = ['dlg']
     let containerClassNameList: string[] = ['dlg-container']
 
-   
+
     // Allows users to add a function on close of the Dialog
     const didMount = useRef(false);
-    const closeHandlerProps = () => {
-        if (closeHandler != undefined) { closeHandler() }
+    const handleClose = () => {
+        if (onClose != undefined) { onClose() }
         didMount.current = false;
     }
 
-    // this is to ensure that the closeHandler always runs no matter how the Dialog is closed 
+    // this is to ensure that the onClose always runs no matter how the Dialog is closed 
     useEffect(() => {
         if (didMount.current) {
             if (showDialog == false) {
-                if (closeHandler != undefined) closeHandler()
+                if (onClose != undefined) onClose()
             }
         }
         else didMount.current = true;
@@ -66,7 +66,7 @@ export const Dialog: FC<PatDialogProps> = (props) => {
             hidden={!showDialog}
             {...OverlayAtributes as NativeDivProps}
             className={containerClassNameList.join(" ")}
-            onClick={(e) => { if (e.target === e.currentTarget) closeHandlerProps() }}
+            onClick={(e) => { if (e.target === e.currentTarget) handleClose() }}
         >
 
             < dialog //Dialog

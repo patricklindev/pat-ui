@@ -30,7 +30,7 @@ export const DialogSimple = () => {
         id='ide'
         OverlayAtributes={{ id: 'id' }}
         onMouseDown={action('Dialog closed')}
-        closeHandler={() => {
+        onClose={() => {
           setshow(show => !show)
         }
         }
@@ -89,7 +89,7 @@ export const DialogAlert = () => {
       <Dialog
         onClick={action('Dialog closed')}
         showDialog={show}
-        closeHandler={() => {
+        onClose={() => {
           setshow(false)
         }}
       >
@@ -123,7 +123,7 @@ export const DialogForm = () => {
         id='example'
         onClick={action('Dialog closed')}
         showDialog={show}
-        closeHandler={() => {
+        onClose={() => {
           setshow(false)
         }} >
         <DialogTitle
@@ -164,7 +164,7 @@ export const DialogTest = () => {
 
       >Show Modal </button>
       <Dialog
-        closeHandler={() => setShowModal(false)}
+        onClose={() => setShowModal(false)}
 
         showDialog={showModal}
       >
@@ -183,7 +183,7 @@ export const DialogExample = () => {
       <button onClick={() => setshow(show => !show)}>show dialog</button>
       <Dialog
         showDialog={show}
-        closeHandler={() => {
+        onClose={() => {
           alert("I am I have closed ")
           setshow(false)
         }

@@ -243,7 +243,7 @@ export const ErrorStep = () => (
              {
                title: "You can still define title",
                description: "",
-               label: 'error',
+               label:'error',
                icon: <Icon name="times" color="red"/>,
                iconCompleted: <Icon name="times" color="red"/>
              },

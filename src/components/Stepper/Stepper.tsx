@@ -38,7 +38,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
     const {
         className,
         StepperSize,
-        // StepperType,
+        FinishMessage,
         StepperElements,
         StepperOrientation,
         buttonTitleNext,
@@ -50,7 +50,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
 
     let styleClasses = classNames('Stepper', {
-        [`Stepper-${StepperSize}`]: !!StepperSize
+        [`Stepper-${StepperSize}`]: !StepperSize
     });
 
     if (className) {
@@ -58,21 +58,12 @@ export const Stepper: FC<patStepperProps> = (props) => {
     }
 
     const [Currentindex, setCurrentIndex] = useState(0)
-    const [triggerVertical, setTriggerVertical] = useState("flex-container")
     const [Initialize, setInitialize] = useState(true)
-    const [ExpandBy, setExpandBy] = useState('20vh')
     let totalSteps = StepperElements!.length
     let renderSteps = totalSteps - 1
 
         useEffect(() => {
-        // if (allowSkip === true) {
-        //     setSkipButtonActive(true)
-        // }
 
-        if (StepperOrientation === 'vertical') {
-            setTriggerVertical("vertical");
-        }
-        
         if (StepperOrientation === 'vertical') {
             let currentTarget = 'description-area-' + `${Currentindex}`
             let currentElement = document.getElementById(currentTarget)
@@ -92,62 +83,12 @@ export const Stepper: FC<patStepperProps> = (props) => {
     }, [Currentindex]);
 
 
-    function expand(direction:string,value:number) {
-        console.log("Currentindex", Currentindex)
-        console.log("Direction",direction)
-        console.log("Value of increment",value)
-
-        // let current = 'description-area-' + `${Currentindex}`
-        // let currentStep = document.getElementById(current)
-        // let previous = 'description-area-' + `${Currentindex-1}`
-        // let previousStep = document.getElementById(previous)
-        // let next = 'description-area-' + `${Currentindex+1}`
-        // let nextStep = document.getElementById(next)
-        // let skipto = 'description-area-' + `${Currentindex+2}`
-        // let skiptoStep = document.getElementById(skipto)
-
-        if (direction === 'back') {
-            if(Currentindex===0) {
-                setExpandBy('25vh')
-            // currentStep!.style.height="25vh"
-            // currentStep!.style.zIndex="0"
-            } else {
-                // currentStep!.style.height="20vh"
-                // previousStep!.style.height="25vh"
-                // currentStep!.style.zIndex="0"
-                // previousStep!.style.zIndex="1" 
-            }
-        
-        }
-        if (direction === 'next') {
-            if (Currentindex < renderSteps) {
-                setExpandBy('25vh')
-            // currentStep!.style.height="20vh"
-            // currentStep!.style.zIndex="0"
-            // nextStep!.style.height="25vh"
-            // nextStep!.style.zIndex="1" 
-            }
-        }
-
-        if (direction === 'skip') {
-            setExpandBy('25vh')
-            // currentStep!.style.height="20vh"
-            // nextStep!.style.height="20vh"
-            // skiptoStep!.style.height="25vh"
-            // skiptoStep!.style.zIndex="0"  
-        }  
-    }
-
     function next(value:number) {
-        let direction='next'
+        // let direction='next'
         if (Currentindex >= renderSteps) {
             setCurrentIndex(renderSteps)
         } else { 
             setCurrentIndex(Currentindex+value)
-        }
-
-        if (StepperOrientation === 'vertical') {
-            expand(direction,value)
         }
     }
 
@@ -159,13 +100,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
            console.log("you cannot skip past")
         } else {
             setCurrentIndex(Currentindex+value)
-            if (StepperOrientation === 'vertical') {
-                expand('skip',value)
-            }
         }
-
-       
-        
     }
 
     function prev(value:number) {
@@ -175,16 +110,12 @@ export const Stepper: FC<patStepperProps> = (props) => {
         } else {
             setCurrentIndex(Currentindex-value)
         }
-        
-        if (StepperOrientation === 'vertical') {
-            expand(direction,value)
-        }
     }
 
     let Stepper =
         <div className="flex-container">
         <div className={"center-main-body " + `${StepperOrientation}`} data-testid="center-main-body">
-         {triggerVertical != 'vertical' &&
+         {StepperOrientation != 'vertical' &&
             <div className="component-display" data-testid="element-render-1" >
                 {StepperElements!.map(function (item: any, index: number) {
                     return (
@@ -194,22 +125,21 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                 {item.component}
                                 </div>
                             }
-                            
                         </div>
                     )})}
             </div>
         }
 
-            <div className={triggerVertical} data-testid="element-render-2">
+            <div className={` ${StepperOrientation != 'row' ? "vertical" : "flex-container"}`}
+            data-testid="element-render-2">
              {StepperElements!.map(function (item: any, index: number) {
                 return (
                     <div>
                         {StepperOrientation == 'vertical' &&
-                        <div className={"description-area " + StepperSize }
-                        style={{height: `${index === Currentindex ? '25vh' : '20vh'}` }}
+                        <div className={"description-area " + styleClasses }
+                        style={{height: `${index === Currentindex ? '30vh' : '20vh'}` }}
                         id={"description-area-" + index } 
                         data-testid={`description-area-` + `${index}`}>
-                            
                                 {index === Currentindex ? (
                                     <div>
                                      <div className="flex-container">
@@ -226,9 +156,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     </div>
                                 )}
 
-                                <div className="label-container">
-                                {item.label === 'error' ? (
-                                    <p className={`font-variant-secondary red`}> {item.label} </p>
+                                <div className="label-container" data-testId={`error-check-` + `${index}`}>
+                                {item.label == 'error' ? (
+                                    <p className={`font-variant-secondary red`} > Error </p>
                                 ) : (
                                     <p className={`font-variant-secondary `}> {item.label} </p>
                                 )}
@@ -263,9 +193,9 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                     </div>
                                 )}
 
-                                <div className="label-container">
-                                {item.label === 'error' ? (
-                                    <p className={`font-variant-secondary red`}> {item.label} </p>
+                                <div className="label-container" data-testId={`error-check-` + `${index}`}>
+                                {item.label == 'error' ? (
+                                    <p className={`font-variant-secondary red`} > Error </p>
                                 ) : (
                                     <p className={`font-variant-secondary `}> {item.label} </p>
                                 )}
@@ -284,11 +214,12 @@ export const Stepper: FC<patStepperProps> = (props) => {
              })}
              </div>
 
-            {Currentindex === StepperElements?.length &&
-             <div className="flex-container">
-                    {props.FinishMessage}
-             </div>
-            }
+             {Currentindex == renderSteps  &&
+                                <div className="flex-container">
+                                     {FinishMessage}
+                                </div>
+                                 }
+          
 
              <div className={"flex-container"}>  
                         <Button
@@ -296,40 +227,37 @@ export const Stepper: FC<patStepperProps> = (props) => {
                                 btnType='primary'
                                 data-testid='button-element-prev'
                                 onClick={()=>prev(1)}
-                                btnSize={'sm'}
+                                btnSize={StepperSize}
                                 disabled={Initialize}
                                 >
                                 {props.buttonTitlePrev}
                         </Button>
                         
                         {allowSkip && 
-                       
                                 <Button
                                     className="Stepper-Button-Skip"
                                     btnType='primary'
                                     data-testid='button-element-skip'
                                     onClick={()=>skip(2)}
                                     // onClick={props.skipOnClick}
-                                    btnSize={'sm'}
+                                    btnSize={StepperSize}
                                 >
                                 {"Skip Next"}
                                 </Button>
-                            
-                            
                         }
                         <Button
                                 className={props.buttonTitleNext}
                                 btnType='primary'
                                 data-testid='button-element-next'
                                 onClick={()=>next(1)}
-                                btnSize={'sm'}
+                                btnSize={StepperSize}
                                 >
                                 {props.buttonTitleNext}
                         </Button>
             </div>
         </div>
 
-        {triggerVertical === 'vertical' &&
+        {StepperOrientation === 'vertical' &&
             <div className="component-display" data-test-id="element-render-3">
                 {StepperElements!.map(function (item: any, index: number) {
                     return (

@@ -1,3 +1,15 @@
+
+@mixin standard-layout( $margin-standard: auto, $width-fit: fit-content) {
+    margin: $margin-standard;
+    width: $width-fit
+}
+
+@mixin font-package($font-size:$font-size-sm, $list-style: none, $text-align:center){
+    font-size: $font-size;
+    list-style: $list-style;
+    text-align: $text-align;
+}
+
 .center-main-body {
     width:fit-content;
     border-style:groove;
@@ -22,8 +34,7 @@
 
 .flex-container {
     display: flex;
-    margin:auto;
-    width:fit-content;
+    @include standard-layout
 }
 
 .description-area {
@@ -33,17 +44,15 @@
 }
 
 .font-variant-main{
-    font-size: $font-size-sm;
-    list-style: none;
-    text-align: center;
-    border-radius: 25px;
+   @include font-package;
+    border-radius: $border-radius;
+
 }
 
 .font-variant-secondary{
-    font-size: $font-size-sm;
     font-style:italic;
-    list-style: none;
-    text-align: center;
+ 
+    @include font-package;
 }
 
 .ul {
@@ -51,23 +60,23 @@
 }
 
 .Next {
-    width:fit-content;
-    margin:auto;
+    @include standard-layout
 }
 
 .Back {
-    width:fit-content;
-    margin:auto;
+    @include standard-layout
 }
 
 .spacer {
     width:50%;
 }
 
+
 .sm {
     width:15vw;
     height:7.5vw;
 }
+
 
 .md {
     width:20vw;
@@ -80,8 +89,6 @@
 }
 
 
-
-
 .example {
     width:50%;
     height:50%;
@@ -89,11 +96,7 @@
 }
 
 .error {
-    color:red
+    color:$red
 }
 
-.expand {
-    transition:height 2s;
-    height:50px;
-}
 

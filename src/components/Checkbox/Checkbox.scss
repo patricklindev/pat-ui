@@ -112,27 +112,27 @@
 
 .bg-iChecked-path{
   &-primary{
-    fill: invert($primary); 
+    fill: $white; 
   }
 
   &-secondary{
-    fill: invert($secondary); 
+    fill: $white; ; 
   }
 
   &-success{
-    fill: invert($success); 
+    fill: $white; ; 
   }
 
   &-info{
-    fill: invert($info); 
+    fill: $white ; 
   }
 
   &-warning{
-    fill: invert($warning); 
+    fill: $white; ; 
   }
 
   &-danger{
-    fill: invert($danger); 
+    fill: $white; 
   }
 
   &-default{
@@ -140,7 +140,7 @@
   }
 
   &-dark{
-    fill: invert($dark); 
+    fill: $white; ; 
   }
 }
 
@@ -277,3 +277,8 @@
   }
 }
 
+.labelContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

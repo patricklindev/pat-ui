@@ -7,12 +7,12 @@ exports[`should match snapshot 1`] = `
   >
     <input
       data-testid="inputCheckBox"
-      id="l5e6h3xqigbxt5bwha"
+      id="l5eau2jfn7ezcv02knp"
       type="checkbox"
     />
     <label
       data-testid="iconLabel"
-      for="l5e6h3xqigbxt5bwha"
+      for="l5eau2jfn7ezcv02knp"
     >
       <span
         class="checkbox checkbox-normal bg-iCheck-default"

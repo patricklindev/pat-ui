@@ -128,7 +128,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
   return (
     <div className='checkbox-container'>
       <input type='checkbox' onChange={handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
-      <label htmlFor={id} data-testid='iconLabel'>
+      <label htmlFor={id} data-testid='iconLabel' className='labelContent'>
         <span className={styleClassNameSpan} data-testid='iconSpan'>
           <svg viewBox={IconPath[`${icon}`].viewBox} role="img" data-testid='iconSVG'>
             <path d={IconPath[`${icon}`].path} className={styleClassNameSVG} data-testid='iconSVGPath'/>

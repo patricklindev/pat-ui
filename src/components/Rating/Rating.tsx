@@ -45,6 +45,7 @@ interface stateTypes {
 const parentStyles: CSS.Properties = {
   overflow: 'hidden',
   // position: 'relative'
+  lineHeight: '60px'
 }
 
 const defaultStyles: CSS.Properties = {

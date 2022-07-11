@@ -1,0 +1,45 @@
+.accordion{
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+
+  &.disabled {
+    background-color: rgba(34, 36, 38, 0.15);
+    color: rgba(34, 36, 38, 0.35);
+    cursor: not-allowed;
+  }
+
+  &-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &.disabled{
+      cursor: not-allowed;
+    }
+
+  }
+
+  &-title{
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  // transition doesnt work on display
+  &-content{
+    visibility: hidden;
+    height: 0px;
+  }
+
+  &-content.show{
+    visibility: visible;
+    height: auto;
+    transition: all 0.8s ease-in-out;
+  }
+}

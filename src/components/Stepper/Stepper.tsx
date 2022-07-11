@@ -50,7 +50,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
 
 
     let styleClasses = classNames('Stepper', {
-        [`Stepper-${StepperSize}`]: !StepperSize
+        [`Stepper-${StepperSize}`]: !!StepperSize
     });
 
     if (className) {
@@ -173,7 +173,7 @@ export const Stepper: FC<patStepperProps> = (props) => {
                         </div> 
                         }
                          {StepperOrientation == 'row' &&
-                        <div className={"description-area " + StepperSize }
+                        <div className={"description-area " + styleClasses }
                         id={"description-area-" + index } 
                         data-testid={`description-area-` + `${index}`}>
                             

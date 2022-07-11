@@ -39,7 +39,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
-  const onClickHandler = () => {
+  const onChangeHandler = () => {
     setCheck((prev) => !prev);
   };
 
@@ -49,7 +49,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         type="checkbox"
         disabled={disabled}
         checked={check}
-        onClick={onClickHandler}
+        onChange={onChangeHandler}
       />
       {/* {icon && <Icon name={icon} />} */}
       <label>{label}</label>

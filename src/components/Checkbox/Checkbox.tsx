@@ -13,7 +13,7 @@ export interface ICheckboxProps {
   /** set checkbox size */
   checkSize?: boxSize
   /** make checkbox bar always check */
-  checked?: boolean | undefined;
+  checked?: boolean ;
   /** add specific icon to input */
   icon?: iconType;
   /** add specific icon theme to input */

@@ -1,95 +1,90 @@
 import React, {
-  ButtonHTMLAttributes,
-  AnchorHTMLAttributes,
   FC,
-  MouseEvent,
+  useState,
+  ReactNode,
 } from 'react';
-import {useState, useEffect, useRef} from 'react'
+import { useEffect } from 'react';
 import './_Accordion.scss'
-import Icon from '../Icon';
-import {accordionDataMultiple} from './AccordionData/multipleData'
 
-export type AccordionType =
-  | 'default'
 
-  export interface IButtonProps {
-    /** set customized style */
-    className?: string;
-    /** set accordion type */
-    accordionType?: AccordionType;
-    /** set disabled button */
-    disabled?: boolean;
+export interface IAccordionProps {
+  /** set class name */
+  className?: string;
+  /** set accordion title */
+  title?: ReactNode;
+  /** set accordion content */
+  content?:  ReactNode;
+  /** set accordion expand icon */
+  expandIcon?: ReactNode;
+  /** set accordion collapse icon */
+  collapseIcon?: ReactNode;
+  /** set accordion disabled */
+  disabled?: boolean;
+  /** set accordion expanded by default */
+  expanded?: boolean;
+  /** set accordion expanded by default */
+  controlledExpanded?: boolean;
+  /** listen to expand and collapse */
+  id?: string;
+  onChange?: (expanded: boolean) => void;
+}
+
+
+export const Accordion: FC<IAccordionProps> = (props) => {
+  const {
+    className,
+    id,
+    title,
+    content,
+    expandIcon,
+    collapseIcon,
+    disabled,
+    expanded,
+    controlledExpanded,
+    onChange,
+    ...rest
+  } = props;
+
+  const [expand, setExpand] = useState(expanded);
+
+  const closeAll = () => {
+    setExpand(!expand)
   }
+  const toggle = (e, controlledExpanded) => {
+    if(controlledExpanded){
+      closeAll()
+    }
+    if (!disabled && !controlledExpanded) {
+      setExpand(!expand);
+      onChange && onChange(!expand);
+    } else if (e && controlledExpanded === true){
+      setExpand(!expand)
+    } else if (!e && controlledExpanded === false){
+      setExpand(expand)
 
-type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
-type NativeAchorButtonProps = IButtonProps &
-AnchorHTMLAttributes<HTMLAnchorElement>;
-export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
-
-
-export const Accordion: FC<PatButtonProps> = (props) => {
-  const {accordionType, children, disabled, className, ...rest } = props;
-  const [isActive, setIsActive] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
-
-
-  const toggleAccordion = (index) => {
-    if(activeIndex === index){
-      setActiveIndex(-1)
-    } else {
-      setActiveIndex(index)
     }
   }
 
-  let acrd;
-  if (accordionType === 'default' && !disabled) {
-    acrd = (
-      <div>
-      {accordionDataMultiple.map((item, index) => {
-         const isActive = index === activeIndex
-        return (
-          <button 
-          key={item.id}
-          className="btn-accordion">
-           <div className="accordion accordion-item">
-            <div
-              className="accordion accordion-title"
-              onClick={() => toggleAccordion(index)}
-            >
-              <div>{item.title}</div>
-              <Icon
-                className={`chevron-down ${isActive ? 'up' : 'down'}`}
-                name='angle down'
-              />
-            </div>
-            <div className={`accordion accordion-content ${ + isActive ? 'active' : 'hidden'}`}>{item.content}</div>
-          </div>
-        </button>
-    )})}
-  </div>
-  );
-  } else if (disabled) {
-      return(
-        <button 
-        className="btn-accordion accordion-disabled">
-         <div className="accordion accordion-item">
-          <div
-            className="accordion accordion-title"
-            onClick={(e) => e.preventDefault()}
-          >
-            <div>{accordionDataMultiple[0].title}</div>
-            <div>+</div>
-          </div>
+    return (
+      <div className={`accordion ${disabled && 'disabled'}`} onClick={(e) => toggle(e, controlledExpanded)}>
+      <div className='accordion-header'>
+        <div className="accordion-title">
+          {props.title}
         </div>
-      </button>
-      )
-  } 
-  return acrd;
-};
+        <div className={`accordion-icon ${expand ? 'open' : 'close'}`}>
+          {expand ? collapseIcon : expandIcon}
+        </div>
+      </div>
+      <div className={`accordion-content ${expand ? 'show' : 'hidden' }`}>
+        {props.content}
+      </div>
+    </div>
+  );
+
+}
 
 Accordion.defaultProps = {
-  accordionType: 'default',
   disabled: false,
-};
+}
 
 export default Accordion;

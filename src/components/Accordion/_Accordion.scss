@@ -1,49 +1,64 @@
-.btn-accordion {
+.accordion{
   width: 100%;
-  background-color: white;
-  box-shadow: 1px 1px 1px gray;
-  margin: 3px;
-  & .accordion.accordion-title {
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+
+  &.disabled {
+    background-color: rgba(34, 36, 38, 0.15);
+    color: rgba(34, 36, 38, 0.35);
+    cursor: not-allowed;
+  }
+
+  &-header {
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
-  }
-  & .accordion.accordion-content {
-    text-align: left;
-  }
-  &.accordion-disabled,
-  [disabled]{
-    color: #6F7E8C;
-    background-color: #CBCED3 !important;
-    cursor: inherit;
-    & .accordion.accordion-title {
-      display: flex;
-      justify-content: space-between;
-      font-size: 18px;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &.disabled{
+      cursor: not-allowed;
     }
   }
-}
-.accordion.accordion-content.active {
-  opacity: 1;
-  transition: 0.1s cubic-bezier(.17,.67,.83,.67);
-  height: 70px;
-}
-.accordion.accordion-content.hidden {
-  opacity: 0;
-  transition: 0.1s cubic-bezier(.17,.67,.83,.67);
-  height: 0;
-}
+  
+  .accordion-icon.open {
+    transform: rotate(180deg); 
+  }
 
-button:focus-visible {
-  outline: none;
-  box-shadow: none;
-}
+  &-title{
+    font-size: 1.1em;
+    font-weight: bold;
+  }
 
-button:focus {
-  outline: none !important;
-}
-
-.chevron-down.up {
-  -webkit-transform: rotateX(180deg);
-          transform: rotateX(180deg);
+  // transition doesnt work on display
+  &-content{
+    opacity: 0;
+    max-height: 0;
+    padding: 0px 20px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  &-content.show{
+    padding: 10px 20px;
+    opacity: 1;
+    max-height: 100px;
+    overflow: scroll;
+    transition: all 0.2s ease-in-out;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: transparent
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent
+  }
 }

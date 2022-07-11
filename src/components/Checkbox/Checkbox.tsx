@@ -2,9 +2,9 @@ import React, { FC, useEffect, useRef, ChangeEventHandler, useState } from 'reac
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 
-export type checkboxType = | 'primary' | 'secondary' | 'default';
+export type checkboxType = 'primary' | 'secondary' | 'default';
 
-export type checkboxSize = | 'md' | 'sm';
+export type checkboxSize = 'md' | 'sm';
 
 export interface ICheckboxProps {
     className?: string;
@@ -27,11 +27,9 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
 
     let styleClasses = classNames('checkbox', {
         [`check-${checkType}`]: true,
-        [`check-${checkSize}`]: !!checkSize
+        [`check-${checkSize}`]: !!checkSize,
+        [`${className}`]: true
     });
-    if (className) {
-        styleClasses += ' ' + className;
-    }
 
     let checkbox;
     if (icon) {

@@ -1,0 +1,61 @@
+.accordion {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+
+  &.disabled {
+    background-color: rgba(34, 36, 38, 0.15);
+    color: rgba(34, 36, 38, 0.35);
+    cursor: not-allowed;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-title {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  // transition doesnt work on display
+  &-content {
+    opacity: 0;
+    max-height: 0;
+    padding: 0px 20px;
+    transition: all 0.2s ease-in-out;
+  }
+  &-content.show {
+    padding: 10px 20px;
+    opacity: 1;
+    max-height: 100px;
+    overflow: scroll;
+    transition: all 0.2s ease-in-out;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.accordion-icon.open {
+  transform: rotate(180deg);
+}

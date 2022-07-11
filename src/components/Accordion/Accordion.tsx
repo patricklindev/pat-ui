@@ -1,58 +1,64 @@
-import './Accordion.css';
-import AccordionChild from './AccordionChild';
-import React, { FC } from 'react';
-import { accordionItems } from './AccordionItemData';
+import React, { FC, useState, ReactNode } from 'react';
+import './_Accordion.scss';
 
-const Accordion: FC = () => {
+export interface IAccordionProps {
+  /** set class name */
+  className?: string;
+  /** set accordion title */
+  title?: ReactNode;
+  /** set accordion content */
+  content?: ReactNode;
+  /** set accordion expand icon */
+  expandIcon?: ReactNode;
+  /** set accordion collapse icon */
+  collapseIcon?: ReactNode;
+  /** set accordion disabled */
+  disabled?: boolean;
+  /** set accordion expanded by default */
+  expanded?: boolean;
+  /** listen to expand and collapse */
+  onChange?: (expanded: boolean) => void;
+}
+
+export const Accordion: FC<IAccordionProps> = (props) => {
+  const {
+    className,
+    title,
+    content,
+    expandIcon,
+    collapseIcon,
+    disabled,
+    expanded,
+    onChange,
+    ...rest
+  } = props;
+
+  const [expand, setExpand] = useState(expanded);
+
+  const toggle = () => {
+    if (!disabled) {
+      setExpand(!expand);
+      onChange && onChange(!expand);
+    }
+  };
+
   return (
-    <div className="container">
-      <AccordionChild items={accordionItems} />
+    <div className={`accordion ${disabled && 'disabled'}`} onClick={toggle}>
+      <div className={`accordion-header`}>
+        <div className="accordion-title">{props.title}</div>
+        <div className={`accordion-icon ${expand ? 'open' : 'close'}`}>
+          {expand ? collapseIcon : expandIcon}
+        </div>
+      </div>
+      <div className={`accordion-content ${expand && 'show'}`}>
+        {props.content}
+      </div>
     </div>
   );
 };
-// function App() {
-//   const accordionItems = [
-//     {
-//       title: 'Expansion Panel 1',
-//       content: (
-//         <div>
-//           <p>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-//             malesuada lacus ex, sit amet blandit leo lobortis eget.
-//           </p>
-//         </div>
-//       ),
-//     },
-//     {
-//       title: 'Expansion Panel 2',
-//       content: (
-//         <div>
-//           <p>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-//             malesuada lacus ex, sit amet blandit leo lobortis eget.
-//           </p>
-//         </div>
-//       ),
-//     },
-//     {
-//       title: 'Disabled Expansion Panel',
-//       content: (
-//         <div>
-//           <p>
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-//             malesuada lacus ex, sit amet blandit leo lobortis eget.
-//           </p>
-//         </div>
-//       ),
-//     },
-//   ];
 
-//   return (
-//     <div className="container">
-//       <h1>Expansion Panel</h1>
-//       <Accordion items={accordionItems} />
-//     </div>
-//   );
-// }
+Accordion.defaultProps = {
+  disabled: false,
+};
 
 export default Accordion;

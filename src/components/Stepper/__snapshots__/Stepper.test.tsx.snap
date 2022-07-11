@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stepper should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex-container"
+  >
+    <div
+      class="center-main-body row"
+      data-testid="center-main-body"
+    >
+      <div
+        class="component-display"
+        data-testid="element-render-1"
+      >
+        <div
+          class="component-display-inner"
+        >
+          <div
+            class="component-display-inner"
+          />
+        </div>
+        <div
+          class="component-display-inner"
+        />
+        <div
+          class="component-display-inner"
+        />
+      </div>
+      <div
+        class=" flex-container"
+        data-testid="element-render-2"
+      >
+        <div>
+          <div
+            class="description-area sm"
+            data-testid="description-area-0"
+            id="description-area-0"
+          >
+            <div>
+              <div
+                class="flex-container"
+              >
+                <svg
+                  class="icon green check"
+                  height="28"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+                    fill="green"
+                  />
+                </svg>
+              </div>
+              <p
+                class="font-variant-main"
+              >
+                 Default array length 3 
+              </p>
+            </div>
+            <div
+              class="label-container"
+              data-testid="error-check-0"
+            >
+              <p
+                class="font-variant-secondary "
+              >
+                 Vertical for arrays &gt; 3 
+              </p>
+            </div>
+            <div>
+              <p
+                class="font-variant-secondary "
+              >
+                 
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="description-area sm"
+            data-testid="description-area-1"
+            id="description-area-1"
+          >
+            <div>
+              <div
+                class="flex-container"
+              >
+                <svg
+                  class="icon check"
+                  height="28"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+                  />
+                </svg>
+              </div>
+              <p
+                class="font-variant-main"
+              >
+                 Define props in component 
+              </p>
+            </div>
+            <div
+              class="label-container"
+              data-testid="error-check-1"
+            >
+              <p
+                class="font-variant-secondary "
+              >
+                 Mandatory 
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="description-area sm"
+            data-testid="description-area-2"
+            id="description-area-2"
+          >
+            <div>
+              <div
+                class="flex-container"
+              >
+                <svg
+                  class="icon check"
+                  height="28"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+                  />
+                </svg>
+              </div>
+              <p
+                class="font-variant-main"
+              >
+                 Feed an string array 
+              </p>
+            </div>
+            <div
+              class="label-container"
+              data-testid="error-check-2"
+            >
+              <p
+                class="font-variant-secondary "
+              >
+                 Keep strings short 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex-container"
+      >
+        <button
+          class="btn btn-primary btn-sm Back"
+          data-testid="button-element-prev"
+          disabled=""
+        >
+          Back
+        </button>
+        <button
+          class="btn btn-primary btn-sm Next"
+          data-testid="button-element-next"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

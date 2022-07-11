@@ -26,7 +26,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11"
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "react-test-renderer": "^18.2.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",

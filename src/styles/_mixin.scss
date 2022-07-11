@@ -1,76 +1,76 @@
 @mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
-  padding: $padding-y $padding-x;
-  font-size: $font-size;
-  border-radius: $border-radius;
-}
-
-@mixin button-style(
-  $color,
-  $background,
-  $border-color,
-  $hover-color: $color,
-  $hover-background-color: lighten($background, 7.5%),
-  $hover-border-color: lighten($border-color, 10%)
-) {
-  color: $color;
-  background: $background;
-  border-color: $border-color;
-  &:hover {
-    color: $hover-color;
-    background: $hover-background-color;
-    border-color: $hover-border-color;
+    padding: $padding-y $padding-x;
+    font-size: $font-size;
+    border-radius: $border-radius;
   }
-  &.focus,
-  &:focus {
-    color: $hover-color;
-    background: $hover-background-color;
-    border-color: $hover-border-color;
+  
+  @mixin button-style(
+    $color,
+    $background,
+    $border-color,
+    $hover-color: $color,
+    $hover-background-color: lighten($background, 7.5%),
+    $hover-border-color: lighten($border-color, 10%)
+  ) {
+    color: $color;
+    background: $background;
+    border-color: $border-color;
+    &:hover {
+      color: $hover-color;
+      background: $hover-background-color;
+      border-color: $hover-border-color;
+    }
+    &.focus,
+    &:focus {
+      color: $hover-color;
+      background: $hover-background-color;
+      border-color: $hover-border-color;
+    }
   }
-}
-
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
-  background-color: $msg-background-color;
-  border-radius: $msg-border-radius;
-  border: $msg-border;
-  padding: $msg-padding;
-  width: $msg-box-width;
-}
-
-@mixin color-message($msg-indent-left, $msg-pg-size) {
-  text-indent: $msg-indent-left;
-  font-size: $msg-pg-size;
-}
-
-@mixin size-message($msg-indent-left) {
-  text-indent: $msg-indent-left;
-}
-@mixin dropdown-border-style($border-width, $border-color) {
-  border: $border-width solid $border-color;
-}
-
-@mixin dropdown-border-radius-style(
-  $border-top-left-radius,
-  $border-top-right-radius,
-  $border-bottom-left-radius,
-  $border-bottom-right-radius
-) {
-  border-top-left-radius: $border-top-left-radius;
-  border-top-right-radius: $border-top-right-radius;
-  border-bottom-left-radius: $border-bottom-left-radius;
-  border-bottom-right-radius: $border-bottom-right-radius;
-}
-
-@mixin dropdown-options-border($border-width, $border-color) {
-  border-top: 0;
-  border-bottom: $border-width solid $border-color;
-  border-left: $border-width solid $border-color;
-  border-right: $border-width solid $border-color;
-}
-
-@mixin card-border {
-  border-style: solid;
-  border-width: $border-width;
-  border-radius: $border-radius;
-  border-color: $border-color;
-}
+  
+  
+  @mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+    background-color: $msg-background-color;
+    border-radius: $msg-border-radius;
+    border: $msg-border;
+    padding: $msg-padding;
+    width: $msg-box-width;
+  }
+  
+  @mixin color-message($msg-indent-left, $msg-pg-size) {
+    text-indent: $msg-indent-left;
+    font-size: $msg-pg-size;
+  }
+  
+  @mixin size-message($msg-indent-left) {
+    text-indent: $msg-indent-left;
+  }
+  @mixin dropdown-border-style($border-width, $border-color) {
+    border: $border-width solid $border-color;
+  }
+  
+  @mixin dropdown-border-radius-style(
+    $border-top-left-radius,
+    $border-top-right-radius,
+    $border-bottom-left-radius,
+    $border-bottom-right-radius
+  ) {
+    border-top-left-radius: $border-top-left-radius;
+    border-top-right-radius: $border-top-right-radius;
+    border-bottom-left-radius: $border-bottom-left-radius;
+    border-bottom-right-radius: $border-bottom-right-radius;
+  }
+  
+  @mixin dropdown-options-border($border-width, $border-color) {
+    border-top: 0;
+    border-bottom: $border-width solid $border-color;
+    border-left: $border-width solid $border-color;
+    border-right: $border-width solid $border-color;
+  }
+  
+  @mixin card-border {
+    border-style: solid;
+    border-width: $border-width;
+    border-radius: $border-radius;
+    border-color: $border-color;
+  }

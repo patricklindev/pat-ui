@@ -1,0 +1,102 @@
+
+@mixin standard-layout( $margin-standard: auto, $width-fit: fit-content) {
+    margin: $margin-standard;
+    width: $width-fit
+}
+
+@mixin font-package($font-size:$font-size-sm, $list-style: none, $text-align:center){
+    font-size: $font-size;
+    list-style: $list-style;
+    text-align: $text-align;
+}
+
+.center-main-body {
+    width:fit-content;
+    border-style:groove;
+    border-radius:12.5px;
+    padding: 1%;
+    height:100%;
+}
+
+.vertical {
+    height:100%;
+}
+
+.component-display{
+    width:80%;
+    margin:auto;
+}
+
+.component-display-inner {
+    width:100%;
+    margin:auto;
+}
+
+.flex-container {
+    display: flex;
+    @include standard-layout
+}
+
+.description-area {
+    transition:height 2s;
+    margin-top:1%;
+    background-color:white;
+}
+
+.font-variant-main{
+   @include font-package;
+    border-radius: $border-radius;
+
+}
+
+.font-variant-secondary{
+    font-style:italic;
+ 
+    @include font-package;
+}
+
+.ul {
+    list-style: none;
+}
+
+.Next {
+    @include standard-layout
+}
+
+.Back {
+    @include standard-layout
+}
+
+.spacer {
+    width:50%;
+}
+
+
+.Stepper-sm {
+    width:15vw;
+    height:7.5vw;
+}
+
+
+.Stepper-md {
+    width:20vw;
+    height:8.5vw; 
+}
+
+.Stepper-lg {
+    width:25vw;
+    height:9.5vw;
+}
+
+
+.example {
+    width:50%;
+    height:50%;
+    margin-left:25%;
+}
+
+.error {
+    color:$red
+}
+
+

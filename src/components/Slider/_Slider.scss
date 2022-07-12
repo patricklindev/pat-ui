@@ -176,8 +176,32 @@ $light-secondary: hsl(208, 7%, 70%) !default;
   width: 5px;
 }
 
-.slider__range-right {
-  margin-top: -8px;
+.slider-range-cont {
+  display: grid;
+  
 }
 
+.slider__range-right {
+  grid-row: 1;
+  grid-column: 1;
+  overflow:visible !important;
+  
+}
 
+.slider__range-right::-webkit-slider-thumb {
+  z-index: 1;
+  position: relative;
+}
+
+.slider__range-left {
+  grid-row: 1;
+  grid-column: 1;
+  overflow:visible !important;
+
+
+}
+
+.slider__range-left::-webkit-slider-thumb {
+  position: relative;
+  z-index: 1;
+}

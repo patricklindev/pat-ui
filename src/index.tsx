@@ -5,12 +5,7 @@ import './styles/index.scss'
 
 
 let app = <div>
-    <h1>test</h1>
-    <div className='slider-cont'>
-    <input type='range' className='slider slider__range-left'/>
-    <input type="range" className='slider slider__range-right'/>
-    </div>
-
+    <Slider disabled={false} />
 
 
 </div>

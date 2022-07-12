@@ -36,9 +36,9 @@ export const DisabledSlider = () => <Slider disabled={true} />;
 
 export const MarkedSliders = () => (
   <div>
-    <Slider range={[1, 2, 3, 4]} />
+    <Slider rangeTicks={[1, 2, 3, 4]} />
     <h3>Continuous Marking</h3>
-    <Slider range={[0, 32, 100]} />
+    <Slider rangeTicks={[0, 32, 100]} />
     <h3>Arbitrary Marking</h3>
   </div>
 );

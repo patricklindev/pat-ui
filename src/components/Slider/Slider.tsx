@@ -9,22 +9,33 @@ import React, {
 
 type SlideColor = 'primary' | 'secondary';
 type SlideSize = 'sm' | 'md' | 'lg';
-type SlideOrientatoin = 'horizontal' | 'vertical';
+type SlideOrientation = 'horizontal' | 'vertical';
 
 interface ISliderProps {
+  //controls slider size sm, md, lg
   setSize?: SlideSize;
+  //sets slider color
   color?: SlideColor;
+  //sets initial slider value
   defaultValue?: number;
+  //disables the slider
   disabled?: boolean;
-  range?: number[];
+  //an array of the ticks to display on the slider
+  rangeTicks?: number[];
+  //maximum slider value
   max?: number;
+  //minimum slider value
   min?: number;
+  //slider increment
   step?: number;
+  //call back function for on Change
   onChange?: Function;
-  orientation?: SlideOrientatoin;
+  //vertical or horizontal slider
+  orientation?: SlideOrientation;
 }
 
 type NativeInputProps = ISliderProps & InputHTMLAttributes<HTMLInputElement>;
+export type PatSliderProps = NativeInputProps;
 
 export const Slider: FC<NativeInputProps> = (props) => {
   let {
@@ -32,7 +43,7 @@ export const Slider: FC<NativeInputProps> = (props) => {
     setSize,
     defaultValue,
     disabled,
-    range,
+    rangeTicks,
     max,
     min,
     step,
@@ -44,15 +55,15 @@ export const Slider: FC<NativeInputProps> = (props) => {
   const bubbleRef = (useRef() as MutableRefObject<HTMLDivElement>) || null;
 
   if (!min) {
-    if (range) {
-      min = range[0];
+    if (rangeTicks) {
+      min = rangeTicks[0];
     } else {
       min = 0;
     }
   }
   if (!max) {
-    if (range) {
-      max = range[range.length - 1];
+    if (rangeTicks) {
+      max = rangeTicks[rangeTicks.length - 1];
     } else {
       max = 100;
     }
@@ -75,11 +86,11 @@ export const Slider: FC<NativeInputProps> = (props) => {
     ref.current.style.setProperty('--progress', position);
     bubbleRef.current.style.setProperty('--bubble', bubblePosition);
     let buildTicks: string[];
-    if (range) {
-      buildTicks = new Array(range[range.length - 1]);
-      for (let i = 0; i < range[range.length - 1]; i++) {
-        if (range.indexOf(i + 1) > -1) {
-          buildTicks[i] = (i + 1).toString();
+    if (rangeTicks) {
+      buildTicks = new Array(rangeTicks[rangeTicks.length - 1]);
+      for (let i = rangeTicks[0]; i < rangeTicks[rangeTicks.length - 1] + 1; i++) {
+        if (rangeTicks.indexOf(i) > -1) {
+          buildTicks[i] = (i).toString();
         } else {
           buildTicks[i] = '';
         }
@@ -102,14 +113,11 @@ export const Slider: FC<NativeInputProps> = (props) => {
   if (disabled) {
     classNameList.push('slider-disabled');
   }
-  if (color === 'primary') {
-    classNameList.push('slider-primary');
-    sliderNumCList.push('slidernum-primary');
+  if (color) {
+    classNameList.push(`slider-${color}`);
+    sliderNumCList.push(`slidernum-${color}`);
   }
-  if (color === 'secondary') {
-    classNameList.push('slider-secondary');
-    sliderNumCList.push('slidernum-secondary');
-  }
+  
   let inpClassNames = classNameList.join(' ');
   let sliderNumClass = sliderNumCList.join(' ');
 
@@ -118,87 +126,48 @@ export const Slider: FC<NativeInputProps> = (props) => {
   if (!setSize) {
     contClassNameList.push('slider-md');
   }
-  if (orientation) {
-    if (orientation === 'vertical') contClassNameList.push('slider-vertical');
-    if (setSize === 'sm') {
-      contClassNameList.push('slider-vertical-sm');
-    }
-    if (setSize === 'md') {
-      contClassNameList.push('slider-vertical-md');
-    }
-    if (setSize === 'lg') {
-      contClassNameList.push('slider-vertical-lg');
-    }
+
+  if (orientation === 'vertical') {
+    contClassNameList.push('slider-vertical');
+    if (setSize) contClassNameList.push(`slider-vertical-${setSize}`);
   }
-  if (setSize === 'sm') {
-    contClassNameList.push('slider-sm');
-  }
-  if (setSize === 'md') {
-    contClassNameList.push('slider-md');
-  }
-  if (setSize === 'lg') {
-    contClassNameList.push('slider-lg');
-  }
+  if(setSize) contClassNameList.push(`slider-${setSize}`)
+  
   let contClassName = contClassNameList.join(' ');
 
-  if (range) {
-    return (
-      <div className={contClassName}>
-        <div className="slider-value-cont">
-          <div className={sliderNumClass} ref={bubbleRef}>
-            <div className="slider-value__num">
-              {sliderValue != null ? sliderValue : ''}
-            </div>
+  return (
+    <div className={contClassName} data-testid='slider-container'>
+      <div className="slider-value-cont">
+        <div className={sliderNumClass} ref={bubbleRef}>
+          <div className="slider-value__num">
+            {sliderValue != null ? sliderValue : ''}
           </div>
         </div>
-        <input
-          type="range"
-          value={sliderValue}
-          className={inpClassNames}
-          ref={ref}
-          defaultValue={defaultValue}
-          min={range[0]}
-          max={range[range.length - 1]}
-          step={step}
-          disabled={disabled}
-          onChange={(e) => showChange(e)}
-        />
-        {
-          <div className="tickmarks">
-            {!tickMarks
-              ? ''
-              : tickMarks.map((item, index) => {
-                  return <div className="range__tick">{item}</div>;
-                })}
-          </div>
-        }
       </div>
-    );
-  } else {
-    return (
-      <div className={contClassName}>
-        <div className="slider-value-cont">
-          <div className={sliderNumClass} ref={bubbleRef}>
-            <div className="slider-value__num">
-              {sliderValue != null ? sliderValue : ''}
-            </div>
-          </div>
+      <input
+        type="range"
+        value={sliderValue}
+        className={inpClassNames}
+        ref={ref}
+        defaultValue={defaultValue}
+        data-testid='slider-input'
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        onChange={(e) => showChange(e)}
+      />
+      {!rangeTicks ? (
+        ''
+      ) : (
+        <div className="tickmarks">
+          {tickMarks.map((item, index) => {
+                return <div className="range__tick">{item}</div>;
+              })}
         </div>
-        <input
-          type="range"
-          value={sliderValue}
-          className={inpClassNames}
-          ref={ref}
-          defaultValue={defaultValue}
-          min={min}
-          max={max}
-          step={step}
-          disabled={disabled}
-          onChange={(e) => showChange(e)}
-        />
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export default Slider;

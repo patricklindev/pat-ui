@@ -263,7 +263,7 @@ class Rating extends Component<propTypes, stateTypes> {
   renderStars(label: string) {
     const { halfStar, stars, idForEachStar, config, labelIndex } = this.state
     const { inactivecColor, activeColor, size, char, half, edit } = config
-    return stars!.map((star: { active: any; }, i: React.Key | undefined) => {
+    return stars!.map((star: { active: any; }, i: number) => {
       let starClass = ''
       let active = star.active;
       if (half && !halfStar!.hidden && halfStar!.currentPosition === i) {
@@ -275,16 +275,24 @@ class Rating extends Component<propTypes, stateTypes> {
           style = Object.assign({}, defaultStyles, {
             color: star.active ? activeColor : inactivecColor,
             cursor: 'pointer',
-            fontSize: star.active ? `${size! + 5}px` : `${size}px`
+            fontSize: `${size}px`
         })
       } else {
         style = Object.assign({}, defaultStyles, {
           color: star.active ? 'GoldenRod' : 'Dark',
           cursor: 'not-allowed',
-          fontSize: star.active ? `${size! + 5}px` : `${size}px`
+          fontSize: `${size}px`
       })
-      }
-      
+    }
+
+      if( i + 1 === labelIndex){
+        style = Object.assign({}, defaultStyles, {
+          color: star.active ? activeColor : inactivecColor,
+          cursor: 'pointer',
+          fontSize: `${size! + 5}px` 
+      })
+    }
+    
       return (
         <span
           className={starClass}

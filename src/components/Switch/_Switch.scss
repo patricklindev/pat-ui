@@ -14,10 +14,20 @@ $switch-sm-thumb-width: 16px;
 $switch-margin-right: 75px;
 $switch-disabled-opacity: 0.4 !default;
 
+/*Modified pat-ui colors with added alpha values(bb)*/
+$primary-transparency: #20c997bb !default;
+$secondary-transparency: #6c757dbb !default;
+$success-transparency: #52c41abb !default;
+$info-transparency: #17a2b8bb !default;
+$warning-transparency: #fadb14bb !default;
+$danger-transparency: #dc3545bb !default;
+$light-transparency: #f8f9fabb !default;
+$dark-transparency: #343a40bb !default;
+
 /*mixin*/
 @mixin slider-background-color($color){
     background-color: $color;
-    // opacity: 0.7;
+    // opacity: 0.8;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -28,7 +38,7 @@ $switch-disabled-opacity: 0.4 !default;
   flex: none;
   order: 0;
   flex-grow: 0;
-  // opacity: 1.0;
+  // opacity: 0.5;
 }
 @mixin slider-transition($speed){
   transition: $speed;
@@ -91,33 +101,33 @@ input:checked + .slider {
   @include slider-background-color($primary);
 }
 
-/*Color of palettes*/
+/*Colors of palette are lighter than thumbs*/
 input:checked + span[color="primary"] {
-    @include slider-background-color($primary);
+    @include slider-background-color($primary-transparency);
 }
 input:checked + span[color="secondary"] {
-    @include slider-background-color($secondary);
+    @include slider-background-color($secondary-transparency);
 }
 input:checked + span[color="success"] {
-    @include slider-background-color($success);
+    @include slider-background-color($success-transparency);
 }
 input:checked + span[color="info"] {
-    @include slider-background-color($info);
+    @include slider-background-color($info-transparency);
 }
 input:checked + span[color="warning"] {
-    @include slider-background-color($warning);
+    @include slider-background-color($warning-transparency);
 }
 input:checked + span[color="danger"] {
-    @include slider-background-color($danger);
+    @include slider-background-color($danger-transparency);
 }
 input:checked + span[color="light"] {
-    @include slider-background-color($light);
+    @include slider-background-color($light-transparency);
 }
 input:checked + span[color="dark"] {
-    @include slider-background-color($dark);
+    @include slider-background-color($dark-transparency);
 }
-/*Color of rounded thumbs*/
-input:checked + .slider.round.primary::before {
+/*Colors of rounded thumbs are darker than palettes*/
+input:checked + .slider.round.primary:before {
     @include slider-thumb-background-color($primary);
 }
 input:checked + .slider.round.secondary::before {
@@ -167,25 +177,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
-/* thumb-wrapper */
-// span.slider.round:before {
-//   /* Auto layout */
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   padding: 9px;
-
-//   position: absolute;
-//   width: 38px;
-//   height: 38px;
-//   right: 0px;
-//   top: calc(50% - 38px/2);
-
-//   /* palette / primary / background */
-//   background: rgba(63, 81, 181, 0.08);
-//   border-radius: 19px;
-// }
 
 /*Small switch*/
 .slider.round.sm{

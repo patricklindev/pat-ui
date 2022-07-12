@@ -14,7 +14,6 @@ export const DefaultSwitch = () => (
         <div className="switch--flex-container">
             <div className="switch--row">
                 <Switch onChange={action('Default Switch clicked')}/>
-                <Switch onChange={action('Default Button clicked')} toggle="on"/>
             </div>
         </div>
     </div>

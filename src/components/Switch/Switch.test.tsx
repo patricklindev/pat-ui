@@ -17,7 +17,7 @@ describe('Switch', () => {
         expect(asFragment()).toMatchSnapshot();
       });
 
-    it('should render default switch', () => {
+    it('should pass', () => {
         expect('test').toBe('test');
     })
 
@@ -62,12 +62,12 @@ describe('Switch', () => {
 
     it('can decide whether or not to provide a label and the content of the label', () => { 
         const switchLabelProps: SwitchProps = {
-            label: 'someLabel',
+            label: 'testLabel',
             onClick: jest.fn()
         }
 
         const {getByText} = render(<Switch {...switchLabelProps}/> );
-        const switchLabelElement = getByText(/somelabel/i) as HTMLElement; 
+        const switchLabelElement = getByText(/testLabel/i) as HTMLElement; 
         expect(switchLabelElement).toBeInTheDocument();
         expect(switchLabelElement.tagName).toBe('SPAN');
         expect(switchLabelElement).toHaveClass('switch-label')
@@ -110,31 +110,49 @@ describe('Switch', () => {
         expect(switchToggleProps.onClick).toHaveBeenCalledTimes(0);
         fireEvent.click(switchToggleElement);
         expect(switchToggleProps.onClick).toHaveBeenCalledTimes(1);
-        const NextSiblingOfswitchToggleElement = (switchToggleElement.nextSibling as HTMLElement)
-        expect(NextSiblingOfswitchToggleElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfswitchToggleElement).toHaveClass('slider round primary')
+        const NextSiblingOfSwitchToggleElement = (switchToggleElement.nextSibling as HTMLElement)
+        expect(NextSiblingOfSwitchToggleElement.tagName).toBe('SPAN'); 
+        expect(NextSiblingOfSwitchToggleElement).toHaveClass('slider round primary')
+    }) 
+
+    it('Users can provide some callback function as props, callback will be triggered whenever the state is changed', () => {
+        const handleChange = jest.fn()
+
+        const {getByRole} = render(<Switch onChange={handleChange}/> );
+        const switchCallbackElement = getByRole('checkbox') as HTMLElement; 
+        expect(switchCallbackElement).toBeInTheDocument();
+        expect(switchCallbackElement.tagName).toBe('INPUT'); 
+        expect(handleChange).toHaveBeenCalledTimes(0);
+        fireEvent.click(switchCallbackElement);
+        expect(handleChange).toHaveBeenCalledTimes(1);
+        const NextSiblingOfSwitchCallbackElement = (switchCallbackElement.nextSibling as HTMLElement)
+        expect(NextSiblingOfSwitchCallbackElement.tagName).toBe('SPAN'); 
+        expect(NextSiblingOfSwitchCallbackElement).toHaveClass('slider round primary')
     }) 
 
     it('should render correct switch based on different props', () => {
-        const switchSuccessSmallProps: SwitchProps = {
+        const switchDiffProps: SwitchProps = {
             className: 'test',
             color: 'success',
             sizes: 'sm',
             label: 'testLabel',
+            onChange: jest.fn(),
             onClick: jest.fn()
         }
-        const {getByRole} = render(<Switch {...switchSuccessSmallProps}/> );
-        const switchSuccessSmallElement = getByRole('checkbox') as HTMLElement; 
-        expect(switchSuccessSmallElement).toBeInTheDocument();
-        expect(switchSuccessSmallElement.tagName).toBe('INPUT'); 
-        expect(switchSuccessSmallProps.onClick).toHaveBeenCalledTimes(0);
-        fireEvent.click(switchSuccessSmallElement);
-        expect(switchSuccessSmallProps.onClick).toHaveBeenCalledTimes(1);
-        const NextSiblingOfswitchSuccessSmallElement = (switchSuccessSmallElement.nextSibling as HTMLElement)
-        expect(NextSiblingOfswitchSuccessSmallElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfswitchSuccessSmallElement).toHaveClass('slider round success sm test')
+        const {getByRole} = render(<Switch {...switchDiffProps}/> );
+        const switchDiffElement = getByRole('checkbox') as HTMLElement; 
+        expect(switchDiffElement).toBeInTheDocument();
+        expect(switchDiffElement.tagName).toBe('INPUT'); 
+        expect(switchDiffProps.onClick).toHaveBeenCalledTimes(0);
+        fireEvent.click(switchDiffElement);
+        expect(switchDiffProps.onClick).toHaveBeenCalledTimes(1);
+        expect(switchDiffProps.onChange).toHaveBeenCalledTimes(1);
+        fireEvent.click(switchDiffElement);
+        expect(switchDiffProps.onChange).toHaveBeenCalledTimes(2);
+        const NextSiblingOfSwitchDiffElement = (switchDiffElement.nextSibling as HTMLElement)
+        expect(NextSiblingOfSwitchDiffElement.tagName).toBe('SPAN'); 
+        expect(NextSiblingOfSwitchDiffElement).toHaveClass('slider round success sm test')
     }) 
-
 })
 
 render(<div />)

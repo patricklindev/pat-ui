@@ -15,41 +15,62 @@
   position: absolute;
 }
 
-.checkbox-container input[type="checkbox"] + label > span{
-  transition: box-shadow .2s ease-out;
-}
-
-.checkbox-container input[type="checkbox"]:hover + label > span{
-  box-shadow: 1px 2px 10px 1px rgba($color: tomato, $alpha: .6);
+[data-testid='iconSpan']{
+  position: relative;
 }
 
 .checkbox-container{
   display:flex;
   align-items:center;
   margin-right: 1rem;
+  margin: 1rem;
 }
 
 .checkbox-container label{
   cursor:pointer;
   display:flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+// .checkbox-container label span::before{
+  
+//   content: " "; /* :after will only appear if this content is declared */
+//   width: 3em;
+//   height: 3em;
+//   border-radius: 50%;
+//   background-color: rgba($color: tomato,$alpha: .1);
+//   position: absolute;
+//   opacity: 0;
+//   transition: opacity .1s ease-in;
+// }
+
+.checkbox-container label:hover span::before,
+.checkbox-container input[type='checkbox']:hover + label span::before{
+  visibility:visible;
+  opacity: 1;
+}
+
+
+.checkbox-container label:active span::before,
+.checkbox-container input[type='checkbox']:active + label span::before{
+  opacity: 1;
+  visibility:visible;
 }
 
 .checkbox-container label span{
-  content: "";
-  border-radius:.15em;
-  margin-right: .5em;
-  border: .05em solid black;
+  border-radius:.18em;
+  border: .15em solid gray;
 }
-
-// .checkbox-container input[type='checkbox']:checked + label span{
-//   color:white;
-//   background-image: url('../../asset/icon/check-solid.svg');
-// }
 
 .checkbox{
   display: flex;
   justify-content: center;
   align-items: center;
+  &::before{
+    @include checkboxHover($gray-500)
+  } 
 
   &-ex-small{
     @include check-box-size($cb-ex-small)
@@ -73,39 +94,6 @@
 
   &-primary{
     background-color: $primary; 
-  }
-
-  &-secondary{
-    background-color: $secondary; 
-  }
-
-  &-success{
-    background-color: $success; 
-  }
-
-  &-info{
-    background-color: $info;
-  }
-
-  &-warning{
-    background-color:$warning;
-  }
-
-  &-danger{
-    background-color: $danger;
-  }
-
-  &-light{
-    background-color: $light;
-  }
-
-  &-dark{
-    background-color: $dark;
-  }
-
-  &-disable{
-    color: gray;
-    cursor:not-allowed;
   }
 }
 
@@ -180,7 +168,6 @@
   &-disable{
     color: gray;
     cursor:not-allowed;
-
     color: #000;
   }
 }
@@ -239,34 +226,58 @@
 .bg-iCheck{
   &-primary{
     background-color: $primary; 
+    &::before{
+      @include checkboxHover($primary)
+    }
   }
 
   &-secondary{
     background-color: $secondary; 
+    &::before{
+      @include checkboxHover($secondary)
+    }
   }
 
   &-success{
-    background-color: $success; 
+    background-color: $success;
+    &::before{
+      @include checkboxHover($success)
+    } 
   }
 
   &-info{
     background-color: $info;
+    &::before{
+      @include checkboxHover($info)
+    } 
   }
 
   &-warning{
     background-color:$warning;
+    &::before{
+      @include checkboxHover($warning)
+    } 
   }
 
   &-danger{
     background-color: $danger;
+    &::before{
+      @include checkboxHover($danger)
+    } 
   }
 
   &-default{
     background-color: $white;
+    &::before{
+      @include checkboxHover($gray-500)
+    } 
   }
 
   &-dark{
     background-color: $dark;
+    &::before{
+      @include checkboxHover($dark)
+    } 
   }
 
   &-disable{
@@ -277,8 +288,52 @@
   }
 }
 
-.labelContent{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.bg-span-iOther-hover{
+  &-primary{ 
+    &::before{
+      @include checkboxHover($primary)
+    }
+  }
+
+  &-secondary{
+    &::before{
+      @include checkboxHover($secondary)
+    }
+  }
+
+  &-success{
+    &::before{
+      @include checkboxHover($success)
+    } 
+  }
+
+  &-info{
+    &::before{
+      @include checkboxHover($info)
+    } 
+  }
+
+  &-warning{
+    &::before{
+      @include checkboxHover($warning)
+    } 
+  }
+
+  &-danger{
+    &::before{
+      @include checkboxHover($danger)
+    } 
+  }
+
+  &-default{
+    &::before{
+      @include checkboxHover($gray-500)
+    } 
+  }
+
+  &-dark{
+    &::before{
+      @include checkboxHover($dark)
+    } 
+  }
 }

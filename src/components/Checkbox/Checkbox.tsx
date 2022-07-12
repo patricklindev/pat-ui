@@ -74,8 +74,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
       }
     }
   }
-  // add class name
-  const styleClassNameSpan = classNames('checkbox',classNameSpan)
+
 
   let classNameSVG;
 
@@ -97,6 +96,11 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
           // set icon color when check
           [`bg-iOther-check-path-${iconTheme}`]: isCheck
         }
+
+        classNameSpan = {
+          ...classNameSpan,
+          [`bg-span-iOther-hover-${iconTheme}`]: isCheck
+        }
       }else{ // if you don't define icon color
         classNameSVG = {
           // set both check and uncheck to be default color
@@ -114,7 +118,10 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
     }
   }
 
+    // add class name for SVG
   const styleClassNameSVG = classNames(classNameSVG)
+    // add class name for Span
+  const styleClassNameSpan = classNames('checkbox',classNameSpan)
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setIsCheck(e.target.checked)

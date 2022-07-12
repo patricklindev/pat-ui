@@ -137,18 +137,14 @@ describe('Switch', () => {
             sizes: 'sm',
             label: 'testLabel',
             onChange: jest.fn(),
-            onClick: jest.fn()
         }
         const {getByRole} = render(<Switch {...switchDiffProps}/> );
         const switchDiffElement = getByRole('checkbox') as HTMLElement; 
         expect(switchDiffElement).toBeInTheDocument();
         expect(switchDiffElement.tagName).toBe('INPUT'); 
-        expect(switchDiffProps.onClick).toHaveBeenCalledTimes(0);
+        expect(switchDiffProps.onChange).toHaveBeenCalledTimes(0);
         fireEvent.click(switchDiffElement);
-        expect(switchDiffProps.onClick).toHaveBeenCalledTimes(1);
         expect(switchDiffProps.onChange).toHaveBeenCalledTimes(1);
-        fireEvent.click(switchDiffElement);
-        expect(switchDiffProps.onChange).toHaveBeenCalledTimes(2);
         const NextSiblingOfSwitchDiffElement = (switchDiffElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchDiffElement.tagName).toBe('SPAN'); 
         expect(NextSiblingOfSwitchDiffElement).toHaveClass('slider round success sm test')

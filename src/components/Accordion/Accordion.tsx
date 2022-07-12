@@ -2,6 +2,7 @@ import React, {
   FC,
   useState,
   ReactNode,
+  useEffect,
 } from 'react';
 
 
@@ -19,7 +20,7 @@ export interface IAccordionProps {
   /** set accordion disabled */
   disabled?: boolean;
   /** set accordion expanded by default */
-  expanded?: boolean;
+  expanded?:boolean;
   /** listen to expand and collapse */
   onChange?: (expanded: boolean) => void;
 }
@@ -33,32 +34,35 @@ export const Accordion: FC<IAccordionProps> = (props) => {
     expandIcon,
     collapseIcon,
     disabled,
-    expanded,
     onChange,
+    expanded,
     ...rest
   } = props;
 
-  const [expand, setExpand] = useState(expanded);
+  const [isExpanded, setIsExpanded] = useState(expanded);
 
-  const toggle = () => {
-    if (!disabled) {
-      setExpand(!expand);
-      onChange && onChange(!expand);
-    }
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded)
   }
 
+  useEffect(() => {
+    if (onChange) {
+      onChange(isExpanded);
+    }
+  } , [isExpanded, onChange]);
 
   return (
     <div className={`accordion ${disabled && 'disabled'}`}>
-      <div className={`accordion-header ${disabled && 'disabled'}`} onClick={toggle}>
+      <div className={`accordion-header ${disabled && 'disabled'}`} onClick={handleToggle}>
         <div className="accordion-title">
           { props.title}
         </div>
         <div className="accordion-icon">
-          {expand ? collapseIcon : expandIcon}
+          {isExpanded ? collapseIcon : expandIcon}
         </div>
       </div>
-      <div className={`accordion-content ${expand && 'show'}`}>
+      <div className={`accordion-content ${ isExpanded && 'show'}`}>
         {props.content}
       </div>
     </div>

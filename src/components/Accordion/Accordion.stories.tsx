@@ -17,7 +17,7 @@ export const DefaultAccordion = () => (
       content='CONTENT'
       expandIcon={<Icon name='angle down' size='mini' color='black' />}
       collapseIcon={<Icon name='times' size='mini' color='black' />}
-      onChange={(expanded) => console.log(expanded)}  
+      onChange={(expanded) => console.log('expanded = ' ,expanded)}  
     />
     <Accordion
       title="Accordion 2"
@@ -48,4 +48,42 @@ export const DisabledAccordion = () => (
 );
 
 // WIP: controlled accordion where clicking one will collapse other and expand the clicked one
+// controlled accordion
+export const ControlledAccordion = () => {
+  const [expanded, setExpanded] = React.useState<string>('');
+
+  return (
+    <div>
+      <p>Controlled accordion</p>
+      <Accordion
+
+        title="Accordion title"
+        content="This is a test accordion content. Test test and test only. thanks"
+        expandIcon={<Icon name='plus' size='mini' color='black' />}
+        collapseIcon={<Icon name='times' size='mini' color='black' />}
+        expanded={expanded === 'panel1'}
+        onChange={(expanded) => expanded ? setExpanded('') : setExpanded('panel1')}
+      />
+      <Accordion
+
+        title="Accordion title"
+        content="This is a test accordion content. Test test and test only. thanks"
+        expandIcon={<Icon name='plus' size='mini' color='black' />}
+        collapseIcon={<Icon name='times' size='mini' color='black' />}
+        expanded={expanded === 'panel2'}
+        onChange={(expanded) => expanded ? setExpanded('') : setExpanded('panel2')}
+      />
+      <Accordion
+
+        title="Accordion title"
+        content="This is a test accordion content. Test test and test only. thanks"
+        expandIcon={<Icon name='plus' size='mini' color='black' />}
+        collapseIcon={<Icon name='times' size='mini' color='black' />}
+        expanded={expanded === 'panel3'}
+        onChange={ (expanded) => expanded ? setExpanded('') : setExpanded('panel3')}
+      />  
+    </div>
+  );
+}
+
     

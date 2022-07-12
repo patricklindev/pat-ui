@@ -1,14 +1,15 @@
 import React, { DialogHTMLAttributes, HTMLAttributes, FC, useState } from 'react'
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { classNames } from '../../utils/classNames';
 
 
 export interface IDialogProps {
-    /**add a function to the Dialog closing handler   */
+    /**add a function to the Dialog closing handler */
     onClose?: () => void;
-    /*variable to determain if the dialog is closed or open */
+    /*variable to determine if the dialog is closed or open */
     showDialog?: boolean
-    /** attribur for the overlay  */
+    /** Atributes for the overlay  */
     OverlayAtributes?: any
 };
 
@@ -24,7 +25,6 @@ export type PatDialogProps = NativeDialogProps & NativeDivProps
 * ```
 */
 
-
 export const Dialog: FC<PatDialogProps> = (props) => {
     const { children,
         onClose,
@@ -32,16 +32,16 @@ export const Dialog: FC<PatDialogProps> = (props) => {
         OverlayAtributes,
         ...rest } = props
 
-    // below we handle the classname for the dialog and overlay 
+    // classnames for the dialog and overlay 
     let classNameList: string[] = ['dlg']
     let containerClassNameList: string[] = ['dlg-container']
 
-
     // Allows users to add a function on close of the Dialog
     const didMount = useRef(false);
+
     const handleClose = () => {
-        if (onClose != undefined) { onClose() }
-        didMount.current = false;
+        if (onClose != undefined) { onClose() } //onClose is a functon the dev passes
+        didMount.current = false; // this is set so the use effect does not run if closed by this method
     }
 
     // this is to ensure that the onClose always runs no matter how the Dialog is closed 
@@ -54,9 +54,7 @@ export const Dialog: FC<PatDialogProps> = (props) => {
         else didMount.current = true;
     }, [showDialog])
 
-
-
-    //scroll behavoir 
+    //scroll behavior 
     const [previousScrollBehavior, setpreviousScrollBehavior] = useState(document.body.style.overflow)
     { showDialog ? document.body.style.overflow = "hidden" : document.body.style.overflow = previousScrollBehavior }
 
@@ -68,20 +66,15 @@ export const Dialog: FC<PatDialogProps> = (props) => {
             className={containerClassNameList.join(" ")}
             onClick={(e) => { if (e.target === e.currentTarget) handleClose() }}
         >
-
             < dialog //Dialog
                 {...rest as NativeDialogProps}
                 open={!showDialog}
                 hidden={!showDialog}
                 className={classNameList.join(" ")} >
-
                 {children}
-
             </dialog >
         </div>)
 }
-
-
 
 export const DialogTitle: FC<NativeDivProps> = (props: any) => {
     const { children, ...rest } = props
@@ -115,4 +108,3 @@ Dialog.defaultProps = {
 
 };
 export default Dialog;
-

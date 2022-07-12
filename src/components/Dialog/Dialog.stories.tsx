@@ -15,23 +15,23 @@ const exampPara: string = "Sed fringilla tortor arcu, vel malesuada dui molestie
 
 
 export const DialogSimple = () => {
-  const [show, setShow] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <div>
       <button
         onMouseDown={action('Dialog opened')}
-        onClick={() => { setShow(show => !show) }
+        onClick={() => { setShowModal(showModal => !showModal) }
         }>Show</button>
 
 
       <Dialog
-        showDialog={show}
+        showDialog={showModal}
         id='ide'
         OverlayAtributes={{ id: 'id' }}
         onMouseDown={action('Dialog closed')}
         onClose={() => {
-          setShow(show => !show)
+          setShowModal(showModal => !showModal)
         }
         }
       >
@@ -77,20 +77,19 @@ export const DialogSimple = () => {
 };
 
 export const DialogAlert = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShowModal] = useState(false)
   return (
     <div>
 
       <button
         onMouseDown={action('Dialog opened')}
-        onClick={() => { setShow(show => !show) }}>Show</button>
-
+        onClick={() => { setShowModal(showModal => !showModal) }}>Show</button>
 
       <Dialog
         onClick={action('Dialog closed')}
         showDialog={show}
         onClose={() => {
-          setShow(false)
+          setShowModal(false)
         }}
       >
         <DialogTitle><h3>Vestibulum porta quam in euismod fringilla</h3></DialogTitle>
@@ -100,7 +99,7 @@ export const DialogAlert = () => {
         <DialogActions>
           <div>
             <button > Disagree</button>
-            <button onClick={() => setShow(false)}> Agree and Close</button>
+            <button onClick={() => setShowModal(false)}> Agree and Close</button>
           </div>
         </DialogActions>
       </Dialog>
@@ -110,13 +109,13 @@ export const DialogAlert = () => {
 
 
 export const DialogForm = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShowModal] = useState(false)
   const [inputValue, setinputvalue] = useState("")
   return (
     <div>
       <button
 
-        onClick={() => setShow(show => !show)}>Show</button>
+        onClick={() => setShowModal(showModal => !showModal)}>Show</button>
 
 
       <Dialog
@@ -124,7 +123,7 @@ export const DialogForm = () => {
         onClick={action('Dialog closed')}
         showDialog={show}
         onClose={() => {
-          setShow(false)
+          setShowModal(false)
         }} >
         <DialogTitle
           id='Hello!'>
@@ -141,7 +140,7 @@ export const DialogForm = () => {
             <a onClick={action('Dialog closed')}> Disagree</a>
             <a onClick={() => {
               alert(`The Value is: ${inputValue}`)
-              setShow(false)
+              setShowModal(false)
             }}> Agree and Close</a>
           </div>
         </DialogActions>
@@ -152,45 +151,32 @@ export const DialogForm = () => {
 };
 
 
+
+
 export const DialogTest = () => {
-  const [show, setShow] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
-  return (
-    <div>
-      <button onClick={() => setShow(show => !show)}>show dialog</button>
-      <Dialog
-        onClose={() => setShow(false)}
-        showDialog={show}
-      >
-        Hello here is just some Dialog
-      </Dialog>
-    </div>
-  ) 
-}
-|?
+  return (<div>
+    <button onClick={() => setShowModal(true)}>Show Dialog</button>
 
-export const DialogExample = () => {
-  const [show, setShow] = useState(false)
+    <Dialog
+      showDialog={showModal}
+      OverlayAtributes={{
+        id: 'overlay-by-Ben',
+        style: { 'border': '5px green solid' }
+      }}
+      onClose={() => {
 
-  return (
-    <div>
-      <button onClick={() => setShow(show => !show)}>show dialog</button>
-      <Dialog
-        showDialog={show}
-        onClose={() => {
-          alert("I am I have closed ")
-          setShow(false)
-        }
-        }
-      >
-        Hi how are you
+        setShowModal(false)
+      }}>
+      Some text here
 
-        <DialogContents onClick={() => setShow(false)} style={{ 'border': '1px red solid', 'width': '100px', 'height': '100px', 'margin': '100px' }}>
+      <DialogContents onClick={() => setShowModal(false)} style={{ 'border': '1px red solid', 'width': '100px', 'height': '100px', 'margin': '100px' }}>
 
-          Click to close!
-        </DialogContents>
-      </Dialog>
-    </div>
+        Click to close!
+      </DialogContents>
+    </Dialog>
+
+  </div >
   )
-
 }

@@ -1,0 +1,312 @@
+
+
+
+
+.slider-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 5px;
+  width: 100%;
+  outline: 0;
+  height: 7px;
+  border-radius: 40px;
+  background: linear-gradient(to right, $gray-500 0%, $gray-500 var(--progress), $gray-100 var(--progress), $gray-100 100%);
+  z-index: 0;
+}
+
+.slider-value-cont {
+  margin-bottom: 15px;
+  width: 95%;
+}
+
+.slider-value__num-box {
+  background-color: $gray-500;
+  transform: rotate(45deg);
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: var(--bubble);
+  font-size: 10px;
+}
+
+.slider-value__num{
+  transform: rotate(-45deg);
+}
+
+.slider-disabled {
+  pointer-events: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: $gray-500;
+  border-radius: 50%;
+  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.5);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $gray-500, $alpha: .4);
+}
+
+.slider::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $gray-500, $alpha: .4);
+}
+
+.slider-vertical {
+  transform: rotate(270deg);
+}
+
+.slider-vertical-lg {
+  margin-left: -150px;
+}
+
+//small slider
+.slider-sm {
+  width: $slider-small;
+}
+
+.slider-sm .slider-value__num-box{
+  height: 12px;
+  width: 12px;
+  font-size: 8px;
+}
+
+.slider-sm input {
+  height:5px;
+}
+
+.slider-sm input::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.5);
+}
+//default-medium slider
+.slider-md {
+  width: $slider-medium;
+}
+
+//large slider
+.slider-lg {
+  width: $slider-large;
+}
+
+.slider-lg .slider-value__num-box{
+  height: 25px;
+  width: 25px;
+  font-size: 13px;
+}
+
+.slider-lg input {
+  height:12px;
+}
+
+.slider-lg input::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.5);
+}
+
+
+//PRIMARY
+.slidernum-primary{
+  background-color: $primary;
+  color: white;
+}
+
+.slider-primary {
+  background: linear-gradient(to right, $primary 0%, $primary var(--progress), $light-primary var(--progress), $light-primary 100%);
+}
+
+.slider-primary::-webkit-slider-thumb {
+  background: $primary;
+}
+
+.slider-primary::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $primary, $alpha: .4);
+}
+
+.slider-primary::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $primary, $alpha: .4);
+}
+
+//SECONDARY
+.slidernum-secondary{
+  background-color: $secondary;
+  color: white;
+}
+
+.slider-secondary {
+  background: linear-gradient(to right, $secondary 0%, $secondary var(--progress), $light-secondary var(--progress), $light-secondary 100%);
+}
+
+.slider-secondary::-webkit-slider-thumb {
+  background: $secondary;
+}
+
+.slider-secondary::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $secondary, $alpha: .4);
+}
+
+.slider-secondary::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $secondary, $alpha: .4);
+}
+
+//success
+.slidernum-success{
+  background-color: $success;
+  color: white;
+}
+
+.slider-success {
+  @include slider-color($success, $light-success);
+}
+
+.slider-success::-webkit-slider-thumb {
+  background: $success;
+}
+
+.slider-success::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $success, $alpha: .4);
+}
+
+.slider-success::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $success, $alpha: .4);
+}
+
+//info
+.slidernum-info{
+  background-color: $info;
+  color: white;
+}
+
+.slider-info {
+  @include slider-color($info, $light-info);
+}
+
+.slider-info::-webkit-slider-thumb {
+  background: $info;
+}
+
+.slider-info::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $info, $alpha: .4);
+}
+
+.slider-info::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $info, $alpha: .4);
+}
+
+//danger
+.slidernum-danger{
+  background-color: $danger;
+  color: white;
+}
+
+.slider-danger {
+  @include slider-color($danger, $light-danger);
+}
+
+.slider-danger::-webkit-slider-thumb {
+  background: $danger;
+}
+
+.slider-danger::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $danger, $alpha: .4);
+}
+
+.slider-danger::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $danger, $alpha: .4);
+}
+
+//warning
+.slidernum-warning{
+  background-color: $warning;
+  color: white;
+}
+
+.slider-warning {
+  @include slider-color($warning, $light-warning);
+}
+
+.slider-warning::-webkit-slider-thumb {
+  background: $warning;
+}
+
+.slider-warning::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $warning, $alpha: .4);
+}
+
+.slider-warning::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $warning, $alpha: .4);
+}
+
+//light
+.slidernum-light{
+  background-color: $light;
+  color: $gray-800;
+}
+
+.slider-light {
+  @include slider-color($light, $light-light);
+}
+
+.slider-light::-webkit-slider-thumb {
+  background: $light;
+}
+
+.slider-light::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $light, $alpha: .4);
+}
+
+.slider-light::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $light, $alpha: .4);
+}
+
+//dark
+.slidernum-dark{
+  background-color: $dark;
+  color: white;
+}
+
+.slider-dark {
+  @include slider-color($dark, $light-dark);
+}
+
+.slider-dark::-webkit-slider-thumb {
+  background: $dark;
+}
+
+.slider-dark::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 6px rgba($color: $dark, $alpha: .4);
+}
+
+.slider-dark::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 0px 10px rgba($color: $dark, $alpha: .4);
+}
+
+.tickmarks {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.range__ticks {
+  width: 5px;
+}
+

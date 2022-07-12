@@ -293,3 +293,19 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+
+//slider inactive track colors
+$light-primary: hsl(162, 73%, 70%) !default;
+$light-secondary: hsl(208, 7%, 70%) !default;
+$light-success: hsl(100, 77%, 70%) !default;
+$light-info: hsl(188, 78%, 70%) !default;
+$light-warning: hsl(52, 96%, 70%) !default;
+$light-danger: hsl(354, 70%, 70%) !default;
+$light-light: #f8f9fa !default;
+$light-dark: $gray-600 !default;
+
+//slider sizes
+$slider-small: 100px !default;
+$slider-medium: 200px !default;
+$slider-large: 400px !default;

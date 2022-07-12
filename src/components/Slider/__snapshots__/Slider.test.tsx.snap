@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="slider-cont slider-md"
+    data-testid="slider-container"
+  >
+    <div
+      class="slider-value-cont"
+    >
+      <div
+        class="slider-value__num-box"
+      >
+        <div
+          class="slider-value__num"
+        >
+          50
+        </div>
+      </div>
+    </div>
+    <input
+      class="slider"
+      data-testid="slider-input"
+      max="100"
+      min="0"
+      type="range"
+      value="50"
+    />
+  </div>
+</DocumentFragment>
+`;

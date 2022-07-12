@@ -3,17 +3,17 @@
 exports[`Switch should match snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="switch"
+    class="switch--container"
   >
     <input
       type="checkbox"
     />
     <span
-      class="slider round primary"
+      class="switch--slider slider-round primary"
       color="primary"
     />
     <span
-      class="switch-label"
+      class="switch--label"
     />
   </label>
 </DocumentFragment>

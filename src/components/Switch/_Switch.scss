@@ -45,7 +45,7 @@ $dark-transparency: #343a40bb !default;
 }
 
 /* The switch - the box around the slider */
-.switch{
+.switch--container{
     position: relative;
     display: flex;
     width: $switch-width;
@@ -54,7 +54,7 @@ $dark-transparency: #343a40bb !default;
 }
 
 /* align components horizontally*/
-.switch--row{
+.switch--flex-row{
   display: flex;
 }
 
@@ -63,14 +63,14 @@ $dark-transparency: #343a40bb !default;
 // }
   
 /* Hide default HTML checkbox */
-.switch input{
+.switch--container input{
   opacity: 0;
   width: 0;
   height: 0;
 }
 
 /* The slider */
-.slider{
+.switch--slider{
   position: absolute;
   cursor: pointer;
   top: 5px;
@@ -85,7 +85,7 @@ $dark-transparency: #343a40bb !default;
 }
 
 /*Slider movement: palette action*/
-.slider:before{
+.switch--slider:before{
   position: absolute;
   content: "";
   height: $switch-thumb-height;
@@ -97,7 +97,7 @@ $dark-transparency: #343a40bb !default;
 }
 
 /*For all other switches*/
-input:checked + .slider {
+input:checked + .switch--slider {
   @include slider-background-color($primary);
 }
 
@@ -127,72 +127,72 @@ input:checked + span[color="dark"] {
     @include slider-background-color($dark-transparency);
 }
 /*Colors of rounded thumbs are darker than palettes*/
-input:checked + .slider.round.primary:before {
+input:checked + .switch--slider.slider-round.primary::before {
     @include slider-thumb-background-color($primary);
 }
-input:checked + .slider.round.secondary::before {
+input:checked + .switch--slider.slider-round.secondary::before {
     @include slider-thumb-background-color($secondary);
 }
-input:checked + .slider.round.success::before {
+input:checked + .switch--slider.slider-round.success::before {
     @include slider-thumb-background-color($success);
 }
-input:checked + .slider.round.info::before {
+input:checked + .switch--slider.slider-round.info::before {
     @include slider-thumb-background-color($info);
 }
-input:checked + .slider.round.warning::before {
+input:checked + .switch--slider.slider-round.warning::before {
     @include slider-thumb-background-color($warning);
 }
-input:checked + .slider.round.danger::before {
+input:checked + .switch--slider.slider-round.danger::before {
     @include slider-thumb-background-color($danger);
 }
-input:checked + .slider.round.light::before {
+input:checked + .switch--slider.slider-round.light::before {
     @include slider-thumb-background-color($light);
 }
-input:checked + .slider.round.dark::before {
+input:checked + .switch--slider.slider-round.dark::before {
     @include slider-thumb-background-color($dark);
 }
 
-input:focus + .slider {
+input:focus + .switch--slider {
   box-shadow: 0 0 1px $primary;
 }
 
 /*Slider movement: thumb action*/
-input:checked + .slider:before {
+input:checked + .switch--slider:before {
   transform: translate(17px);
 }
 
 /* Rounded palettes */
-.slider.round {
+.slider-round {
   border-radius: 7px;
 }
 
 /*Add transparency*/
-.slider.round.disabled{
+.slider-round.disabled{
   cursor: not-allowed;
   opacity: $switch-disabled-opacity;
   box-shadow: none;
 }
 
 /* Rounded thumbs */
-.slider.round:before {
+.slider-round:before {
   border-radius: 50%;
 }
 
 /*Small switch*/
-.slider.round.sm{
+.slider-round.sm{
   height: $switch-sm-palette-height;
   width: $switch-sm-palette-width;
   top: 7px;
   left: 5px;
 }
-.slider.round.sm::before{
+.slider-round.sm::before{
   height: $switch-sm-thumb-height;
   width: $switch-sm-thumb-width;
   bottom: -3px;
 }
 
 /*Label cursor*/
-.switch-label{
+.switch--label{
   cursor: pointer;
   margin-left: 3rem;
 }

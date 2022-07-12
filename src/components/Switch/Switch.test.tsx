@@ -38,7 +38,7 @@ describe('Switch', () => {
         expect(switchColorProps.onClick).toHaveBeenCalledTimes(1);
         const NextSiblingOfSwitchColorElement = (switchColorElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchColorElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfSwitchColorElement).toHaveClass('slider round info')
+        expect(NextSiblingOfSwitchColorElement).toHaveClass('switch--slider slider-round info')
     }) 
     
     it('can choose different sizes of the switch by providing a size prop', () => {
@@ -57,7 +57,7 @@ describe('Switch', () => {
         expect(switchSmallProps.onClick).toHaveBeenCalledTimes(1);
         const NextSiblingOfSwitchSmallElement = (switchSmallElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchSmallElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfSwitchSmallElement).toHaveClass('slider round primary sm')
+        expect(NextSiblingOfSwitchSmallElement).toHaveClass('switch--slider slider-round primary sm')
     }) 
 
     it('can decide whether or not to provide a label and the content of the label', () => { 
@@ -70,7 +70,7 @@ describe('Switch', () => {
         const switchLabelElement = getByText(/testLabel/i) as HTMLElement; 
         expect(switchLabelElement).toBeInTheDocument();
         expect(switchLabelElement.tagName).toBe('SPAN');
-        expect(switchLabelElement).toHaveClass('switch-label')
+        expect(switchLabelElement).toHaveClass('switch--label')
         const FirstChildOfParentEleOfSwitchLabelElement = (switchLabelElement.parentElement?.firstChild as HTMLElement);
         expect(FirstChildOfParentEleOfSwitchLabelElement.tagName).toBe('INPUT');
         expect(switchLabelProps.onClick).toHaveBeenCalledTimes(0);
@@ -94,7 +94,7 @@ describe('Switch', () => {
         expect(switchDisabledProps.onClick).toHaveBeenCalledTimes(0);
         const NextSiblingOfSwitchDisabledElement = (switchDisabledElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchDisabledElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfSwitchDisabledElement).toHaveClass('slider round primary disabled')
+        expect(NextSiblingOfSwitchDisabledElement).toHaveClass('switch--slider slider-round primary disabled')
     }) 
 
     it('Users can decide whether on or off the switch by providing props externally', () => {
@@ -112,7 +112,7 @@ describe('Switch', () => {
         expect(switchToggleProps.onClick).toHaveBeenCalledTimes(1);
         const NextSiblingOfSwitchToggleElement = (switchToggleElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchToggleElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfSwitchToggleElement).toHaveClass('slider round primary')
+        expect(NextSiblingOfSwitchToggleElement).toHaveClass('switch--slider slider-round primary')
     }) 
 
     it('Users can provide some callback function as props, callback will be triggered whenever the state is changed', () => {
@@ -127,7 +127,7 @@ describe('Switch', () => {
         expect(handleChange).toHaveBeenCalledTimes(1);
         const NextSiblingOfSwitchCallbackElement = (switchCallbackElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchCallbackElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfSwitchCallbackElement).toHaveClass('slider round primary')
+        expect(NextSiblingOfSwitchCallbackElement).toHaveClass('switch--slider slider-round primary')
     }) 
 
     it('should render correct switch based on different props', () => {
@@ -147,7 +147,7 @@ describe('Switch', () => {
         expect(switchDiffProps.onChange).toHaveBeenCalledTimes(1);
         const NextSiblingOfSwitchDiffElement = (switchDiffElement.nextSibling as HTMLElement)
         expect(NextSiblingOfSwitchDiffElement.tagName).toBe('SPAN'); 
-        expect(NextSiblingOfSwitchDiffElement).toHaveClass('slider round success sm test')
+        expect(NextSiblingOfSwitchDiffElement).toHaveClass('switch--slider slider-round success sm test')
     }) 
 })
 

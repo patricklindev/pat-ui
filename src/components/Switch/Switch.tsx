@@ -53,7 +53,7 @@ export const Switch: FC<SwitchProps> = (props) => {
     const { className, label, color, sizes, toggle, disabled, onChange, ...rest} = props;
     const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
 
-    let styleClasses = classNames('slider round', {
+    let styleClasses = classNames('switch--slider slider-round', {
         [`${color}`]: !!color,
         [`${sizes}`]: !!sizes,
         disabled: !!disabled
@@ -67,7 +67,7 @@ export const Switch: FC<SwitchProps> = (props) => {
         styleClasses += ' ' + className;
     }
 
-    let strSwitch: string = 'switch'
+    let strSwitch: string = 'switch--container'
 
     let Switch = (
         <label className={strSwitch}>  
@@ -80,7 +80,7 @@ export const Switch: FC<SwitchProps> = (props) => {
                 {...(rest )}
             />
             <span color={color} className={styleClasses}/>
-            <span className="switch-label">{label}</span>
+            <span className="switch--label">{label}</span>
         </label>
     )
     return Switch;

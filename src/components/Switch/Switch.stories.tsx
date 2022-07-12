@@ -11,11 +11,7 @@ export const DefaultSwitch = () => (
     <div>
         <h1>Basic Switches</h1>
         <br/>
-        <div className="switch--flex-container">
-            <div className="switch--row">
-                <Switch onChange={action('Default Switch clicked')}/>
-            </div>
-        </div>
+        <Switch onChange={action('Default Switch clicked')}/>
     </div>
 )        
 
@@ -24,7 +20,7 @@ export const DisabledSwitch = () => (
         <h1>Disabled Switches</h1>
         <br/>
         <div className="switch--flex-container">
-            <div className="switch--row">
+            <div className="switch--flex-row">
                 <Switch onChange={action('Disabled Button clicked should not work')} disabled></Switch>
                 <Switch onChange={action('Disabled Button clicked should not work')} disabled toggle="on"/>
             </div>
@@ -38,7 +34,7 @@ export const DiffColorSwitch = () => (
             <h1>Color Switches</h1>
             <br/>
             <div className="switch--flex-container">
-                <div className="switch--row">
+                <div className="switch--flex-row">
                     <Switch color="primary" onChange={action('Primary Switch clicked')} toggle="on"/>
                     <Switch color="secondary" onChange={action('Secondary Switch clicked')} toggle="on"/>
                     <Switch color="success" onChange={action('Success Switch clicked')} toggle="on"/>
@@ -57,9 +53,9 @@ export const DiffSizeSwitch = () => (
         <h1>Size Switches</h1>
         <br/>
         <div className="switch--flex-container">
-            <div className="switch--row">
-                <Switch sizes="sm" onChange={action('Small Switch clicked')} label="small"/>
-                <Switch onChange={action('Default Switch clicked')} label="default"/>
+            <div className="switch--flex-row">
+                <Switch sizes="sm" onChange={action('Small Switch clicked')} label="Small"/>
+                <Switch onChange={action('Default Switch clicked')} label="Default"/>
             </div>
         </div>
     </div>
@@ -70,7 +66,7 @@ export const LabelSwitch = () => (
         <h1>Label Switch</h1>
         <br/>
         <div className="switch--flex-container">
-            <div className="switch--row">
+            <div className="switch--flex-row">
                 <Switch onChange={action('Labeled Switch clicked')} label="Label"></Switch>
                 <Switch onChange={action('Disabled Switch clicked should not work')} label="Disabled" disabled></Switch>
             </div>

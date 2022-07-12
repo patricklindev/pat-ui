@@ -122,21 +122,21 @@ export const Slider: FC<NativeInputProps> = (props) => {
   let sliderNumClass = sliderNumCList.join(' ');
 
   //handling size
-  let contClassNameList: string[] = ['slider-cont'];
+  let containerClassNameList: string[] = ['slider-cont'];
   if (!setSize) {
-    contClassNameList.push('slider-md');
+    containerClassNameList.push('slider-md');
   }
 
   if (orientation === 'vertical') {
-    contClassNameList.push('slider-vertical');
-    if (setSize) contClassNameList.push(`slider-vertical-${setSize}`);
+    containerClassNameList.push('slider-vertical');
+    if (setSize) containerClassNameList.push(`slider-vertical-${setSize}`);
   }
-  if(setSize) contClassNameList.push(`slider-${setSize}`)
+  if(setSize) containerClassNameList.push(`slider-${setSize}`)
   
-  let contClassName = contClassNameList.join(' ');
+  let containerClassName = containerClassNameList.join(' ');
 
   return (
-    <div className={contClassName} data-testid='slider-container'>
+    <div className={containerClassName} data-testid='slider-container'>
       <div className="slider-value-cont">
         <div className={sliderNumClass} ref={bubbleRef}>
           <div className="slider-value__num">

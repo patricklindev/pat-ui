@@ -1,0 +1,86 @@
+// @mixin button-size($padding-y, $padding-x, $width, $margin) {
+//     padding: $padding-y $padding-x;
+//     width: $width;
+//     margin: $margin;
+//   }
+
+.dlg {
+    border-radius: $border-radius;
+    background: $white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: $spacer;
+    z-index: 999;
+    position: sticky;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+
+    h3 {
+        padding-left: $spacer;
+    }
+}
+
+
+
+// overlay 
+
+.dlg-container {
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+
+}
+
+
+.dialog-contents {
+    p {
+        padding: $spacer;
+        font-size: $font-size-sm;
+        color: $dark;
+    }
+
+}
+
+// containers 
+.dialog-title {
+    // font-weight: $bold;
+}
+
+.dialog-actions {
+    input {
+        margin-bottom: $spacer;
+        padding: $spacer;
+        width: 100%;
+        border: none;
+        border-bottom: 1px $gray-800 solid;
+    }
+
+    div {
+        display: flex;
+        justify-content: end;
+    }
+
+    button {
+        padding-left: $spacer;
+        color: $blue;
+    }
+}

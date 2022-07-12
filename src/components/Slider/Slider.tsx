@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from 'react';
 
-type SlideColor = 'primary' | 'secondary';
+type SlideColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark';
 type SlideSize = 'sm' | 'md' | 'lg';
 type SlideOrientation = 'horizontal' | 'vertical';
 

@@ -18,6 +18,18 @@ export const DiffColorSliders = () => (
     <h3>Primary Color</h3>
     <Slider color="secondary" />
     <h3>Secondary Color</h3>
+    <Slider color="success" />
+    <h3>Success Color</h3>
+    <Slider color="info" />
+    <h3>Info Color</h3>
+    <Slider color="warning" />
+    <h3>Warning Color</h3>
+    <Slider color="danger" />
+    <h3>Danger Color</h3>
+    <Slider color="light" />
+    <h3>Light Color</h3>
+    <Slider color="dark" />
+    <h3>Dark Color</h3>
   </div>
 );
 

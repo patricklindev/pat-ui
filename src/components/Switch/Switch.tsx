@@ -73,14 +73,14 @@ export const Switch: FC<SwitchProps> = (props) => {
         <label className={strSwitch}>  
             <input 
                 type="checkbox"
-                checked={isChecked}
+                defaultChecked={isChecked}
                 disabled={disabled}
                 onChange={onChange}
                 onClick={handleClick}
                 {...(rest )}
             />
             <span color={color} className={styleClasses}/>
-            <span id="switch-label">{label}</span>
+            <span className="switch-label">{label}</span>
         </label>
     )
     return Switch;

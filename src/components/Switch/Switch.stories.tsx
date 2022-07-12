@@ -70,7 +70,7 @@ export const OnChangeEvent = () => {
     <div>
         <h3>Controlled: onChange prop</h3>
         <br/>
-        <Switch checked={checked} onChange={handleChange}/>
+        <Switch defaultChecked={checked} onChange={handleChange}/>
     </div>
     )
 }

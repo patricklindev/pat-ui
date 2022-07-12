@@ -27,7 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
-    "react-test-renderer": "^18.2.0"
+    "react-test-renderer": "^16.2.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -40,7 +40,7 @@
     "build-lib": "tsc -p tsconfig.lib.json && node-sass ./src/styles/index.scss ./dist/index.css",
     "build-lib-local-test": "npm run build && cp ./package.localtest.json ./dist/package.json && rimraf ../pat-ui-local && cp -R ./dist ../pat-ui-local",
     "test:nowatch": "react-scripts test --watchAll=false",
-    "test": "jest",
+    "test": "react-scripts test",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public -o docs",
     "prepublishOnly": "npm run build",

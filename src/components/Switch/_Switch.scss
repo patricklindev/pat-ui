@@ -11,7 +11,7 @@ $switch-sm-palette-height: 10px;
 $switch-sm-palette-width: 26px;
 $switch-sm-thumb-height: 16px;
 $switch-sm-thumb-width: 16px;
-$switch-margin-right: 50px;
+$switch-margin-right: 75px;
 $switch-disabled-opacity: 0.4 !default;
 
 /*mixin*/
@@ -37,11 +37,20 @@ $switch-disabled-opacity: 0.4 !default;
 /* The switch - the box around the slider */
 .switch{
     position: relative;
-    display: inline-block;
+    display: flex;
     width: $switch-width;
     height: $switch-height;
     margin-right: $switch-margin-right;
 }
+
+/* align components horizontally*/
+.switch--row{
+  display: flex;
+}
+
+// .switch--flex-item{
+//   width: auto;
+// }
   
 /* Hide default HTML checkbox */
 .switch input{
@@ -54,7 +63,7 @@ $switch-disabled-opacity: 0.4 !default;
 .slider{
   position: absolute;
   cursor: pointer;
-  top: 0;
+  top: 5px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -182,7 +191,8 @@ input:checked + .slider:before {
 .slider.round.sm{
   height: $switch-sm-palette-height;
   width: $switch-sm-palette-width;
-  top: 3px;
+  top: 7px;
+  left: 5px;
 }
 .slider.round.sm::before{
   height: $switch-sm-thumb-height;
@@ -192,7 +202,8 @@ input:checked + .slider:before {
 
 /*Label cursor*/
 .switch-label{
-  cursor: pointer
+  cursor: pointer;
+  margin-left: 3rem;
 }
 
 

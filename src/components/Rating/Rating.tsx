@@ -38,7 +38,7 @@ interface stateTypes {
     hidden?: boolean;
   };
   config: config;
-  labelIndex?: number;
+  labelIndex: number;
 }
 
 // Set default styles
@@ -149,7 +149,7 @@ class Rating extends Component<propTypes, stateTypes> {
         activeColor: props.activeColor,
         half: props.half,
         edit: props.edit,
-      })
+      }),
     })
   }
 
@@ -285,7 +285,7 @@ class Rating extends Component<propTypes, stateTypes> {
       })
     }
 
-      if( i + 1 === labelIndex){
+      if( i + 1 === labelIndex || i + 1 === labelIndex + 0.5){
         style = Object.assign({}, defaultStyles, {
           color: star.active ? activeColor : inactivecColor,
           cursor: 'pointer',

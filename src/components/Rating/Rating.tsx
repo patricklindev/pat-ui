@@ -55,7 +55,7 @@ const defaultStyles: CSS.Properties = {
   display: 'block',
   float: 'left',
 
-  transition: '200ms',
+  transition: '300ms',
   alignItems: 'center'
 }
 
@@ -106,12 +106,12 @@ class Rating extends Component<propTypes, stateTypes> {
       value: props.value || 0,
       stars: [],
       halfStar: {
-        currentPosition: Math.floor(props.value!),
-        hidden: props.half && props.value! % 1 < 0.5
+        currentPosition: Math.floor(props.value as number),
+        hidden: props.half && props.value as number % 1 < 0.5
       },
       config: {
-        count: props.count!,
-        size: props.size!,
+        count: props.count as number,
+        size: props.size as number,
         char: props.char,
         // default color of inactive star
         inactivecColor: props.inactivecColor,
@@ -120,7 +120,7 @@ class Rating extends Component<propTypes, stateTypes> {
         half: props.half,
         edit: props.edit,
       },
-      labelIndex: props.labelIndex!
+      labelIndex: props.labelIndex as number
     }
 
   }
@@ -138,8 +138,8 @@ class Rating extends Component<propTypes, stateTypes> {
       stars: this.getStars(props.value),
       value: props.value,
       halfStar: {
-        currentPosition: Math.floor(props.value!),
-        hidden: this.state.config.half && props.value! % 1 < 0.5
+        currentPosition: Math.floor(props.value as number),
+        hidden: this.state.config.half && props.value as number % 1 < 0.5
       },
       config: Object.assign({}, this.state.config, {
         count: props.count,
@@ -161,40 +161,50 @@ class Rating extends Component<propTypes, stateTypes> {
   getRate() {
     let stars
     if (this.state.config.half) {
-      stars = Math.floor(this.state.value!)
+      stars = Math.floor(this.state.value as number);
     } else {
-      stars = Math.round(this.state.value!)
+      stars = Math.round(this.state.value as number);
     }
-    return stars
+    return stars;
   }
 
   getStars(activeCount: number | undefined) {
     if (typeof activeCount === 'undefined') {
-      activeCount = this.getRate()
+      activeCount = this.getRate();
     }
-    let stars = []
-    for (let i = 0; i < this.state.config.count!; i++) {
+    let stars = [];
+    for (let i = 0; i < (this.state.config.count as number) ; i++) {
       stars.push({
         active: i <= activeCount - 1
-      })
+      });
     }
-    return stars
+    return stars;
   }
 
   // mouseOver event handler
   mouseOver(event: any) {
-    let { config, halfStar } = this.state
+    let { config, halfStar } = this.state;
     if (!config.edit) return;
-    let index = Number(event.target.getAttribute('data-index'))
+    let index = Number(event.target.getAttribute('data-index'));
     let halfIndex = 0;
     if (config.half) {
-      const isAtHalf = this.moreThanHalf(event, config.size)
-      halfStar!.hidden = isAtHalf!
+      const isAtHalf = this.moreThanHalf(event, config.size) as boolean;
+
+      (halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).hidden = isAtHalf;
+
       if (isAtHalf) {
         index = index + 1;} else {
           halfIndex = 0.5;
         }
-      halfStar!.currentPosition = index
+
+        (halfStar as {
+          currentPosition?: number;
+          hidden?: boolean;
+        }).currentPosition = index;
+
     } else {
       index = index + 1
     }
@@ -206,67 +216,86 @@ class Rating extends Component<propTypes, stateTypes> {
 
   // function used to handle half-star
   moreThanHalf(event: any, size: any) {
-    let { target } = event
-    var mouseAt = event.clientX - target.getBoundingClientRect().left
-    mouseAt = Math.round(Math.abs(mouseAt))
-    return mouseAt > size / 2
+    let { target } = event;
+    var mouseAt = event.clientX - target.getBoundingClientRect().left;
+    mouseAt = Math.round(Math.abs(mouseAt));
+    return mouseAt > size / 2;
   }
 
   // mouseLeave event handler
   mouseLeave() {
-    const { value, halfStar, config } = this.state
+    const { value, halfStar, config } = this.state;
     if (!config.edit) return
     if (config.half) {
-      halfStar!.hidden = Number.isInteger(value!)
-      halfStar!.currentPosition = Math.floor(this.state.value!)
+      (halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).hidden = Number.isInteger(value as number) as boolean;
+
+      (halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).currentPosition = Math.floor(this.state.value as number);
     }
     // let index: number | undefined;
     this.setState({
-      stars: this.getStars(Math.floor(this.state.value!)),
-      labelIndex: this.props.labelIndex!
+      stars: this.getStars(Math.floor(this.state.value as number)),
+      labelIndex: this.props.labelIndex as number
     })
   }
 
   // clicked event handler
   clicked(event: any) {
-    const { config, halfStar } = this.state
+    const { config, halfStar } = this.state;
     if (!config.edit) return
-    let index = Number(event.target.getAttribute('data-index'))
-    let value
+    let index = Number(event.target.getAttribute('data-index'));
+    let value;
     if (config.half) {
-      const isAtHalf = this.moreThanHalf(event, config.size)
-      halfStar!.hidden = isAtHalf
+      const isAtHalf = this.moreThanHalf(event, config.size) as boolean;
+      (halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).hidden = isAtHalf;
       if (isAtHalf) index = index + 1
-      value = isAtHalf ? index : index + .5
-      halfStar!.currentPosition = index
+      value = isAtHalf ? index : index + .5;
+      (halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).currentPosition = index;
     } else {
-      value = index = index + 1
+      value = index = index + 1;
     }
     this.setState({
       value: value,
       stars: this.getStars(index)
-    })
-    this.props.onChange!(value)
+    });
+    (this.props.onChange as (value: number)=>void)(value);
   }
 
   // function used to render half-star
   renderHalfStarStyleElement() {
-    const { config, idForEachStar } = this.state
+    const { config, idForEachStar } = this.state;
     return (
       <style dangerouslySetInnerHTML={{
-        __html: getHalfStarStyles(config.activeColor!, idForEachStar!)
+        __html: getHalfStarStyles(config.activeColor as string, idForEachStar as string)
       }}></style>
     )
   }
 
   // function used to render stars
   renderStars(label: string) {
-    const { halfStar, stars, idForEachStar, config, labelIndex } = this.state
-    const { inactivecColor, activeColor, size, char, half, edit } = config
-    return stars!.map((star: { active: any; }, i: number) => {
-      let starClass = ''
+    const { halfStar, stars, idForEachStar, config, labelIndex } = this.state;
+    const { inactivecColor, activeColor, size, char, half, edit } = config;
+    return (stars as {active: boolean}[]).map((star: { active: any; }, i: number) => {
+      let starClass = '';
       let active = star.active;
-      if (half && !halfStar!.hidden && halfStar!.currentPosition === i) {
+      if (half && !(halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).hidden && (halfStar as {
+        currentPosition?: number;
+        hidden?: boolean;
+      }).currentPosition === i) {
         starClass = `react-stars-${idForEachStar}`
         active = true;
       }
@@ -289,7 +318,7 @@ class Rating extends Component<propTypes, stateTypes> {
         style = Object.assign({}, defaultStyles, {
           color: star.active ? activeColor : inactivecColor,
           cursor: 'pointer',
-          fontSize: `${size! + 5}px` 
+          fontSize: `${size as number + 5}px` 
       })
     }
     
@@ -325,21 +354,21 @@ class Rating extends Component<propTypes, stateTypes> {
     let label = '';
 
     if(half){
-      if(labels!.length !== 0 && labels!.length === count! * 2){
+      if((labels as string[]).length !== 0 && (labels as string[]).length === count as number * 2){
         if(value !== 0){
-          labelIndex = value! * 2;
-          label = labels![labelIndex-1];
+          labelIndex = value as number * 2;
+          label = (labels as string[])[labelIndex-1];
         } else {
-          label = labels![labelIndex! * 2 - 1];
+          label = (labels as string[])[labelIndex as number * 2 - 1];
         }
         
       }
     }else{
-      if(labels!.length !== 0 && labels!.length === count){
+      if((labels as string[]).length !== 0 && (labels as string[]).length === count){
         if(value !== 0){
-          labelIndex = value!;
+          labelIndex = value as number;
         }
-        label = labels![labelIndex!-1];
+        label = (labels as string[])[labelIndex as number -1];
       }
     }
 

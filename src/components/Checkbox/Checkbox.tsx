@@ -1,4 +1,4 @@
-import React,{useState,FC}from 'react'
+import React,{useState,FC,useEffect}from 'react'
 import { classNames } from '../../utils/classNames';
 import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
@@ -23,7 +23,7 @@ export interface ICheckboxProps {
   //**set background theme when check on check icon */
   checkedBgTheme? : themeColor;
   /** pass a callback function out-site of props */
-  onChange?: ()=> void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   /** set label value */ 
   label?: string;
 }
@@ -96,7 +96,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
           // set icon color when check
           [`bg-iOther-check-path-${iconTheme}`]: isCheck
         }
-
+        // add hover style with before pseudo element when use provide iconTheme
         classNameSpan = {
           ...classNameSpan,
           [`bg-span-iOther-hover-${iconTheme}`]: isCheck
@@ -124,17 +124,19 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
   const styleClassNameSpan = classNames('checkbox',classNameSpan)
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setIsCheck(e.target.checked)
-
-    // when user define onChange props call it
-    if(onChange){
-      onChange()
-    }
+      setIsCheck(e.target.checked)
   }
+
+  useEffect(()=>{
+    if(checked){
+      setIsCheck(checked)
+    }
+  },[checked])
+
 
   return (
     <div className='checkbox-container'>
-      <input type='checkbox' onChange={handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
+      <input type='checkbox' onChange={ onChange ? onChange : handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
       <label htmlFor={id} data-testid='iconLabel' className='labelContent'>
         <span className={styleClassNameSpan} data-testid='iconSpan'>
           <svg viewBox={IconPath[`${icon}`].viewBox} role="img" data-testid='iconSVG'>

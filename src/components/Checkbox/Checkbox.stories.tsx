@@ -74,15 +74,15 @@ export const CheckboxWithLabel = () => (
 
 
 export const ControlCheckStateByCallbackFunc = () => {
-  const [isCheck,setIsCheck] = useState(false)
+  const [isCheck,setIsCheck] = useState(true)
 
-  const handleChange = ()=>{
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>)=>{
     setIsCheck(!isCheck)
   }
 
   return (
     <div className='basicCheckboxWrapper'>
-      <Checkbox icon='home' iconTheme='primary' checked={isCheck} onChange={handleChange}/>
+      <Checkbox icon='home' iconTheme='primary' checked={isCheck} onChange={handleChange} />
     </div>
   );
 }

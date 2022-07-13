@@ -1,4 +1,4 @@
-import React,{useState,FC,useEffect}from 'react'
+import React,{useState,FC,useEffect,useRef}from 'react'
 import { classNames } from '../../utils/classNames';
 import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
@@ -117,7 +117,6 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
       }
     }
   }
-
     // add class name for SVG
   const styleClassNameSVG = classNames(classNameSVG)
     // add class name for Span
@@ -128,15 +127,14 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
   }
 
   useEffect(()=>{
-    if(checked){
+    if(checked !== undefined){
       setIsCheck(checked)
     }
   },[checked])
 
-
   return (
     <div className='checkbox-container'>
-      <input type='checkbox' onChange={ onChange ? onChange : handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
+      <input type='checkbox' onChange={onChange ? onChange : handleChange} checked={isCheck} id={id} data-testid='inputCheckBox'/> 
       <label htmlFor={id} data-testid='iconLabel' className='labelContent'>
         <span className={styleClassNameSpan} data-testid='iconSpan'>
           <svg viewBox={IconPath[`${icon}`].viewBox} role="img" data-testid='iconSVG'>

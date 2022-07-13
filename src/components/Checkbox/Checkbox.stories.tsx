@@ -74,10 +74,11 @@ export const CheckboxWithLabel = () => (
 
 
 export const ControlCheckStateByCallbackFunc = () => {
-  const [isCheck,setIsCheck] = useState(true)
+  const [isCheck,setIsCheck] = useState(false)
 
   const handleChange = (event:React.ChangeEvent<HTMLInputElement>)=>{
-    setIsCheck(!isCheck)
+    setIsCheck(event.target.checked)
+    console.log('GG from outSite')
   }
 
   return (

@@ -117,6 +117,7 @@ export const Checkbox:FC<ICheckboxProps> = (props)=> {
       }
     }
   }
+  
     // add class name for SVG
   const styleClassNameSVG = classNames(classNameSVG)
     // add class name for Span

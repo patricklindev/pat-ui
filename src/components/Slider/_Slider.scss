@@ -1,0 +1,112 @@
+.slider_input {
+    -webkit-appearance: none;
+    border-radius: $slider-border-radius;
+
+    @include slider-size($slider-width,
+        $slider-height, $thumb-width, $thumb-height);
+
+    // @include slider-style($primary, rgb(85, 221, 180));
+}
+
+
+.slider-sm {
+    @include slider-size($slider-width, $slider-height-sm, $thumb-width-sm, $thumb-height-sm );
+
+}
+
+.slider-lg {
+    @include slider-size($slider-width, $slider-height-lg, $thumb-width-lg, $thumb-height-lg);
+}
+
+.slider-success {
+    @include slider-style($success, rgb(56, 206, 76));
+}
+
+.slider-primary {
+    @include slider-style($primary, rgb(85, 221, 180))
+}
+
+.slider-secondary {
+    @include slider-style($secondary, #9b9fa4);
+}
+
+.slider-warning {
+    @include slider-style($warning, #f9e457);
+}
+
+.slider-danger {
+    @include slider-style($danger, #dd5e6a);
+}
+
+.slider-dark {
+    @include slider-style($dark, $black)
+}
+
+.thumb-lg {
+    @include thumb-size($thumb-width-lg, $thumb-height-lg)
+}
+
+.thumb-med {
+    @include thumb-size($thumb-width, $thumb-height)
+}
+
+.thumb-sm {
+    @include thumb-size($thumb-width-sm, $thumb-height-sm)
+}
+
+.thumb-primary {
+    @include thumb-style($primary);
+}
+
+.thumb-success {
+    @include thumb-style($success);
+}
+
+.thumb-secondary {
+    @include thumb-style($secondary);
+}
+
+.thumb-warning {
+    @include thumb-style($warning);
+}
+
+.thumb-danger {
+    @include thumb-style($danger);
+}
+
+.thumb-dark {
+    @include thumb-style($dark)
+}
+
+.slider_tickLine {
+    display: flex;
+    flex-direction: row;
+    width: $slider-width;
+    justify-content: space-between;
+}
+
+.slider_tickItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider_tickMark {
+    margin: 0px;
+}
+
+.orientation-vertical {
+    width: $vertical-slider-width;
+    margin-top: $vertical-slider-margin;
+    margin-bottom: $vertical-slider-margin;
+    transform: rotate(270deg);
+}
+
+.disabled-true {
+    @include slider-style($gray-600, $gray-600);
+    @include thumb-style($gray-600);
+
+    &::-webkit-slider-thumb {
+        cursor: not-allowed;
+    }
+}

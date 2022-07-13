@@ -293,3 +293,33 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+
+//slider
+$slider-width: 50rem !default;
+$slider-height: 0.5rem !default;
+
+//slider small
+$slider-height-sm: 0.2rem !default;
+
+//slider large
+$slider-height-lg: 1rem !default;
+
+//thumb
+$thumb-width: 1.3rem !default;
+$thumb-height: 1.3rem !default;
+
+//thumb small
+$thumb-width-sm: 0.7rem !default;
+$thumb-height-sm: 0.7rem !default;
+
+//thumb large
+$thumb-width-lg: 2rem !default;
+$thumb-height-lg: 2rem !default;
+
+//border-radius
+$slider-border-radius: .7rem !default;
+
+//vertical slider
+$vertical-slider-width: 10rem !default;
+$vertical-slider-margin: 5rem !default;

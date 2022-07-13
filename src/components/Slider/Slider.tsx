@@ -28,7 +28,7 @@ export interface ISliderProps {
     /**Set a max value */
     max?: number;
     /**Set a initial value */
-    initialValue?: number;
+    initialValue?: string | number;
     /**Set a step value */
     step?: number;
     /**How many tick marks to show */
@@ -83,7 +83,7 @@ export const Slider: FC<ISliderProps> = (props) => {
                 className={styleClasses}
                 disabled={disabled}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setValue(parseInt(event.target.value))
+                    setValue(event.target.value)
                     if (onChange && !disabled) {
                         //Trigger callback function
                         onChange(event.target.value);

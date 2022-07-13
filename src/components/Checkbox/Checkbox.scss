@@ -1,0 +1,339 @@
+// checkbox wrapper style 
+.basicCheckboxWrapper,
+.diffIconCheckboxWrapper,
+.diffThemeCheckboxWrapper,
+.diffIconThemeCheckboxWrapper,
+.checkboxWithLabelWrapper,
+.checkboxDisableWrapper{
+@include displayWrapper
+}
+
+// hide default checkbox
+.checkbox-container input[type="checkbox"]{
+  cursor: pointer;
+  opacity:0;
+  position: absolute;
+}
+
+[data-testid='iconSpan']{
+  position: relative;
+}
+
+.checkbox-container{
+  display:flex;
+  align-items:center;
+  margin-right: 1rem;
+  margin: 1rem;
+}
+
+.checkbox-container label{
+  cursor:pointer;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+// .checkbox-container label span::before{
+  
+//   content: " "; /* :after will only appear if this content is declared */
+//   width: 3em;
+//   height: 3em;
+//   border-radius: 50%;
+//   background-color: rgba($color: tomato,$alpha: .1);
+//   position: absolute;
+//   opacity: 0;
+//   transition: opacity .1s ease-in;
+// }
+
+.checkbox-container label:hover span::before,
+.checkbox-container input[type='checkbox']:hover + label span::before{
+  visibility:visible;
+  opacity: 1;
+}
+
+
+.checkbox-container label:active span::before,
+.checkbox-container input[type='checkbox']:active + label span::before{
+  opacity: 1;
+  visibility:visible;
+}
+
+.checkbox-container label span{
+  border-radius:.18em;
+  border: .15em solid gray;
+}
+
+.checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before{
+    @include checkboxHover($gray-500)
+  } 
+
+  &-ex-small{
+    @include check-box-size($cb-ex-small)
+  }
+
+  &-small{
+    @include check-box-size($cb-small)
+  }
+
+  &-normal{
+    @include check-box-size($cb-normal)
+  }
+
+  &-large{
+    @include check-box-size($cb-large)
+  }
+
+  &-ex-larger{
+    @include check-box-size($cb-ex-large)
+  }
+
+  &-primary{
+    background-color: $primary; 
+  }
+}
+
+
+.bg-iChecked-path{
+  &-primary{
+    fill: $white; 
+  }
+
+  &-secondary{
+    fill: $white; ; 
+  }
+
+  &-success{
+    fill: $white; ; 
+  }
+
+  &-info{
+    fill: $white ; 
+  }
+
+  &-warning{
+    fill: $white; ; 
+  }
+
+  &-danger{
+    fill: $white; 
+  }
+
+  &-default{
+    fill: invert($white); 
+  }
+
+  &-dark{
+    fill: $white; ; 
+  }
+}
+
+.bg-iCheck-path{
+  &-primary{
+    fill: $primary; 
+  }
+
+  &-secondary{
+    fill: $secondary; 
+  }
+
+  &-success{
+    fill: $success; 
+  }
+
+  &-info{
+    fill: $info;
+  }
+
+  &-warning{
+    fill:$warning;
+  }
+
+  &-danger{
+    fill: $danger;
+  }
+
+  &-default{
+    fill: $white;
+  }
+
+  &-dark{
+    fill: $dark;
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
+    color: #000;
+  }
+}
+
+.bg-iOther-path-default{
+  fill: $gray-500;
+}
+
+.bg-iOther-check-path{
+  &-primary{
+    fill: $primary; 
+  }
+
+  &-secondary{
+    fill: $secondary; 
+  }
+
+  &-success{
+    fill: $success; 
+  }
+
+  &-info{
+    fill: $info;
+  }
+
+  &-warning{
+    fill:$warning;
+  }
+
+  &-danger{
+    fill: $danger;
+  }
+
+  &-default{
+    fill: $black;
+  }
+
+  &-dark{
+    fill: $dark;
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
+    color: #000;
+  }
+}
+
+
+.bg-iOther-default{
+  border: none !important; 
+  border-radius: 30% !important;
+}
+
+
+.bg-iCheck{
+  &-primary{
+    background-color: $primary; 
+    &::before{
+      @include checkboxHover($primary)
+    }
+  }
+
+  &-secondary{
+    background-color: $secondary; 
+    &::before{
+      @include checkboxHover($secondary)
+    }
+  }
+
+  &-success{
+    background-color: $success;
+    &::before{
+      @include checkboxHover($success)
+    } 
+  }
+
+  &-info{
+    background-color: $info;
+    &::before{
+      @include checkboxHover($info)
+    } 
+  }
+
+  &-warning{
+    background-color:$warning;
+    &::before{
+      @include checkboxHover($warning)
+    } 
+  }
+
+  &-danger{
+    background-color: $danger;
+    &::before{
+      @include checkboxHover($danger)
+    } 
+  }
+
+  &-default{
+    background-color: $white;
+    &::before{
+      @include checkboxHover($gray-500)
+    } 
+  }
+
+  &-dark{
+    background-color: $dark;
+    &::before{
+      @include checkboxHover($dark)
+    } 
+  }
+
+  &-disable{
+    color: gray;
+    cursor:not-allowed;
+
+    color: #000;
+  }
+}
+
+.bg-span-iOther-hover{
+  &-primary{ 
+    &::before{
+      @include checkboxHover($primary)
+    }
+  }
+
+  &-secondary{
+    &::before{
+      @include checkboxHover($secondary)
+    }
+  }
+
+  &-success{
+    &::before{
+      @include checkboxHover($success)
+    } 
+  }
+
+  &-info{
+    &::before{
+      @include checkboxHover($info)
+    } 
+  }
+
+  &-warning{
+    &::before{
+      @include checkboxHover($warning)
+    } 
+  }
+
+  &-danger{
+    &::before{
+      @include checkboxHover($danger)
+    } 
+  }
+
+  &-default{
+    &::before{
+      @include checkboxHover($gray-500)
+    } 
+  }
+
+  &-dark{
+    &::before{
+      @include checkboxHover($dark)
+    } 
+  }
+}

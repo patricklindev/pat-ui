@@ -7,7 +7,6 @@ exports[`Progress should match snapshot 1`] = `
 >
   <div
     class="pg-linear pg-linear-md"
-    style="width: 100%;"
   >
     <div
       class="pg-linear-bar"

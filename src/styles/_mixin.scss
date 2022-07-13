@@ -74,3 +74,30 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+
+@mixin displayWrapper{
+  width: 50%;
+  display:  flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin check-box-size($size){
+  width:$size;
+  height:$size;
+}
+
+@mixin checkboxHover($color){
+  content: " "; /* :after will only appear if this content is declared */
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: rgba($color: $color, $alpha: .1) ;
+  position: absolute;
+  visibility: hidden;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .08s ease-out,
+              visibility .08s ease-in-out
+}

@@ -74,3 +74,29 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+@mixin checkbox-size($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin checkmark-style($display, $left, $top, $width, $height, $border) {
+  display: $display;
+  left: $left;
+  top: $top;
+  width: $width;
+  height: $height;
+  border: $border;
+}
+
+@mixin checkmark-type($bg-color, $border) {
+  background-color: $bg-color;
+  border: $border;
+}
+
+@mixin hoverCircle-style($left, $top, $height, $width) {
+  left: $left;
+  top: $top;
+  height: $height;
+  width: $width;
+}

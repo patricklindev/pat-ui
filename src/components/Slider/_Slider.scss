@@ -1,4 +1,4 @@
-.slider {
+.slider_input {
     -webkit-appearance: none;
     border-radius: $slider-border-radius;
 
@@ -78,20 +78,20 @@
     @include thumb-style($dark)
 }
 
-.tickLine {
+.slider_tickLine {
     display: flex;
     flex-direction: row;
     width: $slider-width;
     justify-content: space-between;
 }
 
-.tickItem {
+.slider_tickItem {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.tickMark {
+.slider_tickMark {
     margin: 0px;
 }
 

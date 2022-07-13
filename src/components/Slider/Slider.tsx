@@ -47,13 +47,13 @@ export const Slider: FC<ISliderProps> = (props) => {
     //State variable for value of the slider
     const [value, setValue] = useState(props.initialValue)
 
-    let styleClasses = classNames('slider', {
+    let styleClasses = classNames('slider_input', {
         [`slider-${sliderSize}`]: true,
         [`thumb-${thumbSize}`]: true,
         [`slider-${sliderTheme}`]: true,
         [`thumb-${thumbTheme}`]: true,
         [`orientation-${sliderOrientation}`]: true,
-        [`disabled-${disabled}`]:true,
+        [`disabled-${disabled}`]: true,
     })
 
     if (className) {
@@ -71,31 +71,30 @@ export const Slider: FC<ISliderProps> = (props) => {
     }
 
     let slider =
-        <div className='slider_div'>
+        <div className='slider'>
             <input
                 data-testid="slider-element"
                 type="range"
                 min={min}
                 max={max}
-                //value={value}
+                value={value}
                 defaultValue={initialValue}
                 step={step}
                 className={styleClasses}
                 disabled={disabled}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setValue(parseInt(event.target.value))
-                    // console.log(value)
                     if (onChange && !disabled) {
                         //Trigger callback function
-                        onChange(value);
+                        onChange(event.target.value);
                     }
                 }}
             />
-            <div className='tickLine'>
-                {tickArr.map((e) => (
-                    <div className='tickItem'>
-                        <p className="tickMark">|</p>
-                        <p>{e}</p>
+            <div className='slider_tickLine'>
+                {tickArr.map((tickValue) => (
+                    <div className='slider_tickItem'>
+                        <p className="slider_tickMark">|</p>
+                        <p>{tickValue}</p>
                     </div>
                 ))
                 }

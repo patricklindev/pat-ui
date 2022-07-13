@@ -70,7 +70,7 @@ export const StarCountRating = () => {
         <div>
             <h5>Star Count</h5>
             <Rating 
-                starCounts={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} 
+                count={10} 
             />
         </div>
     );
@@ -86,9 +86,3 @@ export const ControlValueRating = () => {
         </div>
     );
 };
-
-// [{star:1,value:index,halfColor:'gray',fullColor:'yellow'},
-//{star:2,},
-//star:3,}, 
-//{star:4,},
-//{star:5,}]

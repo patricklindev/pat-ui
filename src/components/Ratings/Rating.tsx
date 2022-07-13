@@ -1,6 +1,6 @@
-import React, { useState, useEffect, FC } from "react";
-import StarIcon from "./StarIcon";
-import "./_Star.scss";
+import React, { useState, useEffect, FC } from 'react';
+import StarIcon from './StarIcon';
+import './_Star.scss';
 
 export interface IRatingProps {
     /**set true or false*/
@@ -10,7 +10,7 @@ export interface IRatingProps {
     /**set custom classname by sending in a prop*/
     classNames?: string;
     /**set star count by using array [1,2,3,4,5]*/
-    starCounts?: number[];
+    count?: number;
     /**set customized default value of star. Example: 3*/
     customRatingValue?: number;
     /**set true or false to activate label on hover*/
@@ -20,7 +20,7 @@ export interface IRatingProps {
     /**set label title by sending in prop. Example: "TESTING LABEL"*/
     labelTitle?: string;
     /**send addon-action from storybook as a prop */
-    onChange?: any
+    onChange?: () => any;
 }
 
 export type patRatingProps = IRatingProps;
@@ -30,27 +30,26 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         disableHandler,
         starSize,
         classNames,
-        starCounts,
+        count,
         customRatingValue,
         hoverLabel,
         customSize,
         labelTitle,
-        customStarCount,
-        onChange
+        onChange,
     } = props;
 
     const [rating, setRating] = useState<number>(customRatingValue);
     const [hoverRating, setHoverRating] = useState<number>(0);
-    // const [starCounts, setstarCounts] = useState<number[]>(starCounts);
-    const [disableCss, setDisableCss] = useState<string>("");
-    const [ratingLabel, setRatingLabel] = useState<string>("");
+    // const [count, setcount] = useState<number[]>(count);
+    const [disableCss, setDisableCss] = useState<string>('');
+    const [ratingLabel, setRatingLabel] = useState<string>('');
 
     const starLabel: any = {
-        1: "Useless",
-        2: "Poor",
-        3: "OK",
-        4: "Good",
-        5: "Excellent"
+        1: 'Useless',
+        2: 'Poor',
+        3: 'OK',
+        4: 'Good',
+        5: 'Excellent',
     };
 
     //add color on mouse enter
@@ -61,6 +60,7 @@ export const Rating: FC<patRatingProps> = (props: any) => {
     //remove color on mouse leave
     const removeHighlite = () => {
         setHoverRating(0);
+        removeHoverLabel();
     };
 
     //save color/rating on click
@@ -71,42 +71,55 @@ export const Rating: FC<patRatingProps> = (props: any) => {
     //if disabled add disabled css
     useEffect(() => {
         if (disableHandler) {
-            setDisableCss("disabled");
+            setDisableCss('disabled');
         }
     });
 
-    //loop through starlabel object 
+    //loop through starlabel object
     useEffect(() => {
-        for (let i = 0; i < starCounts.length; i++) {
-            if (hoverRating >= starCounts[i]) {
+        console.log(stars())
+        for (let i = 0; i < stars().length; i++) {
+            if (hoverRating >= stars()[i]) {
                 setRatingLabel(starLabel[hoverRating]);
             }
         }
     });
 
-    //create star using loop and push it to array then map it.
-    // const starMaker = () =>{
-    //     let starArray:any[] = []
-    //     for(let i=0;i<customStarCount;i++){
-    //         let cStarCount = <div>TEST</div>
-    //         starArray.push(cStarCount)
-    //     }
-    //     console.log(starArray)
-    //     return starArray
-    // }
+    //remove hover label on mouse leave and save current index label
+    const removeHoverLabel = () => {
+        if (rating) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setRatingLabel(starLabel[rating]);
+                }
+            }
+        } else {
+            setRatingLabel('');
+        }
+    };
+
+    const stars = () =>{
+        let starArr = []
+        for (let i = 1;i<= count;i++){
+            starArr.push(i);
+        }
+        return starArr
+    }
 
     return (
         <div>
-            {starCounts.map((index: number) => {
+            {stars().map((index: number) => {
                 return (
                     <button
                         key={index}
                         className={`${classNames} star-btn ${disableCss}`}
                         onMouseEnter={() => highlite(index)}
-                        onMouseLeave={() => removeHighlite()}
+                        onMouseLeave={() => {
+                            removeHighlite();
+                        }}
                         onClick={() => {
-                            saveRating(index)
-                            onChange(index)//storybook action addon
+                            saveRating(index);
+                            onChange(index); //storybook action addon
                         }}
                         disabled={disableHandler}
                         value={index}
@@ -117,21 +130,21 @@ export const Rating: FC<patRatingProps> = (props: any) => {
                             rating={rating}
                             index={index}
                             customSize={customSize}
-                            starCounts={starCounts}
+                            count={count}
                         />
                     </button>
                 );
             })}
-            <label>{hoverLabel ? ratingLabel : ""}</label>
+            <label>{hoverLabel ? ratingLabel : ''}</label>
             <p>{labelTitle}</p>
         </div>
     );
 };
 
 Rating.defaultProps = {
-    starSize: "sm",
+    starSize: 'sm',
     disableHandler: false,
-    starCounts: [1, 2, 3, 4, 5],
+    count:5
 };
 
 export default Rating;

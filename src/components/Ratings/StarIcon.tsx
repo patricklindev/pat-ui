@@ -1,15 +1,19 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from 'react';
 
 export default function StarIcon(props: any) {
-    const { starSize, hoverRating, rating, index, customSize,starCounts } = props;
+    const { starSize, hoverRating, rating, index, customSize } = props;
+
+    //hovering or clicked
+    const highliteColor = useMemo(() => {
+        if (hoverRating >= index || rating >= index) {
+            return 'yellow';
+        } else {
+            return 'none';
+        }
+    }, [rating, hoverRating, index]);
 
     // const [colorHalf, setColorHalf] = useState("white")
     // const [colorFull, setColorFull] = useState("white")
-
-    const highliteColor = useMemo(() => {
-        if(hoverRating >= index || rating >= index)return "yellow"; //hovering or clicked
-        return "none";
-    }, [rating, hoverRating, index]);
 
     // handle half and full star color change
     // const handleHighliteColorChange = (e:any) =>{
@@ -32,13 +36,13 @@ export default function StarIcon(props: any) {
 
     return (
         <svg
-            className={!customSize? starSize:""}
+            className={!customSize ? starSize : ''}
             // fill="url(#starColor)"
             fill={highliteColor}
             stroke="black"
             viewBox="0 0 24 24"
-            width={customSize?`${customSize}`:"2rem"}
-            // onMouseMove={(e)=>{handleHighliteColorChange(e)}}
+            width={customSize ? `${customSize}` : '2rem'}
+        // onMouseMove={(e)=>{handleHighliteColorChange(e)}}
         >
             {/* <defs>
                 <linearGradient id="starColor">

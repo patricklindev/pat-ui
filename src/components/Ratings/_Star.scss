@@ -1,18 +1,18 @@
 .star-btn {
-    border:none;
+    border: none;
     background: none;
-    padding:0;
+    padding: 0;
 }
 
-.star-btn:focus{
+.star-btn:focus {
     outline: none;
 }
 
-.star-btn:hover{
+.star-btn:hover {
     transform: scale(1.1);
 }
 
-.disabled{
+.disabled {
     cursor: not-allowed;
 }
 

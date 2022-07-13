@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
 import StarIcon from './StarIcon';
-import './_Star.scss';
 
 export interface IRatingProps {
     /**set true or false*/
@@ -17,8 +16,10 @@ export interface IRatingProps {
     hoverLabel?: boolean;
     /**set custom icon size by sending prop in. Example: "75px" */
     customSize?: string;
-    /**set label title by sending in prop. Example: "TESTING LABEL"*/
-    labelTitle?: string;
+    /**set true or false to activate custom label on hover*/
+    customLabel?: boolean;
+    /**set your own custom hover label text*/
+    customHoverLabel?: any;
     /**send addon-action from storybook as a prop */
     onChange?: () => any;
 }
@@ -34,16 +35,18 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         customRatingValue,
         hoverLabel,
         customSize,
-        labelTitle,
         onChange,
+        customHoverLabel,
+        customLabel,
     } = props;
 
     const [rating, setRating] = useState<number>(customRatingValue);
     const [hoverRating, setHoverRating] = useState<number>(0);
-    // const [count, setcount] = useState<number[]>(count);
     const [disableCss, setDisableCss] = useState<string>('');
     const [ratingLabel, setRatingLabel] = useState<string>('');
+    const [customRatingLabel, setCustomRatingLabel] = useState('');
 
+    //default hover label
     const starLabel: any = {
         1: 'Useless',
         2: 'Poor',
@@ -51,6 +54,9 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         4: 'Good',
         5: 'Excellent',
     };
+
+    //custom hover labels
+    const customStarLabel: any = customHoverLabel;
 
     //add color on mouse enter
     const highlite = (index: number) => {
@@ -75,76 +81,96 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         }
     });
 
-    //loop through starlabel object
+    //loop through starlabel or customStarLabel object to grab label value
     useEffect(() => {
-        console.log(stars())
-        for (let i = 0; i < stars().length; i++) {
-            if (hoverRating >= stars()[i]) {
-                setRatingLabel(starLabel[hoverRating]);
+        if (hoverLabel) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setRatingLabel(starLabel[hoverRating]);
+                }
+            }
+        }
+        if (customLabel) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setCustomRatingLabel(customStarLabel[hoverRating]);
+                }
             }
         }
     });
 
     //remove hover label on mouse leave and save current index label
     const removeHoverLabel = () => {
-        if (rating) {
+        if (hoverLabel) {
             for (let i = 0; i < stars().length; i++) {
                 if (hoverRating >= stars()[i]) {
                     setRatingLabel(starLabel[rating]);
                 }
             }
-        } else {
-            setRatingLabel('');
+        }
+        if (customLabel) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setCustomRatingLabel(customStarLabel[rating]);
+                }
+            }
         }
     };
 
-    const stars = () =>{
-        let starArr = []
-        for (let i = 1;i<= count;i++){
+    //make stars array function
+    const stars = () => {
+        let starArr = [];
+        for (let i = 1; i <= count; i++) {
             starArr.push(i);
         }
-        return starArr
-    }
+        return starArr;
+    };
+
+    //render stars
+    const renderStars = stars().map((index: number) => {
+        return (
+            <button
+                key={index}
+                name="star-input"
+                id="star-input"
+                className={`${classNames} star-btn ${disableCss}`}
+                onMouseEnter={() => highlite(index)}
+                onMouseLeave={() => {
+                    removeHighlite();
+                }}
+                onClick={() => {
+                    saveRating(index);
+                    onChange(index); //storybook action addon
+                }}
+                disabled={disableHandler}
+                value={index}
+                role="button"
+            >
+                <StarIcon
+                    starSize={starSize}
+                    hoverRating={hoverRating}
+                    rating={rating}
+                    index={index}
+                    customSize={customSize}
+                    count={count}
+                />
+            </button>
+        );
+    });
 
     return (
         <div>
-            {stars().map((index: number) => {
-                return (
-                    <button
-                        key={index}
-                        className={`${classNames} star-btn ${disableCss}`}
-                        onMouseEnter={() => highlite(index)}
-                        onMouseLeave={() => {
-                            removeHighlite();
-                        }}
-                        onClick={() => {
-                            saveRating(index);
-                            onChange(index); //storybook action addon
-                        }}
-                        disabled={disableHandler}
-                        value={index}
-                    >
-                        <StarIcon
-                            starSize={starSize}
-                            hoverRating={hoverRating}
-                            rating={rating}
-                            index={index}
-                            customSize={customSize}
-                            count={count}
-                        />
-                    </button>
-                );
-            })}
-            <label>{hoverLabel ? ratingLabel : ''}</label>
-            <p>{labelTitle}</p>
+            {renderStars}
+            <label htmlFor="star-input">
+                {hoverLabel ? ratingLabel : customLabel ? customRatingLabel : ''}
+            </label>
         </div>
     );
 };
 
+//default setting
 Rating.defaultProps = {
-    starSize: 'sm',
-    disableHandler: false,
-    count:5
+    count: 5,
 };
 
 export default Rating;

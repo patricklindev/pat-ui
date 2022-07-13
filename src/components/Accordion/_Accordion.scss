@@ -8,6 +8,10 @@
     background-color: rgba(34, 36, 38, 0.15);
     color: rgba(34, 36, 38, 0.35);
     cursor: not-allowed;
+    margin-bottom: 2px;
+  }
+  &.disabled > div {
+    cursor: not-allowed;
   }
 
   &-header {
@@ -34,7 +38,6 @@
     font-weight: bold;
   }
 
-  // transition doesnt work on display
   &-content{
     opacity: 0;
     max-height: 0;
@@ -61,4 +64,5 @@
   ::-webkit-scrollbar-track {
     background: transparent
   }
+
 }

@@ -6,8 +6,6 @@ export interface IAccordionProps {
   className?: string;
   /** set accordion title */
   title?: ReactNode;
-  /** set accordion id */
-  id?: ReactNode;
   /** set accordion content */
   content?: ReactNode;
   /** set accordion expand icon */
@@ -20,11 +18,10 @@ export interface IAccordionProps {
   defExpanded?: boolean;
   /** set multi accordions */
   multiple?: boolean;
-  // controlled nums of accordion
+  /** number of accordions needed */
   controlledNum?: number;
-
+  /** User's title/content array */
   accordionArr?: [];
-
   onChange: () => void;
 }
 

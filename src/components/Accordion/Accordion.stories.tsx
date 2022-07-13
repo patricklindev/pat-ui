@@ -18,19 +18,7 @@ export const DefaultAccordion = () => (
       expandIcon={<Icon name="angle down" size="mini" color="black" />}
       collapseIcon={<Icon name="angle down" size="mini" color="black" />}
       onChange={(expanded) => console.log(expanded)}
-    />
-    <Accordion
-      title="Accordion 2"
-      content="This accordion is expanded by default"
-      expandIcon={<Icon name="angle down" size="mini" color="black" />}
-      collapseIcon={<Icon name="angle down" size="mini" color="black" />}
-      defExpanded
-    />
-    <Accordion
-      title="Accordion 3"
-      content="This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks"
-      expandIcon={<Icon name="angle down" size="mini" color="black" />}
-      collapseIcon={<Icon name="angle down" size="mini" color="black" />}
+      controlledNum = {3}
     />
   </div>
 );
@@ -42,6 +30,7 @@ export const DisabledAccordion = () => (
       className="accordion"
       title="Accordion title"
       expandIcon={<Icon name="angle down" size="mini" color="black" />}
+      controlledNum={1}
       disabled={true}
     />
   </div>

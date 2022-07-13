@@ -28,8 +28,11 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
     let styleClasses = classNames('checkbox', {
         [`check-${checkType}`]: true,
         [`check-${checkSize}`]: !!checkSize,
-        [`${className}`]: true
     });
+
+    if (className) { // if I className in styleClasses, it adds another className called undefined
+        styleClasses += ' ' + className;
+    }
 
     let checkbox;
     if (icon) {
@@ -48,7 +51,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
         checkbox = (
             <label className={styleClasses}>
                 <input 
-                    aria-label='test-input' 
+                    data-testid='test-input' 
                     type='checkbox' 
                     ref={checkRef} 
                     disabled={disabled} 

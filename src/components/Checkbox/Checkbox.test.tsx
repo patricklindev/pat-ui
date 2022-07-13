@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Checkbox, { ICheckboxProps } from './Checkbox';
 
 describe('Checkbox', () => {
@@ -61,7 +61,7 @@ describe('Checkbox', () => {
         const wrapper = render(<Checkbox {...checkControlProps} />);
         const checkboxControlElement = wrapper.queryByText('checked') as HTMLElement;
         expect(checkboxControlElement).toBeInTheDocument();
-        const inputElement = wrapper.queryByLabelText('test-input') as HTMLInputElement;
+        const inputElement = screen.getByTestId('test-input') as HTMLInputElement;
         expect(inputElement.tagName).toBe('INPUT');
         expect(inputElement.checked).toBe(true);
         fireEvent.change(inputElement, {target: {checked: false}});

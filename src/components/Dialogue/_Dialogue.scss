@@ -76,6 +76,18 @@
   background-color: #757575;
 }
 
-.alert-title {
-  border: solid red 2px;
+
+.alert_dlg {
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw
+}
+
+.dlg-actions {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
 }

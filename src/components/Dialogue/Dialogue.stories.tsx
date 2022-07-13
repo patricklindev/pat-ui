@@ -94,11 +94,11 @@ export const AlertDialog = () => {
         <Button btnType="default" disabled={false} onClick={toggleModal}>
           Alert Dialog
         </Button>
-        <Dialogue isOpen={modalShown} dlgOnClick={toggleModal}>
+        <Dialogue className='alert_dlg' isOpen={modalShown} dlgOnClick={toggleModal}>
           <DialogTitle className="alert-title">Do you want to delete your account?</DialogTitle>
           <DialogContent>
             <DialogContentInfo className='alert-info'>
-              If you delete your account k=ow you can no longer login in the future. This is a permanent action and you can no longer make any posts.
+              If you delete your account now you can no longer login in the future. This is a permanent action and you can no longer make any posts.
             </DialogContentInfo>
           </DialogContent>
           <DialogActions className='dlg-actions'>

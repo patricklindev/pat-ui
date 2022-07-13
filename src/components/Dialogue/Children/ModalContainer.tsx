@@ -13,7 +13,7 @@ export const ModalContainer: FC<ModalContainerProps> = (props) => {
 
   return (
     // change onClick to e => e.stopPropagation() later
-    <div className='modal-box' onClick={e => e.stopPropagation()}>
+    <div className={`modal-box ${className}`} onClick={e => e.stopPropagation()}>
       {children}
     </div>
   );

@@ -83,9 +83,9 @@ class Rating extends Component<propTypes, stateTypes> {
     value: 0,
     count: 5,
     char: '★',
-    size: 30,
-    inactivecColor: 'gray',
-    activeColor: 'orange',
+    size: 20,
+    inactivecColor: 'rgba(0, 0, 0, 0.26)',
+    activeColor: 'rgba(255, 180, 0, 1)',
   
     onChange: () => { },
     labels: [],
@@ -279,7 +279,7 @@ class Rating extends Component<propTypes, stateTypes> {
         })
       } else {
         style = Object.assign({}, defaultStyles, {
-          color: star.active ? 'GoldenRod' : 'Dark',
+          color: star.active ? 'rgba(255, 180, 0, 0.5)' : 'rgba(0, 0, 0, 0.16)',
           cursor: 'not-allowed',
           fontSize: `${size}px`
       })

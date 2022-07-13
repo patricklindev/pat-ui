@@ -11,7 +11,7 @@ export default {
     <div>
       <div>Users  should be able to preview the rating by hovering on the ‘stars’(proper animation should be applied)</div>
       <br />
-      <div>Default rating - size: 30px, total stars number: 5, initial rating value: 0</div>
+      <div>Default rating - size: 20px, total stars number: 5, initial rating value: 0</div>
       <Rating />
     </div>
   );

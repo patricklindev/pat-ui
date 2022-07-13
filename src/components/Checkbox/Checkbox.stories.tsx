@@ -47,6 +47,7 @@ export const DiffIconCheckbox = () => (
     <Checkbox icon="smile wink" />
     <Checkbox icon="truck" />
     <Checkbox icon="credit card" />
+    <Checkbox icon="batch" />
   </div>
 );
 
@@ -59,6 +60,7 @@ export const DiffIconThemeCheckbox = () => (
     <Checkbox icon="home" iconTheme="warning" checked/>
     <Checkbox icon="users" iconTheme="danger" checked/>
     <Checkbox icon="search" iconTheme="dark" checked/>
+    <Checkbox icon="batch" iconTheme="primary" checked/>
   </div>
 );
 

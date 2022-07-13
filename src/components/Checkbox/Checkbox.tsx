@@ -4,7 +4,7 @@ import { uid } from '../../utils/uuid';
 import { IconPath } from './Icons';
 
 export type boxSize = 'ex-small'|'small' | 'normal' | 'large' | 'ex-larger';
-export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card' | 'check';
+export type iconType = 'home' | 'spinner' | 'angle down' | 'plus' | 'home' | 'users' | 'times' | 'search' | 'star' | 'moon' | 'heart' | 'smile wink' | 'truck' | 'credit card' | 'check' | 'batch';
 export type themeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'default';
 
 export interface ICheckboxProps {

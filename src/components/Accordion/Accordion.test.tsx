@@ -16,4 +16,12 @@ describe('Accordion', () => {
         const wrapper = render(<Accordion title={'Accordion'} expanded={true}></Accordion>);
         const element = wrapper.container.firstElementChild as HTMLElement;
     }   , 10000);
+    it('should function as a Controlled Accordion', function () {
+        const wrapper = render(<Accordion title={'Accordion'} multiple></Accordion>);
+        const element = wrapper.container.firstElementChild as HTMLElement;
+    })
+    it('should have content', function () {
+        const wrapper = render(<Accordion title={'Accordion'} content={''}></Accordion>);
+        const element = wrapper.container.firstElementChild as HTMLElement;
+    })
 })

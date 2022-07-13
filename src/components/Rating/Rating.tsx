@@ -54,8 +54,7 @@ const defaultStyles: CSS.Properties = {
   cursor: 'pointer',
   display: 'block',
   float: 'left',
-
-  transition: '300ms',
+  transition: '200ms',
   alignItems: 'center'
 }
 
@@ -318,7 +317,8 @@ class Rating extends Component<propTypes, stateTypes> {
         style = Object.assign({}, defaultStyles, {
           color: star.active ? activeColor : inactivecColor,
           cursor: 'pointer',
-          fontSize: `${size as number + 5}px` 
+          fontSize: `${size}px`,
+          transform: "scale(1.15)"
       })
     }
     

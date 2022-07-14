@@ -11,7 +11,7 @@ export default {
     <div>
       <div>Users  should be able to preview the rating by hovering on the ‘stars’(proper animation should be applied)</div>
       <br />
-      <div>Default rating - size: 20px, total stars number: 5, initial rating value: 0</div>
+      <div>Default rating - size: Medium(30px), total stars number: 5, initial rating value: 0</div>
       <Rating />
     </div>
   );
@@ -55,12 +55,14 @@ export default {
     <div>
       <div>Developers can choose sizes of the rating component among various predefined options from props</div>
       <br />
-      <div>30px</div>
-      <Rating size={30}/>
-      <div>35px</div>
-      <Rating size={35}/>
-      <div>40px</div>
-      <Rating size={40}/>
+      <div>Small</div>
+      <Rating size={'Small'}/>
+      <div>Medium</div>
+      <Rating size={'Medium'}/>
+      <div>Large</div>
+      <Rating size={'Large'}/>
+      <div>Customer size: 50px</div>
+      <Rating size={50}/>
     </div>
   );
 

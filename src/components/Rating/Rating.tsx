@@ -9,7 +9,7 @@ export interface propTypes {
   value?: number;
   count?: number;
   char?: string;
-  size?: number;
+  size?: number | string;
   inactivecColor?: string;
   activeColor?: string;
   onChange?: (value: number)=>void;
@@ -82,7 +82,7 @@ class Rating extends Component<propTypes, stateTypes> {
     value: 0,
     count: 5,
     char: '★',
-    size: 20,
+    size: 'Medium',
     inactivecColor: 'rgba(0, 0, 0, 0.26)',
     activeColor: 'rgba(255, 180, 0, 1)',
   
@@ -98,6 +98,10 @@ class Rating extends Component<propTypes, stateTypes> {
 
     // set defaults
 
+    let size;
+    // if input size euqual to small, size = 20; if medium, size = 30; if large, size = 40
+    this.props.size === 'Small' ? size = 20 : this.props.size === 'Medium' ? size = 30 : this.props.size === 'Large' ? size = 40 : size = this.props.size;
+
     props = Object.assign({}, props)
 
     this.state = {
@@ -110,7 +114,7 @@ class Rating extends Component<propTypes, stateTypes> {
       },
       config: {
         count: props.count as number,
-        size: props.size as number,
+        size: size as number,
         char: props.char,
         // default color of inactive star
         inactivecColor: props.inactivecColor,

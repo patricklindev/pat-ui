@@ -44,7 +44,7 @@ export const Accordion: FC<IAccordionProps> = (props) => {
     onChange,
     ...rest
   } = props;
-  // [{id: 1, isOpen},{},{}]
+
   const createNumsCheckBoxData = (num) => {
     return new Array(num).fill(0).map((_, index) => {
       let arrIndex = index;
@@ -65,7 +65,8 @@ export const Accordion: FC<IAccordionProps> = (props) => {
 
   const [accordions, setAccordions] = useState(
     createNumsCheckBoxData(controlledNum)
-  // [{id: 1, isOpen: false, },{id: 2, isOpen: false,},{id: 3, isOpen: true,}]
+  );
+
   const handleClick = (id) => {
     if (disabled) return;
     if (multiple) {

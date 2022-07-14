@@ -56,11 +56,11 @@ export default {
       <div>Developers can choose sizes of the rating component among various predefined options from props</div>
       <br />
       <div>Small</div>
-      <Rating size={'Small'}/>
+      <Rating size={'small'}/>
       <div>Medium</div>
-      <Rating size={'Medium'}/>
+      <Rating size={'medium'}/>
       <div>Large</div>
-      <Rating size={'Large'}/>
+      <Rating size={'large'}/>
       <div>Customer size: 50px</div>
       <Rating size={50}/>
     </div>

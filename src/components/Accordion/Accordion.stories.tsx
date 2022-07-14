@@ -1,5 +1,5 @@
 // created storybook to test the accordion component
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Accordion from '../Accordion';
 import { Icon } from '../../index';
 import './_Accordion.scss';
@@ -13,23 +13,22 @@ export const DefaultAccordion = () => (
   <div>
     <p>A basic Accordion component.</p>
     <Accordion
-      title="Accordion Panel 1"
+      title={'Expansion Panel 1'}
       content="This accordion is expanded by default"
       expandIcon={<Icon name="angle down" size="mini" color="black" />}
       collapseIcon={<Icon name="angle down" size="mini" color="black" />}
       onChange={(expanded) => console.log(expanded)}
     />
     <Accordion
-      title="Accordion Panel 2"
+      title="Accordion 2"
       content="This accordion is expanded by default"
       expandIcon={<Icon name="angle down" size="mini" color="black" />}
       collapseIcon={<Icon name="angle down" size="mini" color="black" />}
-      expanded={true}
+      defExpanded
     />
     <Accordion
-      title="Accordion Panel 3
-      "
-      content="This is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanksvThis is a test accordion content. Test test and test only. thanksThis is a test accordion content. Test test and test only. thanks"
+      title="Accordion 3"
+      content="This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks This is a test accordion content. Test test and test only. thanks"
       expandIcon={<Icon name="angle down" size="mini" color="black" />}
       collapseIcon={<Icon name="angle down" size="mini" color="black" />}
     />
@@ -49,34 +48,17 @@ export const DisabledAccordion = () => (
 );
 
 export const ControlledAccordion = () => {
-  // use context here.
-
-  const [expandOne, setExpandOne] = useState('');
-
-  const toggleOne = (panel: string) => {
-    setExpandOne(panel);
-  };
-
   return (
     <div>
-      <p>A basic Accordion component.</p>
       <Accordion
-        title="Controlled Accordion 1"
-        content="This is a test accordion content. Test test and test only. thanks"
         expandIcon={<Icon name="angle down" size="mini" color="black" />}
         collapseIcon={<Icon name="angle down" size="mini" color="black" />}
-      />
-      <Accordion
-        title="Controlled Accordion 2"
-        content="This accordion is expanded by default"
-        expandIcon={<Icon name="angle down" size="mini" color="black" />}
-        collapseIcon={<Icon name="angle down" size="mini" color="black" />}
-      />
-      <Accordion
-        title="Controlled Accordion 3"
-        content="This is a test accordion content. Test test and test only. thanks"
-        expandIcon={<Icon name="angle down" size="mini" color="black" />}
-        collapseIcon={<Icon name="angle down" size="mini" color="black" />}
+        multiple
+        // accordionArr={[
+        //   { title: 'hello1', content: 'hello1' },
+        //   { title: 'hello2', content: 'hello2' },
+        //   { title: 'hello3', content: 'hello3' },
+        // ]}
       />
     </div>
   );

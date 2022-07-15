@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Checkbox from './Checkbox';
 
 export default {
@@ -35,9 +35,23 @@ export const DiffColorCheckbox = () => (
 
 export const DiffIconCheckbox = () => (
   <div className="checkboxes">
+    <Checkbox icon="home" />
     <Checkbox icon="heart" />
     <Checkbox icon="check" />
     <Checkbox icon="star" />
     <Checkbox icon="moon" />
+    <Checkbox icon="plus" />
   </div>
 );
+
+export const ControlledCheckbox = () => {
+  const [checked, setCheck] = useState(true);
+
+  const onChangeHandler = () => {
+    setCheck((prev) => !prev);
+  };
+
+  return (
+    <Checkbox label="Controlled" onChange={onChangeHandler} checked={checked} />
+  );
+};

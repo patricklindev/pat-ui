@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, ChangeEventHandler } from 'react';
 import { classNames } from '../../utils/classNames';
 import Icon from '../Icon';
 
@@ -13,6 +13,7 @@ export interface ICheckboxProps {
   size?: CheckboxSize;
   className?: string;
   color?: CheckboxColor;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   icon?: string;
 }
 
@@ -26,9 +27,14 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
     className,
     color,
     icon,
+    onChange,
   } = props;
 
   const [check, setCheck] = useState(defaultChecked || checked);
+
+  const onChangeHandler = () => {
+    setCheck((prev) => !prev);
+  };
 
   let styleClasses = classNames('checkbox', {
     [`checkbox-${color}`]: !!color,
@@ -38,10 +44,6 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
-  const onChangeHandler = () => {
-    setCheck((prev) => !prev);
-  };
-
   return (
     <div className={styleClasses}>
       {icon ? (
@@ -50,8 +52,8 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
             className="checkbox-icon"
             type="checkbox"
             disabled={disabled}
-            checked={check}
-            onChange={onChangeHandler}
+            checked={onChange ? checked : check}
+            onChange={onChange ? onChange : onChangeHandler}
           />
           <Icon name={icon} />
         </React.Fragment>
@@ -60,8 +62,8 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
           <input
             type="checkbox"
             disabled={disabled}
-            checked={check}
-            onChange={onChangeHandler}
+            checked={onChange ? checked : check}
+            onChange={onChange ? onChange : onChangeHandler}
           />
           <label>{label}</label>
         </React.Fragment>

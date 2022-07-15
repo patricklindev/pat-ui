@@ -42,6 +42,8 @@ input + label {
 .checkbox-icon {
   opacity: 0;
   transform: scale(2);
+  position: relative;
+  left: 1.5vw;
 }
 
 .checkbox svg {
@@ -49,9 +51,6 @@ input + label {
   stroke: black;
   fill: white;
   cursor: pointer;
-  position: relative;
-  right: 1.5vw;
-  z-index: -1;
 }
 
 .checkbox input:checked ~ svg {

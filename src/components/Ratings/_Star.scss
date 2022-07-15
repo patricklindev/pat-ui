@@ -27,3 +27,57 @@
 .lg {
     width: 4rem;
 }
+
+p{
+    border: 1px solid red;
+    
+}
+
+
+//half star css
+.rating-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid red;
+}
+
+.rating-star {
+    
+    display: flex;
+    margin: 10px 0;
+    flex-direction: row-reverse;
+}
+
+.rating-star input {
+    position: relative;
+    width: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    appearance: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.rating-star input::before {
+    content: '\eeb8';
+    position: absolute;
+    font-family: boxicons;
+    font-size: 34px;
+    position: absolute;
+    left: 4px;
+    color: black;
+    transition: all .3s;
+}
+
+.rating-star input:nth-child(2n + 1)::before {
+    right: 4px;
+    left: initial;
+}
+
+.rating-star input:hover ~ input::before,
+.rating-star input:hover::before,
+.rating-star input:checked ~ input::before,
+.rating-star input:checked::before {
+    color: yellow;
+}

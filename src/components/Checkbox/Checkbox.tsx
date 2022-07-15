@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { classNames } from '../../utils/classNames';
-// import Icon from '../Icon';
+import Icon from '../Icon';
 
 export type CheckboxSize = 'small' | 'large';
 export type CheckboxColor = 'secondary' | 'success' | 'default';
@@ -13,7 +13,7 @@ export interface ICheckboxProps {
   size?: CheckboxSize;
   className?: string;
   color?: CheckboxColor;
-  // icon?: string;
+  icon?: string;
 }
 
 const Checkbox: FC<ICheckboxProps> = (props) => {
@@ -25,15 +25,14 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
     size,
     className,
     color,
-    // icon,
+    icon,
   } = props;
 
-  const [check, setCheck] = useState(!!defaultChecked || !!checked);
+  const [check, setCheck] = useState(defaultChecked || checked);
 
   let styleClasses = classNames('checkbox', {
     [`checkbox-${color}`]: !!color,
     [`checkbox-${size}`]: !!size,
-    // [`checkbox-${icon}`]: !!icon,
   });
   if (className) {
     styleClasses += ' ' + className;
@@ -45,14 +44,28 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
 
   return (
     <div className={styleClasses}>
-      <input
-        type="checkbox"
-        disabled={disabled}
-        checked={check}
-        onChange={onChangeHandler}
-      />
-      {/* {icon && <Icon name={icon} />} */}
-      <label>{label}</label>
+      {icon ? (
+        <React.Fragment>
+          <input
+            className="checkbox-icon"
+            type="checkbox"
+            disabled={disabled}
+            checked={check}
+            onChange={onChangeHandler}
+          />
+          <Icon name={icon} />
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <input
+            type="checkbox"
+            disabled={disabled}
+            checked={check}
+            onChange={onChangeHandler}
+          />
+          <label>{label}</label>
+        </React.Fragment>
+      )}
     </div>
   );
 };

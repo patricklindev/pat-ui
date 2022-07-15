@@ -2,6 +2,7 @@
   display: flex;
   justify-content: left;
   gap: 5vw;
+  user-select: none;
 }
 
 input[type='checkbox'] {
@@ -16,22 +17,43 @@ input + label {
   margin-left: 1vw;
 }
 
-.checkbox-small {
-  transform: scale(0.75);
+.checkbox {
+  &-small {
+    transform: scale(0.75);
+  }
+
+  &-large {
+    transform: scale(1.25);
+  }
+
+  &-secondary {
+    accent-color: purple;
+  }
+
+  &-success {
+    accent-color: green;
+  }
+
+  &-default {
+    accent-color: gray;
+  }
 }
 
-.checkbox-large {
-  transform: scale(1.25);
+.checkbox-icon {
+  opacity: 0;
+  transform: scale(2);
 }
 
-.checkbox-secondary {
-  accent-color: purple;
+.checkbox svg {
+  stroke-width: 3;
+  stroke: black;
+  fill: white;
+  cursor: pointer;
+  position: relative;
+  right: 1.5vw;
+  z-index: -1;
 }
 
-.checkbox-success {
-  accent-color: green;
-}
-
-.checkbox-default {
-  accent-color: gray;
+.checkbox input:checked ~ svg {
+  fill: black;
 }

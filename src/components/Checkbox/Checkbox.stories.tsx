@@ -52,6 +52,13 @@ export const ControlledCheckbox = () => {
   };
 
   return (
-    <Checkbox label="Controlled" onChange={onChangeHandler} checked={checked} />
+    <div className="checkboxes">
+      <Checkbox
+        label="Controlled"
+        onChange={onChangeHandler}
+        checked={checked}
+      />
+      <Checkbox icon="home" onChange={onChangeHandler} checked={!checked} />
+    </div>
   );
 };

@@ -4,8 +4,10 @@ exports[`Checkbox should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="checkbox"
+    data-testid="checkbox"
   >
     <input
+      data-testid="checkbox-input"
       type="checkbox"
     />
     <label />

@@ -45,7 +45,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
   }
 
   return (
-    <div className={styleClasses}>
+    <div className={styleClasses} data-testid="checkbox">
       {icon ? (
         <React.Fragment>
           <input
@@ -54,8 +54,10 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
             disabled={disabled}
             checked={onChange ? checked : check}
             onChange={onChange ? onChange : onChangeHandler}
+            data-testid="checkbox-icon-input"
           />
           <Icon name={icon} />
+          <label>{label}</label>
         </React.Fragment>
       ) : (
         <React.Fragment>
@@ -64,6 +66,7 @@ const Checkbox: FC<ICheckboxProps> = (props) => {
             disabled={disabled}
             checked={onChange ? checked : check}
             onChange={onChange ? onChange : onChangeHandler}
+            data-testid="checkbox-input"
           />
           <label>{label}</label>
         </React.Fragment>

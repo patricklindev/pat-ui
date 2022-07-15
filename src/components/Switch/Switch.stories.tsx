@@ -15,6 +15,19 @@ export const DefaultSwitch = () => (
     </div>
 )        
 
+export const ToggleSwitch = () => (
+    <div>
+        <h1>Toggle Switches</h1>
+        <br/>
+        <div className="switch--flex-container">
+            <div className="switch--flex-row">
+                <Switch onChange={action('Default Switch clicked')} toggle='off'/>
+                <Switch onChange={action('Default Switch clicked')} toggle='on'/>
+            </div>
+        </div>
+    </div>
+)        
+
 export const DisabledSwitch = () => (
     <div>
         <h1>Disabled Switches</h1>
@@ -75,18 +88,18 @@ export const LabelSwitch = () => (
 )
 
 export const OnChangeEvent = () => {
-    const [checked, setChecked] = useState<boolean>(false);
-    const handleChange = () => {
-        setChecked(!checked);
-        // alert(!checked);
+    const [isChecked, setChecked] = useState<boolean>(false);
+    const handleChange = (event: any) => {
+        setChecked(event.target.checked);
       };
     return(
 
     <div>
-        <h3>Controlled: onChange prop</h3>
+        <h3>Controlled Component</h3>
         <br/>
-        <Switch defaultChecked={checked} onChange={handleChange}/>
+        <Switch checked={isChecked} onChange={handleChange}/>
     </div>
     )
 }
+
 

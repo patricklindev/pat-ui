@@ -35,6 +35,8 @@ export interface ISwitchProps {
     toggle?: Toggle;
     /** set switch disabled*/
     disabled?: boolean;
+    /** set switch checked*/
+    checked?: boolean;
     /** set switch onChange*/
     onChange?: ChangeEventHandler;
 }
@@ -50,7 +52,7 @@ export type SwitchProps = ISwitchProps & AllHTMLAttributes<HTMLElement>
  */
 
 export const Switch: FC<SwitchProps> = (props) => {
-    const { className, label, color, sizes, toggle, disabled, onChange, ...rest} = props;
+    const { className, label, color, sizes, toggle, checked, disabled, onChange, ...rest} = props;
     const [isChecked, setIsChecked] = useState(toggle === 'on' ? true : false)
 
     let styleClasses = classNames('switch--slider slider-round', {
@@ -68,27 +70,45 @@ export const Switch: FC<SwitchProps> = (props) => {
     }
 
     let strSwitch: string = 'switch--container'
+    let Switch;
 
-    let Switch = (
-        <label className={strSwitch}>  
-            <input 
-                type="checkbox"
-                defaultChecked={isChecked}
-                disabled={disabled}
-                onChange={onChange}
-                onClick={handleClick}
-                {...(rest )}
-            />
-            <span color={color} className={styleClasses}/>
-            <span className="switch--label">{label}</span>
-        </label>
-    )
+    if(toggle === 'on' || toggle === 'off'){
+        Switch = (
+            <label className={strSwitch}>  
+                <input 
+                    type="checkbox"
+                    checked={isChecked}
+                    disabled={disabled}
+                    onChange={onChange}
+                    onClick={handleClick}
+                    {...(rest )}
+                />
+                <span color={color} className={styleClasses}/>
+                <span className="switch--label">{label}</span>
+            </label>
+        )
+    }else{
+        Switch = (
+            <label className={strSwitch}>  
+                <input 
+                    type="checkbox"
+                    checked={checked} 
+                    disabled={disabled}
+                    onChange={onChange}
+                    {...(rest )}
+                />
+                <span color={color} className={styleClasses}/>
+                <span className="switch--label">{label}</span>
+            </label>
+        )
+    }
+
     return Switch;
 }
 
 Switch.defaultProps = { 
     color: 'primary',
-    disabled: false
+    disabled: false,
 };
 
 export default Switch;

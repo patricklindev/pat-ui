@@ -1,0 +1,200 @@
+/*variables*/
+$switch-width: 34px;
+$switch-height: 34px;
+$switch-thumb-height: 20px;
+$switch-thumb-width: 20px;
+$switch-thumb-left: -1px;
+$switch-thumb-bottom: -3px;
+$switch-palette-height: 14px;
+$switch-palette-width: 34px;
+$switch-sm-palette-height: 10px;
+$switch-sm-palette-width: 26px;
+$switch-sm-thumb-height: 16px;
+$switch-sm-thumb-width: 16px;
+$switch-margin-right: 75px;
+$switch-disabled-opacity: 0.4 !default;
+
+/*Modified pat-ui colors with added alpha values(bb)*/
+$primary-transparency: #20c997bb !default;
+$secondary-transparency: #6c757dbb !default;
+$success-transparency: #52c41abb !default;
+$info-transparency: #17a2b8bb !default;
+$warning-transparency: #fadb14bb !default;
+$danger-transparency: #dc3545bb !default;
+$light-transparency: #f8f9fabb !default;
+$dark-transparency: #343a40bb !default;
+
+/*mixin*/
+@mixin slider-background-color($color){
+    background-color: $color;
+    // opacity: 0.8;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+@mixin slider-thumb-background-color($color){
+  background-color: $color;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  // opacity: 0.5;
+}
+@mixin slider-transition($speed){
+  transition: $speed;
+}
+
+/* The switch - the box around the slider */
+.switch--container{
+    position: relative;
+    display: flex;
+    width: $switch-width;
+    height: $switch-height;
+    margin-right: $switch-margin-right;
+}
+
+/* align components horizontally*/
+.switch--flex-row{
+  display: flex;
+}
+
+// .switch--flex-item{
+//   width: auto;
+// }
+  
+/* Hide default HTML checkbox */
+.switch--container input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.switch--slider{
+  position: absolute;
+  cursor: pointer;
+  top: 5px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: $switch-palette-height;
+  width: $switch-palette-width;
+  // background-color: #E0E0E0;
+  @include slider-background-color(#E0E0E0);
+  @include slider-transition(.2s)
+}
+
+/*Slider movement: palette action*/
+.switch--slider:before{
+  position: absolute;
+  content: "";
+  height: $switch-thumb-height;
+  width: $switch-thumb-width;
+  left: $switch-thumb-left;
+  bottom: $switch-thumb-bottom;
+  @include slider-background-color(#BDBDBD);
+  @include slider-transition(.2s)
+}
+
+/*For all other switches*/
+input:checked + .switch--slider {
+  @include slider-background-color($primary);
+}
+
+/*Colors of palette are lighter than thumbs*/
+input:checked + span[color="primary"] {
+    @include slider-background-color($primary-transparency);
+}
+input:checked + span[color="secondary"] {
+    @include slider-background-color($secondary-transparency);
+}
+input:checked + span[color="success"] {
+    @include slider-background-color($success-transparency);
+}
+input:checked + span[color="info"] {
+    @include slider-background-color($info-transparency);
+}
+input:checked + span[color="warning"] {
+    @include slider-background-color($warning-transparency);
+}
+input:checked + span[color="danger"] {
+    @include slider-background-color($danger-transparency);
+}
+input:checked + span[color="light"] {
+    @include slider-background-color($light-transparency);
+}
+input:checked + span[color="dark"] {
+    @include slider-background-color($dark-transparency);
+}
+/*Colors of rounded thumbs are darker than palettes*/
+input:checked + .switch--slider.slider-round.primary::before {
+    @include slider-thumb-background-color($primary);
+}
+input:checked + .switch--slider.slider-round.secondary::before {
+    @include slider-thumb-background-color($secondary);
+}
+input:checked + .switch--slider.slider-round.success::before {
+    @include slider-thumb-background-color($success);
+}
+input:checked + .switch--slider.slider-round.info::before {
+    @include slider-thumb-background-color($info);
+}
+input:checked + .switch--slider.slider-round.warning::before {
+    @include slider-thumb-background-color($warning);
+}
+input:checked + .switch--slider.slider-round.danger::before {
+    @include slider-thumb-background-color($danger);
+}
+input:checked + .switch--slider.slider-round.light::before {
+    @include slider-thumb-background-color($light);
+}
+input:checked + .switch--slider.slider-round.dark::before {
+    @include slider-thumb-background-color($dark);
+}
+
+input:focus + .switch--slider {
+  box-shadow: 0 0 1px $primary;
+}
+
+/*Slider movement: thumb action*/
+input:checked + .switch--slider:before {
+  transform: translate(17px);
+}
+
+/* Rounded palettes */
+.slider-round {
+  border-radius: 7px;
+}
+
+/*Add transparency*/
+.slider-round.disabled{
+  cursor: not-allowed;
+  opacity: $switch-disabled-opacity;
+  box-shadow: none;
+}
+
+/* Rounded thumbs */
+.slider-round:before {
+  border-radius: 50%;
+}
+
+/*Small switch*/
+.slider-round.sm{
+  height: $switch-sm-palette-height;
+  width: $switch-sm-palette-width;
+  top: 7px;
+  left: 5px;
+}
+.slider-round.sm::before{
+  height: $switch-sm-thumb-height;
+  width: $switch-sm-thumb-width;
+  bottom: -3px;
+}
+
+/*Label cursor*/
+.switch--label{
+  cursor: pointer;
+  margin-left: 3rem;
+}
+
+

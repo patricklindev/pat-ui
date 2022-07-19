@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should match snapshot 1`] = `
+<DocumentFragment>
+  <label
+    class="switch--container"
+  >
+    <input
+      type="checkbox"
+    />
+    <span
+      class="switch--slider slider-round primary"
+      color="primary"
+    />
+    <span
+      class="switch--label"
+    />
+  </label>
+</DocumentFragment>
+`;

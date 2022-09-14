@@ -12,7 +12,7 @@ import React, {
   export interface DialogProps {
     // Boilerplate values for this component, will add more later
     selectedValue?: any;
-    open?: boolean;
+    close?: boolean;
     onClose?: (val: any) => void;
  }
 
@@ -21,7 +21,7 @@ import React, {
  // alert
  // form dialogs
   const Dialog: FC<DialogProps> = (props) => {
-    const {selectedValue, open, onClose} = props;
+    const {selectedValue, close, onClose} = props;
     // do logic in following lines
 
     return (

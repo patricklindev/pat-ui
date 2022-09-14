@@ -1,4 +1,5 @@
 import React from 'react';
+import { classNames } from '../../utils/classNames';
 
 type TToastColor =
   | 'primary'
@@ -15,8 +16,8 @@ export interface IToastProps {
   position?: TToastPostion;
   title?: string;
   description: string;
-  autoHide: boolean;
-  duration: number;
+  autoHide?: boolean;
+  duration?: number;
   icon?: string;
 }
 
@@ -29,5 +30,9 @@ export const Toast = ({
   duration = 3000,
   icon,
 }: IToastProps) => {
+  let styleClasses = classNames('toast', {
+    [`toast-${color}`]: true,
+    [`toast-${position}`]: true,
+  });
   return <div className={`toast ${position}`}>Toast</div>;
 };

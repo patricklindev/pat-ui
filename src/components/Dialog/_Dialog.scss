@@ -1,0 +1,30 @@
+// default configuration for Dialog component
+.dialog-default {
+    border-style: solid;
+    border-width: $border-width;
+    border-radius: $border-radius;
+    border-color: $border-color;
+    border-style: none;
+
+    // layout
+    display: flex;
+
+    // child elements may include: paragraph, icon, and button
+   
+    .icon {
+      height: 10px;
+    }
+
+    .title {
+      height: 10px;
+    }
+
+    .button {
+      padding: 0.6rem;
+      margin: 0px;
+    }
+
+    .input-box {
+        height: 10px;
+    }
+  }

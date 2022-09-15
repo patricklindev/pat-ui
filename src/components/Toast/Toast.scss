@@ -1,0 +1,31 @@
+.toast {
+    position: absolute;
+    min-width: 344px;
+    min-height: 76px;
+    padding: 9px 13px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toast__top-right {
+    top: 15px;
+    right: 15px;
+    opacity: 1;
+}
+
+.toast__top-left {
+    top: 15px;
+    left: 15px;
+    opacity: 1;
+}
+
+.toast__success {
+    background-color: #e4f8f0;
+    border-radius: 6px;
+    color: #1ea97c;
+}

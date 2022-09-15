@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 
 type TToastColor =
@@ -12,27 +12,60 @@ type TToastColor =
 type TToastPostion = 'top-right' | 'bottom-right' | 'bottom-left' | 'top-left';
 
 export interface IToastProps {
-  color: TToastColor;
+  open: boolean;
+  color?: TToastColor;
   position?: TToastPostion;
   title?: string;
-  description: string;
-  autoHide?: boolean;
-  duration?: number;
+  message: string;
+  autoHideDuration?: number;
   icon?: string;
+  onClose: () => void;
 }
 
 export const Toast = ({
-  color,
+  open,
+  color = 'success',
   position = 'top-right',
   title,
-  description,
-  autoHide = true,
-  duration = 3000,
+  message,
+  autoHideDuration,
   icon,
+  onClose,
 }: IToastProps) => {
-  let styleClasses = classNames('toast', {
-    [`toast-${color}`]: true,
-    [`toast-${position}`]: true,
-  });
-  return <div className={`toast ${position}`}>Toast</div>;
+  const [styles, setStyles] = useState('');
+
+  useEffect(() => {
+    if (open) {
+      // 'toast' className is separate because this component is not statically rendered
+      // therefore, default toast styles need to be applied on init load
+      let styleClasses = classNames({
+        [`toast__${color}`]: true,
+        [`toast__${position}`]: true,
+      });
+      setStyles(styleClasses);
+
+      if (autoHideDuration) {
+        setTimeout(() => {
+          setStyles('');
+          onClose();
+        }, autoHideDuration);
+      }
+    }
+  }, [open]);
+
+  return (
+    <div className={`toast ${styles}`}>
+      <div />
+      <div>
+        <img src="" alt="" />
+      </div>
+      <div>
+        <h6>{title}</h6>
+        <p>{message}</p>
+      </div>
+      <div>
+        <img src="" alt="" />
+      </div>
+    </div>
+  );
 };

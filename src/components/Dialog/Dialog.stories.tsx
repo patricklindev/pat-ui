@@ -7,6 +7,6 @@ export default {
   };
 export const SampleDialog = () => (
     <div>
-        <Dialog open={true}/>
+        <Dialog open={true}> </Dialog>
     </div>
 );

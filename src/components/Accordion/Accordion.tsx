@@ -13,7 +13,7 @@ function Accordion({ children }: { children: JSX.Element[] }) {
     setOpen(!a);
   };
   return (
-    <div>
+    <div className={`accordion-container ${open ? "active" : ""}`}>
       {children.map((elem, idx) => {
         if (elem.type.name === "AccordionHeader") {
           return (

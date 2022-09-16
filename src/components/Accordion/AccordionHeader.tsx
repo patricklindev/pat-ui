@@ -1,5 +1,5 @@
 import React from "react";
-import "./AccordionHeader.scss";
+
 
 export type AccordionHeaderProps = {
   children: JSX.Element | Array<JSX.Element>;
@@ -27,7 +27,9 @@ const AccordionHeader = (props: AccordionHeaderProps) => {
           );
         })
       ) : (
-        <div className="accordion-header-btn"><p>{props.children}</p></div>
+        <div className="accordion-header-btn">
+          {props.children}
+        </div>
       )}
     </div>
   );

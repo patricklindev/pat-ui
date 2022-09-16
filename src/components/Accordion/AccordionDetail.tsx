@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./AccordionDetail.scss";
+
 
 
 type AccordionDetailProps = {
@@ -12,10 +12,8 @@ function AccordionDetail(props: AccordionDetailProps) {
   useEffect(() => {
     if (props.isOpen) {
       const detailEl = detailRef.current as HTMLDivElement;
-      console.log(detailEl?.scrollHeight);
       setHeight(detailEl?.scrollHeight);
     } else {
-      console.log("elsedyizz");
       setHeight(0);
     }
   }, [props.isOpen]);
@@ -23,7 +21,7 @@ function AccordionDetail(props: AccordionDetailProps) {
     <div
       ref={detailRef}
       style={{ height }}
-      className="accordion-detail-container"
+      className= 'accordion-detail-container'
     >
       <div className="accordion-detail-container-content">{props.children}</div>
     </div>

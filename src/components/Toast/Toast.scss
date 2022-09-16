@@ -24,8 +24,45 @@
     opacity: 1;
 }
 
-.toast__success {
+.toast__bottom-right {
+    bottom: 15px;
+    right: 15px;
+    opacity: 1;
+}
+
+.toast__bottom-left {
+    bottom: 15px;
+    left: 15px;
+    opacity: 1;
+}
+
+.toast__primary {
     background-color: #e4f8f0;
     border-radius: 6px;
-    color: #1ea97c;
+    color: $primary;
+}
+.toast__secondary {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    color: $secondary;
+}
+.toast__success {
+    background-color: #d9e9db;
+    border-radius: 6px;
+    color: $success;
+}
+.toast__info {
+    background-color: #cddee2;
+    border-radius: 6px;
+    color: $info;
+}
+.toast__warning {
+    background-color: #f0eddf;
+    border-radius: 6px;
+    color: $dark-yellow;
+}
+.toast__danger {
+    background-color: #ecdedf;
+    border-radius: 6px;
+    color: $danger;
 }

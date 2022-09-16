@@ -15,29 +15,27 @@ export interface IToastProps {
   open: boolean;
   color?: TToastColor;
   position?: TToastPostion;
-  title?: string;
-  message: string;
+  title: string;
+  message?: string;
   autoHideDuration?: number;
   icon?: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export const Toast = ({
   open,
-  color = 'success',
+  color = 'primary',
   position = 'top-right',
   title,
   message,
   autoHideDuration,
   icon,
-  onClose,
+  onClose
 }: IToastProps) => {
   const [styles, setStyles] = useState('');
 
   useEffect(() => {
     if (open) {
-      // 'toast' className is separate because this component is not statically rendered
-      // therefore, default toast styles need to be applied on init load
       let styleClasses = classNames({
         [`toast__${color}`]: true,
         [`toast__${position}`]: true,
@@ -47,7 +45,7 @@ export const Toast = ({
       if (autoHideDuration) {
         setTimeout(() => {
           setStyles('');
-          onClose();
+          // onClose();
         }, autoHideDuration);
       }
     }
@@ -57,14 +55,14 @@ export const Toast = ({
     <div className={`toast ${styles}`}>
       <div />
       <div>
-        <img src="" alt="" />
+        <img src='' alt='' />
       </div>
       <div>
         <h6>{title}</h6>
         <p>{message}</p>
       </div>
       <div>
-        <img src="" alt="" />
+        <img src='' alt='' />
       </div>
     </div>
   );

@@ -10,9 +10,7 @@ describe('Toast', () => {
             title: 'Toast title',
             message: 'Upload success!',
             autoHideDuration: 3500,
-            onClose() {
-                return;
-            },
+            onClose: jest.fn()
         }
         const view = render(<Toast {...toastProps} />);
         expect(view).toBeInTheDocument();

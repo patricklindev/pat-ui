@@ -1,175 +1,75 @@
-// default configuration for Dialog component
-.dialog-default {
-    border-style: solid;
-    border-width: $border-width;
-    border-radius: $border-radius;
-    border-color: $border-color;
-    border-style: none;
+.blur {
+  filter: blur(10px);
+}
 
-    // layout
-    display: flex;
+.window-container {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  outline: 0;
+  z-index: 999;
+  padding-top: 50px;
+}
 
-    // child elements may include: paragraph, icon, and button
-   
-    .icon {
-      height: 10px;
-    }
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  outline: none;
+  z-index: 999;
+}
 
-    .title {
-      height: 10px;
-    }
+.modal {
+  max-width: 600px;
+  min-height: 50%;
+  padding: 20px;
+  display: flex;
+  position: relative;
+  overflow-y: auto;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #fff;
+  text-align: left;
+  // box-shadow: top/bottom shadow, left/right, how "intense" the shadow is, color
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 
-    .button {
-      padding: 0.6rem;
-      margin: 0px;
-    }
-
-    .input-box {
-        height: 10px;
-    }
+  .title {
+    text-align: left;
   }
 
-  .darkBG {
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-  }
-  
-  .centered {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .modal {
-    width: 250px;
-    height: 170px;
-    background: white;
-    color: white;
-    z-index: 10;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-  }
-  
-  .modalHeader {
-    height: 50px;
-    background: white;
-    overflow: hidden;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-  }
-  
-  .heading {
+  .subtitle {
+    color: $black;
     margin: 0;
-    padding: 10px;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: center;
+    text-align: left;
+    font-weight: bold;
   }
-  
-  .modalContent {
-    padding: 10px;
-    font-size: 14px;
-    color: #2c3e50;
-    text-align: center;
+
+  &__paragraph {
+    padding: 20px 0px;
+    color: $gray-500;
+    margin: 0;
+    text-align: left;
   }
-  
-  .modalActions {
-    position: absolute;
-    bottom: 2px;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  
-  .actionsContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .closeBtn {
-    cursor: pointer;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 8px;
-    border: none;
-    font-size: 18px;
-    color: #2c3e50;
-    background: white;
-    transition: all 0.25s ease;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
+
+  .modal-button__section {
     position: absolute;
     right: 0;
-    top: 0;
-    align-self: flex-end;
-    margin-top: -7px;
-    margin-right: -7px;
+    bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    .modal-button {
+      color: $blue;
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
   }
-  
-  .closeBtn:hover {
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-    transform: translate(-4px, 4px);
-  }
-  
-  .deleteBtn {
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    padding: 11px 28px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    border: none;
-    color: #fff;
-    background: #ff3e4e;
-    transition: all 0.25s ease;
-  }
-  
-  .deleteBtn:hover {
-    box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
-    transform: translateY(-5px);
-    background: #ff3e4e;
-  }
-  
-  .cancelBtn {
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    padding: 11px 28px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    border: none;
-    color: #2c3e50;
-    background: #fcfcfc;
-    transition: all 0.25s ease;
-  }
-  
-  .cancelBtn:hover {
-    box-shadow: none;
-    transform: none;
-    background: whitesmoke;
-  }
-
-  .primaryBtn {
-    margin: 20px 10px;
-    cursor: pointer;
-    font-weight: 500;
-    padding: 13px 25px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    border: none;
-    color: white;
-    background: #185adb;
-    transition: all 0.25s ease;
-  }
-  
-  .primaryBtn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
-  }
+}

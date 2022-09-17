@@ -24,10 +24,15 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.5",
     "react-icons": "^4.4.0",
+    "react-modal": "^3.15.1",
     "remixicon": "^2.5.0"
   },
   "peerDependencies": {

@@ -2,26 +2,30 @@ import React, {
   FC,
   CSSProperties,
   useState,
+  useCallback,
+  useRef,
   Children,
   ReactElement,
   cloneElement,
   ReactNode,
+  useEffect,
 } from 'react';
-import { RiCloseLine } from 'react-icons/ri';
+import { createPortal } from 'react-dom';
 import { IDialogOptionProps } from './DialogOption';
+import { action } from '@storybook/addon-actions';
 
 export interface DialogProps {
   // Boilerplate values for this component, will add more later
   selectedValue?: any;
   open?: boolean;
+  draggable?: boolean;
   classes?: object;
   /** children must be React Element */
-  children?:
-    | string
-    | ReactElement<IDialogOptionProps>
-    | ReactElement<IDialogOptionProps>[];
+  children?: string | ReactElement<any> | ReactElement<IDialogOptionProps>[];
+
+  //  function used to pass a selected value into
   onClose?: (val: any) => void;
-  onBackdropClick?: (val: any) => void;
+  toggleModal?: () => void;
 }
 
 // there will be 3 different designs for dialogs:
@@ -29,40 +33,71 @@ export interface DialogProps {
 // alert
 // form dialogs
 const Dialog: FC<DialogProps> = (props) => {
-  const { selectedValue, open, onClose, onBackdropClick } = props;
+  const { selectedValue, open, onClose, toggleModal, children, draggable } =
+    props;
+
   // do logic in following lines
-  const [visible, setVisible] = useState<boolean>(false);
+
+  const wrapperRef = useRef<any>(null);
+
+  const closeModal = useCallback(
+    ({ target }) => {
+      if (
+        wrapperRef &&
+        wrapperRef.current &&
+        !wrapperRef.current.contains(target) &&
+        toggleModal
+      ) {
+        toggleModal();
+      }
+    },
+    [toggleModal]
+  );
+
+  // the logic that allows modal to be closed
+  useEffect(() => {
+    document.addEventListener('click', closeModal, { capture: true });
+    return () => {
+      document.removeEventListener('click', closeModal, { capture: true });
+    };
+  }, [closeModal]);
+
+  // logic that prevent the user from scrolling when clicked
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = '';
+    }
+  }, [open]);
 
   return (
     <>
-      <div className="darkBG" onClick={() => setVisible(false)} />
-      <div className="centered">
-        <div className="modal">
-          <div className="modalHeader">
-            <h5 className="heading">Dialog</h5>
-          </div>
-          <button className="closeBtn" onClick={() => setVisible(false)}>
-            <RiCloseLine style={{ marginBottom: '-3px' }} />
-          </button>
-          <div className="modalContent">Lorem ipsum dolor</div>
-          <div className="modalActions">
-            <div className="actionsContainer">
-              <button className="deleteBtn" onClick={() => setVisible(false)}>
-                Delete
-              </button>
-              <button className="cancelBtn" onClick={() => setVisible(false)}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      {open
+        ? createPortal(
+            <>
+              {/* HTML for where the dialog modal will be displayed on screen */}
+              <div className="window-container">
+                {/* HTML for the modal container */}
+                <div className="modal-container">
+                  {/* The Modal  */}
+                  <div ref={wrapperRef} className="modal" draggable={draggable}>
+                    {children}
+                  </div>
+                </div>
+              </div>
+            </>,
+            // set the "container" to document.body so that we can trigger the close toggle
+            document.body
+          )
+        : null}
     </>
   );
 };
 
 Dialog.defaultProps = {
   open: false,
+  draggable: false,
 };
 
 export default Dialog;

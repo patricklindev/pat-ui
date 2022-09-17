@@ -49,3 +49,31 @@ export const MultipleAccordions = () => {
 }
 
 
+export const DisabledAccordion = () => {
+  return  <><Accordion>
+            <AccordionHeader>
+              <p>hello</p>
+            </AccordionHeader>
+            <AccordionDetail>
+              <p>New Accoirdon detail helloooo</p>
+            </AccordionDetail>
+          </Accordion>
+          <Accordion>
+          <AccordionHeader>
+            <p>hello</p>
+          </AccordionHeader>
+          <AccordionDetail>
+            <p>New Accoirdon detail helloooo</p>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion disabled>
+        <AccordionHeader>
+          <p>hello</p>
+        </AccordionHeader>
+        <AccordionDetail>
+          <p>New Accoirdon detail helloooo</p>
+        </AccordionDetail>
+      </Accordion>
+      </>
+}
+

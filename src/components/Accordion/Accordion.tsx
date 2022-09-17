@@ -1,19 +1,30 @@
 import React, { ReactNode, useState } from "react";
 import AccordionDetail from "./AccordionDetail";
 import AccordionHeader from "./AccordionHeader";
+import { classNames } from '../../utils/classNames';
 
-export type AccordionData = {
-  title: string;
-  content: ReactNode;
-};
+//export type childrenType =  JSX.Element[] | JSX.Element
+export interface IAccordionProps {
+  children : JSX.Element[];
+  disabled? : boolean;
+}
 
-function Accordion({ children }: { children: JSX.Element[] }) {
+function Accordion( props :IAccordionProps ) {
+  const {children, disabled, ...rest} = props
   const [open, setOpen] = useState<boolean>(false);
   const btnOnClick = (a: boolean) => {
-    setOpen(!a);
+    if(!disabled){
+      setOpen(!a);
+    }
+
   };
+  let styleClasses = classNames('accordion-container',{
+    disabled: !!disabled
+  })
+  console.log(styleClasses)
+
   return (
-    <div className={`accordion-container ${open ? "active" : ""}`}>
+    <div className={`${styleClasses} ${open ? "active" : ""}`}>
       {children.map((elem, idx) => {
         if (elem.type.name === "AccordionHeader") {
           return (

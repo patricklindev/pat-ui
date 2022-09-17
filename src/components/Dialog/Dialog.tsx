@@ -37,21 +37,30 @@ const Dialog: FC<DialogProps> = (props) => {
     props;
 
   // do logic in following lines
+  useEffect(() => {
+    // console.log('current onclose: ', onClose);
+  }, [onClose]);
 
+  const [visible, setVisible] = useState<boolean>(open as boolean);
+  useEffect(() => {
+    setVisible(open as boolean);
+  }, [open]);
+  // use wrapper to get reference to the dialog container
   const wrapperRef = useRef<any>(null);
 
+  // the logic that is used to let us pass value from Dialog via onClose()
   const closeModal = useCallback(
     ({ target }) => {
       if (
         wrapperRef &&
         wrapperRef.current &&
         !wrapperRef.current.contains(target) &&
-        toggleModal
+        onClose
       ) {
-        toggleModal();
+        onClose('test passing Value');
       }
     },
-    [toggleModal]
+    [onClose]
   );
 
   // the logic that allows modal to be closed
@@ -71,9 +80,21 @@ const Dialog: FC<DialogProps> = (props) => {
     }
   }, [open]);
 
+  // access children prop and even perform more operations
+  useEffect(() => {
+    if (props.children) {
+      console.log(
+        'children props: ',
+        props.children,
+        ' and its types: ',
+        typeof props.children
+      );
+    }
+  }, [props.children]);
+
   return (
     <>
-      {open
+      {visible
         ? createPortal(
             <>
               {/* HTML for where the dialog modal will be displayed on screen */}

@@ -2,7 +2,11 @@
   filter: blur(10px);
 }
 
+// this class deal with the dialog background
 .window-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
   position: absolute;
   top: 0;
@@ -12,10 +16,11 @@
   overflow: auto;
   outline: 0;
   z-index: 999;
-  padding-top: 50px;
 }
 
+// this class deal with the placement of the dialog on the top of the dimmed background
 .modal-container {
+  padding-top: 50%;
   display: flex;
   justify-content: center;
   align-items: flex-start;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { action } from '@storybook/addon-actions';
 import Dialog from './index';
 import Button from '@mui/material/Button';
@@ -20,31 +20,32 @@ export default {
 };
 
 export const SimpleDialogWithChildren = () => {
-  const [showModal, setModalState] = React.useState(false);
-  const toggleModal = React.useCallback(() => {
+  // lines: 25-32 provided by the user to control the dialog
+  const [showModal, setModalState] = useState(false);
+  const handleOpen = useCallback(() => {
     setModalState((prevState) => !prevState);
   }, []);
+  const handleClose = (inputValue: string) => {
+    setModalState(false);
+    console.log('value from dialog: ', inputValue);
+  };
 
   // for TESTING  ONLY
   const emails = ['username@gmail.com', 'user02@gmail.com'];
-  interface SimpleDialogProps {
-    open: boolean;
-    selectedValue: string;
-    onClose: (value: string) => void;
-  }
 
   return (
-    <div>
+    <>
       <button
-        className={`${showModal ? 'blur' : ''}`}
+        // className={`${showModal ? 'blur' : ''}`}
         onClick={() => {
           //   action('button clicked');
-          toggleModal();
+          handleOpen();
         }}
       >
         Click here for Dialog
       </button>
-      <Dialog open={showModal} toggleModal={toggleModal}>
+
+      <Dialog open={showModal} onClose={handleClose}>
         <h5 className="title">Set backup account</h5>
         <List sx={{ pt: 0 }}>
           {emails.map((email) => (
@@ -67,15 +68,21 @@ export const SimpleDialogWithChildren = () => {
           </ListItem>
         </List>
       </Dialog>
-    </div>
+    </>
   );
 };
 
 export const AlertDialog = () => {
-  const [showModal, setModalState] = React.useState(false);
-  const toggleModal = React.useCallback(() => {
+  const [showModal, setModalState] = useState(false);
+  const handleOpen = useCallback(() => {
     setModalState((prevState) => !prevState);
   }, []);
+  const handleClose = (inputValue?: string) => {
+    setModalState(false);
+    if (inputValue) {
+      console.log('value from dialog: ', inputValue);
+    }
+  };
 
   return (
     <div>
@@ -83,19 +90,24 @@ export const AlertDialog = () => {
         className={`${showModal ? 'blur' : ''}`}
         onClick={() => {
           //   action('button clicked');
-          toggleModal();
+          handleOpen();
         }}
       >
         Click here for Dialog
       </button>
-      <Dialog open={showModal} toggleModal={toggleModal}>
+      <Dialog open={showModal} onClose={handleClose}>
         <h5 className="title">Use Google's location service?</h5>
         <p className="modal__paragraph">
           Let Google help apps determine location. This means sending anonymous
           location data to Google, even when no apps are running.
         </p>
         <section className="modal-button__section">
-          <button className="modal-button" onClick={toggleModal}>
+          <button
+            className="modal-button"
+            onClick={() => {
+              setModalState(false);
+            }}
+          >
             Cancel
           </button>
           <button className="modal-button"> Subscribe</button>
@@ -106,10 +118,16 @@ export const AlertDialog = () => {
 };
 
 export const SubscribeDialog = () => {
-  const [showModal, setModalState] = React.useState(false);
-  const toggleModal = React.useCallback(() => {
+  const [showModal, setModalState] = useState(false);
+  const handleOpen = useCallback(() => {
     setModalState((prevState) => !prevState);
   }, []);
+  const handleClose = (inputValue?: string) => {
+    setModalState(false);
+    if (inputValue) {
+      console.log('value from dialog: ', inputValue);
+    }
+  };
 
   return (
     <div>
@@ -117,12 +135,12 @@ export const SubscribeDialog = () => {
         className={`${showModal ? 'blur' : ''}`}
         onClick={() => {
           //   action('button clicked');
-          toggleModal();
+          handleOpen();
         }}
       >
         Click here for Dialog
       </button>
-      <Dialog open={showModal} toggleModal={toggleModal}>
+      <Dialog open={showModal} onClose={handleClose}>
         <h5 className="title">Subscribe</h5>
         <p className="modal__paragraph">
           To subscribe to this website, please enter your email address here. We
@@ -138,7 +156,12 @@ export const SubscribeDialog = () => {
           variant="standard"
         />
         <section className="modal-button__section">
-          <button className="modal-button" onClick={toggleModal}>
+          <button
+            className="modal-button"
+            onClick={() => {
+              handleClose();
+            }}
+          >
             Cancel
           </button>
           <button className="modal-button"> Subscribe</button>

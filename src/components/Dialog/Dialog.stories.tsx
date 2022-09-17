@@ -12,6 +12,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
+import TextField from '@mui/material/TextField';
 
 export default {
   title: 'Dialog',
@@ -127,6 +128,15 @@ export const SubscribeDialog = () => {
           To subscribe to this website, please enter your email address here. We
           will send updates occasionally
         </p>
+        <TextField
+          autoFocus
+          margin="normal"
+          id="name"
+          label="Email Address"
+          type="email"
+          fullWidth
+          variant="standard"
+        />
         <section className="modal-button__section">
           <button className="modal-button" onClick={toggleModal}>
             Cancel

@@ -10,6 +10,51 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    &__edge__primary {
+        @include toast-edge($primary, 10px, 76px, 6px 6px);
+    }
+    &__edge__secondary {
+        @include toast-edge($secondary, 10px, 76px, 6px 6px);
+    }
+    &__edge__success {
+        @include toast-edge($success, 10px, 76px, 6px 6px);
+    }
+    &__edge__info {
+        @include toast-edge($info, 10px, 76px, 6px 6px);
+    }
+    &__edge__warning {
+        @include toast-edge($dark-yellow, 10px, 76px, 6px 6px);
+    }
+    &__edge__danger {
+        @include toast-edge($danger, 10px, 76px, 6px 6px);
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 9px 14px;
+    }
+    &__inner-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    &__icon {
+        font-size: 30px;
+    }
+    &__text-wrapper {
+        margin-left: 10px;
+    }
+    &__close-icon {
+        cursor: pointer;
+    }
+    h6 {
+        margin-bottom: 5px;
+    }
+    p {
+        margin: 0;
+    }
 }
 
 .toast__top-right {
@@ -37,32 +82,20 @@
 }
 
 .toast__primary {
-    background-color: #e4f8f0;
-    border-radius: 6px;
-    color: $primary;
+    @include toast-color(#e4f8f0, 6px, $primary);
 }
 .toast__secondary {
-    background-color: #f8f9fa;
-    border-radius: 6px;
-    color: $secondary;
+    @include toast-color(#f8f9fa, 6px, $secondary);
 }
 .toast__success {
-    background-color: #d9e9db;
-    border-radius: 6px;
-    color: $success;
+    @include toast-color(#d9e9db, 6px, $success);
 }
 .toast__info {
-    background-color: #cddee2;
-    border-radius: 6px;
-    color: $info;
+    @include toast-color(#cddee2, 6px, $info);
 }
 .toast__warning {
-    background-color: #f0eddf;
-    border-radius: 6px;
-    color: $dark-yellow;
+    @include toast-color(#f0eddf, 6px, $dark-yellow);
 }
 .toast__danger {
-    background-color: #ecdedf;
-    border-radius: 6px;
-    color: $danger;
+    @include toast-color(#ecdedf, 6px, $danger);
 }

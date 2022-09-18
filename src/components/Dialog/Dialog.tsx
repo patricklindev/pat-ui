@@ -11,21 +11,23 @@ import React, {
   useEffect,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { IDialogOptionProps } from './DialogOption';
 import { action } from '@storybook/addon-actions';
 
 export interface DialogProps {
-  // Boilerplate values for this component, will add more later
-  selectedValue?: any;
+  // the on/off switch of the component
   open?: boolean;
-  draggable?: boolean;
-  classes?: object;
-  /** children must be React Element */
-  children?: string | ReactElement<any> | ReactElement<IDialogOptionProps>[];
 
-  //  function used to pass a selected value into
+  // this attribute allows user to drag the dialog or not
+  draggable?: boolean;
+
+  // classes allows style overwritting
+  classes?: object | string;
+
+  // children must be React Element
+  children?: string | ReactElement<any> | ReactElement<any>[];
+
+  // Callback function fired when the component requests to be closed.
   onClose?: (val: any) => void;
-  toggleModal?: () => void;
 }
 
 // there will be 3 different designs for dialogs:
@@ -33,8 +35,7 @@ export interface DialogProps {
 // alert
 // form dialogs
 const Dialog: FC<DialogProps> = (props) => {
-  const { selectedValue, open, onClose, toggleModal, children, draggable } =
-    props;
+  const { open, onClose, children, draggable, classes } = props;
 
   // do logic in following lines
   useEffect(() => {
@@ -81,6 +82,7 @@ const Dialog: FC<DialogProps> = (props) => {
   }, [open]);
 
   // access children prop and even perform more operations
+  // with props.children
   useEffect(() => {
     if (props.children) {
       console.log(
@@ -102,7 +104,14 @@ const Dialog: FC<DialogProps> = (props) => {
                 {/* HTML for the modal container */}
                 <div className="modal-container">
                   {/* The Modal  */}
-                  <div ref={wrapperRef} className="modal" draggable={draggable}>
+                  {/* `${Math.floor(pgValue)}%` */}
+                  <div
+                    ref={wrapperRef}
+                    className={
+                      classes ? (classes as unknown as string) : 'modal'
+                    }
+                    draggable={draggable}
+                  >
                     {children}
                   </div>
                 </div>

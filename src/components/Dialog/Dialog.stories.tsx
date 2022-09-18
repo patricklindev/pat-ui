@@ -13,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
+import Input from '../Input';
 
 export default {
   title: 'Dialog',
@@ -128,6 +129,11 @@ export const SubscribeDialog = () => {
       console.log('value from dialog: ', inputValue);
     }
   };
+  const [email, setEmail] = useState<string>('');
+  const handleSubscribe = () => {
+    setModalState(false);
+    action(email);
+  };
 
   return (
     <div>
@@ -146,7 +152,7 @@ export const SubscribeDialog = () => {
           To subscribe to this website, please enter your email address here. We
           will send updates occasionally
         </p>
-        <TextField
+        {/* <TextField
           autoFocus
           margin="normal"
           id="name"
@@ -154,6 +160,15 @@ export const SubscribeDialog = () => {
           type="email"
           fullWidth
           variant="standard"
+          onChange={(e) => {
+            setEmail(e.target.value as string);
+          }}
+        /> */}
+        <Input
+          onChange={(e) => {
+            setEmail(e.target.value as string);
+          }}
+          placeholder="Email Here ..."
         />
         <section className="modal-button__section">
           <button
@@ -164,7 +179,9 @@ export const SubscribeDialog = () => {
           >
             Cancel
           </button>
-          <button className="modal-button"> Subscribe</button>
+          <button className="modal-button" onClick={action(email as string)}>
+            Subscribe
+          </button>
         </section>
       </Dialog>
     </div>

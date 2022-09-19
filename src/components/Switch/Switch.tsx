@@ -46,7 +46,7 @@ const Switch: React.FC<ISwitchProps> = (props) => {
           />
         </div>
       </label>
-      <p className="switch-label">{label}</p>
+      <p className="switch-label">{label || props.children}</p>
     </div>
   );
 

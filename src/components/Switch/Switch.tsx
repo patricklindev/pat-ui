@@ -1,27 +1,28 @@
 import React from 'react';
+import { FC, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export type SwitchSize = 'sm' | 'lg';
 export type SwitchColor = 'primary' | 'secondary' | 'default';
 
 export interface ISwitchProps {
-  // set class name
+  /**  set class name */
   className?: string;
-  //set switch size
+  /**  set switch size */
   switchSize?: SwitchSize;
-  //set switch color
+  /** set switch color */
   switchColor?: SwitchColor;
-  //set disabled switch
+  /** set disabled switch */
   disabled?: boolean;
-  //set default to checked
+  /** set default to checked */
   checked?: boolean;
-  //set switch label
+  /** set switch label */
   label?: string;
-  //set action when clicked
+  /** set action when clicked */
   onClick?: () => void;
 }
 
-const Switch: React.FC<ISwitchProps> = (props) => {
+export const Switch: FC<ISwitchProps> = (props) => {
   const {
     switchSize,
     className,
@@ -33,7 +34,7 @@ const Switch: React.FC<ISwitchProps> = (props) => {
 
   //controls default bahavior (on or off) of the switch
   const defaultChecked = checked ? checked : false;
-  const [isChecked, setIsChecked] = React.useState(defaultChecked);
+  const [isChecked, setIsChecked] = useState(defaultChecked);
 
   let styleClasses = classNames('switch', {
     [`switch-${switchColor}`]: true,

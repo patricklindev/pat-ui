@@ -6,7 +6,8 @@ export type AccordionHeaderProps = {
   btnOnClick?: () => void;
   isOpen?: boolean;
 };
-const AccordionHeader = (props: AccordionHeaderProps) => {
+const AccordionHeader = (props: AccordionHeaderProps ) => {
+
   return (
     <div
       onClick={props.btnOnClick}

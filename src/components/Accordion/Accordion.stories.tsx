@@ -10,8 +10,8 @@ export default {
 };
 
 export const DefaultAccordion = () => {
-  return  <Accordion>
-            <AccordionHeader>
+  return  <Accordion onClick={action('hello clicked')}>
+            <AccordionHeader >
               <p>hello</p>
             </AccordionHeader>
             <AccordionDetail>
@@ -77,3 +77,50 @@ export const DisabledAccordion = () => {
       </>
 }
 
+export const ControlledAccordion:React.FC = () => {
+  const [expanded, setExpanded] = React.useState<string | false >(false);
+
+  const handleChange = (panel : string) => {
+    return (open?: boolean) => setExpanded(open ? panel : false)
+  }
+
+
+
+
+
+  //   return (event: React.SyntheticEvent) => {
+  //     console.log('sadfsdf',panel,open)
+  //     //setExpanded(expanded ? panel : false);
+  //   ;
+  // }
+
+
+    //ChangeEvent<HTMLInputElement>
+    //MouseEventHandler<HTMLInputElement>
+
+  return  <><Accordion expanded={expanded === 'panel1'} onClick={handleChange('panel1')}>
+            <AccordionHeader>
+              <p>hello</p>
+            </AccordionHeader>
+            <AccordionDetail>
+              <p>New Accoirdon detail helloooo</p>
+            </AccordionDetail>
+          </Accordion>
+          <Accordion expanded={expanded === 'panel2'} onClick={handleChange('panel2')}>
+          <AccordionHeader>
+            <p>hello</p>
+          </AccordionHeader>
+          <AccordionDetail>
+            <p>New Accoirdon detail helloooo</p>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel3'} onClick={handleChange('panel3')}>
+        <AccordionHeader>
+          <p>hello</p>
+        </AccordionHeader>
+        <AccordionDetail>
+          <p>New Accoirdon detail helloooo</p>
+        </AccordionDetail>
+      </Accordion>
+      </>
+}

@@ -56,7 +56,7 @@
   border: 1px solid $gray-400;
   margin: 16px 0;
   .accordion-header{
-    border-bottom: 0;
+    border-bottom: 0.5px solid $gray-400;
   }
 }
 .accordion-container:last-of-type {

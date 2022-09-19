@@ -13,6 +13,8 @@ export interface ISwitchProps {
   switchColor?: SwitchColor;
   //set disabled switch
   disabled?: boolean;
+  //set default to checked
+  checked?: boolean;
   //set switch label
   label?: string;
   //set action when clicked
@@ -20,7 +22,18 @@ export interface ISwitchProps {
 }
 
 const Switch: React.FC<ISwitchProps> = (props) => {
-  const { switchSize, className, disabled, switchColor, label } = props;
+  const {
+    switchSize,
+    className,
+    disabled,
+    switchColor,
+    label,
+    checked,
+  } = props;
+
+  //controls default bahavior (on or off) of the switch
+  const defaultChecked = checked ? checked : false;
+  const [isChecked, setIsChecked] = React.useState(defaultChecked);
 
   let styleClasses = classNames('switch', {
     [`switch-${switchColor}`]: true,
@@ -37,8 +50,10 @@ const Switch: React.FC<ISwitchProps> = (props) => {
           <input
             type="checkbox"
             className="switch-toggle"
+            checked={isChecked}
             //avoid any action when disabled
             onClick={disabled ? (e) => e.preventDefault() : props.onClick}
+            onChange={() => setIsChecked((prev) => !prev)}
           />
           <span
             //set class name based on if switch is disabled or not

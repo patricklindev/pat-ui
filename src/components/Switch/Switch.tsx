@@ -30,8 +30,7 @@ const Switch: React.FC<ISwitchProps> = (props) => {
   if (className) {
     styleClasses += ' ' + className;
   }
-
-  return (
+  let swh = (
     <div className={styleClasses}>
       <label className="switch-container">
         <div>
@@ -50,6 +49,14 @@ const Switch: React.FC<ISwitchProps> = (props) => {
       <p className="switch-label">{label}</p>
     </div>
   );
+
+  return swh;
+};
+
+Switch.defaultProps = {
+  switchColor: 'default',
+  disabled: false,
+  switchSize: 'sm',
 };
 
 export default Switch;

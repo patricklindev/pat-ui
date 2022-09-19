@@ -22,6 +22,14 @@ export interface ISwitchProps {
   onClick?: () => void;
 }
 
+/**
+ * Switches toggle the state of a single setting on or off.
+ *
+ *  ```js
+ * import {Switch} from 'pat-ui'
+ * ```
+ *
+ */
 export const Switch: FC<ISwitchProps> = (props) => {
   const {
     switchSize,

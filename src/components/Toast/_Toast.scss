@@ -2,32 +2,28 @@
     position: absolute;
     min-width: 344px;
     min-height: 76px;
-    padding: 9px 13px;
     z-index: 9999;
-    opacity: 0;
-    transition: opacity 200ms ease-in-out;
     text-align: left;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 
     &__edge__primary {
-        @include toast-edge($primary, 10px, 76px, 6px 6px);
+        @include toast-edge($primary, 10px, 76px, 6px, 6px);
     }
     &__edge__secondary {
-        @include toast-edge($secondary, 10px, 76px, 6px 6px);
+        @include toast-edge($secondary, 10px, 76px, 6px, 6px);
     }
     &__edge__success {
-        @include toast-edge($success, 10px, 76px, 6px 6px);
+        @include toast-edge($success, 10px, 76px, 6px, 6px);
     }
     &__edge__info {
-        @include toast-edge($info, 10px, 76px, 6px 6px);
+        @include toast-edge($info, 10px, 76px, 6px, 6px);
     }
     &__edge__warning {
-        @include toast-edge($dark-yellow, 10px, 76px, 6px 6px);
+        @include toast-edge($dark-yellow, 10px, 76px, 6px, 6px);
     }
     &__edge__danger {
-        @include toast-edge($danger, 10px, 76px, 6px 6px);
+        @include toast-edge($danger, 10px, 76px, 6px, 6px);
     }
     &__wrapper {
         display: flex;
@@ -36,21 +32,21 @@
         width: 100%;
         padding: 9px 14px;
     }
-    &__inner-wrapper {
+    &__inner__wrapper {
         display: flex;
         align-items: center;
     }
-    &__icon {
-        font-size: 30px;
-    }
-    &__text-wrapper {
+    &__text__wrapper {
         margin-left: 10px;
     }
-    &__close-icon {
+    &__icon__close {
         cursor: pointer;
     }
-    h6 {
+    &__title {
         margin-bottom: 5px;
+    }
+    &__title__reset {
+        margin: 0;
     }
     p {
         margin: 0;

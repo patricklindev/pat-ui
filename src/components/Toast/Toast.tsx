@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
+import { colors, renderIcon } from './Icons';
 
 type TToastColor =
   | 'primary'
@@ -12,52 +13,75 @@ type TToastColor =
 type TToastPostion = 'top-right' | 'bottom-right' | 'bottom-left' | 'top-left';
 
 export interface IToastProps {
-  // determines if toast is visible
+  /** determines if toast is visible */
   open: boolean;
-  // set toast to preset color
+  /** set toast to preset color */
   color?: TToastColor;
-  // set toast position on screen
+  /** set toast position on screen */
   position?: TToastPostion;
-  // set toast message title
+  /** set toast message title */
   title: string;
-  // set toast message body
+  /** set toast message body */
   message?: string;
-  // time in milliseconds for toast to close
+  /** time in milliseconds for toast to close */
   autoHideDuration?: number;
-  // set custom icon in toast; Material Icons support only (https://fonts.google.com/icons?selected=Material+Icons)
-  customIcon?: string;
-  // callback function when user closes the toast
+  // /** set custom icon in toast; SVG support only */
+  // customIcon?: string;
+  /** callback function when user closes the toast */
   onClose: () => void;
 }
 
+/**
+ * A toast is used to display a pop-up message without interference.
+ * 
+ * ```js
+ * import { Toast } from 'pat-ui';
+ * ```
+ * 
+ * Example use case
+ * 
+ * ```js
+ * import React, { useState } from 'react';
+ * import { Toast } from 'pat-ui';
+ * 
+ * function MyApp() {
+ *    const [open, setOpen] = useState(false);
+ * 
+ *    const handleOpen = () => {
+ *       setOpen(true);
+ *    }
+ * 
+ *    const handleClose = () => {
+ *       setOpen(true);
+ *    }
+ * 
+ *    return (
+ *       <Toast
+ *          open={open}
+ *          title={"Toast title here"}
+ *          onClose={handleClose}
+ *          autoHideDuration={3000}      
+ *       />
+ *       <button onClick={handleOpen}>
+ *          Open Toast
+ *       </button>
+ *    );
+ * };
+ * 
+ * ```
+ */
 export const Toast = ({
   open,
-  color = 'primary',
+  color = 'success',
   position = 'top-right',
   title,
   message,
   autoHideDuration,
-  customIcon,
+  // customIcon,
   onClose,
 }: IToastProps) => {
   const [styles, setStyles] = useState('');
   const [didClose, setDidClose] = useState(false);
-
-  const renderIcon = (color: string) => {
-    if (customIcon) return customIcon;
-    switch (color) {
-      case 'success':
-        return 'done';
-      case 'info':
-        return 'info_outline';
-      case 'warning':
-        return 'warning_amber';
-      case 'danger':
-        return 'highlight_off';
-      default:
-        return;
-    }
-  };
 
   const handleOnClose = () => {
     setDidClose(true);
@@ -66,7 +90,6 @@ export const Toast = ({
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (open) {
-      setDidClose(false);
       let styleClasses = classNames('toast', {
         [`toast__${color}`]: true,
         [`toast__${position}`]: true,
@@ -81,10 +104,14 @@ export const Toast = ({
       }
     }
 
+    // reset didClose checker so user will have the ability
+    // to manually close the toast if opened again
+    setDidClose(false);
     return () => clearTimeout(timer);
   }, [open]);
 
   useEffect(() => {
+    // check if user manually closes toast
     if (didClose) {
       setStyles('');
       onClose();
@@ -92,25 +119,41 @@ export const Toast = ({
   }, [didClose]);
 
   return (open && styles && (
-    <div className={`${styles}`}>
+    <div className={styles}>
       <div className={`toast__edge__${color}`}></div>
-      <div className='toast__wrapper'>
-        <div className='toast__inner-wrapper'>
+      <div className="toast__wrapper">
+        <div className="toast__inner__wrapper">
           <div>
-            {/* <img src=' alt=' /> */}
-            <span className='material-icons toast__icon'>
-              {renderIcon(color)}
-            </span>
+            <span className="toast__icon">{renderIcon(color)}</span>
           </div>
-          <div className='toast__text-wrapper'>
-            <h6>{title}</h6>
+          <div className="toast__text__wrapper">
+            <h6
+              className={`${
+                !renderIcon(color) ? 'toast__title' : 'toast__title__reset'
+              }`}
+            >
+              {title}
+            </h6>
             <p>{message}</p>
           </div>
         </div>
         <div onClick={handleOnClose}>
-          <span className='material-icons toast__close-icon'>close</span>
+          <span className="toast__icon__close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="28px"
+              viewBox="0 0 24 24"
+              width="28px"
+              fill={colors[color].main}
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </span>
         </div>
       </div>
     </div>
   )) as JSX.Element;
 };
+
+export default Toast;

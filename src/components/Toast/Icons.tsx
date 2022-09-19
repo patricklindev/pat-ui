@@ -3,23 +3,23 @@ import React from 'react';
 export const colors: any = {
   primary: {
     main: '#20c997',
-    bg: '#e4f8f0'
+    bg: '#e7f5ef'
   },
   secondary: {
     main: '#6c757d',
-    bg: '#f8f9fa'
+    bg: '#f0f0f1'
   },
   success: {
     main: '#52c41a',
-    bg: '#d9e9db'
+    bg: '#e8f1e9'
   },
   info: {
     main: '#17a2b8',
-    bg: '#d9e9db'
+    bg: '#dfe9eb'
   },
   warning: {
     main: '#ffb533',
-    bg: '#f0eddf'
+    bg: '#efede3'
   },
   danger: {
     main: '#dc3545',
@@ -28,7 +28,6 @@ export const colors: any = {
 };
 
 export const renderIcon = (color: string) => {
-    console.log(colors)
   const icons = {
     success: (
       <svg

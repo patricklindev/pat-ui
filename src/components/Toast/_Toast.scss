@@ -78,20 +78,20 @@
 }
 
 .toast__primary {
-    @include toast-color(#e4f8f0, 6px, $primary);
+    @include toast-color(#e7f5ef, 6px, $primary);
 }
 .toast__secondary {
-    @include toast-color(#f8f9fa, 6px, $secondary);
+    @include toast-color(#f0f0f1, 6px, $secondary);
 }
 .toast__success {
-    @include toast-color(#d9e9db, 6px, $success);
+    @include toast-color(#e8f1e9, 6px, $success);
 }
 .toast__info {
-    @include toast-color(#cddee2, 6px, $info);
+    @include toast-color(#dfe9eb, 6px, $info);
 }
 .toast__warning {
-    @include toast-color(#f0eddf, 6px, $dark-yellow);
+    @include toast-color(#f5f3ea, 6px, $dark-yellow);
 }
 .toast__danger {
-    @include toast-color(#ecdedf, 6px, $danger);
+    @include toast-color(#f1e6e7, 6px, $danger);
 }

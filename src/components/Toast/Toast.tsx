@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import { colors, renderIcon } from './Icons';
 
-type TToastColor =
+export type TToastColor =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -38,7 +38,8 @@ export interface IToastProps {
  * import { Toast } from 'pat-ui';
  * ```
  * 
- * Example use case
+ * ---
+ * Getting Started
  * 
  * ```js
  * import React, { useState } from 'react';
@@ -58,7 +59,7 @@ export interface IToastProps {
  *    return (
  *       <Toast
  *          open={open}
- *          title={"Toast title here"}
+ *          title="Toast title here"
  *          onClose={handleClose}
  *          autoHideDuration={3000}      
  *       />
@@ -72,7 +73,7 @@ export interface IToastProps {
  */
 export const Toast = ({
   open,
-  color = 'success',
+  color = 'warning',
   position = 'top-right',
   title,
   message,

@@ -53,6 +53,7 @@ const Switch: React.FC<ISwitchProps> = (props) => {
             checked={isChecked}
             //avoid any action when disabled
             onClick={disabled ? (e) => e.preventDefault() : props.onClick}
+            //set state to control on/off on the switch
             onChange={() => setIsChecked((prev) => !prev)}
           />
           <span

@@ -15,12 +15,15 @@ should be able to control the open/close of the dialog from props.close of the d
  */
 
 describe('dialog', () => {
-    it('should have a dimmed background ', () => {
+  it('should render a simple dialog with accounts ', () => {
+    // senarios:
+  });
 
-    });
-    
-    it('should prevent scrolling when dialog open ', () => {
-        //  check if “overflow” property of the body element set to “hidden”
-    });
+  it('should render an alert dialog ', () => {
+    // senarios:
+  });
 
+  it('should render a dialog with input area', () => {
+    // senarios:
+  });
 });

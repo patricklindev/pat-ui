@@ -16,11 +16,11 @@
   overflow: auto;
   outline: 0;
   z-index: 999;
+  padding-top: 20%;
 }
 
 // this class deal with the placement of the dialog on the top of the dimmed background
 .modal-container {
-  padding-top: 50%;
   display: flex;
   justify-content: center;
   align-items: flex-start;

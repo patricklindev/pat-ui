@@ -30,10 +30,13 @@ export interface DialogProps {
   onClose?: (val: any) => void;
 }
 
-// there will be 3 different designs for dialogs:
-// Simple Dialogs
-// alert
-// form dialogs
+/**
+ * Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
+ *
+ * ```js
+ * import { Dialog } from 'pat-ui'
+ * ```
+ */
 const Dialog: FC<DialogProps> = (props) => {
   const { open, onClose, children, draggable, classes } = props;
 

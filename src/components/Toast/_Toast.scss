@@ -39,13 +39,14 @@
     &__text__wrapper {
         margin-left: 10px;
     }
+    &__icon {
+        max-width: 35px;
+        max-height: 35px;
+    }
     &__icon__close {
         cursor: pointer;
     }
-    &__title {
-        margin-bottom: 5px;
-    }
-    &__title__reset {
+    h6 {
         margin: 0;
     }
     p {
@@ -58,19 +59,16 @@
     right: 15px;
     opacity: 1;
 }
-
 .toast__top-left {
     top: 15px;
     left: 15px;
     opacity: 1;
 }
-
 .toast__bottom-right {
     bottom: 15px;
     right: 15px;
     opacity: 1;
 }
-
 .toast__bottom-left {
     bottom: 15px;
     left: 15px;
@@ -94,4 +92,23 @@
 }
 .toast__danger {
     @include toast-color(#f1e6e7, 6px, $danger);
+}
+
+.toast__btn__primary {
+    @include toast-btn(#e7f5ef, $primary, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__secondary {
+    @include toast-btn(#f0f0f1, $secondary, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__success {
+    @include toast-btn(#e8f1e9, $success, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__info {
+    @include toast-btn(#dfe9eb, $info, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__warning {
+    @include toast-btn(#efede3, $dark-yellow, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__danger {
+    @include toast-btn(#f1e6e7, $danger, 5px, none, 600, 125px, 40px);
 }

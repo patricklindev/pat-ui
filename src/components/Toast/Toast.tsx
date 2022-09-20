@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { classNames } from '../../utils/classNames';
 import { colors, renderIcon } from './Icons';
 
@@ -38,6 +38,8 @@ export interface IToastProps {
   iconType?: TToastIcon;
   /** set toast icon color */
   iconColor?: TToastIconColor;
+  /** set custom image as icon */
+  iconUri?: string;
   /** time in milliseconds for toast to close */
   autoHideDuration?: number;
   /** callback function when user closes the toast */
@@ -87,7 +89,7 @@ export interface IToastProps {
  */
 export const Toast = ({
   open,
-  type = 'warning',
+  type = 'primary',
   position = 'top-right',
   title,
   message,
@@ -95,49 +97,42 @@ export const Toast = ({
   iconColor,
   autoHideDuration,
   onClose,
+  iconUri,
 }: IToastProps) => {
-  const [styles, setStyles] = useState('');
-
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (open) {
-      let styleClasses = classNames('toast', {
-        [`toast__${type}`]: true,
-        [`toast__${position}`]: true,
-      });
-      setStyles(styleClasses);
-
-      if (autoHideDuration) {
-        timer = setTimeout(() => {
-          setStyles('');
-          onClose();
-        }, autoHideDuration);
-      }
+    if (autoHideDuration) {
+      timer = setTimeout(() => {
+        onClose();
+      }, autoHideDuration);
     }
 
     return () => clearTimeout(timer);
   }, [open]);
 
-  return (open && styles && (
-    <div className={styles} data-testid="toast">
+  let styleClasses = classNames('toast', {
+    [`toast__${type}`]: true,
+    [`toast__${position}`]: true,
+  });
+
+  return (open && (
+    <div className={styleClasses} data-testid="toast">
       <div className={`toast__edge__${type}`}></div>
       <div className="toast__wrapper">
         <div className="toast__inner__wrapper">
-          <div>
-            <span className="toast__icon">
+          {iconUri ? (
+            <img
+            className='toast__icon'
+              src={iconUri}
+              alt="custom toast icon"
+            />
+          ) : (
+            <span>
               {renderIcon(iconType, iconColor)}
             </span>
-          </div>
+          )}
           <div className="toast__text__wrapper">
-            <h6
-              className={`${
-                !renderIcon(iconType, iconColor)
-                  ? 'toast__title'
-                  : 'toast__title__reset'
-              }`}
-            >
-              {title}
-            </h6>
+            <h6>{title}</h6>
             <p>{message}</p>
           </div>
         </div>

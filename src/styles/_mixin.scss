@@ -88,3 +88,13 @@
   border-top-left-radius: $border-tl-radius;
   border-bottom-left-radius: $border-bl-radius;
 }
+
+@mixin toast-btn($bg-color, $color, $margin, $border, $font-weight, $width, $height) {
+  background-color: $bg-color;
+  color: $color;
+  margin: $margin;
+  border: $border;
+  font-weight: $font-weight;
+  width: $width;
+  height: $height;
+}

@@ -1,101 +1,15 @@
 import React, { useState } from 'react';
+import Button from '../Button';
 import { Toast } from './Toast';
-import { colors } from './Icons';
 
 export default {
   title: 'Toast',
   component: Toast,
 };
 
-const btnPrimary: React.CSSProperties = {
-  width: '125px',
-  height: '40px',
-  border: 'none',
-  borderRadius: '6px',
-  backgroundColor: '#e7f5ef',
-  color: '#20c997',
-  margin: '5px',
-};
-const btnSecondary: React.CSSProperties = {
-  width: '125px',
-  height: '40px',
-  border: 'none',
-  borderRadius: '6px',
-  backgroundColor: '#f0f0f1',
-  color: '#6c757d',
-  margin: '5px',
-};
-const btnSuccess: React.CSSProperties = {
-  width: '125px',
-  height: '40px',
-  border: 'none',
-  borderRadius: '6px',
-  backgroundColor: '#e8f1e9',
-  color: '#52c41a',
-  margin: '5px',
-};
-const btnInfo: React.CSSProperties = {
-  width: '125px',
-  height: '40px',
-  border: 'none',
-  borderRadius: '6px',
-  backgroundColor: '#dfe9eb',
-  color: '#17a2b8',
-  margin: '5px',
-};
-const btnWarning: React.CSSProperties = {
-  width: '125px',
-  height: '40px',
-  border: 'none',
-  borderRadius: '6px',
-  backgroundColor: '#efede3',
-  color: '#ffb533',
-  margin: '5px',
-};
-const btnDanger: React.CSSProperties = {
-  width: '125px',
-  height: '40px',
-  border: 'none',
-  borderRadius: '6px',
-  backgroundColor: '#f1e6e7',
-  color: '#dc3545',
-  margin: '5px',
-};
-
-const btnTextStyle: React.CSSProperties = {
-  margin: 0,
-};
-
 const headingStyle: React.CSSProperties = {
   marginTop: '15px',
-}
-
-const btns = [
-  {
-    text: 'primary',
-    color: colors,
-  },
-  {
-    text: 'secondary',
-    color: colors,
-  },
-  {
-    text: 'success',
-    color: colors,
-  },
-  {
-    text: 'info',
-    color: colors,
-  },
-  {
-    text: 'warning',
-    color: colors,
-  },
-  {
-    text: 'danger',
-    color: colors,
-  },
-];
+};
 
 export const DiffToast = () => {
   const [openPrimary, setOpenPrimary] = useState(false);
@@ -108,85 +22,31 @@ export const DiffToast = () => {
   const [openTR, setOpenTR] = useState(false);
   const [openBL, setOpenBL] = useState(false);
   const [openBR, setOpenBR] = useState(false);
-  // const [color, setColor] = useState<TToastColor>();
-  // const [title, setTitle] = useState('');
-  // const [bgColor, setBgColor] = useState('');
+  const [openPropsToast, setOpenPropsToast] = useState(false);
 
-  const handleOpenPrimary = () => {
-    setOpenPrimary(true);
-  };
-  const handleOpenSecondary = () => {
-    setOpenSecondary(true);
-  };
-  const handleOpenSuccess = () => {
-    setOpenSuccess(true);
-  };
-  const handleOpenInfo = () => {
-    setOpenInfo(true);
-  };
-  const handleOpenWarning = () => {
-    setOpenWarning(true);
-  };
-  const handleOpenDanger = () => {
-    setOpenDanger(true);
-  };
+  const handleOpenPrimary = () => setOpenPrimary(true);
+  const handleOpenSecondary = () => setOpenSecondary(true);
+  const handleOpenSuccess = () => setOpenSuccess(true);
+  const handleOpenInfo = () => setOpenInfo(true);
+  const handleOpenWarning = () => setOpenWarning(true);
+  const handleOpenDanger = () => setOpenDanger(true);
+  const handleOpenTL = () => setOpenTL(true);
+  const handleOpenTR = () => setOpenTR(true);
+  const handleOpenBL = () => setOpenBL(true);
+  const handleOpenBR = () => setOpenBR(true);
+  const handleOpenPropsToast = () => setOpenPropsToast(true);
 
-  const handleOpenTL = () => {
-    setOpenTL(true);
-  };
-  const handleOpenTR = () => {
-    setOpenTR(true);
-  };
-  const handleOpenBL = () => {
-    setOpenBL(true);
-  };
-  const handleOpenBR = () => {
-    setOpenBR(true);
-  };
-
-  const handleClosePrimary = () => {
-    setOpenPrimary(false);
-  };
-  const handleCloseSecondary = () => {
-    setOpenSecondary(false);
-  };
-  const handleCloseSuccess = () => {
-    setOpenSuccess(false);
-  };
-  const handleCloseInfo = () => {
-    setOpenInfo(false);
-  };
-  const handleCloseWarning = () => {
-    setOpenWarning(false);
-  };
-  const handleCloseDanger = () => {
-    setOpenDanger(false);
-  };
-  const handleCloseTL = () => {
-    setOpenTL(false);
-  };
-  const handleCloseTR = () => {
-    setOpenTR(false);
-  };
-  const handleCloseBL = () => {
-    setOpenBL(false);
-  };
-  const handleCloseBR = () => {
-    setOpenBR(false);
-  };
-
-  const handleClose = () => {
-    setOpenPrimary(false);
-    setOpenSecondary(false);
-    setOpenSuccess(false);
-    setOpenInfo(false);
-    setOpenWarning(false);
-    setOpenDanger(false);
-    setOpenTL(false);
-    setOpenTR(false);
-    setOpenBL(false);
-    setOpenBR(false);
-  };
+  const handleClosePrimary = () => setOpenPrimary(false);
+  const handleCloseSecondary = () => setOpenSecondary(false);
+  const handleCloseSuccess = () => setOpenSuccess(false);
+  const handleCloseInfo = () => setOpenInfo(false);
+  const handleCloseWarning = () => setOpenWarning(false);
+  const handleCloseDanger = () => setOpenDanger(false);
+  const handleCloseTL = () => setOpenTL(false);
+  const handleCloseTR = () => setOpenTR(false);
+  const handleCloseBL = () => setOpenBL(false);
+  const handleCloseBR = () => setOpenBR(false);
+  const handleClosePropsToast = () => setOpenPropsToast(false);
 
   return (
     <div>
@@ -232,49 +92,11 @@ export const DiffToast = () => {
         onClose={handleCloseDanger}
         autoHideDuration={3000}
       />
-      <h4 style={headingStyle}>Colors</h4>
-      <button style={btnPrimary} onClick={handleOpenPrimary}>
-        <h6 style={btnTextStyle}>Primary</h6>
-      </button>
-      <button style={btnSecondary} onClick={handleOpenSecondary}>
-        <h6 style={btnTextStyle}>Secondary</h6>
-      </button>
-      <button style={btnSuccess} onClick={handleOpenSuccess}>
-        <h6 style={btnTextStyle}>Success</h6>
-      </button>
-      <button style={btnInfo} onClick={handleOpenInfo}>
-        <h6 style={btnTextStyle}>Info</h6>
-      </button>
-      <button style={btnWarning} onClick={handleOpenWarning}>
-        <h6 style={btnTextStyle}>Warning</h6>
-      </button>
-      <button style={btnDanger} onClick={handleOpenDanger}>
-        <h6 style={btnTextStyle}>Danger</h6>
-      </button>
-      {/* {btns.map((btn: any) => {
-        const btnStyle: React.CSSProperties = {
-          width: '125px',
-          height: '40px',
-          border: 'none',
-          borderRadius: '6px',
-          backgroundColor: btn.color[btn.text].bg,
-          color: btn.color[btn.text].main,
-          margin: '5px'
-        };
-        return (
-          <button style={btnStyle} onClick={handleOpen}>
-            <h6 style={btnTextStyle}>{btn.text}</h6>
-          </button>
-        );
-      })} */}
-
       <Toast
         open={openTL}
         type="primary"
         title="Example toast title"
         position="top-left"
-        iconType='success'
-        iconColor='danger'
         onClose={handleCloseTL}
         autoHideDuration={3000}
       />
@@ -302,19 +124,118 @@ export const DiffToast = () => {
         onClose={handleCloseBR}
         autoHideDuration={3000}
       />
+      <Toast
+        open={openPropsToast}
+        type="secondary"
+        title="Done!"
+        message="Successfully uploaded file"
+        position="top-left"
+        iconType="success"
+        iconColor="info"
+        // iconUri='https://firebasestorage.googleapis.com/v0/b/onebook-client.appspot.com/o/otherImages%2Fservice-entertainment.png?alt=media&token=89099854-42f1-4d00-b411-2d23ee053572'
+        onClose={handleClosePropsToast}
+        autoHideDuration={3500}
+      />
+
+      <h4 style={headingStyle}>Colors</h4>
+      <Button
+        btnType="default"
+        className="toast__btn__primary"
+        onClick={handleOpenPrimary}
+      >
+        Primary
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__secondary"
+        onClick={handleOpenSecondary}
+      >
+        Secondary
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__success"
+        onClick={handleOpenSuccess}
+      >
+        Success
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__info"
+        onClick={handleOpenInfo}
+      >
+        Info
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__warning"
+        onClick={handleOpenWarning}
+      >
+        Warning
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__danger"
+        onClick={handleOpenDanger}
+      >
+        Danger
+      </Button>
+
       <h4 style={headingStyle}>Positions</h4>
-      <button style={btnPrimary} onClick={handleOpenTL}>
-        <h6 style={btnTextStyle}>Top-left</h6>
-      </button>
-      <button style={btnSecondary} onClick={handleOpenTR}>
-        <h6 style={btnTextStyle}>Top-right</h6>
-      </button>
-      <button style={btnSuccess} onClick={handleOpenBL}>
-        <h6 style={btnTextStyle}>Bottom-left</h6>
-      </button>
-      <button style={btnInfo} onClick={handleOpenBR}>
-        <h6 style={btnTextStyle}>Bottom-right</h6>
-      </button>
+      <Button
+        btnType="default"
+        className="toast__btn__primary"
+        onClick={handleOpenTL}
+      >
+        Primary
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__secondary"
+        onClick={handleOpenTR}
+      >
+        Secondary
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__success"
+        onClick={handleOpenBL}
+      >
+        Success
+      </Button>
+      <Button
+        btnType="default"
+        className="toast__btn__info"
+        onClick={handleOpenBR}
+      >
+        Info
+      </Button>
+
+      <h4 style={headingStyle}>With All Props</h4>
+      <Button
+        btnType="default"
+        className="toast__btn__secondary"
+        onClick={handleOpenPropsToast}
+      >
+        Open Toast
+      </Button>
+
+      {/* {btns.map((btn: any) => {
+        const btnStyle: React.CSSProperties = {
+          width: '125px',
+          height: '40px',
+          border: 'none',
+          borderRadius: '6px',
+          backgroundColor: btn.color[btn.text].bg,
+          color: btn.color[btn.text].main,
+          margin: '5px'
+        };
+        return (
+          <button style={btnStyle} onClick={handleOpen}>
+            <h6 style={btnTextStyle}>{btn.text}</h6>
+          </button>
+        );
+      })} */}
     </div>
   );
 };

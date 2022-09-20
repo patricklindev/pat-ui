@@ -1,5 +1,5 @@
-import React from 'react';
-import { FC, useState } from 'react';
+import React, { FC } from 'react';
+
 import { classNames } from '../../utils/classNames';
 
 export type SwitchSize = 'sm' | 'lg';
@@ -15,7 +15,7 @@ export interface ISwitchProps {
   /** set disabled switch */
   disabled?: boolean;
   /** set default to checked */
-  checked?: boolean;
+  isChecked?: boolean;
   /** set switch label */
   label?: string;
   /** set action when clicked */
@@ -37,15 +37,15 @@ export const Switch: FC<ISwitchProps> = (props) => {
     disabled,
     switchColor,
     label,
-    checked,
+    isChecked,
   } = props;
 
   //controls default bahavior (on or off) of the switch
-  const defaultChecked = checked ? checked : false;
-  const [isChecked, setIsChecked] = useState(defaultChecked);
+  // const defaultChecked = checked ? checked : false;
+  // const [isChecked, setIsChecked] = useState(defaultChecked);
 
   let styleClasses = classNames('switch', {
-    [`switch-${switchColor}`]: true,
+    [`switch-${isChecked ? switchColor : 'default'}`]: true,
     [`switch-${switchSize}`]: !!switchSize,
     disabled: !!disabled,
   });
@@ -59,11 +59,12 @@ export const Switch: FC<ISwitchProps> = (props) => {
           <input
             type="checkbox"
             className="switch-toggle"
-            checked={isChecked}
             //avoid any action when disabled
             onClick={disabled ? (e) => e.preventDefault() : props.onClick}
-            //set state to control on/off on the switch
-            onChange={() => setIsChecked((prev) => !prev)}
+            // //set state to control on/off on the switch
+            // onChange={() => setIsChecked((prev) => !prev)}
+            onChange={props.onClick}
+            checked={isChecked}
           />
           <span
             //set class name based on if switch is disabled or not

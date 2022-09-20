@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Toast, TToastColor } from './Toast';
+import { Toast } from './Toast';
 import { colors } from './Icons';
 
 export default {
@@ -192,49 +192,43 @@ export const DiffToast = () => {
     <div>
       <Toast
         open={openPrimary}
-        color="primary"
+        type="primary"
         title="Example toast title"
-        // onClose={handleClose}
         onClose={handleClosePrimary}
         autoHideDuration={3000}
       />
       <Toast
         open={openSecondary}
-        color="secondary"
+        type="secondary"
         title="Example toast title"
-        // onClose={handleClose}
         onClose={handleCloseSecondary}
         autoHideDuration={3000}
       />
       <Toast
         open={openSuccess}
-        color="success"
+        type="success"
         title="Example toast title"
-        // onClose={handleClose}
         onClose={handleCloseSuccess}
         autoHideDuration={3000}
       />
       <Toast
         open={openInfo}
-        color="info"
+        type="info"
         title="Example toast title"
-        // onClose={handleClose}
         onClose={handleCloseInfo}
         autoHideDuration={3000}
       />
       <Toast
         open={openWarning}
-        color="warning"
+        type="warning"
         title="Example toast title"
-        // onClose={handleClose}
         onClose={handleCloseWarning}
         autoHideDuration={3000}
       />
       <Toast
         open={openDanger}
-        color="danger"
+        type="danger"
         title="Example toast title"
-        // onClose={handleClose}
         onClose={handleCloseDanger}
         autoHideDuration={3000}
       />
@@ -276,37 +270,35 @@ export const DiffToast = () => {
 
       <Toast
         open={openTL}
-        color="primary"
+        type="primary"
         title="Example toast title"
         position="top-left"
-        // onClose={handleClose}
+        iconType='success'
+        iconColor='danger'
         onClose={handleCloseTL}
         autoHideDuration={3000}
       />
       <Toast
         open={openTR}
-        color="secondary"
+        type="secondary"
         title="Example toast title"
         position="top-right"
-        // onClose={handleClose}
         onClose={handleCloseTR}
         autoHideDuration={3000}
       />
       <Toast
         open={openBL}
-        color="success"
+        type="success"
         title="Example toast title"
         position="bottom-left"
-        // onClose={handleClose}
         onClose={handleCloseBL}
         autoHideDuration={3000}
       />
       <Toast
         open={openBR}
-        color="info"
+        type="info"
         title="Example toast title"
         position="bottom-right"
-        // onClose={handleClose}
         onClose={handleCloseBR}
         autoHideDuration={3000}
       />

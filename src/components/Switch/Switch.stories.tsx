@@ -10,9 +10,13 @@ export const DefaultSwitch = () => {
   const [showOn, setShowOn] = React.useState(false);
 
   //why use switch
-  //With a controlled component, the input’s(switch) value is always driven by the React state.
+  //in controlled component, the input’s(switch) value is always driven by the React state.
+  const handleClick = () => {
+    setShowOn(!showOn);
+  };
+  console.log(showOn, showOn ? 'on' : 'off');
   return (
-    <Switch onClick={() => setShowOn(!showOn)} isChecked={showOn}>
+    <Switch onClick={handleClick} isChecked={showOn}>
       Default Switch
     </Switch>
   );

@@ -22,6 +22,8 @@ export interface ISwitchProps {
   onClick?: () => void;
 }
 
+export type PatSwitchProps = ISwitchProps;
+
 /**
  * Switches toggle the state of a single setting on or off.
  *
@@ -53,12 +55,13 @@ export const Switch: FC<ISwitchProps> = (props) => {
     styleClasses += ' ' + className;
   }
   let swh = (
-    <div className={styleClasses}>
+    <div className={styleClasses} data-testid="switch-element">
       <label className="switch-container">
         <div>
           <input
             type="checkbox"
             className="switch-toggle"
+            data-testid="switch-toggle"
             //avoid any action when disabled
             onClick={disabled ? (e) => e.preventDefault() : props.onClick}
             // //set state to control on/off on the switch

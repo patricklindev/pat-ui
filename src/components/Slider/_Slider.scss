@@ -1,0 +1,128 @@
+input[type="range"],
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.slider {
+  position: relative;
+  width: 300px;
+  // you can delete the mb, it is just for display reference
+  margin-bottom: 50px;
+}
+
+.slider_range {
+  width: 100%;
+  outline: none;
+  border-radius: $slider-border-radius;
+}
+.slider_range::-webkit-slider-thumb {
+  position: relative;
+  z-index: 3;
+}
+
+.range_default-track {
+  height: $slider-default-track-size;
+}
+.range_default-thumb::-webkit-slider-thumb {
+  @include slider-width-height($slider-default-thumb,$slider-default-thumb);
+}
+.range_lg-track {
+  height: $slider-lg-track-size;
+}
+.range_lg-thumb::-webkit-slider-thumb {
+  @include slider-width-height($slider-lg-thumb,$slider-lg-thumb);
+}
+.range_sm-track {
+  height: $slider-sm-track-size;
+}
+.range_sm-thumb::-webkit-slider-thumb {
+  @include slider-width-height($slider-sm-thumb,$slider-sm-thumb);
+}
+
+
+.custom_slider {
+  height: 70px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  bottom: 1px;
+
+  &_default {
+    width: $slider-default-thumb;
+  }
+  &_lg {
+    width: $slider-lg-thumb;
+  }
+  &_sm {
+    width: $slider-sm-thumb;
+  }
+}
+
+
+.custom_thumb {
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+
+  &_default {
+    @include slider-width-height($slider-default-thumb,$slider-default-thumb);
+  }
+
+  &_lg {
+    @include slider-width-height($slider-lg-thumb,$slider-lg-thumb);
+  }
+
+  &_sm {
+    @include slider-width-height($slider-sm-thumb,$slider-sm-thumb);
+  }
+}
+
+
+
+.slider_progress {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  width: 50%;
+  border-radius: $slider-border-radius;
+}
+
+.slider_progress_top_default {
+  top: 10px;
+}
+.slider_progress_top_lg {
+  top: 7px;
+}
+.slider_progress_top_sm {
+  top: 13px;
+}
+
+
+.cursor {
+  cursor: pointer;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.primary-color {
+  background-color: $slider-theme-primary;
+}
+.secondary-color {
+  background-color: $slider-theme-secondary;
+}
+.disabled-color {
+  background-color: $slider-theme-disabled;
+}
+
+.primary-color_track {
+  background-color: $slider-theme-primary_track;
+}
+.secondary-color_track {
+  background-color: $slider-theme-secondary_track;
+}
+.disabled-color_track {
+  background-color: $slider-theme-disabled_track;
+}

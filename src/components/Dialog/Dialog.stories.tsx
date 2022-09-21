@@ -189,7 +189,7 @@ export const SubscribeDialog = () => {
   );
 };
 
-export const DialogWithAdjustableSize = () => {
+export const DialogWithFullScreen = () => {
   const [showModal, setModalState] = useState(false);
   const handleOpen = useCallback(() => {
     setModalState((prevState) => !prevState);
@@ -206,28 +206,72 @@ export const DialogWithAdjustableSize = () => {
         click here for button
       </Button>
 
-      <Dialog open={showModal} onClose={handleClose}>
-        <h5 className="title">Set backup account</h5>
-        <List sx={{ pt: 0 }}>
-          {emails.map((email) => (
-            <ListItem button onClick={action(email)} key={email}>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={email} />
-            </ListItem>
-          ))}
-          <ListItem autoFocus button onClick={action('add account')}>
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItem>
-        </List>
+      <Dialog open={showModal} onClose={handleClose} fullScreen>
+        <h5 className="title">Use Google's location service?</h5>
+        <p className="modal__paragraph">
+          Let Google help apps determine location. This means sending anonymous
+          location data to Google, even when no apps are running.
+        </p>
+        <section className="modal-button__section">
+          <button
+            className="modal-button"
+            onClick={() => {
+              setModalState(false);
+            }}
+          >
+            Cancel
+          </button>
+          <button className="modal-button" onClick={action('subscribed')}>
+            Subscribe
+          </button>
+        </section>
+      </Dialog>
+    </>
+  );
+};
+
+export const DialogWithCustomStyling = () => {
+  const [showModal, setModalState] = useState(false);
+  const handleOpen = useCallback(() => {
+    setModalState((prevState) => !prevState);
+  }, []);
+  const handleClose = (inputValue: string) => {
+    action(inputValue);
+    setModalState(false);
+    console.log('value from dialog: ', inputValue);
+  };
+
+  const customStyling: React.CSSProperties = {
+    backgroundColor: 'yellow',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  };
+
+  return (
+    <>
+      <Button style={buttonStyle} btnSize="sm" onClick={handleOpen}>
+        click here for button
+      </Button>
+
+      <Dialog open={showModal} onClose={handleClose} style={customStyling}>
+        <h5 className="title">Use Google's location service?</h5>
+        <p className="modal__paragraph">
+          Let Google help apps determine location. This means sending anonymous
+          location data to Google, even when no apps are running.
+        </p>
+        <section className="modal-button__section">
+          <button
+            className="modal-button"
+            onClick={() => {
+              setModalState(false);
+            }}
+          >
+            Cancel
+          </button>
+          <button className="modal-button" onClick={action('subscribed')}>
+            Subscribe
+          </button>
+        </section>
       </Dialog>
     </>
   );

@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
-
-
 type AccordionDetailProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
   isOpen?: boolean;
   expanded?: boolean;
 };
@@ -22,7 +20,6 @@ function AccordionDetail(props: AccordionDetailProps) {
   useEffect(() => {
 
     if (props.expanded) {
-      console.log('useffectt')
       const detailEl = detailRef.current as HTMLDivElement;
       setHeight(detailEl?.scrollHeight);
     } else {

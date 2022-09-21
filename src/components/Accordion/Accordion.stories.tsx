@@ -10,9 +10,12 @@ export default {
 };
 
 export const DefaultAccordion = () => {
-  return  <Accordion onClick={action('hello clicked')}>
+  return  <Accordion  onClick={action('hello clicked')}>
             <AccordionHeader >
               <p>hello</p>
+              <p>hello</p>
+              <p>hello</p>
+              <p>asdasdfasdfsadfsadfsadfsadfasdfsadfsadfsadfsadffsadfsadfsadfsadf</p>
             </AccordionHeader>
             <AccordionDetail>
               <p>New Accoirdon detail helloooo</p>
@@ -83,21 +86,6 @@ export const ControlledAccordion:React.FC = () => {
   const handleChange = (panel : string) => {
     return (open?: boolean) => setExpanded(open ? panel : false)
   }
-
-
-
-
-
-  //   return (event: React.SyntheticEvent) => {
-  //     console.log('sadfsdf',panel,open)
-  //     //setExpanded(expanded ? panel : false);
-  //   ;
-  // }
-
-
-    //ChangeEvent<HTMLInputElement>
-    //MouseEventHandler<HTMLInputElement>
-
   return  <><Accordion expanded={expanded === 'panel1'} onClick={handleChange('panel1')}>
             <AccordionHeader>
               <p>hello</p>
@@ -123,4 +111,23 @@ export const ControlledAccordion:React.FC = () => {
         </AccordionDetail>
       </Accordion>
       </>
+}
+
+export const StyledAccordion = () => {
+  return  <Accordion onClick={action('hello clicked')} sx={{backgroundColor : 'red',borderRadius :'10px',maxWidth : '400px',color:'white'}}>
+            <AccordionHeader >
+              <p>hello</p>
+            </AccordionHeader>
+            <AccordionDetail>
+              <input placeholder='asim'></input>
+              <Accordion onClick={action('hello clicked')} sx={{backgroundColor : 'red',borderRadius :'10px',maxWidth : '400px',color:'white'}}>
+            <AccordionHeader >
+              <p>hello</p>
+            </AccordionHeader>
+            <AccordionDetail>
+              <input placeholder='asim'></input>
+            </AccordionDetail>
+          </Accordion>
+            </AccordionDetail>
+          </Accordion>
 }

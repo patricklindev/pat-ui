@@ -1,36 +1,30 @@
-import React from "react";
-
+import React from 'react';
 
 export type AccordionHeaderProps = {
-  children: JSX.Element | Array<JSX.Element>;
+  children: JSX.Element | JSX.Element[];
   btnOnClick?: () => void;
   isOpen?: boolean;
 };
-const AccordionHeader = (props: AccordionHeaderProps ) => {
-
+const AccordionHeader = (props: AccordionHeaderProps) => {
+  const childArray = Object.values(props.children);
   return (
     <div
       onClick={props.btnOnClick}
-      className={`accordion-header ${props.isOpen ? "active" : ""}`}
+      className={`accordion-header ${props.isOpen ? 'active' : ''}`}
     >
       {Array.isArray(props.children) ? (
-        props.children.map((elem, idx) => {
-          if (idx === 0)
-            return <h2 className="accordion-header-title">{elem}</h2>;
-          return (
-            <p
-              key={idx}
-              onClick={props.btnOnClick}
-              className="accordion-header-btn"
-            >
-              {elem}
+        <>
+          <div className="accordion-header-title">{childArray[0]}</div>
+          <div className="accordion-header-btn">
+            <p style={{ color: '#6c757ded', fontSize: '18px' }}>
+              {childArray.slice(1).map((elem, idx) => {
+                return elem.props.children;
+              })}
             </p>
-          );
-        })
+          </div>
+        </>
       ) : (
-        <div className="accordion-header-btn">
-          {props.children}
-        </div>
+        <div className="accordion-header-btn">{props.children}</div>
       )}
     </div>
   );

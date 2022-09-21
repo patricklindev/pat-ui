@@ -1,54 +1,54 @@
-import React, { ReactNode, ButtonHTMLAttributes, useState,InputHTMLAttributes,FormEventHandler,useRef,useEffect } from "react";
-import AccordionDetail from "./AccordionDetail";
-import AccordionHeader from "./AccordionHeader";
+import React, { useState, InputHTMLAttributes, useEffect } from 'react';
+import AccordionDetail from './AccordionDetail';
+import AccordionHeader from './AccordionHeader';
 import { classNames } from '../../utils/classNames';
 
-//export type childrenType =  JSX.Element[] | JSX.Element
 export interface IAccordionProps {
-  children : JSX.Element[];
-  disabled? : boolean;
-  expanded? : boolean;
-  onClick?: (a?: boolean) =>  void;
+  children: JSX.Element[];
+  disabled?: boolean;
+  expanded?: boolean;
+  sx?: {};
+  rounded?: boolean;
+  onClick?: (a?: boolean) => void;
 }
 
-export type bhdrProps = InputHTMLAttributes<HTMLInputElement>
-type InputArgs = IAccordionProps & Omit<bhdrProps, keyof IAccordionProps>
-function Accordion( props :InputArgs ) {
-  const {children, disabled,onClick,expanded, ...rest} = props
-  const [open, setOpen] = useState<boolean>(expanded as boolean);
-
-  useEffect(()=>{
+export type bhdrProps = InputHTMLAttributes<HTMLInputElement>;
+type InputArgs = IAccordionProps & Omit<bhdrProps, keyof IAccordionProps>;
+function Accordion(props: InputArgs) {
+  const { children, disabled, onClick, expanded, sx, ...rest } = props;
+  const [open, setOpen] = useState<boolean>(false);
+  useEffect(() => {
     setOpen(expanded as boolean);
-  },[expanded])
+  }, [expanded]);
 
   const btnOnClick = (a: boolean) => {
-    if(!disabled){
-      console.log('ex',open)
-      setOpen(!open);
+    if (!disabled) {
+      setOpen(!a);
     }
   };
 
   const checkOpenorNot = () => {
-    if(typeof onClick === 'function'){
-      onClick?.(!open)
+    if (typeof onClick === 'function') {
+      onClick?.(!open);
     }
+  };
+  let styleClasses = classNames('accordion-container', {
+    disabled: !!disabled,
+  });
 
-
-  }
-  let styleClasses = classNames('accordion-container',{
-    disabled: !!disabled
-  })
-
-  // {...(rest as bhdrProps)}
   return (
-    <div onClick={checkOpenorNot} className={`${styleClasses} ${expanded ? "active" : ""}`}>
+    <div
+      onClick={checkOpenorNot}
+      className={`${styleClasses} ${expanded || open ? 'active' : ''}`}
+      style={sx}
+    >
       {children.map((elem, idx) => {
-        if (elem.type.name === "AccordionHeader") {
+        if (elem.type.name === 'AccordionHeader') {
           return (
             <AccordionHeader
-              isOpen={expanded}
+              isOpen={open}
               btnOnClick={() => btnOnClick(open)}
-              key={idx} //uid
+              key={`${elem.type.name}${idx}`} //uid
             >
               {elem.props.children}
             </AccordionHeader>

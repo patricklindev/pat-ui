@@ -1,29 +1,36 @@
-
-.accordion-header{
+.accordion-header {
   border-bottom: 0.5px solid $gray-400;
+  display: flex;
 }
 .accordion-header-title {
-  width: 100%;
+  width: 20%;
   margin: 0;
+  padding-left: 20px;
+  padding-top: 15px;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .accordion-header-btn {
   width: 100%;
+  flex-grow: 3;
+  overflow: hidden;
   display: flex;
   align-items: center;
   font-size: 22px;
   font-weight: 500;
-
 }
 
 .accordion-header-btn > p {
   padding-left: 20px;
   padding-top: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
 .accordion-header-btn::after {
   content: '';
-  flex-shrink: 0;
+  flex-shrink: 1;
   width: 22px;
   height: 22px;
   margin-left: auto;
@@ -43,6 +50,7 @@
   border-bottom: 0.5px;
   cursor: pointer;
   user-select: none;
+  overflow: hidden;
   background-color: $white;
   &.disabled,
   &[disabled] {
@@ -55,7 +63,7 @@
 .accordion-container.active {
   border: 1px solid $gray-400;
   margin: 16px 0;
-  .accordion-header{
+  .accordion-header {
     border-bottom: 0.5px solid $gray-400;
   }
 }
@@ -64,7 +72,6 @@
 }
 
 .accordion-detail-container {
-
   transition: height 0.2s ease-in-out;
   overflow: hidden;
 }

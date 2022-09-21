@@ -132,6 +132,8 @@ export const DiffToast = () => {
         position="top-left"
         iconType="success"
         iconColor="info"
+        textColor='#6610f2'
+        bgColor='#ece9f2'
         // iconUri='https://firebasestorage.googleapis.com/v0/b/onebook-client.appspot.com/o/otherImages%2Fservice-entertainment.png?alt=media&token=89099854-42f1-4d00-b411-2d23ee053572'
         onClose={handleClosePropsToast}
         autoHideDuration={3500}
@@ -211,7 +213,7 @@ export const DiffToast = () => {
         Bottom-right
       </Button>
 
-      <h4 style={headingStyle}>With All Props</h4>
+      <h4 style={headingStyle}>Custom Props</h4>
       <Button
         btnType="default"
         className="toast__btn__secondary"

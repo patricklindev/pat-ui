@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import React from 'react';
 import Switch from './Switch';
 
@@ -11,14 +12,19 @@ export const DefaultSwitch = () => {
 
   //why use switch
   //in controlled component, the input’s(switch) value is always driven by the React state.
-  const handleClick = () => {
+
+  const handleChange = (e: any) => {
+    // setShowOn((prev) => !prev);
     setShowOn(!showOn);
+    action(showOn ? 'off' : 'on')(e);
   };
-  console.log(showOn, showOn ? 'on' : 'off');
+
   return (
-    <Switch onClick={handleClick} isChecked={showOn}>
-      Default Switch
-    </Switch>
+    <Switch
+      label="Default Switch"
+      isChecked={showOn}
+      onChange={(e) => handleChange(e)}
+    />
   );
 };
 
@@ -28,13 +34,12 @@ export const DiffSizeSwitch = () => {
     <div>
       <Switch
         switchSize="sm"
-        onClick={() => setShowOn(!showOn)}
+        onChange={() => setShowOn(!showOn)}
         isChecked={showOn}
-      >
-        Small Switch with default color
-      </Switch>
+        label="Small Switch with default color"
+      />
 
-      <Switch switchSize="lg">Large Switch with default color</Switch>
+      <Switch switchSize="lg" label="Large Switch with default color" />
     </div>
   );
 };
@@ -47,21 +52,19 @@ export const DiffColorSwitch = () => {
     <div>
       <Switch
         switchColor="primary"
-        onClick={() => {
+        onChange={() => {
           setShowOnP(!showOnP);
         }}
+        label="Primary color Switch"
         isChecked={showOnP}
-      >
-        Primary color Switch
-      </Switch>
+      />
 
       <Switch
         switchColor="secondary"
-        onClick={() => setShowOnS(!showOnS)}
+        onChange={() => setShowOnS(!showOnS)}
         isChecked={showOnS}
-      >
-        Secondary color Switch
-      </Switch>
+        label="Secondary color Switch"
+      />
     </div>
   );
 };
@@ -72,26 +75,24 @@ export const DiffTypeSwitch = () => {
   return (
     <div>
       <Switch
-        onClick={() => {
+        onChange={() => {
           setShowOn(!showOn);
         }}
         isChecked={showOn}
-      >
-        Default Switch
-      </Switch>
+        label="Default Switch"
+      />
 
-      <Switch label="switch with label"></Switch>
+      <Switch label="switch with label" />
 
       <Switch
-        onClick={() => {
+        onChange={() => {
           setDefaultOn(!defaultOn);
         }}
         isChecked={defaultOn}
-      >
-        On as default switch
-      </Switch>
+        label="On as default switch"
+      />
 
-      <Switch disabled>Defualt disabled switch</Switch>
+      <Switch disabled label="Defualt disabled switch" />
     </div>
   );
 };

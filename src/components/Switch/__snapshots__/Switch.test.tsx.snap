@@ -17,13 +17,14 @@ exports[`Switch should match snapshot 1`] = `
         />
         <span
           class="switch-slider"
+          data-testid="test-slider"
         />
       </div>
     </label>
     <p
       class="switch-label"
     >
-       Snapshot Switch 
+      Snapshot Switch
     </p>
   </div>
 </DocumentFragment>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 
 import { classNames } from '../../utils/classNames';
 
@@ -18,11 +18,10 @@ export interface ISwitchProps {
   isChecked?: boolean;
   /** set switch label */
   label?: string;
-  /** set action when clicked */
-  onClick?: () => void;
 }
 
-export type PatSwitchProps = ISwitchProps;
+export type PatSwitchProps = ISwitchProps &
+  InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Switches toggle the state of a single setting on or off.
@@ -32,7 +31,7 @@ export type PatSwitchProps = ISwitchProps;
  * ```
  *
  */
-export const Switch: FC<ISwitchProps> = (props) => {
+const Switch: FC<PatSwitchProps> = (props) => {
   const {
     switchSize,
     className,
@@ -40,6 +39,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
     switchColor,
     label,
     isChecked,
+    ...rest
   } = props;
 
   //controls default bahavior (on or off) of the switch
@@ -54,6 +54,7 @@ export const Switch: FC<ISwitchProps> = (props) => {
   if (className) {
     styleClasses += ' ' + className;
   }
+
   let swh = (
     <div className={styleClasses} data-testid="switch-element">
       <label className="switch-container">
@@ -66,16 +67,17 @@ export const Switch: FC<ISwitchProps> = (props) => {
             onClick={disabled ? (e) => e.preventDefault() : props.onClick}
             // //set state to control on/off on the switch
             // onChange={() => setIsChecked((prev) => !prev)}
-            onChange={props.onClick}
             checked={isChecked}
+            {...rest}
           />
           <span
             //set class name based on if switch is disabled or not
+            data-testid="test-slider"
             className={disabled ? 'disabled switch-slider' : 'switch-slider'}
           />
         </div>
       </label>
-      <p className="switch-label">{label || props.children}</p>
+      <p className="switch-label">{label}</p>
     </div>
   );
 

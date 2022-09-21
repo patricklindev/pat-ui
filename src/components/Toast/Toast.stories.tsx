@@ -187,28 +187,28 @@ export const DiffToast = () => {
         className="toast__btn__primary"
         onClick={handleOpenTL}
       >
-        Primary
+        Top-left
       </Button>
       <Button
         btnType="default"
         className="toast__btn__secondary"
         onClick={handleOpenTR}
       >
-        Secondary
+        Top-right
       </Button>
       <Button
         btnType="default"
         className="toast__btn__success"
         onClick={handleOpenBL}
       >
-        Success
+        Bottom-left
       </Button>
       <Button
         btnType="default"
         className="toast__btn__info"
         onClick={handleOpenBR}
       >
-        Info
+        Bottom-right
       </Button>
 
       <h4 style={headingStyle}>With All Props</h4>

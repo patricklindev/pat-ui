@@ -122,14 +122,12 @@ export const Toast = ({
         <div className="toast__inner__wrapper">
           {iconUri ? (
             <img
-            className='toast__icon'
+              className="toast__icon__custom"
               src={iconUri}
               alt="custom toast icon"
             />
           ) : (
-            <span>
-              {renderIcon(iconType, iconColor)}
-            </span>
+            <span data-testid="icon">{renderIcon(iconType, iconColor)}</span>
           )}
           <div className="toast__text__wrapper">
             <h6>{title}</h6>

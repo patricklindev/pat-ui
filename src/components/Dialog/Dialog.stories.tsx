@@ -189,31 +189,22 @@ export const SubscribeDialog = () => {
   );
 };
 
-export const MUIforTesting = () => {
-  // lines: 25-32 provided by the user to control the dialog
+export const DialogWithAdjustableSize = () => {
   const [showModal, setModalState] = useState(false);
   const handleOpen = useCallback(() => {
     setModalState((prevState) => !prevState);
   }, []);
   const handleClose = (inputValue: string) => {
+    action(inputValue);
     setModalState(false);
     console.log('value from dialog: ', inputValue);
   };
 
-  // for TESTING  ONLY
-  const emails = ['username@gmail.com', 'user02@gmail.com'];
-
   return (
     <>
-      <button
-        // className={`${showModal ? 'blur' : ''}`}
-        onClick={() => {
-          //   action('button clicked');
-          handleOpen();
-        }}
-      >
-        Click here for Dialog
-      </button>
+      <Button style={buttonStyle} btnSize="sm" onClick={handleOpen}>
+        click here for button
+      </Button>
 
       <Dialog open={showModal} onClose={handleClose}>
         <h5 className="title">Set backup account</h5>

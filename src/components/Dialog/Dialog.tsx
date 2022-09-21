@@ -12,6 +12,7 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { action } from '@storybook/addon-actions';
+import { DiffColorIcon } from '../Icon/Icon.stories';
 
 export interface DialogProps {
   // the on/off switch of the component
@@ -24,10 +25,19 @@ export interface DialogProps {
   classes?: object | string;
 
   // children must be React Element
-  children?: string | ReactElement<any> | ReactElement<any>[];
+  children?: string | ReactElement<any> | ReactElement<any>[] | Node;
 
   // Callback function fired when the component requests to be closed.
   onClose?: (val: any) => void;
+
+  // props for setting width of the modal
+  maxWidth?: string | boolean;
+
+  // props for setting full screen component
+  fullScreen?: boolean;
+
+  // custom styling
+  style?: CSSProperties;
 }
 
 /**
@@ -38,7 +48,16 @@ export interface DialogProps {
  * ```
  */
 const Dialog: FC<DialogProps> = (props) => {
-  const { open, onClose, children, draggable, classes } = props;
+  const {
+    open,
+    onClose,
+    children,
+    draggable,
+    classes,
+    maxWidth,
+    fullScreen,
+    style,
+  } = props;
 
   // do logic in following lines
   useEffect(() => {
@@ -84,6 +103,39 @@ const Dialog: FC<DialogProps> = (props) => {
     }
   }, [open]);
 
+  const sizingWidth = (width: string | boolean) => {
+    switch (width) {
+      case false:
+        return 'auto';
+      case 'xs':
+        return '10%';
+      case 'sm':
+        return 'auto';
+      case 'md':
+        return '60%';
+      case 'lg':
+        return '80%';
+      case 'xl':
+        return '100%';
+      default:
+        return 'auto';
+    }
+  };
+  const widthOutput = sizingWidth(maxWidth as string | boolean);
+  const widthOption: React.CSSProperties = {
+    width: widthOutput,
+  };
+
+  // fullview logic
+
+  const fullView: React.CSSProperties = {
+    position: fullScreen ? 'absolute' : undefined,
+    top: fullScreen ? '0px' : undefined,
+    right: fullScreen ? '0px' : undefined,
+    bottom: fullScreen ? '0px' : undefined,
+    left: fullScreen ? '0px' : undefined,
+  };
+
   // access children prop and even perform more operations
   // with props.children
   useEffect(() => {
@@ -113,6 +165,10 @@ const Dialog: FC<DialogProps> = (props) => {
                     className={
                       classes ? (classes as unknown as string) : 'modal'
                     }
+                    // style={{
+                    //   width: widthOutput,
+                    // }}
+                    style={{ ...widthOption, ...fullView, ...style }}
                     draggable={draggable}
                   >
                     {children}

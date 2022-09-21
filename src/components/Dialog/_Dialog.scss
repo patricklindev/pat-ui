@@ -29,12 +29,11 @@
 }
 
 .modal {
-  overflow: hidden;
-  max-width: 600px;
+  width: auto;
   min-height: 50%;
   padding: 20px;
   position: relative;
-  overflow: hidden;
+  overflow: scroll;
   border-radius: 4px;
   background-color: #fff;
   text-align: left;

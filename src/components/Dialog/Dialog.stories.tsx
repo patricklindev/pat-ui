@@ -6,12 +6,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import DialogTitle from '@mui/material/DialogTitle';
 import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
-import TextField from '@mui/material/TextField';
 import Input from '../Input';
 import Button from '../Button';
 
@@ -21,6 +18,7 @@ export default {
 };
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
+
 const buttonStyle: React.CSSProperties = {
   marginRight: '5px',
   marginTop: '5px',
@@ -131,10 +129,6 @@ export const SubscribeDialog = () => {
     }
   };
   const [email, setEmail] = useState<string>('');
-  const handleSubscribe = () => {
-    setModalState(false);
-    action(email);
-  };
 
   return (
     <div>
@@ -153,18 +147,6 @@ export const SubscribeDialog = () => {
           To subscribe to this website, please enter your email address here. We
           will send updates occasionally
         </p>
-        {/* <TextField
-          autoFocus
-          margin="normal"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="standard"
-          onChange={(e) => {
-            setEmail(e.target.value as string);
-          }}
-        /> */}
         <Input
           onChange={(e) => {
             setEmail(e.target.value as string);

@@ -55,6 +55,15 @@ const Switch: FC<PatSwitchProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
+  //avoid actions when disabled = true
+  if (disabled) {
+    rest.onClick = (e) => {
+      e.preventDefault();
+    };
+    rest.onChange = (e) => {
+      e.preventDefault();
+    };
+  }
   let swh = (
     <div className={styleClasses} data-testid="switch-element">
       <label className="switch-container">
@@ -63,10 +72,6 @@ const Switch: FC<PatSwitchProps> = (props) => {
             type="checkbox"
             className="switch-toggle"
             data-testid="switch-toggle"
-            //avoid any action when disabled
-            onClick={disabled ? (e) => e.preventDefault() : props.onClick}
-            // //set state to control on/off on the switch
-            // onChange={() => setIsChecked((prev) => !prev)}
             checked={isChecked}
             {...rest}
           />

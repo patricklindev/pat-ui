@@ -1,6 +1,7 @@
-import { action } from '@storybook/addon-actions';
+// import { action } from '@storybook/addon-actions';
 import React from 'react';
 import Switch from './Switch';
+import Button from '../Button';
 
 export default {
   title: 'Switch',
@@ -13,10 +14,10 @@ export const DefaultSwitch = () => {
   //why use switch
   //in controlled component, the input’s(switch) value is always driven by the React state.
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setShowOn((prev) => !prev);
     setShowOn(!showOn);
-    action(showOn ? 'off' : 'on')(e);
+    // action(showOn ? 'off' : 'on')(e);
   };
 
   return (
@@ -48,6 +49,7 @@ export const DiffColorSwitch = () => {
   const [showOnP, setShowOnP] = React.useState(false);
   const [showOnS, setShowOnS] = React.useState(false);
 
+  console.log(showOnP);
   return (
     <div>
       <Switch
@@ -92,7 +94,11 @@ export const DiffTypeSwitch = () => {
         label="On as default switch"
       />
 
-      <Switch disabled label="Defualt disabled switch" />
+      <Switch
+        disabled
+        label="Defualt disabled switch"
+        onChange={() => console.log('clicked')}
+      />
     </div>
   );
 };

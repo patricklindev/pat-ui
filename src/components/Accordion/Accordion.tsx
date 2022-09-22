@@ -10,12 +10,14 @@ export interface IAccordionProps {
   sx?: {};
   rounded?: boolean;
   onClick?: (a?: boolean) => void;
+
 }
 
 export type bhdrProps = InputHTMLAttributes<HTMLInputElement>;
 type InputArgs = IAccordionProps & Omit<bhdrProps, keyof IAccordionProps>;
 function Accordion(props: InputArgs) {
   const { children, disabled, onClick, expanded, sx, ...rest } = props;
+
   const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
     setOpen(expanded as boolean);
@@ -55,7 +57,7 @@ function Accordion(props: InputArgs) {
           );
         } else {
           return (
-            <AccordionDetail expanded={props.expanded} isOpen={open} key={idx}>
+            <AccordionDetail  expanded={props.expanded} isOpen={open} key={idx}>
               {elem.props.children}
             </AccordionDetail>
           );

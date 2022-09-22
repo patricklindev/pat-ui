@@ -81,10 +81,10 @@ export const DisabledAccordion = () => {
 }
 
 export const ControlledAccordion:React.FC = () => {
-  const [expanded, setExpanded] = React.useState<string | false >(false);
+  const [expanded, setExpanded] = React.useState<string>('');
 
   const handleChange = (panel : string) => {
-    return (open?: boolean) => setExpanded(open ? panel : false)
+    return (open?: boolean) => setExpanded(open ? panel : '')
   }
   return  <><Accordion expanded={expanded === 'panel1'} onClick={handleChange('panel1')}>
             <AccordionHeader>
@@ -119,13 +119,15 @@ export const StyledAccordion = () => {
               <p>hello</p>
             </AccordionHeader>
             <AccordionDetail>
-              <input placeholder='asim'></input>
+              <p>sadfsdf</p>
               <Accordion onClick={action('hello clicked')} sx={{backgroundColor : 'red',borderRadius :'10px',maxWidth : '400px',color:'white'}}>
             <AccordionHeader >
               <p>hello</p>
             </AccordionHeader>
             <AccordionDetail>
-              <input placeholder='asim'></input>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
             </AccordionDetail>
           </Accordion>
             </AccordionDetail>

@@ -112,3 +112,6 @@
 .toast__btn__danger {
     @include toast-btn(#f1e6e7, $danger, 5px, none, 600, 125px, 40px);
 }
+.toast__btn__custom {
+    @include toast-btn(#ece9f2, #6610f2, 5px, none, 600, 125px, 40px);
+}

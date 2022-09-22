@@ -216,28 +216,11 @@ export const DiffToast = () => {
       <h4 style={headingStyle}>Custom Props</h4>
       <Button
         btnType="default"
-        className="toast__btn__secondary"
+        className="toast__btn__custom"
         onClick={handleOpenPropsToast}
       >
         Open Toast
       </Button>
-
-      {/* {btns.map((btn: any) => {
-        const btnStyle: React.CSSProperties = {
-          width: '125px',
-          height: '40px',
-          border: 'none',
-          borderRadius: '6px',
-          backgroundColor: btn.color[btn.text].bg,
-          color: btn.color[btn.text].main,
-          margin: '5px'
-        };
-        return (
-          <button style={btnStyle} onClick={handleOpen}>
-            <h6 style={btnTextStyle}>{btn.text}</h6>
-          </button>
-        );
-      })} */}
     </div>
   );
 };

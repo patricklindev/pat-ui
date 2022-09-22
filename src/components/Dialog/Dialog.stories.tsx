@@ -34,7 +34,6 @@ export const SimpleDialogWithChildren = () => {
   const handleClose = (inputValue: string) => {
     action(inputValue);
     setModalState(false);
-    console.log('value from dialog: ', inputValue);
   };
 
   return (
@@ -77,9 +76,6 @@ export const AlertDialog = () => {
   }, []);
   const handleClose = (inputValue?: string) => {
     setModalState(false);
-    if (inputValue) {
-      console.log('value from dialog: ', inputValue);
-    }
   };
 
   return (
@@ -124,9 +120,6 @@ export const SubscribeDialog = () => {
   }, []);
   const handleClose = (inputValue?: string) => {
     setModalState(false);
-    if (inputValue) {
-      console.log('value from dialog: ', inputValue);
-    }
   };
   const [email, setEmail] = useState<string>('');
 
@@ -179,7 +172,6 @@ export const DialogWithFullScreen = () => {
   const handleClose = (inputValue: string) => {
     action(inputValue);
     setModalState(false);
-    console.log('value from dialog: ', inputValue);
   };
 
   return (
@@ -220,7 +212,6 @@ export const DialogWithCustomStyling = () => {
   const handleClose = (inputValue: string) => {
     action(inputValue);
     setModalState(false);
-    console.log('value from dialog: ', inputValue);
   };
 
   const customStyling: React.CSSProperties = {

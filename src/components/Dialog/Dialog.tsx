@@ -4,15 +4,10 @@ import React, {
   useState,
   useCallback,
   useRef,
-  Children,
   ReactElement,
-  cloneElement,
-  ReactNode,
   useEffect,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { action } from '@storybook/addon-actions';
-import { DiffColorIcon } from '../Icon/Icon.stories';
 
 export interface DialogProps {
   // the on/off switch of the component
@@ -60,9 +55,6 @@ const Dialog: FC<DialogProps> = (props) => {
   } = props;
 
   // do logic in following lines
-  useEffect(() => {
-    // console.log('current onclose: ', onClose);
-  }, [onClose]);
 
   const [visible, setVisible] = useState<boolean>(open as boolean);
   useEffect(() => {
@@ -80,7 +72,7 @@ const Dialog: FC<DialogProps> = (props) => {
         !wrapperRef.current.contains(target) &&
         onClose
       ) {
-        onClose('test passing Value');
+        onClose('Modal Closed');
       }
     },
     [onClose]
@@ -127,7 +119,6 @@ const Dialog: FC<DialogProps> = (props) => {
   };
 
   // fullview logic
-
   const fullView: React.CSSProperties = {
     position: fullScreen ? 'absolute' : undefined,
     top: fullScreen ? '0px' : undefined,
@@ -136,19 +127,7 @@ const Dialog: FC<DialogProps> = (props) => {
     left: fullScreen ? '0px' : undefined,
   };
 
-  // access children prop and even perform more operations
-  // with props.children
-  useEffect(() => {
-    if (props.children) {
-      console.log(
-        'children props: ',
-        props.children,
-        ' and its types: ',
-        typeof props.children
-      );
-    }
-  }, [props.children]);
-
+  // Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
   return (
     <>
       {visible
@@ -159,15 +138,11 @@ const Dialog: FC<DialogProps> = (props) => {
                 {/* HTML for the modal container */}
                 <div className="modal-container">
                   {/* The Modal  */}
-                  {/* `${Math.floor(pgValue)}%` */}
                   <div
                     ref={wrapperRef}
                     className={
                       classes ? (classes as unknown as string) : 'modal'
                     }
-                    // style={{
-                    //   width: widthOutput,
-                    // }}
                     style={{ ...widthOption, ...fullView, ...style }}
                     draggable={draggable}
                   >

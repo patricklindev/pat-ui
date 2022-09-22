@@ -1,7 +1,6 @@
 // import { action } from '@storybook/addon-actions';
 import React from 'react';
 import Switch from './Switch';
-import Button from '../Button';
 
 export default {
   title: 'Switch',
@@ -11,7 +10,6 @@ export default {
 export const DefaultSwitch = () => {
   const [showOn, setShowOn] = React.useState(false);
 
-  //why use switch
   //in controlled component, the input’s(switch) value is always driven by the React state.
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

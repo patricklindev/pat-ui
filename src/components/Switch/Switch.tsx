@@ -42,10 +42,6 @@ const Switch: FC<PatSwitchProps> = (props) => {
     ...rest
   } = props;
 
-  //controls default bahavior (on or off) of the switch
-  // const defaultChecked = checked ? checked : false;
-  // const [isChecked, setIsChecked] = useState(defaultChecked);
-
   let styleClasses = classNames('switch', {
     [`switch-${isChecked ? switchColor : 'default'}`]: true,
     [`switch-${switchSize}`]: !!switchSize,

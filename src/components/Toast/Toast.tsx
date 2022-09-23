@@ -31,7 +31,7 @@ export interface IToastProps {
   /** set toast position on screen */
   position?: TToastPostion;
   /** set toast message title */
-  title: React.ReactNode;
+  title?: React.ReactNode;
   /** set toast message body */
   message?: React.ReactNode;
   /** set toast icon */
@@ -40,6 +40,8 @@ export interface IToastProps {
   iconColor?: TToastIconColor;
   /** set custom image as icon */
   iconUri?: string;
+  /** set custom icon image alt text */
+  imageAltText?: string;
   /** set custom text color */
   textColor?: string;
   /** set custom background color */
@@ -68,6 +70,7 @@ export const Toast = ({
   iconType,
   iconColor,
   iconUri,
+  imageAltText,
   textColor,
   bgColor,
   autoHideDuration,
@@ -142,7 +145,7 @@ export const Toast = ({
             <img
               className="toast__icon__custom"
               src={iconUri}
-              alt="custom toast icon"
+              alt={imageAltText}
             />
           ) : (
             <span data-testid="icon">{renderIcon(iconType, iconColor)}</span>

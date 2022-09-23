@@ -53,6 +53,7 @@ export const DiffToast = () => {
 
   return (
     <div>
+      {/* Toast Colors */}
       <Toast
         open={openPrimary}
         type="primary"
@@ -95,6 +96,7 @@ export const DiffToast = () => {
         onClose={handleCloseDanger}
         autoHideDuration={3000}
       />
+      {/* Toast Positions */}
       <Toast
         open={openTL}
         type="primary"
@@ -127,6 +129,7 @@ export const DiffToast = () => {
         onClose={handleCloseBR}
         autoHideDuration={3000}
       />
+      {/* Toast With Props */}
       <Toast
         open={openPropsToast}
         type="secondary"
@@ -140,6 +143,7 @@ export const DiffToast = () => {
         onClose={handleClosePropsToast}
         autoHideDuration={3500}
       />
+      {/* Toast With Custom Icon */}
       <Toast
         open={openCustomIconToast}
         type="secondary"

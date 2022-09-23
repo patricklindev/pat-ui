@@ -1,7 +1,7 @@
 import React from 'react';
 import { TToastIcon, TToastIconColor } from './Toast';
 
-export const colors: any = {
+export const colors = {
   primary: {
     main: '#20c997',
     bg: '#e7f5ef'

@@ -1,29 +1,29 @@
 .toast {
     position: absolute;
-    min-width: 344px;
-    min-height: 76px;
+    min-width: $toast-min-width;
+    min-height: $toast-min-height;
     z-index: 9999 !important;
     text-align: left;
     display: flex;
     justify-content: space-between;
 
     &__edge__primary {
-        @include toast-edge($primary, 10px, 76px, 6px, 6px);
+        @include toast-edge($primary, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
     }
     &__edge__secondary {
-        @include toast-edge($secondary, 10px, 76px, 6px, 6px);
+        @include toast-edge($secondary, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
     }
     &__edge__success {
-        @include toast-edge($success, 10px, 76px, 6px, 6px);
+        @include toast-edge($success, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
     }
     &__edge__info {
-        @include toast-edge($info, 10px, 76px, 6px, 6px);
+        @include toast-edge($info, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
     }
     &__edge__warning {
-        @include toast-edge($dark-yellow, 10px, 76px, 6px, 6px);
+        @include toast-edge($dark-yellow, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
     }
     &__edge__danger {
-        @include toast-edge($danger, 10px, 76px, 6px, 6px);
+        @include toast-edge($danger, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
     }
     &__wrapper {
         display: flex;
@@ -40,8 +40,8 @@
         margin-left: 10px;
     }
     &__icon__custom {
-        max-width: 35px;
-        max-height: 35px;
+        max-width: $toast-icon-max-width;
+        max-height: $toast-icon-max-height;
     }
     &__icon__close {
         cursor: pointer;
@@ -55,62 +55,58 @@
 }
 
 .toast__top-right {
-    top: 15px;
-    right: 15px;
-    opacity: 1;
+    top: $toast-top;
+    right: $toast-right;
 }
 .toast__top-left {
-    top: 15px;
-    left: 15px;
-    opacity: 1;
+    top: $toast-top;
+    left: $toast-left;
 }
 .toast__bottom-right {
-    bottom: 15px;
-    right: 15px;
-    opacity: 1;
+    bottom: $toast-bottom;
+    right: $toast-right;
 }
 .toast__bottom-left {
-    bottom: 15px;
-    left: 15px;
-    opacity: 1;
+    bottom: $toast-bottom;
+    left: $toast-left;
 }
 
 .toast__primary {
-    @include toast-color(#e7f5ef, 6px, $primary);
+    @include toast-color($toast-bg-primary, $toast-border-radius, $primary);
 }
 .toast__secondary {
-    @include toast-color(#f0f0f1, 6px, $secondary);
+    @include toast-color($toast-bg-secondary, $toast-border-radius, $secondary);
 }
 .toast__success {
-    @include toast-color(#e8f1e9, 6px, $success);
+    @include toast-color($toast-bg-success, $toast-border-radius, $success);
 }
 .toast__info {
-    @include toast-color(#dfe9eb, 6px, $info);
+    @include toast-color($toast-bg-info, $toast-border-radius, $info);
 }
 .toast__warning {
-    @include toast-color(#f5f3ea, 6px, $dark-yellow);
+    @include toast-color($toast-bg-warning, $toast-border-radius, $dark-yellow);
 }
 .toast__danger {
-    @include toast-color(#f1e6e7, 6px, $danger);
+    @include toast-color($toast-bg-danger, $toast-border-radius, $danger);
 }
 
 .toast__btn__primary {
-    @include toast-btn(#e7f5ef, $primary, 5px, none, 600, 125px, 40px);
+    @include toast-btn($toast-bg-primary, $primary, 5px, none, 600, 125px, 40px);
 }
 .toast__btn__secondary {
-    @include toast-btn(#f0f0f1, $secondary, 5px, none, 600, 125px, 40px);
+    @include toast-btn($toast-bg-secondary, $secondary, 5px, none, 600, 125px, 40px);
 }
 .toast__btn__success {
-    @include toast-btn(#e8f1e9, $success, 5px, none, 600, 125px, 40px);
+    @include toast-btn($toast-bg-success, $success, 5px, none, 600, 125px, 40px);
 }
 .toast__btn__info {
-    @include toast-btn(#dfe9eb, $info, 5px, none, 600, 125px, 40px);
+    @include toast-btn($toast-bg-info, $info, 5px, none, 600, 125px, 40px);
 }
 .toast__btn__warning {
-    @include toast-btn(#efede3, $dark-yellow, 5px, none, 600, 125px, 40px);
+    @include toast-btn($toast-bg-warning, $dark-yellow, 5px, none, 600, 125px, 40px);
 }
 .toast__btn__danger {
-    @include toast-btn(#f1e6e7, $danger, 5px, none, 600, 125px, 40px);
+    @include toast-btn($toast-bg-danger, $danger, 5px, none, 600, 125px, 40px);
 }
 .toast__btn__custom {
     @include toast-btn(#ece9f2, #6610f2, 5px, none, 600, 125px, 40px);

@@ -23,6 +23,7 @@ export const DiffToast = () => {
   const [openBL, setOpenBL] = useState(false);
   const [openBR, setOpenBR] = useState(false);
   const [openPropsToast, setOpenPropsToast] = useState(false);
+  const [openCustomIconToast, setOpenCustomIconToast] = useState(false);
 
   const handleOpenPrimary = () => setOpenPrimary(true);
   const handleOpenSecondary = () => setOpenSecondary(true);
@@ -35,6 +36,7 @@ export const DiffToast = () => {
   const handleOpenBL = () => setOpenBL(true);
   const handleOpenBR = () => setOpenBR(true);
   const handleOpenPropsToast = () => setOpenPropsToast(true);
+  const handleOpenCustomIconToast = () => setOpenCustomIconToast(true);
 
   const handleClosePrimary = () => setOpenPrimary(false);
   const handleCloseSecondary = () => setOpenSecondary(false);
@@ -47,6 +49,7 @@ export const DiffToast = () => {
   const handleCloseBL = () => setOpenBL(false);
   const handleCloseBR = () => setOpenBR(false);
   const handleClosePropsToast = () => setOpenPropsToast(false);
+  const handleCloseCustomIconToast = () => setOpenCustomIconToast(false);
 
   return (
     <div>
@@ -134,8 +137,17 @@ export const DiffToast = () => {
         iconColor="info"
         textColor='#6610f2'
         bgColor='#ece9f2'
-        // iconUri='https://firebasestorage.googleapis.com/v0/b/onebook-client.appspot.com/o/otherImages%2Fservice-entertainment.png?alt=media&token=89099854-42f1-4d00-b411-2d23ee053572'
         onClose={handleClosePropsToast}
+        autoHideDuration={3500}
+      />
+      <Toast
+        open={openCustomIconToast}
+        type="secondary"
+        title="Done!"
+        message="Successfully uploaded file"
+        position="top-right"
+        iconUri='https://assets.webiconspng.com/uploads/2017/09/Target-PNG-Image-65154.png'
+        onClose={handleCloseCustomIconToast}
         autoHideDuration={3500}
       />
 
@@ -218,6 +230,15 @@ export const DiffToast = () => {
         btnType="default"
         className="toast__btn__custom"
         onClick={handleOpenPropsToast}
+      >
+        Open Toast
+      </Button>
+
+      <h4 style={headingStyle}>Custom Icon Prop</h4>
+      <Button
+        btnType="default"
+        className="toast__btn__secondary"
+        onClick={handleOpenCustomIconToast}
       >
         Open Toast
       </Button>

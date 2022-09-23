@@ -31,9 +31,9 @@ export interface IToastProps {
   /** set toast position on screen */
   position?: TToastPostion;
   /** set toast message title */
-  title: React.ReactNode | string;
+  title: React.ReactNode;
   /** set toast message body */
-  message?: React.ReactNode | string;
+  message?: React.ReactNode;
   /** set toast icon */
   iconType?: TToastIcon;
   /** set toast icon color */
@@ -57,40 +57,8 @@ export interface IToastProps {
  * import { Toast } from 'pat-ui';
  * ```
  *
- * ---
- *
- * ##### Getting Started
- *
- * ```js
- * import React, { useState } from 'react';
- * import { Toast } from 'pat-ui';
- *
- * function MyApp() {
- *    const [open, setOpen] = useState(false);
- *
- *    const handleOpen = () => {
- *       setOpen(true);
- *    }
- *
- *    const handleClose = () => {
- *       setOpen(true);
- *    }
- *
- *    return (
- *       <Toast
- *          open={open}
- *          title="Toast title here"
- *          onClose={handleClose}
- *          autoHideDuration={3000}
- *       />
- *       <button onClick={handleOpen}>
- *          Open Toast
- *       </button>
- *    );
- * };
- *
- * ```
  */
+
 export const Toast = ({
   open,
   type = 'primary',
@@ -106,15 +74,17 @@ export const Toast = ({
   onClose,
 }: IToastProps) => {
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    // set timeout if autoHideDuration is provided
-    if (autoHideDuration) {
-      timer = setTimeout(() => {
-        onClose();
-      }, autoHideDuration);
+    if (open) {
+      let timer: NodeJS.Timeout;
+      // set timeout if autoHideDuration is provided
+      if (autoHideDuration) {
+        timer = setTimeout(() => {
+          onClose();
+        }, autoHideDuration);
+      }
+  
+      return () => clearTimeout(timer);
     }
-
-    return () => clearTimeout(timer);
   }, [open]);
 
   let styleClasses = classNames('toast', {
@@ -163,7 +133,7 @@ export const Toast = ({
     }
   };
 
-  return (open && (
+  return (open ? (
     <div className={styleClasses} data-testid="toast" style={customColors()}>
       <div className={`toast__edge__${type}`} style={customEdge()} />
       <div className="toast__wrapper">
@@ -198,7 +168,7 @@ export const Toast = ({
         </div>
       </div>
     </div>
-  )) as JSX.Element;
+  ) : null);
 };
 
 export default Toast;

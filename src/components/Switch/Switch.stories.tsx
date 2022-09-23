@@ -9,21 +9,11 @@ export default {
 
 export const DefaultSwitch = () => {
   const [showOn, setShowOn] = React.useState(false);
-
-  //in controlled component, the input’s(switch) value is always driven by the React state.
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setShowOn((prev) => !prev);
+  const handleChange = () => {
     setShowOn(!showOn);
-    // action(showOn ? 'off' : 'on')(e);
   };
-
   return (
-    <Switch
-      label="Default Switch"
-      isChecked={showOn}
-      onChange={(e) => handleChange(e)}
-    />
+    <Switch label="Default Switch" isChecked={showOn} onChange={handleChange} />
   );
 };
 

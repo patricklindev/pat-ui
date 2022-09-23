@@ -20,10 +20,11 @@ describe('Switch', () => {
     expect(label).toBeInTheDocument();
     expect(slider).toBeInTheDocument();
     expect(slider).toHaveClass('switch-slider');
-    expect(element).toHaveClass('switch switch-default switch-sm');
+    expect(element).toHaveClass('switch switch-sm');
     expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
     expect(checkbox).toBeChecked();
+    expect(element).toHaveClass('switch-default');
   });
 
   it('should render corrsonding button based on props', () => {
@@ -46,10 +47,11 @@ describe('Switch', () => {
     expect(label).toBeInTheDocument();
     expect(slider).toBeInTheDocument();
     expect(slider).toHaveClass('switch-slider');
-    expect(element).toHaveClass('switch switch-default switch-lg test');
+    expect(element).toHaveClass('switch switch-lg test');
     expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
     expect(checkbox).toBeChecked();
+    // expect(checkbox).toHaveAttribute('checked', 'true');
   });
 
   it('should render on switch', () => {
@@ -71,6 +73,7 @@ describe('Switch', () => {
     expect(element).toHaveClass('switch switch-default switch-sm');
     fireEvent.click(checkbox);
     expect(checkbox).toBeChecked();
+    expect(checkbox).toHaveAttribute('checked', '');
   });
 
   it('should render a disabled switch', () => {
@@ -96,5 +99,6 @@ describe('Switch', () => {
     expect(disabledSwitchProp.onClick).toHaveBeenCalledTimes(0);
     fireEvent.click(element);
     expect(disabledSwitchProp.onClick).toHaveBeenCalledTimes(0);
+    expect(slider).toHaveClass('disabled');
   });
 });

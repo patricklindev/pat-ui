@@ -1,16 +1,20 @@
+@import './variables';
+@import './mixin';
 .switch {
-  margin: 1em;
+  margin: $switch-margin;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &-label {
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.15px;
-    font-family: $font-family-base;
-    margin-left: 0.3em;
-    margin-top: 0.3em;
+    @include switch-lable-style(
+      16px,
+      24px,
+      0.15px,
+      $font-family-base,
+      0.3em,
+      0.3em
+    );
   }
 
   &-container {
@@ -41,12 +45,7 @@
   &-slider::before {
     position: absolute;
     content: '';
-    height: 16px;
-    width: 16px;
-    top: -3px;
-    left: -2px;
-    transition: 0.4s;
-    border-radius: 50%;
+    @include switch-slider(16px, 16px, -3px, -2px, 0.4s, 50%);
   }
   &-slider:hover::before {
     box-shadow: 0 0 0 3px rgba(222, 226, 230, 0.18);
@@ -81,7 +80,7 @@
 
 .switch-primary {
   .switch-slider {
-    background-color: rgba(32, 201, 151, 0.8);
+    background-color: $switch-primary;
   }
 
   .switch-slider::before {
@@ -89,7 +88,7 @@
   }
 
   .switch-slider:hover::before {
-    box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.2);
+    box-shadow: $switch-primary-hover;
   }
 }
 

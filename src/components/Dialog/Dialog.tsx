@@ -4,7 +4,7 @@ import React, {
   useState,
   useCallback,
   useRef,
-  ReactElement,
+  ReactNode,
   useEffect,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -19,8 +19,8 @@ export interface DialogProps {
   // classes allows style overwritting
   classes?: object | string;
 
-  // children must be React Element
-  children?: string | ReactElement<any> | ReactElement<any>[] | Node;
+  // children must be ReactNode
+  children?: ReactNode;
 
   // Callback function fired when the component requests to be closed.
   onClose?: (val: any) => void;
@@ -136,7 +136,7 @@ const Dialog: FC<DialogProps> = (props) => {
               {/* HTML for where the dialog modal will be displayed on screen */}
               <div className="window-container">
                 {/* HTML for the modal container */}
-                <div className="modal-container">
+                <div className="dialog-container">
                   {/* The Modal  */}
                   <div
                     ref={wrapperRef}
@@ -144,7 +144,7 @@ const Dialog: FC<DialogProps> = (props) => {
                       classes ? (classes as unknown as string) : 'modal'
                     }
                     style={{ ...widthOption, ...fullView, ...style }}
-                    draggable={draggable}
+                    draggable={draggable as boolean}
                   >
                     {children}
                   </div>

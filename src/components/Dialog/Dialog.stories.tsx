@@ -24,7 +24,7 @@ const buttonStyle: React.CSSProperties = {
   marginTop: '5px',
 };
 
-export const SimpleDialogWithChildren = () => {
+export const SimpleDialogWithChildrenAndDraggable = () => {
   // The actions addon is used to display data received by event handler (callback) arguments in your stories.
   // lines: 25-32 provided by the user to control the dialog
   const [showModal, setModalState] = useState(false);
@@ -42,7 +42,7 @@ export const SimpleDialogWithChildren = () => {
         click here for button
       </Button>
 
-      <Dialog open={showModal} onClose={handleClose}>
+      <Dialog open={showModal} onClose={handleClose} draggable>
         <h5 className="title">Set backup account</h5>
         <List sx={{ pt: 0 }}>
           {emails.map((email) => (

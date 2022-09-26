@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { Toast, IToastProps } from './Toast';
 
-// const Wrapper = () => {
-//   const [isOpen, setIsOpen] = useState(true);
-
-//   return <Toast open={isOpen} onClose={() => setIsOpen(!isOpen)} />
-// }
-
 describe('Toast', () => {
   it('should render toast component with passed props', () => {
     const toastProps: IToastProps = {
@@ -58,29 +52,35 @@ describe('Toast', () => {
     expect(customIconElement.length).toBe(1);
   });
 
-  it('should trigger onClose function', async () => {
-    const toastProps: IToastProps = {
-      open: true,
-      title: 'Toast title',
-      autoHideDuration: 3500,
-      onClose: jest.fn(),
-    };
-    const view = render(<Toast {...toastProps} />);
-    const closeLink = view.getByTestId('close-link');
+  it('should close toast after onClose is triggered', async () => {
+    const Wrapper = () => {
+      const [isOpen, setIsOpen] = useState(true);
+    
+      return (
+        <div>
+          <Toast open={isOpen} onClose={() => setIsOpen(false)} />
+        </div>
+      )
+    }
+
+    render(<Wrapper />);
+    expect(screen.getByTestId('toast')).toBeInTheDocument();
+    const closeLink = screen.getByTestId('close-link');
     fireEvent.click(closeLink);
-    expect(toastProps.onClose).toHaveBeenCalledTimes(1);
+    // use queryby when checking if an element isn't in the document (no returned error)
+    expect(screen.queryByTestId('toast')).not.toBeInTheDocument();
   });
 
   it('should not render toast component if controlled prop is false', () => {
     const toastProps: IToastProps = {
       open: true,
       title: 'Toast title',
-      onClose: jest.fn(),
+      onClose: Function
     };
     const closedToastProps: IToastProps = {
       open: false,
       title: 'Toast title',
-      onClose: jest.fn(),
+      onClose: Function
     }
     const { rerender } = render(<Toast {...toastProps} />)
     const titleElement = screen.queryByText('Toast title');

@@ -9,7 +9,7 @@ exports[`Accordion should match snapshot 1`] = `
       class="accordion-header "
     >
       <div
-        class="accordion-header-btn"
+        class="accordion-header__btn"
       >
         <p>
           hello
@@ -17,8 +17,7 @@ exports[`Accordion should match snapshot 1`] = `
       </div>
     </div>
     <div
-      class="accordion-detail-container"
-      style="height: 0px;"
+      class="accordion-detail-container "
     >
       <div
         class="accordion-detail-container-content"

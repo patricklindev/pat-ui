@@ -1,22 +1,41 @@
-import React, { useState, InputHTMLAttributes, useEffect } from 'react';
+import React, {
+  useState,
+  InputHTMLAttributes,
+  useEffect,
+  ReactElement,
+} from 'react';
 import AccordionDetail from './AccordionDetail';
 import AccordionHeader from './AccordionHeader';
 import { classNames } from '../../utils/classNames';
+import { AccordionDetailProps } from './AccordionDetail';
+import { AccordionHeaderProps } from './AccordionHeader';
+
+export type AccordionType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'info'
+  | 'default';
 
 export interface IAccordionProps {
-  children: JSX.Element[];
+  children: [
+    ReactElement<AccordionHeaderProps>,
+    ReactElement<AccordionDetailProps>
+  ];
   disabled?: boolean;
   expanded?: boolean;
   sx?: {};
   rounded?: boolean;
   onClick?: (a?: boolean) => void;
-
+  key?: number | string;
+  accordionType?: AccordionType;
 }
 
 export type bhdrProps = InputHTMLAttributes<HTMLInputElement>;
 type InputArgs = IAccordionProps & Omit<bhdrProps, keyof IAccordionProps>;
 function Accordion(props: InputArgs) {
-  const { children, disabled, onClick, expanded, sx, ...rest } = props;
+  const { children, disabled, accordionType, onClick, expanded, sx, key } =
+    props;
 
   const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
@@ -35,6 +54,7 @@ function Accordion(props: InputArgs) {
     }
   };
   let styleClasses = classNames('accordion-container', {
+    [`acc-${accordionType}`]: true,
     disabled: !!disabled,
   });
 
@@ -44,25 +64,22 @@ function Accordion(props: InputArgs) {
       className={`${styleClasses} ${expanded || open ? 'active' : ''}`}
       style={sx}
     >
-      {children.map((elem, idx) => {
-        if (elem.type.name === 'AccordionHeader') {
-          return (
-            <AccordionHeader
-              isOpen={open}
-              btnOnClick={() => btnOnClick(open)}
-              key={`${elem.type.name}${idx}`} //uid
-            >
-              {elem.props.children}
-            </AccordionHeader>
-          );
-        } else {
-          return (
-            <AccordionDetail  expanded={props.expanded} isOpen={open} key={idx}>
-              {elem.props.children}
-            </AccordionDetail>
-          );
-        }
-      })}
+      <AccordionHeader
+        isOpen={open}
+        btnOnClick={() => btnOnClick(open)}
+        key={`header${key}`}
+        expandedStyle={children[0]?.props['expandedStyle']}
+      >
+        {children[0].props.children}
+      </AccordionHeader>
+
+      <AccordionDetail
+        expanded={props.expanded}
+        isOpen={open}
+        key={`detail${key}`}
+      >
+        {children[1].props.children}
+      </AccordionDetail>
     </div>
   );
 }

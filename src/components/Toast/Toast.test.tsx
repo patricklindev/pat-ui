@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { Toast, IToastProps } from './Toast';
+import { act } from 'react-dom/test-utils';
 
 describe('Toast', () => {
   it('should render toast component with passed props', () => {
@@ -48,20 +49,21 @@ describe('Toast', () => {
       onClose: Function,
     };
     const { container } = render(<Toast {...toastProps} />);
-    const customIconElement = container.getElementsByClassName('toast__icon__custom');
+    const customIconElement = container.getElementsByClassName(
+      'toast__icon__custom'
+    );
     expect(customIconElement.length).toBe(1);
   });
 
-  it('should close toast after onClose is triggered', async () => {
+  it('should close toast after onClose is triggered', () => {
     const Wrapper = () => {
       const [isOpen, setIsOpen] = useState(true);
-    
       return (
         <div>
           <Toast open={isOpen} onClose={() => setIsOpen(false)} />
         </div>
-      )
-    }
+      );
+    };
 
     render(<Wrapper />);
     expect(screen.getByTestId('toast')).toBeInTheDocument();
@@ -71,18 +73,43 @@ describe('Toast', () => {
     expect(screen.queryByTestId('toast')).not.toBeInTheDocument();
   });
 
+  it('should close toast after autoHideDuration counts to 0', () => {
+    const Wrapper = () => {
+      const [isOpen, setIsOpen] = useState(true);
+      return (
+        <div>
+          <Toast
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+            autoHideDuration={3500}
+          />
+        </div>
+      );
+    };
+
+    jest.useFakeTimers();
+    render(<Wrapper />);
+    expect(screen.getByTestId('toast')).toBeInTheDocument();
+    // unit testing is unaware of component updates from timers
+    // so they need to be wrapped in an act block
+    act(() => {
+      jest.advanceTimersByTime(3500);
+    })
+    expect(screen.queryByTestId('toast')).not.toBeInTheDocument();
+  });
+
   it('should not render toast component if controlled prop is false', () => {
     const toastProps: IToastProps = {
       open: true,
       title: 'Toast title',
-      onClose: Function
+      onClose: Function,
     };
     const closedToastProps: IToastProps = {
       open: false,
       title: 'Toast title',
-      onClose: Function
-    }
-    const { rerender } = render(<Toast {...toastProps} />)
+      onClose: Function,
+    };
+    const { rerender } = render(<Toast {...toastProps} />);
     const titleElement = screen.queryByText('Toast title');
     expect(titleElement).toBeInTheDocument();
     rerender(<Toast {...closedToastProps} />);

@@ -28,7 +28,7 @@ export const colors = {
   },
 };
 
-export const renderIcon = (iconType: TToastIcon, iconColor: TToastIconColor) => {
+export const renderToastIcon = (iconType: TToastIcon, iconColor: TToastIconColor) => {
   const icons = {
     success: (
       <svg

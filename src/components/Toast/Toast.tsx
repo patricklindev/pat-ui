@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { classNames } from '../../utils/classNames';
-import { colors, renderIcon } from './Icons';
+import { colors, renderToastIcon } from './ToastIcons';
 
 export type TToastType =
   | 'primary'
@@ -148,7 +148,7 @@ export const Toast = ({
               alt={imageAltText}
             />
           ) : (
-            <span data-testid="icon">{renderIcon(iconType, iconColor)}</span>
+            <span data-testid="icon">{renderToastIcon(iconType, iconColor)}</span>
           )}
           <div className="toast__text__wrapper">
             <h6>{title}</h6>

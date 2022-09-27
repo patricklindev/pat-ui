@@ -293,3 +293,29 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+// toast
+$toast-min-width: 344px;
+$toast-min-height: 76px;
+$toast-top: 15px;
+$toast-bottom: 15px;
+$toast-right: 15px;
+$toast-left: 15px;
+$toast-opacity: 1;
+$toast-border-radius: 6px;
+
+// toast edge
+$toast-edge-width: 10px;
+$toast-edge-height: 76px;
+
+// toast background color
+$toast-bg-primary: #e7f5ef;
+$toast-bg-secondary: #f0f0f1;
+$toast-bg-success: #e8f1e9;
+$toast-bg-info: #dfe9eb;
+$toast-bg-warning: #f5f3ea;
+$toast-bg-danger: #f1e6e7;
+
+// toast custom icon
+$toast-icon-max-width: 35px;
+$toast-icon-max-height: 35px;

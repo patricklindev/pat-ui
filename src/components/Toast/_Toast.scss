@@ -1,0 +1,113 @@
+.toast {
+    position: absolute;
+    min-width: $toast-min-width;
+    min-height: $toast-min-height;
+    z-index: 9999 !important;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+    &__edge__primary {
+        @include toast-edge($primary, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
+    }
+    &__edge__secondary {
+        @include toast-edge($secondary, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
+    }
+    &__edge__success {
+        @include toast-edge($success, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
+    }
+    &__edge__info {
+        @include toast-edge($info, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
+    }
+    &__edge__warning {
+        @include toast-edge($dark-yellow, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
+    }
+    &__edge__danger {
+        @include toast-edge($danger, $toast-edge-width, $toast-edge-height, $toast-border-radius, $toast-border-radius);
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 9px 14px;
+    }
+    &__inner__wrapper {
+        display: flex;
+        align-items: center;
+    }
+    &__text__wrapper {
+        margin-left: 10px;
+    }
+    &__icon__custom {
+        max-width: $toast-icon-max-width;
+        max-height: $toast-icon-max-height;
+    }
+    &__icon__close {
+        cursor: pointer;
+    }
+    h6 {
+        margin: 0;
+    }
+    p {
+        margin: 0;
+    }
+}
+
+.toast__top-right {
+    top: $toast-top;
+    right: $toast-right;
+}
+.toast__top-left {
+    top: $toast-top;
+    left: $toast-left;
+}
+.toast__bottom-right {
+    bottom: $toast-bottom;
+    right: $toast-right;
+}
+.toast__bottom-left {
+    bottom: $toast-bottom;
+    left: $toast-left;
+}
+
+.toast__primary {
+    @include toast-color($toast-bg-primary, $toast-border-radius, $primary);
+}
+.toast__secondary {
+    @include toast-color($toast-bg-secondary, $toast-border-radius, $secondary);
+}
+.toast__success {
+    @include toast-color($toast-bg-success, $toast-border-radius, $success);
+}
+.toast__info {
+    @include toast-color($toast-bg-info, $toast-border-radius, $info);
+}
+.toast__warning {
+    @include toast-color($toast-bg-warning, $toast-border-radius, $dark-yellow);
+}
+.toast__danger {
+    @include toast-color($toast-bg-danger, $toast-border-radius, $danger);
+}
+
+.toast__btn__primary {
+    @include toast-btn($toast-bg-primary, $primary, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__secondary {
+    @include toast-btn($toast-bg-secondary, $secondary, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__success {
+    @include toast-btn($toast-bg-success, $success, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__info {
+    @include toast-btn($toast-bg-info, $info, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__warning {
+    @include toast-btn($toast-bg-warning, $dark-yellow, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__danger {
+    @include toast-btn($toast-bg-danger, $danger, 5px, none, 600, 125px, 40px);
+}
+.toast__btn__custom {
+    @include toast-btn(#ece9f2, #6610f2, 5px, none, 600, 125px, 40px);
+}

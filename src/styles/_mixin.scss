@@ -74,3 +74,27 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+@mixin toast-color($bg-color, $border-radius, $color) {
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  color: $color;
+}
+
+@mixin toast-edge($bg-color, $width, $height, $border-tl-radius, $border-bl-radius) {
+  background-color: $bg-color;
+  width: $width;
+  height: $height;
+  border-top-left-radius: $border-tl-radius;
+  border-bottom-left-radius: $border-bl-radius;
+}
+
+@mixin toast-btn($bg-color, $color, $margin, $border, $font-weight, $width, $height) {
+  background-color: $bg-color;
+  color: $color;
+  margin: $margin;
+  border: $border;
+  font-weight: $font-weight;
+  width: $width;
+  height: $height;
+}

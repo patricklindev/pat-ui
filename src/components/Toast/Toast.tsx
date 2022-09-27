@@ -112,7 +112,7 @@ export const Toast = ({
   };
 
   // same as above for toast edge
-  const customEdge = () => {
+  const customEdgeColor = () => {
     if (textColor && bgColor) {
       const customEdgeColor: React.CSSProperties = {
         backgroundColor: textColor,
@@ -138,7 +138,7 @@ export const Toast = ({
 
   return (open ? (
     <div className={styleClasses} data-testid="toast" style={customColors()}>
-      <div className={`toast__edge__${type}`} style={customEdge()} />
+      <div className={`toast__edge__${type}`} style={customEdgeColor()} />
       <div className="toast__wrapper">
         <div className="toast__inner__wrapper">
           {iconUri ? (

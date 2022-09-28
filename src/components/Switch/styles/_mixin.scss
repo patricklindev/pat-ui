@@ -1,0 +1,24 @@
+@mixin switch-lable-style(
+  $size,
+  $height,
+  $spacing,
+  $font,
+  $margin-l,
+  $margin-r
+) {
+  font-size: $size;
+  line-height: $height;
+  letter-spacing: $spacing;
+  font-family: $font;
+  margin-left: $margin-l;
+  margin-top: $margin-r;
+}
+
+@mixin switch-slider($heigth, $width, $top, $left, $transition, $br) {
+  height: $heigth;
+  width: $width;
+  top: $top;
+  left: $left;
+  transition: $transition;
+  border-radius: $br;
+}

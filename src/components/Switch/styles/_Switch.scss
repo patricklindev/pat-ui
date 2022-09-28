@@ -1,0 +1,123 @@
+@import './variables';
+@import './mixin';
+.switch {
+  margin: $switch-margin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-label {
+    @include switch-lable-style(
+      16px,
+      24px,
+      0.15px,
+      $font-family-base,
+      0.3em,
+      0.3em
+    );
+  }
+
+  &-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 26px;
+    height: 10px;
+  }
+
+  &-toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+  }
+
+  &-slider::before {
+    position: absolute;
+    content: '';
+    @include switch-slider(16px, 16px, -3px, -2px, 0.4s, 50%);
+  }
+  &-slider:hover::before {
+    box-shadow: 0 0 0 3px rgba(222, 226, 230, 0.18);
+  }
+
+  &-toggle:checked + &-slider::before {
+    transform: translateX(13px);
+  }
+}
+
+.switch {
+  &-lg {
+    .switch-container {
+      width: 34px;
+      height: 14px;
+      opacity: 50%;
+    }
+    .switch-slider::before {
+      height: 20px;
+      width: 20px;
+      opacity: 100% !important;
+    }
+    .switch-slider {
+      border-radius: 7px;
+    }
+
+    .switch-toggle:checked + .switch-slider::before {
+      transform: translateX(18px);
+    }
+  }
+}
+
+.switch-primary {
+  .switch-slider {
+    background-color: $switch-primary;
+  }
+
+  .switch-slider::before {
+    background-color: $primary;
+  }
+
+  .switch-slider:hover::before {
+    box-shadow: $switch-primary-hover;
+  }
+}
+
+.switch-secondary {
+  .switch-slider {
+    background-color: rgba(108, 117, 125, 0.8);
+  }
+
+  .switch-slider::before {
+    background-color: $secondary;
+  }
+  .switch-slider:hover::before {
+    box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.2);
+  }
+}
+
+.switch-default {
+  .switch-slider {
+    background-color: rgba(173, 181, 189, 0.8);
+  }
+
+  .switch-slider::before {
+    background-color: $gray-300;
+  }
+  .switch-slider:hover::before {
+    box-shadow: 0 0 0 3px rgba(222, 226, 230, 0.2);
+  }
+}
+
+.disabled {
+  cursor: not-allowed !important;
+}

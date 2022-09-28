@@ -51,7 +51,6 @@ describe('Switch', () => {
     expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
     expect(checkbox).toBeChecked();
-    // expect(checkbox).toHaveAttribute('checked', 'true');
   });
 
   it('should render on switch', () => {

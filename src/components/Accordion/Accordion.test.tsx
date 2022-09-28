@@ -61,6 +61,7 @@ describe('Accordion', () => {
       </Accordion.Header>
       <Accordion.Detail>
         <p>{detailText}</p>
+        <p>{detailText}</p>
       </Accordion.Detail>
     </Accordion>)
     const headerEl = screen.queryByText(headerText) as HTMLDivElement

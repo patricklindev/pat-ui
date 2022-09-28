@@ -1,0 +1,93 @@
+.accordion-container {
+  border-top: 1px solid $gray-300;
+  border-bottom: 1px solid $gray-300;
+  cursor: pointer;
+  user-select: none;
+  background-color: $white;
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+    background-color: $gray-600;
+  }
+  &.acc-primary {
+    background-color: $primary;
+    color: white;
+  }
+  &.acc-secondary {
+    background-color: $secondary;
+    color: white;
+  }
+  &.acc-danger {
+    background-color: $danger;
+    color: white;
+  }
+  &.acc-info {
+    background-color: $info;
+    color: white;
+  }
+}
+
+.accordion-container.active {
+  margin: 16px 0;
+  .accordion-container:nth-of-type(n + 2) {
+    border-top: 1px solid $cyan;
+  }
+
+  &.acc-primary {
+    border: 1px solid $cyan;
+    &.acc-primary:last-of-type {
+      border-bottom: 1px solid $cyan;
+    }
+    &.acc-primary:nth-of-type(n + 2) {
+      border-top: 1px solid $cyan;
+    }
+  }
+}
+
+.accordion-header__btn {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.accordion-header__btn > p {
+  padding-left: 20px;
+  padding-top: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.accordion-header__btn::after {
+  content: '';
+  flex-shrink: 1;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: 10px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-size: 22px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.accordion-header.active .accordion-header__btn::after {
+  transform: rotate(-180deg);
+}
+
+.accordion-detail-container {
+  transition: max-height 1.8s all;
+  overflow: hidden;
+  max-height: 0px;
+  &.active {
+    transition: max-height 1.8s all;
+    max-height: 1000px;
+  }
+}
+.accordion-detail-container-content {
+  padding: 15px 20px;
+}

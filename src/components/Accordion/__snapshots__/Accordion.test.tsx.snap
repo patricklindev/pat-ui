@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="accordion-container acc-undefined "
+  >
+    <div
+      class="accordion-header "
+    >
+      <div
+        class="accordion-header__btn"
+      >
+        <p>
+          hello
+        </p>
+      </div>
+    </div>
+    <div
+      class="accordion-detail-container "
+    >
+      <div
+        class="accordion-detail-container-content"
+      >
+        <p>
+          New Accoirdon detail helloooo
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,154 @@
+@import '../../styles/variables';
+
+.pagination-UL {
+    $primary: #3F51B5;
+    $primaryLighter: #3F51B514;
+    $secondary: #F50057;
+    $secondaryLighter: #F5005714;
+    $default: #e9ecef;
+    list-style: none;
+    display: flex; 
+    justify-content: space-between; 
+
+    div {
+
+        background-color: #E0E0E0;
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+        font-style: normal;
+        font-weight: $font-weight-base;
+        line-height: 143%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.pagination-item {
+            @mixin sizeMix($val){
+                width: $val;
+                height: $val;
+            }
+            &.small{
+                @include sizeMix(26px)
+            }
+            &.medium{
+                @include sizeMix(32px)
+            }
+            &.large{
+                @include sizeMix(40px)
+            }
+
+            &.rounded {
+                border-radius: 50%;
+            }
+            
+            &.default {
+                background-color: white;
+            }
+
+             
+
+            @mixin colorTheme($color1, $color2, $color3) {
+                background-color: $color2;
+                color: $color3;
+                border-color: $color1;
+                &.active{
+                    &:hover {   
+                        background-color: hsl( hue($color2), saturation($color2), lightness($color2)-10); 
+                    }
+
+                    &.isCurrentPage {
+                        background-color: hsl( hue($color2), saturation($color2), lightness($color2)-20); 
+                        color: hsl( hue($color1), saturation($color1), lightness($color1)+50); 
+                    
+                    }
+                }
+                &.default{
+                    background-color: white;
+                    color: $gray-700;
+                    border-color: $gray-700;
+                    
+                }
+            }
+
+            &.active, &.default {
+                &.outlineed {
+                    border: 1px solid #E0E0E0;
+
+                    &.isCurrentPage {
+                        border-bottom: solid;
+                    }
+                    &.primaryColor {
+                        @include colorTheme($secondary, $secondaryLighter,$secondary )
+                    }
+                    &.secondaryColor {
+                        @include colorTheme($primary, $primaryLighter,$primary, )
+                    }
+                    &.defaultColor {
+                         @include colorTheme($default, white, black )
+                    }
+                }
+                &.filled {
+                    border: 1px solid #E0E0E0;
+                    
+                    &.isCurrentPage {
+                        border-bottom: solid;
+                    }
+                    &.primaryColor {
+                        @include colorTheme($secondaryLighter, $secondary, white );
+                        color: white;
+                        
+                    }
+                    &.secondaryColor {
+                        @include colorTheme($primaryLighter, $primary,white );
+                        color: white;
+                    }
+                    &.defaultColor {
+                         @include colorTheme(white, $default, black );
+                    }
+                    
+                } 
+            }
+            &.disabled{
+                @include colorTheme(rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.08),rgba(0, 0, 0, 0.26) );
+                cursor:default;
+            }
+        }
+    }
+}
+.table-navigation-container-div{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    
+    select#pagesPerRow{
+        border: 0px !important;
+        outline: 0px !important;
+    }
+    .table-pagechanger{ 
+        display:flex; 
+        flex: 1 1;
+        justify-content: space-between;
+        align-items:center;
+        button{
+            align-items:center;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+    }
+    .table-rowchanger{  
+        label{  
+            margin: 0;
+        }
+        display:flex; 
+        align-items: center;
+        flex: 2 1; 
+        gap: 0px 10px;
+        
+    }
+}

@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination element should match snapshot 1`] = `
+<DocumentFragment>
+  <ul
+    aria-roledescription="Pagination navigation"
+    class="pagination-UL"
+    role="navigation"
+    style="display: flex;"
+  >
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        data-testid="pageButtons"
+      >
+        &lt;
+      </li>
+    </div>
+    <div
+      class="pagination-item  isCurrentPage active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        color="primary"
+        data-testid="pageButtons"
+      >
+        1
+      </li>
+    </div>
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        color="primary"
+        data-testid="pageButtons"
+      >
+        2
+      </li>
+    </div>
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        color="primary"
+        data-testid="pageButtons"
+      >
+        3
+      </li>
+    </div>
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        color="primary"
+        data-testid="pageButtons"
+      >
+        4
+      </li>
+    </div>
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        color="primary"
+        data-testid="pageButtons"
+      >
+        ...
+      </li>
+    </div>
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        color="primary"
+        data-testid="pageButtons"
+      >
+        10
+      </li>
+    </div>
+    <div
+      class="pagination-item  active primaryColor medium squared filled"
+      data-testid="pageButtonOuterHolder"
+      role="button"
+    >
+      <li
+        data-testid="pageButtons"
+      >
+        &gt;
+      </li>
+    </div>
+  </ul>
+</DocumentFragment>
+`;

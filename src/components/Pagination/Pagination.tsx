@@ -1,6 +1,5 @@
 import PaginationItem from './PaginationItem';
-import React, { DetailedHTMLProps, FC, HTMLAttributes, OptionHTMLAttributes, useState } from 'react';
-import { table } from 'console';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react'; 
 
 type divTypes = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 

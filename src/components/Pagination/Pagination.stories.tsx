@@ -39,7 +39,8 @@ function generateNewPaginationStory(color:'primary'|'secondary'|'default'):JSX.E
 }
 
 export const Base = () => <div style={{width:'500px'}}><Pagination onChanged={action('button clicked')} count={10} ></Pagination></div>
-export const noArrows = () => <div style={{width:'500px'}}><Pagination onChanged={action('button clicked')} count={10} arrows={false} color="primary" ></Pagination></div>
+export const BaseFilledDefault = () => <div style={{width:'500px'}}><Pagination filled={true} variants='default' onChanged={action('button clicked')} count={10} ></Pagination></div>
+export const noArrows = () => <div style={{width:'500px'}}><Pagination onChanged={action('button clicked')} count={10} arrows={false} color="primary" ></Pagination></div> 
 
 export const Default = () => generateNewPaginationStory('default');
 export const Primary = () => generateNewPaginationStory('primary');

@@ -9,6 +9,7 @@
     list-style: none;
     display: flex; 
     justify-content: space-between; 
+    user-select: none;
 
     div {
 
@@ -71,6 +72,11 @@
                     background-color: white;
                     color: $gray-700;
                     border-color: $gray-700;
+                    &.isCurrentPage { 
+                        color: hsl( hue($gray-700), saturation($gray-700), lightness($gray-700)-30);
+                        font-weight: bolder;
+                    
+                    }
                     
                 }
             }
@@ -109,6 +115,7 @@
                     }
                     &.defaultColor {
                          @include colorTheme(white, $default, black );
+                         border: none;
                     }
                     
                 } 

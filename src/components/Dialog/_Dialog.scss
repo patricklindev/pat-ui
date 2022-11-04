@@ -1,34 +1,49 @@
 .card {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 32px;
   padding: 16px 24px;
   border-radius: 4px;
+  max-width: 600px;
 
   background: #ffffff;
-
   box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.2),
     0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 
+  .title {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+  .list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    li {
+      cursor: pointer;
+      width: 100%;
+      padding-top: 5px;
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+  }
+
   .content {
-    margin-top: 24px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgba(0, 0, 0, 0.54);
+    p {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: rgba(0, 0, 0, 0.54);
+    }
   }
 
   .actions {
+    margin-top: 24px;
     display: flex;
-    justify-content: flex-end;
-
-    button {
-      background-color: transparent;
-      border-style: none;
-      font-size: 14px;
-      font-weight: 500;
-      color: #3f51b5;
-    }
+    justify-content: end;
   }
 }

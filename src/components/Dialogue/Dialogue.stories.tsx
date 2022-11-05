@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Dialog, DialogActions } from './Dialogue';
-import { Button } from '../../index';
-
+import { Button, Icon } from '../../index';
+// sub elements used for stories, import from MUI
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -12,9 +12,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 export default {
-  title: 'Dialogue',
+  title: 'Dialog',
   component: Dialog,
 };
 
@@ -22,30 +25,29 @@ export const BasicDialogue = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
 
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState(emails[0]);
 
   const handleClickOpen = (e: React.MouseEvent) => {
     setOpen(true);
-    action('Dialog window opened!')(e);
+    action('Dialog window opened')(e);
   };
 
   const handleClose = (e: string | React.MouseEvent) => {
     setOpen(false);
     if (typeof e === 'string') setSelectedValue(e);
-    action('Dialog window closed!')(e);
+    action('Dialog window closed')(e);
   };
 
   return (
-    <div>
+    <div className="display-container">
       <p style={{ marginBottom: '0.5rem' }}>Selected: {selectedValue}</p>
-      <Button btnType="default" onClick={handleClickOpen}>
+      <Button btnSize="sm" onClick={handleClickOpen}>
         OPEN SIMPLE DIALOG
       </Button>
       <Dialog
+        dialogType="basic"
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
         dialogTitle={'Set backup account'}
       >
         <List sx={{ pt: 0 }}>
@@ -78,20 +80,17 @@ export const AlertDialogue = () => {
 
   const handleClickOpen = (e: React.MouseEvent) => {
     setOpen(true);
-    action('Dialog window opened!')(e);
+    action('Dialog window opened')(e);
   };
 
   const handleClose = (e: React.MouseEvent) => {
     setOpen(false);
-    action('Dialog window closed!')(e);
+    action('Dialog window closed')(e);
   };
   return (
-    <div>
-      <Button btnType="default" onClick={handleClickOpen}>
-        OPEN ALERT DIALOG
-      </Button>
+    <div className="display-container">
+      <Button onClick={handleClickOpen}>OPEN ALERT DIALOG</Button>
       <Dialog
-        dialogType="alert"
         open={open}
         onClose={handleClose}
         dialogTitle={"Use Google's location service?"}
@@ -99,10 +98,8 @@ export const AlertDialogue = () => {
         This means sending anonymous location data to Google, even when no apps are running."
       >
         <DialogActions>
-          <Button btnSize="sm" onClick={handleClose}>
-            Disagree
-          </Button>
-          <Button btnSize="sm" onClick={handleClose} autoFocus>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
             Agree
           </Button>
         </DialogActions>
@@ -116,24 +113,19 @@ export const FormDialogue = () => {
 
   const handleClickOpen = (e: React.MouseEvent) => {
     setOpen(true);
-    action('Dialog window opened!')(e);
+    action('Dialog window opened')(e);
   };
 
-  const handleClose = (e: React.MouseEvent) => {
+  const handleClose = (e: React.MouseEvent | string) => {
     setOpen(false);
-    action('Dialog window closed!')(e);
+    action('Dialog window closed')(e);
   };
   return (
-    <div>
-      <Button btnType="default" onClick={handleClickOpen}>
-        OPEN FORM DIALOG
-      </Button>
+    <div className="display-container">
+      <Button onClick={handleClickOpen}>OPEN FORM DIALOG</Button>
       <Dialog
-        dialogType="alert"
         open={open}
         onClose={handleClose}
-        // aria-labelledby="alert-dialog-title"
-        // aria-describedby="alert-dialog-description"
         dialogTitle={'Subscribe'}
         dialogContent="To subscribe to this website, please enter your email address here. We
         will send updates occasionally."
@@ -148,35 +140,54 @@ export const FormDialogue = () => {
           variant="standard"
         />
         <DialogActions>
-          <Button btnSize="sm" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button btnSize="sm" onClick={handleClose}>
-            Subscribe
-          </Button>
+          <Button onClick={() => handleClose('cancel')}>Cancel</Button>
+          <Button onClick={() => handleClose('subscribe')}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 };
 
-// export const DefaultCard = () => (
-//   <div>
-//     <Card
-//       btnOnClick={action('Default Button clicked')}
-//       cardImgSrc={'https://via.placeholder.com/150'}
-//       cardParagraph={
-//         <div>
-//           <Icon disabled={false} loading={false} name="home" size="tiny" />{' '}
-//           <span>
-//             You can put any ReactNode including ReactElement, ReactFragment,
-//             string, number, array of ReactNodes, null, undefined, boolean in the
-//             card content{' '}
-//           </span>
-//         </div>
-//       }
-//       cardTitle={'Default Card'}
-//       buttonTitle={'show more info'}
-//     ></Card>
-//   </div>
-// );
+export const FullScreenDialogue = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (e: React.MouseEvent) => {
+    setOpen(true);
+    action('Dialog window opened')(e);
+  };
+
+  const handleClose = (e: React.MouseEvent | string) => {
+    setOpen(false);
+    action('Dialog window closed')(e);
+  };
+  return (
+    <div className="display-container">
+      <Button onClick={handleClickOpen}>OPEN FULL-SCREEN DIALOG</Button>
+      <Dialog dialogType="full-screen" open={open} onClose={handleClose}>
+        <Toolbar style={{ backgroundColor: 'lightgrey' }}>
+          <Button btnType="link" onClick={() => handleClose('close')}>
+            <Icon disabled={false} loading={false} name="times" />
+          </Button>
+          <Typography sx={{ ml: 1, flex: 1 }} variant="h6" component="div">
+            Sound
+          </Typography>
+          <Button btnType="secondary" onClick={() => handleClose('save')}>
+            Save
+          </Button>
+        </Toolbar>
+        <List onClick={action('Clicked an item')}>
+          <ListItem button>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItem>
+        </List>
+      </Dialog>
+    </div>
+  );
+};

@@ -1,0 +1,97 @@
+.tablepagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #0B1929;
+  color: white;
+  padding: 10px;
+  .tablepagination__btn {
+    background-color: #0B1929;
+    color: white;
+    border: none;
+    &:hover{
+      background-color: grey;
+      border-radius: 50%;
+    }
+  }
+  .tablepagination__btn-disabled {
+    background-color: #0B1929;
+    color: grey;
+    border: none;
+  }
+  .tablepagination__dropdown {
+    background-color: #0B1929;
+    color: white;
+    border: none;
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  background-color: #0B1929;
+
+  .pagination__btn{
+    background-color: #0B1929;
+    color: white;
+    border: none;
+    border-radius: 50%;
+
+    &:focus{
+      outline: none;
+    }
+
+    &:hover{
+      background-color: grey;
+    }
+  }
+
+  .pagination__btn--disabled{
+    background-color: #0B1929;
+    color: grey;
+    border: none;
+    border-radius: 50%;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .pagination__btn--disabled--selected{
+    background-color: grey;
+    color: black;
+    border-radius: 50%;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .primary {
+    background-color: #90c9f9;
+    color: black;
+    border-radius: 50%;
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .default {
+    background-color: grey;
+    color: black;
+    border-radius: 50%;
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .secondary {
+    background-color: #ce92d8;
+    color: black;
+    border-radius: 50%;
+    &:focus{
+      outline: none;
+    }
+  }
+}

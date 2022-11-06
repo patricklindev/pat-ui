@@ -12,7 +12,7 @@ export interface IDialogProps {
   /** set dialogue title */
   dialogTitle?: string;
   /** set dialogue Content */
-  dialogContent?: ReactNode;
+  dialogContent?: ReactNode | string;
   /** set action on dialogue close */
   onClose?: (e: any) => void;
   /** set if the dialog is opened */
@@ -60,7 +60,11 @@ export const Dialog: FC<patDialogProps> = (props) => {
     ? createPortal(
         <div>
           {/* The mask layer for the dialogue, providing the dimmed backdrop */}
-          <div className="dialog-cover" onClick={onClose}></div>
+          <div
+            className="dialog-cover"
+            data-testid="dialog-mask"
+            onClick={onClose}
+          ></div>
           {/* Main dialog container */}
           <div className="dialog-container">
             <div className={styleClasses} data-testid="dialog-element">
@@ -94,5 +98,7 @@ export default Dialog;
 
 // The DialogAction Component to store action buttons, it's simply just a wrapper with style
 export const DialogActions: FC = (props) => (
-  <div className="dialog-actions">{props.children}</div>
+  <div className="dialog-actions" data-testid="dialog-actions-element">
+    {props.children}
+  </div>
 );

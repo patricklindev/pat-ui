@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+  <div class="dialog-cover"></div>
+  <div class="dialog-container">
+    <div class="dialog dialog-default" data-testid="dialog-element">
+      <h5 class="dialog dialog-default title" />
+      <p class="dialog dialog-default content" />
+    </div>
+  </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dialog should match snapshot 1`] = `<DocumentFragment />`;

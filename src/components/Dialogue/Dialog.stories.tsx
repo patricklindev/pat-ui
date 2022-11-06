@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Dialog, DialogActions } from './Dialogue';
+import { Dialog, DialogActions } from './Dialog';
 import { Button, Icon } from '../../index';
 // sub elements used for stories, import from MUI
 import Avatar from '@mui/material/Avatar';

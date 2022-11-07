@@ -104,7 +104,7 @@
   padding-top: 7 * $height;
   .slider__rail {
     height: $height;
-    width: 100%;
+    width: 102%;
   }
   .slider__track {
     height: $height;
@@ -112,7 +112,7 @@
   .slider__thumb {
     height: 2 * $height;
     width: 2 * $height;
-    left: 95%;
+    left: 99%;
   }
   .slider__bubble {
     font-size: 2 * $height;
@@ -120,19 +120,19 @@
     min-height: 4 * $height;
     width: 4 * $height;
     height: 4 * $height;
-    left: calc(95% - #{$height});
+    left: calc(99% - #{$height});
     bottom: 3 * $height;
     span {
       transform: translate(0, 0.5 * $height) rotate(45deg);
     }
   }
   .slider__marks {
-    width: 100%;
+    width: 102%;
     height: $height;
     font-size: 2 * $height;
   }
   input {
-    width: $slider-default-width;
+    width: calc(100% + #{$height});
     &::-webkit-slider-thumb {
       width: 2 * $height;
       height: 2 * $height;

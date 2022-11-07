@@ -112,10 +112,12 @@
 
 .slider-sm {
   @include slider-size($slider-sm-height);
+  width: 0.75 * $slider-default-width;
 }
 .slider-md {
   @include slider-size($slider-md-height);
 }
 .slider-lg {
   @include slider-size($slider-lg-height);
+  width: 1.25 * $slider-default-width;
 }

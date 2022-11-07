@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { classNames } from '../../utils/classNames';
 
@@ -38,17 +38,6 @@ export const Dialog: FC<patDialogProps> = (props) => {
     onClose,
   } = props;
 
-  // set the visibliity as a state in case the window jittering when it renders
-  const [visible, setVisible] = useState<boolean>(open as boolean);
-
-  // hide the scroll bar when the dialog is open
-  useEffect(() => {
-    open
-      ? (document.body.style.overflow = 'hidden')
-      : (document.body.style.overflow = 'auto');
-    setVisible(open as boolean);
-  }, [open]);
-
   let styleClasses = classNames('dialog', {
     [`dialog-${dialogType}`]: true,
   });
@@ -56,7 +45,10 @@ export const Dialog: FC<patDialogProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
-  let Dialog = visible
+  // hide the scroll bar when the dialog is open
+  document.body.style.overflow = open ? 'hidden' : 'auto';
+
+  let Dialog = open
     ? createPortal(
         <div>
           {/* The mask layer for the dialogue, providing the dimmed backdrop */}

@@ -1,3 +1,7 @@
+// in case the page jittering when the scroll bar hides
+body {
+  width: 100vw;
+}
 // Mask layer of the dimmed background
 .dialog-cover {
   background: $dimmed-backdrop;

@@ -3,18 +3,18 @@ import { action } from '@storybook/addon-actions';
 import { Dialog, DialogActions } from './Dialog';
 import { Button, Icon } from '../../index';
 // sub elements used for stories, import from MUI
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
-import { blue } from '@mui/material/colors';
-import TextField from '@mui/material/TextField';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import PersonIcon from '@material-ui/icons/Person';
+import AddIcon from '@material-ui/icons/Add';
+import { blue } from '@material-ui/core/colors';
+import TextField from '@material-ui/core/TextField';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 export default {
   title: 'Dialog',
@@ -50,17 +50,20 @@ export const BasicDialogue = () => {
         onClose={handleClose}
         dialogTitle={'Set backup account'}
       >
-        <List sx={{ pt: 0 }}>
+        <List>
           {emails.map((email) => (
             <ListItem button onClick={() => handleClose(email)} key={email}>
               <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                <Avatar
+                  style={{ backgroundColor: blue[100], color: blue[600] }}
+                >
                   <PersonIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={email} />
             </ListItem>
           ))}
+
           <ListItem autoFocus button onClick={() => handleClose('addAccount')}>
             <ListItemAvatar>
               <Avatar>
@@ -168,7 +171,7 @@ export const FullScreenDialogue = () => {
           <Button btnType="link" onClick={() => handleClose('close')}>
             <Icon disabled={false} loading={false} name="times" />
           </Button>
-          <Typography sx={{ ml: 1, flex: 1 }} variant="h6" component="div">
+          <Typography style={{ flex: 1 }} variant="h6" component="div">
             Sound
           </Typography>
           <Button btnType="secondary" onClick={() => handleClose('save')}>

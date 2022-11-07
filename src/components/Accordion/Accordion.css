@@ -1,0 +1,78 @@
+.accordion {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-item:not(:first-of-type) {
+  border-top: 0;
+}
+
+.accordion-item-title {
+  width: 100%;
+  margin: 0;
+}
+
+.accordion-item-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  border: 0;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-item-btn::after {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/down4-512.png');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.accordion-item.active {
+  margin-bottom: 1rem;
+}
+
+.accordion-item.active:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+.accordion-item.active .accordion-item-btn::after {
+  transform: rotate(-180deg);
+}
+
+.accordion-item-container {
+  transition: height 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.accordion-item-content {
+  /* border-top: 1px solid #cccccc; */
+  padding: 15px 20px;
+  background-color: #fff;
+}
+
+.accordion-item-btn:disabled {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.container {
+  background-color: #e7ebf0;
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 15px;
+}

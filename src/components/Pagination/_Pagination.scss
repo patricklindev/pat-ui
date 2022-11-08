@@ -1,0 +1,175 @@
+.pgn-outlined.pgn-primary {
+    .btn[id] {
+        background-color: #ffd8e6;
+        border: 1px solid #F50057;
+        color: #F50057;
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+    .btn[id^="0"], .btn{
+        background-color: rgba(0, 0, 0, 0.08);
+        border: none;
+        color: rgba(0, 0, 0, 0.87);
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: black;
+        }
+    }
+  }
+
+
+  .pgn-outlined.pgn-secondary {
+    .btn[id] {
+        background-color: #dde2ff;
+        border: 1px solid #3F51B5;
+        color: #3F51B5;
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+    .btn[id^="0"], .btn{
+        background-color: rgba(0, 0, 0, 0.08);
+        border: none;
+        color: rgba(0, 0, 0, 0.87);
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+  }
+
+
+  .pgn-filled.pgn-primary{
+    .btn[id] {
+        border: none;
+        background-color: #F50057;
+        color: white;
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+    .btn[id^="0"], .btn{
+        background-color: rgba(0, 0, 0, 0.08);
+        border: none;
+        color: rgba(0, 0, 0, 0.87);
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+
+}
+
+.pgn-filled.pgn-secondary{
+    .btn[id] {
+        border: none;
+        background-color: #3F51B5;
+        color: white;
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+    .btn[id^="0"], .btn{
+        background-color: rgba(0, 0, 0, 0.08);
+        border: none;
+        color: rgba(0, 0, 0, 0.87);
+        &:hover{
+            background-color: $gray-400;
+            border: none;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
+}
+
+
+.pgn-basic{
+    display: flex;
+    flex-direction: row;
+        .btn {
+            border-radius: 100%;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+}
+
+.pgn-rounded{
+    display: flex;
+    flex-direction: row;
+        .btn {
+            border-radius: 10%;
+            margin: 2px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+}
+
+
+
+.pgn-md {
+    .btn{
+        width: 32px;
+        height: 32px;
+    }
+    .elip {
+        display: flex;
+        align-self: flex-end;
+        font-size: 1.5rem;
+    }
+    .pgn-prev-next-btn{
+        width: 32px;
+        height: 32px;
+        border: none;
+    }
+}
+
+
+.pgn-lg {
+    .btn{
+        width: 40px;
+        height: 40px;
+    }
+    .elip {
+        display: flex;
+        align-self: flex-end;
+        font-size: 2rem;
+    }
+    .pgn-prev-next-btn{
+        width: 40px;
+        height: 40px;
+        border: none;
+    }
+}
+
+.pgn-sm {
+    .btn{
+        width: 26px;
+        height: 26px;
+    }
+    .elip {
+        display: flex;
+        align-self: flex-end;
+        font-size: 1rem;
+    }
+    .pgn-prev-next-btn{
+        width: 26px;
+        height: 26px;
+        border: none;
+    }
+}

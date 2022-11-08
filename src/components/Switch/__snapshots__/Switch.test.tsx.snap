@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should match snapshot 1`] = `
+<DocumentFragment>
+  <label
+    class="switch switch-default switch-medium"
+    data-testid="switchEl"
+  >
+    <input
+      data-testid="checkBoxEl"
+      type="checkbox"
+    />
+    <span
+      class="slider round"
+      data-testid="sliderEl"
+    />
+    <span
+      class="label"
+      data-testid="labelEl"
+    />
+  </label>
+</DocumentFragment>
+`;

@@ -10,6 +10,8 @@ export const DefaultSwitch = () => {
   return (
     <>
       <Switch />
+      <p></p>
+      <br />
       <Switch defaultChecked />
     </>
   );

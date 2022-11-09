@@ -73,20 +73,6 @@ const Slider: FunctionComponent<ISliderProps> = ({
 
     }, [focus, identifier]);
 
-    function handleRangeChange(val:number, percentage:number):void {
-        let maxDelta = Math.abs((currVal as ranged).max - val);
-        let minDelta = Math.abs((currVal as ranged).min - val);
-        if (maxDelta - minDelta <= 0) {
-            setCurrVal({ ...currVal as ranged, max: val });
-            setPosStatus({ ...posStatus as ranged, max: percentage * 100 });
-            onChange && onChange({ ...currVal as ranged, max: val })
-        } else {
-            setCurrVal({ ...currVal as ranged, min: val });
-            setPosStatus({ ...posStatus as ranged, min: percentage * 100 });
-            onChange && onChange({ ...currVal as ranged, min: val })
-        }
-    }
-
     const measureSliderWidth = useCallback(node => {
         if (node !== null) {
             let sliderWidth = node.offsetWidth;
@@ -119,6 +105,19 @@ const Slider: FunctionComponent<ISliderProps> = ({
 
     //To allow the move, pdown to be detected outside of the component, need to bind evthandler on window
     useEffect(() => {
+        function handleRangeChange(val: number, percentage: number): void {
+            let maxDelta = Math.abs((currVal as ranged).max - val);
+            let minDelta = Math.abs((currVal as ranged).min - val);
+            if (maxDelta - minDelta <= 0) {
+                setCurrVal({ ...currVal as ranged, max: val });
+                setPosStatus({ ...posStatus as ranged, max: percentage * 100 });
+                onChange && onChange({ ...currVal as ranged, max: val })
+            } else {
+                setCurrVal({ ...currVal as ranged, min: val });
+                setPosStatus({ ...posStatus as ranged, min: percentage * 100 });
+                onChange && onChange({ ...currVal as ranged, min: val })
+            }
+        }
         const leftBound = sliderBounds.left;
         const rightBound = sliderBounds.right;
         const sliderWidth = sliderBounds.width;
@@ -178,7 +177,7 @@ const Slider: FunctionComponent<ISliderProps> = ({
                         setPosStatus({ ...posStatus as ranged, max: 100 });
                         onChange && onChange({ ...currVal as ranged, max: max });
                     } else {
-                       handleRangeChange(val, percentage)
+                        handleRangeChange(val, percentage)
                     }
                 }
             }
@@ -193,7 +192,7 @@ const Slider: FunctionComponent<ISliderProps> = ({
             window.removeEventListener('pointerup', handlePointerUp);
             window.removeEventListener('pointermove', handlePointerMove);
         }
-    }, [focus, posStatus, disabled, currVal, max, min, mark, sliderBounds, identifier, thumbClassName, onChange, ranged, handleRangeChange])
+    }, [focus, posStatus, disabled, currVal, max, min, mark, sliderBounds, identifier, thumbClassName, onChange, ranged])
 
 
 

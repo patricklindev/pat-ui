@@ -144,7 +144,7 @@ describe('<Accordion />', () => {
     });
   });
 
-  it('accordion should allow custom styles (custom image src)', () => {
+  it('accordion should allow custom image source', () => {
     const items = [];
 
     for (let i = 0; i < 1; i++) {
@@ -168,6 +168,31 @@ describe('<Accordion />', () => {
     expect(customImage).toHaveAttribute(
       'src',
       'https://images.emojiterra.com/google/android-11/512px/263a.png'
+    );
+  });
+
+  it('accordion should allow custom styles (lightgreen background)', () => {
+    const items = [];
+
+    for (let i = 0; i < 1; i++) {
+      items.push({
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
+        disabled: true,
+      });
+    }
+
+    render(
+      <Accordion
+        items={items}
+        optionalStyles={{
+          backgroundColor: 'lightgreen',
+        }}
+      />
+    );
+
+    expect(screen.getByText('Accordion header 1')).toHaveStyle(
+      'background-color: lightgreen'
     );
   });
 });

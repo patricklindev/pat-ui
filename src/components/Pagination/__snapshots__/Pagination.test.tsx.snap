@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="pagination"
+    >
+      <button
+        class="pagination__btn--disabled"
+        data-testid="lt"
+        disabled=""
+        type="button"
+      >
+        &lt;
+      </button>
+      <button
+        class="default"
+        type="button"
+      >
+        1
+      </button>
+      <button
+        class="pagination__btn"
+        type="button"
+      >
+        2
+      </button>
+      <div
+        style="color: grey;"
+      >
+        ...
+      </div>
+      <button
+        class="pagination__btn"
+        type="button"
+      >
+        10
+      </button>
+      <button
+        class="pagination__btn"
+        data-testid="gt"
+        type="button"
+      >
+        &gt;
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-export type ButtonSize = 'large' | 'default' | 'small';
 export type ButtonType = 'primary' | 'secondary' | 'default';
 
 export interface PaginationProps {
@@ -10,20 +9,27 @@ export interface PaginationProps {
     count: number;
     rowsPerPage?: number;
     TablePagination?: boolean;
-    btnSize?: ButtonSize;
     color?: ButtonType;
     disabled?: boolean;
+    onChange?: Function;
 }
 
+/**
+ * A Pagination enables the user to select a specific page from a range of pages.
+ *
+ * ```js
+ * import {Pagination} from 'pat-ui'
+ * ```
+ */
 export const PaginationContainer: FC<PaginationProps> = (props) => {
     const {
         rowsPerPage,
         defaultpage,
         count,
         TablePagination,
-        btnSize,
         color,
         disabled,
+        onChange
     } = props;
     const [page, setPage] = useState(defaultpage);
     const [curRowsPerPage, setCurRowsPerPage] = useState(rowsPerPage);
@@ -38,6 +44,9 @@ export const PaginationContainer: FC<PaginationProps> = (props) => {
     }
 
     const handleChange = (newPage: number) => {
+        if (onChange !== undefined) {
+            onChange(newPage)
+        }
         setPage(newPage);
     };
 
@@ -96,6 +105,7 @@ export const PaginationContainer: FC<PaginationProps> = (props) => {
                         disabled={page === 1 || disabled}
                         onClick={() => handleChange(page - 1)}
                         type="button"
+                        data-testid="lt"
                     >
                         &lt;
                     </button>
@@ -109,38 +119,44 @@ export const PaginationContainer: FC<PaginationProps> = (props) => {
                     </button>
                     {page > 3 && <div style={{ color: 'grey' }}>...</div>}
 
-                    {page > 2 && (
-                        <button
-                            className={disabled ? 'pagination__btn--disabled' : "pagination__btn"}
-                            disabled={disabled}
-                            onClick={() => handleChange(page - 1)}
-                            type="button"
-                        >
-                            {page - 1}
-                        </button>
-                    )}
+                    {
+                        page > 2 && (
+                            <button
+                                className={disabled ? 'pagination__btn--disabled' : "pagination__btn"}
+                                disabled={disabled}
+                                onClick={() => handleChange(page - 1)}
+                                type="button"
+                            >
+                                {page - 1}
+                            </button>
+                        )
+                    }
 
-                    {page !== 1 && page !== count && (
-                        <button
-                            className={`${disabled ? 'pagination__btn--disabled--selected' : color}`}
-                            disabled={disabled}
-                            onClick={() => handleChange(page)}
-                            type="button"
-                        >
-                            {page}
-                        </button>
-                    )}
+                    {
+                        page !== 1 && page !== count && (
+                            <button
+                                className={`${disabled ? 'pagination__btn--disabled--selected' : color}`}
+                                disabled={disabled}
+                                onClick={() => handleChange(page)}
+                                type="button"
+                            >
+                                {page}
+                            </button>
+                        )
+                    }
 
-                    {page < count - 1 && (
-                        <button
-                            className={disabled ? 'pagination__btn--disabled' : "pagination__btn"}
-                            disabled={disabled}
-                            onClick={() => handleChange(page + 1)}
-                            type="button"
-                        >
-                            {page + 1}
-                        </button>
-                    )}
+                    {
+                        page < count - 1 && (
+                            <button
+                                className={disabled ? 'pagination__btn--disabled' : "pagination__btn"}
+                                disabled={disabled}
+                                onClick={() => handleChange(page + 1)}
+                                type="button"
+                            >
+                                {page + 1}
+                            </button>
+                        )
+                    }
 
                     {page < count - 2 && <div style={{ color: 'grey' }}>...</div>}
 
@@ -160,12 +176,13 @@ export const PaginationContainer: FC<PaginationProps> = (props) => {
                         disabled={page === count || disabled}
                         onClick={() => handleChange(page + 1)}
                         type="button"
+                        data-testid="gt"
                     >
                         &gt;
                     </button>
-                </div>
+                </div >
             )}
-        </div>
+        </div >
     );
 };
 
@@ -174,7 +191,6 @@ PaginationContainer.defaultProps = {
     count: 20,
     rowsPerPage: 5,
     TablePagination: false,
-    btnSize: 'default',
     color: 'default',
     disabled: false,
 };

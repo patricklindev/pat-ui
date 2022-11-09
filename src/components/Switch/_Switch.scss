@@ -1,0 +1,108 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 20px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .label {
+        display: inline-block;
+        position: relative;
+        left: 80px;
+    }
+
+    .switch-span--round {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 34px;
+
+        &:before {
+            position: absolute;
+            content: '';
+            height: 30px;
+            width: 30px;
+            left: 4px;
+            bottom: -4px;
+            background-color: rgb(127, 129, 131);
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        &:hover:before {
+            border: 4px solid rgba(222, 226, 230, 0.18);
+            transition: 0;
+        }
+    }
+
+    input:checked + .switch-span--round {
+        background-color: rgba(222, 226, 230, 0.8);
+    }
+
+    input:checked + .switch-span--round:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+}
+
+.switch {
+    &--small {
+        top: 10px;
+        width: 55px;
+        height: 12px;
+
+        .switch-span--round:before {
+            height: 22px;
+            width: 22px;
+        }
+    }
+
+    &--default {
+        .switch-span--round {
+            &:before {
+                background-color: rgba(30, 88, 247, 0.8);
+            }
+        }
+
+        input:checked+.switch-span--round {
+            background-color: rgba(30, 88, 247, 0.8);
+        }
+    }
+
+    &--primary {
+        .switch-span--round {
+            &:before {
+                background-color: rgba(30, 88, 247, 0.8);
+            }
+        }
+
+        input:checked+.switch-span--round {
+            background-color: rgba(30, 88, 247, 0.8);
+        }
+    }
+
+    &--secondary {
+        .switch-span--round {
+            &:before {
+                background-color: rgba(243, 13, 75, 0.8);
+            }
+        }
+
+        input:checked+.switch-span--round {
+            background-color: rgba(243, 13, 75, 0.8);
+        }
+    }
+}

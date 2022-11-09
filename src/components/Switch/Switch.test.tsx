@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import Switch, { SwitchProps } from "./Switch";
 
@@ -74,5 +74,19 @@ describe("Switch", () => {
         render(<Switch {...props} />)
         const switchInput = screen.getByTestId("switch-input")
         expect(switchInput).toHaveAttribute("disabled")
+    })
+
+    test("should trigger the callback function", () => {
+        const props: SwitchProps = {
+            color: "primary",
+            size: "medium",
+            onChange: jest.fn()
+        }
+        render(<Switch {...props} />)
+        const switchInput = screen.getByTestId("switch-input")
+        fireEvent.click(switchInput)
+        expect(props.onChange).toHaveBeenCalledTimes(1)
+        fireEvent.click(switchInput)
+        expect(props.onChange).toHaveBeenCalledTimes(2)
     })
 })

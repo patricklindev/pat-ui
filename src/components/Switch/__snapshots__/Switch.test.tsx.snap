@@ -5,13 +5,13 @@ exports[`Switch should match snapshot 1`] = `
   <input
     class="switch-checkbox"
     data-testid="switch-checkbox"
-    id="switch-new"
+    id="switch-Snapshot Switch"
     type="checkbox"
   />
   <label
     class="switch-track  switch-default switch-m switch-off"
     data-testid="switch-track"
-    for="switch-new"
+    for="switch-Snapshot Switch"
   >
     <span
       class="switch-thumb  switch-default switch-m switch-off"

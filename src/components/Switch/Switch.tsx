@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { ChangeEvent, FC } from 'react';
-
+import React, { useState, ChangeEvent, FC } from 'react';
 import { classNames } from '../../utils/classNames';
+// import { nanoid } from 'nanoid';
 
 export type SwitchColor = 'primary' | 'secondary' | 'default';
 
@@ -20,9 +19,18 @@ export interface ISwitchProps {
   handleToggle?: (e: ChangeEvent) => void;
   //set switch disabled
   disabled?: boolean;
+  id?: string | number;
 }
 
 export type SwitchProps = ISwitchProps;
+
+/**
+ * A Switch for user to show toggle state.
+ *
+ * ```js
+ * import {Switch} from 'pat-ui'
+ * ```
+ */
 
 export const Switch: FC<ISwitchProps> = ({
   color,
@@ -31,6 +39,7 @@ export const Switch: FC<ISwitchProps> = ({
   on,
   handleToggle,
   disabled,
+  id,
 }) => {
   const [toggleSwitch, setToggleSwitch] = useState(!!on);
 
@@ -43,6 +52,9 @@ export const Switch: FC<ISwitchProps> = ({
     disabled: !!disabled,
   });
 
+  //generate id
+  // const idGenerated = nanoid();
+
   const handleChange: (e: ChangeEvent) => void = (e) => {
     setToggleSwitch((prev) => !prev);
     if (typeof handleToggle === 'function') {
@@ -54,7 +66,7 @@ export const Switch: FC<ISwitchProps> = ({
     <>
       <input
         className="switch-checkbox"
-        id={`switch-new`}
+        id={id ? `switch-${id}` : `switch-${label}`}
         type="checkbox"
         disabled={disabled}
         checked={toggleSwitch}
@@ -63,7 +75,7 @@ export const Switch: FC<ISwitchProps> = ({
       />
       <label
         className={`switch-track ${styleClasses}`}
-        htmlFor={`switch-new`}
+        htmlFor={id ? `switch-${id}` : `switch-${label}`}
         data-testid="switch-track"
       >
         <span
@@ -83,10 +95,9 @@ export const Switch: FC<ISwitchProps> = ({
 };
 
 Switch.defaultProps = {
-  color: 'default',
   disabled: false,
-  on: false,
   size: 'm',
+  color: 'default',
 };
 
 export default Switch;

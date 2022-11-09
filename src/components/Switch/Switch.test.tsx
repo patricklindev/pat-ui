@@ -83,7 +83,7 @@ describe('Switch', () => {
 
     //checkbox should be on and disabled
     expect(checkbox).toBeChecked();
-    expect(checkbox).toHaveAttribute('disabled');
+    expect(checkbox).toBeDisabled();
   });
 
   it('should render secondary small switch which is on by default', () => {

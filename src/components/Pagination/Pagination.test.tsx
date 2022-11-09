@@ -41,7 +41,7 @@ describe('Pagination element', ()=>{
         expect(renderedElementItem2[2]).toHaveClass('large')
     })
     it('changes filled, outline, variants with props',()=>{ 
-        const renderedElement1 =  render(<Pagination count={10} size='small' variants='active' color='primary' onChanged={testFire} round={true} filled={true} ></Pagination>) 
+        const renderedElement1 =  render(<Pagination count={10} size='small' variants='active' color='primary' round={true} filled={true} ></Pagination>) 
         const renderedElementItem1 = renderedElement1.queryAllByTestId('pageButtonOuterHolder') 
         expect(renderedElementItem1[1]).toHaveClass('rounded') 
         expect(renderedElementItem1[1]).toHaveClass('primaryColor') 

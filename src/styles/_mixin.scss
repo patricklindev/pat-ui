@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,64 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin slider-color($track-color, $rail-color, $label-color) {
+  .slider__rail {
+    background: $rail-color;
+  }
+  .slider__track {
+    background: $track-color;
+  }
+  .slider__thumb {
+    background: $label-color;
+  }
+  .slider__bubble {
+    background: $label-color;
+  }
+  .slider__untrack {
+    background: $rail-color;
+  }
+}
+
+@mixin slider-size($height) {
+  width: $slider-default-width - $height;
+  height: 2 * $height;
+  padding-top: 7 * $height;
+  .slider__rail {
+    height: $height;
+    width: 102%;
+  }
+  .slider__track {
+    height: $height;
+  }
+  .slider__thumb {
+    height: 2 * $height;
+    width: 2 * $height;
+    left: 99%;
+  }
+  .slider__bubble {
+    font-size: 2 * $height;
+    min-width: 4 * $height;
+    min-height: 4 * $height;
+    width: 4 * $height;
+    height: 4 * $height;
+    left: calc(99% - #{$height});
+    bottom: 3 * $height;
+    span {
+      transform: translate(0, 0.5 * $height) rotate(45deg);
+    }
+  }
+  .slider__marks {
+    width: 102%;
+    height: $height;
+    font-size: 2 * $height;
+  }
+  input {
+    width: calc(100% + #{$height});
+    &::-webkit-slider-thumb {
+      width: 2 * $height;
+      height: 2 * $height;
+    }
+  }
 }

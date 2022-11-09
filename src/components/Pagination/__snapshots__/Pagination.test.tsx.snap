@@ -25,7 +25,6 @@ exports[`Pagination element should match snapshot 1`] = `
       role="button"
     >
       <li
-        color="primary"
         data-testid="pageButtons"
       >
         1
@@ -37,7 +36,6 @@ exports[`Pagination element should match snapshot 1`] = `
       role="button"
     >
       <li
-        color="primary"
         data-testid="pageButtons"
       >
         2
@@ -49,7 +47,6 @@ exports[`Pagination element should match snapshot 1`] = `
       role="button"
     >
       <li
-        color="primary"
         data-testid="pageButtons"
       >
         3
@@ -61,7 +58,6 @@ exports[`Pagination element should match snapshot 1`] = `
       role="button"
     >
       <li
-        color="primary"
         data-testid="pageButtons"
       >
         4
@@ -73,7 +69,6 @@ exports[`Pagination element should match snapshot 1`] = `
       role="button"
     >
       <li
-        color="primary"
         data-testid="pageButtons"
       >
         ...
@@ -85,7 +80,6 @@ exports[`Pagination element should match snapshot 1`] = `
       role="button"
     >
       <li
-        color="primary"
         data-testid="pageButtons"
       >
         10

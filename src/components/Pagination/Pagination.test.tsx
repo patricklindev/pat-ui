@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {render, fireEvent, cleanup} from '@testing-library/react'
-import Pagination, { IPagination } from "./Pagination";
-import { table } from "console";
+import Pagination from './Pagination'; 
 const testingElem = (<Pagination count={10} color='primary' variants='active'></Pagination>)
 describe('Pagination element', ()=>{
+
     it('should match snapshot', ()=>{
         const { asFragment } = render(testingElem)
         expect(asFragment()).toMatchSnapshot();
@@ -40,6 +40,19 @@ describe('Pagination element', ()=>{
         const renderedElementItem2 = renderedElement2.queryAllByTestId('pageButtonOuterHolder')
         expect(renderedElementItem2[2]).toHaveClass('large')
     })
+    it('changes filled, outline, variants with props',()=>{ 
+        const renderedElement1 =  render(<Pagination count={10} size='small' variants='active' color='primary' onChanged={testFire} round={true} filled={true} ></Pagination>) 
+        const renderedElementItem1 = renderedElement1.queryAllByTestId('pageButtonOuterHolder') 
+        expect(renderedElementItem1[1]).toHaveClass('rounded') 
+        expect(renderedElementItem1[1]).toHaveClass('primaryColor') 
+        expect(renderedElementItem1[1]).toHaveClass('filled') 
+        cleanup()
+        const renderedElement2 =  render(<Pagination count={10} size='large' variants='default' round={false} filled={false} ></Pagination>)
+        const renderedElementItem2 = renderedElement2.queryAllByTestId('pageButtonOuterHolder')
+        expect(renderedElementItem2[2]).toHaveClass('outlineed')
+        expect(renderedElementItem2[2]).toHaveClass('defaultColor')
+        expect(renderedElementItem2[2]).toHaveClass('squared')
+    }) 
     const tabledElement:JSX.Element = <Pagination count={10} tablePagination={true} ></Pagination>
     it('switches to a table format',()=>{
         const renderedElement1 =  render(<Pagination count={10} tablePagination={false} ></Pagination>) 

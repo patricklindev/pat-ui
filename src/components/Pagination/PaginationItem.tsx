@@ -1,4 +1,4 @@
-import React,{ FC, MouseEvent, MouseEventHandler } from 'react'
+import React,{ FC } from 'react'
 type liTypes = React.DetailedHTMLProps<React.HTMLAttributes<HTMLLIElement>, HTMLLIElement>
 interface IPaginationItem { 
     callBack: ()=> void;

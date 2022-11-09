@@ -293,3 +293,25 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+//checkbox
+$primary-color: #3f51b5;
+$secondary-color: #f50057;
+$default-color: rgba(0, 0, 0, 0.54);
+
+$primary-color-hover: rgba(63, 81, 181, 0.08);
+$secondary-color-hover: rgba(245, 0, 87, 0.08);
+$default-color-hover: rgba(63, 81, 181, 0.08);
+
+//checkbox different size
+$small-box-size: 15px;
+$medium-box-size: 21px;
+// $large-box-size: 21px;
+
+//checkbox different label size
+$small-font-size: 15px;
+$medium-font-size: 21px;
+// $large-font-size: 21px;
+
+$disabled-color: rgba(0, 0, 0, 0.38);
+$disabled-font-color: rgba(0, 0, 0, 0.26);

@@ -14,6 +14,7 @@ describe('Simple Dialog', () => {
 describe('Form Dialog', () => {
   test('renders the prebuilt form dialog', () => {
     render(<Form />);
+
     const title = screen.getByText('Subscribe');
     expect(title).toBeInTheDocument();
   });

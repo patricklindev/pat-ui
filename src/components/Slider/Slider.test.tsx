@@ -32,7 +32,6 @@ describe('Slider', () => {
       sliderSize: 'sm',
       defaultValue: 20,
       onChange: jest.fn(),
-      className: 'test',
     };
     const wrapper = render(<Slider {...sliderProps} />);
     const sliderContainer = wrapper.getByRole(
@@ -41,7 +40,7 @@ describe('Slider', () => {
     const sliderInput = wrapper.getByRole('slider-input') as HTMLElement;
     expect(sliderInput).toBeInTheDocument();
     expect(sliderInput.tagName).toBe('INPUT');
-    expect(sliderContainer).toHaveClass('slider slider-primary slider-sm test');
+    expect(sliderContainer).toHaveClass('slider slider-primary slider-sm');
     expect(sliderInput).toHaveValue('20');
     expect(sliderProps.onChange).toHaveBeenCalledTimes(0);
     fireEvent.change(sliderInput, { target: { value: 0 } });

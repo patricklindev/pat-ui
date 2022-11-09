@@ -1,6 +1,7 @@
 .card {
   padding: 16px 24px;
   border-radius: 4px;
+  display: inline-block;
   max-width: 600px;
 
   background: #ffffff;
@@ -16,13 +17,11 @@
   }
 
   .list {
-    width: 100%;
     margin: 0;
     padding: 0;
 
     li {
       cursor: pointer;
-      width: 100%;
       padding-top: 5px;
       display: flex;
       gap: 15px;
@@ -44,6 +43,7 @@
   .actions {
     margin-top: 24px;
     display: flex;
+    gap: 5px;
     justify-content: end;
   }
 }

@@ -1,7 +1,12 @@
-import React, { ReactNode } from 'react';
+import { BasePrivateKeyEncodingOptions } from 'crypto';
+import React, { ReactNode, useEffect, useState } from 'react';
+import Button from '../Button';
 import './_Dialog.scss';
 
 export interface DialogProps {
+  onClose: () => void;
+  setModalOpen: () => void;
+  open: boolean;
   children: ReactNode;
 }
 
@@ -38,8 +43,29 @@ interface DialogListItemTextProps {
   children: string;
 }
 
-const Dialog = ({ children }: DialogProps) => {
-  return <div className="card">{children}</div>;
+interface OpenDialogDecorator {
+  children: ReactNode;
+}
+
+const Dialog = ({ children, open, onClose, setModalOpen }: DialogProps) => {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+      onClose();
+    }
+  }, [open]);
+
+  return (
+    <div className="backdrop" onClick={setModalOpen}>
+      {open && (
+        <div className="card" onClick={(e) => e.stopPropagation()}>
+          {children}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export const DialogTitle = ({ children }: DialogTitleProps) => {

@@ -174,7 +174,7 @@ describe('<Accordion />', () => {
   it('accordion should allow custom styles (lightgreen background)', () => {
     const items = [];
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 3; i++) {
       items.push({
         title: `Accordion header ${i}`,
         content: `Accordion content ${i}`,
@@ -191,8 +191,10 @@ describe('<Accordion />', () => {
       />
     );
 
-    expect(screen.getByText('Accordion header 1')).toHaveStyle(
-      'background-color: lightgreen'
-    );
+    items.forEach(({ title }) => {
+      const titleEl = screen.queryByText(title) as HTMLButtonElement;
+
+      expect(titleEl).toHaveStyle('background-color: lightgreen');
+    });
   });
 });

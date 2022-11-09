@@ -1,0 +1,20 @@
+@mixin switch-track-style($width, $height, $bgColor, $borderRadius) {
+  width: $width;
+  height: $height;
+  background: $bgColor;
+  border-radius: $borderRadius;
+}
+
+@mixin switch-thumb-style(
+  $width,
+  $height,
+  $bgColor,
+  $boxShadow,
+  $borderRadius
+) {
+  width: $width;
+  height: $height;
+  background: $bgColor;
+  box-shadow: $boxShadow;
+  border-radius: $borderRadius;
+}

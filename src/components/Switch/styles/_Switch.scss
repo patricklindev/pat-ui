@@ -1,0 +1,156 @@
+@import './variables';
+@import './mixin';
+
+.switch {
+  //hide the real checkbox
+  &-checkbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: relative;
+  }
+  //switch track
+  &-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+    @include switch-track-style(
+      $switch-track-width,
+      $switch-track-height,
+      $switch-track-bgColor,
+      $switch-track-borderRadius
+    );
+  }
+
+  //track sm size
+  &-track.switch-sm {
+    height: $switch-track-height-sm;
+    width: $switch-track-width-sm;
+  }
+
+  //track primary theme
+  &-track.switch-primary.switch-on {
+    background: $switch-track-bgColor-primaryOn;
+  }
+  //track secondary theme
+  &-track.switch-secondary.switch-on {
+    background: $switch-track-bgColor-secondaryOn;
+  }
+
+  //switch thumb
+  &-thumb {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0px;
+    transition: 0.2s;
+    @include switch-thumb-style(
+      $switch-thumb-width,
+      $switch-thumb-height,
+      $switch-thumb-bgColor,
+      $switch-thumb-boxShadow,
+      $switch-thumb-borderRaduis
+    );
+  }
+
+  //thumb small size
+  &-thumb.switch-sm {
+    height: $switch-thumb-height-sm;
+    width: $switch-thumb-width-sm;
+  }
+  // thumb primary theme
+  &-thumb.switch-primary.switch-on {
+    background: $switch-thumb-bgColor-primaryOn;
+  }
+  // thumb secondary theme
+  &-thumb.switch-secondary.switch-on {
+    background: $switch-thumb-bgColor-secondaryOn;
+  }
+  &-thumb.switch-secondary.switch-off {
+    background: $switch-thumb-bgColor-secondaryOff;
+  }
+
+  //switch wrapper
+  &-thumb:hover + &-wrapper {
+    position: absolute;
+    width: $switch-wrapper-width;
+    height: $switch-wrapper-height;
+    left: $switch-wrapper-left;
+    top: $switch-wrapper-top;
+
+    /* palette / action / hover */
+
+    background: $switch-wrapper-bgGround;
+    border-radius: $switch-wrapper-borderRaduis;
+  }
+
+  &-checkbox:checked + &-track &-thumb {
+    left: calc(100% + 1px);
+    transform: translateX(-100%);
+  }
+  &-checkbox:checked + &-track &-wrapper {
+    left: calc(100% + 10px);
+    transform: translateX(-100%);
+  }
+
+  //wrapper sm size
+  &-thumb:hover + &-wrapper.switch-sm {
+    width: $switch-wrapper-width-sm;
+    height: $switch-wrapper-height-sm;
+    top: $switch-wrapper-top-sm;
+    left: $switch-wrapper-left-sm;
+  }
+  &-checkbox:checked + &-track &-wrapper.switch-sm {
+    left: calc(100% + 5px);
+  }
+
+  //switch label
+  &-track > .switch-label {
+    position: absolute;
+    width: $switch-label-width;
+    height: $switch-label-height;
+    font-family: $switch-label-fontFamily;
+    font-style: $switch-label-fontStyle;
+    font-weight: $switch-label-fontWeight;
+    font-size: $switch-label-fontSize;
+    line-height: $switch-label-lineHeight;
+    letter-spacing: $switch-label-letterSpacing;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    left: $switch-label-left;
+
+    //no select label text
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+  }
+  &-track > .switch-label.switch-sm {
+    left: 40px;
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+
+  &.switch {
+    &-thumb {
+      background: $switch-thumb-bgColor-disabled !important;
+    }
+    &-track {
+      background: $switch-track-bgColor-disabled !important;
+    }
+  }
+
+  ~ .switch-wrapper {
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,50 @@
+//switch - track
+$switch-track-width: 34px;
+$switch-track-width-sm: 26px;
+$switch-track-height: 14px;
+$switch-track-height-sm: 10px;
+$switch-track-bgColor: rgba(0, 0, 0, 0.38);
+$switch-track-bgColor-primaryOn: rgba(0, 38, 255, 0.5);
+$switch-track-bgColor-secondaryOn: rgba(245, 0, 87, 0.5);
+$switch-track-bgColor-disabled: rgba(0, 0, 0, 0.12);
+$switch-track-bgOpacity: 0.38;
+$switch-track-borderRadius: 7px;
+
+//switch - thumb
+$switch-thumb-width: 20px;
+$switch-thumb-width-sm: 16px;
+$switch-thumb-height: 20px;
+$switch-thumb-height-sm: 16px;
+$switch-thumb-bgColor: #fafafa;
+$switch-thumb-bgColor-primaryOn: rgba(0, 38, 255, 1);
+$switch-thumb-bgColor-secondaryOn: rgba(245, 0, 87, 1);
+$switch-thumb-bgColor-secondaryOff: #bdbdbd;
+$switch-thumb-bgColor-disabled: #bdbdbd;
+$switch-thumb-boxShadow: 0px 2px 1px rgba(0, 0, 0, 0.2),
+  0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+
+$switch-thumb-borderRaduis: 10px;
+
+//switch - wrapper
+$switch-wrapper-width: 38px;
+$switch-wrapper-width-sm: 24px;
+$switch-wrapper-height: 38px;
+$switch-wrapper-height-sm: 24px;
+$switch-wrapper-left: -9px;
+$switch-wrapper-left-sm: -4px;
+$switch-wrapper-top: calc(50% - 36px / 2);
+$switch-wrapper-top-sm: calc(50% - 22px / 2);
+$switch-wrapper-bgGround: rgba(0, 0, 0, 0.04);
+$switch-wrapper-borderRaduis: 19px;
+
+//switch - label
+$switch-label-width: 88px;
+$switch-label-height: 24px;
+$switch-label-fontFamily: 'Roboto';
+$switch-label-fontStyle: 'normal';
+$switch-label-fontWeight: 400;
+$switch-label-fontSize: 16px;
+$switch-label-lineHeight: 150%;
+$switch-label-letterSpacing: 0.15px;
+$switch-label-left: 54px;
+$switch-label-left-sm: 40px;

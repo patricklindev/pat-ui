@@ -1,0 +1,141 @@
+.stepper {
+    width:100%;
+}
+.steps-container {
+    width: 100%;
+    display: flex;
+    gap: .4rem;
+}
+.horizontal {
+    display: flex;
+    align-items: center;
+}
+.vertical {
+    display:flex;
+    flex-direction: column;
+    .step-connector {  
+        border: none;
+    }
+    .step-container > .step{
+        align-items:start;
+    }
+}
+.stepper-width {
+    max-width: 350px;
+    .btn-back {
+        margin-right: 0;
+    }
+}
+.active {
+    background-color: #1976d2;
+    color:white;
+}
+.inactive {
+    background-color: #9e9e9e;
+    color:white;
+}
+.current-step, .stepper-control {
+    margin-bottom: 0.5rem;
+}
+// single step
+.step-container {
+    display: flex;
+}
+.step {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: .25rem;
+}
+.step-connector {
+    flex: 1 1 auto;       
+    border-bottom: 1px solid gray; 
+}
+.triangle {
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 22px solid red; 
+    position:relative;
+    &::after{
+        content:"!";
+        position: absolute;
+        font-size: .8rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 25%);
+        color: white;
+    }
+}
+
+.text--red {
+    color: red !important;
+}
+.step-number {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // flex: auto;
+}
+.step-vertical {
+    // height: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    .step-vertical-connector{
+        min-height: 20px;
+        flex: 1 1 0;
+        border-left: 1px solid gray;
+    }
+}
+
+
+.step-label {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    color:rgb(129, 129, 129);
+    .text--bold{
+        // font-weight:bold ;
+        color: rgb(65, 64, 64);
+    }
+}
+.step-label--small {
+    font-size: .8rem;
+    color: #797979
+}
+.margin-bottom {
+    margin-bottom: .5rem;
+}
+// button 
+.btn-flow-right{
+    float: right;
+}
+
+.stepper-control{
+    display: flex;
+}
+.btn-back {
+    margin-right: auto;
+}
+.btn-text--gray{
+    color: gray;
+}
+button {
+    outline: none;
+    border: none;
+    color: #1976d2;
+    padding: 7px;
+    margin: 3px;
+    background: none;
+    border-radius: 5px;
+    &:hover {
+        background:#efefef;
+    }
+}
+

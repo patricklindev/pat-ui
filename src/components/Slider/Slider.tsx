@@ -3,13 +3,14 @@ import React, {
   FC,
   InputHTMLAttributes,
   MouseEvent,
+  useRef,
   useState,
 } from 'react';
 import { classNames } from '../../utils/classNames';
+import useThrottle from './hooks/useThrottle';
 
 export type SliderSize = 'sm' | 'md' | 'lg';
 export type SliderColor = 'primary' | 'secondary' | 'default';
-export type RangeSliderValue = number[];
 export type DisplayValueLabelOptions = 'on' | 'off' | 'auto';
 
 interface ISliderProps {
@@ -19,7 +20,7 @@ interface ISliderProps {
   sliderSize?: SliderSize;
   /** set slider color */
   sliderColor?: SliderColor;
-  /** enable marks or set marks */
+  /** enable marks or set custom marks */
   marks?: boolean | number[];
   /** enable discrete mode by setting step */
   step?: number;
@@ -30,7 +31,7 @@ interface ISliderProps {
   /** set default value */
   defaultValue?: number;
   /** enable range slider by setting positions*/
-  rangePositions?: RangeSliderValue;
+  rangePositions?: number[];
   /** set disabled slider */
   disabled?: boolean;
   /** enable label */
@@ -66,6 +67,7 @@ const Slider: FC<PatSliderProps> = ({
   const [sliderValue, setSliderValue] = useState<number>(defaultValue);
   const [rangePosition, setRangePosition] = useState<number[]>(rangePositions);
   const [sliderActive, setSliderActive] = useState<boolean>(false);
+
   let styleClasses = classNames('slider', {
     [`slider-${sliderColor}`]: !!sliderColor,
     [`slider-${sliderSize}`]: !!sliderSize,
@@ -73,6 +75,7 @@ const Slider: FC<PatSliderProps> = ({
   });
   if (className) styleClasses += ' ' + className;
 
+  const closestIndex = useRef<number>(0);
   const smallestValue = rangePosition.reduce((prev, curr) =>
     prev < curr ? prev : curr
   );
@@ -92,23 +95,34 @@ const Slider: FC<PatSliderProps> = ({
     }
   };
 
+  const [throttledSetClosestIndex, cancelAction] = useThrottle(
+    (arg: number) => {
+      const newArr = [...rangePosition];
+      const newValue = arg;
+      closestIndex.current = newArr.reduce((prevIdx, curr) => {
+        return Math.abs(curr - newValue) < Math.abs(newArr[prevIdx] - newValue)
+          ? newArr.indexOf(curr)
+          : prevIdx;
+      }, 0);
+    },
+    1000
+  );
+
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newArr = [...rangePosition];
     const newValue = +e.target.value;
-    const closest = newArr.reduce((prev, curr) => {
-      return Math.abs(curr - newValue) < Math.abs(prev - newValue)
-        ? curr
-        : prev;
-    });
+    if (rangePosition.length > 1) throttledSetClosestIndex(newValue);
     setRangePosition((prev) =>
-      prev.map((curVal) => (curVal === closest ? newValue : curVal))
+      prev.map((curVal, index) =>
+        index === closestIndex.current ? newValue : curVal
+      )
     );
-    setSliderValue(+e.target.value);
+    setSliderValue(newValue);
   };
 
   return (
     <div className={styleClasses} role={'slider-container'}>
       <div className={'slider__rail'}></div>
+
       {/* render multiple tracks and thumbs for range slider (rangePosition > 1) */}
       {rangePosition.map((value, index) => (
         <div
@@ -133,6 +147,7 @@ const Slider: FC<PatSliderProps> = ({
           )}
         </div>
       ))}
+
       <input
         role={'slider-input'}
         type={'range'}
@@ -151,41 +166,39 @@ const Slider: FC<PatSliderProps> = ({
         }}
         onMouseUp={(e) => {
           setSliderActive(false);
+          cancelAction();
           onMouseUp && onMouseUp(e);
         }}
         {...rest}
       ></input>
 
-      {/* default marks or marks with steps */}
-      {marks && marks === true && (
+      {marks && (
         <div className={'slider__marks'}>
-          {marksArray.map((i) => {
-            return (
-              <span
-                key={i}
-                role={'slider-marks'}
-                style={getMarkPositionStyle(distancePerStep * i)}
-              >
-                {'|'}
-              </span>
-            );
-          })}
-        </div>
-      )}
-      {/* custom marks */}
-      {marks && marks !== true && (
-        <div className={'slider__marks'}>
-          {marks.map((pos) => {
-            return (
-              <span
-                key={pos}
-                role={'slider-marks'}
-                style={getMarkPositionStyle(getProgress(pos))}
-              >
-                {'|'}
-              </span>
-            );
-          })}
+          {marks === true
+            ? // default marks or marks with steps
+              marksArray.map((i) => {
+                return (
+                  <span
+                    key={i}
+                    role={'slider-marks'}
+                    style={getMarkPositionStyle(distancePerStep * i)}
+                  >
+                    {'|'}
+                  </span>
+                );
+              })
+            : // custom marks
+              marks.map((pos) => {
+                return (
+                  <span
+                    key={pos}
+                    role={'slider-marks'}
+                    style={getMarkPositionStyle(getProgress(pos))}
+                  >
+                    {'|'}
+                  </span>
+                );
+              })}
         </div>
       )}
     </div>

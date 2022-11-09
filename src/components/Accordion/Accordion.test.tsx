@@ -1,20 +1,20 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import faker from "faker";
-import Accordion from "./Accordion";
+import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import Accordion from './Accordion';
 
-describe("<Accordion />", () => {
-  it("should render items", () => {
+describe('<Accordion />', () => {
+  it('basic accordion should render items', () => {
     const items = [];
 
     for (let i = 0; i < 3; i++) {
       items.push({
-        title: faker.lorem.sentence(),
-        content: faker.lorem.sentences(),
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
         disabled: false,
       });
     }
 
-    render(<Accordion items={items} expansionType={"basic"} />);
+    render(<Accordion items={items} expansionType={'basic'} />);
 
     items.forEach(({ title, content }) => {
       const titleEl = screen.queryByText(title);
@@ -25,18 +25,18 @@ describe("<Accordion />", () => {
     });
   });
 
-  it("should render multiple expansions", () => {
+  it('controlled accordion should render items', () => {
     const items = [];
 
     for (let i = 0; i < 3; i++) {
       items.push({
-        title: faker.lorem.sentence(),
-        content: faker.lorem.sentences(),
+        title: `Accordion header ${i}`,
+        content: `Accordion content body ${i}`,
         disabled: false,
       });
     }
 
-    render(<Accordion items={items} expansionType={"controlled"} />);
+    render(<Accordion items={items} expansionType={'controlled'} />);
 
     items.forEach(({ title, content }) => {
       const titleEl = screen.queryByText(title);
@@ -47,26 +47,26 @@ describe("<Accordion />", () => {
     });
   });
 
-  it("should open one at a time", () => {
+  it('basic accordion should open one at a time', () => {
     const items = [];
 
     for (let i = 0; i < 3; i++) {
       items.push({
-        title: faker.lorem.sentence(),
-        content: faker.lorem.sentences(),
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
         disabled: false,
       });
     }
 
-    render(<Accordion items={items} expansionType={"basic"} />);
+    render(<Accordion items={items} expansionType={'basic'} />);
 
     items.forEach(({ title }) => {
       const titleEl = screen.queryByText(title) as HTMLButtonElement;
 
       fireEvent.click(titleEl);
 
-      const currentListEl = titleEl.closest("li");
-      const activeListEls = document.querySelectorAll("li.active");
+      const currentListEl = titleEl.closest('li');
+      const activeListEls = document.querySelectorAll('li.active');
       const activeListEl = activeListEls[0];
 
       expect(activeListEls.length).toBe(1);
@@ -74,18 +74,39 @@ describe("<Accordion />", () => {
     });
   });
 
-  it("should close if already opened", () => {
+  it('controlled accordion should allow multiple open at a time', () => {
     const items = [];
 
     for (let i = 0; i < 3; i++) {
       items.push({
-        title: faker.lorem.sentence(),
-        content: faker.lorem.sentences(),
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
         disabled: false,
       });
     }
 
-    render(<Accordion items={items} expansionType={"basic"} />);
+    render(<Accordion items={items} expansionType={'controlled'} />);
+
+    items.forEach(({ title }, index) => {
+      const titleEl = screen.queryByText(title) as HTMLButtonElement;
+      fireEvent.click(titleEl);
+    });
+    const activeListEls = document.querySelectorAll('li.active');
+    expect(activeListEls.length).toBe(items.length);
+  });
+
+  it('should close item if already opened', () => {
+    const items = [];
+
+    for (let i = 0; i < 3; i++) {
+      items.push({
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
+        disabled: false,
+      });
+    }
+
+    render(<Accordion items={items} expansionType={'basic'} />);
 
     items.forEach(({ title }) => {
       const titleEl = screen.queryByText(title) as HTMLButtonElement;
@@ -93,9 +114,60 @@ describe("<Accordion />", () => {
       fireEvent.click(titleEl);
       fireEvent.click(titleEl);
 
-      const currentListEl = titleEl.closest("li");
+      const currentListEl = titleEl.closest('li');
 
-      expect(currentListEl).not.toHaveClass("active");
+      expect(currentListEl).not.toHaveClass('active');
     });
+  });
+
+  it('should not allow clicks if button is disabled', () => {
+    const items = [];
+
+    for (let i = 0; i < 3; i++) {
+      items.push({
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
+        disabled: true,
+      });
+    }
+
+    render(<Accordion items={items} expansionType={'basic'} />);
+
+    items.forEach(({ title }) => {
+      const titleEl = screen.queryByText(title) as HTMLButtonElement;
+
+      fireEvent.click(titleEl);
+
+      const currentListEl = titleEl.closest('li');
+
+      expect(currentListEl).not.toHaveClass('active');
+    });
+  });
+
+  it('accordion should allow custom styles (custom image src)', () => {
+    const items = [];
+
+    for (let i = 0; i < 1; i++) {
+      items.push({
+        title: `Accordion header ${i}`,
+        content: `Accordion content ${i}`,
+        disabled: true,
+      });
+    }
+
+    render(
+      <Accordion
+        items={items}
+        expandIcon={
+          'https://images.emojiterra.com/google/android-11/512px/263a.png'
+        }
+      />
+    );
+
+    const customImage = document.querySelector('img') as HTMLImageElement;
+    expect(customImage).toHaveAttribute(
+      'src',
+      'https://images.emojiterra.com/google/android-11/512px/263a.png'
+    );
   });
 });

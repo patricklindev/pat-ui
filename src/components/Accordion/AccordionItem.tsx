@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState, ReactNode } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Accordion.css';
-
-type AccordionData = {
-  title: string;
-  content: ReactNode | string;
-  disabled: boolean;
-};
+import { AccordionDataProps } from './Accordion';
 
 interface AccordionItemsProps {
-  data: AccordionData;
+  data: AccordionDataProps;
   isOpen: boolean;
   disabled?: boolean;
   btnOnClick?: () => void;
   expansionType?: string;
+  optionalStyles: React.CSSProperties;
+  expandIcon: string;
 }
 
 function AccordionItem(props: AccordionItemsProps): JSX.Element {
@@ -22,6 +19,8 @@ function AccordionItem(props: AccordionItemsProps): JSX.Element {
     disabled = true,
     btnOnClick,
     expansionType = 'basic',
+    optionalStyles = {},
+    expandIcon = '',
   } = props;
   const contentRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<boolean>(isOpen);
@@ -49,45 +48,39 @@ function AccordionItem(props: AccordionItemsProps): JSX.Element {
     }
   }, [open]);
 
-  if (expansionType === 'basic') {
-    return (
-      <li className={`accordion-item ${isOpen ? 'active' : ''}`}>
-        <h2 className={`accordion-item-title ${disabled ? 'disabled' : ''}`}>
-          <button
-            className="accordion-item-btn"
-            onClick={btnOnClick}
-            disabled={disabled ? true : false}
-          >
-            {data.title}
-          </button>
-        </h2>
-        <div className="accordion-item-container" style={{ height }}>
-          <div ref={contentRef} className="accordion-item-content">
-            {data.content}
-          </div>
+  const defaultIcon =
+    'https://www.iconpacks.net/icons/2/free-arrow-down-icon-3101-thumb.png';
+
+  return (
+    <li
+      className={`accordion-item ${
+        expansionType === 'basic'
+          ? isOpen
+            ? 'active'
+            : ''
+          : open
+          ? 'active'
+          : ''
+      }`}
+    >
+      <h2 className={`accordion-item-title ${disabled ? 'disabled' : ''}`}>
+        <button
+          className="accordion-item-btn"
+          onClick={expansionType === 'basic' ? btnOnClick : handleToggle}
+          disabled={disabled ? true : false}
+          style={optionalStyles}
+        >
+          {data.title}
+          <img src={expandIcon !== '' ? expandIcon : defaultIcon} alt="" />
+        </button>
+      </h2>
+      <div className="accordion-item-container" style={{ height }}>
+        <div ref={contentRef} className="accordion-item-content">
+          {data.content}
         </div>
-      </li>
-    );
-  } else {
-    return (
-      <li className={`accordion-item ${open ? 'active' : ''}`}>
-        <h2 className="accordion-item-title">
-          <button
-            className="accordion-item-btn"
-            onClick={handleToggle}
-            disabled={disabled ? true : false}
-          >
-            {data.title}
-          </button>
-        </h2>
-        <div className="accordion-item-container" style={{ height }}>
-          <div ref={contentRef} className="accordion-item-content">
-            {data.content}
-          </div>
-        </div>
-      </li>
-    );
-  }
+      </div>
+    </li>
+  );
 }
 
 export default AccordionItem;

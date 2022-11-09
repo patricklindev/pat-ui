@@ -14,8 +14,6 @@ export type SliderColor = 'primary' | 'secondary' | 'default';
 export type DisplayValueLabelOptions = 'on' | 'off' | 'auto';
 
 interface ISliderProps {
-  /** set customized style */
-  className?: string;
   /** set slider size */
   sliderSize?: SliderSize;
   /** set slider color */
@@ -48,7 +46,6 @@ export type PatSliderProps = ISliderProps &
   InputHTMLAttributes<HTMLInputElement>;
 
 const Slider: FC<PatSliderProps> = ({
-  className,
   sliderSize = 'md',
   sliderColor = 'default',
   marks = false,
@@ -73,7 +70,6 @@ const Slider: FC<PatSliderProps> = ({
     [`slider-${sliderSize}`]: !!sliderSize,
     'slider-disabled': !!disabled,
   });
-  if (className) styleClasses += ' ' + className;
 
   const closestIndex = useRef<number>(0);
   const smallestValue = rangePosition.reduce((prev, curr) =>

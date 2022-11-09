@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent, FC } from 'react';
 import { classNames } from '../../utils/classNames';
-// import { nanoid } from 'nanoid';
 
 export type SwitchColor = 'primary' | 'secondary' | 'default';
 
@@ -51,9 +50,6 @@ export const Switch: FC<ISwitchProps> = ({
     ['switch-off']: !toggleSwitch,
     disabled: !!disabled,
   });
-
-  //generate id
-  // const idGenerated = nanoid();
 
   const handleChange: (e: ChangeEvent) => void = (e) => {
     setToggleSwitch((prev) => !prev);

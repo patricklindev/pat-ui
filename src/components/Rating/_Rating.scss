@@ -1,0 +1,33 @@
+.star {
+    background-color: green;
+}
+
+.rt {
+    position: relative;
+    display: flex;
+}
+
+.rt-controlled {
+    width: 2rem;
+    border: none;
+        background: green;
+        padding: 0;
+        display: none;
+}
+
+.rt-sm {
+    width: 2rem;
+}
+
+.rt-md {
+    width: 3rem;
+}
+
+.rt-lg {
+    width: 4rem;
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}

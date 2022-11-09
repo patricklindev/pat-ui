@@ -1,0 +1,91 @@
+$color-map: (
+  primary: (
+    default: $primary-color,
+    hover: $primary-color-hover,
+    disabled: $disabled-color,
+    textColor: rgba(0, 0, 0, 0.87),
+  ),
+  secondary: (
+    default: $secondary-color,
+    hover: $secondary-color-hover,
+    disabled: $disabled-color,
+    textColor: rgba(0, 0, 0, 0.87),
+  ),
+  default: (
+    default: $default-color,
+    hover: $default-color-hover,
+    disabled: $disabled-color,
+    textColor: rgba(0, 0, 0, 0.87),
+  ),
+);
+
+@mixin color-size-class-label($color, $size) {
+  .chk-#{$color}-#{$size} {
+    cursor: pointer;
+    position: absolute;
+    margin: 3px;
+    opacity: 0;
+    z-index: 1;
+
+    @if $size == 'small' {
+      width: $small-box-size;
+      height: $small-box-size;
+    } @else if $size == 'medium' {
+      width: $medium-box-size;
+      height: $medium-box-size;
+    }
+  }
+
+  .chk-#{$color}-#{$size}:disabled {
+    cursor: default;
+  }
+
+  .chk--icon-#{$color}-#{$size} svg {
+    fill: map-get(map-get($color-map, $color), 'default');
+
+    @if $size == 'small' {
+      width: 19px;
+      height: 19px;
+    } @else if $size == 'medium' {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .chk--icon-#{$size}-disabled svg {
+    fill: $disabled-color;
+    @if $size == 'small' {
+      width: 19px;
+      height: 19px;
+    } @else if $size == 'medium' {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .checkbox--container-#{$size} {
+    @if $size == 'small' {
+      .labelSpan {
+        font-size: 15px;
+      }
+    } @else if $size == 'medium' {
+      .labelSpan {
+        position: relative;
+        top: 2px;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+$colors: ('primary', 'secondary', 'default');
+$sizes: ('small', 'medium');
+
+@mixin generate-color-size-class-labels {
+  @each $size in $sizes {
+    @each $color in $colors {
+      @include color-size-class-label($color, $size);
+    }
+  }
+}
+
+@include generate-color-size-class-labels();

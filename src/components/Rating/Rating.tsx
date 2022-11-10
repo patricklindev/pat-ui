@@ -1,6 +1,5 @@
-import React, { useState, useEffect, FC } from 'react';
-import { classNames } from '../../utils/classNames';
-import './Rating'
+import React, { useState, FC } from 'react';
+// import { classNames } from '../../utils/classNames';
 
 export interface IRatingProps {
   // customized rating
@@ -9,14 +8,14 @@ export interface IRatingProps {
   ratingSize?: string;
   // amount of stars
   ratingCount?: any;
-  // activate label on hover 
+  // activate label on hover
   hoverLabel?: boolean;
   // display label on hover
-  ratingLabel?: boolean;
+  customSize?: string;
   // active or disabled
   disabled?: boolean;
 
-  onChange?: () => any;
+  onChange?: (rating: number) => any;
 }
 
 export const Rating: FC<IRatingProps> = (props: any) => {
@@ -25,25 +24,18 @@ export const Rating: FC<IRatingProps> = (props: any) => {
     className,
     ratingCount,
     hoverLabel,
-    ratingLabel,
+    customSize,
     disabled,
     onChange,
   } = props;
 
-  const [rating, setRating] = useState<number>(1);
+  const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
-  const [disableRating, setDisableRating] = useState<string>('');
+  const [hoverCopy, setHoverCopy] = useState<number>(0);
   const [isRatingLabel, setIsRatingLabel] = useState<string>('');
-  // const [customRatingLabel, setCustomRatingLabel] = useState('');
 
-  let styleClasses = classNames('', {
-    [`rt-${ratingSize}`]: true,
-    ['re-label']: !!ratingLabel,
-    disabled: !!disabled,
-  });
-
-  
-  const label: {[key: number] : string} = {
+  // Star rating Labels
+  const label: { [key: number]: string } = {
     1: 'Useless',
     2: 'Poor',
     3: 'OK',
@@ -51,36 +43,40 @@ export const Rating: FC<IRatingProps> = (props: any) => {
     5: 'Excellent',
   };
 
+  const showLabel = () => {
+    let display = label[hoverRating];
+    return display;
+  };
+
   // Add color on hover
-  const handleHoverOn = (index: number) => {
-    setHoverRating(index);
+  const handleHoverOn = (idx: number) => {
+    rating && setHoverCopy(rating);
+    setRating(0);
+    setHoverRating(idx);
   };
 
+  // Remove color but reset rating 
   const handleHoverOff = () => {
+    hoverCopy && setRating(hoverCopy);
     setHoverRating(0);
-    removeHoverLabel();
   };
 
-  const saveRating = (index: number) => {
-    setRating(index);
+  //  Save rating on click
+  const saveRating = (idx: number) => {
+    setHoverCopy(0);
+    setRating(idx);
+    if (hoverLabel) setIsRatingLabel(showLabel());
+    if (!hoverLabel) setIsRatingLabel('');
   };
 
-  
-
-  //loop through starlabel or customStarLabel object to grab label value
-  
-
-  const removeHoverLabel = () => {
-    if (hoverLabel) {
-      for (let i = 0; i < stars().length; i++) {
-        if (hoverRating >= stars()[i]) {
-          setIsRatingLabel(label[rating]);
-        }
-      }
-    }
+  // Size of stars based on user
+  const size = () => {
+    if (ratingSize === 'sm') return '1rem';
+    if (ratingSize === 'md') return '2rem';
+    if (ratingSize === 'lg') return '3rem';
   };
 
-  //make stars array function
+  // Number of stars based on user
   const stars = () => {
     let starArr = [];
     for (let i = 1; i <= ratingCount; i++) {
@@ -88,7 +84,8 @@ export const Rating: FC<IRatingProps> = (props: any) => {
     }
     return starArr;
   };
-  
+
+  // Add color to star
   const highliteColor = (idx: number) => {
     if (hoverRating >= idx || rating >= idx) {
       return 'yellow';
@@ -97,42 +94,36 @@ export const Rating: FC<IRatingProps> = (props: any) => {
     }
   };
 
+  // Create Stars
   const renderStars = stars().map((idx: number) => {
     return (
-      <button
+      <svg
         key={idx}
         className={`${className} star`}
-        onMouseEnter={() => handleHoverOn(idx)}
-        onMouseLeave={() => {
-          handleHoverOff();
-        }}
+        onMouseEnter={() => !disabled && handleHoverOn(idx)}
+        onMouseLeave={() => !disabled && handleHoverOff()}
         onClick={() => {
-          saveRating(idx);
-          onChange(idx); //storybook action addon
+          if (!disabled) {
+            saveRating(idx);
+            onChange(rating);
+          } else {
+            highliteColor(idx);
+          }
         }}
-        disabled={disabled}
-        value={idx}
+        fill={highliteColor(idx)}
+        stroke="black"
+        viewBox="0 0 24 24"
+        width={customSize ? customSize : size()}
       >
-        <svg
-          className={styleClasses}
-          fill={highliteColor(idx)}
-          stroke="black"
-          viewBox="0 0 24 24"
-          width="2rem"
-        >
-          <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-        </svg>
-      </button>
+        <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
     );
   });
 
   return (
     <div>
-      {renderStars}
-      <label htmlFor="star-input">
-        {hoverLabel}
-       
-      </label>
+      {renderStars} {hoverLabel && showLabel()}{' '}
+      {hoverRating ? '' : isRatingLabel}
     </div>
   );
 };
@@ -140,7 +131,7 @@ export const Rating: FC<IRatingProps> = (props: any) => {
 //default setting
 Rating.defaultProps = {
   ratingCount: 5,
-  className: 'star'
+  ratingSize: 'md'
 };
 
 export default Rating;

@@ -20,6 +20,10 @@ describe('Rating', () => {
   });
 
   it('Should change color on hover', () => {
+    const ratingProps = {
+      onMouseEnter: jest.fn(),
+      onmouseleave: jest.fn()
+    };
     
   })
 });

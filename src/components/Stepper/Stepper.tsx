@@ -5,13 +5,13 @@ export type orientationType = 'horizontal' | 'vertical';
 export type errType = {errStep:number, title:string, message:string} | null;
 
 export interface IStepperProps {
-    /** set stepper orientation, horizontal or*/
+    /** set stepper orientation, horizontal or vertical*/
     orientation?: orientationType;
     /** set stepper description, array of strings */
     descriptions:string[];  
-    /** set stepper error message, array of objects, */
+    /** set stepper error message, array of objects */
     errorsIndexMessage?: errType[];
-    /** set stepper skip options, array of numbers  */
+    /** set stepper skip options, array of numbers */
     skipSteps?: number[];
 }
 export const Stepper: FC<IStepperProps> = (props) => {
@@ -42,20 +42,13 @@ export const Stepper: FC<IStepperProps> = (props) => {
         handleCompletion();
     }
     const handleNext = () => {
-        if(activeStep === lastStep - 1 ){
-            if(allComplete()){
-                setActiveStep(0);
-            } else if(!allComplete()){
-                for(let i = 0; i < lastStep; i++){
-                    if(allCompleted[i] === false){
-                        setActiveStep(i);
-                        break;
-                    }
-                }
+        if(!allComplete()){
+            if(skipOptions[activeStep]){
+                const newCompleted = [...allCompleted];
+                newCompleted[activeStep] = true;
+                setAllCompleted(newCompleted);
             }
-        } else {
-            if(skipOptions[activeStep]){allCompleted[activeStep] = true}
-            setActiveStep(prev => prev + 1 );
+            setActiveStep(findNextActiveStep(activeStep))
         }
     }
     const handleCompletion = () => {
@@ -76,6 +69,15 @@ export const Stepper: FC<IStepperProps> = (props) => {
             if(allCompleted[i] === false) return false
         }
         return true;
+    }
+    const findNextActiveStep = (idx:number):number => {
+        for(let i = idx+1; i < lastStep; i++){
+            if(allCompleted[i] === false) return i;
+        }
+        for(let i = 0; i <= idx; i++){
+            if(allCompleted[i] === false) return i;
+        }
+        return idx;
     }
 
     return (
@@ -165,7 +167,7 @@ export const Step:FC<StepProps> = ( props ) => {
                     <div className="step">
                         <div className={`${orientation === 'vertical' && 'step-vertical'}`}>
                             <div className={`step-number ${(activeStep === index || completed) ? 'active' : 'inactive' }`}>
-                                {completed ? <span>✓</span> : index + 1 }
+                                {completed ? <span data-testid='check-mark'>✓</span> : index + 1 }
                             </div>
                             { (lastStep-1 !== index && orientation === 'vertical') && <span className='step-vertical-connector'></span>}
                         </div>

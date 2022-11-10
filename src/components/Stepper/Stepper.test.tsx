@@ -9,12 +9,12 @@ describe('Stepper', () => {
         const { asFragment } = render(<Stepper descriptions={descriptions} > Snapshot Stepper </Stepper>);
         expect(asFragment()).toMatchSnapshot();
     });
-
+  
     it('should render properly with orientation vertial', ()=>{
         const descriptions = ['First','Second','Third']
         const wrapper = render(<Stepper descriptions={descriptions} orientation='vertical'/>)
         const element = wrapper.container.firstElementChild as HTMLElement;
-        expect(element  ).toHaveClass('stepper-width'); 
+        expect(element).toHaveClass('stepper-width'); 
     })
 
     it('should render properly with error prop', ()=>{
@@ -35,16 +35,51 @@ describe('Stepper', () => {
         expect(steps.length).toBe(3);
         expect(screen.getByText(/optional/i)).toBeInTheDocument();
     })
-    it('should reset stepper with active step 0', () => {
-        const wrapper= render(<Stepper descriptions={['111','222','333']}/>); 
-        const btnNext = wrapper.queryByText('NEXT') as HTMLElement;
-        fireEvent.click(btnNext)
-        expect(btnNext).toBeInTheDocument()
-    })
-    it('should display complete step button', () => {
-        const wrapper= render(<Stepper descriptions={['111','222','333']}/>);
-        const btnNext = wrapper.queryByText('COMPLETE STEP') as HTMLElement;
-        expect(btnNext).toBeInTheDocument()
-    })
+    it('should display next button', () => {
+        const wrapper = render(<Stepper descriptions={['111','222']}/>); 
+        const btnComplete = screen.queryByText('COMPLETE STEP') as HTMLElement;
+        fireEvent.click(btnComplete);
+        expect(screen.getByText(/Step 2/)).toBeInTheDocument();
 
+        const btnNext = screen.queryByText('NEXT') as HTMLElement;
+        fireEvent.click(btnNext);                               // increase 2% Stmts and 2% of Branch
+        expect(screen.getByText(/Step 2/)).toBeInTheDocument();
+    })
+    it('should work properly with back button', () => {
+        const wrapper= render(<Stepper descriptions={['111','222']}/>);
+        const btnBack = wrapper.queryByText('BACK') as HTMLElement;
+        expect(btnBack).toBeInTheDocument()
+        expect(btnBack).toBeDisabled();
+
+        const btnNext = wrapper.queryByText('NEXT') as HTMLElement;
+        fireEvent.click(btnNext)                   
+        expect(btnNext).toBeInTheDocument();
+        expect(screen.getByText(/Step 2/)).toBeInTheDocument();
+
+        fireEvent.click(btnBack);                           // increase funcs 17%, and everythings                
+    })
+    it('should display buttons complete', () => {
+        const {container} = render(<Stepper descriptions={['only one step']}/>);
+        const btnComplete = screen.queryByText('COMPLETE STEP') as HTMLElement;
+        expect(btnComplete).toBeInTheDocument();
+        fireEvent.click(btnComplete)
+    })
+    it('should display skip button initially and not display after click skip', () => {
+        const wrapper= render(<Stepper descriptions={['only one step']} skipSteps={[1]}/>);
+        const btnSkip = wrapper.queryByText('SKIP') as HTMLElement;                 // incease 1% Stmts, 7% funcs
+        expect(btnSkip).toBeInTheDocument();
+        fireEvent.click(btnSkip)
+        expect(btnSkip).not.toBeInTheDocument();
+    })
+    it('should display properly with reset button', () => {
+        const wrapper= render(<Stepper descriptions={['only one step']} skipSteps={[1]}/>);
+        const btnSkip = wrapper.queryByText('SKIP') as HTMLElement;     
+        expect(btnSkip).toBeInTheDocument();
+        fireEvent.click(btnSkip)     
+        
+        const btnReset = wrapper.queryByText('RESET') as HTMLElement;           
+        expect(btnReset).toBeInTheDocument();
+        fireEvent.click(btnReset);                                                   // increase 5%+, everything
+        expect(screen.getByText(/Step 1/)).toBeInTheDocument();
+    })
 });

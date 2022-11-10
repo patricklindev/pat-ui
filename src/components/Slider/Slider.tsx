@@ -4,7 +4,6 @@ import React, { FunctionComponent, ReactElement, useState, PointerEvent, useRef,
 type SliderSize = 'small' | 'medium' | 'large'
 type SliderColor = 'primary' | 'secondary' | 'disabled'
 type SliderRangeKnobs = boolean
-type SliderMark = Array<number>
 
 interface ranged {
     max: number, min: number
@@ -19,7 +18,7 @@ export interface ISliderProps {
     //initial location
     defaultValue?: number,
     disabled?: boolean,
-    mark?: SliderMark,
+    mark?: Array<number>,
     onChange?: (arg0: { value: number } | { min: number, max: number }) => void,
     max?: number,
     min?: number
@@ -121,6 +120,7 @@ const Slider: FunctionComponent<ISliderProps> = ({
         const leftBound = sliderBounds.left;
         const rightBound = sliderBounds.right;
         const sliderWidth = sliderBounds.width;
+
         function handlePointerDown(e: unknown) {
             let targetClassName = ((e as PointerEvent).target as HTMLElement).getAttribute('class');
             if (targetClassName === thumbClassName()) {
@@ -193,8 +193,6 @@ const Slider: FunctionComponent<ISliderProps> = ({
             window.removeEventListener('pointermove', handlePointerMove);
         }
     }, [focus, posStatus, disabled, currVal, max, min, mark, sliderBounds, identifier, thumbClassName, onChange, ranged])
-
-
 
     function sliderRenderer(): ReactElement {
         let trackAndThumb: ReactElement;

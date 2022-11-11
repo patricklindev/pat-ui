@@ -3,25 +3,10 @@
     display: flex;
 }
 
-.rt-controlled {
-    width: 2rem;
-    border: none;
-    background: green;
-    padding: 0;
-}
-
-.star-btn {
-    border: none;
-    background: none;
-    padding: 0;
-    margin: 10px;
-}
 
 .star {
-    color: green;
     background: none;
-    display: none;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .rt-sm {
@@ -34,9 +19,4 @@
 
 .rt-lg {
     width: 4rem;
-}
-
-.disabled {
-    cursor: not-allowed;
-    pointer-events: none;
 }

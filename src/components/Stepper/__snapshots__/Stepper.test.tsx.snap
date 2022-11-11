@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stepper should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="stepper false"
+  >
+    <div
+      class="steps-container horizontal"
+    >
+      <div
+        class="step-container"
+      >
+        <div
+          class="step"
+        >
+          <div
+            class="false"
+          >
+            <div
+              class="step-number active"
+            >
+              1
+            </div>
+          </div>
+          <div
+            class="step-label"
+          >
+            <span
+              class="margin-bottom text--bold"
+            >
+              11
+            </span>
+          </div>
+        </div>
+      </div>
+      <span
+        class="step-connector"
+      />
+      <div
+        class="step-container"
+      >
+        <div
+          class="step"
+        >
+          <div
+            class="false"
+          >
+            <div
+              class="step-number inactive"
+            >
+              2
+            </div>
+          </div>
+          <div
+            class="step-label"
+          >
+            <span
+              class="margin-bottom false"
+            >
+              22
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="current-step"
+      data-testid="current-step"
+    >
+      Step 1
+    </div>
+    <div
+      class="stepper-control"
+    >
+      <button
+        class="btn-back btn-text--gray"
+        disabled=""
+      >
+        BACK
+      </button>
+      <button
+        data-testid="btn-next"
+      >
+        NEXT
+      </button>
+      <button>
+        COMPLETE STEP
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -135,9 +135,6 @@ Stepper.defaultProps = {
 };
 export default Stepper;
 
-
-
-// export type errType = {title:string, messge:string} | null;
 /** Step */
 export interface StepProps {
     label: string;

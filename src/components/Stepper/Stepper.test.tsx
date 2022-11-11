@@ -42,7 +42,7 @@ describe('Stepper', () => {
         expect(screen.getByText(/Step 2/)).toBeInTheDocument();
 
         const btnNext = screen.queryByText('NEXT') as HTMLElement;
-        fireEvent.click(btnNext);                               // increase 2% Stmts and 2% of Branch
+        fireEvent.click(btnNext);                               
         expect(screen.getByText(/Step 2/)).toBeInTheDocument();
     })
     it('should work properly with back button', () => {
@@ -56,7 +56,7 @@ describe('Stepper', () => {
         expect(btnNext).toBeInTheDocument();
         expect(screen.getByText(/Step 2/)).toBeInTheDocument();
 
-        fireEvent.click(btnBack);                           // increase funcs 17%, and everythings                
+        fireEvent.click(btnBack);                           
     })
     it('should display buttons complete', () => {
         const {container} = render(<Stepper descriptions={['only one step']}/>);
@@ -66,7 +66,7 @@ describe('Stepper', () => {
     })
     it('should display skip button initially and not display after click skip', () => {
         const wrapper= render(<Stepper descriptions={['only one step']} skipSteps={[1]}/>);
-        const btnSkip = wrapper.queryByText('SKIP') as HTMLElement;                 // incease 1% Stmts, 7% funcs
+        const btnSkip = wrapper.queryByText('SKIP') as HTMLElement;               
         expect(btnSkip).toBeInTheDocument();
         fireEvent.click(btnSkip)
         expect(btnSkip).not.toBeInTheDocument();
@@ -79,7 +79,7 @@ describe('Stepper', () => {
         
         const btnReset = wrapper.queryByText('RESET') as HTMLElement;           
         expect(btnReset).toBeInTheDocument();
-        fireEvent.click(btnReset);                                                   // increase 5%+, everything
+        fireEvent.click(btnReset);                                                  
         expect(screen.getByText(/Step 1/)).toBeInTheDocument();
     })
 });

@@ -8,18 +8,21 @@ describe('Dialog', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should render default dialog', () => {
+  it('should not render dialog if not opened', () => {
+    render(<Dialog></Dialog>);
+    expect(document.querySelector('.dialog-cover')).toBeNull();
+    expect(document.querySelector('.dialog-container')).toBeNull();
+  });
+
+  it('should render default dialog (popped up)', () => {
     const dialogProps: patDialogProps = {
       open: true,
-      onClose: jest.fn(),
     };
-    const wrapper = render(<Dialog {...dialogProps}></Dialog>);
+    render(<Dialog {...dialogProps}></Dialog>);
+    expect(document.querySelector('.dialog-cover')).toBeTruthy();
+    expect(document.querySelector('.dialog-container')).toBeTruthy();
     const dialogElement = screen.getByTestId('dialog-element');
     expect(dialogElement).toHaveClass('dialog dialog-default');
-    const dialogMask = screen.getByTestId('dialog-mask'); // test clicking the mask layer to close
-    expect(dialogProps.onClose).toHaveBeenCalledTimes(0);
-    fireEvent.click(dialogMask);
-    expect(dialogProps.onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should render dialog with different props', () => {
@@ -29,6 +32,7 @@ describe('Dialog', () => {
       dialogType: 'basic',
       className: 'test',
       open: true,
+      onClose: jest.fn(),
     };
     const wrapper = render(<Dialog {...dialogProps}></Dialog>);
     const dialogTitleElement = wrapper.queryByText('Title');
@@ -37,6 +41,10 @@ describe('Dialog', () => {
     expect(dialogContentElement).toBeInTheDocument();
     const Element = screen.getByTestId('dialog-element');
     expect(Element).toHaveClass('dialog dialog-basic test');
+    const dialogMask = screen.getByTestId('dialog-mask'); // test clicking the mask layer to close
+    expect(dialogProps.onClose).toHaveBeenCalledTimes(0);
+    fireEvent.click(dialogMask);
+    expect(dialogProps.onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should render actions with clickable buttons', () => {
@@ -46,7 +54,7 @@ describe('Dialog', () => {
       onClose: jest.fn(),
     };
     //test button
-    const wrapper = render(
+    render(
       <Dialog {...dialogProps}>
         <DialogActions>
           <button data-testid="btn" onClick={dialogProps.onClose} />
@@ -67,7 +75,7 @@ describe('Dialog', () => {
       dialogType: 'full-screen',
       open: true,
     };
-    const wrapper = render(<Dialog {...dialogProps}></Dialog>);
+    render(<Dialog {...dialogProps}></Dialog>);
     const dialogElement = screen.getByTestId('dialog-element');
     expect(dialogElement).toHaveClass('dialog dialog-full-screen');
   });

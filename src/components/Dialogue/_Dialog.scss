@@ -1,0 +1,115 @@
+// in case the page jittering when the scroll bar hides
+// body {
+//   width: 100vw;
+// }
+// Mask layer of the dimmed background
+.dialog-cover {
+  background: $dimmed-backdrop;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+.dialog-container {
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border-style: solid;
+  border-width: $border-width;
+  border-radius: $border-radius;
+  border-color: $border-color;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+}
+
+// wrapper for the action buttons
+.dialog-actions {
+  display: flex;
+  justify-content: right;
+  .btn {
+    color: $blue;
+    border-radius: 0.1rem;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+  }
+  .btn:hover {
+    background-color: $gray-100;
+  }
+}
+
+.dialog-basic {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    padding: 1rem 1.25rem;
+  }
+  .content {
+    width: auto;
+    padding: 0.5rem 0 0 0;
+    border: none;
+    color: $gray-600;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: right;
+  }
+}
+
+.dialog-default {
+  padding: 1rem 1.5rem;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    padding-top: 0.5rem;
+    color: $gray-600;
+  }
+}
+
+.dialog-full-screen {
+  // padding: 1rem 1.5rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: $gray-600;
+  }
+  .content {
+    width: auto;
+    padding: 0.5rem 0 0 0;
+    border: none;
+    color: $gray-600;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: right;
+  }
+}
+
+.display-container {
+  text-align: center;
+  padding: 1rem;
+  border-style: solid;
+  border-width: $border-width;
+  border-radius: $border-radius;
+  border-color: $border-color;
+}

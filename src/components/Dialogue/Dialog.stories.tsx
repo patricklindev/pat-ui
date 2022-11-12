@@ -1,20 +1,7 @@
-import * as React from 'react';
+import React, { FC, ReactNode } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Dialog, DialogActions } from './Dialog';
-import { Button, Icon } from '../../index';
-// sub elements used for stories, import from MUI
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import { blue } from '@material-ui/core/colors';
-import TextField from '@material-ui/core/TextField';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import { Button, Icon, Input } from '../../index';
 
 export default {
   title: 'Dialog',
@@ -50,29 +37,19 @@ export const BasicDialogue = () => {
         onClose={handleClose}
         dialogTitle={'Set backup account'}
       >
-        <List>
-          {emails.map((email) => (
-            <ListItem button onClick={() => handleClose(email)} key={email}>
-              <ListItemAvatar>
-                <Avatar
-                  style={{ backgroundColor: blue[100], color: blue[600] }}
-                >
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={email} />
-            </ListItem>
-          ))}
-
-          <ListItem autoFocus button onClick={() => handleClose('addAccount')}>
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItem>
-        </List>
+        {emails.map((email) => (
+          <Item
+            onClick={() => handleClose(email)}
+            primary={email}
+            key={email}
+            avatar={<Icon loading={false} name="users" color="pink" />}
+          />
+        ))}
+        <Item
+          onClick={() => handleClose('addAccount')}
+          primary="Add account"
+          avatar={<Icon disabled loading={false} name="plus" />}
+        />
       </Dialog>
     </div>
   );
@@ -133,15 +110,7 @@ export const FormDialogue = () => {
         dialogContent="To subscribe to this website, please enter your email address here. We
         will send updates occasionally."
       >
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="standard"
-        />
+        <Input inputSize="mini" fluid placeholder="Email Address" />
         <DialogActions>
           <Button onClick={() => handleClose('cancel')}>Cancel</Button>
           <Button onClick={() => handleClose('subscribe')}>Subscribe</Button>
@@ -163,34 +132,95 @@ export const FullScreenDialogue = () => {
     setOpen(false);
     action('Dialog window closed')(e);
   };
+
+  const handleClickItem = (e: React.MouseEvent) => {
+    const current = e.currentTarget as HTMLElement;
+    action('Clicked an item')(current.innerText.split('\n\n').toString());
+  };
+
   return (
     <div className="display-container">
       <Button onClick={handleClickOpen}>OPEN FULL-SCREEN DIALOG</Button>
       <Dialog dialogType="full-screen" open={open} onClose={handleClose}>
-        <Toolbar style={{ backgroundColor: 'lightgrey' }}>
+        <section
+          style={{
+            backgroundColor: 'lightgrey',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0 0.5rem',
+          }}
+        >
           <Button btnType="link" onClick={() => handleClose('close')}>
             <Icon disabled={false} loading={false} name="times" />
           </Button>
-          <Typography style={{ flex: 1 }} variant="h6" component="div">
-            Sound
-          </Typography>
+          <h5 style={{ flex: 1, margin: '0' }}>Sound</h5>
           <Button btnType="secondary" onClick={() => handleClose('save')}>
             Save
           </Button>
-        </Toolbar>
-        <List onClick={action('Clicked an item')}>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+        </section>
+        <div>
+          <hr style={{ margin: '0' }} />
+          <Item
+            primary="Phone ringtone"
+            secondary="Titania"
+            onClick={handleClickItem}
+          />
+          <Item
+            primary="Default notification ringtone"
+            secondary="Tethys"
+            onClick={handleClickItem}
+          />
+        </div>
       </Dialog>
+    </div>
+  );
+};
+
+/*
+ * Item component made for showcase the user stories
+ */
+interface IitemProps {
+  /** set primary text */
+  primary?: string;
+  /** set secondary text */
+  secondary?: string;
+  /** set action on clicking */
+  onClick?: (e: any) => void;
+  /** set avatar for the item */
+  avatar?: ReactNode;
+}
+
+const Item: FC<IitemProps> = (props) => {
+  const { primary, secondary, onClick, avatar } = props;
+  const [isHover, setIsHover] = React.useState(false);
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
+  const itemStyle: React.CSSProperties = {
+    display: 'flex',
+    gap: '0.75rem',
+    padding: '1rem',
+    cursor: 'pointer',
+    backgroundColor: isHover ? '#eee' : 'white',
+  };
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={itemStyle}
+      onClick={onClick}
+    >
+      {avatar ? (
+        <span style={{ width: '17%', textAlign: 'center' }}>{avatar}</span>
+      ) : null}
+      <div style={{ flex: '1' }}>
+        <p style={{ margin: '0' }}>{primary}</p>
+        <span style={{ color: 'grey' }}>{secondary}</span>
+      </div>
     </div>
   );
 };

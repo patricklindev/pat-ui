@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { Dialog, DialogActions, patDialogProps } from './Dialog';
 

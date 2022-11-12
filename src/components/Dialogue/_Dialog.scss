@@ -1,7 +1,7 @@
 // in case the page jittering when the scroll bar hides
-body {
-  width: 100vw;
-}
+// body {
+//   width: 100vw;
+// }
 // Mask layer of the dimmed background
 .dialog-cover {
   background: $dimmed-backdrop;
@@ -72,20 +72,9 @@ body {
   display: flex;
   flex-direction: column;
 
-  .title {
-    padding: 0;
-    width: auto;
-  }
   .content {
-    width: auto;
-    padding: 0.5rem 0 0 0;
-    border: none;
+    padding-top: 0.5rem;
     color: $gray-600;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: right;
   }
 }
 
@@ -96,10 +85,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  // align-items: flex-start;
   .title {
-    padding: 0;
-    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: $gray-600;
   }
   .content {
     width: auto;

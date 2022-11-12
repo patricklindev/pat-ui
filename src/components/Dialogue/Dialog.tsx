@@ -5,7 +5,7 @@ import { classNames } from '../../utils/classNames';
 export type DialogType = 'basic' | 'default' | 'full-screen';
 
 export interface IDialogProps {
-  /** set customized card */
+  /** set customized dialog className */
   className?: string;
   /** set dialogue type */
   dialogType?: DialogType;
@@ -41,6 +41,7 @@ export const Dialog: FC<patDialogProps> = (props) => {
   let styleClasses = classNames('dialog', {
     [`dialog-${dialogType}`]: true,
   });
+
   if (className) {
     styleClasses += ' ' + className;
   }
@@ -60,14 +61,10 @@ export const Dialog: FC<patDialogProps> = (props) => {
           {/* Main dialog container */}
           <div className="dialog-container">
             <div className={styleClasses} data-testid="dialog-element">
-              {dialogTitle ? (
-                <h5 className={styleClasses + ' title'}>{dialogTitle}</h5>
-              ) : null}
+              {/* title and content of the dialog will be displayed as priority elements */}
+              {dialogTitle ? <h5 className="title">{dialogTitle}</h5> : null}
               {dialogContent ? (
-                <p
-                  className={styleClasses + ' content'}
-                  data-testid="dialog-content-element"
-                >
+                <p className="content" data-testid="dialog-content-element">
                   {dialogContent}
                 </p>
               ) : null}

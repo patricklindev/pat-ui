@@ -61,7 +61,6 @@ const Slider: FunctionComponent<ISliderProps> = ({
     const [currVal, setCurrVal] = useState<number | ranged>(defaultValue);
     const [focus, setFocus] = useState(false);
     const [sliderBounds, setSliderBounds] = useState<{ left: number, right: number, width: number }>({ left: 0, right: 0, width: 0 })
-
     //pre cal properties of the slider in cdm
     const thumbClassName = useCallback(() => {
         let baseName = `ui-slider-thumb ${identifier}`;
@@ -74,14 +73,11 @@ const Slider: FunctionComponent<ISliderProps> = ({
 
     const measureSliderWidth = useCallback(node => {
         if (node !== null) {
+            const { left, right } = node.getBoundingClientRect();
             let sliderWidth = node.offsetWidth;
-            let initPos = node.childNodes[1].getBoundingClientRect().left;
-            let valuePercentage = currVal as number / max;
-            let leftBound = Math.round(initPos - (sliderWidth * valuePercentage));
-            let rightBound = Math.round(initPos + (sliderWidth * (1 - valuePercentage)));
             setSliderBounds({
-                left: leftBound,
-                right: rightBound,
+                left: left,
+                right: right,
                 width: sliderWidth
             })
         }
@@ -104,6 +100,7 @@ const Slider: FunctionComponent<ISliderProps> = ({
 
     //To allow the move, pdown to be detected outside of the component, need to bind evthandler on window
     useEffect(() => {
+        if (disabled) return;
         function handleRangeChange(val: number, percentage: number): void {
             let maxDelta = Math.abs((currVal as ranged).max - val);
             let minDelta = Math.abs((currVal as ranged).min - val);
@@ -182,11 +179,10 @@ const Slider: FunctionComponent<ISliderProps> = ({
                 }
             }
         }
-        if (!disabled) {
-            window.addEventListener('pointerdown', handlePointerDown);
-            window.addEventListener('pointerup', handlePointerUp)
-            window.addEventListener('pointermove', handlePointerMove)
-        }
+        window.addEventListener('pointerdown', handlePointerDown);
+        window.addEventListener('pointerup', handlePointerUp)
+        window.addEventListener('pointermove', handlePointerMove)
+
         return () => {
             window.removeEventListener('pointerdown', handlePointerDown);
             window.removeEventListener('pointerup', handlePointerUp);
@@ -219,7 +215,7 @@ const Slider: FunctionComponent<ISliderProps> = ({
             )
         }
         return (
-            <div ref={measureSliderWidth} className={`ui-slider-wrapper ${sliderClassName}`}>
+            <div ref={measureSliderWidth} data-testid="container" className={`ui-slider-wrapper ${sliderClassName}`}>
                 {trackAndThumb}
                 {
                     // eslint-disable-next-line array-callback-return

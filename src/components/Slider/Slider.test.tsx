@@ -69,37 +69,49 @@ describe('Slider', () => {
 
     it('should be able to drag the thumb', async function () {
         let value = 0
-        const wrapper = render(<Slider onChange={e=> value = (e as {value: number}).value}></Slider>);
+        const wrapper = render(<Slider onChange={e=>{console.log('e', e); value = (e as {value: number}).value}}></Slider>);
+        // screen.
+        const containerElement1 = screen.getByTestId('container');
+
+        const thumbElement1 = containerElement1.childNodes[1];
+        console.log('thumb1', thumbElement1);
+       
         const thumbElements = wrapper.container.getElementsByClassName('ui-slider-thumb');
-        expect(thumbElements[0]).toBeInTheDocument();
-        console.log(wrapper.container)
+       
+        jest.spyOn(thumbElement1 as any, 'offsetWidth', 'get').mockImplementation(()=>200)
+
+        jest.spyOn(thumbElement1 as Element, 'getBoundingClientRect').mockImplementation(()=>({left:200} as DOMRect))
+      
+        expect(thumbElement1).toBeInTheDocument();
         //this returns all 0, because it is not actually rendered
         const { left, right, width, height } = wrapper.container.getBoundingClientRect();
-        console.log(left, right, width, height)
         const current = {
             clientX: 0,
             clientY: 0
         }
-        fireEvent.pointerEnter(thumbElements[0], current);
-        fireEvent.pointerOver(thumbElements[0], current);
-        fireEvent.pointerMove(thumbElements[0], current);
-        fireEvent.pointerDown(thumbElements[0], current);
+        fireEvent.pointerDown(window, current);
+        fireEvent.pointerMove(window, current);
+       
         for (let i = 0; i < 11; i++) {
             current.clientX += 10;
             await new Promise(resolve => {
                 setTimeout(resolve, 100);
             })
-            fireEvent.pointerMove(thumbElements[0], current);
+            fireEvent.pointerMove(window, current);
         }
-        fireEvent.pointerUp(thumbElements[0], current);
+        expect(value).toBe(100);
+
+        fireEvent.pointerUp(window, current);
         for (let i = 11; i > 0; i--) {
             current.clientX -= 10;
             await new Promise(resolve => {
                 setTimeout(resolve, 100);
             })
-            fireEvent.pointerMove(thumbElements[0], current)
+            fireEvent.pointerMove(window, current)
         }
-        fireEvent.pointerUp(thumbElements[0], current);
+        fireEvent.pointerUp(window, current);
+        expect(value).toBe(0);
+
     })
 
     it('should be able to drag the thumb with ranged', async function () {

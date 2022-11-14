@@ -1,0 +1,13 @@
+@import './styles/slider_mixins';
+@import './styles/slider_vars';
+
+
+@include slider("small", "primary");
+@include slider("medium", "primary");
+@include slider("large", "primary");
+@include slider("small", "secondary");
+@include slider("medium", "secondary");
+@include slider("large", "secondary");
+@include slider("small", "disabled");
+@include slider("medium", "disabled");
+@include slider("large", "disabled");

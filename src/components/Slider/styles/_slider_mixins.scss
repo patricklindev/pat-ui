@@ -1,0 +1,100 @@
+@mixin slider-track($color, $height) {
+    position: absolute;
+    height: $height;
+    background-color: $color;
+    border-radius: 2px;
+}
+
+@mixin slider-rail($color, $width, $height, $opacity) {
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $color;
+    opacity: $opacity;
+    border-radius: 2px;
+}
+
+@mixin slider-thumb($dimension, $color) {
+    position: absolute;
+    width: $dimension;
+    height: $dimension;
+    border-radius: 50%;
+    background-color: $color;
+    cursor: pointer;
+}
+
+@mixin slider($size, $color) {
+    .ui-slider-wrapper.slider-#{$size}.slider-#{$color} {
+        position: relative;
+        width: map-get($widths, $size);
+        height: map-get($heights, $size);
+        display: flex;
+        align-items: center;
+        width: swidth;
+        height: sheight;
+        margin: 0%;
+        padding: 0%;
+
+        .ui-slider-track {
+            position: absolute;
+            height: map-get($heights, $size);
+            background-color: map-get($colors, $color);
+            border-radius: 2px;
+        }
+
+        ;
+
+        .ui-slider-rail {
+            position: absolute;
+            width: map-get($widths, $size);
+            height: map-get($heights, $size);
+            background-color: map-get($colors, $color);
+            opacity: $rail-opacity;
+            border-radius: 2px;
+        };
+
+        .ui-slider-mark{
+            position: absolute;
+            width: 2px;
+            height: map-get($heights, $size);
+            background-color: map-get($colors, $color);
+        }
+
+        .ui-slider-thumb {
+            position: absolute;
+            width: $thumb-dimension;
+            height: $thumb-dimension;
+            border-radius: 12px;
+            background-color: map-get($colors, $color);
+            pointer-events: auto;
+
+            @if $color !="disabled" {
+                &:hover {
+                    box-shadow: 0px 0px 1px 3px map-get($shadows, $color);
+                    cursor: pointer;
+                }
+
+                &.thumb-active {
+                    box-shadow: 0px 0px 1px 6px map-get($shadows, $color);
+                    cursor: move;
+                }
+            }
+
+            @else {
+                cursor: not-allowed;
+            }
+
+            .ui-slider-input {
+                box-sizing: border-box;
+                border: 0;
+                height: 100%;
+                position: absolute;
+                margin: -1px;
+                overflow: hidden;
+                width: 100%;
+                clip: rect(0 0 0 0);
+            }
+
+        }
+    }
+}

@@ -1,0 +1,28 @@
+$rail-opacity: 0.38;
+$thumb-dimension: 12px;
+$thumb-shadow: #3f51b53f;
+$colors: (
+    "primary": #3F51B5,
+    "secondary": #F50057,
+    "disabled": #BDBDBD,
+    "active-label": rgba(0, 0, 0, 0.87),
+    "disabled-label": rgba(0, 0, 0, 0.54)
+);
+
+$shadows:(
+    "primary": #3f51b557,
+    "secondary": #f500563a,
+    "disabled": #bdbdbd3d,
+);
+
+$widths: (
+    "small": 100px,
+    "medium": 200px,
+    "large": 300px
+);
+
+$heights: (
+    "small": 2px,
+    "medium": 3px,
+    "large": 4px
+);

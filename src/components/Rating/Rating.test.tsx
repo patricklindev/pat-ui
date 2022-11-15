@@ -19,14 +19,21 @@ describe('Rating', () => {
 
   });
 
-  it('Should change color on hover', () => {
+  it('Should change color on hover', async () => {
     const ratingProps = {
       onMouseEnter: jest.fn(),
       onmouseleave: jest.fn()
     };
     let ratingEl = render(<Rating/>);
-    // fireEvent(MouseEvent)
-    expect(ratingEl)
+    // fireEvent.mouseEnter(screen.queryAllByTitle('rating'));
+
+    
+
+    expect(screen.getByLabelText('testLabel1')).toHaveStyle(
+      'background: white'
+    );
+   
+    expect(ratingEl).toHaveAttribute('fill', 'yellow');
   })
 
   it('Should change size based on user specification', async () => {

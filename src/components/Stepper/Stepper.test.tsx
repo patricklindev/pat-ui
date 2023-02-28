@@ -13,7 +13,7 @@ const steps = [
 describe('Stepper', () => {
   it('should match snapshot', () => {});
 
-  it('should render three Steppers given three strings', () => {
+  it('should render three Steps given three strings', () => {
     const wrapper = render(
       <Stepper>
         {steps.map((label, index) => {

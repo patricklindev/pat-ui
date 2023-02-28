@@ -79,7 +79,7 @@ export const LinearStepper = () => {
   };
 
   return (
-    <>
+    <div>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = { index: index };
@@ -103,12 +103,12 @@ export const LinearStepper = () => {
       </Stepper>
 
       {activeStep === steps.length ? (
-        <>
+        <div>
           <span>All steps completed - you&apos;re finished</span>
           <button onClick={handleReset}>Reset</button>
-        </>
+        </div>
       ) : (
-        <>
+        <div>
           <div>
             <span>Step {activeStep + 1}</span>
           </div>
@@ -121,9 +121,9 @@ export const LinearStepper = () => {
           <button onClick={handleNext}>
             {activeStep === steps.length - 1 ? 'Finish' : 'Complete'}
           </button>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 
@@ -158,4 +158,16 @@ export const ErrorStepper = () => {
   );
 };
 
-export const VerticalStepper = () => {};
+export const VerticalStepper = () => {
+  return (
+    <Stepper activeStep={0} orientation="vertical">
+      {steps.map((label, index) => {
+        return (
+          <Step activeStep={0} key={label} index={index}>
+            <StepLabel index={0}>{label}</StepLabel>
+          </Step>
+        );
+      })}
+    </Stepper>
+  );
+};

@@ -1,5 +1,8 @@
 import React, { Children, cloneElement, FC, ReactElement } from 'react';
+import { classNames } from '../../utils/classNames';
 import { IStepProps } from './Step';
+
+import './_Stepper.scss';
 
 // https://mui.com/material-ui/react-stepper/
 // Find the UI design reference in Figma Material UI Kit 1.0.2 (https://www.figma.com/file/e9mrJNqitnThCajlQvuyWv/Material-UI-Kit-1.0.2-(Copy)?node-id=787%3A0)
@@ -29,8 +32,13 @@ export interface IStepperProps {
  */
 export const Stepper: FC<IStepperProps> = (props) => {
   const { children, className, activeStep, orientation } = props;
+  let styleClasses = classNames(
+    'stepper',
+    orientation ? orientation : '',
+    className ? className : ''
+  );
   return (
-    <ul>
+    <ul className={styleClasses}>
       {children
         ? Children.map(children, (child: ReactElement) =>
             cloneElement(child, { activeStep })

@@ -21,17 +21,20 @@ export const Step: FC<IStepProps> = (props) => {
   // console.log('index', index);
 
   return (
-    <li>
-      {children
-        ? Children.map(children, (child: ReactElement) =>
-            cloneElement(child, {
-              index: index,
-              active: activeStep === index,
-              // completed: activeStep > index,
-            })
-          )
-        : children}
-    </li>
+    <>
+      <li>
+        {children
+          ? Children.map(children, (child: ReactElement) =>
+              cloneElement(child, {
+                index: index,
+                active: activeStep === index,
+                // completed: activeStep > index,
+              })
+            )
+          : children}
+      </li>
+      <span className="divider"></span>
+    </>
   );
 };
 

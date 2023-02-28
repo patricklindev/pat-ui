@@ -71,11 +71,11 @@ const numLabel = (active: boolean = false, index: number) => {
         />
       )}
       {index >= 10 ? (
-        <text x="3.5" y="17.5" fill="white">
+        <text x="50%" y="70%" fill="white" text-anchor="middle">
           {index + 1}
         </text>
       ) : (
-        <text x="7.5" y="17.5" fill="white">
+        <text x="50%" y="70%" fill="white" text-anchor="middle">
           {index + 1}
         </text>
       )}

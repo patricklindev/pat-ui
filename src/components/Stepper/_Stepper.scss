@@ -1,0 +1,26 @@
+@import '../../styles/index.scss';
+.stepper {
+  list-style-type: none;
+  padding-left: 0;
+  &.horizontal {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    .divider {
+      flex-grow: 1;
+      border-bottom: 1px solid $secondary;
+      margin: 3px;
+    }
+    .divider:nth-last-child(1) {
+      display: none;
+    }
+  }
+  &.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .divider {
+      display: none;
+    }
+  }
+}

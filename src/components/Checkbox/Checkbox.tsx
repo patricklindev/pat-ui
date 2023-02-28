@@ -28,11 +28,13 @@ export interface ICheckboxProps {
 }
 
 type NativeInputProps = ICheckboxProps & InputHTMLAttributes<HTMLInputElement>;
-type NativeLabelProps = ICheckboxProps & LabelHTMLAttributes<HTMLLabelElement>;
-export type PatCheckboxProps = NativeInputProps | NativeLabelProps;
+// type NativeLabelProps = ICheckboxProps & LabelHTMLAttributes<HTMLLabelElement>;
+// export type PatCheckboxProps = NativeInputProps | NativeLabelProps;
+export type PatCheckboxProps = NativeInputProps;
 
 export const Checkbox: FC<PatCheckboxProps> = (props) => {
-  const { className, size, color, icon, checked, children, ...rest } = props;
+  const { className, size, color, icon, children, checked, onChange, ...rest } =
+    props;
 
   let styleClasses: string = classNames('cb', {
     [`cb-${size}`]: !!size,
@@ -45,9 +47,32 @@ export const Checkbox: FC<PatCheckboxProps> = (props) => {
     styleClasses += ' ' + className;
   }
 
+  const [checkedState, setCheckedState] = React.useState(false);
+  // We shouldn't change between controlled and uncontrolled after mount, so we memo this for safety
+  const isControlled = React.useMemo(() => checked !== undefined, []);
+
+  // Determines if the checkbox is checked in either controlled or uncontrolled environments
+  const mergedChecked = isControlled ? checked : checkedState;
+
+  const handleChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>): void => {
+      if (!isControlled) {
+        setCheckedState(event.target.checked);
+      } else if (onChange) {
+        onChange(event);
+      }
+    },
+    [onChange]
+  );
+
   return (
-    <span className={styleClasses} {...(rest as NativeInputProps)}>
-      <input type="checkbox" />
+    <span className={styleClasses}>
+      <input
+        type="checkbox"
+        checked={mergedChecked}
+        onChange={handleChange}
+        {...(rest as NativeInputProps)}
+      />
       {props.children ? props.children : null}
     </span>
   );
@@ -55,7 +80,6 @@ export const Checkbox: FC<PatCheckboxProps> = (props) => {
 
 Checkbox.defaultProps = {
   color: 'primary',
-  checked: false,
 };
 
 export default Checkbox;

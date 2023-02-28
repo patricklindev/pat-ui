@@ -23,12 +23,14 @@ export const DiffSizeCheckBox = () => (
     >
       Small Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       onChange={action('Default Checkbox clicked')}
     >
       Default(medium) Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       size="lg"
@@ -48,6 +50,7 @@ export const DiffColorCheckBox = () => (
     >
       Primary color Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       color="secondary"
@@ -55,6 +58,7 @@ export const DiffColorCheckBox = () => (
     >
       Secondary color Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       color="danger"
@@ -62,6 +66,7 @@ export const DiffColorCheckBox = () => (
     >
       Danger color Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       color="info"
@@ -69,6 +74,7 @@ export const DiffColorCheckBox = () => (
     >
       Info color Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       color="success"
@@ -76,6 +82,7 @@ export const DiffColorCheckBox = () => (
     >
       Success color Checkbox
     </Checkbox>
+    <br />
     <Checkbox
       style={checkboxStyle}
       color="warning"
@@ -85,3 +92,34 @@ export const DiffColorCheckBox = () => (
     </Checkbox>
   </div>
 );
+
+export const CheckboxWithAndWithoutLabel = () => (
+  <div>
+    <Checkbox style={checkboxStyle} onChange={action('Checkbox clicked')}>
+      Checkbox with label
+    </Checkbox>
+    <br />
+    <Checkbox style={checkboxStyle} onChange={action('Checkbox clicked')} />
+  </div>
+);
+
+export const CheckedAndUncheckedCheckbox = (): React.ReactNode => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <div>
+      <Checkbox
+        style={checkboxStyle}
+        onChange={(event) => {
+          setChecked(event.target.checked);
+        }}
+        checked={checked}
+      >
+        Checked Checkbox
+      </Checkbox>
+      <br />
+      <Checkbox style={checkboxStyle} onChange={action('Checkbox clicked')}>
+        Unchecked Checkbox
+      </Checkbox>
+    </div>
+  );
+};

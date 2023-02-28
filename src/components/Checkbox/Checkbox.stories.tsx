@@ -38,3 +38,50 @@ export const DiffSizeCheckBox = () => (
     </Checkbox>
   </div>
 );
+
+export const DiffColorCheckBox = () => (
+  <div>
+    <Checkbox
+      style={checkboxStyle}
+      color="primary"
+      onChange={action('Primary Checkbox clicked')}
+    >
+      Primary color Checkbox
+    </Checkbox>
+    <Checkbox
+      style={checkboxStyle}
+      color="secondary"
+      onChange={action('Secondary Checkbox clicked')}
+    >
+      Secondary color Checkbox
+    </Checkbox>
+    <Checkbox
+      style={checkboxStyle}
+      color="danger"
+      onChange={action('Danger Checkbox clicked')}
+    >
+      Danger color Checkbox
+    </Checkbox>
+    <Checkbox
+      style={checkboxStyle}
+      color="info"
+      onChange={action('Danger Checkbox clicked')}
+    >
+      Info color Checkbox
+    </Checkbox>
+    <Checkbox
+      style={checkboxStyle}
+      color="success"
+      onChange={action('Danger Checkbox clicked')}
+    >
+      Success color Checkbox
+    </Checkbox>
+    <Checkbox
+      style={checkboxStyle}
+      color="warning"
+      onChange={action('Danger Checkbox clicked')}
+    >
+      Warning color Checkbox
+    </Checkbox>
+  </div>
+);

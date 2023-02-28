@@ -7,7 +7,7 @@ export type CheckboxSize = 'sm' | 'lg';
 export type CheckboxColor =
   | 'primary'
   | 'secondary'
-  | 'error'
+  | 'danger'
   | 'info'
   | 'success'
   | 'warning';
@@ -46,10 +46,10 @@ export const Checkbox: FC<PatCheckboxProps> = (props) => {
   }
 
   return (
-    <div className={styleClasses} {...(rest as NativeInputProps)}>
+    <span className={styleClasses} {...(rest as NativeInputProps)}>
       <input type="checkbox" />
       {props.children ? props.children : null}
-    </div>
+    </span>
   );
 };
 

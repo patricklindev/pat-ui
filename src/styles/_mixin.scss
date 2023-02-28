@@ -88,3 +88,28 @@
     transform: $box-transform-scale;
   }
 }
+
+@mixin cb-style(
+  $color,
+  $background,
+  $border-color,
+  $hover-color: $color,
+  $hover-background-color: lighten($background, 7.5%),
+  $hover-border-color: lighten($border-color, 10%)
+) {
+  input {
+    color: $color;
+    background-color: $background;
+    border-color: $border-color;
+    &:hover {
+      color: $hover-color;
+      background-color: $hover-background-color;
+      border-color: $hover-border-color;
+    }
+    &:checked {
+      color: $hover-color;
+      accent-color: $background;
+      border-color: $hover-border-color;
+    }
+  }
+}

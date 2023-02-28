@@ -16,90 +16,40 @@ export const DefaultCheckbox = () => <Checkbox>Default Checkbox</Checkbox>;
 
 export const DiffSizeCheckBox = () => (
   <div>
-    <Checkbox
-      style={checkboxStyle}
-      size="sm"
-      onChange={action('Small Checkbox clicked')}
-    >
-      Small Checkbox
-    </Checkbox>
+    <Checkbox size="sm">Small Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      onChange={action('Default Checkbox clicked')}
-    >
-      Default(medium) Checkbox
-    </Checkbox>
+    <Checkbox>Default(medium) Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      size="lg"
-      onChange={action('Small Checkbox clicked')}
-    >
-      Large Checkbox
-    </Checkbox>
+    <Checkbox size="lg">Large Checkbox</Checkbox>
   </div>
 );
 
 export const DiffColorCheckBox = () => (
   <div>
-    <Checkbox
-      style={checkboxStyle}
-      color="primary"
-      onChange={action('Primary Checkbox clicked')}
-    >
-      Primary color Checkbox
-    </Checkbox>
+    <Checkbox color="primary">Primary color Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      color="secondary"
-      onChange={action('Secondary Checkbox clicked')}
-    >
-      Secondary color Checkbox
-    </Checkbox>
+    <Checkbox color="secondary">Secondary color Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      color="danger"
-      onChange={action('Danger Checkbox clicked')}
-    >
-      Danger color Checkbox
-    </Checkbox>
+    <Checkbox color="danger">Danger color Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      color="info"
-      onChange={action('Danger Checkbox clicked')}
-    >
-      Info color Checkbox
-    </Checkbox>
+    <Checkbox color="info">Info color Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      color="success"
-      onChange={action('Danger Checkbox clicked')}
-    >
-      Success color Checkbox
-    </Checkbox>
+    <Checkbox color="success">Success color Checkbox</Checkbox>
     <br />
-    <Checkbox
-      style={checkboxStyle}
-      color="warning"
-      onChange={action('Danger Checkbox clicked')}
-    >
-      Warning color Checkbox
-    </Checkbox>
+    <Checkbox color="warning">Warning color Checkbox</Checkbox>
   </div>
 );
 
 export const CheckboxWithAndWithoutLabel = () => (
   <div>
-    <Checkbox style={checkboxStyle} onChange={action('Checkbox clicked')}>
-      Checkbox with label
-    </Checkbox>
+    Checkbox with label
     <br />
-    <Checkbox style={checkboxStyle} onChange={action('Checkbox clicked')} />
+    <Checkbox>label</Checkbox>
+    <br />
+    <br />
+    Checkbox without label
+    <br />
+    <Checkbox />
   </div>
 );
 
@@ -108,7 +58,6 @@ export const CheckedAndUncheckedCheckbox = (): React.ReactNode => {
   return (
     <div>
       <Checkbox
-        style={checkboxStyle}
         onChange={(event) => {
           setChecked(event.target.checked);
         }}
@@ -117,9 +66,7 @@ export const CheckedAndUncheckedCheckbox = (): React.ReactNode => {
         Checked Checkbox
       </Checkbox>
       <br />
-      <Checkbox style={checkboxStyle} onChange={action('Checkbox clicked')}>
-        Unchecked Checkbox
-      </Checkbox>
+      <Checkbox>Unchecked Checkbox</Checkbox>
     </div>
   );
 };

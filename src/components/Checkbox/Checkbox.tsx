@@ -66,7 +66,7 @@ export const Checkbox: FC<PatCheckboxProps> = (props) => {
   );
 
   return (
-    <span className={styleClasses}>
+    <label className={styleClasses}>
       <input
         type="checkbox"
         checked={mergedChecked}
@@ -74,7 +74,7 @@ export const Checkbox: FC<PatCheckboxProps> = (props) => {
         {...(rest as NativeInputProps)}
       />
       {props.children ? props.children : null}
-    </span>
+    </label>
   );
 };
 

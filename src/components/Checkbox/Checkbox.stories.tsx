@@ -57,8 +57,8 @@ export const CheckboxWithAndWithoutLabel = () => (
     <br />
     <Checkbox>label</Checkbox>
     <br />
-    <br />
     Checkbox without label
+    <br />
     <Checkbox />
     <br />
   </div>

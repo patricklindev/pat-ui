@@ -68,15 +68,15 @@ const numLabel = (active: boolean = false, index: number) => {
           height="24"
           rx="12"
           fill="black"
-          fill-opacity="0.38"
+          fillOpacity="0.38"
         />
       )}
       {index >= 10 ? (
-        <text x="50%" y="70%" fill="white" text-anchor="middle">
+        <text x="50%" y="70%" fill="white" textAnchor="middle">
           {index + 1}
         </text>
       ) : (
-        <text x="50%" y="70%" fill="white" text-anchor="middle">
+        <text x="50%" y="70%" fill="white" textAnchor="middle">
           {index + 1}
         </text>
       )}

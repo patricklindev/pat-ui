@@ -3,6 +3,7 @@ import Stepper from './Stepper';
 import Step from './Step';
 import StepLabel from './StepLabel';
 import StepContent from './StepContent';
+import Button from '../Button';
 
 export default {
   title: 'Stepper',
@@ -109,22 +110,24 @@ export const LinearStepper = () => {
           <div>
             <span>All steps completed - you&apos;re finished</span>
           </div>
-          <button onClick={handleReset}>Reset</button>
+          <Button onClick={handleReset}>Reset</Button>
         </div>
       ) : (
         <div>
           <div>
             <span>Step {activeStep + 1}</span>
           </div>
-          <button disabled={activeStep === 0} onClick={handleBack}>
+          <Button disabled={activeStep === 0} onClick={handleBack}>
             Back
-          </button>
-          <button onClick={handleSkip} disabled={!isStepOptional(activeStep)}>
+          </Button>
+          &nbsp;&nbsp;
+          <Button onClick={handleSkip} disabled={!isStepOptional(activeStep)}>
             Skip
-          </button>
-          <button onClick={handleNext}>
+          </Button>
+          &nbsp;&nbsp;
+          <Button onClick={handleNext}>
             {activeStep === steps.length - 1 ? 'Finish' : 'Complete'}
-          </button>
+          </Button>
         </div>
       )}
     </div>
@@ -202,30 +205,34 @@ export const NonLinearStepper = () => {
             <div>
               <span>All steps completed - you&apos;re finished</span>
             </div>
-            <button onClick={handleReset}>Reset</button>
+            <Button onClick={handleReset}>Reset</Button>
           </>
         ) : (
           <>
             <div>
               <span>Step {activeStep + 1}</span>
             </div>
-            <button
+            <Button
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
             >
               Back
-            </button>
-            <button onClick={handleNext}>Next</button>
+            </Button>
+            &nbsp;&nbsp;
+            <Button onClick={handleNext} disabled={isLastStep()}>
+              Next
+            </Button>
+            &nbsp;&nbsp;
             {activeStep !== steps.length &&
               (completed[activeStep] ? (
                 <span>Step {activeStep + 1} already completed</span>
               ) : (
-                <button onClick={handleComplete}>
+                <Button onClick={handleComplete}>
                   {completedSteps() === totalSteps() - 1
                     ? 'Finish'
                     : 'Complete Step'}
-                </button>
+                </Button>
               ))}
           </>
         )}
@@ -320,12 +327,13 @@ export const VerticalStepper = () => {
               <StepContent>
                 <span>{step.description}</span>
                 <div>
-                  <button onClick={handleNext}>
+                  <Button onClick={handleNext}>
                     {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                  </button>
-                  <button disabled={index === 0} onClick={handleBack}>
+                  </Button>
+                  &nbsp;&nbsp;
+                  <Button disabled={index === 0} onClick={handleBack}>
                     Back
-                  </button>
+                  </Button>
                 </div>
               </StepContent>
             </Step>
@@ -335,7 +343,7 @@ export const VerticalStepper = () => {
       {activeStep === steps.length && (
         <div>
           <span>All steps completed - you&apos;re finished</span>
-          <button onClick={handleReset}>Reset</button>
+          <Button onClick={handleReset}>Reset</Button>
         </div>
       )}
     </div>

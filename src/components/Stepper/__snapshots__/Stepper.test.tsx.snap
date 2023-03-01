@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stepper should match snapshot 1`] = `
+<DocumentFragment>
+  <ul
+    class="stepper horizontal  "
+  >
+    <li
+      class="stepper__step "
+    >
+      <div
+        class="stepper__icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 25 24"
+          width="25"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill="#3F51B5"
+            height="24"
+            rx="12"
+            width="24"
+            x="0.5"
+          />
+          <text
+            fill="white"
+            text-anchor="middle"
+            x="50%"
+            y="70%"
+          >
+            1
+          </text>
+        </svg>
+      </div>
+      <div
+        class="stepper__label stepper__label-active   "
+      >
+        Select campaign settings
+      </div>
+    </li>
+    <div
+      class="stepper__divider"
+    >
+      <div
+        class="stepper__divider-child"
+      />
+    </div>
+    <li
+      class="stepper__step "
+    >
+      <div
+        class="stepper__icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 25 24"
+          width="25"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill="black"
+            fill-opacity="0.38"
+            height="24"
+            rx="12"
+            width="24"
+            x="0.5"
+          />
+          <text
+            fill="white"
+            text-anchor="middle"
+            x="50%"
+            y="70%"
+          >
+            2
+          </text>
+        </svg>
+      </div>
+      <div
+        class="stepper__label    "
+      >
+        Create an ad group
+      </div>
+    </li>
+    <div
+      class="stepper__divider"
+    >
+      <div
+        class="stepper__divider-child"
+      />
+    </div>
+    <li
+      class="stepper__step "
+    >
+      <div
+        class="stepper__icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 25 24"
+          width="25"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill="black"
+            fill-opacity="0.38"
+            height="24"
+            rx="12"
+            width="24"
+            x="0.5"
+          />
+          <text
+            fill="white"
+            text-anchor="middle"
+            x="50%"
+            y="70%"
+          >
+            3
+          </text>
+        </svg>
+      </div>
+      <div
+        class="stepper__label    "
+      >
+        Create an ad
+      </div>
+    </li>
+    <div
+      class="stepper__divider"
+    >
+      <div
+        class="stepper__divider-child"
+      />
+    </div>
+  </ul>
+</DocumentFragment>
+`;

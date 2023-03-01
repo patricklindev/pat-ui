@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import Stepper from './Stepper';
 import Step from './Step';
 import StepLabel from './StepLabel';
@@ -11,10 +11,23 @@ const steps = [
 ];
 
 describe('Stepper', () => {
-  it('should match snapshot', () => {});
+  it('should match snapshot', () => {
+    const { asFragment } = render(
+      <Stepper>
+        {steps.map((label, index) => {
+          return (
+            <Step key={label} index={index}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
 
   it('should render three Steps given three strings', () => {
-    const wrapper = render(
+    const { container } = render(
       <Stepper>
         {steps.map((label, index) => {
           return (
@@ -25,10 +38,13 @@ describe('Stepper', () => {
         })}
       </Stepper>
     );
+
+    expect(container.firstChild).toHaveClass('stepper');
+    expect(screen.queryAllByRole('listitem').length).toBe(3);
   });
 
   it('should render given label in each step', () => {
-    const wrapper = render(
+    const { container } = render(
       <Stepper>
         {steps.map((label, index) => {
           return (
@@ -39,11 +55,40 @@ describe('Stepper', () => {
         })}
       </Stepper>
     );
+    expect(screen.queryByText('Select campaign settings')).toBeInTheDocument;
+    expect(screen.queryByText('Create an ad group')).toBeInTheDocument;
+    expect(screen.queryByText('Create an ad')).toBeInTheDocument;
   });
 
-  it('should render horizontal Stepper in default', () => {});
+  it('should render horizontal Stepper in default', () => {
+    const { container } = render(
+      <Stepper>
+        {steps.map((label, index) => {
+          return (
+            <Step key={label} index={index}>
+              <StepLabel index={0}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+    );
+    expect(container.querySelector('.vertical')).toBeNull();
+  });
 
-  it('should render vertical Stepper when given props', () => {});
+  it('should render vertical Stepper when given props', () => {
+    const { container } = render(
+      <Stepper orientation="vertical">
+        {steps.map((label, index) => {
+          return (
+            <Step key={label} index={index}>
+              <StepLabel index={0}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+    );
+    expect(container.querySelector('.vertical')).toBeTruthy();
+  });
 
   it('should skip a step when clicking skip button', () => {});
 

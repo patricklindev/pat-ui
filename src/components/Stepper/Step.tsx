@@ -16,7 +16,7 @@ export interface IStepProps {
   index?: number;
   activeStep?: number;
   /**  */
-  onClick?: any;
+  onClick?: () => void;
 }
 
 export const Step: FC<IStepProps> = (props) => {

@@ -45,6 +45,7 @@
     }
     .stepper__label {
       color: $secondary;
+      font-weight: 500;
       &.stepper__label-active,
       &.stepper__label-completed {
         color: $black;

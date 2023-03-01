@@ -40,6 +40,17 @@ export const DiffColorCheckBox = () => (
   </div>
 );
 
+export const CustomizedIconCheckbox = () => (
+  <div>
+    <Checkbox
+      icon={<span style={checkboxStyle}>👍</span>}
+      checkedIcon={<span style={checkboxStyle}>👎</span>}
+    >
+      Customized Icon Checkbox
+    </Checkbox>
+  </div>
+);
+
 export const CheckboxWithAndWithoutLabel = () => (
   <div>
     Checkbox with label
@@ -48,8 +59,8 @@ export const CheckboxWithAndWithoutLabel = () => (
     <br />
     <br />
     Checkbox without label
-    <br />
     <Checkbox />
+    <br />
   </div>
 );
 

@@ -1,4 +1,9 @@
-import React, { FC, InputHTMLAttributes, LabelHTMLAttributes } from 'react';
+import React, {
+  FC,
+  InputHTMLAttributes,
+  LabelHTMLAttributes,
+  SVGProps,
+} from 'react';
 
 import { classNames } from '../../utils/classNames';
 
@@ -12,8 +17,6 @@ export type CheckboxColor =
   | 'success'
   | 'warning';
 
-export type CheckboxIcon = 'check' | 'check-circle' | 'check-square';
-
 export interface ICheckboxProps {
   /** set customized style */
   className?: string;
@@ -21,8 +24,12 @@ export interface ICheckboxProps {
   size?: CheckboxSize;
   /** set checkbox color */
   color?: CheckboxColor;
-  /** set checkbox icon */
-  icon?: CheckboxIcon;
+  /** set checkbox unchecked icon */
+  // icon?: SVGProps<SVGSVGElement>;
+  // checkedIcon?: SVGProps<SVGSVGElement>;
+  icon?: React.ReactElement;
+  /** set checkbox checked icon */
+  checkedIcon?: React.ReactElement;
   /** set checkbox checked status */
   checked?: boolean;
 }
@@ -33,18 +40,40 @@ type NativeInputProps = ICheckboxProps & InputHTMLAttributes<HTMLInputElement>;
 export type PatCheckboxProps = NativeInputProps;
 
 export const Checkbox: FC<PatCheckboxProps> = (props) => {
-  const { className, size, color, icon, children, checked, onChange, ...rest } =
-    props;
+  const {
+    className,
+    size,
+    color,
+    icon,
+    checkedIcon,
+    children,
+    checked,
+    onChange,
+    ...rest
+  } = props;
+
+  if (
+    (icon != null && checkedIcon === null) ||
+    (icon === null && checkedIcon != null)
+  ) {
+    throw new Error(
+      `[PatUI Checkbox] Provide both 'icon' and 'checkedIcon' to Checkbox at the same time.`
+    );
+  }
 
   let styleClasses: string = classNames('cb', {
     [`cb-${size}`]: !!size,
     [`cb-${color}`]: !!color,
-    [`cb-${icon}`]: !!icon,
     checked: !!checked,
   });
   // add user's custom class
   if (className) {
     styleClasses += ' ' + className;
+  }
+
+  if (icon) {
+    console.log('icon here');
+    styleClasses += ' cb-icon';
   }
 
   const [checkedState, setCheckedState] = React.useState(false);
@@ -73,6 +102,11 @@ export const Checkbox: FC<PatCheckboxProps> = (props) => {
         onChange={handleChange}
         {...(rest as NativeInputProps)}
       />
+      {icon && checkedIcon ? (
+        <span className="cb-icon-container">
+          {mergedChecked ? checkedIcon : icon}
+        </span>
+      ) : null}
       {props.children ? props.children : null}
     </label>
   );

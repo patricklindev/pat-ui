@@ -32,6 +32,25 @@ describe('Checkbox', () => {
     expect(wrapper2).toBeInTheDocument();
   });
 
+  it('should render customized icon checkbox', () => {
+    const wrapper = render(
+      <Checkbox
+        icon={
+          <span style={{ marginRight: '10px', marginTop: '10px' }}>👍</span>
+        }
+        checkedIcon={
+          <span style={{ marginRight: '10px', marginTop: '10px' }}>👎</span>
+        }
+      >
+        Customized Icon Checkbox
+      </Checkbox>
+    );
+    expect(wrapper.container.firstChild).toHaveClass('cb-icon');
+
+    const element = wrapper.getByText('👍');
+    expect(element).toBeInTheDocument();
+  });
+
   it('should render checked and unchecked checkbox', () => {
     const checkboxProps = {
       checked: true,

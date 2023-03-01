@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useEffect } from 'react';
+import { classNames } from '../../utils/classNames';
 
 export interface IStepLableProps {
   /** children must be React Element */
@@ -10,7 +11,7 @@ export interface IStepLableProps {
   /** Render given step icon */
   StepIconComponent?: ReactNode;
   /**  */
-  index: number;
+  index?: number;
   /**  */
   active?: boolean;
   /**  */
@@ -84,7 +85,7 @@ const numLabel = (active: boolean = false, index: number) => {
 };
 
 const StepIcon = (
-  index: number,
+  index: number = 0,
   error = false,
   active = false,
   completed = false
@@ -106,17 +107,25 @@ export const StepLabel: FC<IStepLableProps> = (props) => {
     completed,
   } = props;
 
-  const StepIconProps = {
-    index: index,
-    active: active,
-    error: error,
-    completed: completed,
-  };
+  let styleClasses = classNames(
+    'stepper__label',
+    active ? 'stepper__label-active' : '',
+    completed ? 'stepper__label-completed' : '',
+    error ? 'stepper__label-error' : '',
+    className ? className : ''
+  );
 
   return (
     <>
-      {StepIcon(index, error, active, completed)}
-      {children}
+      <div className="stepper__icon">
+        {StepIcon(index, error, active, completed)}
+      </div>
+      <div className={styleClasses}>
+        {children}
+        {optional ? (
+          <div className="stepper__label-optional">{optional}</div>
+        ) : null}
+      </div>
     </>
   );
 };

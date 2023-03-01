@@ -2,8 +2,6 @@ import React, { Children, cloneElement, FC, ReactElement } from 'react';
 import { classNames } from '../../utils/classNames';
 import { IStepProps } from './Step';
 
-import './_Stepper.scss';
-
 // https://mui.com/material-ui/react-stepper/
 // Find the UI design reference in Figma Material UI Kit 1.0.2 (https://www.figma.com/file/e9mrJNqitnThCajlQvuyWv/Material-UI-Kit-1.0.2-(Copy)?node-id=787%3A0)
 // Developers can feed an array of string description
@@ -21,6 +19,8 @@ export interface IStepperProps {
   activeStep?: number;
   /** Set orientation */
   orientation?: string;
+  /** Set non-linear feature */
+  nonLinear?: boolean;
 }
 
 /**
@@ -31,10 +31,11 @@ export interface IStepperProps {
  * ```
  */
 export const Stepper: FC<IStepperProps> = (props) => {
-  const { children, className, activeStep, orientation } = props;
+  const { children, className, activeStep, orientation, nonLinear } = props;
   let styleClasses = classNames(
     'stepper',
     orientation ? orientation : '',
+    nonLinear ? 'nonLinear' : '',
     className ? className : ''
   );
   return (

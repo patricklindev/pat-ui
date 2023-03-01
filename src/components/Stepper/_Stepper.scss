@@ -1,4 +1,3 @@
-@import '../../styles/index.scss';
 .stepper {
   list-style-type: none;
   padding-left: 0;
@@ -6,21 +5,70 @@
     display: flex;
     align-items: center;
     // justify-content: space-between;
-    .divider {
+    .stepper__divider {
       flex-grow: 1;
       border-bottom: 1px solid $secondary;
       margin: 3px;
     }
-    .divider:nth-last-child(1) {
+    .stepper__divider:last-child {
       display: none;
     }
   }
   &.vertical {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    .divider {
+    // gap: 1rem;
+    .stepper__divider {
+      // position: relative;
+      padding-left: 12px;
+      // margin-top: 3px;
+      .stepper__divider-child {
+        height: 20px;
+        border-left: 1px solid $secondary;
+      }
+    }
+    .stepper__divider:last-child {
       display: none;
+    }
+  }
+  &.nonLinear {
+    .stepper__step:hover {
+      cursor: pointer;
+    }
+  }
+  .stepper__step {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    .stepper__icon {
+      margin-right: 5px;
+    }
+    .stepper__label {
+      color: $secondary;
+      &.stepper__label-active,
+      &.stepper__label-completed {
+        color: $black;
+      }
+
+      &.stepper__label-error {
+        color: $danger;
+      }
+      .stepper__label-optional {
+        display: block;
+        font-size: 0.5rem;
+      }
+    }
+    .lineBreaker {
+      flex-basis: 100%;
+      height: 0;
+      margin-top: 3px;
+    }
+    .stepper__content {
+      // background-color: yellow;
+      margin-left: 12px;
+      border-left: 1px solid $secondary;
+      padding-left: 20px;
+      // order: 1;
     }
   }
 }

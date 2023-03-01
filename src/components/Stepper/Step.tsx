@@ -5,24 +5,26 @@ import React, {
   ReactElement,
   cloneElement,
 } from 'react';
+import { classNames } from '../../utils/classNames';
 import { IStepLableProps } from './StepLabel';
 
 export interface IStepProps {
   /** children must be React Element */
-  children?: ReactElement<IStepLableProps>;
+  children?: ReactElement | ReactElement[];
   /** set customized css class */
   className?: string;
-  index: number;
+  index?: number;
   activeStep?: number;
+  /**  */
+  onClick?: any;
 }
 
 export const Step: FC<IStepProps> = (props) => {
-  const { children, className, index, activeStep } = props;
-  // console.log('index', index);
-
+  const { children, className, index, activeStep, onClick } = props;
+  let styleClasses = classNames('stepper__step', className ? className : '');
   return (
     <>
-      <li>
+      <li className={styleClasses} onClick={onClick}>
         {children
           ? Children.map(children, (child: ReactElement) =>
               cloneElement(child, {
@@ -33,7 +35,9 @@ export const Step: FC<IStepProps> = (props) => {
             )
           : children}
       </li>
-      <span className="divider"></span>
+      <div className="stepper__divider">
+        <div className="stepper__divider-child"></div>
+      </div>
     </>
   );
 };

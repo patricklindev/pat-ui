@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Stepper from './Stepper';
 import Step from './Step';
 import StepLabel from './StepLabel';
+import Button from '../Button';
+import { LinearStepper } from './Stepper.stories';
 
 const steps = [
   'Select campaign settings',
@@ -90,9 +92,43 @@ describe('Stepper', () => {
     expect(container.querySelector('.vertical')).toBeTruthy();
   });
 
-  it('should skip a step when clicking skip button', () => {});
+  it('should skip a step when clicking skip button', () => {
+    const { container } = render(<LinearStepper />);
+    const completeButton = screen.getByText('Complete');
+    const skipButton = screen.getByText('Skip');
+    fireEvent.click(completeButton);
+    fireEvent.click(skipButton);
+    // screen.debug(container.querySelectorAll('li')[1]);
+    expect(
+      container
+        .querySelectorAll('li')[1]
+        ?.querySelector('.stepper__label-completed')
+    ).toBeNull();
+  });
 
-  it('should mark completion of a step when clicking complete button', () => {});
+  it('should mark completion of a step when clicking complete button', () => {
+    const { container } = render(<LinearStepper />);
+    const completeButton = screen.getByText('Complete');
+    fireEvent.click(completeButton);
+    // screen.debug(container.querySelector('li'));
+    expect(
+      container.querySelector('li')?.querySelector('.stepper__label-completed')
+    ).toBeTruthy();
+  });
 
-  it('should render an error icon when given props', () => {});
+  it('should render an error icon when given props', () => {
+    const errorIndex = 1;
+    const { container } = render(
+      <Stepper>
+        {steps.map((label, index) => {
+          return (
+            <Step key={label} index={index}>
+              <StepLabel error={index === errorIndex}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+    );
+    expect(container.querySelector('.stepper__label-error')).toBeTruthy();
+  });
 });

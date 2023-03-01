@@ -13,9 +13,11 @@ export interface IStepProps {
   children?: ReactElement | ReactElement[];
   /** set customized css class */
   className?: string;
+  /** index for every step*/
   index?: number;
+  /** from stepper component */
   activeStep?: number;
-  /**  */
+  /** onclick function, only used for non-linear stepper */
   onClick?: () => void;
 }
 

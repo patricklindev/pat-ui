@@ -6,17 +6,17 @@ export interface IStepLableProps {
   children?: ReactNode;
   /** set customized css class */
   className?: string;
-  /** Render given optional child */
+  /** render given optional child */
   optional?: ReactNode;
-  /** Render given step icon */
+  /** render given step icon */
   StepIconComponent?: ReactNode;
-  /**  */
+  /** from Step component */
   index?: number;
-  /**  */
+  /** from Step component */
   active?: boolean;
-  /**  */
+  /** set error label */
   error?: boolean;
-  /** Set the completed status of a step */
+  /** set the completed status of a step */
   completed?: boolean;
 }
 

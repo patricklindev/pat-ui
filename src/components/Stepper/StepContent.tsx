@@ -6,7 +6,7 @@ export interface IStepContentProps {
   children?: ReactNode;
   /** set customized css class */
   className?: string;
-  /**  */
+  /** define whether to show the content */
   active?: boolean;
 }
 

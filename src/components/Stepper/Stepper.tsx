@@ -15,11 +15,11 @@ export interface IStepperProps {
   children?: ReactElement<IStepProps> | ReactElement<IStepProps>[];
   /** set customized css class */
   className?: string;
-  /** Set current step, starts from 0 */
+  /** set current step, starts from 0 */
   activeStep?: number;
-  /** Set orientation */
+  /** set orientation */
   orientation?: string;
-  /** Set non-linear feature */
+  /** set non-linear feature */
   nonLinear?: boolean;
 }
 

@@ -16,9 +16,8 @@ export const SimpleDialogue = () => {
       </Button>
 
       <Dialogue
-        DialogueType="simple"
         open={open}
-        onClose={()=>setOpen(false)}
+        onClose={() => setOpen(false)}
         dialogueTitle="Set backup account"
       >
         <p>Some Account</p>
@@ -36,9 +35,8 @@ export const AlertsDialogue = () => {
       </Button>
 
       <Dialogue
-        DialogueType="alerts"
         open={open}
-        onClose={()=>setOpen(false)}
+        onClose={() => setOpen(false)}
         dialogueTitle="Use google's location service?"
       >
         <p>
@@ -74,13 +72,13 @@ export const FormDialogue = () => {
         Open Dialog
       </Button>
       <Dialogue
-        DialogueType="form"
         open={open}
-        onClose={()=>setOpen(false)}
+        onClose={() => setOpen(false)}
         dialogueTitle="Subscribe"
       >
         <p>
-          To subscribe to this website, please enter your email address here. We will send updates occasionally.
+          To subscribe to this website, please enter your email address here. We
+          will send updates occasionally.
         </p>
         <Input fluid placeholder="Email Address" />
         <div style={{ textAlign: 'right' }}>

@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { classNames } from '../../utils/classNames';
 
-export type DialogueType = 'simple' | 'alerts' | 'form';
-
 export interface IDialogueProps {
   /** set dialogue open */
   open: boolean;
@@ -10,8 +8,6 @@ export interface IDialogueProps {
   onClose: () => void;
   /** set customized dialogue */
   className?: string;
-  /** set dialogue mode */
-  DialogueType?: DialogueType;
   /** set dialogue title */
   dialogueTitle?: string;
 }
@@ -20,15 +16,15 @@ export type patDialogueProps = IDialogueProps;
 /**
  * A Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
  *
+ * A Dialog is a type of modal window that appears in front of app content to provide critical information or ask for a decision.
+ * Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action
+ * has been taken.
+ *
+ * Dialogs are purposefully interruptive, so they should be used sparingly.
  * ```js
  * import {Dialogue} from 'pat-ui'
  * ```
  */
-// []: Developers can provide title, content, actions of the dialog component from children props of the component
-// [x]: Dialog component should have a dimed backdrop by default, users can close the dialog by clicking on the backdrop
-// [x]: Users shouldn’t be able to scroll the page when the dialog is open
-// [x]: Developers should be able to listen to the close of the dialog by providing the onClose callback function.
-// [x]: Developers should be able to control the open/close of the dialog from props.
 export const Dialogue: FC<patDialogueProps> = (props) => {
   const { open, onClose, className, dialogueTitle, children } = props;
   let styleClasses = classNames('dialogue');
@@ -84,21 +80,19 @@ export const Dialogue: FC<patDialogueProps> = (props) => {
   }, []);
 
   let Dialogue = (
-      <dialog className={styleClasses} ref={dialogRef}>
-        <div className="dialogue-content">
-          {dialogueTitle && (
-            <div className="dialogue-header">
-              <h4>{dialogueTitle}</h4>
-            </div>
-          )}
-          <div className="dialogue-children">{children}</div>
-        </div>
-      </dialog>
+    <dialog className={styleClasses} ref={dialogRef}>
+      <div className="dialogue-content">
+        {dialogueTitle && (
+          <div className="dialogue-title" data-testid="dialogue-title-element">
+            <h4>{dialogueTitle}</h4>
+          </div>
+        )}
+        <div className="dialogue-children">{children}</div>
+      </div>
+    </dialog>
   );
 
   return Dialogue;
 };
-Dialogue.defaultProps = {
-  DialogueType: 'simple',
-};
+
 export default Dialogue;

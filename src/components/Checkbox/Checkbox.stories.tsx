@@ -16,11 +16,11 @@ export const DefaultCheckbox = () => <Checkbox>Default Checkbox</Checkbox>;
 
 export const DiffSizeCheckBox = () => (
   <div>
-    <Checkbox size="sm">Small Checkbox</Checkbox>
+    <Checkbox cbSize="sm">Small Checkbox</Checkbox>
     <br />
     <Checkbox>Default(medium) Checkbox</Checkbox>
     <br />
-    <Checkbox size="lg">Large Checkbox</Checkbox>
+    <Checkbox cbSize="lg">Large Checkbox</Checkbox>
   </div>
 );
 

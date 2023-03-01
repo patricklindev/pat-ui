@@ -5,7 +5,7 @@ import Checkbox from './Checkbox';
 
 describe('Checkbox', () => {
   it('should render different size checkbox', () => {
-    const wrapper = render(<Checkbox size="sm">Small Checkbox</Checkbox>);
+    const wrapper = render(<Checkbox cbSize="sm">Small Checkbox</Checkbox>);
     const element = wrapper.getByText('Small Checkbox') as HTMLInputElement;
     expect(element).toBeInTheDocument();
     expect(element).toHaveClass('cb cb-sm');

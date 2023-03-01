@@ -21,7 +21,7 @@ export interface ICheckboxProps {
   /** set customized style */
   className?: string;
   /** set checkbox size */
-  size?: CheckboxSize;
+  cbSize?: string;
   /** set checkbox color */
   color?: CheckboxColor;
   /** set checkbox unchecked icon */
@@ -42,7 +42,7 @@ export type PatCheckboxProps = NativeInputProps;
 export const Checkbox: FC<PatCheckboxProps> = (props) => {
   const {
     className,
-    size,
+    cbSize: size,
     color,
     icon,
     checkedIcon,

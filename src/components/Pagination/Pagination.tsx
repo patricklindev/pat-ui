@@ -1,8 +1,7 @@
-import React, {FC, useMemo} from "react";
+import React, {FC, useMemo, useState} from "react";
 import {classNames} from "../../utils/classNames";
-import Button from "../Button";
 
-export type Size = 'large' | 'small';
+export type Size = 'lg' | 'sm';
 export type Type =
     | 'primary'
     | 'secondary'
@@ -16,15 +15,23 @@ export interface IPaginationProps {
     size?: Size;
     /** set disabled button */
     disabled?: boolean;
+    /** a callback to provide current value */
+    onChange?: (val: any) => void;
+    /** current page */
     currentPage: number;
+    /** number of items per pages */
     pageSize: number;
+    /** total number of items */
     total: number;
 }
 
 export type PatPaginationProps = IPaginationProps;
 
 export const Pagination: FC<(PatPaginationProps)> = (props) => {
-    const {type, size, disabled, currentPage, pageSize, total} = props;
+    const {onChange, type, size, disabled, currentPage, pageSize, total} = props;
+
+    const [page, setPage] = useState(currentPage);
+
     const range = (start: number, end: number) => {
         let length = end - start + 1;
         return Array.from({length}, (_, idx) => idx + start);
@@ -40,9 +47,9 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
         if (totalPageNumbers >= totalPageCount) {
             return range(1, totalPageCount);
         }
-        const leftSiblingIndex = Math.max(currentPage - 1, 1);
+        const leftSiblingIndex = Math.max(page - 1, 1);
         const rightSiblingIndex = Math.min(
-            currentPage + 1,
+            page + 1,
             totalPageCount
         );
         /*
@@ -75,10 +82,20 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
             let middleRange = range(leftSiblingIndex, rightSiblingIndex);
             return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
         }
-    }, [total, pageSize, currentPage]);
+    }, [total, pageSize, page]);
     if (!paginationRange || paginationRange.length < 1) {
         return null
     }
+
+    function onPageChange(pageNumber: number | string) {
+        if (typeof pageNumber === 'number') {
+            setPage(pageNumber)
+            if (onChange) {
+                onChange(pageNumber);
+            }
+        }
+    }
+
     let lastPage = paginationRange[paginationRange.length - 1];
 
     // let styleClasses = classNames('btn', {
@@ -108,26 +125,30 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
     pagination = (
         <ul className={styleClasses}>
             <li>
-                <button>123</button>
+                <button className={buttonStyleClasses}>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
             </li>
             {paginationRange.map(pageNumber => {
                 if (pageNumber === "...") {
                     return <li className="pagination-item dots">&#8230;</li>;
                 }
                 return (
-                    <li
-                        // className={classnames('pagination-item', {
-                        //     selected: pageNumber === currentPage
-                        // })}
-                        // onClick={() => onPageChange(pageNumber)}
-                    >
+                    <li>
                         <button
-                            className={pageNumber === currentPage ? currentPageButtonStyleClasses : buttonStyleClasses}>{pageNumber}</button>
+                            onClick={() => onPageChange(pageNumber)}
+                            className={pageNumber === page ? currentPageButtonStyleClasses : buttonStyleClasses}>{pageNumber}</button>
                     </li>
                 );
             })}
             <li>
-                <button>123</button>
+                <button className={buttonStyleClasses}>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
             </li>
         </ul>
 

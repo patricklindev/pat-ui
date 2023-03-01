@@ -42,6 +42,33 @@
   }
 }
 
+.pagination-btn-sm {
+  @include pagination-button-size(
+                  $pagination-btn-padding-y-sm,
+                  $pagination-btn-padding-x-sm,
+                  $pagination-btn-margin-y-sm,
+                  $pagination-btn-margin-x-sm,
+                  $pagination-btn-font-size-sm,
+                  $pagination-btn-border-radius-sm,
+                  $pagination-btn-height-sm,
+                  $pagination-btn-width-sm,
+  );
+
+}
+
+.pagination-btn-lg {
+  @include pagination-button-size(
+                  $pagination-btn-padding-y-lg,
+                  $pagination-btn-padding-x-lg,
+                  $pagination-btn-margin-y-lg,
+                  $pagination-btn-margin-x-lg,
+                  $pagination-btn-font-size-lg,
+                  $pagination-btn-border-radius-lg,
+                  $pagination-btn-height-lg,
+                  $pagination-btn-width-lg,
+  );
+}
+
 .pagination-btn-default {
   @include pagination-button-style(rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0.08), 0.12);
 }

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import Stepper from './Stepper';
 import Step from './Step';
 import StepLabel from './StepLabel';
 import StepContent from './StepContent';
 import Button from '../Button';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Stepper',
@@ -31,7 +32,7 @@ export const LinearStepper = () => {
     return skipped.has(step);
   };
 
-  const handleNext = () => {
+  const handleNext: MouseEventHandler<HTMLButtonElement> = (e) => {
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -47,9 +48,10 @@ export const LinearStepper = () => {
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
+    action('next')(e);
   };
 
-  const handleBack = () => {
+  const handleBack: MouseEventHandler<HTMLButtonElement> = (e) => {
     // set activeStep(current) to NotCompleted
     setCompleted(
       [...completed].map((complete, index) => {
@@ -58,9 +60,10 @@ export const LinearStepper = () => {
       })
     );
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    action('back')(e);
   };
 
-  const handleSkip = () => {
+  const handleSkip: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
@@ -73,11 +76,13 @@ export const LinearStepper = () => {
       newSkipped.add(activeStep);
       return newSkipped;
     });
+    action('skip')(e);
   };
 
-  const handleReset = () => {
+  const handleReset: MouseEventHandler<HTMLButtonElement> = (e) => {
     setActiveStep(0);
     setCompleted(defaultCompleted);
+    action('reset')(e);
   };
 
   return (
@@ -156,7 +161,7 @@ export const NonLinearStepper = () => {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
+  const handleNext: MouseEventHandler<HTMLButtonElement> = (e) => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -164,26 +169,40 @@ export const NonLinearStepper = () => {
           steps.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
+    action('next')(e);
   };
 
-  const handleBack = () => {
+  const handleBack: MouseEventHandler<HTMLButtonElement> = (e) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    action('back')(e);
   };
 
-  const handleStep = (step: number) => () => {
+  const handleStep = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    step: number
+  ) => {
     setActiveStep(step);
+    action('select step')(e);
   };
 
-  const handleComplete = () => {
+  const handleComplete: MouseEventHandler<HTMLButtonElement> = (e) => {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
-    handleNext();
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
+    setActiveStep(newActiveStep);
+    action('complete')(e);
   };
 
-  const handleReset = () => {
+  const handleReset: MouseEventHandler<HTMLButtonElement> = (e) => {
     setActiveStep(0);
     setCompleted({});
+    action('reset')(e);
   };
 
   return (
@@ -191,7 +210,11 @@ export const NonLinearStepper = () => {
       <Stepper activeStep={activeStep} nonLinear>
         {steps.map((label, index) => {
           return (
-            <Step key={label} index={index} onClick={handleStep(index)}>
+            <Step
+              key={label}
+              index={index}
+              onClick={(e) => handleStep(e, index)}
+            >
               <StepLabel index={0} completed={completed[index]}>
                 {label}
               </StepLabel>
@@ -285,7 +308,7 @@ export const VerticalStepper = () => {
   const defaultCompleted = Array(steps.length).fill(false);
   const [completed, setCompleted] = useState(defaultCompleted);
 
-  const handleNext = () => {
+  const handleNext: MouseEventHandler<HTMLButtonElement> = (e) => {
     // set activeStep(current) to completed
     setCompleted(
       [...completed].map((complete, index) => {
@@ -294,9 +317,10 @@ export const VerticalStepper = () => {
       })
     );
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    action('next')(e);
   };
 
-  const handleBack = () => {
+  const handleBack: MouseEventHandler<HTMLButtonElement> = (e) => {
     // set activeStep(current) to NotCompleted
     setCompleted(
       [...completed].map((complete, index) => {
@@ -305,11 +329,13 @@ export const VerticalStepper = () => {
       })
     );
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    action('back')(e);
   };
 
-  const handleReset = () => {
+  const handleReset: MouseEventHandler<HTMLButtonElement> = (e) => {
     setActiveStep(0);
     setCompleted(defaultCompleted);
+    action('reset')(e);
   };
 
   return (

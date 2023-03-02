@@ -118,7 +118,9 @@ export const StepLabel: FC<IStepLableProps> = (props) => {
   return (
     <>
       <div className="stepper__icon">
-        {StepIcon(index, error, active, completed)}
+        {StepIconComponent
+          ? StepIconComponent
+          : StepIcon(index, error, active, completed)}
       </div>
       <div className={styleClasses}>
         {children}

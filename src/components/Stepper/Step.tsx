@@ -4,6 +4,7 @@ import React, {
   Children,
   ReactElement,
   cloneElement,
+  MouseEventHandler,
 } from 'react';
 import { classNames } from '../../utils/classNames';
 import { IStepLableProps } from './StepLabel';
@@ -18,7 +19,7 @@ export interface IStepProps {
   /** from stepper component */
   activeStep?: number;
   /** onclick function, only used for non-linear stepper */
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
 export const Step: FC<IStepProps> = (props) => {

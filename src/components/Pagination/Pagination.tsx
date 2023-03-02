@@ -31,13 +31,14 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
     const {onChange, type, size, disabled, currentPage, pageSize, total} = props;
 
     const [page, setPage] = useState(currentPage);
+    const [totalPageCount] = useState(Math.ceil(total / pageSize));
+    const DOT = "..."
 
     const range = (start: number, end: number) => {
         let length = end - start + 1;
         return Array.from({length}, (_, idx) => idx + start);
     };
     const paginationRange = useMemo(() => {
-        const totalPageCount = Math.ceil(total / pageSize);
         // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
         const totalPageNumbers = 6;
         /*
@@ -58,29 +59,56 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
           component size which we do not want
         */
         const shouldShowLeftDots = leftSiblingIndex > 2;
-        const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2;
+        const shouldShowRightDots = rightSiblingIndex < totalPageCount - 1;
 
         const firstPageIndex = 1;
         const lastPageIndex = totalPageCount;
         if (!shouldShowLeftDots && shouldShowRightDots) {
-            let leftItemCount = 3 + 2;
-            let leftRange = range(1, leftItemCount);
-
-
-            return [...leftRange, "...", totalPageCount];
+            if (page === firstPageIndex) {
+                let leftRange = range(1, 2);
+                return [...leftRange, DOT, totalPageCount];
+            } else if (page === firstPageIndex + 1) {
+                let leftRange = range(1, 3);
+                return [...leftRange, DOT, totalPageCount];
+            } else if (page === firstPageIndex + 2) {
+                let leftItemCount = 4;
+                let leftRange = range(1, leftItemCount);
+                return [...leftRange, DOT, totalPageCount];
+            }
+            // let leftItemCount = 4;
+            // let leftRange = range(1, leftItemCount);
+            // return [...leftRange, "...", totalPageCount];
         }
         if (shouldShowLeftDots && !shouldShowRightDots) {
-            let rightItemCount = 3 + 2;
-            let rightRange = range(
-                totalPageCount - rightItemCount + 1,
-                totalPageCount
-            );
-            return [firstPageIndex, "...", ...rightRange];
+            if (page === totalPageCount) {
+                let rightRange = range(
+                    totalPageCount - 1,
+                    totalPageCount
+                );
+                return [firstPageIndex, DOT, ...rightRange];
+            } else if (page === totalPageCount - 1) {
+                let rightRange = range(
+                    totalPageCount - 2,
+                    totalPageCount
+                );
+                return [firstPageIndex, DOT, ...rightRange];
+            } else if (page === totalPageCount - 2) {
+                let rightRange = range(
+                    totalPageCount - 3,
+                    totalPageCount
+                );
+                return [firstPageIndex, DOT, ...rightRange];
+            }
+            // let rightItemCount = 3 + 2;
+            // let rightRange = range(
+            //     totalPageCount - rightItemCount + 1,
+            //     totalPageCount
+            // );
+            // return [firstPageIndex, "...", ...rightRange];
         }
-
         if (shouldShowLeftDots && shouldShowRightDots) {
             let middleRange = range(leftSiblingIndex, rightSiblingIndex);
-            return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
+            return [firstPageIndex, DOT, ...middleRange, DOT, lastPageIndex];
         }
     }, [total, pageSize, page]);
     if (!paginationRange || paginationRange.length < 1) {
@@ -121,18 +149,17 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
         disabled: !!(disabled),
     });
 
-    let pagination;
-    pagination = (
+    return (
         <ul className={styleClasses}>
             <li>
-                <button className={buttonStyleClasses}>
+                <button onClick={() => onPageChange(page - 1)} disabled={page === 1} className={buttonStyleClasses}>
                     <svg viewBox="0 0 24 24">
                         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                     </svg>
                 </button>
             </li>
             {paginationRange.map(pageNumber => {
-                if (pageNumber === "...") {
+                if (pageNumber === DOT) {
                     return <li className="pagination-item dots">&#8230;</li>;
                 }
                 return (
@@ -144,7 +171,8 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
                 );
             })}
             <li>
-                <button className={buttonStyleClasses}>
+                <button onClick={() => onPageChange(page + 1)} disabled={page === totalPageCount}
+                        className={buttonStyleClasses}>
                     <svg viewBox="0 0 24 24">
                         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
                     </svg>
@@ -153,7 +181,6 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
         </ul>
 
     )
-    return pagination;
 };
 
 Pagination.defaultProps = {

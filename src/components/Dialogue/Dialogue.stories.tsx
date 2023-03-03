@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '../Button';
 import Dialogue from './Dialogue';
 import Input from '../Input';
+import Icon from '../Icon';
 export default {
   title: 'Dialogue',
   component: Dialogue,
@@ -20,7 +21,20 @@ export const SimpleDialogue = () => {
         onClose={() => setOpen(false)}
         dialogueTitle="Set backup account"
       >
-        <p>Some Account</p>
+        <div>
+          <Icon name="users" />
+          <a>&nbsp;someone@example.com</a>
+        </div>
+        <br />
+        <div>
+          <Icon name="users" />
+          <a>&nbsp;anyone@example.com</a>
+        </div>
+        <br />
+        <div>
+          <Icon name="plus" />
+          <a>&nbsp;&nbsp;&nbsp;&nbsp;Add Account</a>
+        </div>
       </Dialogue>
     </div>
   );
@@ -55,9 +69,7 @@ export const AlertsDialogue = () => {
             btnType="link"
             disabled={false}
             onClick={() => setOpen(false)}
-          >
-            Disagree
-          </Button>
+          ></Button>
         </div>
       </Dialogue>
     </div>

@@ -4,7 +4,6 @@ import Dialogue from './Dialogue';
 import Button from '../Button';
 import Input from '../Input';
 describe('Dialogue', () => {
-
   it('should match snapshot when not open', () => {
     // https://github.com/jsdom/jsdom/issues/3294
     HTMLDialogElement.prototype.close = jest.fn(function mock(
@@ -236,25 +235,4 @@ describe('Dialogue', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  // it('should call onClose when backdrop is clicked', () => {
-  //   HTMLDialogElement.prototype.showModal = jest.fn(function mock(
-  //     this: HTMLDialogElement
-  //   ) {
-  //     this.open = true;
-  //   });
-
-  //   const onClose = jest.fn();
-  //   render(
-  //     <Dialogue
-  //       open={true}
-  //       onClose={onClose}
-  //       className="jest-test-open"
-  //       dialogueTitle="Jest Testing Open"
-  //     >
-  //       <p>Snapshot Dialogue</p>
-  //     </Dialogue>
-  //   );
-  //   document.elementFromPoint(0, 0).click();
-  //   expect(onClose).toHaveBeenCalled();
-  // });
 });

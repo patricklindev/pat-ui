@@ -39,8 +39,9 @@ const SliderThumb = ({
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!disabled) {
-      let newX = e.clientX - thumbRef.current!.offsetWidth;
-      const end = trackWidth - thumbRef.current!.offsetWidth;
+      let newX = e.clientX - 2 * thumbRef.current!.offsetWidth;
+      const end = trackWidth;
+
       const start = 0;
       if (newX < start) {
         newX = 0;

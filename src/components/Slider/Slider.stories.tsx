@@ -29,11 +29,9 @@ export const SliderMarks = () => (
       The slider also takes in a prop named marks. This prop is either a boolean
       type or an array of numbers.
     </p>
+
     <div>
-      <Slider marks />
-    </div>
-    <div>
-      <Slider marks min={-100} max={100} />
+      <Slider marks min={-250} max={250} />
     </div>
     <p>
       When a truthy value is passed in, the slider values will be divided into
@@ -116,4 +114,11 @@ export const CallBackFunctionSliders = () => {
   );
 };
 
-export const DisabledSlider = () => <Slider disabled initialValue={30} />;
+export const DisabledSlider = () => {
+  return (
+    <div>
+      <Slider disabled initialValue={30} />
+      <Slider disabled initialValue={30} range />
+    </div>
+  );
+};

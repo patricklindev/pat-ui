@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,38 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin cb-size($font-size, $box-margin-right, $box-transform-scale: scale(1)) {
+  font-size: $font-size;
+
+  input {
+    margin-right: $box-margin-right;
+    transform: $box-transform-scale;
+  }
+}
+
+@mixin cb-style(
+  $color,
+  $background,
+  $border-color,
+  $hover-color: $color,
+  $hover-background-color: lighten($background, 7.5%),
+  $hover-border-color: lighten($border-color, 10%)
+) {
+  input {
+    color: $color;
+    background-color: $background;
+    border-color: $border-color;
+    &:hover {
+      color: $hover-color;
+      background-color: $hover-background-color;
+      border-color: $hover-border-color;
+    }
+    &:checked {
+      color: $hover-color;
+      accent-color: $background;
+      border-color: $hover-border-color;
+    }
+  }
 }

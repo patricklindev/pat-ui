@@ -1,0 +1,101 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/expand.css');
+
+.arrow {
+    position: relative;
+    height: 15px;
+    width: 15px;
+}
+
+
+.accordion-card-expanded {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: $accordion-box-shadow-expanded;
+    // transition: $accordion-transition;
+    transition-property: margin-top;
+    transition-duration: 0.5s;
+    .arrow::before {
+        @include accordion-arrow;
+        left: -5px;
+        transform: rotate(45deg);
+    }
+    .arrow::after {
+        left: 5px;
+        transform: rotate(-45deg);
+    }
+}
+  
+.accordion-card-retracted {
+    margin-top: 0px;
+    box-shadow: $accordion-box-shadow-retracted;
+    transition-property: margin-top;
+    transition-duration: 0.5s;
+    // transition: $accordion-transition;
+    .arrow::before {
+        @include accordion-arrow;
+        left: -5px;
+        transform: rotate(-45deg);
+        background-color: $accordion-icon-color;
+    }
+    .arrow::after {
+        left: 5px;
+        transform: rotate(45deg);
+        background-color: $accordion-icon-color;
+    }
+}
+
+.accordion-card-disabled {
+    cursor: not-allowed;
+    background-color: $accordion-disabled-background;
+    color: $accordion-disabled-color;
+    .arrow::before, .arrow::after {
+        background-color: $accordion-disabled-color;
+    }
+}
+
+.accordion-card-disabled .accordion-header:hover {
+    cursor: default;
+}
+
+
+.accordion-card {
+    transition: 1s;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 20px 2px 20px;
+}
+
+.accordion-header:hover {
+    cursor: pointer;
+}
+
+.title-text {
+    display: block;
+    font-family: $font-family-base;
+    font-size: $h5-font-size;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion-content-container {
+    padding: 20px 20px 20px 20px;
+}
+
+.accordion-content {
+    overflow: hidden;
+    transition: height 0.2s ease-in-out;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+

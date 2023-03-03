@@ -1,5 +1,5 @@
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: $dialogue-background-color;
 }
 
 .dialogue {
@@ -7,31 +7,25 @@ dialog::backdrop {
   z-index: 1; /* Sit on top */
   overflow: auto; /* Enable scroll if needed */
   box-sizing: content-box;
-  background-color: #fefefe00;
-  border: #fefefe00;
+  background-color: $dialogue-transparent; /* Remove background */
+  border: $dialogue-transparent; /* Remove border */
   max-width: 80%;
   padding: 0;
 
   .dialogue-content {
-    border-radius: 5px;
+    border-radius: $dialogue-border-radius;
     position: relative;
     background-color: #fefefe;
     margin: auto;
     padding: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $dialogue-box-shadow;
   }
 
   .dialogue-title {
-    padding: 2px 16px;
-  }
-  .dialogue-children {
-    padding: 2px 16px;
+    padding: $dialogue-default-padding;
   }
 
-  .dialogue-close {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+  .dialogue-children {
+    padding: $dialogue-default-padding;
   }
 }

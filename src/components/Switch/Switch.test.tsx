@@ -1,27 +1,43 @@
 import React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react';
-import Switch from "./Switch";
+import Switch, { PatSwitchProps } from "./Switch";
 
-test('customize the color', () => {
-    fail();
-});
+describe('Switch', () => {
+  it('should match snapshot', () => {
+    const { asFragment } = render(<Switch />);
+    expect(asFragment()).toMatchSnapshot();
+  });
 
-// test('choose different sizes', () => {
-//     fail();
-// });
+  it('should render switch default style', () => {
+      const wrapper = render(<Switch />);
+      const switchElement = screen.getByTestId('switch-element');
+      expect(switchElement).toHaveClass('switch-component primary medium');
+  });
 
-// test('whether or not to provide a label', () => {
-//     fail();
-// });
+  it('should render switch with different props', () => {
+    const switchProps: PatSwitchProps = {
+      swColor: 'primary',
+      swSize: 'small',
+      label: "small-blue-switch",
+      disabled: true,
+      className: "toggle-switch"
+    };
+    const wrapper = render(<Switch {...switchProps} />);
+    const element = wrapper.queryByText('small-blue-switch');
+    expect(element).toBeInTheDocument();
+    const switchElement = screen.getByTestId('switch-element');
+    expect(switchElement).toHaveClass('switch-component small primary toggle-switch disabled');
+  });
 
-// test('externaly whether on or off the switch', () => {
-//     fail();
-// });
-
-// test('callback will be triggered whenever the state is changed', async() => {
-//     fail();
-// });
-
-// test('whether the switch is disabled', () => {
-//     fail();
-// });
+  it('should callback function can be triggered', () => {
+    const switchProps: PatSwitchProps = {
+      onChange: jest.fn(),
+    };
+    const wrapper = render(<Switch {...switchProps} />);
+    const switchElement = screen.getByTestId('switch-element');
+    expect(switchElement.tagName.toLowerCase()).toBe('label');
+    expect(switchProps.onChange).toHaveBeenCalledTimes(0);
+    fireEvent.click(switchElement);
+    expect(switchProps.onChange).toHaveBeenCalledTimes(1);
+  });
+})

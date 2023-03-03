@@ -1,0 +1,153 @@
+.switch-component {
+  display: inline-block;
+  margin: 20px;
+  height: 20px;
+
+  .switch-component_btn {
+    position: relative;
+    display: inline-block;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .slider {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 14px;
+    border-radius: 20px;
+    background-color: $gray-500;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+
+    .slider-round {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: -1px;
+      bottom: -3px;
+      border-radius: 50%;
+      background-color: $white;
+      box-shadow: 0 1px 2px 0 $gray-700;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+
+      &:hover {
+        box-shadow: 0 1px 2px 0 $gray-700, 0 0 0 10px $gray-transparent;
+      }
+    }   
+  }
+  
+  input:checked {
+    + .slider {
+      background-color: lighten($blue, 25%);
+      .slider-round {
+        background-color: $blue;
+        -webkit-transform: translateX(22px);
+        -ms-transform: translateX(22px);
+        transform: translateX(22px);
+
+        &:hover {
+          box-shadow: 0 1px 2px 0 $gray-700, 0 0 0 10px $blue-transparent;
+        }
+      }
+    }
+  } 
+  
+  .switch-component_label {
+    margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    line-height: 16px;
+    margin-top: 1px;
+    vertical-align: top;
+  }
+}
+
+// medium size with default color
+.switch-component.default {
+  @include switch-color($white, $gray-600, $gray-transparent);
+}
+
+// medium size with secondary color
+.switch-component.secondary {
+  @include switch-color($red, lighten($red, 25%), $red-transparent);
+}
+
+// size small with primary color
+.switch-component.small {
+  .slider {
+    width: 24px;
+    height: 8px;
+    border-radius: 8px;
+  }
+
+  .slider-round {
+    height: 14px;
+    width: 14px;
+    &:hover {
+      box-shadow: 0 1px 2px 0 $gray-700, 0 0 0 7px $gray-transparent;
+    }
+  }
+
+  input:checked {
+    + .slider {
+      .slider-round {
+        -webkit-transform: translateX(12px);
+        -ms-transform: translateX(12px);
+        transform: translateX(12px);
+        &:hover {
+          box-shadow: 0 1px 2px 0 $gray-700, 0 0 0 7px $blue-transparent;
+        }
+      }
+    }
+  }
+  .switch-component_label {
+    margin-top: 4px;
+  }
+}
+
+// small size with default color
+.switch-component.small.default {
+    @include switch-color($white, $gray-600, $gray-transparent, 7px);
+}
+
+// small size with secondary color
+.switch-component.small.secondary {
+  @include switch-color($red, lighten($red, 25%), $red-transparent, 7px);
+}
+
+// disabled style
+.switch-component.disabled {
+  @include switch-color($gray-500, $gray-300);
+  .slider {
+    pointer-events: none;
+    cursor: default;
+    background-color: $gray-300;
+    .slider-round {
+      background-color: $gray-500;
+      &:hover {
+        box-shadow: 0 1px 2px 0 $gray-700;
+      }
+    }
+  }
+  
+  input:checked {
+    + .slider {
+      .slider-round {
+        &:hover {
+          box-shadow: 0 1px 2px 0 $gray-700;
+        }
+      }
+    }
+  }
+}
+  
+  

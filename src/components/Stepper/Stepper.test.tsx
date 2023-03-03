@@ -6,6 +6,7 @@ import StepLabel from './StepLabel';
 import { LinearStepper } from './Stepper.stories';
 
 import { addons, mockChannel } from '@storybook/addons';
+import StepContent from './StepContent';
 
 addons.setChannel(mockChannel());
 
@@ -80,19 +81,23 @@ describe('Stepper', () => {
     expect(container.querySelector('.vertical')).toBeNull();
   });
 
-  it('should render vertical Stepper when given props', () => {
+  it('should render vertical Stepper with content when given props', () => {
     const { container } = render(
       <Stepper orientation="vertical">
         {steps.map((label, index) => {
           return (
             <Step key={label} index={index}>
               <StepLabel index={0}>{label}</StepLabel>
+              <StepContent>
+                <span>{'step content'}</span>
+              </StepContent>
             </Step>
           );
         })}
       </Stepper>
     );
     expect(container.querySelector('.vertical')).toBeTruthy();
+    expect(screen.queryByText('step content')).toBeInTheDocument();
   });
 
   it('should skip a step when clicking skip button', () => {

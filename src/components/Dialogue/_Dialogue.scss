@@ -1,0 +1,31 @@
+dialog::backdrop {
+  background-color: $dialogue-background-color;
+}
+
+.dialogue {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  overflow: auto; /* Enable scroll if needed */
+  box-sizing: content-box;
+  background-color: $dialogue-transparent; /* Remove background */
+  border: $dialogue-transparent; /* Remove border */
+  max-width: 80%;
+  padding: 0;
+
+  .dialogue-content {
+    border-radius: $dialogue-border-radius;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 15px;
+    box-shadow: $dialogue-box-shadow;
+  }
+
+  .dialogue-title {
+    padding: $dialogue-default-padding;
+  }
+
+  .dialogue-children {
+    padding: $dialogue-default-padding;
+  }
+}

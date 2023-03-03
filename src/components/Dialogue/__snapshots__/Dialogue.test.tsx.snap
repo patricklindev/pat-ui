@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialogue should match snapshot when not open 1`] = `
+<DocumentFragment>
+  <dialog
+    class="dialogue jest-test-not-open"
+  >
+    <div
+      class="dialogue-content"
+    >
+      <div
+        class="dialogue-title"
+        data-testid="dialogue-title-element"
+      >
+        <h4>
+          Jest Testing Not Open
+        </h4>
+      </div>
+      <div
+        class="dialogue-children"
+      >
+        <p>
+          Snapshot Dialogue
+        </p>
+      </div>
+    </div>
+  </dialog>
+</DocumentFragment>
+`;
+
+exports[`Dialogue should match snapshot when open 1`] = `
+<DocumentFragment>
+  <dialog
+    class="dialogue jest-test-open"
+    open=""
+  >
+    <div
+      class="dialogue-content"
+    >
+      <div
+        class="dialogue-title"
+        data-testid="dialogue-title-element"
+      >
+        <h4>
+          Jest Testing Open
+        </h4>
+      </div>
+      <div
+        class="dialogue-children"
+      >
+        <p>
+          To subscribe to this website, please enter your email address here. We will send updates occasionally.
+        </p>
+        <div
+          class="ui-input input-fluid"
+        >
+          <input
+            placeholder="Email Address"
+            type="text"
+          />
+        </div>
+        <div
+          style="text-align: right;"
+        >
+          <a
+            class="btn btn-link"
+          >
+            Cancel
+          </a>
+          <a
+            class="btn btn-link"
+          >
+            Subscribe
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</DocumentFragment>
+`;

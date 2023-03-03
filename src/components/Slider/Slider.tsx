@@ -58,13 +58,9 @@ export const Slider: FC<SliderComponentProps> = ({
     })
 
     const closestIndex = useRef<number>(0);
-    const smallestValue = rangePosition.reduce((prev, curr) =>
-        prev < curr ? prev : curr
-    );
+    const smallestValue = rangePosition.reduce((prev, curr) => prev < curr ? prev : curr);
 
-    const getProgress = (value: number) => {
-        return Math.round((100 * value) / (max - min));
-    }
+    const getProgress = (value: number) => Math.round((100 * value) / (max - min));
     const getMarkPosition = (value: number) => {
         const progress = getProgress(value);
         return progress > 50 ? { right: `${100 - progress}%` } : { left: `${progress}%` };
@@ -83,9 +79,7 @@ export const Slider: FC<SliderComponentProps> = ({
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newValue = +e.target.value;
-        console.log(newValue);
         if (rangePosition.length > 1) setClosestIndex(newValue);
-        console.log(newValue);
         setRangePosition((prev) => {
             console.log(prev);
             return prev.map((curVal, index) =>

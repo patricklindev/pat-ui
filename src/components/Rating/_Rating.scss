@@ -1,0 +1,47 @@
+.ui-rating {
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  text-align: left;
+  
+  &.rating-full-star {
+    color: orange;
+  }
+  &.rating-empty-star {
+    color: orange;
+  }
+  //Disabled
+  &.rating-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  //Read Only
+  &.rating-readonly {
+    cursor: not-allowed;
+  }
+}
+// Mini
+.ui-rating.rating-mini {
+  font-size: 0.7em;
+}
+// Small
+.ui-rating.rating-small {
+  font-size: 0.928em;
+}
+// Large
+.ui-rating.rating-large {
+  font-size: 1.142em;
+}
+// Big
+.ui-rating.rating-big {
+  font-size: 1.286em;
+}
+// Huge
+.ui-rating.rating-huge {
+  font-size: 1.429em;
+}
+// Massive
+.ui-rating.rating-massive {
+  font-size: 1.714em;
+}
+

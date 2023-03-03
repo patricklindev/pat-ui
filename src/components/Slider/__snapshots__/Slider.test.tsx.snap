@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="slider-container"
+    data-testid="slider-container-element"
+  >
+    <div
+      class="slider-track"
+      data-testid="slider-track-element"
+    >
+      <div
+        class="slider-progress"
+        data-testid="slider-progress-track-element"
+        style="width: 1%; left: 0px; background: blue;"
+      />
+      <div
+        class="slider-thumb"
+        data-testid="slider-thumb-element-1"
+        style="left: 0%; background: blue;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

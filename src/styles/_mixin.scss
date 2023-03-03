@@ -74,3 +74,17 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+@mixin switch-color($round-color:$blue, $slider-color:lighten($blue, 25%), $shadow-color: $blue-transparent, $shadow-radius: 10px) {
+  input:checked {
+    + .slider {
+      background-color: $slider-color;
+      .slider-round {
+        background-color: $round-color;
+        &:hover {
+          box-shadow: 0 1px 2px 0 $gray-700, 0 0 0 $shadow-radius $shadow-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.rating {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9rem;
+
+  svg {
+    fill: $yellow;
+    width: 23px;
+  }
+
+  &__stars {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+  }
+  &__label {
+    margin-left: 25px;
+  }
+
+  &__stars-cover {
+    position: absolute;
+    height: 100%;
+    background-color: white;
+    right: 0;
+    top: 0;
+    mix-blend-mode: color; //blend element's background with its parent's background color
+  }
+}
+
+.rating.disabled {
+  cursor: not-allowed;
+  svg {
+    fill: yellow;
+  }
+}
+
+.rating.rating-sm {
+  svg {
+    width: 18px;
+  }
+  font-size: 0.8rem;
+}
+
+.rating.rating-lg {
+  svg {
+    width: 30px;
+  }
+  font-size: 1rem;
+}

@@ -5,6 +5,10 @@ import Step from './Step';
 import StepLabel from './StepLabel';
 import { LinearStepper } from './Stepper.stories';
 
+import { addons, mockChannel } from '@storybook/addons';
+
+addons.setChannel(mockChannel());
+
 const steps = [
   'Select campaign settings',
   'Create an ad group',

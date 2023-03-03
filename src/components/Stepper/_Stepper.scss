@@ -4,7 +4,6 @@
   &.horizontal {
     display: flex;
     align-items: center;
-    // justify-content: space-between;
     .stepper__divider {
       flex-grow: 1;
       border-bottom: 1px solid $secondary;
@@ -17,11 +16,8 @@
   &.vertical {
     display: flex;
     flex-direction: column;
-    // gap: 1rem;
     .stepper__divider {
-      // position: relative;
       padding-left: 12px;
-      // margin-top: 3px;
       .stepper__divider-child {
         height: 20px;
         border-left: 1px solid $secondary;
@@ -65,11 +61,9 @@
       margin-top: 3px;
     }
     .stepper__content {
-      // background-color: yellow;
       margin-left: 12px;
       border-left: 1px solid $secondary;
       padding-left: 20px;
-      // order: 1;
     }
   }
 }

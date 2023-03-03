@@ -1,13 +1,11 @@
 import React, {
   FC,
-  ReactNode,
   Children,
   ReactElement,
   cloneElement,
   MouseEventHandler,
 } from 'react';
 import { classNames } from '../../utils/classNames';
-import { IStepLableProps } from './StepLabel';
 
 export interface IStepProps {
   /** children must be React Element */
@@ -33,7 +31,6 @@ export const Step: FC<IStepProps> = (props) => {
               cloneElement(child, {
                 index: index,
                 active: activeStep === index,
-                // completed: activeStep > index,
               })
             )
           : children}

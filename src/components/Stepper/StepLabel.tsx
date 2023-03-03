@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export interface IStepLableProps {

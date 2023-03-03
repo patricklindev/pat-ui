@@ -2,14 +2,6 @@ import React, { Children, cloneElement, FC, ReactElement } from 'react';
 import { classNames } from '../../utils/classNames';
 import { IStepProps } from './Step';
 
-// https://mui.com/material-ui/react-stepper/
-// Find the UI design reference in Figma Material UI Kit 1.0.2 (https://www.figma.com/file/e9mrJNqitnThCajlQvuyWv/Material-UI-Kit-1.0.2-(Copy)?node-id=787%3A0)
-// Developers can feed an array of string description
-// Developers can choose whether to skip a step
-// Developers can click on the buttons to mark completion of steps
-// Developers can dictate orientation of stepper (row vs column)
-// Developers can feed an error.
-
 export interface IStepperProps {
   /** children must be React Element */
   children?: ReactElement<IStepProps> | ReactElement<IStepProps>[];

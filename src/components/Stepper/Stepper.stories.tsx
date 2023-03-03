@@ -89,12 +89,6 @@ export const LinearStepper = () => {
     <div>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
-          // const labelProps: {
-          //   optional?: React.ReactNode;
-          // } = {};
-          // if (isStepOptional(index)) {
-          //   labelProps.optional = <span>Optional</span>;
-          // }
           return (
             <Step key={label} index={index}>
               <StepLabel

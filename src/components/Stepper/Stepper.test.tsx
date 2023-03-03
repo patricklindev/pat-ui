@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Stepper from './Stepper';
 import Step from './Step';
 import StepLabel from './StepLabel';
-import Button from '../Button';
 import { LinearStepper } from './Stepper.stories';
 
 const steps = [
@@ -98,7 +97,6 @@ describe('Stepper', () => {
     const skipButton = screen.getByText('Skip');
     fireEvent.click(completeButton);
     fireEvent.click(skipButton);
-    // screen.debug(container.querySelectorAll('li')[1]);
     expect(
       container
         .querySelectorAll('li')[1]
@@ -110,7 +108,6 @@ describe('Stepper', () => {
     const { container } = render(<LinearStepper />);
     const completeButton = screen.getByText('Complete');
     fireEvent.click(completeButton);
-    // screen.debug(container.querySelector('li'));
     expect(
       container.querySelector('li')?.querySelector('.stepper__label-completed')
     ).toBeTruthy();

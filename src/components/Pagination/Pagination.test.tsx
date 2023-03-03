@@ -123,4 +123,24 @@ describe('Pagination', () => {
     expect(getByText('previous')).toHaveAttribute('disabled');
     expect(getByText('next')).toHaveAttribute('disabled');
   });
+
+  it('should change page number when clicking on previous or next page button', () => {
+    const wrapper = render(<Pagination></Pagination>);
+    const paginationElement = screen.getByTestId('pagination-element');
+    expect(paginationElement).toHaveClass('pagination');
+
+    const list = screen.getByRole('list');
+    const { getByText } = within(list);
+    expect(getByText('1')).toHaveClass('pagination-item-standard-selected');
+    expect(getByText('2')).toHaveClass('pagination-item-standard');
+
+    const prevBtn = getByText('previous');
+    const nextBtn = getByText('next');
+    fireEvent.click(nextBtn);
+    expect(getByText('1')).toHaveClass('pagination-item-standard');
+    expect(getByText('2')).toHaveClass('pagination-item-standard-selected');
+    fireEvent.click(prevBtn);
+    expect(getByText('1')).toHaveClass('pagination-item-standard-selected');
+    expect(getByText('2')).toHaveClass('pagination-item-standard');
+  });
 });

@@ -31,50 +31,50 @@ export const DefaultAccordion = () => (
   );
 
   
-//   export const ControlledAccordion = () => {
-//     const [idExpanded, setExpandedID] = React.useState("");
+export const ControlledAccordion = () => {
+  const [idExpanded, setExpandedID] = React.useState("");
 
-// const data = [
-// {
-//     id: "panel1",
-//     heading: "Panel 1",
-//     details: "Nulla facilisi. Phasellus sollicitudin nulla et"
-// },
-// {
-//     id: "panel2",
-//     heading: "Panel 2",
-//     details: " et et et et et "
-// },
-// {
-//     id: "panel3",
-//     heading: "Panel 3",
-//     details: " at at at at at at "
-// }];
-// const handleChange = (panel:any) => (event:any, isExpanded:Boolean) => {
-//     // action("Controlled Accordion Clicked");
-//     console.log(panel);
-//     console.log(isExpanded);
-//     setExpandedID(isExpanded ? panel : "");
-// };
+    const data = [
+    {
+        id: "panel1",
+        heading: "Panel 1",
+        details: "Nulla facilisi. Phasellus sollicitudin nulla et"
+    },
+    {
+        id: "panel2",
+        heading: "Panel 2",
+        details: " et et et et et "
+    },
+    {
+        id: "panel3",
+        heading: "Panel 3",
+        details: " at at at at at at "
+    }];
+    const handleChange = (panel:any) => (event:any, isExpanded:Boolean) => {
+        action("Controlled Accordion Clicked")(event);
+        console.log(panel);
+        console.log(isExpanded);
+        setExpandedID(isExpanded ? panel : "");
+    };
 
-//     return (
-//         <div>
-//       {data.map((accordion) => {
-//         const { id, heading, details } = accordion;
-//         return (
-//           <Accordion
-//             expanded={idExpanded === id}
-//             key={id}
-//             onChange={()=> {action("Controlled Accordion Clicked")();handleChange(id);}}
-//             header={heading}
-//           >
-//             {details}
-//           </Accordion>
-//         );
-//       })}
-//     </div>
-//     )
-//   };
+    return (
+        <div>
+      {data.map((accordion) => {
+        const { id, heading, details } = accordion;
+        return (
+          <Accordion
+            expanded={idExpanded === id}
+            key={id}
+            onChange={handleChange(id)}
+            header={heading}
+          >
+            {details}
+          </Accordion>
+        );
+      })}
+    </div>
+    )
+  };
 
   export const DisabledAccordion = () => (
     <div>

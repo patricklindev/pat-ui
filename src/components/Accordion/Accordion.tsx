@@ -9,12 +9,19 @@ export interface IAccordionProps {
   onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
   /** text header for accordion*/
   header: string | React.ReactNode;
+  /** customize accordion className*/
   accordionClassName?: string;
+  /** customize header className*/
   headerClassName?: string;
+  /** customize title className*/
   titleClassName?: string;
+  /** customize icon contatiner className*/
   iconContainerClassName?: string;
+  /** customize icon className*/
   iconClassName?: string;
+  /** customize content container className*/
   contentContainerClassName?: string;
+  /** customize content className*/
   contentClassName?: string;
 }
 
@@ -51,18 +58,6 @@ export const Accordion: FC<patAccordionProps> = (props) => {
     }
   };
 
-//   useEffect(() => {
-//     if (!height || !isExpanded || !ref.current) return undefined;
-//     // @ts-ignore
-//     const resizeObserver = new ResizeObserver((el) => {
-//       setHeight(el[0].contentRect.height);
-//     });
-//     resizeObserver.observe(ref.current);
-//     return () => {
-//       resizeObserver.disconnect();
-//     };
-//   }, [height, isExpanded]);
-  
   useEffect(() => {
     if (isExpanded) {
       setHeight(ref.current?.getBoundingClientRect().height);
@@ -72,6 +67,7 @@ export const Accordion: FC<patAccordionProps> = (props) => {
       setClassName("accordion-card-retracted");
     }
   }, [isExpanded]);
+
   useEffect(() => {
     setIsExpanded(expanded);
   }, [expanded]);

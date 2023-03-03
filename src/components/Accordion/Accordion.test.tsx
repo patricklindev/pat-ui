@@ -60,14 +60,4 @@ describe('Accordion', () => {
     fireEvent.click(Element);
     expect(accordionProps.onChange).toHaveBeenCalledTimes(1);
   });
-
-  // it('should render image with correct source', () => {
-  //   const cardProps = {
-  //     cardImgSrc: 'png',
-  //   };
-  //   const wrapper = render(<Card {...cardProps}></Card>);
-  //   const imageElement = screen.getByTestId('image-element');
-  //   expect(imageElement.tagName).toBe('IMG');
-  //   expect(imageElement.getAttribute('src')).toBe('png');
-  // });
 });

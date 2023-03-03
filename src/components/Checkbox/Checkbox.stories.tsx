@@ -64,13 +64,14 @@ export const CheckboxWithAndWithoutLabel = () => (
   </div>
 );
 
-export const CheckedAndUncheckedCheckbox = (): React.ReactNode => {
+export const CheckedAndUncheckedCheckboxAndOnChange = (): React.ReactNode => {
   const [checked, setChecked] = React.useState(true);
   return (
     <div>
       <Checkbox
         onChange={(event) => {
           setChecked(event.target.checked);
+          action('Checkbox clicked')(event);
         }}
         checked={checked}
       >

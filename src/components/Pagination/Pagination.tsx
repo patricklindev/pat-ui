@@ -31,26 +31,20 @@ export interface IPaginationProps {
 
 export const Pagination: FC<IPaginationProps> = (props) => {
   let {
-    boundaryCount,
+    boundaryCount = 1,
     classes,
     color,
-    count,
-    defaultPage,
+    count = 10,
+    defaultPage = 1,
     hideNextButton,
     hidePrevButton,
     onChange,
     page,
-    siblingCount,
+    siblingCount = 1,
     size,
   } = props;
 
-  boundaryCount = boundaryCount === undefined ? 1 : boundaryCount;
-  count = count === undefined ? 10 : count;
-  siblingCount = siblingCount === undefined ? 1 : siblingCount;
-
-  const [currentPage, setCurrentPage] = useState<number>(
-    page || defaultPage || 1
-  );
+  const [currentPage, setCurrentPage] = useState<number>(page || defaultPage);
 
   useEffect(() => {
     if (onChange) {

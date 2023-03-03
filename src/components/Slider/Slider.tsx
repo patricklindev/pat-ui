@@ -61,14 +61,13 @@ const Slider = ({
       data-testid="slider-container-element"
     >
       {range ? (
-        <SliderTrack size={size} data-testid="slider-track-element">
+        <SliderTrack size={size}>
           <SliderProgressTrack
             xPos={xPos}
             xPos2={xPos2}
             trackWidth={trackWidth}
             color={color}
             disabled={disabled}
-            data-testid="slider-progress-track-element"
           />
           <SliderThumb
             xPos={xPos}
@@ -81,7 +80,6 @@ const Slider = ({
             initialValue={initialValue}
             color={color}
             disabled={disabled}
-            data-testid="slider-thumb-element-1"
           />
           <SliderThumb
             xPos={xPos2}
@@ -94,17 +92,15 @@ const Slider = ({
             initialValue={initialValue}
             color={color}
             disabled={disabled}
-            data-testid="slider-thumb-element-2"
           />
         </SliderTrack>
       ) : (
-        <SliderTrack size={size} data-testid="slider-track-element">
+        <SliderTrack size={size}>
           <SliderProgressTrack
             xPos={xPos}
             trackWidth={trackWidth}
             color={color}
             disabled={disabled}
-            data-testid="slider-progress-track-element"
           />
           <SliderThumb
             xPos={xPos}
@@ -116,7 +112,6 @@ const Slider = ({
             initialValue={initialValue}
             color={color}
             disabled={disabled}
-            data-testid="slider-thumb-element1"
           />
         </SliderTrack>
       )}
@@ -126,7 +121,6 @@ const Slider = ({
           min={min}
           max={max}
           markValues={marks}
-          data-testid="slider-scale-element"
         />
       )}
     </div>

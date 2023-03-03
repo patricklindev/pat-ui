@@ -79,6 +79,11 @@ const SliderThumb = ({
           ? { left: `${xPos}%`, background: 'gray' }
           : { left: `${xPos}%`, background: color }
       }
+      data-testid={
+        xPosLeft !== undefined
+          ? 'slider-thumb-element-2'
+          : 'slider-thumb-element-1'
+      }
     ></div>
   );
 };

@@ -34,6 +34,7 @@ const SliderProgressTrack = ({
             }
           : { width: `${xPos + 1}%`, background: color }
       }
+      data-testid="slider-progress-track-element"
     ></div>
   );
 };

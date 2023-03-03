@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface SliderScaleProps {
+export interface SliderScaleProps {
   trackWidth: number;
   min: number;
   max: number;
@@ -15,7 +15,7 @@ const SliderScale = ({
 }: SliderScaleProps) => {
   const propType = typeof markValues;
   const evenMarkSpacings: number[] = [];
-  var markSpacings: (number | undefined)[];
+  var markSpacings: (number | undefined)[] = [];
 
   if (typeof markValues === 'boolean') {
     for (var i = min; i <= max; i += (max - min) / 5) {
@@ -35,7 +35,7 @@ const SliderScale = ({
   }
 
   return (
-    <div>
+    <div test-dataid="slider-scale-element">
       {typeof markValues === 'boolean' ? (
         <ul
           style={{
@@ -48,7 +48,7 @@ const SliderScale = ({
           }}
         >
           {evenMarkSpacings.map((markValue) => {
-            return <li>{markValue}</li>;
+            return <li key={String(markValue)}>{markValue}</li>;
           })}
         </ul>
       ) : (
@@ -63,10 +63,17 @@ const SliderScale = ({
         >
           {markSpacings.map((markSpacing, index) => {
             return (
-              <li style={{ width: `${markSpacing}%` }}>{markValues[index]}</li>
+              <li
+                key={String(markValues[index])}
+                style={{ width: `${markSpacing}%` }}
+              >
+                {markValues[index]}
+              </li>
             );
           })}
-          <li>{markValues.slice(-1)[0]}</li>
+          <li id={String(markValues.slice(-1)[0])}>
+            {markValues.slice(-1)[0]}
+          </li>
         </ul>
       )}
     </div>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 interface SliderTrackProps {
   size?: string;
@@ -9,8 +9,9 @@ interface SliderTrackProps {
 const SliderTrack = ({ size, trackColor, children }: SliderTrackProps) => {
   return (
     <div
-      className={size === "small" ? "slider-track--small" : "slider-track"}
+      className={size === 'small' ? 'slider-track--small' : 'slider-track'}
       style={{ background: trackColor }}
+      data-testid="slider-track-element"
     >
       {children}
     </div>

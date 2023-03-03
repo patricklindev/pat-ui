@@ -8,13 +8,16 @@ exports[`Slider should match snapshot 1`] = `
   >
     <div
       class="slider-track"
+      data-testid="slider-track-element"
     >
       <div
         class="slider-progress"
+        data-testid="slider-progress-track-element"
         style="width: 1%; background: blue;"
       />
       <div
         class="slider-thumb"
+        data-testid="slider-thumb-element-1"
         style="left: 0%; background: blue;"
       />
     </div>

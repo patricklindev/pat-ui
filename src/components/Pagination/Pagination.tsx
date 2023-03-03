@@ -126,18 +126,6 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
             }
         }
     }
-
-    let lastPage = paginationRange[paginationRange.length - 1];
-
-    // let styleClasses = classNames('btn', {
-    //     [`btn-${btnType}`]: true,
-    //     [`btn-${btnSize}`]: !!btnSize,
-    //     disabled: !!(disabled && btnType === 'link'),
-    // });
-    // if (className) {
-    //     styleClasses += ' ' + className;
-    // }
-
     let styleClasses = classNames('pagination');
 
     let currentPageButtonStyleClasses = classNames('pagination-btn', {

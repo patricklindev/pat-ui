@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,16 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin pagination-item-size($border-radius, $min-width, $height, $padding-y, $margin-y) {
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  min-width: $min-width;
+  height: $height;
+  padding: 0 $padding-y;
+  margin: 0 $margin-y;
 }

@@ -45,6 +45,7 @@
 @mixin size-message($msg-indent-left) {
   text-indent: $msg-indent-left;
 }
+
 @mixin dropdown-border-style($border-width, $border-color) {
   border: $border-width solid $border-color;
 }
@@ -74,3 +75,23 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+@mixin pagination-button-size($padding-y, $padding-x, $margin-y, $margin-x, $font-size, $border-radius, $height, $width) {
+  padding: $padding-y $padding-x;
+  margin: $margin-y $margin-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  height: $height;
+  width: $width;
+}
+
+@mixin pagination-button-style($color,$background, $alpha) {
+  color: $color;
+  background: $background;
+  &:hover {
+    color: $color;
+    background-color: rgba(red($background), green($background), blue($background), $alpha);
+  }
+}
+
+

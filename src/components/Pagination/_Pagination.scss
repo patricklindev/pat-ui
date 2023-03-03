@@ -1,0 +1,86 @@
+.pagination {
+  display: flex;
+  list-style-type: none;
+}
+
+.pagination-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: $body-color;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+  outline: none !important;
+
+
+  // btn size
+  @include pagination-button-size(
+                  $pagination-btn-padding-y,
+                  $pagination-btn-padding-x,
+                  $pagination-btn-margin-y,
+                  $pagination-btn-margin-x,
+                  $pagination-btn-font-size,
+                  $pagination-btn-border-radius,
+                  $pagination-btn-height,
+                  $pagination-btn-width,
+  );
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+  }
+}
+
+.pagination-btn-unselected {
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.pagination-btn-sm {
+  @include pagination-button-size(
+                  $pagination-btn-padding-y-sm,
+                  $pagination-btn-padding-x-sm,
+                  $pagination-btn-margin-y-sm,
+                  $pagination-btn-margin-x-sm,
+                  $pagination-btn-font-size-sm,
+                  $pagination-btn-border-radius-sm,
+                  $pagination-btn-height-sm,
+                  $pagination-btn-width-sm,
+  );
+
+}
+
+.pagination-btn-lg {
+  @include pagination-button-size(
+                  $pagination-btn-padding-y-lg,
+                  $pagination-btn-padding-x-lg,
+                  $pagination-btn-margin-y-lg,
+                  $pagination-btn-margin-x-lg,
+                  $pagination-btn-font-size-lg,
+                  $pagination-btn-border-radius-lg,
+                  $pagination-btn-height-lg,
+                  $pagination-btn-width-lg,
+  );
+}
+
+.pagination-btn-default {
+  @include pagination-button-style(rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0.08), 0.12);
+}
+
+.pagination-btn-primary {
+  @include pagination-button-style($white, $primary, 0.8);
+}
+
+.pagination-btn-secondary {
+  @include pagination-button-style($white, $secondary, 0.8);
+}
+
+.pagination-btn-danger {
+  @include pagination-button-style($white, $danger, 0.8);
+}

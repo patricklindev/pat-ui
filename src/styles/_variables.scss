@@ -34,10 +34,10 @@ $dark: $gray-800 !default;
 
 // font
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
+'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-  'Liberation Mono', 'Courier New', monospace !default;
+'Liberation Mono', 'Courier New', monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
@@ -193,7 +193,7 @@ $btn-border-radius-sm: $border-radius-sm !default;
 
 // button animation
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
 // message style
 $msg-background-color: $gray-100 !default;
@@ -256,7 +256,7 @@ $dropdown-onopen-color: #96c8da;
 
 // dropdown shadow
 $dropdown-box-shadow: inset 0 1px 0 rgba($white, 0.15),
-  0 1px 1px rgba($black, 0.075) !default;
+0 1px 1px rgba($black, 0.075) !default;
 $dropdown-disabled-opacity: 0.65 !default;
 
 // dropdown transition
@@ -293,3 +293,33 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+// pagination button
+$pagination-btn-height: 32px;
+$pagination-btn-width: 32px;
+$pagination-btn-border-radius: 16px;
+$pagination-btn-font-size: 14px;
+$pagination-btn-margin-y: 0;
+$pagination-btn-margin-x: 3px;
+$pagination-btn-padding-y: 0;
+$pagination-btn-padding-x: 6px;
+
+$pagination-btn-height-sm: 26px;
+$pagination-btn-width-sm: 26px;
+$pagination-btn-border-radius-sm: 13px;
+$pagination-btn-font-size-sm: 14px;
+$pagination-btn-margin-y-sm: 0;
+$pagination-btn-margin-x-sm: 1px;
+$pagination-btn-padding-y-sm: 0;
+$pagination-btn-padding-x-sm: 4px;
+
+$pagination-btn-height-lg: 40px;
+$pagination-btn-width-lg: 40px;
+$pagination-btn-border-radius-lg: 20px;
+$pagination-btn-font-size-lg: 15px;
+$pagination-btn-margin-y-lg: 0;
+$pagination-btn-margin-x-lg: 3px;
+$pagination-btn-padding-y-lg: 0;
+$pagination-btn-padding-x-lg: 10px;
+
+

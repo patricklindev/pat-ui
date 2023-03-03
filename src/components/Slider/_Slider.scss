@@ -1,0 +1,142 @@
+.slider {
+    position: relative;
+    width: $slider-default-width;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  
+    * {
+      margin: 0;
+    }
+  
+    &__track {
+      display: flex;
+      align-items: center;
+    }
+  
+    &__rail,
+    &__track,
+    &__thumb,
+
+    &__bubble {
+      position: absolute;
+      border-radius: 50px;
+    }
+  
+    &__thumb {
+      box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.8);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    &__marks {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: $slider-default-label-color;
+      span {
+        position: absolute;
+      }
+    }
+    &__number__marks {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        overflow: hidden;
+        color: black;
+        span {
+          position: absolute;
+        }
+      }
+  
+    &__firtnode {
+      z-index: 1;
+    }
+  
+    &__bubble {
+      text-align: center;
+      background-color: burlywood;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+  
+      span {
+        display: inline-block;
+        color: $slider-default-rail-color;
+        transform: translate(1px, 3px) rotate(45deg);
+      }
+    }
+  
+    input {
+      position: absolute;
+      appearance: none;
+      outline: none;
+      cursor: pointer;
+      background-color: transparent;
+      z-index: 3;
+      &::-webkit-slider-thumb {
+        appearance: none;
+        background-color: transparent;
+      }
+    }
+  }
+  
+  .slider-primary {
+    @include slider-color(
+      $slider-primary-track-color,
+      $slider-primary-rail-color,
+      $slider-primary-label-color
+    );
+  }
+  .slider-secondary {
+    @include slider-color(
+      $slider-secondary-track-color,
+      $slider-secondary-rail-color,
+      $slider-secondary-label-color
+    );
+  }
+  .slider-default {
+    @include slider-color(
+      $slider-default-track-color,
+      $slider-default-rail-color,
+      $slider-default-label-color
+    );
+  }
+  .slider-disabled {
+    opacity: 0.9;
+    cursor: default;
+    @include slider-color(
+      $slider-disabled-track-color,
+      $slider-disabled-rail-color,
+      $slider-disabled-label-color
+    );
+    .slider__thumb {
+      background: $slider-disabled-track-color;
+    }
+    .slider__bubble {
+      display: none;
+    }
+    input {
+      cursor: default;
+    }
+  }
+  
+  .slider-sm {
+    @include slider-size($slider-sm-height);
+    width: 0.75 * $slider-default-width;
+  }
+  .slider-md {
+    @include slider-size($slider-md-height);
+  }
+  .slider-lg {
+    @include slider-size($slider-lg-height);
+    width: 1.25 * $slider-default-width;
+  }
+  
+  .slider-vertical {
+    margin-top: $slider-vertical-margin;
+    margin-bottom: $slider-vertical-margin;
+    transform: rotate(270deg);
+}

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="slider slider-default slider-md slider-horizontal"
+    data-testid="slider__container"
+  >
+    <div
+      class="slider__rail"
+      data-testid="slider__rail"
+    />
+    <div
+      class="slider__track "
+      style="width: 50%;"
+    >
+      <div
+        class="slider__thumb"
+      />
+    </div>
+    <input
+      data-testid="slider__input"
+      max="100"
+      min="0"
+      type="range"
+      value="50"
+    />
+  </div>
+</DocumentFragment>
+`;

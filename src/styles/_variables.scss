@@ -293,3 +293,27 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+//slider size
+$slider-sm-height: 5px;
+$slider-md-height: 7px;
+$slider-lg-height: 10px;
+$slider-default-width: 200px;
+
+
+//slider color
+$slider-primary-track-color: rgba(63, 81, 181, 1);
+$slider-primary-rail-color: rgba(219, 223, 241, 1);
+$slider-primary-label-color: rgba(63, 81, 181, 1);
+$slider-secondary-track-color: rgba(245, 0, 87, 1);
+$slider-secondary-rail-color: rgba(251, 158, 191, 1);
+$slider-secondary-label-color: rgba(245, 0, 87, 1);
+$slider-default-track-color: rgb(190, 190, 190);
+$slider-default-rail-color: rgba(220, 220, 220, 1);
+$slider-default-label-color: rgb(141, 141, 141);
+$slider-disabled-track-color: rgba(189, 189, 189, 1);
+$slider-disabled-rail-color: rgba(230, 230, 230, 1);
+$slider-disabled-label-color: transparent;
+
+//slider vertical
+$slider-vertical-margin: 5rem;

@@ -1,0 +1,59 @@
+.pagination {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    list-style: none;
+  }
+
+  li {
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.pagination-item {
+  border: none;
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+  }
+
+  &-small {
+    @include pagination-item-size(19px, 26px, 26px, 4px, 1px);
+  }
+  &-medium {
+    @include pagination-item-size(27px, 32px, 32px, 6px, 3px);
+  }
+  &-large {
+    @include pagination-item-size(20px, 40px, 40px, 10px, 3px);
+  }
+}
+
+.pagination-item-primary {
+  @include button-style(black, white, white, black, $gray-100);
+  &-selected {
+    @include button-style(white, #236ed7, #236ed7, white, #175fc7);
+  }
+}
+
+.pagination-item-secondary {
+  @include button-style(black, white, white, black, $gray-100);
+  &-selected {
+    @include button-style(white, #8900a0, #8900a0, white, #740288);
+  }
+}
+
+.pagination-item-standard {
+  @include button-style(black, white, white, black, $gray-100);
+  &-selected {
+    @include button-style(black, #e6e6e6, #e6e6e6, black, #d4d2d2);
+  }
+}

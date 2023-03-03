@@ -44,11 +44,13 @@ export const Pagination: FC<IPaginationProps> = (props) => {
     size,
   } = props;
 
-  boundaryCount = boundaryCount || 1;
-  count = count || 10;
-  siblingCount = siblingCount || 1;
+  boundaryCount = boundaryCount === undefined ? 1 : boundaryCount;
+  count = count === undefined ? 10 : count;
+  siblingCount = siblingCount === undefined ? 1 : siblingCount;
 
-  const [currentPage, setCurrentPage] = useState<number>(page || defaultPage || 1);
+  const [currentPage, setCurrentPage] = useState<number>(
+    page || defaultPage || 1
+  );
 
   useEffect(() => {
     if (onChange) {
@@ -82,7 +84,7 @@ export const Pagination: FC<IPaginationProps> = (props) => {
     const btns: JSX.Element[] = [];
     for (let i: number = from; i <= to; i++) {
       btns.push(
-        <li key={`page ${i}`}>
+        <li key={`page ${i}`} aria-label={`Page ${i}`}>
           <button
             className={currentPage === i ? itemSelectedClasses : itemClasses}
             onClick={() => setCurrentPage(page || i)}
@@ -140,15 +142,19 @@ export const Pagination: FC<IPaginationProps> = (props) => {
   }
 
   pagination = (
-    <div className={paginationClasses}>
+    <div className={paginationClasses} data-testid="pagination-element">
       <ul>
         {hidePrevButton ? (
           <></>
         ) : (
-          <li key="prev">
+          <li
+            key="prev"
+            data-testid="prev-button-element"
+            aria-label="Go to previous page"
+          >
             <button
               className={itemClasses}
-              disabled={currentPage === 1}
+              disabled={currentPage === 1 || count === 0}
               onClick={goPrevPage}
             >
               previous
@@ -159,10 +165,14 @@ export const Pagination: FC<IPaginationProps> = (props) => {
         {hideNextButton ? (
           <></>
         ) : (
-          <li key="next">
+          <li
+            key="next"
+            data-testid="next-button-element"
+            aria-label="Go to next page"
+          >
             <button
               className={itemClasses}
-              disabled={currentPage === count}
+              disabled={currentPage === count || count === 0}
               onClick={goNextPage}
             >
               next

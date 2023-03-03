@@ -8,7 +8,7 @@ export default {
 };
 
 export const DefaultPagination = () => {
-  return <Pagination onChange={action("Number of The Page Selected")} />;
+  return <Pagination onChange={action('Number of The Page Selected')} />;
 };
 
 export const DiffSizePagination = () => {
@@ -50,6 +50,10 @@ export const DiffColorPagination = () => {
 export const DiffBoundaryCountPagination = () => {
   return (
     <div>
+      <h4>Boundary Count = 0</h4>
+      <Pagination boundaryCount={0} defaultPage={7} count={15} />
+      <br />
+
       <h4>Boundary Count = 1</h4>
       <Pagination boundaryCount={1} defaultPage={7} count={15} />
       <br />
@@ -68,6 +72,10 @@ export const DiffBoundaryCountPagination = () => {
 export const DiffSiblingCountPagination = () => {
   return (
     <div>
+      <h4>Sibling Count = 0</h4>
+      <Pagination siblingCount={0} defaultPage={7} count={15} />
+      <br />
+
       <h4>Sibling Count = 1</h4>
       <Pagination siblingCount={1} defaultPage={7} count={15} />
       <br />

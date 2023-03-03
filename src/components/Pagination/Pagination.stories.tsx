@@ -14,10 +14,10 @@ export const DefaultPagination = () => (
 
 export const DifferentColorPagination = () => (
     <div>
-        <Pagination type="primary" currentPage={6} pageSize={10}
-                    total={100}></Pagination>
-        <Pagination type="secondary" currentPage={6} pageSize={10} total={100}></Pagination>
+        <Pagination type="primary" currentPage={2} pageSize={10} total={51}></Pagination>
+        <Pagination type="secondary" currentPage={5} pageSize={10} total={100}></Pagination>
         <Pagination type="danger" currentPage={6} pageSize={10} total={100}></Pagination>
+        <Pagination disabled={true} currentPage={6} pageSize={10} total={100}></Pagination>
     </div>
 
 );
@@ -36,7 +36,7 @@ export const DifferentSizePagination = () => (
 
 export const PaginationWithCallback = () => (
     <div>
-        <Pagination type="primary" onChange={action('currentPage')} currentPage={6} pageSize={10}
+        <Pagination type="primary" onChange={action('currentPage')} currentPage={4} pageSize={10}
                     total={100}></Pagination>
         <Pagination type="secondary" onChange={action('currentPage')} currentPage={6} pageSize={10}
                     total={100}></Pagination>

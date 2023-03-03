@@ -40,7 +40,7 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
     };
     const paginationRange = useMemo(() => {
         // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-        const totalPageNumbers = 6;
+        const totalPageNumbers = 3;
         /*
           If the number of pages is less than the page numbers we want to show in our
           paginationComponent, we return the range [1..totalPageCount]
@@ -116,6 +116,9 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
     }
 
     function onPageChange(pageNumber: number | string) {
+        if (disabled) {
+            return
+        }
         if (typeof pageNumber === 'number') {
             setPage(pageNumber)
             if (onChange) {
@@ -150,7 +153,7 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
     });
 
     return (
-        <ul className={styleClasses}>
+        <ul className={styleClasses} data-testid='pagination-element'>
             <li>
                 <button onClick={() => onPageChange(page - 1)} disabled={page === 1} className={buttonStyleClasses}>
                     <svg viewBox="0 0 24 24">
@@ -160,7 +163,7 @@ export const Pagination: FC<(PatPaginationProps)> = (props) => {
             </li>
             {paginationRange.map(pageNumber => {
                 if (pageNumber === DOT) {
-                    return <li className="pagination-item dots">&#8230;</li>;
+                    return <li>&#8230;</li>;
                 }
                 return (
                     <li>

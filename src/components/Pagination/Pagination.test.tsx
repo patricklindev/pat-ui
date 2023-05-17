@@ -9,4 +9,13 @@ describe('Pagination', () => {
     );
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it('should render the default pagination', () => {
+    // const btnProps = {
+    //   onClick: jest.fn(),
+    // };
+    const wrapper = render(<Pagination>Default Pagination</Pagination>);
+    const element = wrapper.queryByText('Pagination') as HTMLElement;
+    expect(element).toBeInTheDocument();
+  });
 });

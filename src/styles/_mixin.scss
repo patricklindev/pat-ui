@@ -4,22 +4,22 @@
   border-radius: $border-radius;
 }
 
-@mixin button-style(
-  $color,
+@mixin button-style($color,
   $background,
   $border-color,
   $hover-color: $color,
   $hover-background-color: lighten($background, 7.5%),
-  $hover-border-color: lighten($border-color, 10%)
-) {
+  $hover-border-color: lighten($border-color, 10%)) {
   color: $color;
   background: $background;
   border-color: $border-color;
+
   &:hover {
     color: $hover-color;
     background: $hover-background-color;
     border-color: $hover-border-color;
   }
+
   &.focus,
   &:focus {
     color: $hover-color;
@@ -45,16 +45,15 @@
 @mixin size-message($msg-indent-left) {
   text-indent: $msg-indent-left;
 }
+
 @mixin dropdown-border-style($border-width, $border-color) {
   border: $border-width solid $border-color;
 }
 
-@mixin dropdown-border-radius-style(
-  $border-top-left-radius,
+@mixin dropdown-border-radius-style($border-top-left-radius,
   $border-top-right-radius,
   $border-bottom-left-radius,
-  $border-bottom-right-radius
-) {
+  $border-bottom-right-radius) {
   border-top-left-radius: $border-top-left-radius;
   border-top-right-radius: $border-top-right-radius;
   border-bottom-left-radius: $border-bottom-left-radius;
@@ -73,4 +72,31 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+@mixin slider-size($slider-track-height, $slider-thumb-width, $slider-thumb-height) {
+  height: $slider-track-height;
+  border-radius: $slider-track-height / 2;
+
+  &::-webkit-slider-thumb {
+    width: $slider-thumb-width;
+    height: $slider-thumb-height;
+  }
+
+  &::-moz-range-thumb {
+    width: $slider-thumb-width;
+    height: $slider-thumb-height;
+  }
+}
+
+@mixin slider-type($color) {
+  background: #{$color}38;
+
+  &::-webkit-slider-thumb {
+    background: $color;
+  }
+
+  &::-moz-range-thumb {
+    background: $color;
+  }
 }

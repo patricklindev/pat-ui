@@ -47,33 +47,22 @@ export const Pagination: FC<PaginationProps> = ({
   let renderItems = range(1, totalPageNumber);
 
   function renderPagination() {
-    if (currentPage === 1) {
-      return (
-        <div data-testid="pagination">
-          <PaginationOption disabled key={0}>
-            &#8249;
-          </PaginationOption>
-          {renderItems.map((element) => {
-            return <PaginationOption key={element}>{element}</PaginationOption>;
-          })}
-          <PaginationOption key={totalPageNumber + 1}>&#8250;</PaginationOption>
-        </div>
-      );
-    } else if (currentPage === totalPageNumber) {
-      return (
-        <div data-testid="pagination">
-          <PaginationOption key={0}>&#8249;</PaginationOption>
-          {renderItems.map((element) => {
-            return <PaginationOption key={element}>{element}</PaginationOption>;
-          })}
-          <PaginationOption disabled key={totalPageNumber + 1}>
-            &#8250;
-          </PaginationOption>
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <div data-testid="pagination">
+        <PaginationOption key={0} disabled={currentPage === 1}>
+          &#8249;
+        </PaginationOption>
+        {renderItems.map((element) => {
+          return <PaginationOption key={element}>{element}</PaginationOption>;
+        })}
+        <PaginationOption
+          key={totalPageNumber + 1}
+          disabled={currentPage === totalPageNumber}
+        >
+          &#8250;
+        </PaginationOption>
+      </div>
+    );
   }
 
   return (

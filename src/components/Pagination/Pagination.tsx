@@ -30,32 +30,34 @@ type NativeAchorButtonProps = IPaginationProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
 
-type NumberOrFC = number | FC;
-
-function createArrayFrom1to(n: number | undefined): NumberOrFC[] {
-  const numberArray: NumberOrFC[] = [];
-  if (n === undefined) {
-    n = 10;
-  }
+function createArrayFrom1to(n: number): number[] {
+  const numberArray: number[] = [];
   for (let i = 1; i <= n; i++) {
     numberArray.push(i);
   }
   return numberArray;
 }
 
-export const Pagination: FC<PaginationProps> = (props) => {
-  const { className, pagSize, pagType, disabled, count, defaultPage, ...rest } =
-    props;
-
+export const Pagination: FC<PaginationProps> = ({
+  className,
+  pagSize,
+  pagType,
+  disabled,
+  count = 10,
+  defaultPage = 1,
+  ...rest
+}) => {
   let renderItems = createArrayFrom1to(count);
 
   return (
     <div data-testid="pagination">
-      <PaginationOption>&#8249;</PaginationOption>
+      <PaginationOption key={'0'}>&#8249;</PaginationOption>
       {renderItems.map((element) => {
-        return <PaginationOption>{element}</PaginationOption>;
+        return (
+          <PaginationOption key={String(element)}>{element}</PaginationOption>
+        );
       })}
-      <PaginationOption>&#8250;</PaginationOption>
+      <PaginationOption key={String(count + 1)}>&#8250;</PaginationOption>
     </div>
   );
 };

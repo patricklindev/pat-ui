@@ -16,6 +16,8 @@ describe('Pagination', () => {
     // };
     const wrapper = render(<Pagination>Default Pagination</Pagination>);
     const element = wrapper.queryByText('Pagination') as HTMLElement;
+    expect(element).not.toBeNull();
     expect(element).toBeInTheDocument();
+    expect(element.tagName).toBe('DIV');
   });
 });

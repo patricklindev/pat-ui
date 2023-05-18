@@ -3,7 +3,7 @@
 exports[`Pagination should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
-    Pagination
+    left right
   </div>
 </DocumentFragment>
 `;

@@ -1,5 +1,7 @@
 import React, { ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react';
 
+import PaginationOption from './PaginationOption';
+
 export type PaginationSize = 'lg' | 'sm';
 export type PaginationType =
   | 'primary'
@@ -12,11 +14,14 @@ export interface IPaginationProps {
   /** set customized style */
   className?: string;
   /** set button size */
-  btnSize?: PaginationSize;
+  pagSize?: PaginationSize;
   /** set button type */
-  btnType?: PaginationType;
+  pagType?: PaginationType;
   /** set disabled button */
   disabled?: boolean;
+  /** set pagination number */
+  count?: number;
+  defaultPage?: number;
 }
 
 type NativeButtonProps = IPaginationProps &
@@ -25,8 +30,42 @@ type NativeAchorButtonProps = IPaginationProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
 
+type NumberOrFC = number | FC;
+
+function createArrayFrom1to(n: number | undefined): NumberOrFC[] {
+  const numberArray: NumberOrFC[] = [];
+  if (n === undefined) {
+    n = 10;
+  }
+  for (let i = 1; i <= n; i++) {
+    numberArray.push(i);
+  }
+  return numberArray;
+}
+
 export const Pagination: FC<PaginationProps> = (props) => {
-  return <div>Pagination</div>;
+  const { className, pagSize, pagType, disabled, count, defaultPage } = props;
+
+  let renderItems = createArrayFrom1to(count);
+
+  // console.log(count);
+
+  return (
+    <div>
+      left
+      {renderItems.map((element) => {
+        return <PaginationOption>{element}</PaginationOption>;
+      })}
+      right
+    </div>
+  );
+};
+
+Pagination.defaultProps = {
+  pagType: 'default',
+  disabled: false,
+  count: 10,
+  defaultPage: 1,
 };
 
 export default Pagination;

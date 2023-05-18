@@ -15,7 +15,7 @@ describe('Pagination', () => {
     //   onClick: jest.fn(),
     // };
     const wrapper = render(<Pagination>Default Pagination</Pagination>);
-    const element = wrapper.queryByText('Pagination') as HTMLElement;
+    const element = wrapper.getByTestId('pagination') as HTMLElement;
     expect(element).not.toBeNull();
     expect(element).toBeInTheDocument();
     expect(element.tagName).toBe('DIV');

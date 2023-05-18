@@ -44,19 +44,18 @@ function createArrayFrom1to(n: number | undefined): NumberOrFC[] {
 }
 
 export const Pagination: FC<PaginationProps> = (props) => {
-  const { className, pagSize, pagType, disabled, count, defaultPage } = props;
+  const { className, pagSize, pagType, disabled, count, defaultPage, ...rest } =
+    props;
 
   let renderItems = createArrayFrom1to(count);
 
-  // console.log(count);
-
   return (
-    <div>
-      left
+    <div data-testid="pagination">
+      <PaginationOption>&#8249;</PaginationOption>
       {renderItems.map((element) => {
         return <PaginationOption>{element}</PaginationOption>;
       })}
-      right
+      <PaginationOption>&#8250;</PaginationOption>
     </div>
   );
 };

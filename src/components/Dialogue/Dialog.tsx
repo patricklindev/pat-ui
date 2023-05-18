@@ -41,8 +41,12 @@ export const Dialog: FC<PatDialogProps> = (props) => {
   if (className) styleClasses += ' ' + className;
 
   let dialog;
-  let dialogContent = <div className='dialog__content'>{props.children}</div>
-  dialog = <div className={styleClasses}>dialogContent</div>;
+  dialog = (
+    <div className={styleClasses}>
+      <div className='dialog__content'>
+      {props.children}
+      </div>
+    </div>);
   return dialog;
 };
 

@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react';
 
 import PaginationOption from './PaginationOption';
+import { range } from '../../utils/range';
 
 export type PaginationSize = 'lg' | 'sm';
 export type PaginationType =
@@ -20,8 +21,10 @@ export interface IPaginationProps {
   /** set disabled button */
   disabled?: boolean;
   /** set pagination number */
-  count?: number;
-  defaultPage?: number;
+  totalPageNumber?: number;
+  currentPage?: number;
+  rowsPerPage?: number;
+  onPageChange?: Function;
 }
 
 type NativeButtonProps = IPaginationProps &
@@ -30,43 +33,66 @@ type NativeAchorButtonProps = IPaginationProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
 
-function createArrayFrom1to(n: number): number[] {
-  const numberArray: number[] = [];
-  for (let i = 1; i <= n; i++) {
-    numberArray.push(i);
-  }
-  return numberArray;
-}
-
 export const Pagination: FC<PaginationProps> = ({
   className,
   pagSize,
   pagType,
   disabled,
-  count = 10,
-  defaultPage = 1,
+  totalPageNumber = 10,
+  currentPage = 1,
+  rowsPerPage,
+  onPageChange,
   ...rest
 }) => {
-  let renderItems = createArrayFrom1to(count);
+  let renderItems = range(1, totalPageNumber);
+
+  function renderPagination() {
+    if (currentPage === 1) {
+      return (
+        <div data-testid="pagination">
+          <PaginationOption disabled key={0}>
+            &#8249;
+          </PaginationOption>
+          {renderItems.map((element) => {
+            return <PaginationOption key={element}>{element}</PaginationOption>;
+          })}
+          <PaginationOption key={totalPageNumber + 1}>&#8250;</PaginationOption>
+        </div>
+      );
+    } else if (currentPage === totalPageNumber) {
+      return (
+        <div data-testid="pagination">
+          <PaginationOption key={0}>&#8249;</PaginationOption>
+          {renderItems.map((element) => {
+            return <PaginationOption key={element}>{element}</PaginationOption>;
+          })}
+          <PaginationOption disabled key={totalPageNumber + 1}>
+            &#8250;
+          </PaginationOption>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
 
   return (
-    <div data-testid="pagination">
-      <PaginationOption key={'0'}>&#8249;</PaginationOption>
-      {renderItems.map((element) => {
-        return (
-          <PaginationOption key={String(element)}>{element}</PaginationOption>
-        );
-      })}
-      <PaginationOption key={String(count + 1)}>&#8250;</PaginationOption>
-    </div>
+    // <div data-testid="pagination">
+    //   <PaginationOption key={0}>&#8249;</PaginationOption>
+    //   {renderItems.map((element) => {
+    //     return <PaginationOption key={element}>{element}</PaginationOption>;
+    //   })}
+    //   <PaginationOption key={totalPageNumber + 1}>&#8250;</PaginationOption>
+    // </div>
+    renderPagination()
   );
 };
 
 Pagination.defaultProps = {
   pagType: 'default',
   disabled: false,
-  count: 10,
-  defaultPage: 1,
+  totalPageNumber: 10,
+  currentPage: 1,
 };
 
 export default Pagination;

@@ -1,0 +1,70 @@
+.skeleton {
+    background-color: rgb(216, 216, 216); // light gray background
+    border-radius: 4px;
+    overflow: hidden;
+
+    &.pulse {
+        animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    &.wave {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, .2), transparent);
+            animation: wave 1.5s infinite;
+        }
+    }
+
+    &.circular {
+        border-radius: 50%;
+    }
+
+    &.rectangular {
+        border-radius: 0;
+    }
+
+    &.rounded {
+        border-radius: 20px;
+    }
+
+    &.text {
+        height: 16px;
+        width: 100%;
+        border-radius: 4px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

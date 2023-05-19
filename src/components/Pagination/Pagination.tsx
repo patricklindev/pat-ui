@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react';
 
 import PaginationOption from './PaginationOption';
 import { range } from '../../utils/range';
+import { usePagination } from '../../utils/hooks/usePagination';
 
 export type PaginationSize = 'lg' | 'sm';
 export type PaginationType =
@@ -44,7 +45,28 @@ export const Pagination: FC<PaginationProps> = ({
   onPageChange,
   ...rest
 }) => {
-  let renderItems = range(1, totalPageNumber);
+  // let renderItems = range(1, totalPageNumber);
+
+  // function renderPagination() {
+  //   return (
+  //     <div data-testid="pagination">
+  //       <PaginationOption key={0} disabled={currentPage === 1}>
+  //         &#8249;
+  //       </PaginationOption>
+  //       {renderItems.map((element) => {
+  //         return <PaginationOption key={element}>{element}</PaginationOption>;
+  //       })}
+  //       <PaginationOption
+  //         key={totalPageNumber + 1}
+  //         disabled={currentPage === totalPageNumber}
+  //       >
+  //         &#8250;
+  //       </PaginationOption>
+  //     </div>
+  //   );
+  // }
+
+  let renderItems = usePagination({ totalPageNumber, currentPage });
 
   function renderPagination() {
     return (
@@ -53,6 +75,9 @@ export const Pagination: FC<PaginationProps> = ({
           &#8249;
         </PaginationOption>
         {renderItems.map((element) => {
+          if (element === true) {
+            return <span className="dots">&#8230;</span>;
+          }
           return <PaginationOption key={element}>{element}</PaginationOption>;
         })}
         <PaginationOption
@@ -65,16 +90,7 @@ export const Pagination: FC<PaginationProps> = ({
     );
   }
 
-  return (
-    // <div data-testid="pagination">
-    //   <PaginationOption key={0}>&#8249;</PaginationOption>
-    //   {renderItems.map((element) => {
-    //     return <PaginationOption key={element}>{element}</PaginationOption>;
-    //   })}
-    //   <PaginationOption key={totalPageNumber + 1}>&#8250;</PaginationOption>
-    // </div>
-    renderPagination()
-  );
+  return renderPagination();
 };
 
 Pagination.defaultProps = {

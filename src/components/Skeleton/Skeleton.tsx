@@ -4,7 +4,6 @@ import { classNames } from '../../utils/classNames';
 type SkeletonAnimation = 'pulse'
     | 'wave'
     | false;
-type SkeletonSize = Array<Function | object | boolean> | Function | object;
 type SkeletonVariant = 'circular'
     | 'rectangular'
     | 'rounded'
@@ -18,8 +17,6 @@ export interface ISkeletonProps {
     component?: ElementType,
     // Height of the skeleton.Useful when you don't want to adapt the skeleton to a text element but for instance a card.
     height?: number | string,
-    // The system prop that allows defining system overrides as well as additional CSS styles.See the `sx` page for more details.
-    sx?: SkeletonSize,
     // The type of content that will be rendered.
     variant?: SkeletonVariant
     // Width of the skeleton.Useful when the skeleton is inside an inline element with no width of its own.
@@ -33,7 +30,6 @@ export const Skeleton: React.FC<PatSkeletonProps> = (props) => {
         animation,
         component: Component = 'div',
         height,
-        sx,
         variant,
         width,
         children,

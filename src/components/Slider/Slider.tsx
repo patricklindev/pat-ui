@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FC } from 'react';
+import React, { useState, ChangeEvent, FC, useEffect, useMemo } from 'react';
 import { classNames } from '../../utils/classNames';
 import SliderMark from './SliderMark';
 
@@ -14,7 +14,8 @@ export interface SliderProps {
   className?: string;
   sliderSize?: string;
   sliderType?: string;
-  defaultValue?: number;
+  defaultValue?: number | number[];
+  value?: number | number[];
   disabled?: boolean;
   min?: number;
   max?: number;
@@ -26,13 +27,28 @@ export const Slider: FC<SliderProps> = ({
   sliderSize = 'md',
   sliderType = 'primary',
   defaultValue = 50,
+  value,
   min = 0,
   max = 100,
-  disabled,
+  disabled = false,
   marks,
   ...rest
 }) => {
-  const [value, setValue] = useState(defaultValue);
+
+  defaultValue = useMemo(() => value !== undefined ? value : defaultValue
+  , [value]);
+  const [rightValue, setRightValue] = useState<number | undefined>();
+  const [leftValue, setLeftValue] = useState<number | undefined>();
+
+  useEffect(() => {
+    if (typeof defaultValue === 'object') {
+      setRightValue(defaultValue[1]);
+      setLeftValue(defaultValue[0]);
+    } else {
+      setRightValue(defaultValue);
+    }
+  }, [])
+
   const markLabeled = (marks: any): boolean => {
     for (let mark of marks) {
       if (!!mark.label) {
@@ -58,12 +74,28 @@ export const Slider: FC<SliderProps> = ({
     disabled: !!disabled,
   })
 
+  let thumbClasses = classNames('slider_thumb', {
+    [`slider_thumb-${sliderType}`]: true,
+    [`slider_thumb-${sliderSize}`]: !!sliderSize,
+    disabled: !!disabled,
+  })
+
   if (className) {
     styleClasses += ' ' + className;
   }
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(Math.round(Number(e.target.value)));
+    if (typeof defaultValue === 'number') {
+      setRightValue(Number(e.target.value));
+    } else {
+      let leftDistance = Math.abs(Number(e.target.value) - leftValue!);
+      let rightDistance = Math.abs(Number(e.target.value) - rightValue!);
+      if (leftDistance <= rightDistance) {
+        setLeftValue(Number(e.target.value));
+      } else {
+        setRightValue(Number(e.target.value));
+      }
+    }
   };
 
   const calculatePos = (value: number, min: number, max: number) => {
@@ -72,13 +104,15 @@ export const Slider: FC<SliderProps> = ({
 
   return (
     <span className={containerClasses}>
-      <span className={styleValueClasses} style={{ width: `${calculatePos(value, min, max)}%`, left: '0%' }}></span>
+      <span className={styleValueClasses} style={{ width: `${leftValue === undefined ? calculatePos(rightValue!, min, max) : calculatePos(rightValue! - leftValue, min, max)}%`, left: `${leftValue === undefined ? 0 : calculatePos(leftValue, min, max)}%` }}></span>
       {marks?.map((mark: any, index: number) => {
         return (
-          <SliderMark key={mark.value + index} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark.value, min, max)} active={mark.value <= value} disabled={disabled} />
+          <SliderMark key={mark.value + index} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark.value, min, max)} active={mark.value <= rightValue!} disabled={disabled} />
         )
       })}
-      <input type="range" min={min} max={max} value={value} className={styleClasses} onChange={changeHandler} disabled={disabled} />
+      {leftValue !== undefined ? <span className={thumbClasses} style={{ left: `${calculatePos(leftValue, min, max)}%` }} data-disabled={disabled}></span> : <></>}
+      <span className={thumbClasses} style={{ left: `${calculatePos(rightValue!, min, max)}%` }} data-disabled={disabled}></span>
+      <input type="range" min={min} max={max} className={styleClasses} onChange={changeHandler} disabled={disabled} />
     </span>
   )
 }

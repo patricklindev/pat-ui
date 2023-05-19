@@ -69,3 +69,9 @@ export const SliderWithMarks = () => {
     </div>
   )
 }
+
+export const rangeSlider = () => {
+  return (
+    <Slider value={[10, 20]} />
+  )
+}

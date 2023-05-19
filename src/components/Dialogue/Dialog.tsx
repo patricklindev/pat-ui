@@ -1,32 +1,20 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { FC, MouseEvent, useState, useEffect } from 'react';
 import { classNames } from '../../utils/classNames';
 
-// export enum ButtonSize {
-//   Large = 'lg',
-//   Small = 'sm',
-// }
-export type ButtonSize = 'lg' | 'sm';
-export type ButtonType =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'default'
-  | 'link';
-// export enum ButtonType {
-//   Primary = 'primary',
-//   Secondary = 'secondary',
-//   Danger = 'danger',
-//   Default = 'default',
-//   Link = 'link',
-// }
+export type DialogCloseReason = 
+  | 'backdropClick' 
+  | 'escapeKeyDown'
+
 export interface IDialogProps {
   /** set customized style */
   className?: string;
+  /** set whether dialog is open / visible */
+  open:boolean;
+  /** set callback function on closing dialog */
+  onClose:(event:object, reason: DialogCloseReason)=>void;
 }
 
-type NativeButtonProps = IDialogProps;
-type NativeAchorButtonProps = IDialogProps;
-export type PatDialogProps = NativeButtonProps | NativeAchorButtonProps;
+export type PatDialogProps = IDialogProps
 
 /**
  * A Button indicates a possible user action.
@@ -36,20 +24,29 @@ export type PatDialogProps = NativeButtonProps | NativeAchorButtonProps;
  * ```
  */
 export const Dialog: FC<PatDialogProps> = (props) => {
-  const { children, className, ...rest } = props;
+  
+  const { open, onClose, children, className, ...rest } = props;
+  const handleBackdropClick = (e)=>{
+    onClose(e, 'backdropClick')
+  }
+  const handleEscapeKeyDown = (e) =>{
+    if(e.key==='Escape') onClose(e, 'escapeKeyDown');
+  }
   let styleClasses = 'dialog';
   if (className) styleClasses += ' ' + className;
 
   let dialog;
-  dialog = (
-    <div className={styleClasses}>
-      <div className='dialog__content'>
-      {props.children}
+  dialog = open ? (
+    <div onClick={handleBackdropClick} tab-index="0" onKeyDown={handleEscapeKeyDown} className={styleClasses}>
+      <div onClick={(e)=>{e.stopPropagation()}} className='dialog__body'>
+        {props.children}
       </div>
-    </div>);
+    </div>) : <></>;
   return dialog;
 };
 
-Dialog.defaultProps = {};
+Dialog.defaultProps = {
+  open:true
+};
 
 export default Dialog;

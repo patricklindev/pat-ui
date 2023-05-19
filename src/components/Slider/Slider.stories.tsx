@@ -62,10 +62,12 @@ export const SliderWithMarks = () => {
 
   return (
     <div>
-      <div>Slider with Marks</div>
+      <div>Discrete Slider</div>
+      <Slider marks={true} step={10} />
+      <div>Slider with Custom Marks</div>
       <Slider marks={marks} />
       <div>Slider with Marks and Labels</div>
-      <Slider marks={marksWithLabels} />
+      <Slider marks={marksWithLabels} step={10} />
     </div>
   )
 }

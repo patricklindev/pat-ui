@@ -19,7 +19,8 @@ export interface SliderProps {
   disabled?: boolean;
   min?: number;
   max?: number;
-  marks?: mark[]
+  marks?: mark[] | boolean;
+  step?: number;
 }
 
 export const Slider: FC<SliderProps> = ({
@@ -32,11 +33,12 @@ export const Slider: FC<SliderProps> = ({
   max = 100,
   disabled = false,
   marks,
+  step = 1,
   ...rest
 }) => {
 
   defaultValue = useMemo(() => value !== undefined ? value : defaultValue
-  , [value]);
+    , [value]);
   const [rightValue, setRightValue] = useState<number | undefined>();
   const [leftValue, setLeftValue] = useState<number | undefined>();
 
@@ -49,7 +51,7 @@ export const Slider: FC<SliderProps> = ({
     }
   }, [])
 
-  const markLabeled = (marks: any): boolean => {
+  const markLabeled = (marks: mark[]): boolean => {
     for (let mark of marks) {
       if (!!mark.label) {
         return true;
@@ -59,7 +61,7 @@ export const Slider: FC<SliderProps> = ({
   }
 
   let containerClasses = classNames('slider_container', {
-    ['slider_container-labeled']: !!marks && markLabeled(marks),
+    ['slider_container-labeled']: typeof marks === 'object' && markLabeled(marks),
   })
 
   let styleClasses = classNames('slider', {
@@ -102,17 +104,30 @@ export const Slider: FC<SliderProps> = ({
     return (value - min) * 100 / (max - min);
   }
 
+  const stepArray = useMemo(() => {
+    let res = [];
+    for (let i = min; i <= max; i = i + step) {
+      res.push(i);
+    }
+    console.log(res);
+    return res;
+  }, [])
+
   return (
     <span className={containerClasses}>
       <span className={styleValueClasses} style={{ width: `${leftValue === undefined ? calculatePos(rightValue!, min, max) : calculatePos(rightValue! - leftValue, min, max)}%`, left: `${leftValue === undefined ? 0 : calculatePos(leftValue, min, max)}%` }}></span>
-      {marks?.map((mark: any, index: number) => {
+      {typeof marks === 'boolean' ? stepArray.map((mark: any) => {
+        return (
+          <SliderMark key={mark} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark, min, max)} active={mark <= rightValue!} disabled={disabled} />
+        )
+      }) : marks?.map((mark: any, index: number) => {
         return (
           <SliderMark key={mark.value + index} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark.value, min, max)} active={mark.value <= rightValue!} disabled={disabled} />
         )
       })}
       {leftValue !== undefined ? <span className={thumbClasses} style={{ left: `${calculatePos(leftValue, min, max)}%` }} data-disabled={disabled}></span> : <></>}
       <span className={thumbClasses} style={{ left: `${calculatePos(rightValue!, min, max)}%` }} data-disabled={disabled}></span>
-      <input type="range" min={min} max={max} className={styleClasses} onChange={changeHandler} disabled={disabled} />
+      <input type="range" step={step} min={min} max={max} className={styleClasses} onChange={changeHandler} disabled={disabled} />
     </span>
   )
 }

@@ -1,8 +1,18 @@
 import React from "react";
-// import { SliderSize, ButtonType } from "./Slider";
 import { classNames } from "../../utils/classNames";
+import { mark } from "./Slider";
 
-export const SliderMark = (props: any) => {
+export interface SliderMarkProps {
+  className?: string;
+  sliderSize?: string;
+  sliderType?: string;
+  mark: mark;
+  position?: number;
+  active?: boolean;
+  disabled: boolean;
+}
+
+export const SliderMark = (props: SliderMarkProps) => {
   const { sliderType, sliderSize, mark, position, active, disabled } = props;
 
   let styleMarkClasses = classNames('slider_mark', {

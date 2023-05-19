@@ -74,11 +74,15 @@ export const Pagination: FC<PaginationProps> = ({
         <PaginationOption key={0} disabled={currentPage === 1}>
           &#8249;
         </PaginationOption>
-        {renderItems.map((element) => {
+        {renderItems?.map((element, index) => {
           if (element === true) {
-            return <span className="dots">&#8230;</span>;
+            return (
+              <span key={index} className="dots">
+                &#8230;
+              </span>
+            );
           }
-          return <PaginationOption key={element}>{element}</PaginationOption>;
+          return <PaginationOption key={index}>{element}</PaginationOption>;
         })}
         <PaginationOption
           key={totalPageNumber + 1}

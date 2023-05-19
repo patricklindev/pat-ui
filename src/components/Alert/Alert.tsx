@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { classNames } from '../../utils/classNames';
-import { ReactComponent as Button } from '../../asset/alert/button.svg';
-import { ReactComponent as CloseIcon } from '../../asset/alert/close-icon.svg';
+import { ReactComponent as ButtonSvg } from '../../asset/alert/button.svg';
+import { ReactComponent as CloseSvg } from '../../asset/alert/close-icon.svg';
 import { ReactComponent as ErrorIconStandard } from '../../asset/alert/error-standard.svg';
 import { ReactComponent as ErrorIconFilled } from '../../asset/alert/error-filled.svg';
 import { ReactComponent as InfoIconStandard } from '../../asset/alert/info-standard.svg';
@@ -14,27 +14,31 @@ import { ReactComponent as WarningIconFilled } from '../../asset/alert/warning-f
 export type AlertType = 'standard' | 'filled' | 'outlined';
 export type AlertIcon = 'error' | 'warning' | 'info' | 'success';
 export type AlertSuffix = 'button' | 'closable';
+export type AlertTitle = string;
 export type AlertTextStyle = 'one-line' | 'one-line-bold' | 'two-line' | 'two-line-bold';
 
 export interface AlertProps {
   /** set customized style */
   className?: string;
   /** set alert Type */
-  altType: AlertType;
+  altType?: AlertType;
   /** set alert Icon */
-  altIcon: AlertIcon;
+  altIcon?: AlertIcon;
   /** set alert Suffix */
   altSuffix?: AlertSuffix | ReactNode;
   /** set alert text */
-  altTextStyle: AlertTextStyle;
+  altTitle?: string;
+  /** set alert text */
+  altTextStyle?: AlertTextStyle;
+  /** set action on close-icon button clicked */
+  onClose?: () => void;
   /** set action on button clicked */
-  onButtonClick?: () => void;
-  /** set actionon close button clicked */
-  onCloseClick?: () => void;
+  onClick?: () => void;
 }
 
+
 export const Alert: FC<AlertProps> = (props) => {
-  const { altType, altIcon, altSuffix, altTextStyle, children, className, onButtonClick, onCloseClick, ...rest } = props;
+  const { altType, altIcon, altSuffix, altTitle, altTextStyle, children, className, onClose, onClick, ...rest } = props;
 
   let styleClasses = classNames('alert', {
     [`alert-${altType}`]: true,
@@ -48,6 +52,7 @@ export const Alert: FC<AlertProps> = (props) => {
   
   console.log(styleClasses);
   
+  // Alert Icon element
   let icon = null;
   switch (altIcon) {
     case 'error':
@@ -78,18 +83,50 @@ export const Alert: FC<AlertProps> = (props) => {
       break;
   }
 
+  // Alert Suffix element
+  let suffixElement = null;
+  if (altSuffix) {
+    suffixElement = <div className="alert-suffix">{altSuffix}</div>;
+  } else if (onClose) {
+    suffixElement = (
+      <button className="alert-suffix" onClick={onClose}>
+        <CloseSvg />
+      </button>
+    );
+  } else if (onClick) {
+    suffixElement = (
+      <button className="alert-suffix" onClick={onClick}>
+        <ButtonSvg />
+      </button>
+    );
+  }
+  // console.log(altSuffix);
+
+  // Alert Title element
+  let titleElement = null;
+  if (altTitle) {
+    titleElement = <div className="alert-title">{altTitle}</div>;
+    styleClasses += ' alert-with-title';
+  }
+
   return (
     <div className={styleClasses} {...rest}>
       {icon && <span className="alert-icon">{icon}</span>}
-      <span className="alert-text">{children}</span>
-      {altSuffix === 'button' && onButtonClick && (
-        <Button className="alert-button" onClick={onButtonClick}>Button</Button>
-      )}
-      {altSuffix === 'closable' && onCloseClick && (
-        <button className="alert-close" onClick={onCloseClick}><CloseIcon /></button>
-      )}
+      <div className='alert-text-container'>
+        {titleElement}
+        <div className="alert-content">{children}</div>
+      </div>
+      {suffixElement}
     </div>
   );
 };
+
+Alert.defaultProps = {
+  altType: 'standard',
+  altIcon: 'success',
+  altSuffix: undefined,  // undefined is 'text-only', which is without any suffix
+  altTitle: undefined,
+  altTextStyle: 'one-line'
+}
 
 export default Alert;

@@ -14,12 +14,7 @@ export const DefaultAlert = () => (
     <Alert 
       altIcon='error'
       altTextStyle='one-line'
-      altType='standard'
-      altSuffix={
-        <Button>
-          Button
-        </Button>
-      }>
+      altType='standard'>
        Error Alert
     </Alert>
 
@@ -49,12 +44,7 @@ export const DefaultAlert = () => (
     <Alert 
       altIcon='error'
       altTextStyle='one-line'
-      altType='filled'
-      altSuffix={
-        <Button>
-          Button
-        </Button>
-      }>
+      altType='filled'>
        Error Alert
     </Alert>
 
@@ -84,12 +74,7 @@ export const DefaultAlert = () => (
     <Alert 
       altIcon='error'
       altTextStyle='one-line'
-      altType='outlined'
-      altSuffix={
-        <Button>
-          Button
-        </Button>
-      }>
+      altType='outlined'>
        Error Alert
     </Alert>
 
@@ -116,14 +101,146 @@ export const DefaultAlert = () => (
   </>
 );
 
+export const DiffSuffixAlert = () => (
+  <>
+  <Alert>Alert with text only</Alert>
 
-export const StandardAlert = () => {}
+    <Alert onClose={() => {}}>Alert with onClose</Alert>
 
-export const FilledAlert = () => {}
+    <Alert onClick={() => {}}>Alert with onClick</Alert>
 
-export const OutlinedAlert = () => {}
+    <Alert
+      altSuffix={
+        <Button color="inherit">
+          Button
+        </Button>
+      }
+    >
+      Alert with altSuffix
+    </Alert>
+  </>
+)
 
-export const DiffSuffixAlert = () => {}
+export const DiffTextStyleAlert = () => (
+  <>
+    <Alert altTextStyle='one-line'>Alert content one-line</Alert>
+
+    <Alert altTextStyle='one-line-bold'>Alert content one-line-bold</Alert>
+    
+    <Alert altTitle='Alert title' altTextStyle='two-line'>Alert content two-line</Alert>
+
+    <Alert altTitle='Alert title' altTextStyle='two-line-bold'>Alert content two-line-bold</Alert>
+  </>
+)
+
+export const StandardAlert = () => (
+  <>
+    Error
+    <Alert altType='standard' altIcon='error'>Alert content</Alert>
+    <Alert altType='standard' altIcon='error' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='error' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='error' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='standard' altIcon='error' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='error' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Info
+    <Alert altType='standard' altIcon='info'>Alert content</Alert>
+    <Alert altType='standard' altIcon='info' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='info' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='info' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='standard' altIcon='info' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='info' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Success
+    <Alert altType='standard' altIcon='success'>Alert content</Alert>
+    <Alert altType='standard' altIcon='success' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='success' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='success' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='standard' altIcon='success' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='success' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Warning
+    <Alert altType='standard' altIcon='warning'>Alert content</Alert>
+    <Alert altType='standard' altIcon='warning' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='warning' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='warning' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='standard' altIcon='warning' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='standard' altIcon='warning' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+  </>
+)
+
+export const FilledAlert = () => (
+  <>
+    Error
+    <Alert altType='filled' altIcon='error'>Alert content</Alert>
+    <Alert altType='filled' altIcon='error' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='error' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='error' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='filled' altIcon='error' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='error' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Info
+    <Alert altType='filled' altIcon='info'>Alert content</Alert>
+    <Alert altType='filled' altIcon='info' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='info' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='info' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='filled' altIcon='info' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='info' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Success
+    <Alert altType='filled' altIcon='success'>Alert content</Alert>
+    <Alert altType='filled' altIcon='success' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='success' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='success' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='filled' altIcon='success' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='success' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Warning
+    <Alert altType='filled' altIcon='warning'>Alert content</Alert>
+    <Alert altType='filled' altIcon='warning' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='warning' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='warning' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='filled' altIcon='warning' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='filled' altIcon='warning' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+  </>
+)
+
+export const OutlinedAlert = () => (
+  <>
+    Error
+    <Alert altType='outlined' altIcon='error'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='error' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='error' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='error' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='error' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='error' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Info
+    <Alert altType='outlined' altIcon='info'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='info' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='info' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='info' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='info' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='info' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Success
+    <Alert altType='outlined' altIcon='success'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='success' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='success' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='success' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='success' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='success' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+
+    Warning
+    <Alert altType='outlined' altIcon='warning'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='warning' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='warning' onClose={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='warning' altTextStyle='two-line' altTitle='Alert title'>Alert content</Alert>
+    <Alert altType='outlined' altIcon='warning' altTextStyle='two-line' altTitle='Alert title' onClick={() => {}}>Alert content</Alert>
+    <Alert altType='outlined' altIcon='warning' altTextStyle='two-line' altTitle='Alert title' onClose={() => {}}>Alert content</Alert>
+  </>
+)
+
 
 // export const DiffSuffixAlert = () => {
 //   <div>

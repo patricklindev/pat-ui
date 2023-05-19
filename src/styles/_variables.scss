@@ -297,10 +297,23 @@ $pg-circular-xl-text-size: 30px;
 // slider size
 $slider-track-height-sm: 2px;
 $slider-track-height-md: 4px;
+
+// slider thumb size
 $slider-thumb-width-disabled: 8px;
 $slider-thumb-height-disabled: $slider-thumb-width-disabled;
 $slider-thumb-width-sm: 12px;
 $slider-thumb-height-sm: $slider-thumb-width-sm;
 $slider-thumb-width-md: 20px;
 $slider-thumb-height-md: $slider-thumb-width-md;
-$slider-disabled-color: $gray-400;
+
+// slider colors
+$slider-primary-main: #3F51B5;
+$slider-primary-dark: #303F9F;
+$slider-secondary-main: #F50057;
+$slider-disabled-color: #BDBDBD;
+
+// slider mark size
+$slider-mark-height-sm: $slider-track-height-sm;
+$slider-mark-width-sm: $slider-mark-height-sm;
+$slider-mark-height-md: $slider-track-height-md;
+$slider-mark-width-md: $slider-mark-height-md;

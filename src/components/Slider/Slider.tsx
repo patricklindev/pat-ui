@@ -1,9 +1,10 @@
-import React, { useState, ChangeEvent, FC, useEffect, useMemo } from 'react';
+import React, { useState, ChangeEvent, FC, useEffect, useMemo, useRef } from 'react';
 import { classNames } from '../../utils/classNames';
 import SliderMark from './SliderMark';
 
 export type SliderSize = 'sm' | 'md';
 export type ButtonType = 'primary' | 'secondary';
+// export type valueLabelDisplay = 'on' | 'off' | 'auto';
 
 export type mark = {
   label?: string,
@@ -21,6 +22,7 @@ export interface SliderProps {
   max?: number;
   marks?: mark[] | boolean;
   step?: number;
+  // valueLabelDisplay?: string;
 }
 
 export const Slider: FC<SliderProps> = ({
@@ -34,6 +36,7 @@ export const Slider: FC<SliderProps> = ({
   disabled = false,
   marks,
   step = 1,
+  // valueLabelDisplay='off',
   ...rest
 }) => {
 
@@ -41,6 +44,10 @@ export const Slider: FC<SliderProps> = ({
     , [value]);
   const [rightValue, setRightValue] = useState<number | undefined>();
   const [leftValue, setLeftValue] = useState<number | undefined>();
+  const [displayLeft, setDisplayLeft] = useState<boolean>(false);
+  const [displayRight, setDisplayRight] = useState<boolean>(false);
+  const leftThumb = useRef<HTMLSpanElement>(null);
+  const rightThumb = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     if (typeof defaultValue === 'object') {
@@ -113,6 +120,15 @@ export const Slider: FC<SliderProps> = ({
     return res;
   }, [])
 
+  const ValueLabel: FC<{ value: number, sliderType: string, sliderSize: string }> = ({ value, sliderType, sliderSize }) => {
+    return (
+      <span className={`slider_value-label`}>
+        <span className={`slider_value-label-background slider_value-label-background-${sliderType} slider_value-label-background-${sliderSize}`}></span>
+        <span className={`slider_value-label-number slider_value-label-number-${sliderSize}`}>{value}</span>
+      </span>
+    )
+  }
+
   return (
     <span className={containerClasses}>
       <span className={styleValueClasses} style={{ width: `${leftValue === undefined ? calculatePos(rightValue!, min, max) : calculatePos(rightValue! - leftValue, min, max)}%`, left: `${leftValue === undefined ? 0 : calculatePos(leftValue, min, max)}%` }}></span>
@@ -125,9 +141,13 @@ export const Slider: FC<SliderProps> = ({
           <SliderMark key={mark.value + index} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark.value, min, max)} active={mark.value <= rightValue!} disabled={disabled} />
         )
       })}
-      {leftValue !== undefined ? <span className={thumbClasses} style={{ left: `${calculatePos(leftValue, min, max)}%` }} data-disabled={disabled}></span> : <></>}
-      <span className={thumbClasses} style={{ left: `${calculatePos(rightValue!, min, max)}%` }} data-disabled={disabled}></span>
-      <input type="range" step={step} min={min} max={max} className={styleClasses} onChange={changeHandler} disabled={disabled} />
+      {leftValue !== undefined ? <span className={thumbClasses} ref={leftThumb} style={{ left: `${calculatePos(leftValue, min, max)}%` }} data-disabled={disabled} onMouseOver={() => {if (leftThumb.current !== null) leftThumb.current.style.zIndex = '-1'; setDisplayLeft(true)}}>
+        {displayLeft && <ValueLabel value={leftValue} sliderType={sliderType} sliderSize={sliderSize} />}
+      </span> : <></>}
+      <span className={thumbClasses} ref={rightThumb} style={{ left: `${calculatePos(rightValue!, min, max)}%` }} data-disabled={disabled} onMouseOver={() => { if (rightThumb.current !== null) rightThumb.current.style.zIndex = '-1'; setDisplayRight(true); }}>
+        {displayRight && <ValueLabel value={rightValue!} sliderType={sliderType} sliderSize={sliderSize} />}
+      </span>
+      <input type="range" step={step} min={min} max={max} className={styleClasses} onChange={changeHandler} disabled={disabled} onMouseOut={() => { if (rightThumb.current !== null) rightThumb.current.style.zIndex = '0'; if (leftThumb.current !== null) leftThumb.current.style.zIndex = '0';setDisplayLeft(false); setDisplayRight(false) }} />
     </span>
   )
 }

@@ -41,16 +41,15 @@
 
 .slider_thumb {
   position: absolute;
-  background: black;
   height: 20px;
   width: 20px;
   border-radius: 50%;
   cursor: pointer;
-  pointer-events: none;
   transform: translateX(-50%);
 
   .disabled,
   &[data-disabled=true] {
+    pointer-events: none;
     background: $slider-disabled-color;
     width: $slider-thumb-width-disabled;
     height: $slider-thumb-height-disabled;
@@ -73,6 +72,50 @@
 
 .slider_thumb-secondary {
   background: $slider-secondary-main;
+}
+
+.slider_value-label-number {
+  position: absolute;
+  color: white;
+  transform: translateX(-50%);
+  left: 50%;
+  text-align: center;
+  border-radius: 50%;
+  font-size: .75rem;
+
+  &-sm {
+    top: calc(-150% - 1.125rem);
+  }
+
+  &-md {
+    top: calc(-100% - 1.125rem);
+  }
+}
+
+.slider_value-label-background {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  left: calc(50% - 32px/2);
+  
+  border-radius: 16px 16px 0px 16px;
+  transform: rotate(45deg);
+
+  &-sm {
+    top: calc(-150% - 1.5rem);
+  }
+
+  &-md {
+    top: calc(-100% - 1.5rem);
+  }
+
+  &-primary {
+    background: $slider-primary-main;
+  }
+
+  &-secondary {
+    background: $slider-secondary-main;
+  }
 }
 
 .slider-sm {

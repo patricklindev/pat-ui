@@ -1,3 +1,123 @@
 .alert {
-  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  // color: #333;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-top: 1rem;
+
+  &-icon {
+    width: 1rem;
+    margin-right: 0.8rem;
+    margin-left: 0px; /* adjust the left margin as needed */
+  }
+
+  &-text {
+    flex: 1;
+  }
+
+  &-button {
+    width: 1px;
+  }
+
+  &-close {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  &-standard {
+    height: 48px;
+    width: 280px;
+    left: 0px;
+    top: 0px;   
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #F44336;
+    border-radius: 4px;
+    
+    &-error {
+      background: $alt-error-background;
+    }
+    &-warning {
+      background: $alt-warning-background;
+    }
+    &-info {
+      background: $alt-info-background;
+    }
+    &-success {
+      background: $alt-success-background;
+    }
+  }
+
+  &-filled {
+    height: 48px;
+    width: 280px;
+    left: 0px;
+    top: 0px;
+    border-radius: 4px;
+    color: $white;
+
+    &-error {
+      background: $alt-error-background-filled;
+    }
+    &-warning {
+      background: $alt-warning-background-filled;
+    }
+    &-info {
+      background: $alt-info-background-filled;
+    }
+    &-success {
+      background: $alt-success-background-filled;
+    }
+  }
+
+  &-outlined {
+    height: 48px;
+    width: 280px;
+    left: 0px;
+    top: 0px;
+    border-radius: 4px;
+    background-color: transparent;
+    
+    &-error {
+      border: 1px solid $danger;
+    }
+    &-warning {
+      border: 1px solid $warning;
+    }
+    &-info {
+      border: 1px solid $info;
+    }
+    &-success {
+      border: 1px solid $success;
+    }
+  }
+
+  &-one-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-one-line-bold {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-two-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &-two-line-bold {
+    font-weight: bold;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }

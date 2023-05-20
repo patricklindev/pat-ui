@@ -3,7 +3,9 @@ import { action } from '@storybook/addon-actions';
 import Dialog from './Dialog';
 import DialogTitle from './DialogTitle';
 import DialogContent from './DialogContent';
+import DialogContentText from './DialogContentText';
 import DialogActions from './DialogActions';
+import Icon from '../Icon';
 import Button from '../Button';
 import Input from '../Input';
 import { CloseDialogReason } from './Dialog';
@@ -32,7 +34,10 @@ function SimpleDialogBody(props: SimpleDialogProps) {
       <DialogTitle>Set backup account</DialogTitle>
       <div>
       {emails.map((email) =>
-          <div>{email}</div>)}
+          <div>
+          <Icon name='plus' size='small' />
+          <div>{email}</div>
+          </div>)}
         <div>Add Account</div>  
       </div>
     </Dialog>
@@ -68,10 +73,12 @@ export const AlertDialog = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    action('opening dialog box!')();
     setOpen(true);
   };
 
   const handleClose = () => {
+    action('closing dialog box!')();
     setOpen(false);
   };
 
@@ -90,12 +97,6 @@ export const AlertDialog = () => {
           {"Use Google's location service?"}
         </DialogTitle>
         <DialogContent>
-          
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          
-        </DialogContent>
-        {/*<DialogContent>
           <DialogContentText id="alert-dialog-description">
             Let Google help apps determine location. This means sending anonymous
             location data to Google, even when no apps are running.
@@ -106,7 +107,7 @@ export const AlertDialog = () => {
           <Button onClick={handleClose} autoFocus>
             Agree
           </Button>
-        </DialogActions> */}
+        </DialogActions> 
       </Dialog>
     </div>
   );
@@ -116,10 +117,12 @@ export const FormDialog = () => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    action('opening dialog box!')();
     setOpen(true);
   };
 
   const handleClose = () => {
+    action('closing dialog box!')();
     setOpen(false);
   };
 

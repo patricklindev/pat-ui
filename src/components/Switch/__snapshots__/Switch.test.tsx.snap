@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should match snapshot 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the checked props and disabled 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: not-allowed; user-select: none;"
+>
+  <input
+    checked=""
+    class="switch-input"
+    disabled=""
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch checked"
+    required=""
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(189, 189, 189); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 20px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(97, 97, 97); box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1); transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the default props 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the default props and checked 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    checked=""
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch checked"
+    required=""
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(189, 189, 189); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 20px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(97, 97, 97); box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1); transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the primary color 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the primary color and checked 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    checked=""
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch checked"
+    required=""
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(25, 118, 210); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 20px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(25, 118, 210); box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1); transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the secondary color 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 48px; height: 20px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 28px; height: 25px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the small size 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 36px; height: 14px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 18px; height: 18px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the small size and checked 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    checked=""
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch checked"
+    required=""
+    style="position: relative; display: inline-block; width: 36px; height: 14px; border-radius: 16px; background-color: rgb(189, 189, 189); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 18px; width: 18px; height: 18px; border-radius: 50%; background-color: rgb(97, 97, 97); box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1); transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the small size and disabled and no label 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: not-allowed; user-select: none;"
+>
+  <input
+    class="switch-input"
+    disabled=""
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 36px; height: 14px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 18px; height: 18px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the small size and primary color 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 36px; height: 14px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 18px; height: 18px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;
+
+exports[`Switch should render with the small size and secondary color 1`] = `
+<label
+  class="switch-label"
+  style="margin-left: 8px; margin-right: 8px; display: flex; align-items: center; cursor: pointer; user-select: none;"
+>
+  <input
+    class="switch-input"
+    style="display: none;"
+    type="checkbox"
+  />
+  <span
+    class="switch"
+    required=""
+    style="position: relative; display: inline-block; width: 36px; height: 14px; border-radius: 16px; background-color: rgb(224, 224, 224); transition: background-color 250ms ease;"
+  >
+    <span
+      class="thumb"
+      style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; width: 18px; height: 18px; border-radius: 50%; background-color: rgb(189, 189, 189); box-shadow: none; transition: left 250ms ease;"
+    />
+  </span>
+</label>
+`;

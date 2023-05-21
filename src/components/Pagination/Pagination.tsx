@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react';
 
 import PaginationOption from './PaginationOption';
-import { range } from '../../utils/range';
 import { usePagination } from '../../utils/hooks/usePagination';
 
 export type PaginationSize = 'lg' | 'sm';
@@ -25,7 +24,7 @@ export interface IPaginationProps {
   totalPageNumber?: number;
   currentPage?: number;
   rowsPerPage?: number;
-  onPageChange?: Function;
+  onPageChange: Function;
 }
 
 type NativeButtonProps = IPaginationProps &
@@ -45,56 +44,57 @@ export const Pagination: FC<PaginationProps> = ({
   onPageChange,
   ...rest
 }) => {
-  // let renderItems = range(1, totalPageNumber);
-
-  // function renderPagination() {
-  //   return (
-  //     <div data-testid="pagination">
-  //       <PaginationOption key={0} disabled={currentPage === 1}>
-  //         &#8249;
-  //       </PaginationOption>
-  //       {renderItems.map((element) => {
-  //         return <PaginationOption key={element}>{element}</PaginationOption>;
-  //       })}
-  //       <PaginationOption
-  //         key={totalPageNumber + 1}
-  //         disabled={currentPage === totalPageNumber}
-  //       >
-  //         &#8250;
-  //       </PaginationOption>
-  //     </div>
-  //   );
-  // }
-
   let renderItems = usePagination({ totalPageNumber, currentPage });
 
-  function renderPagination() {
-    return (
-      <div data-testid="pagination">
-        <PaginationOption key={0} disabled={currentPage === 1}>
-          &#8249;
-        </PaginationOption>
-        {renderItems?.map((element, index) => {
-          if (element === true) {
-            return (
-              <span key={index} className="dots">
-                &#8230;
-              </span>
-            );
-          }
-          return <PaginationOption key={index}>{element}</PaginationOption>;
-        })}
-        <PaginationOption
-          key={totalPageNumber + 1}
-          disabled={currentPage === totalPageNumber}
-        >
-          &#8250;
-        </PaginationOption>
-      </div>
-    );
-  }
+  const onNext = () => {
+    onPageChange(currentPage + 1);
+  };
 
-  return renderPagination();
+  const onPrevious = () => {
+    onPageChange(currentPage + 1);
+  };
+
+  return (
+    <div data-testid="pagination" className="pagination">
+      <PaginationOption
+        key={0}
+        disabled={currentPage === 1}
+        onClick={onPrevious}
+        className="pagination--item"
+      >
+        &#8249;
+      </PaginationOption>
+      {renderItems?.map((element, index) => {
+        if (element === true) {
+          return (
+            <span key={index} className="dots pagination--item">
+              &#8230;
+            </span>
+          );
+        }
+        return (
+          <PaginationOption
+            key={index}
+            selected={currentPage === element}
+            className="pagination--item"
+            onClick={() => {
+              onPageChange(element);
+            }}
+          >
+            {element}
+          </PaginationOption>
+        );
+      })}
+      <PaginationOption
+        key={totalPageNumber + 1}
+        className="pagination--item"
+        disabled={currentPage === totalPageNumber}
+        onClick={onNext}
+      >
+        &#8250;
+      </PaginationOption>
+    </div>
+  );
 };
 
 Pagination.defaultProps = {

@@ -1,0 +1,26 @@
+.pagination--item {
+  padding: 0 12px;
+  height: 32px;
+  text-align: center;
+  margin: auto 4px;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  align-items: center;
+  // border-radius: 16px;
+  font-size: 13px;
+  min-width: 32px;
+
+  .dots:hover {
+    background-color: transparent;
+    cursor: default;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+}

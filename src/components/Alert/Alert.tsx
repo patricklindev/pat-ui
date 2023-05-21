@@ -86,16 +86,16 @@ export const Alert: FC<AlertProps> = (props) => {
   // Alert Suffix element
   let suffixElement = null;
   if (altSuffix) {
-    suffixElement = <div className="alert-suffix">{altSuffix}</div>;
+    suffixElement = <div className="alert-suffix" data-testid="alert-suffix">{altSuffix}</div>;
   } else if (onClose) {
     suffixElement = (
-      <button className="alert-suffix" onClick={onClose}>
+      <button className="alert-suffix" onClick={onClose} data-testid="alert-suffix">
         <CloseSvg />
       </button>
     );
   } else if (onClick) {
     suffixElement = (
-      <button className="alert-suffix" onClick={onClick}>
+      <button className="alert-suffix" onClick={onClick} data-testid="alert-suffix">
         <ButtonSvg />
       </button>
     );
@@ -110,7 +110,7 @@ export const Alert: FC<AlertProps> = (props) => {
   }
 
   return (
-    <div className={styleClasses} {...rest}>
+    <div className={styleClasses} {...rest} data-testid='alert'>
       {icon && <span className="alert-icon">{icon}</span>}
       <div className='alert-text-container'>
         {titleElement}

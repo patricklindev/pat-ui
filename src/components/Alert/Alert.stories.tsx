@@ -105,13 +105,15 @@ export const DiffSuffixAlert = () => (
   <>
   <Alert>Alert with text only</Alert>
 
-    <Alert onClose={() => {}}>Alert with onClose</Alert>
+    <Alert onClose={() => {console.log('onClose Click');
+    }}>Alert with onClose</Alert>
 
-    <Alert onClick={() => {}}>Alert with onClick</Alert>
+    <Alert onClick={() => {console.log('onClick Click');
+    }}>Alert with onClick</Alert>
 
     <Alert
       altSuffix={
-        <Button color="inherit">
+        <Button color="inherit" onClick={() => console.log('customized button click')}>
           Button
         </Button>
       }

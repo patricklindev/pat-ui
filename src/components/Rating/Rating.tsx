@@ -1,23 +1,6 @@
 import React, { FC, useState, useRef } from 'react';
 import { classNames } from '../../utils/classNames';
-import { IconPath } from '../Icon/Icons';
-/*
-Users  should be able to preview the rating by hovering on the ‘stars’(proper animation should be applied)
 
-Developers should be able to disable the component from props
-
-Developers should be able to provide the label of the component from props
-
-Developers should be able to set the precision of the rating component(Users can give a fraction of stars)
-
-Developers can choose sizes of the rating component among various predefined options from props
-
-Developers can decide the number of stars in total from props
-
-Developers should be able to control the value of the rating from outside of the component by providing a prop.
-
-Developers should be able to listen to the change of the value of the component from outside of the component by providing the onChange callback function as a prop.
-*/
 export interface IRatingProps {
   className?: string;
   name?: string;
@@ -43,6 +26,7 @@ interface StarPropsType {
   empty: string;
   fraction: number;
   className: string;
+  uniqueId: string;
   handleRatingChange: (event: React.MouseEvent, value: number) => void;
   handleMouseHover: (event: React.MouseEvent) => void;
   handleMouseLeave: (event: React.MouseEvent) => void;
@@ -52,33 +36,28 @@ const Star = ({
   fill,
   empty,
   className,
+  uniqueId,
   fraction,
   handleRatingChange,
   handleMouseHover,
   handleMouseLeave,
 }: StarPropsType) => {
-  // console.log(`filled:${fraction}%`);
-
   return (
     <div
       id={starId.toString()}
       onClick={(e) => {
-        // console.log(starId);
         handleRatingChange(e, starId);
       }}
       onMouseMoveCapture={(e) => {
         handleMouseHover(e);
       }}
-      // onMouseEnter={(e) => {
-      //   handleMouseEnter(e);
-      // }}
       onMouseLeave={(e) => {
         handleMouseLeave(e);
       }}
     >
-      <svg viewBox="0 0 24 24" className={className} id={starId.toString()}>
+      <svg viewBox="0 0 24 24" className={className}>
         <defs>
-          <linearGradient id={`star-${starId}`}>
+          <linearGradient id={`star-${uniqueId}`}>
             <stop offset="0%" stopColor={fill} />
             <stop offset={`${fraction}%`} stopColor={fill} />
             <stop offset={`${fraction}%`} stopColor={empty} />
@@ -87,7 +66,7 @@ const Star = ({
         </defs>
 
         <path
-          fill={`url(#star-${starId})`}
+          fill={`url(#star-${uniqueId}`}
           d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
         ></path>
       </svg>
@@ -102,8 +81,8 @@ export const Rating: FC<patRatingProp> = (props) => {
     value,
     defaultValue,
     precision = 1,
-    readOnly,
-    disabled,
+    readOnly = false,
+    disabled = false,
     size,
     max,
     onChangeActive,
@@ -119,9 +98,7 @@ export const Rating: FC<patRatingProp> = (props) => {
     styleClasses += ' ' + className;
   }
   const numberOfStars = max ? max : 5;
-
   const [rating, setRating] = useState<number>(value ? Math.floor(value) : -1);
-
   const [lastStarFraction, setLastStarFraction] = useState<number>(
     value ? Math.round((value - Math.floor(value)) * 100) : 0
   );
@@ -139,7 +116,7 @@ export const Rating: FC<patRatingProp> = (props) => {
 
   const handleMouseHover = (event: React.MouseEvent) => {
     const fraction = getFraction(event);
-    if (!disabled) {
+    if (!disabled && !readOnly) {
       if (precision === 1) {
         const id = +event.currentTarget.id;
         setRating(id);
@@ -176,11 +153,7 @@ export const Rating: FC<patRatingProp> = (props) => {
   };
 
   const handleRatingChange = (event: React.MouseEvent, value: number) => {
-    if (!disabled) {
-      if (onChange) {
-        onChange(value);
-      }
-
+    if (!disabled && !readOnly) {
       if (precision === 1) {
         setRating(value);
         currentFraction.current = 100;
@@ -204,12 +177,14 @@ export const Rating: FC<patRatingProp> = (props) => {
       if (getLabelText) {
         return getLabelText(currentTotalRating.current);
       }
+      if (onChange) {
+        onChange(currentTotalRating.current);
+      }
     }
   };
 
   const handleMouseLeave = (event: React.MouseEvent) => {
-    // alert(currentRating.current);
-    if (!disabled) {
+    if (!disabled && !readOnly) {
       setRating(Math.floor(currentRating.current));
       setLastStarFraction(currentFraction.current);
       if (getLabelText) {
@@ -220,21 +195,24 @@ export const Rating: FC<patRatingProp> = (props) => {
     }
   };
   // set the fill and empty color
-  const fill = disabled ? diabledFill : normalFill;
-  const empty = disabled ? disabledEmpty : normalEmpty;
+  const fill = disabled === true ? diabledFill : normalFill;
+  const empty = disabled === true ? disabledEmpty : normalEmpty;
 
   return (
     <div className="rating__container">
-      Rating:
+      {/* Rating:
       <div className="rating_number">
         {lastStarFraction === 100 ? rating + 1 : rating}.
         {lastStarFraction === 100 ? 0 : lastStarFraction}
-      </div>
+      </div> */}
       {Array.from({ length: numberOfStars }).map((_, index) => {
         const starFraction =
           rating > index ? 100 : rating === index ? lastStarFraction : 0;
+        console.log(starFraction);
+        const uniqueId = `${index}-${Math.random()}`;
         return (
           <Star
+            uniqueId={uniqueId}
             key={index}
             starId={index}
             fill={fill}

@@ -2,40 +2,47 @@ import React, { ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react';
 
 import PaginationOption from './PaginationOption';
 import { usePagination } from '../../utils/hooks/usePagination';
+import { PaginationProps } from './PaginationContainer';
 
-export type PaginationSize = 'lg' | 'sm';
-export type PaginationType =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'default'
-  | 'link';
+// export type PaginationSize = 'lg' | 'sm';
+// export type PaginationType =
+//   | 'primary'
+//   | 'secondary'
+//   | 'danger'
+//   | 'default'
+//   | 'link';
 
-export interface IPaginationProps {
-  /** set customized style */
-  className?: string;
-  /** set button size */
-  pagSize?: PaginationSize;
-  /** set button type */
-  pagType?: PaginationType;
-  /** set disabled button */
-  disabled?: boolean;
-  /** set pagination number */
-  totalPageNumber?: number;
-  currentPage?: number;
-  rowsPerPage?: number;
+// export interface IPaginationProps {
+//   /** set customized style */
+//   className?: string;
+//   /** set button size */
+//   pagSize?: PaginationSize;
+//   /** set button type */
+//   pagType?: PaginationType;
+//   /** set disabled button */
+//   disabled?: boolean;
+//   /** set pagination number */
+//   totalPageNumber?: number;
+//   currentPage?: number;
+//   rowsPerPage?: number;
+//   onPageChange: Function;
+//   shape?: string;
+//   variant?: string;
+// }
+
+// type NativeButtonProps = IPaginationProps &
+//   ButtonHTMLAttributes<HTMLButtonElement>;
+// type NativeAchorButtonProps = IPaginationProps &
+//   AnchorHTMLAttributes<HTMLAnchorElement>;
+// export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
+
+export type HandlerProps = {
   onPageChange: Function;
-  shape?: string;
-  variant?: string;
-}
+};
 
-type NativeButtonProps = IPaginationProps &
-  ButtonHTMLAttributes<HTMLButtonElement>;
-type NativeAchorButtonProps = IPaginationProps &
-  AnchorHTMLAttributes<HTMLAnchorElement>;
-export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
+export type PaginationPropsWithHandler = PaginationProps & HandlerProps;
 
-export const Pagination: FC<PaginationProps> = ({
+export const Pagination: FC<PaginationPropsWithHandler> = ({
   className,
   pagSize,
   pagType,
@@ -113,12 +120,12 @@ export const Pagination: FC<PaginationProps> = ({
   );
 };
 
-Pagination.defaultProps = {
-  pagType: 'default',
-  disabled: false,
-  totalPageNumber: 10,
-  currentPage: 1,
-};
+// Pagination.defaultProps = {
+//   pagType: 'default',
+//   disabled: false,
+//   totalPageNumber: 10,
+//   currentPage: 1,
+// };
 
 export default Pagination;
 

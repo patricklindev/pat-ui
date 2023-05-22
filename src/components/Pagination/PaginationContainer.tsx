@@ -1,15 +1,52 @@
 //this component is for story book and test only
-import React, { useState } from 'react';
+import React, {
+  useState,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  FC,
+} from 'react';
 
 import Pagination from './Pagination';
 
-export default function PaginationContainer({
-  type = 'default',
-  size = '',
+export type PaginationSize = 'lg' | 'sm';
+export type PaginationType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'default'
+  | 'link';
+
+export interface IPaginationProps {
+  /** set customized style */
+  className?: string;
+  /** set button size */
+  pagSize?: PaginationSize;
+  /** set button type */
+  pagType?: PaginationType;
+  /** set disabled button */
+  disabled?: boolean;
+  /** set pagination number */
+  totalPageNumber?: number;
+  currentPage?: number;
+  rowsPerPage?: number;
+  // onPageChange: Function;
+  shape?: string;
+  variant?: string;
+}
+
+type NativeButtonProps = IPaginationProps &
+  ButtonHTMLAttributes<HTMLButtonElement>;
+type NativeAchorButtonProps = IPaginationProps &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
+export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
+
+export const PaginationContainer: FC<PaginationProps> = ({
+  pagType = 'default',
+  pagSize,
   shape = 'rounded',
   disabled = false,
   variant = '',
-}) {
+}) => {
   const [page, setPage] = useState(1);
 
   const handleClickPage = (p: number) => {
@@ -21,8 +58,8 @@ export default function PaginationContainer({
       // className="pagination-container"
       currentPage={page}
       onPageChange={handleClickPage}
-      pagType={type}
-      pagSize={size}
+      pagType={pagType}
+      pagSize={pagSize}
       shape={shape}
       disabled={disabled}
       variant={variant}
@@ -30,4 +67,35 @@ export default function PaginationContainer({
       Default Pagination
     </Pagination>
   );
-}
+};
+
+export default PaginationContainer;
+
+// export default function PaginationContainer({
+//   type = 'default',
+//   size = '',
+//   shape = 'rounded',
+//   disabled = false,
+//   variant = '',
+// }) {
+//   const [page, setPage] = useState(1);
+
+//   const handleClickPage = (p: number) => {
+//     setPage(p);
+//   };
+
+//   return (
+//     <Pagination
+//       // className="pagination-container"
+//       currentPage={page}
+//       onPageChange={handleClickPage}
+//       pagType={type}
+//       pagSize={size}
+//       shape={shape}
+//       disabled={disabled}
+//       variant={variant}
+//     >
+//       Default Pagination
+//     </Pagination>
+//   );
+// }

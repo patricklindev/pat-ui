@@ -12,8 +12,8 @@ export const BasicPagination = () => {
   return (
     <div>
       <PaginationContainer></PaginationContainer>
-      <PaginationContainer type="primary"></PaginationContainer>
-      <PaginationContainer type="secondary"></PaginationContainer>
+      <PaginationContainer pagType="primary"></PaginationContainer>
+      <PaginationContainer pagType="secondary"></PaginationContainer>
       <PaginationContainer disabled></PaginationContainer>
     </div>
   );
@@ -25,11 +25,11 @@ export const OutlinedPagination = () => {
       <PaginationContainer variant="outlined"></PaginationContainer>
       <PaginationContainer
         variant="outlined"
-        type="primary"
+        pagType="primary"
       ></PaginationContainer>
       <PaginationContainer
         variant="outlined"
-        type="secondary"
+        pagType="secondary"
       ></PaginationContainer>
       <PaginationContainer variant="outlined" disabled></PaginationContainer>
     </div>
@@ -51,9 +51,9 @@ export const RoundPagination = () => {
 export const PaginationSize = () => {
   return (
     <div>
-      <PaginationContainer size="sm"></PaginationContainer>
+      <PaginationContainer pagSize="sm"></PaginationContainer>
       <PaginationContainer></PaginationContainer>
-      <PaginationContainer size="lg"></PaginationContainer>
+      <PaginationContainer pagSize="lg"></PaginationContainer>
     </div>
   );
 };

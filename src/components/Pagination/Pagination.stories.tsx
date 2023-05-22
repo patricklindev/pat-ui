@@ -53,16 +53,3 @@ export const PaginationSize = () => {
     </div>
   );
 };
-
-// export const DefaultPaginationWithDifferentType = () => {
-//   return (
-//     <div>
-//       <PaginationContainer></PaginationContainer>
-//       <PaginationContainer type="primary"></PaginationContainer>
-//       <PaginationContainer type="secondary"></PaginationContainer>
-//       <PaginationContainer shape="round"></PaginationContainer>
-//       <PaginationContainer shape="round" type="primary"></PaginationContainer>
-//       <PaginationContainer shape="round" type="secondary"></PaginationContainer>
-//     </div>
-//   );
-// };

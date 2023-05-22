@@ -1,17 +1,18 @@
 .pagination--btn {
-  position: relative;
-  display: inline-block;
+  // position: relative;
+  // display: inline-block;
   // font-weight: $btn-font-weight;
   // line-height: $btn-line-height;
-  color: $body-color;
-  white-space: nowrap;
-  text-align: center;
-  vertical-align: middle;
+  // white-space: nowrap;
+  // text-align: center;
+  // vertical-align: middle;
   // border: $btn-border-width solid transparent;
+  // transition: $btn-transition;
+
+  color: $body-color;
   border: none;
   box-shadow: $btn-box-shadow;
   cursor: pointer;
-  transition: $btn-transition;
   margin: 0.5rem 0.25rem;
 
   // btn size
@@ -83,7 +84,6 @@
   @include button-style($black, $white, $gray-400);
   &.selected {
     @include button-style($white, $indigo, $indigo);
-
     &.outlined {
       color: $indigo;
       background-color: rgba($indigo, 0.24);
@@ -91,12 +91,13 @@
     }
   }
 }
-.pagination--btn-danger {
-  @include button-style($white, $white, $danger);
-  &.selected {
-    background-color: rgba(0, 0, 0, 0.08);
-  }
-}
+
+// .pagination--btn-danger {
+//   @include button-style($white, $white, $danger);
+//   &.selected {
+//     background-color: rgba(0, 0, 0, 0.08);
+//   }
+// }
 
 .pagination--btn-link {
   font-weight: $font-weight-normal;
@@ -121,11 +122,11 @@
   padding: 0;
 }
 
-.pagination-container {
-  &.disabled,
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: $btn-disabled-opacity;
-    box-shadow: none;
-  }
-}
+// .pagination-container {
+//   &.disabled,
+//   &[disabled] {
+//     cursor: not-allowed;
+//     opacity: $btn-disabled-opacity;
+//     box-shadow: none;
+//   }
+// }

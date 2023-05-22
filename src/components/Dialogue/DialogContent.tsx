@@ -12,4 +12,8 @@ const { children, className } = props;
 if(className) classes += ' ' + className;
 	return <div className={classes}>{children}</div>
 }
+
+DialogContent.defaultProps = {
+	dividers:false
+}
 export default DialogContent;

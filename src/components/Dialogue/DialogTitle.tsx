@@ -4,8 +4,15 @@ export interface IDialogTitleProps{
 	className?:string;
 }
 export type PatDialogTitleProps = IDialogTitleProps
+/**
+ * Dialog Title can be used in a Dialog to alert users
+ *
+ * ```js
+ * import { DialogTitle } from 'pat-ui'
+ * ```
+ */
 const DialogTitle:FC<PatDialogTitleProps> = (props)=>{
 	const { children, className } = props;
-	return <h1>{children}</h1>
+	return <div className={`dialog__title `+className}>{children}</div>
 }
 export default DialogTitle;

@@ -30,7 +30,7 @@ function SimpleDialogBody(props: SimpleDialogProps) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} className="dialog">
       <DialogTitle>Set backup account</DialogTitle>
       <div>
       {emails.map((email) =>
@@ -131,7 +131,7 @@ export const FormDialog = () => {
       <Button onClick={handleClickOpen}>
         Open form dialog
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} disableEscapeKeyDown={false}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           To subscribe to this website, please enter your email address here. We

@@ -16,11 +16,9 @@ export default function PaginationContainer({
     setPage(p);
   };
 
-  // console.log(disabled);
-
   return (
     <Pagination
-      className="pagination-container"
+      // className="pagination-container"
       currentPage={page}
       onPageChange={handleClickPage}
       pagType={type}

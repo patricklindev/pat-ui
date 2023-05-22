@@ -1,6 +1,6 @@
 import React from 'react';
-import Pagination from './Pagination';
 import { render } from '@testing-library/react';
+import PaginationContainer from './PaginationContainer';
 
 describe('Pagination', () => {
   // it('should match the snapshot', () => {
@@ -14,7 +14,7 @@ describe('Pagination', () => {
     // const btnProps = {
     //   onClick: jest.fn(),
     // };
-    const wrapper = render(<Pagination>Default Pagination</Pagination>);
+    const wrapper = render(<PaginationContainer></PaginationContainer>);
     const element = wrapper.getByTestId('pagination') as HTMLElement;
     expect(element).not.toBeNull();
     expect(element).toBeInTheDocument();

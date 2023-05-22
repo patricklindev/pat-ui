@@ -40,6 +40,10 @@ export const RoundPagination = () => {
   return (
     <div>
       <PaginationContainer shape="round"></PaginationContainer>
+      <PaginationContainer
+        variant="outlined"
+        shape="round"
+      ></PaginationContainer>
     </div>
   );
 };
@@ -47,9 +51,9 @@ export const RoundPagination = () => {
 export const PaginationSize = () => {
   return (
     <div>
-      <PaginationContainer size="lg"></PaginationContainer>
-      <PaginationContainer></PaginationContainer>
       <PaginationContainer size="sm"></PaginationContainer>
+      <PaginationContainer></PaginationContainer>
+      <PaginationContainer size="lg"></PaginationContainer>
     </div>
   );
 };

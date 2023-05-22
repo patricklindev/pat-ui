@@ -23,6 +23,20 @@
     $border-radius
   );
 
+  @include button-style(
+    $body-color,
+    //color
+    $white,
+    //background color
+    $body-color,
+    //border-color
+    $body-color,
+    //$hover-color: $color,
+    $gray-400,
+    //  $hover-background-color: lighten($background, 7.5%),
+    // $hover-border-color:
+  );
+
   &.disabled,
   &[disabled] {
     cursor: not-allowed;
@@ -53,13 +67,23 @@
 }
 
 .pagination--btn-default {
+  // @include button-style(
+  //   $body-color,
+  //   $white,
+  //   $gray-400,
+  //   $primary,
+  //   $white,
+  //   $primary
+  // );
   @include button-style(
     $body-color,
     $white,
+    $body-color,
+    $body-color,
     $gray-400,
-    $primary,
-    $white,
-    $primary
+    $body-color,
+    // $white,
+    // $body-color
   );
   &.selected {
     background-color: rgba(0, 0, 0, 0.08);
@@ -70,7 +94,7 @@
 }
 
 .pagination--btn-primary {
-  @include button-style($black, $white, $gray-400);
+  // @include button-style($black, $white, $gray-400);
   &.selected {
     @include button-style($white, $red, $red);
     &.outlined {
@@ -81,7 +105,7 @@
   }
 }
 .pagination--btn-secondary {
-  @include button-style($black, $white, $gray-400);
+  // @include button-style($black, $white, $gray-400);
   &.selected {
     @include button-style($white, $indigo, $indigo);
     &.outlined {
@@ -105,7 +129,7 @@
   text-decoration: $link-decoration;
   box-shadow: none;
   &:hover {
-    color: $btn-link-hover-color;
+    // color: $btn-link-hover-color;
     text-decoration: $link-hover-decoration;
   }
   &:focus,

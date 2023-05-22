@@ -1,18 +1,26 @@
 import React, { FC, useState, useRef } from 'react';
 import { classNames } from '../../utils/classNames';
-
+export type RatingSize = 'small' | 'large' | 'default';
 export interface IRatingProps {
+  /** Provide custom className  */
   className?: string;
+  /** Provide custom name  */
   name?: string;
+  /** Provide rating value */
   value: number;
-  defaultValue?: number;
+  /** Rating is read only */
   readOnly?: boolean;
+  /** Rating can only be viewed  */
   disabled?: boolean;
-  size?: string;
+  /** Rating icon size: small|large|default */
+  size?: RatingSize;
+  /** Rating icon number */
   max?: number;
+  /** Rating precision: floating number 0-1 */
   precision?: number;
-  onChangeActive?: (event: React.SyntheticEvent, value: number) => void;
+  /** Provide a callback function to control the value of the rating from outside of the component  */
   onChange?: (value: number) => void;
+  /** Provide a callback function to control the label of the rating from outside of the component  */
   getLabelText?: (value: number) => string;
 }
 export type patRatingProp = IRatingProps;
@@ -55,7 +63,11 @@ const Star = ({
         handleMouseLeave(e);
       }}
     >
-      <svg viewBox="0 0 24 24" className={className}>
+      <svg
+        viewBox="0 0 24 24"
+        className={`${className} ${`rating_star-${fraction}`}`}
+        data-testid={`star-${starId}`}
+      >
         <defs>
           <linearGradient id={`star-${uniqueId}`}>
             <stop offset="0%" stopColor={fill} />
@@ -79,13 +91,12 @@ export const Rating: FC<patRatingProp> = (props) => {
     className,
     name,
     value,
-    defaultValue,
     precision = 1,
-    readOnly = false,
-    disabled = false,
+    readOnly,
+    disabled,
     size,
     max,
-    onChangeActive,
+
     onChange,
     getLabelText,
     ...rest
@@ -199,7 +210,7 @@ export const Rating: FC<patRatingProp> = (props) => {
   const empty = disabled === true ? disabledEmpty : normalEmpty;
 
   return (
-    <div className="rating__container">
+    <div className="rating__container" data-testid={`rating__container`}>
       {/* Rating:
       <div className="rating_number">
         {lastStarFraction === 100 ? rating + 1 : rating}.
@@ -208,7 +219,7 @@ export const Rating: FC<patRatingProp> = (props) => {
       {Array.from({ length: numberOfStars }).map((_, index) => {
         const starFraction =
           rating > index ? 100 : rating === index ? lastStarFraction : 0;
-        console.log(starFraction);
+
         const uniqueId = `${index}-${Math.random()}`;
         return (
           <Star
@@ -227,5 +238,10 @@ export const Rating: FC<patRatingProp> = (props) => {
       })}
     </div>
   );
+};
+Rating.defaultProps = {
+  size: 'default',
+  max: 5,
+  precision: 1,
 };
 export default Rating;

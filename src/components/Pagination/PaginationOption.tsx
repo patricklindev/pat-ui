@@ -24,6 +24,8 @@ export interface IButtonProps {
   /** set disabled button */
   disabled?: boolean;
   selected?: boolean;
+  shape: string;
+  variant?: string;
 }
 
 type NativeButtonProps = IButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -32,14 +34,26 @@ type NativeAchorButtonProps = IButtonProps &
 export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
 
 export const PaginationOption: FC<PatButtonProps> = (props) => {
-  const { btnSize, btnType, children, disabled, selected, className, ...rest } =
-    props;
-  let styleClasses = classNames('btn', {
-    [`btn-${btnType}`]: true,
-    [`btn-${btnSize}`]: !!btnSize,
+  const {
+    btnSize,
+    btnType,
+    children,
+    disabled,
+    selected,
+    className,
+    shape,
+    variant,
+    ...rest
+  } = props;
+  let styleClasses = classNames('pagination--btn', {
+    [`pagination--btn-${btnType}`]: true,
+    [`pagination--btn-${btnSize}`]: !!btnSize,
     disabled: !!(disabled && btnType === 'link'),
-    selected: selected,
+    selected: !!selected,
+    round: !!(shape === 'round'),
+    outlined: !!(variant === 'outlined'),
   });
+
   if (className) {
     styleClasses += ' ' + className;
   }

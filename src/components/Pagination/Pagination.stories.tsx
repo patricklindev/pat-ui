@@ -8,21 +8,61 @@ export default {
   component: Pagination,
 };
 
-export const DefaultPagination = () => {
+export const BasicPagination = () => {
   return (
     <div>
-      {/* <Pagination>Default Button</Pagination>
-      <Pagination totalPageNumber={3}>Only have 3 totalPage</Pagination>
-      <Pagination currentPage={5}>current page is 5</Pagination>
-      <Pagination currentPage={7}>current page is 7</Pagination> */}
+      <PaginationContainer></PaginationContainer>
+      <PaginationContainer type="primary"></PaginationContainer>
+      <PaginationContainer type="secondary"></PaginationContainer>
+      <PaginationContainer disabled></PaginationContainer>
     </div>
   );
 };
 
-export const DefaultPaginationWithConatiner = () => {
+export const OutlinedPagination = () => {
   return (
     <div>
-      <PaginationContainer></PaginationContainer>
+      <PaginationContainer variant="outlined"></PaginationContainer>
+      <PaginationContainer
+        variant="outlined"
+        type="primary"
+      ></PaginationContainer>
+      <PaginationContainer
+        variant="outlined"
+        type="secondary"
+      ></PaginationContainer>
+      <PaginationContainer variant="outlined" disabled></PaginationContainer>
     </div>
   );
 };
+
+export const RoundPagination = () => {
+  return (
+    <div>
+      <PaginationContainer shape="round"></PaginationContainer>
+    </div>
+  );
+};
+
+export const PaginationSize = () => {
+  return (
+    <div>
+      <PaginationContainer size="lg"></PaginationContainer>
+      <PaginationContainer></PaginationContainer>
+      <PaginationContainer size="sm"></PaginationContainer>
+    </div>
+  );
+};
+
+// export const DefaultPaginationWithDifferentType = () => {
+//   return (
+//     <div>
+//       <PaginationContainer></PaginationContainer>
+//       <PaginationContainer type="primary"></PaginationContainer>
+//       <PaginationContainer type="secondary"></PaginationContainer>
+//       <PaginationContainer shape="round"></PaginationContainer>
+//       <PaginationContainer shape="round" type="primary"></PaginationContainer>
+//       <PaginationContainer shape="round" type="secondary"></PaginationContainer>
+//     </div>
+//   );
+// };

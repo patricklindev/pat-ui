@@ -1,26 +1,131 @@
-.pagination--item {
-  padding: 0 12px;
-  height: 32px;
+.pagination--btn {
+  position: relative;
+  display: inline-block;
+  // font-weight: $btn-font-weight;
+  // line-height: $btn-line-height;
+  color: $body-color;
+  white-space: nowrap;
   text-align: center;
-  margin: auto 4px;
-  color: rgba(0, 0, 0, 0.87);
-  box-sizing: border-box;
-  align-items: center;
-  // border-radius: 16px;
-  font-size: 13px;
-  min-width: 32px;
+  vertical-align: middle;
+  // border: $btn-border-width solid transparent;
+  border: none;
+  box-shadow: $btn-box-shadow;
+  cursor: pointer;
+  transition: $btn-transition;
+  margin: 0.5rem 0.25rem;
 
-  .dots:hover {
-    background-color: transparent;
-    cursor: default;
+  // btn size
+  @include button-size(
+    $btn-padding-y,
+    $btn-padding-x,
+    $btn-font-size,
+    $border-radius
+  );
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
   }
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.04);
-    cursor: pointer;
+  &.outlined {
+    border: $btn-border-width solid $gray-400;
   }
+}
 
+.pagination--btn-sm {
+  @include button-size(
+    $btn-padding-y-sm,
+    $btn-padding-x-sm,
+    $btn-font-size-sm,
+    $border-radius-sm
+  );
+}
+.pagination--btn-lg {
+  @include button-size(
+    $btn-padding-y-lg,
+    $btn-padding-x-lg,
+    $btn-font-size-lg,
+    $border-radius-lg
+  );
+}
+
+.pagination--btn-default {
+  @include button-style(
+    $body-color,
+    $white,
+    $gray-400,
+    $primary,
+    $white,
+    $primary
+  );
   &.selected {
     background-color: rgba(0, 0, 0, 0.08);
+  }
+  &.outlined {
+    border: $btn-border-width solid $gray-400;
+  }
+}
+
+.pagination--btn-primary {
+  @include button-style($black, $white, $gray-400);
+  &.selected {
+    @include button-style($white, $red, $red);
+    &.outlined {
+      color: $red;
+      background-color: rgba($red, 0.24);
+      border: $btn-border-width solid rgba($red, 0.5);
+    }
+  }
+}
+.pagination--btn-secondary {
+  @include button-style($black, $white, $gray-400);
+  &.selected {
+    @include button-style($white, $indigo, $indigo);
+
+    &.outlined {
+      color: $indigo;
+      background-color: rgba($indigo, 0.24);
+      border: $btn-border-width solid rgba($indigo, 0.5);
+    }
+  }
+}
+.pagination--btn-danger {
+  @include button-style($white, $white, $danger);
+  &.selected {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+}
+
+.pagination--btn-link {
+  font-weight: $font-weight-normal;
+  color: $btn-link-color !important;
+  text-decoration: $link-decoration;
+  box-shadow: none;
+  &:hover {
+    color: $btn-link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+  }
+}
+
+.round {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.pagination-container {
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
   }
 }

@@ -25,6 +25,8 @@ export interface IPaginationProps {
   currentPage?: number;
   rowsPerPage?: number;
   onPageChange: Function;
+  shape?: string;
+  variant?: string;
 }
 
 type NativeButtonProps = IPaginationProps &
@@ -42,8 +44,12 @@ export const Pagination: FC<PaginationProps> = ({
   currentPage = 1,
   rowsPerPage,
   onPageChange,
+  shape = 'roundeded',
+  variant = '',
   ...rest
 }) => {
+  // console.log(disabled);
+
   let renderItems = usePagination({ totalPageNumber, currentPage });
 
   const onNext = () => {
@@ -51,16 +57,19 @@ export const Pagination: FC<PaginationProps> = ({
   };
 
   const onPrevious = () => {
-    onPageChange(currentPage + 1);
+    onPageChange(currentPage - 1);
   };
 
   return (
     <div data-testid="pagination" className="pagination">
       <PaginationOption
         key={0}
-        disabled={currentPage === 1}
+        disabled={disabled || currentPage === 1}
         onClick={onPrevious}
-        className="pagination--item"
+        btnSize={pagSize}
+        btnType={pagType}
+        shape={shape}
+        variant={variant}
       >
         &#8249;
       </PaginationOption>
@@ -76,7 +85,11 @@ export const Pagination: FC<PaginationProps> = ({
           <PaginationOption
             key={index}
             selected={currentPage === element}
-            className="pagination--item"
+            btnSize={pagSize}
+            btnType={pagType}
+            shape={shape}
+            disabled={disabled}
+            variant={variant}
             onClick={() => {
               onPageChange(element);
             }}
@@ -87,8 +100,11 @@ export const Pagination: FC<PaginationProps> = ({
       })}
       <PaginationOption
         key={totalPageNumber + 1}
-        className="pagination--item"
-        disabled={currentPage === totalPageNumber}
+        disabled={disabled || currentPage === totalPageNumber}
+        btnSize={pagSize}
+        btnType={pagType}
+        shape={shape}
+        variant={variant}
         onClick={onNext}
       >
         &#8250;

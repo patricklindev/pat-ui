@@ -6,20 +6,15 @@ export default {
   component: Rating,
 };
 export const DefaultRating = () => {
-  const [rating, setRating] = useState<number>(3);
-
-  const handleRatingChange = (value: number) => {
-    setRating(value);
-  };
   return (
     <div>
       <h3>Basic Rating</h3>
       Large
-      <Rating value={rating} onChange={handleRatingChange} size={'large'} />
+      <Rating value={3} size={'large'} />
       Default
-      <Rating value={rating} onChange={handleRatingChange} size={'default'} />
+      <Rating value={3} size={'default'} />
       Small
-      <Rating value={rating} onChange={handleRatingChange} size={'small'} />
+      <Rating value={3} size={'small'} />
     </div>
   );
 };

@@ -1,0 +1,67 @@
+.checkbox {
+    position: relative;
+    display: inline-block;
+    font-weight: $chkbox-font-weight;
+    line-height: $chkbox-line-height;
+    color: $body-color;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    border: $chkbox-border-width solid transparent;
+    box-shadow: $chkbox-box-shadow;
+    cursor: pointer;
+    transition: $chkbox-transition;
+  
+
+    @include checkbox-size(
+      $chkbox-width,
+      $chkbox-height,
+    );
+  
+    &.disabled,
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: $chkbox-disabled-opacity;
+      box-shadow: none;
+    }
+  }
+
+  .chkbox-group-label {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  .chkbox-label {
+    padding-left: 10px;
+  }
+  
+  .chkbox-sm {
+    @include checkbox-size(
+     $chkbox-width-sm,
+     $chkbox-height-sm,
+    );
+  }
+  .chkbox-lg {
+    @include checkbox-size(
+        $chkbox-width-lg,
+        $chkbox-height-lg,
+    );
+  }
+  
+  .chkbox-default {
+    @include checkbox-style(
+      $body-color,
+      $blue,
+      $gray-400,
+      $primary,
+      $blue,
+      $primary
+    );
+  }
+  
+  .chkbox-primary {
+    @include checkbox-style($white, $primary, $primary);
+  }
+  .chkbox-secondary {
+    @include checkbox-style($white, $secondary, $secondary);
+  }

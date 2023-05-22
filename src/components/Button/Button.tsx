@@ -47,6 +47,7 @@ export type PatButtonProps = NativeButtonProps | NativeAchorButtonProps;
  * import {Button} from 'pat-ui'
  * ```
  */
+
 export const Button: FC<PatButtonProps> = (props) => {
   const { btnSize, btnType, children, disabled, className, ...rest } = props;
   let styleClasses = classNames('btn', {

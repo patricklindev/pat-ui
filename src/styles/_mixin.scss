@@ -74,3 +74,36 @@
   border-radius: $border-radius;
   border-color: $border-color;
 }
+
+@mixin checkbox-size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin checkbox-style(
+  $color,
+  $background,
+  $border-color,
+  $hover-color: $color,
+  $hover-background-color: lighten($background, 7.5%),
+  $hover-border-color: lighten($border-color, 10%)
+) {
+  &:checked {
+    color: $color;
+    background-color: $background;
+    border-color: $border-color;
+    accent-color: $background;
+  }
+  &:hover {
+    color: $hover-color;
+    background-color: $hover-background-color;
+    border-color: $hover-border-color;
+    accent-color: $hover-background-color;
+  }
+  &.focus,
+  &:focus {
+    color: $hover-color;
+    background: $hover-background-color;
+    border-color: $hover-border-color;
+  }
+}

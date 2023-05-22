@@ -2,10 +2,21 @@ import React, { FC } from 'react';
 export interface IDialogActionsProps{
 	/** set style classes*/
 	className?:string;
+	/** set whether to space child components */
+	disableSpacing?:boolean;
 }
 export type PatDialogActionsProps = IDialogActionsProps
+
 const DialogActions:FC<PatDialogActionsProps> = (props)=>{
-const { children, className } = props;
-return <div className={className}>{children}</div>
+const { disableSpacing, children, className } = props;
+
+let dialogActions = <div className={`dialog__actions `+className}>{children}</div>
+if(disableSpacing) {
+	dialogActions.style.gap = 0;
+}
+return dialogActions;
+}
+DialogActions.defaultProps = {
+	disableSpacing:false
 }
 export default DialogActions;

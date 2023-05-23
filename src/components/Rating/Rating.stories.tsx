@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
+
 import Rating from './Rating';
 export default {
   title: 'Rating',
@@ -19,8 +19,6 @@ export const DefaultRating = () => {
   );
 };
 export const RatingDisabled = () => {
-  const [rating, setRating] = useState<number>(3);
-
   return (
     <div>
       <h3>Disabled Rating</h3>
@@ -28,20 +26,18 @@ export const RatingDisabled = () => {
         set the rating to be disabled, and the rating component will not be
         modified
       </p>
-      <Rating value={rating} size={'large'} disabled precision={0.5} />
+      <Rating value={3} size={'large'} disabled precision={0.5} />
     </div>
   );
 };
 export const RatingPrecision = () => {
-  const [rating, setRating] = useState<number>(3);
-
   return (
     <div>
       <h3>Precision Rating</h3>
       <p>
         set the precision of the rating component can rate a fraction of stars
       </p>
-      <Rating value={rating} size={'large'} precision={0.5} />
+      <Rating value={3.5} size={'large'} precision={0.5} />
     </div>
   );
 };

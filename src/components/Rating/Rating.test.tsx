@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Rating, { patRatingProp } from './Rating';
 
 describe('Rating', () => {
   it('should match snapshot 1', () => {
     const { container } = render(<Rating value={3}></Rating>);
-    const mockIds = ['star-1', 'star-2', 'star-3', 'star-4', 'star-5'];
-
     const svgElements = container.querySelectorAll('svg');
     svgElements.forEach((svg, index) => {
       svg

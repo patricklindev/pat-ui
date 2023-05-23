@@ -99,11 +99,12 @@ export const Rating: FC<patRatingProp> = (props) => {
 
     onChange,
     getLabelText,
-    ...rest
+    // ...rest
   } = props;
   let styleClasses = classNames('rating_star', {
     [`rating_star-${size}`]: !!size,
-    [`rating_star-active`]: disabled ? false : true,
+    'rating_star-active': disabled ? false : true,
+    name: !!name,
   });
   if (className) {
     styleClasses += ' ' + className;
@@ -210,7 +211,7 @@ export const Rating: FC<patRatingProp> = (props) => {
   const empty = disabled === true ? disabledEmpty : normalEmpty;
 
   return (
-    <div className="rating__container" data-testid={`rating__container`}>
+    <div className="rating__container" data-testid={'rating__container'}>
       {/* Rating:
       <div className="rating_number">
         {lastStarFraction === 100 ? rating + 1 : rating}.

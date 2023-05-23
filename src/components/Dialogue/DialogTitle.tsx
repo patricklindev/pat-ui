@@ -13,6 +13,6 @@ export type PatDialogTitleProps = IDialogTitleProps
  */
 const DialogTitle:FC<PatDialogTitleProps> = (props)=>{
 	const { children, className } = props;
-	return <div className={`dialog__title `+className}>{children}</div>
+	return <div className={`dialog__title `+className} data-testid='dialog-title-element'>{children}</div>
 }
 export default DialogTitle;

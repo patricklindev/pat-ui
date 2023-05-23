@@ -8,7 +8,7 @@ import DialogActions from './DialogActions';
 import Icon from '../Icon';
 import Button from '../Button';
 import Input from '../Input';
-import { CloseDialogReason } from './Dialog';
+import { DialogCloseReason } from './Dialog';
 export default {
   title: 'Dialogue',
   component: Dialog,
@@ -133,7 +133,7 @@ export const FormDialog = () => {
       </Button>
       <Dialog open={open} onClose={handleClose} disableEscapeKeyDown={false}>
         <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
+        <DialogContent dividers={true}>
           To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           <Input />

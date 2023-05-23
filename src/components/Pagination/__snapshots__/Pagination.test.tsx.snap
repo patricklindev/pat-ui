@@ -3,65 +3,52 @@
 exports[`Pagination should match the snapshot 1`] = `
 <DocumentFragment>
   <div
+    class="pagination"
     data-testid="pagination"
   >
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
+      disabled=""
     >
       ‹
     </button>
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default selected"
     >
       1
     </button>
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
     >
       2
     </button>
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
     >
       3
     </button>
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
     >
       4
     </button>
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
     >
       5
     </button>
-    <button
-      class="btn btn-default"
+    <span
+      class="dots pagination--item"
     >
-      6
-    </button>
+      …
+    </span>
     <button
-      class="btn btn-default"
-    >
-      7
-    </button>
-    <button
-      class="btn btn-default"
-    >
-      8
-    </button>
-    <button
-      class="btn btn-default"
-    >
-      9
-    </button>
-    <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
     >
       10
     </button>
     <button
-      class="btn btn-default"
+      class="pagination--btn pagination--btn-default"
     >
       ›
     </button>

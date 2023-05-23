@@ -29,7 +29,6 @@ export interface IPaginationProps {
   totalPageNumber?: number;
   currentPage?: number;
   rowsPerPage?: number;
-  // onPageChange: Function;
   shape?: string;
   variant?: string;
 }
@@ -70,32 +69,3 @@ export const PaginationContainer: FC<PaginationProps> = ({
 };
 
 export default PaginationContainer;
-
-// export default function PaginationContainer({
-//   type = 'default',
-//   size = '',
-//   shape = 'rounded',
-//   disabled = false,
-//   variant = '',
-// }) {
-//   const [page, setPage] = useState(1);
-
-//   const handleClickPage = (p: number) => {
-//     setPage(p);
-//   };
-
-//   return (
-//     <Pagination
-//       // className="pagination-container"
-//       currentPage={page}
-//       onPageChange={handleClickPage}
-//       pagType={type}
-//       pagSize={size}
-//       shape={shape}
-//       disabled={disabled}
-//       variant={variant}
-//     >
-//       Default Pagination
-//     </Pagination>
-//   );
-// }

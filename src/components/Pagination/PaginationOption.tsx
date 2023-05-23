@@ -64,6 +64,7 @@ export const PaginationOption: FC<PatButtonProps> = (props) => {
       <button
         className={styleClasses}
         disabled={disabled}
+        selected={selected}
         {...(rest as NativeButtonProps)}
       >
         {props.children}

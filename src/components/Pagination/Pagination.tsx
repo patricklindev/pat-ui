@@ -21,8 +21,6 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
   onPageChange,
   shape = 'roundeded',
   variant = '',
-  // shape = 'roundeded',
-  // variant = '',
   ...rest
 }) => {
   // console.log(disabled);

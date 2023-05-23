@@ -1,5 +1,4 @@
 import React, { CSSProperties, ElementType, HTMLAttributes, PropsWithChildren, memo } from 'react';
-import PropTypes from 'prop-types';
 import { classNames } from '../../utils/classNames';
 
 // Animation types for the skeleton component.
@@ -16,7 +15,7 @@ type SkeletonVariant = 'circular'
 
 export interface ISkeletonProps {
     // The animation type. If false, the animation effect is disabled.
-    animation?: SkeletonAnimation,
+    animation: SkeletonAnimation,
     // The component used for the root node. Either a string to use a HTML element or a component.
     component?: ElementType,
     // Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.
@@ -62,17 +61,6 @@ const Skeleton: React.FC<PatSkeletonProps> = memo((props) => {
         </Component>
     );
 });
-
-Skeleton.propTypes = {
-    animation: PropTypes.oneOfType([
-        PropTypes.oneOf(['pulse', 'wave']),
-        PropTypes.bool
-    ]),
-    component: PropTypes.elementType,
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    variant: PropTypes.oneOfType([PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']), PropTypes.string]),
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
 
 Skeleton.defaultProps = {
     animation: false,

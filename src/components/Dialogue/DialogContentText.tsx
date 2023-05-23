@@ -8,6 +8,6 @@ const DialogContentText:FC<PatDialogContentTextProps> = (props)=>{
 let classes = 'dialog__content-text';
 const { children, className } = props;
 if(className) classes += ' ' + className;
-	return <div className={classes}>{children}</div>
+	return <div className={classes} data-testid='dialog-contenttext-element'>{children}</div>
 }
 export default DialogContentText;

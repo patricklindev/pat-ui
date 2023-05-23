@@ -30,13 +30,13 @@ function SimpleDialogBody(props: SimpleDialogProps) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open} className="dialog">
+    <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
       {emails.map((email) =>
-          <div>
-          <Icon name='plus' size='small' />
-          <div>{email}</div>
+          <div style={{display:'flex', gap: '10px'}}>
+            <Icon name='plus' size='small' />
+            <span>{email}</span>
           </div>)}
         <div>Add Account</div>  
       </div>
@@ -83,7 +83,7 @@ export const AlertDialog = () => {
   };
 
   return (
-    <div>
+    <>
       <Button onClick={handleClickOpen}>
         Open alert dialog
       </Button>
@@ -92,9 +92,10 @@ export const AlertDialog = () => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        fullScreen={true}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          Use Google's location service?
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -104,12 +105,12 @@ export const AlertDialog = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleClose}>
             Agree
           </Button>
         </DialogActions> 
       </Dialog>
-    </div>
+    </>
   );
 }
 

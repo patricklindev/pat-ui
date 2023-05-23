@@ -1,11 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dialog Component should match snapshot 1`] = `
-<DocumentFragment>
-  <button
-    class="btn btn-default"
-  >
-     Snapshot Button 
-  </button>
-</DocumentFragment>
-`;
+exports[`Dialog Component and sub-components should match snapshot 1`] = `<DocumentFragment />`;

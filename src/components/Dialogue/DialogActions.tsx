@@ -10,7 +10,7 @@ export type PatDialogActionsProps = IDialogActionsProps
 const DialogActions:FC<PatDialogActionsProps> = (props)=>{
 const { disableSpacing, children, className } = props;
 
-let dialogActions = <div className={`dialog__actions `+className}>{children}</div>
+let dialogActions = <div className={`dialog__actions `+className} data-testid='dialog-actions-element'>{children}</div>
 if(disableSpacing) {
 	dialogActions.style.gap = 0;
 }

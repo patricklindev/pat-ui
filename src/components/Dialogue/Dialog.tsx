@@ -31,10 +31,10 @@ export interface IDialogProps {
   ariaLabelledBy?:string;
   /** set whether escape key triggers onClose handler */
   disableEscapeKeyDown?:boolean
+  /** set maxWidth */
+  maxWidth?:MaxWidthSizeType;
   /** set whether the dialog is fullScreen */
   fullScreen?:boolean
-  /** set maxWidth of the dialog */
-  maxWidth?:MaxWidthSizeType
   /** set scroll */
   scroll?:ScrollType
 }
@@ -50,7 +50,7 @@ export type PatDialogProps = IDialogProps
  */
 export const Dialog: FC<PatDialogProps> = (props) => {
   
-  const { open, onClose, disableEscapeKeyDown, children, className, ...rest } = props;
+  const { open, onClose, disableEscapeKeyDown, maxWidth, children, className, ...rest } = props;
   const handleBackdropClick = (e)=>{
     onClose(e, 'backdropClick')
   }
@@ -78,13 +78,40 @@ export const Dialog: FC<PatDialogProps> = (props) => {
     handleBackdropScrollingBasedOnDialogState();
   }, [open])
   
-  let styleClasses = 'dialog';
-  if (className) styleClasses += ' ' + className;
-
+  let styleClasses;
+  if (className) styleClasses = 'dialog ' + className;
+  else styleClasses  = 'dialog';
+  let dialogBodyClasses = 'dialog__body';
+  switch(maxWidth) {
+    case 'xs':{
+      dialogBodyClasses += ' ' + 'dialog-body-width-xs';
+          break;
+    }
+    case 'sm':{
+      dialogBodyClasses += ' ' + 'dialog-body-width-sm';
+          break;
+    }
+    case 'md':{
+      dialogBodyClasses += ' ' + 'dialog-body-width-md';
+          break;
+    }
+    case 'lg':{
+      dialogBodyClasses += ' ' + 'dialog-body-width-lg';
+          break;
+    }
+    case 'xl':{
+      dialogBodyClasses += ' ' + 'dialog-body-width-xl';
+          break;
+    }
+    default:{
+          dialogBodyClasses += ' ' + 'dialog-body-width-sm';
+          break;
+      }
+  }
   let dialog;
   dialog = open ? (
-    <div onClick={handleBackdropClick} className={styleClasses} data-testid='dialog-element'>
-      <div onClick={(e)=>{e.stopPropagation()}} className='dialog__body' data-testid='dialog-body-element'>
+    <div onClick={handleBackdropClick} className={classNames(styleClasses)} data-testid='dialog-element'>
+      <div onClick={(e)=>{e.stopPropagation()}} className={classNames(dialogBodyClasses)} data-testid='dialog-body-element'>
         {props.children}
       </div>
     </div>) : <></>;

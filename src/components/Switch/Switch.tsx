@@ -1,6 +1,5 @@
 import React, { FC, InputHTMLAttributes, useState, useCallback } from 'react';
 import { classNames } from '../../utils/classNames';
-// import './_Switch.scss';
 
 export interface ISwitchProps {
   /** set different colors */

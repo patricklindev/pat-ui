@@ -11,7 +11,7 @@ let classes = 'dialog__content';
 const { dividers, children, className } = props;
 if(className) classes += ' ' + className;
 	return dividers ? 
-	(<div className={classes} data-testid='dialog-content-element'><hr/>{children}<hr/></div>) :
+	(<div className={classes} data-testid='dialog-content-element'><hr />{children}<hr /></div>) :
 	(<div className={classes} data-testid='dialog-content-element'>{children}</div>)
 }
 

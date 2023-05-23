@@ -1,5 +1,5 @@
-export { default } from './Dialog';
-export { default } from './DialogTitle';
-export { default } from './DialogContent';
-export { default } from './DialogActions';
-export { default } from './DialogContentText';
+export { Dialog } from './Dialog';
+export { DialogTitle } from './DialogTitle';
+export { DialogContent } from './DialogContent';
+export { DialogActions } from './DialogActions';
+export { DialogContentText } from './DialogContentText';

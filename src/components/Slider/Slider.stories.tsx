@@ -39,7 +39,12 @@ export const SliderWithMarks = () => {
   const handleChange = (event: ChangeEvent, newValue: number | number[]) => {
     setValue(newValue as number);
   };
-  const marks = [ { value: 10 }, { value: 30 }, { value: 50 }, { value: 70 }, { value: 90 },
+  const marks = [
+    { value: 10 },
+    { value: 30 },
+    { value: 50 },
+    { value: 70 },
+    { value: 90 },
   ];
 
   const marksWithLabels = [
@@ -114,10 +119,52 @@ export const RangeSlider = () => {
 
   return (
     <div>
-      <div>Range slider, current left value: {value1[0]}, right value: {value1[1]}</div>
+      <div>
+        Range slider, current left value: {value1[0]}, right value: {value1[1]}
+      </div>
       <Slider value={value1} onChange={handleChange1} />
-      <div>Discrete slider, current left value: {value2[0]}, right value: {value2[1]}</div>
+      <div>
+        Discrete slider, current left value: {value2[0]}, right value:{' '}
+        {value2[1]}
+      </div>
       <Slider value={value2} onChange={handleChange2} step={10} marks />
+    </div>
+  );
+};
+
+export const VerticalSlider = () => {
+  const marksWithLabels = [
+    {
+      label: '10',
+      value: 10,
+    },
+    {
+      label: '30',
+      value: 30,
+    },
+    {
+      label: '50',
+      value: 50,
+    },
+    {
+      label: '70',
+      value: 70,
+    },
+    {
+      label: '90',
+      value: 90,
+    },
+  ];
+  return (
+    <div style={{ display: 'flex' }}>
+      <div>Vertical Slider</div>
+      <div style={{ width: '400px' }}>
+        <Slider orientation="vertical" />
+      </div>
+      <div>Slider with Marks and Labels</div>
+      <div style={{ width: '400px' }}>
+        <Slider marks={marksWithLabels} step={10} orientation="vertical" />
+      </div>
     </div>
   );
 };

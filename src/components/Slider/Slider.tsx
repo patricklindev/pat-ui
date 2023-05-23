@@ -38,6 +38,7 @@ export interface SliderProps {
     value: number | Array<number>,
     activeThumb: number
   ) => void;
+  orientation?: string;
   // valueLabelDisplay?: string;
 }
 
@@ -53,6 +54,7 @@ export const Slider: FC<SliderProps> = ({
   marks,
   step = 1,
   onChange,
+  orientation = 'horizontal',
   // valueLabelDisplay='off',
   ...rest
 }) => {
@@ -88,6 +90,7 @@ export const Slider: FC<SliderProps> = ({
   let containerClasses = classNames('slider_container', {
     ['slider_container-labeled']:
       typeof marks === 'object' && markLabeled(marks),
+    [`slider_container-${orientation}`]: orientation === 'vertical',
   });
 
   let styleClasses = classNames('slider', {
@@ -182,8 +185,12 @@ export const Slider: FC<SliderProps> = ({
                 sliderType={sliderType}
                 sliderSize={sliderSize}
                 mark={mark}
+                orientation={orientation}
                 position={calculatePos(mark, min, max)}
-                active={(mark <= rightValue!) && (leftValue === undefined || mark >= leftValue)}
+                active={
+                  mark <= rightValue! &&
+                  (leftValue === undefined || mark >= leftValue)
+                }
                 disabled={disabled}
               />
             );
@@ -195,8 +202,12 @@ export const Slider: FC<SliderProps> = ({
                 sliderType={sliderType}
                 sliderSize={sliderSize}
                 mark={mark}
+                orientation={orientation}
                 position={calculatePos(mark.value, min, max)}
-                active={(mark <= rightValue!) && (leftValue === undefined || mark >= leftValue)}
+                active={
+                  mark.value <= rightValue! &&
+                  (leftValue === undefined || mark >= leftValue)
+                }
                 disabled={disabled}
               />
             );

@@ -10,10 +10,11 @@ export interface SliderMarkProps {
   position?: number;
   active?: boolean;
   disabled: boolean;
+  orientation?: string;
 }
 
 export const SliderMark = (props: SliderMarkProps) => {
-  const { sliderType, sliderSize, mark, position, active, disabled } = props;
+  const { sliderType, sliderSize, mark, position, active, disabled, orientation } = props;
 
   let styleMarkClasses = classNames('slider_mark', {
     [`slider_mark-${sliderType}`]: true,
@@ -26,11 +27,15 @@ export const SliderMark = (props: SliderMarkProps) => {
     disabled: disabled,
   })
 
+  let styleMarkLabelClasses = classNames('slider_mark-label', {
+    [`slider_mark-label-${orientation}`]: orientation === 'vertical',
+  });
+
   return (
     <>
       <span className={styleMarkClasses} style={{ left: `${position}%` }} data-active={active} ></span>
       {!active && <span className={styleMarkMaskClasses} style={{ left: `${position}%` }}></span>}
-      {!!mark.label && <span className={'slider_mark-label'} style={{ left: `${position}%` }} data-active={active} >{mark.label}</span>}
+      {!!mark.label && <span className={styleMarkLabelClasses} style={{ left: `${position}%` }} data-active={active} >{mark.label}</span>}
     </>
   )
 }

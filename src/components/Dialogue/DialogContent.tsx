@@ -8,9 +8,11 @@ export interface IDialogContentProps{
 export type PatDialogContentProps = IDialogContentProps
 const DialogContent:FC<PatDialogContentProps> = (props)=>{
 let classes = 'dialog__content';
-const { children, className } = props;
+const { dividers, children, className } = props;
 if(className) classes += ' ' + className;
-	return <div className={classes}>{children}</div>
+	return dividers ? 
+	(<div className={classes} data-testid='dialog-content-element'><hr/>{children}<hr/></div>) :
+	(<div className={classes} data-testid='dialog-content-element'>{children}</div>)
 }
 
 DialogContent.defaultProps = {

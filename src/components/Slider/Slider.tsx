@@ -33,6 +33,11 @@ export interface SliderProps {
   max?: number;
   marks?: mark[] | boolean;
   step?: number;
+  onChange?: (
+    event: ChangeEvent<HTMLInputElement>,
+    value: number | Array<number>,
+    activeThumb: number
+  ) => void;
   // valueLabelDisplay?: string;
 }
 
@@ -47,6 +52,7 @@ export const Slider: FC<SliderProps> = ({
   disabled = false,
   marks,
   step = 1,
+  onChange,
   // valueLabelDisplay='off',
   ...rest
 }) => {
@@ -109,13 +115,22 @@ export const Slider: FC<SliderProps> = ({
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (typeof defaultValue === 'number') {
       setRightValue(Number(e.target.value));
+      if (onChange !== undefined) {
+        onChange(e, Number(e.target.value), 0);
+      }
     } else {
       let leftDistance = Math.abs(Number(e.target.value) - leftValue!);
       let rightDistance = Math.abs(Number(e.target.value) - rightValue!);
-      if (leftDistance <= rightDistance) {
+      if (leftDistance < rightDistance) {
         setLeftValue(Number(e.target.value));
+        if (onChange !== undefined) {
+          onChange(e, [Number(e.target.value), rightValue!], 0);
+        }
       } else {
         setRightValue(Number(e.target.value));
+        if (onChange !== undefined) {
+          onChange(e, [leftValue!, Number(e.target.value)], 1);
+        }
       }
     }
   };
@@ -129,7 +144,6 @@ export const Slider: FC<SliderProps> = ({
     for (let i = min; i <= max; i = i + step) {
       res.push(i);
     }
-    console.log(res);
     return res;
   }, []);
 
@@ -169,7 +183,7 @@ export const Slider: FC<SliderProps> = ({
                 sliderSize={sliderSize}
                 mark={mark}
                 position={calculatePos(mark, min, max)}
-                active={mark <= rightValue!}
+                active={(mark <= rightValue!) && (leftValue === undefined || mark >= leftValue)}
                 disabled={disabled}
               />
             );
@@ -182,7 +196,7 @@ export const Slider: FC<SliderProps> = ({
                 sliderSize={sliderSize}
                 mark={mark}
                 position={calculatePos(mark.value, min, max)}
-                active={mark.value <= rightValue!}
+                active={(mark <= rightValue!) && (leftValue === undefined || mark >= leftValue)}
                 disabled={disabled}
               />
             );

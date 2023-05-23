@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Slider from './Slider';
 
@@ -35,7 +35,12 @@ export const DiffTypeSlider = () => (
 );
 
 export const SliderWithMarks = () => {
-  const marks = [{ value: 10 }, { value: 30 }, { value: 50 }, { value: 70 }, { value: 90 }];
+  const [value, setValue] = React.useState<number>(30);
+  const handleChange = (event: ChangeEvent, newValue: number | number[]) => {
+    setValue(newValue as number);
+  };
+  const marks = [ { value: 10 }, { value: 30 }, { value: 50 }, { value: 70 }, { value: 90 },
+  ];
 
   const marksWithLabels = [
     {
@@ -62,18 +67,57 @@ export const SliderWithMarks = () => {
 
   return (
     <div>
-      <div>Discrete Slider</div>
-      <Slider marks={true} step={10} />
+      <div>Discrete Slider, current value: {value}</div>
+      <Slider marks={true} step={10} value={value} onChange={handleChange} />
       <div>Slider with Custom Marks</div>
       <Slider marks={marks} />
       <div>Slider with Marks and Labels</div>
       <Slider marks={marksWithLabels} step={10} />
     </div>
-  )
-}
+  );
+};
 
-export const rangeSlider = () => {
+export const RangeSlider = () => {
+  const [value1, setValue1] = React.useState<number[]>([20, 37]);
+  const handleChange1 = (
+    event: ChangeEvent,
+    newValue: number | number[],
+    activeThumb: number
+  ) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setValue1([newValue[0], value1[1]]);
+    } else {
+      setValue1([value1[0], newValue[1]]);
+    }
+  };
+
+  const [value2, setValue2] = React.useState<number[]>([50, 70]);
+  const handleChange2 = (
+    event: ChangeEvent,
+    newValue: number | number[],
+    activeThumb: number
+  ) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setValue2([newValue[0], value2[1]]);
+    } else {
+      setValue2([value2[0], newValue[1]]);
+    }
+  };
+
   return (
-    <Slider value={[10, 20]} />
-  )
-}
+    <div>
+      <div>Range slider, current left value: {value1[0]}, right value: {value1[1]}</div>
+      <Slider value={value1} onChange={handleChange1} />
+      <div>Discrete slider, current left value: {value2[0]}, right value: {value2[1]}</div>
+      <Slider value={value2} onChange={handleChange2} step={10} marks />
+    </div>
+  );
+};

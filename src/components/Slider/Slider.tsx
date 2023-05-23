@@ -264,6 +264,7 @@ export const Slider: FC<SliderProps> = ({
           setDisplayLeft(false);
           setDisplayRight(false);
         }}
+        {...rest}
       />
     </span>
   );

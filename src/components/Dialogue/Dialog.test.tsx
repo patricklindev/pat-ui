@@ -145,12 +145,59 @@ describe('Dialog Component and sub-components', () => {
   });  
   
   it('should have a dimed backdrop by default, users can close the dialog by clicking on the backdrop', () => {
-    expect(1+2).toEqual(3);
+    const dialog = render(
+      <Dialog open={true} onClose={()=>{}}>
+          Dialog
+          <DialogTitle>Title</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Content Text</DialogContentText>
+            <div>Content</div>
+          </DialogContent>
+          <DialogActions>
+            <button>Button 1</button>
+            <button>Button 2</button>
+          </DialogActions>
+      </Dialog>
+      );
+    expect(dialog.getByTestId('dialog-element').style.opacity).toBe("0.5");
   });
 });
 describe('Users of Dialog Component', () => {
   it('should not be able to scroll the page when the dialog is open', () => {
-    expect(1+2).toEqual(3);
+    const dialog = render(
+      <Dialog open={true} onClose={()=>{}}>
+          Dialog
+          <DialogTitle>Title</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Content Text</DialogContentText>
+            <div>Content</div>
+          </DialogContent>
+          <DialogActions>
+            <button>Button 1</button>
+            <button>Button 2</button>
+          </DialogActions>
+      </Dialog>
+      );
+    expect(dialog.queryByTestId('dialog-element') as HTMLElement).toBeInTheDocument();
+    expect(document.body.style.overflow).toBe('hidden');
+  });
+  it('should be able to scroll the page when the dialog is closed', () => {
+    const dialog = render(
+      <Dialog open={false} onClose={()=>{}}>
+          Dialog
+          <DialogTitle>Title</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Content Text</DialogContentText>
+            <div>Content</div>
+          </DialogContent>
+          <DialogActions>
+            <button>Button 1</button>
+            <button>Button 2</button>
+          </DialogActions>
+      </Dialog>
+      );
+    expect(dialog.queryByTestId('dialog-element') as HTMLElement).not.toBeInTheDocument();
+    expect(document.body.style.overflow).not.toBe('hidden');
   });
   it('should be able to listen to the close of the dialog by providing the onClose callback function.', () => {
     const onCloseHandler = jest.fn((event, reason)=>{});
@@ -186,7 +233,5 @@ describe('Users of Dialog Component', () => {
     });
     expect(onCloseHandler).toHaveBeenCalledTimes(1);
   })
-  it('should be able to control the open/close of the dialog from props.', () => {
-   expect(1+2).toEqual(3);
-  });
+  
 });

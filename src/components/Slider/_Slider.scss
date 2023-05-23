@@ -37,6 +37,22 @@
     cursor: not-allowed;
     @include slider-type($slider-disabled-color);
   }
+
+  &-sm {
+    @include slider-size($slider-track-height-sm);
+  }
+
+  &-md {
+    @include slider-size($slider-track-height-md);
+  }
+  
+  &-primary {
+    @include slider-type($slider-primary-main);
+  }
+  
+  &-secondary {
+    @include slider-type($slider-secondary-main);
+  }
 }
 
 .slider_thumb {
@@ -48,30 +64,30 @@
   transform: translateX(-50%);
 
   .disabled,
-  &[data-disabled=true] {
+  &[data-disabled='true'] {
     pointer-events: none;
     background: $slider-disabled-color;
     width: $slider-thumb-width-disabled;
     height: $slider-thumb-height-disabled;
   }
-}
 
-.slider_thumb-sm {
-  width: $slider-thumb-width-sm;
-  height: $slider-thumb-height-sm;
-}
+  &-sm {
+    width: $slider-thumb-width-sm;
+    height: $slider-thumb-height-sm;
+  }
 
-.slider_thumb-md {
-  width: $slider-thumb-width-md;
-  height: $slider-thumb-height-md;
-}
+  &-md {
+    width: $slider-thumb-width-md;
+    height: $slider-thumb-height-md;
+  }
 
-.slider_thumb-primary {
-  background: $slider-primary-main;
-}
+  &-primary {
+    background: $slider-primary-main;
+  }
 
-.slider_thumb-secondary {
-  background: $slider-secondary-main;
+  &-secondary {
+    background: $slider-secondary-main;
+  }
 }
 
 .slider_value-label-number {
@@ -81,7 +97,7 @@
   left: 50%;
   text-align: center;
   border-radius: 50%;
-  font-size: .75rem;
+  font-size: 0.75rem;
 
   &-sm {
     top: calc(-150% - 1.125rem);
@@ -96,8 +112,8 @@
   position: absolute;
   width: 32px;
   height: 32px;
-  left: calc(50% - 32px/2);
-  
+  left: calc(50% - 32px / 2);
+
   border-radius: 16px 16px 0px 16px;
   transform: rotate(45deg);
 
@@ -118,22 +134,6 @@
   }
 }
 
-.slider-sm {
-  @include slider-size($slider-track-height-sm);
-}
-
-.slider-md {
-  @include slider-size($slider-track-height-md);
-}
-
-.slider-primary {
-  @include slider-type($slider-primary-main)
-}
-
-.slider-secondary {
-  @include slider-type($slider-secondary-main)
-}
-
 .slider_value {
   pointer-events: none;
   position: absolute;
@@ -144,24 +144,24 @@
   &[disabled] {
     background: $slider-disabled-color;
   }
-}
 
-.slider_value-sm {
-  height: $slider-track-height-sm;
-  border-radius: $slider-track-height-sm / 2;
-}
-
-.slider_value-md {
-  height: $slider-track-height-md;
-  border-radius: $slider-track-height-md / 2;
-}
-
-.slider_value-primary {
-  background: $slider-primary-main;
-}
-
-.slider_value-secondary {
-  background: $slider-secondary-main;
+  &-sm {
+    height: $slider-track-height-sm;
+    border-radius: $slider-track-height-sm / 2;
+  }
+  
+  &-md {
+    height: $slider-track-height-md;
+    border-radius: $slider-track-height-md / 2;
+  }
+  
+  &-primary {
+    background: $slider-primary-main;
+  }
+  
+  &-secondary {
+    background: $slider-secondary-main;
+  }
 }
 
 .slider_mark {
@@ -173,44 +173,44 @@
   &[disabled] {
     background-color: $slider-disabled-color;
   }
-}
 
-.slider_mark-sm {
-  height: $slider-mark-height-sm;
-  width: $slider-mark-width-sm;
-}
-
-.slider_mark-md {
-  height: $slider-mark-height-md;
-  width: $slider-mark-width-md;
-}
-
-.slider_mark-primary {
-  background-color: $slider-primary-main;
-
-  &[data-active=true] {
-    color: $slider-primary-dark;
+  &-sm {
+    height: $slider-mark-height-sm;
+    width: $slider-mark-width-sm;
   }
-}
-
-.slider_mark-secondary {
-  background-color: $slider-secondary-main;
-}
-
-.slider_mark-mask {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff80;
-
-  &.disabled,
-  &[disabled] {
-    background-color: $slider-disabled-color;
+  
+  &-md {
+    height: $slider-mark-height-md;
+    width: $slider-mark-width-md;
   }
-}
-
-.slider_mark-label {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, 25%);
+  
+  &-primary {
+    background-color: $slider-primary-main;
+  
+    &[data-active='true'] {
+      color: $slider-primary-dark;
+    }
+  }
+  
+  &-secondary {
+    background-color: $slider-secondary-main;
+  }
+  
+  &-mask {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff80;
+  
+    &.disabled,
+    &[disabled] {
+      background-color: $slider-disabled-color;
+    }
+  }
+  
+  &-label {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, 25%);
+  }  
 }

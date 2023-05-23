@@ -1,15 +1,26 @@
-import React, { useState, ChangeEvent, FC, useEffect, useMemo, useRef } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  FC,
+  useEffect,
+  useMemo,
+  useRef,
+  RefObject,
+  SetStateAction,
+  Dispatch,
+} from 'react';
 import { classNames } from '../../utils/classNames';
 import SliderMark from './SliderMark';
+import SliderValueLabel from './SliderValueLabel';
 
 export type SliderSize = 'sm' | 'md';
 export type ButtonType = 'primary' | 'secondary';
 // export type valueLabelDisplay = 'on' | 'off' | 'auto';
 
 export type mark = {
-  label?: string,
-  value: number,
-}
+  label?: string;
+  value: number;
+};
 
 export interface SliderProps {
   className?: string;
@@ -39,15 +50,16 @@ export const Slider: FC<SliderProps> = ({
   // valueLabelDisplay='off',
   ...rest
 }) => {
-
-  defaultValue = useMemo(() => value !== undefined ? value : defaultValue
-    , [value]);
+  defaultValue = useMemo(
+    () => (value !== undefined ? value : defaultValue),
+    [value]
+  );
   const [rightValue, setRightValue] = useState<number | undefined>();
   const [leftValue, setLeftValue] = useState<number | undefined>();
   const [displayLeft, setDisplayLeft] = useState<boolean>(false);
   const [displayRight, setDisplayRight] = useState<boolean>(false);
   const leftThumb = useRef<HTMLSpanElement>(null);
-  const rightThumb = useRef<HTMLSpanElement>(null)
+  const rightThumb = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (typeof defaultValue === 'object') {
@@ -56,7 +68,7 @@ export const Slider: FC<SliderProps> = ({
     } else {
       setRightValue(defaultValue);
     }
-  }, [])
+  }, []);
 
   const markLabeled = (marks: mark[]): boolean => {
     for (let mark of marks) {
@@ -65,29 +77,30 @@ export const Slider: FC<SliderProps> = ({
       }
     }
     return false;
-  }
+  };
 
   let containerClasses = classNames('slider_container', {
-    ['slider_container-labeled']: typeof marks === 'object' && markLabeled(marks),
-  })
+    ['slider_container-labeled']:
+      typeof marks === 'object' && markLabeled(marks),
+  });
 
   let styleClasses = classNames('slider', {
     [`slider-${sliderType}`]: true,
     [`slider-${sliderSize}`]: !!sliderSize,
     disabled: !!disabled,
-  })
+  });
 
   let styleValueClasses = classNames('slider_value', {
     [`slider_value-${sliderType}`]: true,
     [`slider_value-${sliderSize}`]: !!sliderSize,
     disabled: !!disabled,
-  })
+  });
 
   let thumbClasses = classNames('slider_thumb', {
     [`slider_thumb-${sliderType}`]: true,
     [`slider_thumb-${sliderSize}`]: !!sliderSize,
     disabled: !!disabled,
-  })
+  });
 
   if (className) {
     styleClasses += ' ' + className;
@@ -108,8 +121,8 @@ export const Slider: FC<SliderProps> = ({
   };
 
   const calculatePos = (value: number, min: number, max: number) => {
-    return (value - min) * 100 / (max - min);
-  }
+    return ((value - min) * 100) / (max - min);
+  };
 
   const stepArray = useMemo(() => {
     let res = [];
@@ -118,38 +131,117 @@ export const Slider: FC<SliderProps> = ({
     }
     console.log(res);
     return res;
-  }, [])
+  }, []);
 
-  const ValueLabel: FC<{ value: number, sliderType: string, sliderSize: string }> = ({ value, sliderType, sliderSize }) => {
-    return (
-      <span className={`slider_value-label`}>
-        <span className={`slider_value-label-background slider_value-label-background-${sliderType} slider_value-label-background-${sliderSize}`}></span>
-        <span className={`slider_value-label-number slider_value-label-number-${sliderSize}`}>{value}</span>
-      </span>
-    )
-  }
+  const showValueLabel = (
+    thumbRef: RefObject<HTMLSpanElement>,
+    setDisplay: Dispatch<SetStateAction<boolean>>
+  ) => {
+    // move the thumb element under the slider
+    if (thumbRef.current !== null) {
+      thumbRef.current.style.zIndex = '-1';
+    }
+    // show value label
+    setDisplay(true);
+  };
 
   return (
     <span className={containerClasses}>
-      <span className={styleValueClasses} style={{ width: `${leftValue === undefined ? calculatePos(rightValue!, min, max) : calculatePos(rightValue! - leftValue, min, max)}%`, left: `${leftValue === undefined ? 0 : calculatePos(leftValue, min, max)}%` }}></span>
-      {typeof marks === 'boolean' ? stepArray.map((mark: any) => {
-        return (
-          <SliderMark key={mark} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark, min, max)} active={mark <= rightValue!} disabled={disabled} />
-        )
-      }) : marks?.map((mark: any, index: number) => {
-        return (
-          <SliderMark key={mark.value + index} sliderType={sliderType} sliderSize={sliderSize} mark={mark} position={calculatePos(mark.value, min, max)} active={mark.value <= rightValue!} disabled={disabled} />
-        )
-      })}
-      {leftValue !== undefined ? <span className={thumbClasses} ref={leftThumb} style={{ left: `${calculatePos(leftValue, min, max)}%` }} data-disabled={disabled} onMouseOver={() => {if (leftThumb.current !== null) leftThumb.current.style.zIndex = '-1'; setDisplayLeft(true)}}>
-        {displayLeft && <ValueLabel value={leftValue} sliderType={sliderType} sliderSize={sliderSize} />}
-      </span> : <></>}
-      <span className={thumbClasses} ref={rightThumb} style={{ left: `${calculatePos(rightValue!, min, max)}%` }} data-disabled={disabled} onMouseOver={() => { if (rightThumb.current !== null) rightThumb.current.style.zIndex = '-1'; setDisplayRight(true); }}>
-        {displayRight && <ValueLabel value={rightValue!} sliderType={sliderType} sliderSize={sliderSize} />}
+      <span
+        className={styleValueClasses}
+        style={{
+          width: `${
+            leftValue === undefined
+              ? calculatePos(rightValue!, min, max)
+              : calculatePos(rightValue! - leftValue, min, max)
+          }%`,
+          left: `${
+            leftValue === undefined ? 0 : calculatePos(leftValue, min, max)
+          }%`,
+        }}
+      ></span>
+      {typeof marks === 'boolean'
+        ? stepArray.map((mark: any) => {
+            return (
+              <SliderMark
+                key={mark}
+                sliderType={sliderType}
+                sliderSize={sliderSize}
+                mark={mark}
+                position={calculatePos(mark, min, max)}
+                active={mark <= rightValue!}
+                disabled={disabled}
+              />
+            );
+          })
+        : marks?.map((mark: any, index: number) => {
+            return (
+              <SliderMark
+                key={mark.value + index}
+                sliderType={sliderType}
+                sliderSize={sliderSize}
+                mark={mark}
+                position={calculatePos(mark.value, min, max)}
+                active={mark.value <= rightValue!}
+                disabled={disabled}
+              />
+            );
+          })}
+      {leftValue !== undefined ? (
+        <span
+          className={thumbClasses}
+          ref={leftThumb}
+          style={{ left: `${calculatePos(leftValue, min, max)}%` }}
+          data-disabled={disabled}
+          onMouseOver={() => showValueLabel(leftThumb, setDisplayLeft)}
+        >
+          {displayLeft && (
+            <SliderValueLabel
+              value={leftValue}
+              sliderType={sliderType}
+              sliderSize={sliderSize}
+            />
+          )}
+        </span>
+      ) : (
+        <></>
+      )}
+      <span
+        className={thumbClasses}
+        ref={rightThumb}
+        style={{ left: `${calculatePos(rightValue!, min, max)}%` }}
+        data-disabled={disabled}
+        onMouseOver={() => showValueLabel(rightThumb, setDisplayRight)}
+      >
+        {displayRight && (
+          <SliderValueLabel
+            value={rightValue!}
+            sliderType={sliderType}
+            sliderSize={sliderSize}
+          />
+        )}
       </span>
-      <input type="range" step={step} min={min} max={max} className={styleClasses} onChange={changeHandler} disabled={disabled} onMouseOut={() => { if (rightThumb.current !== null) rightThumb.current.style.zIndex = '0'; if (leftThumb.current !== null) leftThumb.current.style.zIndex = '0';setDisplayLeft(false); setDisplayRight(false) }} />
+      <input
+        type="range"
+        step={step}
+        min={min}
+        max={max}
+        className={styleClasses}
+        onChange={changeHandler}
+        disabled={disabled}
+        onMouseOut={() => {
+          if (rightThumb.current !== null) {
+            rightThumb.current.style.zIndex = '0';
+          }
+          if (leftThumb.current !== null) {
+            leftThumb.current.style.zIndex = '0';
+          }
+          setDisplayLeft(false);
+          setDisplayRight(false);
+        }}
+      />
     </span>
-  )
-}
+  );
+};
 
 export default Slider;

@@ -54,7 +54,6 @@ export const PaginationContainer: FC<PaginationProps> = ({
 
   return (
     <Pagination
-      // className="pagination-container"
       currentPage={page}
       onPageChange={handleClickPage}
       pagType={pagType}

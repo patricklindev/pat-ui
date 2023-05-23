@@ -37,9 +37,7 @@ exports[`Pagination should match the snapshot 1`] = `
     >
       5
     </button>
-    <span
-      class="dots pagination--item"
-    >
+    <span>
       …
     </span>
     <button

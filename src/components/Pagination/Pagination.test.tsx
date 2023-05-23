@@ -1,8 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import PaginationContainer from './PaginationContainer';
-import { PaginationProps } from './PaginationContainer';
 import Pagination from './Pagination';
+import TablePagination from './TablePagination';
 
 describe('Pagination', () => {
   it('should match the snapshot', () => {
@@ -17,7 +16,6 @@ describe('Pagination', () => {
     const btnProps = {
       onPageChange: jest.fn(),
     };
-
     const wrapper = render(<Pagination {...btnProps}></Pagination>);
     const element = wrapper.getByTestId('pagination') as HTMLElement;
     expect(element).not.toBeNull();
@@ -76,5 +74,29 @@ describe('Pagination', () => {
     expect(btnDisabledProps.onPageChange).toHaveBeenCalledTimes(0);
     fireEvent.click(buttonElement);
     expect(btnDisabledProps.onPageChange).toHaveBeenCalledTimes(0);
+  });
+
+  it('should render the table pagination', () => {
+    const tablePaginationProps = {
+      rowsPerPage: 25,
+      totalPageNumber: 100,
+      currentPage: 1,
+      onPageChange: jest.fn(),
+    };
+
+    const wrapper = render(
+      <TablePagination {...tablePaginationProps}></TablePagination>
+    );
+
+    const element = wrapper.getByTestId('tablePagination') as HTMLElement;
+    expect(element).not.toBeNull();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toBe('DIV');
+
+    const buttonElement = wrapper.queryByText('›') as HTMLElement;
+
+    expect(tablePaginationProps.onPageChange).toHaveBeenCalledTimes(0);
+    fireEvent.click(buttonElement);
+    expect(tablePaginationProps.onPageChange).toHaveBeenCalledTimes(1);
   });
 });

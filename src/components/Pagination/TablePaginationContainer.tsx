@@ -13,7 +13,6 @@ export default function TablePaginationContainer({
   const [page, setPage] = useState(1);
 
   const HandleChangePage = (p: number) => {
-    // console.log(page);
     setPage(p);
   };
 

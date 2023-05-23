@@ -32,9 +32,8 @@ export default function TablePagination({
   };
 
   return (
-    <div>
+    <div data-testid="tablePagination">
       <span>Rows per page: {rowsPerPage}</span>
-
       <div>
         {`${currentPage}-${endPage} of ${totalPageNumber}`}
 

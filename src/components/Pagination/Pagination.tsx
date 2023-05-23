@@ -23,8 +23,6 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
   variant = '',
   ...rest
 }) => {
-  // console.log(disabled);
-
   let renderItems = usePagination({ totalPageNumber, currentPage });
 
   const onNext = () => {
@@ -50,11 +48,7 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
       </PaginationOption>
       {renderItems?.map((element, index) => {
         if (element === true) {
-          return (
-            <span key={index} className="dots pagination--item">
-              &#8230;
-            </span>
-          );
+          return <span key={index}>&#8230;</span>;
         }
         return (
           <PaginationOption
@@ -88,6 +82,7 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
   );
 };
 
+//why this doesn't work
 // Pagination.defaultProps = {
 //   pagType: 'default',
 //   disabled: false,

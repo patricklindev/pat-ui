@@ -1,8 +1,42 @@
-import React, { FC } from 'react';
+import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 
 import PaginationOption from './PaginationOption';
 import { usePagination } from '../../utils/hooks/usePagination';
-import { PaginationProps } from './PaginationContainer';
+
+export type PaginationSize = 'lg' | 'sm';
+export type PaginationType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'default'
+  | 'link';
+
+export interface IPaginationProps {
+  /** set customized style */
+  className?: string;
+  /** set button size */
+  pagSize?: PaginationSize;
+  /** set button type */
+  pagType?: PaginationType;
+  /** set disabled button */
+  disabled?: boolean;
+  /** set pagination number */
+  totalPageNumber?: number;
+  /** set current page number */
+  currentPage?: number;
+  /** set rows per page for table pagination */
+  rowsPerPage?: number;
+  /** set pagination shapes round or rounded */
+  shape?: string;
+  /** set pagination button outlined */
+  variant?: string;
+}
+
+type NativeButtonProps = IPaginationProps &
+  ButtonHTMLAttributes<HTMLButtonElement>;
+type NativeAchorButtonProps = IPaginationProps &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
+export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
 
 export type HandlerProps = {
   onPageChange: Function;

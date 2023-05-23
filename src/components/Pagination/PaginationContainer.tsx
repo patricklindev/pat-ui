@@ -15,6 +15,8 @@ export type PaginationType =
   | 'danger'
   | 'default'
   | 'link';
+export type PaginationShape = 'round' | 'rounded';
+export type PaginationVariant = 'outlined';
 
 export interface IPaginationProps {
   /** set customized style */
@@ -27,10 +29,14 @@ export interface IPaginationProps {
   disabled?: boolean;
   /** set pagination number */
   totalPageNumber?: number;
+  /** set current page number */
   currentPage?: number;
+  /** set rows per page for table pagination */
   rowsPerPage?: number;
-  shape?: string;
-  variant?: string;
+  /** set pagination shapes round or rounded */
+  shape?: PaginationShape;
+  /** set pagination button outlined */
+  variant?: PaginationVariant;
 }
 
 type NativeButtonProps = IPaginationProps &

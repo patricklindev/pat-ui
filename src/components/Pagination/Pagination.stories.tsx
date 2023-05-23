@@ -1,7 +1,8 @@
 import React from 'react';
-// import { action } from '@storybook/addon-actions';
+
 import Pagination from './Pagination';
 import PaginationContainer from './PaginationContainer';
+import TablePaginationContainer from './TablePaginationContainer';
 
 export default {
   title: 'Pagination',
@@ -54,6 +55,17 @@ export const PaginationSize = () => {
       <PaginationContainer pagSize="sm"></PaginationContainer>
       <PaginationContainer></PaginationContainer>
       <PaginationContainer pagSize="lg"></PaginationContainer>
+    </div>
+  );
+};
+
+export const TablePaginationWithRowPerPage = () => {
+  return (
+    <div>
+      <TablePaginationContainer
+        rowsPerPage={25}
+        totalPageNumber={100}
+      ></TablePaginationContainer>
     </div>
   );
 };

@@ -24,7 +24,7 @@ export interface IButtonProps {
   /** set disabled button */
   disabled?: boolean;
   selected?: boolean;
-  shape: string;
+  shape?: string;
   variant?: string;
 }
 

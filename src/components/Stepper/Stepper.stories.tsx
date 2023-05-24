@@ -74,8 +74,8 @@ export const stepperVertical = () => (
     <div>
         <Stepper
             stepsArr={stepsArrVertical}
-            verticalStepper detectError={detectError}
             detectOptional={detectOptional}
+            verticalStepper detectError={detectError}
         >
             {stepContentArrVertical.map(stepContent => (
                 <div key={stepContent}>{stepContent}</div>

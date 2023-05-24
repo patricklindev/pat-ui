@@ -45,10 +45,6 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
         }
     }
 
-    const checkIsAlternative = () => {
-        return alternative? alternative : false;
-    }
-
     const checkIsSKipped = (step: number) => {
         return skipped.has(step);
     }
@@ -104,8 +100,6 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
                 const description = children? children[index] : null;
                 const isOptional: boolean = checkIsOptional(index);
                 const isError: boolean = errorSteps.has(index);
-                const isAlternative: boolean = checkIsAlternative();
-
                 return (
                     <StepperStepVertical
                         className={className}
@@ -114,7 +108,7 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
                         index={index}
                         activeStep={activeStep}
                         isOptional={isOptional}
-                        isAlternative={isAlternative}
+                        isAlternative={alternative}
                         isError={isError}
                         totalSteps={stepsArr.length - 1}
                         description={description}
@@ -144,8 +138,6 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
                     const label = item as string;
                     const isOptional: boolean = checkIsOptional(index);
                     const isError: boolean = errorSteps.has(index);
-                    const isAlternative: boolean = checkIsAlternative();
-
                     return (
                         <React.Fragment key={label}>
                             <StepperStep
@@ -154,7 +146,7 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
                                 index={index}
                                 activeStep={activeStep}
                                 isOptional={isOptional}
-                                isAlternative={isAlternative}
+                                isAlternative={alternative}
                                 isError={isError}
                                 customErrorSvg={customErrorSvg}
                                 customFinishedSvg={customFinishedSvg}

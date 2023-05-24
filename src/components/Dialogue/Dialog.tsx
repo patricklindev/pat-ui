@@ -1,45 +1,49 @@
-import React, { FC, MouseEvent, useState, useEffect } from 'react';
+import React, { FC, MouseEvent, useEffect, HTMLAttributes } from 'react';
 import { classNames } from '../../utils/classNames';
 
-export type DialogCloseReason = 
-  | 'backdropClick' 
-  | 'escapeKeyDown';
+export type DialogCloseReason = 'backdropClick' | 'escapeKeyDown';
 
-export type MaxWidthSizeType = 
-'xs'
-| 'sm'
-| 'md'
-| 'lg'
-| 'xl'
-| false
-| string
+export type MaxWidthSizeType =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | false
+  | string;
 
-export type ScrollType = 
-| 'body'
-| 'paper'
+const MaxWidthSizeTypeClass = {
+  xs: '--dialog-body-max-width-xs',
+  sm: '--dialog-body-max-width-sm',
+  md: '--dialog-body-max-width-md',
+  lg: '--dialog-body-max-width-lg',
+  xl: '--dialog-body-max-width-xl',
+};
+
+export type ScrollType = 'body' | 'paper';
 
 export interface IDialogProps {
   /** set customized style */
   className?: string;
   /** set whether dialog is open / visible */
-  open:boolean;
+  open: boolean;
   /** set callback function on closing dialog */
-  onClose:(event:object, reason: DialogCloseReason)=>void;
+  onClose: (event: object, reason: DialogCloseReason) => void;
   /** set aria-describedby to include id of element used to describe component*/
-  ariaDescribedBy?:string;
+  ariaDescribedBy?: string;
   /** set aria-labelledby to include id of element used to label component*/
-  ariaLabelledBy?:string;
+  ariaLabelledBy?: string;
   /** set whether escape key triggers onClose handler */
-  disableEscapeKeyDown?:boolean
+  disableEscapeKeyDown?: boolean;
   /** set maxWidth */
-  maxWidth?:MaxWidthSizeType;
+  maxWidth?: MaxWidthSizeType;
   /** set whether the dialog is fullScreen */
-  fullScreen?:boolean
+  fullScreen?: boolean;
   /** set scroll */
-  scroll?:ScrollType
+  scroll?: ScrollType;
 }
 
-export type PatDialogProps = IDialogProps
+export type PatDialogProps = IDialogProps & HTMLAttributes<HTMLDivElement>;
 
 /**
  * Dialogs inform users about a task and can contain critical information
@@ -49,81 +53,102 @@ export type PatDialogProps = IDialogProps
  * ```
  */
 export const Dialog: FC<PatDialogProps> = (props) => {
-  
-  const { open, onClose, disableEscapeKeyDown, maxWidth, children, className, ...rest } = props;
-  const handleBackdropClick = (e)=>{
-    onClose(e, 'backdropClick')
-  }
-  const handleEscapeKeyDown = (e) =>{
-    if(e.key==='Escape') {
+  const {
+    open,
+    onClose,
+    disableEscapeKeyDown,
+    maxWidth,
+    children,
+    className,
+    ...rest
+  } = props;
+  const handleBackdropClick = (e: MouseEvent) => {
+    onClose(e, 'backdropClick');
+  };
+  const handleEscapeKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
       onClose(e, 'escapeKeyDown');
     }
-  }
-  const handleBackdropScrollingBasedOnDialogState = ()=>{
-    if(open === true) document.body.style.overflow='hidden';
-    else document.body.style.overflow='unset'; 
-  }
-  
+  };
+  const handleBackdropScrollingBasedOnDialogState = () => {
+    if (open === true) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  };
+
   /** add escape key event listener at the start based on props */
-  useEffect(()=>{
-    if(disableEscapeKeyDown){
-      document.addEventListener('keydown', (e)=>{
+  useEffect(() => {
+    if (disableEscapeKeyDown) {
+      document.addEventListener('keydown', (e: KeyboardEvent) => {
         handleEscapeKeyDown(e);
-      })
+      });
     }
-  }, [])
+  }, []);
 
   /** enable / disable scrolling of backdrop based on whether dialog is open */
-  useEffect(()=>{
+  useEffect(() => {
     handleBackdropScrollingBasedOnDialogState();
-  }, [open])
-  
+  }, [open]);
+
   let styleClasses;
   if (className) styleClasses = 'dialog ' + className;
-  else styleClasses  = 'dialog';
+  else styleClasses = 'dialog';
   let dialogBodyClasses = 'dialog__body';
-  switch(maxWidth) {
-    case 'xs':{
-      dialogBodyClasses += ' ' + 'dialog-body-width-xs';
-          break;
-    }
-    case 'sm':{
-      dialogBodyClasses += ' ' + 'dialog-body-width-sm';
-          break;
-    }
-    case 'md':{
-      dialogBodyClasses += ' ' + 'dialog-body-width-md';
-          break;
-    }
-    case 'lg':{
-      dialogBodyClasses += ' ' + 'dialog-body-width-lg';
-          break;
-    }
-    case 'xl':{
-      dialogBodyClasses += ' ' + 'dialog-body-width-xl';
-          break;
-    }
-    default:{
-          dialogBodyClasses += ' ' + 'dialog-body-width-sm';
-          break;
+  if (maxWidth !== false) {
+    switch (maxWidth) {
+      case 'xs': {
+        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.xs;
+        break;
       }
+      case 'sm': {
+        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.sm;
+        break;
+      }
+      case 'md': {
+        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.md;
+        break;
+      }
+      case 'lg': {
+        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.lg;
+        break;
+      }
+      case 'xl': {
+        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.xl;
+        break;
+      }
+      default: {
+        dialogBodyClasses += ` ${MaxWidthSizeTypeClass.sm}`;
+        break;
+      }
+    }
   }
   let dialog;
   dialog = open ? (
-    <div onClick={handleBackdropClick} className={classNames(styleClasses)} data-testid='dialog-element'>
-      <div onClick={(e)=>{e.stopPropagation()}} className={classNames(dialogBodyClasses)} data-testid='dialog-body-element'>
+    <div
+      onClick={handleBackdropClick}
+      className={classNames(styleClasses)}
+      data-testid="dialog-element"
+    >
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className={classNames(dialogBodyClasses)}
+        data-testid="dialog-body-element"
+      >
         {props.children}
       </div>
-    </div>) : <></>;
+    </div>
+  ) : (
+    <></>
+  );
   return dialog;
 };
 
 Dialog.defaultProps = {
-  disableEscapeKeyDown:true,
-  maxWidth:'sm',
-  fullScreen:false,
-  fullWidth:false,
-  scroll:'paper'
+  disableEscapeKeyDown: true,
+  maxWidth: 'sm',
+  fullScreen: false,
+  scroll: 'paper',
 };
 
 export default Dialog;

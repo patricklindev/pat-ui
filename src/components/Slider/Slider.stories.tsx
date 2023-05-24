@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react';
-import { action } from '@storybook/addon-actions';
 import Slider from './Slider';
 
 export default {
@@ -7,12 +6,21 @@ export default {
   component: Slider,
 };
 
-export const DefaultSlider = () => (
-  <div>
-    <div>Default Slider</div>
-    <Slider />
-  </div>
-);
+export const DefaultSlider = () => {
+  const [value, setValue] = React.useState<number>(50);
+
+  const changeHandler = (event: ChangeEvent, newValue: number | number[]) => {
+    setValue(newValue as number);
+  }
+
+  return (
+    <div>
+      <div>Default Slider</div>
+      <Slider value={value} onChange={changeHandler} />
+      <div>Value: {value}</div>
+    </div>
+  );
+};
 
 export const DiffSizeSlider = () => (
   <div>

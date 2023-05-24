@@ -307,10 +307,14 @@ $slider-thumb-width-md: 20px;
 $slider-thumb-height-md: $slider-thumb-width-md;
 
 // slider colors
-$slider-primary-main: #3F51B5;
-$slider-primary-dark: #303F9F;
-$slider-secondary-main: #F50057;
+$slider-primary-main: $primary;
+$slider-primary-dark: #24a47c;
+$slider-secondary-main: $secondary;
 $slider-disabled-color: #BDBDBD;
+// $slider-primary-main: #3F51B5;
+// $slider-primary-dark: #303F9F;
+// $slider-secondary-main: #F50057;
+// $slider-disabled-color: #BDBDBD;
 
 // slider mark size
 $slider-mark-height-sm: $slider-track-height-sm;

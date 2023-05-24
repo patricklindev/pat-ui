@@ -195,7 +195,7 @@
     background-color: $slider-primary-main;
 
     &[data-active='true'] {
-      color: $slider-primary-dark;
+      background-color: $slider-primary-dark;
     }
   }
 

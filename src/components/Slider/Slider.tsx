@@ -14,8 +14,9 @@ import SliderMark from './SliderMark';
 import SliderValueLabel from './SliderValueLabel';
 
 export type SliderSize = 'sm' | 'md';
-export type ButtonType = 'primary' | 'secondary';
-// export type valueLabelDisplay = 'on' | 'off' | 'auto';
+export type SliderType = 'primary' | 'secondary';
+export type OrientationType = 'horizontal' | 'vertical';
+export type valueLabelDisplay = 'on' | 'off' | 'auto';
 
 export type mark = {
   label?: string;
@@ -24,22 +25,34 @@ export type mark = {
 
 export interface SliderProps {
   className?: string;
-  sliderSize?: string;
-  sliderType?: string;
+  /** Change Slider Size */
+  sliderSize?: SliderSize;
+  /** Change Slider Type */
+  sliderType?: SliderType;
+  /** Default value of slider */
   defaultValue?: number | number[];
+  /** Value of slider */
   value?: number | number[];
+  /** Disable input */
   disabled?: boolean;
+  /** Min value of range */
   min?: number;
+  /** Max value of range */
   max?: number;
+  /** Marks on slider */
   marks?: mark[] | boolean;
+  /** Minimum step of increase */
   step?: number;
+  /** ChangeEvent Handler */
   onChange?: (
     event: ChangeEvent<HTMLInputElement>,
     value: number | Array<number>,
     activeThumb: number
   ) => void;
-  orientation?: string;
-  // valueLabelDisplay?: string;
+  /** Orientation of slider */
+  orientation?: OrientationType;
+  /** Display mode of value label */
+  valueLabelDisplay?: valueLabelDisplay;
 }
 
 export const Slider: FC<SliderProps> = ({
@@ -55,17 +68,17 @@ export const Slider: FC<SliderProps> = ({
   step = 1,
   onChange,
   orientation = 'horizontal',
-  // valueLabelDisplay='off',
+  valueLabelDisplay = 'auto',
   ...rest
 }) => {
   defaultValue = useMemo(
     () => (value !== undefined ? value : defaultValue),
-    [value]
+    [value, defaultValue]
   );
   const [rightValue, setRightValue] = useState<number | undefined>();
   const [leftValue, setLeftValue] = useState<number | undefined>();
-  const [displayLeft, setDisplayLeft] = useState<boolean>(false);
-  const [displayRight, setDisplayRight] = useState<boolean>(false);
+  const [displayLeft, setDisplayLeft] = useState<boolean>(valueLabelDisplay === 'on');
+  const [displayRight, setDisplayRight] = useState<boolean>(valueLabelDisplay === 'on');
   const leftThumb = useRef<HTMLSpanElement>(null);
   const rightThumb = useRef<HTMLSpanElement>(null);
 
@@ -112,7 +125,7 @@ export const Slider: FC<SliderProps> = ({
   });
 
   if (className) {
-    styleClasses += ' ' + className;
+    containerClasses += ' ' + className;
   }
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -148,7 +161,7 @@ export const Slider: FC<SliderProps> = ({
       res.push(i);
     }
     return res;
-  }, []);
+  }, [min, max, step]);
 
   const showValueLabel = (
     thumbRef: RefObject<HTMLSpanElement>,
@@ -158,8 +171,23 @@ export const Slider: FC<SliderProps> = ({
     if (thumbRef.current !== null) {
       thumbRef.current.style.zIndex = '-1';
     }
-    // show value label
-    setDisplay(true);
+    if (valueLabelDisplay === 'auto') {
+      // show value label
+      setDisplay(true);
+    }
+  };
+
+  const hideValueLabel = () => {
+    if (rightThumb.current !== null) {
+      rightThumb.current.style.zIndex = '0';
+    }
+    if (leftThumb.current !== null) {
+      leftThumb.current.style.zIndex = '0';
+    }
+    if (valueLabelDisplay === 'auto') {
+      setDisplayLeft(false);
+      setDisplayRight(false);
+    }
   };
 
   return (
@@ -254,16 +282,7 @@ export const Slider: FC<SliderProps> = ({
         className={styleClasses}
         onChange={changeHandler}
         disabled={disabled}
-        onMouseOut={() => {
-          if (rightThumb.current !== null) {
-            rightThumb.current.style.zIndex = '0';
-          }
-          if (leftThumb.current !== null) {
-            leftThumb.current.style.zIndex = '0';
-          }
-          setDisplayLeft(false);
-          setDisplayRight(false);
-        }}
+        onMouseOut={() => hideValueLabel()}
         {...rest}
       />
     </span>

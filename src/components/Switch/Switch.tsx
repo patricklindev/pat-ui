@@ -2,44 +2,38 @@ import React, { FC, InputHTMLAttributes, useState, useCallback } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export interface ISwitchProps {
-  /** set different colors */
-  color?: 'primary' | 'secondary' | 'warning';
-  /** set small size */
+  /** set customized style */
+  color?: 'primary' | 'secondary' | 'default';
+  /** set switch size */
   size?: string | 'small';
-  /** set label */
+  /** set switch label */
   label?: string;
-  /** set checked prop */
+  /** set switch to be checked */
   checked?: boolean;
-  /** set onChange prop that returns checked value */
+  /** set switch to be checked by default */
   onChange?: (checked: boolean) => void;
-  /** set disabled prop */
+  /** disabled the switch */
   disabled?: boolean;
-  /** set defaultChecked prop */
-  defaultChecked?: boolean;
-  /** set required prop */
+  /** set switch to be checked by default */
   required?: boolean;
-  /** change iconPosition prop */
-  iconPosition?: 'left' | 'right';
 }
 
-// Here, we are using InputHTMLAttributes to extend the props of input element
+// Defining the combined props type for the Switch component
 export type PatSwitchProps = ISwitchProps & InputHTMLAttributes<HTMLInputElement>;
 
 const Switch: FC<PatSwitchProps> = ({
-  color,
+  color = 'default',
   size,
   label,
   checked: checkedProp,
   onChange,
-  disabled,
-  defaultChecked = false,
-  required = false,
-  iconPosition,
-  ...rest
+  disabled = false,
+  required = false
 }) => {
-  const [checked, setChecked] = useState(checkedProp || defaultChecked);
+  // this state is used to update the switch
+  const [checked, setChecked] = useState(checkedProp || false);
 
-  // Here, we are using useCallback to memoize the function to avoid unnecessary re-renders
+  // handles the change event of the switch
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newChecked = event.target.checked;
@@ -53,9 +47,9 @@ const Switch: FC<PatSwitchProps> = ({
   );
 
   const styleClasses = {
-    switch: classNames('switch', { checked }, size),
-    thumb: classNames('thumb', size),
-    label: classNames('switch-label-text'),
+    switch: classNames('switch', color, { checked }, size), // CSS classes for the switch element
+    thumb: classNames('thumb', color, size), // CSS classes for the thumb element
+    label: classNames('switch-label-text'), // CSS classes for the switch label element
   };
 
   return (
@@ -63,12 +57,12 @@ const Switch: FC<PatSwitchProps> = ({
       <input
         type="checkbox"
         className="switch-input"
+        size={size}
+        color={color}
         checked={checked}
         onChange={handleChange}
         disabled={disabled}
-        defaultChecked={defaultChecked}
         required={required}
-        {...rest}
       />
       <span className={styleClasses.switch}>
         <span className={styleClasses.thumb}></span>

@@ -1,78 +1,115 @@
 .switch-label {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
+  position: relative; /* Position the switch label */
+  display: inline-block; /* Display as an inline block element */
+  vertical-align: middle; /* Align vertically in the middle */
 }
 
 .switch-input {
-  display: none;
+  display: none; /* Hide the switch input */
 }
 
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 20px;
-  border-radius: 16px;
-  background-color: #e0e0e0;
-  transition: background-color 250ms ease;
-
-  &:hover {
-    background-color: #bdbdbd;
-  }
+  position: relative; /* Position the switch container */
+  display: inline-block; /* Display as an inline block element */
+  width: 48px; /* Set the width of the switch */
+  height: 20px; /* Set the height of the switch */
+  border-radius: 16px; /* Apply rounded corners */
+  background-color: #e0e0e0; /* Set the background color of the switch */
+  transition: background-color 250ms ease, left 250ms ease; /* Add transition effect to background color and left position */
 
   &.small {
-    width: 36px;
-    height: 14px;
+    width: 36px; /* Adjust width for small size */
+    height: 14px; /* Adjust height for small size */
 
     .thumb {
-      width: 18px;
-      height: 18px;
-      left: 0;
-
-      &:hover {
-        left: 0;
-      }
+      width: 18px; /* Set width of the thumb */
+      height: 18px; /* Set height of the thumb */
+      left: 0; /* Position the thumb on the left side */
     }
 
     &.checked {
       .thumb {
-        left: 14px;
+        left: 14px; /* Move thumb to the right when switch is checked */
       }
+    }
+  }
+
+  &.primary {
+    background-color: #5a71d6; /* Set background color for primary switch */
+
+    &:not(.checked) {
+      background-color: #ebe8e8; /* Set background color for unchecked primary switch */
+
+      .thumb {
+        background-color: #b3b3b3; /* Set thumb color for unchecked primary switch */
+      }
+    }
+  }
+
+  &.secondary {
+    background-color: #f86c6c; /* Set background color for secondary switch */
+
+    &.checked {
+      background-color: #f86c6c; /* Set background color for checked secondary switch */
+
+      .thumb {
+        background-color: #d50000; /* Set thumb color for checked secondary switch */
+      }
+    }
+
+    &:not(.checked) {
+      background-color: #ebe8e8; /* Set background color for unchecked secondary switch */
+
+      .thumb {
+        background-color: #b3b3b3; /* Set thumb color for unchecked secondary switch */
+      }
+    }
+  }
+
+  .thumb {
+    position: absolute; /* Position the thumb */
+    top: 50%; /* Align vertically in the middle */
+    transform: translateY(-50%); /* Adjust vertical position */
+    width: 28px; /* Set width of the thumb */
+    height: 25px; /* Set height of the thumb */
+    border-radius: 50%; /* Apply rounded corners */
+    background-color: #bdbdbd; /* Set default background color for the thumb */
+    box-shadow: none; /* Remove box shadow */
+    transition: left 250ms ease; /* Add transition effect to left position */
+
+    &.primary {
+      background-color: #211bc2; /* Set thumb color for primary switch */
+    }
+
+    &.secondary {
+      background-color: #d50000; /* Set thumb color for secondary switch */
     }
   }
 }
 
-.thumb {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #bdbdbd;
-  box-shadow: none;
-  transition: left 250ms ease;
-
-  &:hover {
-    left: 20px;
-  }
-}
-
 .switch-input:checked + .switch .thumb {
-  left: 20px;
-  background-color: #1976d2;
-  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 250ms ease; /* Add transition effect to background color */
+  left: 20px; /* Move thumb to the right when switch is checked */
+
+  &.primary {
+    background-color: #1128ab; /* Set thumb color for checked primary switch */
+  }
+
+  &.secondary {
+    background-color: #d50000; /* Set thumb color for checked secondary switch */
+  }
+
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1); /* Add box shadow when switch is checked */
 }
 
 .switch-input:disabled + .switch {
-  cursor: not-allowed;
+  cursor: not-allowed; /* Change cursor to not-allowed when switch is disabled */
 }
 
 .switch-input:disabled + .switch .thumb {
-  background-color: #bdbdbd;
+  background-color: #bdbdbd; /* Set thumb color for disabled switch */
 }
 
 .switch-label-text {
-  padding-left: 8px;
+  padding-left: 8px; /* Add left padding to the switch label text */
 }

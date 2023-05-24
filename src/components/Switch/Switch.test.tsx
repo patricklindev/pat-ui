@@ -3,90 +3,93 @@ import { render, fireEvent } from '@testing-library/react';
 import Switch from './Switch';
 
 describe('Switch', () => {
+  const renderSwitch = (props: any) => {
+    return render(<Switch {...props} />);
+  };
+
   it('should render with the default props', () => {
-    const { container } = render(<Switch onChange={() => {}} />);
+    const { container } = renderSwitch({ onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the default props and checked', () => {
-    const { container } = render(<Switch checked onChange={() => {}} />);
+    const { container } = renderSwitch({ checked: true, onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the checked props and disabled', () => {
-    const { container } = render(<Switch checked disabled onChange={() => {}} />);
+    const { container } = renderSwitch({ checked: true, disabled: true, onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
-  
+
   it('should render with the label', () => {
     const label = 'Test Label';
-    const { getByText } = render(<Switch label={label} onChange={() => {}} />);
+    const { getByText } = renderSwitch({ label, onChange: jest.fn() });
     expect(getByText(label)).toBeInTheDocument();
   });
 
   it('should render with the label and checked', () => {
     const label = 'Test Label';
-    const { getByText } = render(<Switch label={label} checked onChange={() => {}} />);
+    const { getByText } = renderSwitch({ label, checked: true, onChange: jest.fn() });
     expect(getByText(label)).toBeInTheDocument();
   });
 
   it('should render with the label and disabled', () => {
     const label = 'Test Label';
-    const { getByText } = render(<Switch label={label} disabled onChange={() => {}} />);
+    const { getByText } = renderSwitch({ label, disabled: true, onChange: jest.fn() });
     expect(getByText(label)).toBeInTheDocument();
   });
 
   it('should render with the label and checked and disabled', () => {
     const label = 'Test Label';
-    const { getByText } = render(<Switch label={label} checked disabled onChange={() => {}} />);
+    const { getByText } = renderSwitch({ label, checked: true, disabled: true, onChange: jest.fn() });
     expect(getByText(label)).toBeInTheDocument();
   });
 
   it('should render with the primary color', () => {
-    const { container } = render(<Switch color="primary" onChange={() => {}} />);
+    const { container } = renderSwitch({ color: 'primary', onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the primary color and checked', () => {
-    const { container } = render(<Switch color="primary" checked onChange={() => {}} />);
+    const { container } = renderSwitch({ color: 'primary', checked: true, onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the secondary color', () => {
-    const { container } = render(<Switch color="secondary" onChange={() => {}} />);
+    const { container } = renderSwitch({ color: 'secondary', onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the small size', () => {
-    const { container } = render(<Switch size="small" onChange={() => {}} />);
+    const { container } = renderSwitch({ size: 'small', onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the small size and disabled and no label', () => {
-    const { container } = render(<Switch size="small" disabled />);
+    const { container } = renderSwitch({ size: 'small', disabled: true });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the small size and checked', () => {
-    const { container } = render(<Switch size="small" checked onChange={() => {}} />);
+    const { container } = renderSwitch({ size: 'small', checked: true, onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the small size and primary color', () => {
-    const { container } = render(<Switch size="small" color="primary" onChange={() => {}} />);
+    const { container } = renderSwitch({ size: 'small', color: 'primary', onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render with the small size and secondary color', () => {
-    const { container } = render(<Switch size="small" color="secondary" onChange={() => {}} />);
+    const { container } = renderSwitch({ size: 'small', color: 'secondary', onChange: jest.fn() });
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should call the onChange function when clicked', () => {
     const onChange = jest.fn();
-    const { container } = render(<Switch onChange={onChange} />);
+    const { container } = renderSwitch({ onChange });
     fireEvent.click(container.firstChild as Element);
     expect(onChange).toHaveBeenCalled();
   });
-
 });

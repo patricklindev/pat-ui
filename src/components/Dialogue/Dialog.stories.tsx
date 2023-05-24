@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Dialog from './Dialog';
 import DialogTitle from './DialogTitle';
@@ -33,21 +33,22 @@ function SimpleDialogBody(props: SimpleDialogProps) {
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
-      {emails.map((email) =>
-          <div style={{display:'flex', gap: '10px'}}>
-            <Icon name='plus' size='small' />
+        {emails.map((email) => (
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <Icon name="plus" size="small" />
             <span>{email}</span>
-          </div>)}
-        <div>Add Account</div>  
+          </div>
+        ))}
+        <div>Add Account</div>
       </div>
     </Dialog>
   );
 }
-export const SimpleDialog = ()=>{
+export const SimpleDialog = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(emails[1]);
-   const handleClickOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -57,17 +58,15 @@ export const SimpleDialog = ()=>{
   };
   return (
     <>
-      <Button onClick={handleClickOpen}>
-        Open simple dialog
-      </Button>
+      <Button onClick={handleClickOpen}>Open simple dialog</Button>
       <SimpleDialogBody
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
       />
     </>
-    )
-}
+  );
+};
 
 export const AlertDialog = () => {
   const [open, setOpen] = React.useState(false);
@@ -84,35 +83,32 @@ export const AlertDialog = () => {
 
   return (
     <>
-      <Button onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
+      <Button onClick={handleClickOpen}>Open alert dialog</Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullScreen={true}
+        maxWidth="xl"
       >
         <DialogTitle id="alert-dialog-title">
           Use Google's location service?
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>
-            Agree
-          </Button>
-        </DialogActions> 
+          <Button onClick={handleClose}>Agree</Button>
+        </DialogActions>
       </Dialog>
     </>
   );
-}
+};
 
 export const FormDialog = () => {
   const [open, setOpen] = useState(false);
@@ -129,14 +125,17 @@ export const FormDialog = () => {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog open={open} onClose={handleClose} disableEscapeKeyDown={false}>
+      <Button onClick={handleClickOpen}>Open form dialog</Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        disableEscapeKeyDown={false}
+        maxWidth={false}
+      >
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent dividers={true}>
           To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+          will send updates occasionally.
           <Input />
         </DialogContent>
         <DialogActions>
@@ -146,4 +145,4 @@ export const FormDialog = () => {
       </Dialog>
     </div>
   );
-}
+};

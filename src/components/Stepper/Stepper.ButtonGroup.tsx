@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import Button from "../Button";
+import Button from '../Button';
 
 interface buttonGroupPropsType {
+    className?: string,
     activeStep: number,
     totalSteps: number,
     handleBackClick(): void,
@@ -12,10 +13,10 @@ interface buttonGroupPropsType {
 
 }
 const StepperButtonGroup: FC<buttonGroupPropsType> = (props) => {
-    const {activeStep, totalSteps, handleBackClick, handleResetClick, handleNextClick,handleSkipClick, checkIsOptional} = props;
+    const {className, activeStep, totalSteps, handleBackClick, handleResetClick, handleNextClick,handleSkipClick, checkIsOptional} = props;
 
     return (
-        <div className='stepper-horizontal-buttons-group-container'>
+        <div className={className ? `stepper-horizontal-buttons-group-container ${className}` : 'stepper-horizontal-buttons-group-container'}>
             <div>
                 {activeStep > totalSteps ? null : <Button className='stepper-back-button' disabled={activeStep === 0} onClick={handleBackClick}>Back</Button>}
             </div>

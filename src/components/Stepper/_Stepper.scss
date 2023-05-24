@@ -25,10 +25,18 @@ $error_color: #F44336;
   }
 }
 
+.stepper-content-container--horizontal {
+  margin-top: 20px;
+}
+
 .stepper-label-container {
   display: flex;
   font-family: Roboto, serif;
   align-items: center;
+
+  .stepper-icon-container-finished {
+    background-color: transparent !important;
+  }
 
   .stepper-icon-container {
     margin-right: 8px;

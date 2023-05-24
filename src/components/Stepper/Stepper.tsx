@@ -1,36 +1,48 @@
-import React, {FC, useState} from "react";
+import React, {FC, useState} from 'react';
 
 import './_Stepper.scss'
-import StepperStep from "./StepperStep";
-import StepperButtonGroup from "./Stepper.ButtonGroup";
-import StepperStepVertical, {StepInfoObj} from "./StepperStepVertical";
-import Button from "../Button";
-
-type stepsArrElement = string | StepInfoObj;
+import StepperStep from './StepperStep';
+import StepperButtonGroup from './Stepper.ButtonGroup';
+import StepperStepVertical from './StepperStepVertical';
+import Button from '../Button';
+import {forceReRender} from '@storybook/react';
+import {classNames} from '../../utils/classNames';
 
 interface IStepperProps {
     className?: string,
     alternative?: boolean,
     verticalStepper?: boolean,
-    stepsArr: stepsArrElement[],
+    stepsArr:string[],
+    detectError?(step: number): boolean,
+    detectOptional?(step: number) : boolean,
+    customErrorSvg?: React.ReactNode,
+    customFinishedSvg?: React.ReactNode,
+    children?: React.ReactNode[],
 }
 
 
 
-export const Stepper: FC<IStepperProps> = (props) => {
-    const {className, alternative, verticalStepper, stepsArr} = props;
-    let styleClasses;
+export const Stepper: FC<IStepperProps> = ({className, alternative=false, verticalStepper=false, stepsArr, detectError, detectOptional, customErrorSvg, customFinishedSvg, children}) => {
 
     const [activeStep, setActiveStep] = useState<number>(0);
     const [skipped, setSkipped] = useState(new Set<number>());
+    const [errorSteps, setErrorSteps] = useState(new Set<number>());
 
 
-    const checkIsOptional = (step: number) => {
-        return step === 1;
+    const checkIsOptional = (step: number): boolean => {
+        if (detectOptional) {
+            return detectOptional(step);
+        } else {
+            return false;
+        }
     }
 
     const checkIsError = (step: number) => {
-        return  step === 1;
+        if (detectError) {
+            return detectError(step);
+        } else {
+            return false;
+        }
     }
 
     const checkIsAlternative = () => {
@@ -43,7 +55,7 @@ export const Stepper: FC<IStepperProps> = (props) => {
 
     const handleSkipClick = () => {
         if (!checkIsOptional(activeStep)) {
-            throw new Error("You can't skip a step that is not optional.")
+            throw new Error('You can\'t skip a step that is not optional.')
         }
         setActiveStep(prevState => prevState + 1);
         setSkipped(prevState => {
@@ -58,33 +70,45 @@ export const Stepper: FC<IStepperProps> = (props) => {
     }
 
     const handleNextClick = (step: number) => {
-        if (checkIsError(step) && checkIsSKipped(step)) {
-            setSkipped(prevState => {
-                const newSkipped = new Set(prevState.values())
-                newSkipped.delete(activeStep);
-                return newSkipped;
-            })
+        const isError = checkIsError(step);
+        if (!isError) {
+            setActiveStep(prevState => prevState + 1);
+        } else {
+            setErrorSteps(errorSteps.add(step));
+            forceReRender();
         }
-        setActiveStep(prevState => prevState + 1);
     }
 
     const handleResetClick = () => {
         setSkipped(new Set());
+        setErrorSteps(new Set());
         setActiveStep(0);
     }
 
 
-    let Stepper = verticalStepper ? (
-        <div className='stepper-container--vertical'>
+    let verticalStyle = classNames('stepper-container--vertical');
+    let horizontalStyle = classNames('stepper-container--horizontal');
+    let horizontalItemStyle = classNames('stepper-item-container--horizontal');
+    let horizontalContentStyle = classNames('stepper-content-container--horizontal');
+    if (className) {
+        verticalStyle += ' ' + className;
+        horizontalStyle += ' ' + className;
+        horizontalItemStyle += ' ' + className;
+        horizontalContentStyle += ' ' + className;
+    }
+
+    return verticalStepper ? (
+        <div className={verticalStyle}>
             {stepsArr.map((item, index) => {
-                const stepInfo = item as StepInfoObj;
-                const {label, description} = stepInfo;
+                const label = item;
+                const description = children? children[index] : null;
                 const isOptional: boolean = checkIsOptional(index);
-                const isError: boolean = checkIsError(index);
+                const isError: boolean = errorSteps.has(index);
                 const isAlternative: boolean = checkIsAlternative();
 
                 return (
                     <StepperStepVertical
+                        className={className}
                         key={label}
                         label={label}
                         index={index}
@@ -94,6 +118,8 @@ export const Stepper: FC<IStepperProps> = (props) => {
                         isError={isError}
                         totalSteps={stepsArr.length - 1}
                         description={description}
+                        customErrorSvg={customErrorSvg}
+                        customFinishedSvg={customFinishedSvg}
                         handleBackClick={handleBackClick}
                         handleNextClick={handleNextClick}
                         handleSkipClick={handleSkipClick}
@@ -112,23 +138,26 @@ export const Stepper: FC<IStepperProps> = (props) => {
             ) : null}
         </div>
     ) : (
-        <div className='stepper-container--horizontal'>
-            <div className='stepper-item-container--horizontal'>
+        <div className={horizontalStyle}>
+            <div className={horizontalItemStyle}>
                 {stepsArr.map((item, index) => {
                     const label = item as string;
                     const isOptional: boolean = checkIsOptional(index);
-                    const isError: boolean = checkIsError(index);
+                    const isError: boolean = errorSteps.has(index);
                     const isAlternative: boolean = checkIsAlternative();
 
                     return (
-                        <React.Fragment key={label} >
+                        <React.Fragment key={label}>
                             <StepperStep
+                                className={className}
                                 label={label}
                                 index={index}
                                 activeStep={activeStep}
                                 isOptional={isOptional}
                                 isAlternative={isAlternative}
                                 isError={isError}
+                                customErrorSvg={customErrorSvg}
+                                customFinishedSvg={customFinishedSvg}
                                 checkIsSKipped={checkIsSKipped}
                             />
                             {index === stepsArr.length - 1 ? null : <hr/>}
@@ -138,11 +167,12 @@ export const Stepper: FC<IStepperProps> = (props) => {
             </div>
 
 
-            <div>
-                {activeStep === stepsArr.length ? <p>All Steps completed</p> : <p>Step {activeStep + 1}</p>}
+            <div className={horizontalContentStyle}>
+                {activeStep === stepsArr.length ? <div>All Steps completed</div> : <div>{children ? children[activeStep] : null}</div>}
             </div>
             <React.Fragment>
                 <StepperButtonGroup
+                    className={className}
                     activeStep={activeStep}
                     totalSteps={stepsArr.length - 1}
                     handleBackClick={handleBackClick}
@@ -154,9 +184,6 @@ export const Stepper: FC<IStepperProps> = (props) => {
             </React.Fragment>
         </div>
     );
-
-
-    return Stepper;
 }
 
 export default Stepper;

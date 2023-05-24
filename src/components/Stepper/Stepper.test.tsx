@@ -1,32 +1,25 @@
-import {fireEvent, render, screen} from "@testing-library/react";
-import React from "react";
+import {fireEvent, render, screen} from '@testing-library/react';
+import React from 'react';
 
-import Stepper from "./Stepper";
+import Stepper from './Stepper';
 
 describe('Stepper', () => {
 
     const stepsArr = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+    const stepContentArr = ['step1', 'step2', 'step3'];
 
-    const stepsArrVertical = [
-        {
-            label: 'Select campaign settings',
-            description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
-        },
-        {
-            label: 'Create an ad group',
-            description:
-                'An ad group contains one or more ads which target a shared set of keywords.',
-        },
-        {
-            label: 'Create an ad',
-            description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
-        },
-    ];
+    const stepsArrVertical = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+    const stepContentArrVertical = [
+        `For each ad campaign that you create, you can control how much you're 
+    willing to spend on clicks and conversions, which networks and geographical 
+    locations you want your ads to show on, and more.`,
+
+        'An ad group contains one or more ads which target a shared set of keywords.',
+
+        `Try out different ad text to see what brings in the most customers,and learn how 
+    to enhance your ads using features like ad extensions.If you run into any problems 
+    with your ads, find out how to tell if they're running and how to resolve approval issues.`,
+    ]
 
 
     it('should match snapshot --default', function () {
@@ -57,7 +50,7 @@ describe('Stepper', () => {
     it('should have continue button', function () {
         render(<Stepper stepsArr={stepsArr}></Stepper>);
         const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
-        expect(continueBtn).toHaveProperty("disabled", false)
+        expect(continueBtn).toHaveProperty('disabled', false)
         expect(continueBtn).toBeInTheDocument();
         expect(continueBtn).toHaveClass('stepper-continue-button');
     });
@@ -66,11 +59,11 @@ describe('Stepper', () => {
         render(<Stepper stepsArr={stepsArr}></Stepper>);
         let backBtn = screen.getByText('Back') as HTMLElement;
         const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
-        expect(backBtn).toHaveProperty("disabled", true)
+        expect(backBtn).toHaveProperty('disabled', true)
         expect(backBtn).toBeInTheDocument();
         fireEvent.click(continueBtn);
         backBtn = screen.getByText('Back') as HTMLElement;
-        expect(backBtn).toHaveProperty("disabled", false)
+        expect(backBtn).toHaveProperty('disabled', false)
     });
 
     it('should change icon if continue button is clicked', function () {

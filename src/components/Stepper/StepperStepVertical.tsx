@@ -1,16 +1,12 @@
 import React, {FC} from 'react';
-import {classNames} from "../../utils/classNames";
-import Button from "../Button";
-import useIconElement from "./useIconElement";
-
-export interface StepInfoObj {
-    label: string,
-    description: string,
-}
+import {classNames} from '../../utils/classNames';
+import Button from '../Button';
+import useIconElement from './useIconElement';
 
 interface verticalStepperProps {
+    className?: string,
     label: string,
-    description:string,
+    description:React.ReactNode,
     index: number,
     totalSteps: number,
     activeStep: number,
@@ -22,10 +18,13 @@ interface verticalStepperProps {
     handleNextClick(step: number): void,
     checkIsOptional(step: number): boolean,
     checkIsSKipped(step: number): boolean,
+    customErrorSvg?: React.ReactNode,
+    customFinishedSvg?: React.ReactNode,
 }
 
 const StepperStepVertical:FC<verticalStepperProps> = (props) => {
     const {
+        className,
         label,
         description,
         index,
@@ -38,26 +37,40 @@ const StepperStepVertical:FC<verticalStepperProps> = (props) => {
         handleSkipClick,
         checkIsOptional,
         checkIsSKipped,
+        customErrorSvg,
+        customFinishedSvg
     } = props;
 
-    let styleClasses;
-
-    styleClasses = classNames('stepper-item-container', {
+    let styleClasses = classNames('stepper-item-container', {
         ['stepper-label-container-finished']: activeStep >= index,
     })
 
-    const {IconLabel} = useIconElement(isError, activeStep, index);
+    let iconContainerStyle = classNames('stepper-icon-container', {
+        ['stepper-icon-container-active']: activeStep === index,
+        ['stepper-icon-container-error']: isError
+    })
+
+    let titleContainer = classNames('stepper-title-container', {
+        ['stepper-title-error-container']: isError,
+    })
+
+    if (className) {
+        styleClasses += ' ' + className;
+        iconContainerStyle += ' ' + className;
+        titleContainer += ' ' + className;
+    }
+
+
+    const {IconLabel} = useIconElement(isError, activeStep, index, customErrorSvg, customFinishedSvg);
 
     return (
         <div className={styleClasses}>
 
             <div className='stepper-label-container'>
-                <div className={activeStep === index ?
-                    isError ? 'stepper-icon-container stepper-icon-container-active stepper-icon-container-error' : 'stepper-icon-container stepper-icon-container-active'
-                    : isError ? 'stepper-icon-container stepper-icon-container-error' : 'stepper-icon-container'}>
+                <div className={iconContainerStyle}>
                     {IconLabel}
                 </div>
-                <div className={isError ? 'stepper-title-container stepper-title-error-container' : 'stepper-title-container'}>
+                <div className={titleContainer}>
                     <p>{label}</p>
                     {isOptional ? <p className='stepper-step-optional'>Optional {checkIsSKipped(index) ? '(skipped)' : null}</p> : null}
                 </div>

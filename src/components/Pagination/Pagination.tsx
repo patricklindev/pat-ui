@@ -1,4 +1,4 @@
-import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
+import React, { FC } from 'react';
 
 import PaginationOption from './PaginationOption';
 import { usePagination } from '../../utils/hooks/usePagination';
@@ -10,8 +10,10 @@ export type PaginationType =
   | 'danger'
   | 'default'
   | 'link';
+export type PaginationShape = 'round' | 'rounded';
+export type PaginationVariant = 'outlined';
 
-export interface IPaginationProps {
+export interface PaginationProps {
   /** set customized style */
   className?: string;
   /** set button size */
@@ -21,22 +23,15 @@ export interface IPaginationProps {
   /** set disabled button */
   disabled?: boolean;
   /** set pagination number */
+  // todo: total page number should be required
   totalPageNumber?: number;
   /** set current page number */
   currentPage?: number;
-  /** set rows per page for table pagination */
-  rowsPerPage?: number;
   /** set pagination shapes round or rounded */
-  shape?: string;
+  shape?: PaginationShape;
   /** set pagination button outlined */
-  variant?: string;
+  variant?: PaginationVariant;
 }
-
-type NativeButtonProps = IPaginationProps &
-  ButtonHTMLAttributes<HTMLButtonElement>;
-type NativeAchorButtonProps = IPaginationProps &
-  AnchorHTMLAttributes<HTMLAnchorElement>;
-export type PaginationProps = NativeButtonProps | NativeAchorButtonProps;
 
 export type HandlerProps = {
   onPageChange: Function;
@@ -51,11 +46,10 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
   disabled,
   totalPageNumber = 10,
   currentPage = 1,
-  rowsPerPage,
+  // rowsPerPage,
   onPageChange,
-  shape = 'roundeded',
+  shape = 'rounded',
   variant = '',
-  ...rest
 }) => {
   let renderItems = usePagination({ totalPageNumber, currentPage });
 

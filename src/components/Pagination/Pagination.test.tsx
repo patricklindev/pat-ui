@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Pagination from './Pagination';
+import Pagination, { PaginationShape, PaginationVariant } from './Pagination';
 import TablePagination from './TablePagination';
 
 describe('Pagination', () => {
@@ -36,8 +36,8 @@ describe('Pagination', () => {
     const btnPrimarySmallProps = {
       pagType: 'primary' as 'primary',
       pagSize: 'sm' as 'sm',
-      shape: 'round',
-      variant: 'outlined',
+      shape: 'round' as PaginationShape,
+      variant: 'outlined' as PaginationVariant,
       onPageChange: jest.fn(),
     };
 

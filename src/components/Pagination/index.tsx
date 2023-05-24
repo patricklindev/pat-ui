@@ -1,2 +1,2 @@
-export { default as Pagination } from './PaginationContainer';
+export { default as Pagination } from './Pagination';
 export { default as TablePagination } from './TablePaginationContainer';

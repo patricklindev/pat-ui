@@ -18,7 +18,7 @@ export interface ISkeletonProps {
     /** The animation type. If false, the animation effect is disabled. */
     animation?: SkeletonAnimation;
     /** The component used for the root node. Either a string to use a HTML element or a component. */
-    component?: ElementType;
+    component?: string | ElementType;
     /**  Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. */
     height?: number | string;
     /** The type of content that will be rendered. */
@@ -46,15 +46,11 @@ const Skeleton: React.FC<PatSkeletonProps> = (props) => {
         [animation as string]: !!animation
     });
 
-    const styles: CSSProperties = { ...style };
-
-    if (width !== undefined) {
-        styles['width'] = width
-    }
-
-    if (height !== undefined) {
-        styles['height'] = height;
-    }
+    const styles: CSSProperties = {
+        ...style,
+        ...(width !== undefined && { width }),
+        ...(height !== undefined && { height }),
+    };
 
     return (
         <Component className={classes} style={styles} {...otherProps}>

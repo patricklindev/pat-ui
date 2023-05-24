@@ -10,7 +10,7 @@ export default {
 
 export const DefaultAlert = () => (
   <>
-    {/* Standard Alert */}g
+    {/* Standard Alert */}
     <Alert 
       altIcon='error'
       altTextStyle='one-line'
@@ -18,7 +18,7 @@ export const DefaultAlert = () => (
        Error Alert
     </Alert>
 
-    <Alert 
+    <Alert
       altIcon='warning'
       altTextStyle='one-line'
       altType='standard'>

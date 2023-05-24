@@ -9,7 +9,21 @@ import {forceReRender} from '@storybook/react';
 import {classNames} from '../../utils/classNames';
 
 interface IStepperProps {
-    className?: string,
+    horizontalContainerClassName?: string | undefined,
+    verticalContainerClassName?: string | undefined,
+    horizontalItemClassName?: string | undefined,
+    horizontalContentClassName?: string | undefined,
+    verticalItemStyle?: string | undefined,
+    iconContainerStyle?: string | undefined,
+    verticalTitleStyle?: string | undefined,
+    horizontalLabelClassName?: string | undefined,
+    horizontalTitleStyle?: string | undefined,
+    buttonGroupClassName?: string | undefined,
+    backButtonClassName?: string | undefined,
+    resetButtonClassName?: string | undefined,
+    skipButtonClassName?: string | undefined,
+    continueButtonClassName?: string | undefined,
+
     alternative?: boolean,
     verticalStepper?: boolean,
     stepsArr:string[],
@@ -21,8 +35,29 @@ interface IStepperProps {
 }
 
 
-
-export const Stepper: FC<IStepperProps> = ({className, alternative=false, verticalStepper=false, stepsArr, detectError, detectOptional, customErrorSvg, customFinishedSvg, children}) => {
+export const Stepper: FC<IStepperProps> = ({
+                                               horizontalContainerClassName,
+                                               verticalContainerClassName,
+                                               horizontalItemClassName,
+                                               horizontalContentClassName,
+                                               verticalItemStyle,
+                                               iconContainerStyle,
+                                               verticalTitleStyle,
+                                               horizontalLabelClassName,
+                                               horizontalTitleStyle,
+                                               buttonGroupClassName,
+                                               backButtonClassName,
+                                               resetButtonClassName,
+                                               skipButtonClassName,
+                                               continueButtonClassName,
+                                               alternative=false,
+                                               verticalStepper=false,
+                                               stepsArr,
+                                               detectError,
+                                               detectOptional,
+                                               customErrorSvg,
+                                               customFinishedSvg,
+                                               children}) => {
 
     const [activeStep, setActiveStep] = useState<number>(0);
     const [skipped, setSkipped] = useState(new Set<number>());
@@ -86,12 +121,11 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
     let horizontalStyle = classNames('stepper-container--horizontal');
     let horizontalItemStyle = classNames('stepper-item-container--horizontal');
     let horizontalContentStyle = classNames('stepper-content-container--horizontal');
-    if (className) {
-        verticalStyle += ' ' + className;
-        horizontalStyle += ' ' + className;
-        horizontalItemStyle += ' ' + className;
-        horizontalContentStyle += ' ' + className;
-    }
+
+    verticalStyle = verticalContainerClassName ? verticalStyle + ' ' + verticalContainerClassName : verticalStyle;
+    horizontalStyle = horizontalContainerClassName ? horizontalStyle + ' ' + horizontalContainerClassName : horizontalStyle;
+    horizontalItemStyle = horizontalItemClassName ? horizontalItemStyle + ' ' + horizontalItemClassName : horizontalItemStyle;
+    horizontalContentStyle = horizontalContentClassName ? horizontalContentStyle + ' ' + horizontalContentClassName : horizontalContentStyle;
 
     return verticalStepper ? (
         <div className={verticalStyle}>
@@ -102,7 +136,9 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
                 const isError: boolean = errorSteps.has(index);
                 return (
                     <StepperStepVertical
-                        className={className}
+                        verticalItemStyle={verticalItemStyle}
+                        iconContainerStyle={iconContainerStyle}
+                        verticalTitleStyle={verticalTitleStyle}
                         key={label}
                         label={label}
                         index={index}
@@ -141,7 +177,9 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
                     return (
                         <React.Fragment key={label}>
                             <StepperStep
-                                className={className}
+                                horizontalLabelClassName={horizontalLabelClassName}
+                                iconContainerStyle={iconContainerStyle}
+                                horizontalTitleStyle={horizontalTitleStyle}
                                 label={label}
                                 index={index}
                                 activeStep={activeStep}
@@ -164,7 +202,11 @@ export const Stepper: FC<IStepperProps> = ({className, alternative=false, vertic
             </div>
             <React.Fragment>
                 <StepperButtonGroup
-                    className={className}
+                    buttonGroupClassName={buttonGroupClassName}
+                    backButtonClassName={backButtonClassName}
+                    resetButtonClassName={resetButtonClassName}
+                    skipButtonClassName={skipButtonClassName}
+                    continueButtonClassName={continueButtonClassName}
                     activeStep={activeStep}
                     totalSteps={stepsArr.length - 1}
                     handleBackClick={handleBackClick}

@@ -4,7 +4,9 @@ import {classNames} from '../../utils/classNames';
 
 
 export interface StepperStepProps {
-    className?: string,
+    horizontalLabelClassName?: string,
+    iconContainerStyle?: string,
+    horizontalTitleStyle?: string,
     label: string,
     index: number,
     activeStep: number,
@@ -16,10 +18,10 @@ export interface StepperStepProps {
     customFinishedSvg?: React.ReactNode,
 }
 const StepperStep:FC<StepperStepProps> = (props) => {
-    const {className, label, index, activeStep, isOptional, isAlternative, isError, checkIsSKipped, customErrorSvg, customFinishedSvg} = props;
+    const {horizontalLabelClassName, iconContainerStyle, horizontalTitleStyle, label, index, activeStep, isOptional, isAlternative, isError, checkIsSKipped, customErrorSvg, customFinishedSvg} = props;
     const {IconLabel} = useIconElement(isError, activeStep, index, customErrorSvg, customFinishedSvg);
 
-    let styleClasses = classNames('stepper-label-container', {
+    let horizontalLabelStyle = classNames('stepper-label-container', {
         ['stepper-label-container-alternative']: isAlternative,
         ['stepper-label-container-finished']: activeStep >= index,
     })
@@ -34,14 +36,12 @@ const StepperStep:FC<StepperStepProps> = (props) => {
         ['stepper-title-error-container']: isError,
     })
 
-    if (className) {
-        styleClasses += ' ' + className;
-        iconContainerClasses += ' ' + className;
-        titleContainerClasses += ' ' + className;
-    }
+    horizontalLabelStyle = horizontalLabelClassName ? horizontalLabelStyle + ' ' + horizontalLabelClassName : horizontalLabelStyle;
+    iconContainerClasses = iconContainerStyle ? iconContainerClasses + ' ' + iconContainerStyle : iconContainerClasses;
+    titleContainerClasses = horizontalTitleStyle ? titleContainerClasses + ' ' + horizontalTitleStyle : titleContainerClasses;
 
     return (
-        <div className={styleClasses}>
+        <div className={horizontalLabelStyle}>
             <div className={iconContainerClasses}>
                 {IconLabel}
             </div>

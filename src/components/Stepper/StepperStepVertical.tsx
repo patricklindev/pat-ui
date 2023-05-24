@@ -4,7 +4,9 @@ import Button from '../Button';
 import useIconElement from './useIconElement';
 
 interface verticalStepperProps {
-    className?: string,
+    verticalItemStyle?: string,
+    iconContainerStyle?: string,
+    verticalTitleStyle?: string,
     label: string,
     description:React.ReactNode,
     index: number,
@@ -24,7 +26,9 @@ interface verticalStepperProps {
 
 const StepperStepVertical:FC<verticalStepperProps> = (props) => {
     const {
-        className,
+        verticalItemStyle,
+        iconContainerStyle,
+        verticalTitleStyle,
         label,
         description,
         index,
@@ -41,11 +45,11 @@ const StepperStepVertical:FC<verticalStepperProps> = (props) => {
         customFinishedSvg
     } = props;
 
-    let styleClasses = classNames('stepper-item-container', {
+    let itemContainerStyle = classNames('stepper-item-container', {
         ['stepper-label-container-finished']: activeStep >= index,
     })
 
-    let iconContainerStyle = classNames('stepper-icon-container', {
+    let iconBoxStyle = classNames('stepper-icon-container', {
         ['stepper-icon-container-active']: activeStep === index,
         ['stepper-icon-container-error']: isError
     })
@@ -54,20 +58,17 @@ const StepperStepVertical:FC<verticalStepperProps> = (props) => {
         ['stepper-title-error-container']: isError,
     })
 
-    if (className) {
-        styleClasses += ' ' + className;
-        iconContainerStyle += ' ' + className;
-        titleContainer += ' ' + className;
-    }
-
+    itemContainerStyle = verticalItemStyle ? itemContainerStyle + ' ' + itemContainerStyle : itemContainerStyle;
+    iconBoxStyle = iconContainerStyle ? iconBoxStyle + ' ' + iconBoxStyle : iconBoxStyle;
+    titleContainer = verticalTitleStyle ? titleContainer + ' ' + titleContainer : titleContainer;
 
     const {IconLabel} = useIconElement(isError, activeStep, index, customErrorSvg, customFinishedSvg);
 
     return (
-        <div className={styleClasses}>
+        <div className={itemContainerStyle}>
 
             <div className='stepper-label-container'>
-                <div className={iconContainerStyle}>
+                <div className={iconBoxStyle}>
                     {IconLabel}
                 </div>
                 <div className={titleContainer}>

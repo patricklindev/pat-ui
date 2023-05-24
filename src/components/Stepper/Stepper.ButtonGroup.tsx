@@ -1,8 +1,13 @@
 import React, {FC} from 'react';
 import Button from '../Button';
+import {classNames} from "../../utils/classNames";
 
 interface buttonGroupPropsType {
-    className?: string,
+    buttonGroupClassName?: string,
+    backButtonClassName?: string,
+    resetButtonClassName?: string,
+    skipButtonClassName?: string,
+    continueButtonClassName?: string,
     activeStep: number,
     totalSteps: number,
     handleBackClick(): void,
@@ -13,25 +18,37 @@ interface buttonGroupPropsType {
 
 }
 const StepperButtonGroup: FC<buttonGroupPropsType> = (props) => {
-    const {className, activeStep, totalSteps, handleBackClick, handleResetClick, handleNextClick,handleSkipClick, checkIsOptional} = props;
+    const {buttonGroupClassName, continueButtonClassName, backButtonClassName, resetButtonClassName, skipButtonClassName, activeStep, totalSteps, handleBackClick, handleResetClick, handleNextClick,handleSkipClick, checkIsOptional} = props;
+
+    let buttonGroupStyle = classNames('stepper-horizontal-buttons-group-container');
+    let backButtonStyle = classNames('stepper-back-button');
+    let resetButtonStyle = classNames('stepper-reset-button');
+    let skipButtonStyle = classNames('stepper-skip-button');
+    let continueButtonStyle = classNames('stepper-continue-button');
+
+    buttonGroupStyle = buttonGroupClassName ? buttonGroupStyle + ' ' + buttonGroupClassName : buttonGroupStyle;
+    backButtonStyle = backButtonClassName ? backButtonStyle + ' ' + backButtonClassName : backButtonStyle;
+    resetButtonStyle = resetButtonClassName ? resetButtonStyle + ' ' + resetButtonClassName : resetButtonStyle;
+    skipButtonStyle = skipButtonClassName ? skipButtonStyle + ' ' + skipButtonClassName : skipButtonStyle;
+    continueButtonStyle = continueButtonClassName ? continueButtonStyle + ' ' + continueButtonClassName : continueButtonStyle;
 
     return (
-        <div className={className ? `stepper-horizontal-buttons-group-container ${className}` : 'stepper-horizontal-buttons-group-container'}>
+        <div className={buttonGroupStyle}>
             <div>
-                {activeStep > totalSteps ? null : <Button className='stepper-back-button' disabled={activeStep === 0} onClick={handleBackClick}>Back</Button>}
+                {activeStep > totalSteps ? null : <Button className={backButtonStyle} disabled={activeStep === 0} onClick={handleBackClick}>Back</Button>}
             </div>
             <div>
                 {activeStep > totalSteps ? (
                     <React.Fragment>
-                        <Button className='stepper-reset-button' onClick={handleResetClick}>RESET</Button>
+                        <Button className={resetButtonStyle} onClick={handleResetClick}>RESET</Button>
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
                         {
                             checkIsOptional(activeStep) ?
-                                <Button className='stepper-skip-button' onClick={handleSkipClick}>Skip</Button> : null
+                                <Button className={skipButtonStyle} onClick={handleSkipClick}>Skip</Button> : null
                         }
-                        <Button className='stepper-continue-button' onClick={() => handleNextClick(activeStep)}>{activeStep === totalSteps ? 'FINISH' : 'CONTINUE'}</Button>
+                        <Button className={continueButtonStyle} onClick={() => handleNextClick(activeStep)}>{activeStep === totalSteps ? 'FINISH' : 'CONTINUE'}</Button>
                     </React.Fragment>
                 )}
             </div>

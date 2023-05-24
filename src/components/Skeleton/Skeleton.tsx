@@ -1,6 +1,5 @@
-import React, { CSSProperties, ElementType, HTMLAttributes, PropsWithChildren } from 'react';
+import * as React from 'react';
 import { classNames } from '../../utils/classNames';
-import PropTypes from 'prop-types'
 
 // Animation types for the skeleton component.
 export type SkeletonAnimation = 'pulse'
@@ -18,7 +17,7 @@ export interface ISkeletonProps {
     /** The animation type. If false, the animation effect is disabled. */
     animation?: SkeletonAnimation;
     /** The component used for the root node. Either a string to use a HTML element or a component. */
-    component?: string | ElementType;
+    component?: string | React.ElementType;
     /**  Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. */
     height?: number | string;
     /** The type of content that will be rendered. */
@@ -27,9 +26,9 @@ export interface ISkeletonProps {
     width?: number | string;
 }
 
-export type PatSkeletonProps = PropsWithChildren<ISkeletonProps> & HTMLAttributes<HTMLDivElement>;
+export type PatSkeletonProps = React.PropsWithChildren<ISkeletonProps> & React.HTMLAttributes<React.ElementType>;
 
-const Skeleton: React.FC<PatSkeletonProps> = (props) => {
+export const Skeleton: React.FC<PatSkeletonProps> = (props) => {
     const {
         animation,
         component: Component = 'div',
@@ -46,7 +45,7 @@ const Skeleton: React.FC<PatSkeletonProps> = (props) => {
         [animation as string]: !!animation
     });
 
-    const styles: CSSProperties = {
+    const styles: React.CSSProperties = {
         ...style,
         ...(width !== undefined && { width }),
         ...(height !== undefined && { height }),
@@ -58,26 +57,5 @@ const Skeleton: React.FC<PatSkeletonProps> = (props) => {
         </Component>
     );
 };
-
-Skeleton.propTypes = {
-    /** The animation type. If false, the animation effect is disabled. */
-    animation: PropTypes.oneOf(['pulse', 'wave', false]),
-    /** The component used for the root node. Either a string to use a HTML element or a component. */
-    component: PropTypes.elementType,
-    /**  Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. */
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    /** The type of content that will be rendered. */
-    variant: PropTypes.string,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    /** Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own. */
-    children: PropTypes.node,
-};
-
-
-Skeleton.defaultProps = {
-    animation: false,
-    variant: 'text',
-    component: 'div'
-}
 
 export default Skeleton;

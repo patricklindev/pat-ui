@@ -3,29 +3,7 @@
   border: none;
   box-shadow: $btn-box-shadow;
   cursor: pointer;
-  margin: 0.5rem 0.25rem;
-
-  // btn size
-  @include button-size(
-    $btn-padding-y,
-    $btn-padding-x,
-    $btn-font-size,
-    $border-radius
-  );
-
-  @include button-style(
-    $body-color,
-    //color
-    $white,
-    //background color
-    $body-color,
-    //border-color
-    $body-color,
-    //$hover-color: $color,
-    $gray-400,
-    //  $hover-background-color: lighten($background, 7.5%),
-    // $hover-border-color:
-  );
+  margin: 0.5rem 0.1rem;
 
   &.disabled,
   &[disabled] {
@@ -39,73 +17,52 @@
   }
 }
 
-.pagination--btn-sm {
-  @include button-size(
-    $btn-padding-y-sm,
-    $btn-padding-x-sm,
-    $btn-font-size-sm,
-    $border-radius-sm
-  );
-}
-.pagination--btn-lg {
-  @include button-size(
-    $btn-padding-y-lg,
-    $btn-padding-x-lg,
-    $btn-font-size-lg,
-    $border-radius-lg
-  );
-}
-
 .pagination--btn-default {
-  @include button-style(
-    $body-color,
-    $white,
-    $body-color,
-    $body-color,
-    $gray-400,
-    $body-color
-  );
+  // @include button-style(
+  //   $body-color,
+  //   $white,
+  //   $body-color,
+  //   $body-color,
+  //   $gray-400,
+  //   $body-color
+  // );
   &.selected {
     background-color: rgba(0, 0, 0, 0.08);
-  }
-  &.outlined {
-    border: $btn-border-width solid $gray-400;
+    &.outlined {
+      border: $btn-border-width solid $body-color;
+    }
   }
 }
 
 .pagination--btn-primary {
+  // background-color: red;
+  // &.selected {
+  //   @include button-style($white, $red, $red);
+  // }
+  // &.outlined {
+  //   color: $red;
+  //   background-color: rgba($red, 0.24);
+  //   border: $btn-border-width solid rgba($red, 0.5);
+  // }
+
   &.selected {
-    @include button-style($white, $red, $red);
+    @include button-style($white, $primary, $primary);
     &.outlined {
-      color: $red;
-      background-color: rgba($red, 0.24);
-      border: $btn-border-width solid rgba($red, 0.5);
-    }
-  }
-}
-.pagination--btn-secondary {
-  &.selected {
-    @include button-style($white, $indigo, $indigo);
-    &.outlined {
-      color: $indigo;
-      background-color: rgba($indigo, 0.24);
-      border: $btn-border-width solid rgba($indigo, 0.5);
+      color: $primary;
+      background-color: rgba($primary, 0.24);
+      border: $btn-border-width solid rgba($primary, 0.5);
     }
   }
 }
 
-.pagination--btn-link {
-  font-weight: $font-weight-normal;
-  color: $btn-link-color !important;
-  text-decoration: $link-decoration;
-  box-shadow: none;
-  &:hover {
-    text-decoration: $link-hover-decoration;
-  }
-  &:focus,
-  &.focus {
-    text-decoration: $link-hover-decoration;
-    box-shadow: none;
+.pagination--btn-secondary {
+  &.selected {
+    @include button-style($white, $secondary, $secondary);
+    &.outlined {
+      color: $secondary;
+      background-color: rgba($secondary, 0.24);
+      border: $btn-border-width solid rgba($secondary, 0.5);
+    }
   }
 }
 

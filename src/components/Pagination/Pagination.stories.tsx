@@ -4,8 +4,9 @@ import React from 'react';
 
 import Pagination from './Pagination';
 // import PaginationContainer from './PaginationContainer';
-import TablePaginationContainer from './TablePaginationContainer';
+// import TablePaginationContainer from './TablePaginationContainer';
 import { usePage } from '../../utils/hooks/usePage';
+import TablePagination from './TablePagination';
 
 export default {
   title: 'Pagination',
@@ -129,12 +130,15 @@ export const PaginationSize = () => {
 };
 
 export const TablePaginationWithRowPerPage = () => {
+  const [page, handleClickPage] = usePage(1);
   return (
     <div>
-      <TablePaginationContainer
+      <TablePagination
+        currentPage={page}
+        onPageChange={handleClickPage}
         rowsPerPage={25}
         totalPageNumber={100}
-      ></TablePaginationContainer>
+      ></TablePagination>
     </div>
   );
 };

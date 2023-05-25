@@ -1,22 +1,21 @@
 import React from 'react';
 
-import PaginationOption from './PaginationOption';
-import { TablePaginationProps } from './TablePaginationContainer';
+// import PaginationOption from './PaginationOption';
+import Button from '../Button/Button';
 
-type PageAndHandler = {
+export type TablePaginationProps = {
+  rowsPerPage: number;
+  totalPageNumber: number;
   currentPage: number;
   onPageChange: Function;
 };
-
-export type TablePaginationPropsWithHandler = TablePaginationProps &
-  PageAndHandler;
 
 export default function TablePagination({
   rowsPerPage,
   totalPageNumber,
   currentPage,
   onPageChange,
-}: TablePaginationPropsWithHandler) {
+}: TablePaginationProps) {
   let endPage = rowsPerPage - 1 + currentPage;
 
   const onNext = () => {
@@ -37,16 +36,13 @@ export default function TablePagination({
       <div>
         {`${currentPage}-${endPage} of ${totalPageNumber}`}
 
-        <PaginationOption disabled={currentPage === 1} onClick={onPrevious}>
+        <Button disabled={currentPage === 1} onClick={onPrevious}>
           &#8249;
-        </PaginationOption>
+        </Button>
         {'      '}
-        <PaginationOption
-          disabled={endPage >= totalPageNumber}
-          onClick={onNext}
-        >
+        <Button disabled={endPage >= totalPageNumber} onClick={onNext}>
           &#8250;
-        </PaginationOption>
+        </Button>
       </div>
     </div>
   );

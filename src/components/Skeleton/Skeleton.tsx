@@ -33,14 +33,15 @@ export const Skeleton: React.FC<PatSkeletonProps> = (props) => {
         animation,
         component: Component = 'div',
         height,
-        variant,
+        variant = 'text',
         width,
         children,
         style,
+        className = '',
         ...otherProps
     } = props;
 
-    const classes = classNames('skeleton', {
+    const classes = classNames(className, 'skeleton', {
         [variant as string]: !!variant,
         [animation as string]: !!animation
     });

@@ -2,6 +2,6 @@
 
 exports[`Skeleton should match snapshot 1`] = `
 <div
-  class="skeleton text"
+  class=" skeleton text"
 />
 `;

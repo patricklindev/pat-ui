@@ -7,6 +7,14 @@ import Accordion from './Accordian';
 export default {
   title: 'Accordion',
   component: Accordion,
+  argTypes: {
+    title: { control: 'text', description: 'The title of the accordion' },
+    subTitle: { control: 'text', description: 'The subtitle of the accordion' },
+    disabled: { control: 'boolean', description: 'Whether the accordion is disabled or not' },
+    isOpen: { control: 'boolean', description: 'Whether the accordion is open or not' },
+    panelId: { control: 'text', description: 'Panel ID for the accordion' },
+    onPanelChange: { action: 'clicked', description: 'Callback function triggered when the accordion is toggled' },
+  },
 };
 
 export const BasicAccordion = () => (

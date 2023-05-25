@@ -32,12 +32,12 @@ export const BasicPagination = () => {
       <Pagination
         currentPage={page2}
         onPageChange={handleClickPage2}
-        pagType="primary"
+        btnType="primary"
       ></Pagination>
       <Pagination
         currentPage={page3}
         onPageChange={handleClickPage3}
-        pagType="secondary"
+        btnType="secondary"
       ></Pagination>
       <Pagination
         currentPage={page4}
@@ -63,13 +63,13 @@ export const OutlinedPagination = () => {
       ></Pagination>
       <Pagination
         variant="outlined"
-        pagType="primary"
+        btnType="primary"
         currentPage={page2}
         onPageChange={handleClickPage2}
       ></Pagination>
       <Pagination
         variant="outlined"
-        pagType="secondary"
+        btnType="secondary"
         currentPage={page3}
         onPageChange={handleClickPage3}
       ></Pagination>
@@ -112,7 +112,7 @@ export const PaginationSize = () => {
   return (
     <div>
       <Pagination
-        pagSize="sm"
+        btnSize="sm"
         currentPage={page1}
         onPageChange={handleClickPage1}
       ></Pagination>
@@ -121,7 +121,7 @@ export const PaginationSize = () => {
         onPageChange={handleClickPage2}
       ></Pagination>
       <Pagination
-        pagSize="lg"
+        btnSize="lg"
         currentPage={page3}
         onPageChange={handleClickPage3}
       ></Pagination>
@@ -147,8 +147,8 @@ export const TablePaginationWithRowPerPage = () => {
 //   return (
 //     <div>
 //       <PaginationContainer></PaginationContainer>
-//       <PaginationContainer pagType="primary"></PaginationContainer>
-//       <PaginationContainer pagType="secondary"></PaginationContainer>
+//       <PaginationContainer btnType="primary"></PaginationContainer>
+//       <PaginationContainer btnType="secondary"></PaginationContainer>
 //       <PaginationContainer disabled></PaginationContainer>
 //     </div>
 //   );
@@ -160,11 +160,11 @@ export const TablePaginationWithRowPerPage = () => {
 //       <PaginationContainer variant="outlined"></PaginationContainer>
 //       <PaginationContainer
 //         variant="outlined"
-//         pagType="primary"
+//         btnType="primary"
 //       ></PaginationContainer>
 //       <PaginationContainer
 //         variant="outlined"
-//         pagType="secondary"
+//         btnType="secondary"
 //       ></PaginationContainer>
 //       <PaginationContainer variant="outlined" disabled></PaginationContainer>
 //     </div>
@@ -186,9 +186,9 @@ export const TablePaginationWithRowPerPage = () => {
 // export const PaginationSize = () => {
 //   return (
 //     <div>
-//       <PaginationContainer pagSize="sm"></PaginationContainer>
+//       <PaginationContainer btnSize="sm"></PaginationContainer>
 //       <PaginationContainer></PaginationContainer>
-//       <PaginationContainer pagSize="lg"></PaginationContainer>
+//       <PaginationContainer btnSize="lg"></PaginationContainer>
 //     </div>
 //   );
 // };

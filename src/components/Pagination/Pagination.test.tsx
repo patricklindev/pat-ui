@@ -34,8 +34,8 @@ describe('Pagination', () => {
 
   it('should render the pagination with different props', () => {
     const btnPrimarySmallProps = {
-      pagType: 'primary' as 'primary',
-      pagSize: 'sm' as 'sm',
+      btnType: 'primary' as 'primary',
+      btnSize: 'sm' as 'sm',
       shape: 'round' as PaginationShape,
       variant: 'outlined' as PaginationVariant,
       onPageChange: jest.fn(),

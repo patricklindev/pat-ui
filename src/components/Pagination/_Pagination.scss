@@ -17,35 +17,21 @@
   }
 }
 
-.pagination--btn-default {
-  // @include button-style(
-  //   $body-color,
-  //   $white,
-  //   $body-color,
-  //   $body-color,
-  //   $gray-400,
-  //   $body-color
-  // );
-  &.selected {
+.round {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.selected {
+  &.pagination--btn-default {
     background-color: rgba(0, 0, 0, 0.08);
     &.outlined {
       border: $btn-border-width solid $body-color;
     }
   }
-}
-
-.pagination--btn-primary {
-  // background-color: red;
-  // &.selected {
-  //   @include button-style($white, $red, $red);
-  // }
-  // &.outlined {
-  //   color: $red;
-  //   background-color: rgba($red, 0.24);
-  //   border: $btn-border-width solid rgba($red, 0.5);
-  // }
-
-  &.selected {
+  &.pagination--btn-primary {
     @include button-style($white, $primary, $primary);
     &.outlined {
       color: $primary;
@@ -53,10 +39,8 @@
       border: $btn-border-width solid rgba($primary, 0.5);
     }
   }
-}
 
-.pagination--btn-secondary {
-  &.selected {
+  &.pagination--btn-secondary {
     @include button-style($white, $secondary, $secondary);
     &.outlined {
       color: $secondary;
@@ -66,9 +50,51 @@
   }
 }
 
-.round {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  padding: 0;
-}
+// .pagination--btn-default {
+//   // @include button-style(
+//   //   $body-color,
+//   //   $white,
+//   //   $body-color,
+//   //   $body-color,
+//   //   $gray-400,
+//   //   $body-color
+//   // );
+//   &.selected {
+//     background-color: rgba(0, 0, 0, 0.08);
+//     &.outlined {
+//       border: $btn-border-width solid $body-color;
+//     }
+//   }
+// }
+
+// .pagination--btn-primary {
+//   // background-color: red;
+//   // &.selected {
+//   //   @include button-style($white, $red, $red);
+//   // }
+//   // &.outlined {
+//   //   color: $red;
+//   //   background-color: rgba($red, 0.24);
+//   //   border: $btn-border-width solid rgba($red, 0.5);
+//   // }
+
+//   &.selected {
+//     @include button-style($white, $primary, $primary);
+//     &.outlined {
+//       color: $primary;
+//       background-color: rgba($primary, 0.24);
+//       border: $btn-border-width solid rgba($primary, 0.5);
+//     }
+//   }
+// }
+
+// .pagination--btn-secondary {
+//   &.selected {
+//     @include button-style($white, $secondary, $secondary);
+//     &.outlined {
+//       color: $secondary;
+//       background-color: rgba($secondary, 0.24);
+//       border: $btn-border-width solid rgba($secondary, 0.5);
+//     }
+//   }
+// }

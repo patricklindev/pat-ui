@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import PaginationOption from './PaginationOption';
 import Button from '../Button/Button';
 
 export type TablePaginationProps = {

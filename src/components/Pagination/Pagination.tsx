@@ -5,12 +5,7 @@ import Button from '../Button/Button';
 import { classNames } from '../../utils/classNames';
 
 export type PaginationSize = 'lg' | 'sm';
-export type PaginationType =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'default'
-  | 'link';
+export type PaginationType = 'primary' | 'secondary' | 'default' | 'link';
 export type PaginationShape = 'round' | 'rounded';
 export type PaginationVariant = 'outlined';
 
@@ -32,15 +27,11 @@ export interface PaginationProps {
   shape?: PaginationShape;
   /** set pagination button outlined */
   variant?: PaginationVariant;
+  /** set pagination page function */
+  onPageChange: Function;
 }
 
-export type HandlerProps = {
-  onPageChange: Function;
-};
-
-export type PaginationPropsWithHandler = PaginationProps & HandlerProps;
-
-export const Pagination: FC<PaginationPropsWithHandler> = ({
+export const Pagination: FC<PaginationProps> = ({
   className,
   btnSize,
   btnType = 'default',
@@ -51,6 +42,10 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
   shape = 'rounded',
   variant = '',
 }) => {
+  let pagType = !!btnType ? `pagination--btn-${btnType}` : '';
+  let defaultPaginationStyle = 'pagination--btn';
+
+  let paginationStyles = classNames(defaultPaginationStyle, variant, shape);
   let renderItems = usePagination({ totalPageNumber, currentPage });
 
   const onNext = () => {
@@ -61,10 +56,15 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
     onPageChange(currentPage - 1);
   };
 
-  let pagType = !!btnType ? `pagination--btn-${btnType}` : '';
-  let defaultPaginationStyle = 'pagination--btn';
-
-  let paginationStyles = classNames(defaultPaginationStyle, variant, shape);
+  const getButtonStyles = (buttonPage: number) => {
+    let selected = '';
+    let ButtonStyles = paginationStyles;
+    if (currentPage === buttonPage) {
+      selected = 'selected';
+      ButtonStyles = classNames(ButtonStyles, pagType, selected);
+    }
+    return ButtonStyles;
+  };
 
   return (
     <div data-testid="pagination" className="pagination">
@@ -74,9 +74,6 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
         disabled={disabled || currentPage === 1}
         onClick={onPrevious}
         btnSize={btnSize}
-        // btnType={btnType}
-        // shape={shape}
-        // variant={variant}
       >
         &#8249;
       </Button>
@@ -84,28 +81,18 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
         if (element === true) {
           return <span key={index}>&#8230;</span>;
         }
-        let selected = '';
-        let newpaginationStyles = paginationStyles;
-        if (currentPage === element) {
-          selected = 'selected';
-          newpaginationStyles = classNames(
-            newpaginationStyles,
-            pagType,
-            selected
-          );
-        }
+
+        let PaginationButtonStyles = getButtonStyles(element as number);
 
         return (
           <Button
             key={index}
-            className={newpaginationStyles}
+            className={PaginationButtonStyles}
             disabled={disabled}
             btnSize={btnSize}
             onClick={() => {
               onPageChange(element);
             }}
-            // selected={currentPage === element}
-            // btnType={btnType}
           >
             {element}
           </Button>
@@ -117,9 +104,6 @@ export const Pagination: FC<PaginationPropsWithHandler> = ({
         disabled={disabled || currentPage === totalPageNumber}
         btnSize={btnSize}
         onClick={onNext}
-        // btnType={btnType}
-        // shape={shape}
-        // variant={variant}
       >
         &#8250;
       </Button>

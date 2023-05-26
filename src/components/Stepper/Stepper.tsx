@@ -1,6 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
 
-import './_Stepper.scss'
 import StepperStep from './StepperStep';
 import StepperButtonGroup from './Stepper.ButtonGroup';
 import StepperStepVertical from './StepperStepVertical';

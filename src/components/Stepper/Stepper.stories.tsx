@@ -82,10 +82,3 @@ export const stepperVertical = () => (
         </Stepper>
     </div>
 )
-
-export const test = () => (
-    <div>
-        <Stepper stepsArr={stepsArr} detectError={detectError}></Stepper>
-    </div>
-)
-

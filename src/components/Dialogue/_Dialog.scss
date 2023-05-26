@@ -1,0 +1,83 @@
+.dialog {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+  .--dialog-body-max-width-xs {
+    max-width: 30%;
+  }
+  .--dialog-body-max-width-sm {
+    max-width: 40%;
+  }
+  .--dialog-body-max-width-md {
+    max-width: 50%;
+  }
+  .--dialog-body-max-width-lg {
+    max-width: 60%;
+  }
+  .--dialog-body-max-width-xl {
+    max-width: 70%;
+  }
+}
+.dialog__body {
+  background: #ffffff;
+  border-radius: 4px;
+  margin: 5% auto;
+  width: 50%;
+  top: 10%;
+  left: 10%;
+  padding: 1em;
+  overflow-y: auto;
+
+  max-height: 80vh;
+}
+.dialog__title {
+  margin-left: 1.5em;
+  margin-top: 1em;
+  margin-right: 2.5em;
+  font-family: $font-family-base;
+  font-style: $headings-font-style;
+  font-weight: $headings-font-weight;
+  font-size: $font-size-lg;
+  line-height: $headings-line-height;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-left: 1.5em;
+  margin-right: 2.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  //styleName: typography / body1 ;
+  font-family: Roboto;
+  font-size: $font-size-base;
+  font-weight: font-weight-normal;
+  line-height: line-height-base;
+  letter-spacing: 0.15px;
+  text-align: left;
+}
+.dialog-content-divider {
+  /* palette / divider */
+  background: #0000001f;
+}
+.dialog__content-text {
+  color: $secondary;
+}
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.--dialog__actions-gap {
+  gap: 1em;
+}

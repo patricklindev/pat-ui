@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog Component and sub-components should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="dialog"
+    data-testid="dialog-element"
+  >
+    <div
+      class="dialog__body --dialog-body-max-width-sm"
+      data-testid="dialog-body-element"
+    >
+      <div
+        class="dialog__title"
+        data-testid="dialog-title-element"
+      >
+        Dialog Title
+      </div>
+      <div
+        class="dialog__content"
+        data-testid="dialog-content-element"
+      >
+        <div
+          class="dialog__content-text"
+          data-testid="dialog-contenttext-element"
+        >
+          Content Text
+        </div>
+        <div>
+          Content
+        </div>
+      </div>
+      <div
+        class="dialog__actions undefined --dialog__actions-gap"
+        data-testid="dialog-actions-element"
+      >
+        <button>
+          Button 1
+        </button>
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

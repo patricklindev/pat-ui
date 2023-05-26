@@ -8,7 +8,7 @@ export interface IDialogActionsProps {
 export type PatDialogActionsProps = IDialogActionsProps &
   HTMLAttributes<HTMLDivElement>;
 
-const DialogActions: FC<PatDialogActionsProps> = (props) => {
+export const DialogActions: FC<PatDialogActionsProps> = (props) => {
   const { disableSpacing, children, className } = props;
 
   let dialogActions = (

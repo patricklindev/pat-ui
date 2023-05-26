@@ -138,7 +138,7 @@ export const FormDialog = () => {
           will send updates occasionally.
           <Input />
         </DialogContent>
-        <DialogActions>
+        <DialogActions disableSpacing={true}>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>

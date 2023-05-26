@@ -1,216 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch should render with the checked props and disabled 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    checked=""
-    class="switch-input"
-    color="default"
-    disabled=""
-    type="checkbox"
-  />
-  <span
-    class="switch default checked"
-  >
-    <span
-      class="thumb default"
-    />
-  </span>
-</label>
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  disabled=""
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the default props 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="default"
-    type="checkbox"
-  />
-  <span
-    class="switch default"
-  >
-    <span
-      class="thumb default"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the default props and checked 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    checked=""
-    class="switch-input"
-    color="default"
-    type="checkbox"
-  />
-  <span
-    class="switch default checked"
-  >
-    <span
-      class="thumb default"
-    />
-  </span>
-</label>
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the primary color 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="primary"
-    type="checkbox"
-  />
-  <span
-    class="switch primary"
-  >
-    <span
-      class="thumb primary"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="primary"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the primary color and checked 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    checked=""
-    class="switch-input"
-    color="primary"
-    type="checkbox"
-  />
-  <span
-    class="switch primary checked"
-  >
-    <span
-      class="thumb primary"
-    />
-  </span>
-</label>
+<input
+  checked=""
+  class="switch-input"
+  color="primary"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the secondary color 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="secondary"
-    type="checkbox"
-  />
-  <span
-    class="switch secondary"
-  >
-    <span
-      class="thumb secondary"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="secondary"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the small size 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="default"
-    type="checkbox"
-  />
-  <span
-    class="switch default small"
-  >
-    <span
-      class="thumb default small"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the small size and checked 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    checked=""
-    class="switch-input"
-    color="default"
-    type="checkbox"
-  />
-  <span
-    class="switch default checked small"
-  >
-    <span
-      class="thumb default small"
-    />
-  </span>
-</label>
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the small size and disabled and no label 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="default"
-    disabled=""
-    type="checkbox"
-  />
-  <span
-    class="switch default small"
-  >
-    <span
-      class="thumb default small"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="default"
+  disabled=""
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the small size and primary color 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="primary"
-    type="checkbox"
-  />
-  <span
-    class="switch primary small"
-  >
-    <span
-      class="thumb primary small"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="primary"
+  id="switchId"
+  type="checkbox"
+/>
 `;
 
 exports[`Switch should render with the small size and secondary color 1`] = `
-<label
-  class="switch-label"
->
-  <input
-    class="switch-input"
-    color="secondary"
-    type="checkbox"
-  />
-  <span
-    class="switch secondary small"
-  >
-    <span
-      class="thumb secondary small"
-    />
-  </span>
-</label>
+<input
+  class="switch-input"
+  color="secondary"
+  id="switchId"
+  type="checkbox"
+/>
 `;

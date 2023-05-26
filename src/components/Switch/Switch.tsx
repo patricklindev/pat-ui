@@ -19,8 +19,16 @@ export interface ISwitchProps {
 }
 
 // Defining the combined props type for the Switch component
+// it combines the ISwitchProps interface with the InputHTMLAttributes interface
 export type PatSwitchProps = ISwitchProps & InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * A Switch is a visual toggle between two mutually exclusive states — on and off.
+ *
+ * ```js
+ * import {Switch} from 'pat-ui'
+ * ```
+ */
 const Switch: FC<PatSwitchProps> = ({
   color = 'default',
   size,
@@ -28,13 +36,14 @@ const Switch: FC<PatSwitchProps> = ({
   checked: checkedProp,
   onChange,
   disabled = false,
-  required = false
+  required = false,
+  ...rest
 }) => {
   // this state is used to update the switch
-  const [checked, setChecked] = useState(checkedProp || false);
+  const [checked, setChecked] = useState<boolean>(checkedProp || false);
 
   // handles the change event of the switch
-  const handleChange = useCallback(
+  const handleSwitchChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newChecked = event.target.checked;
       setChecked(newChecked);
@@ -52,23 +61,27 @@ const Switch: FC<PatSwitchProps> = ({
     label: classNames('switch-label-text'), // CSS classes for the switch label element
   };
 
+  const switchId = rest.id || 'switchId';
+
   return (
-    <label className="switch-label">
+    <>
       <input
         type="checkbox"
+        id={switchId}
         className="switch-input"
         size={size}
         color={color}
         checked={checked}
-        onChange={handleChange}
+        onChange={handleSwitchChange}
         disabled={disabled}
         required={required}
+        {...rest}
       />
-      <span className={styleClasses.switch}>
+      <label htmlFor={switchId} className={styleClasses.switch}>
         <span className={styleClasses.thumb}></span>
-      </span>
+      </label>
       {label && <span className={styleClasses.label}>{label}</span>}
-    </label>
+    </>
   );
 };
 

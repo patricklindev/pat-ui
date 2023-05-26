@@ -11,79 +11,104 @@
 .switch {
   position: relative; /* Position the switch container */
   display: inline-block; /* Display as an inline block element */
-  width: 48px; /* Set the width of the switch */
-  height: 20px; /* Set the height of the switch */
-  border-radius: 16px; /* Apply rounded corners */
-  background-color: #e0e0e0; /* Set the background color of the switch */
+  width: 34px; /* Set the width of the switch */
+  height: 14px; /* Set the height of the switch */
+  border-radius: 7px; /* Apply rounded corners */
+  padding-top: 7px;
+  top: 12px;
+  background-color: #000000; /* Set the background color of the switch */
+  opacity: 0.38;
   transition: background-color 250ms ease, left 250ms ease; /* Add transition effect to background color and left position */
 
   &.small {
-    width: 36px; /* Adjust width for small size */
-    height: 14px; /* Adjust height for small size */
+    width: 26px; /* Adjust width for small size */
+    height: 10px; /* Adjust height for small size */
+    top: 7px;
+    background: #000000;
+    border-radius: 5px;
 
     .thumb {
-      width: 18px; /* Set width of the thumb */
-      height: 18px; /* Set height of the thumb */
-      left: 0; /* Position the thumb on the left side */
+      width: 16px; /* Set width of the thumb */
+      height: 16px; /* Set height of the thumb */
+      top: 4px;
+      box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+      border-radius: 10px;
     }
 
     &.checked {
-      .thumb {
-        left: 14px; /* Move thumb to the right when switch is checked */
-      }
+      background: #000000;
+      opacity: 0.5;
+      border-radius: 5px;
     }
   }
 
   &.primary {
-    background-color: #5a71d6; /* Set background color for primary switch */
+    opacity: 0.5;
+    
+    &.checked{
+      background-color: #3F51B5; /* Set background color for unchecked primary switch */
+      border-radius: 7px;
+    }
 
     &:not(.checked) {
-      background-color: #ebe8e8; /* Set background color for unchecked primary switch */
+      background-color: #000000; /* Set background color for unchecked primary switch */
+      opacity: 0.38;
+      border-radius: 7px;
 
       .thumb {
-        background-color: #b3b3b3; /* Set thumb color for unchecked primary switch */
+        /* palette / grey / 50 */
+        background: #FAFAFA;
+        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
       }
     }
   }
 
   &.secondary {
-    background-color: #f86c6c; /* Set background color for secondary switch */
-
-    &.checked {
-      background-color: #f86c6c; /* Set background color for checked secondary switch */
-
-      .thumb {
-        background-color: #d50000; /* Set thumb color for checked secondary switch */
-      }
+    opacity: 0.5;
+    
+    &.checked{
+      background-color: #F50057; /* Set background color for unchecked primary switch */
+      border-radius: 7px;
     }
 
     &:not(.checked) {
-      background-color: #ebe8e8; /* Set background color for unchecked secondary switch */
+      background-color: #000000; /* Set background color for unchecked primary switch */
+      opacity: 0.38;
+      border-radius: 7px;
 
       .thumb {
-        background-color: #b3b3b3; /* Set thumb color for unchecked secondary switch */
+        /* palette / grey / 50 */
+        background: #FAFAFA;
+        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
       }
     }
   }
 
   .thumb {
+    width: 20px; /* Set width of the thumb */
+    height: 20px; /* Set height of the thumb */
     position: absolute; /* Position the thumb */
-    top: 50%; /* Align vertically in the middle */
     transform: translateY(-50%); /* Adjust vertical position */
-    width: 28px; /* Set width of the thumb */
-    height: 25px; /* Set height of the thumb */
-    border-radius: 50%; /* Apply rounded corners */
-    background-color: #bdbdbd; /* Set default background color for the thumb */
-    box-shadow: none; /* Remove box shadow */
+    background-color: #FAFAFA; /* Set default background color for the thumb */
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 10px; /* Apply rounded corners */
     transition: left 250ms ease; /* Add transition effect to left position */
 
     &.primary {
-      background-color: #211bc2; /* Set thumb color for primary switch */
+        background: #3F51B5;
+        opacity: 1 !important;
+        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
     }
 
     &.secondary {
-      background-color: #d50000; /* Set thumb color for secondary switch */
+        background: #F50057;
+        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
     }
+
   }
 }
 
@@ -91,25 +116,26 @@
   transition: background-color 250ms ease; /* Add transition effect to background color */
   left: 20px; /* Move thumb to the right when switch is checked */
 
-  &.primary {
-    background-color: #1128ab; /* Set thumb color for checked primary switch */
+  &.small {
+    left: 16px; /* Move thumb to the right when switch is checked */
   }
-
-  &.secondary {
-    background-color: #d50000; /* Set thumb color for checked secondary switch */
-  }
-
-  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1); /* Add box shadow when switch is checked */
 }
 
-.switch-input:disabled + .switch {
-  cursor: not-allowed; /* Change cursor to not-allowed when switch is disabled */
+.switch-input:hover + .switch .thumb {
+  cursor: pointer; /* Add cursor pointer on hover */
 }
 
 .switch-input:disabled + .switch .thumb {
-  background-color: #bdbdbd; /* Set thumb color for disabled switch */
+  cursor: not-allowed; /* Change cursor to not-allowed when switch is disabled */
 }
 
 .switch-label-text {
-  padding-left: 8px; /* Add left padding to the switch label text */
+  width: 88px;
+  height: 24px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  padding-left: 12px; /* Add left padding to the switch label text */
 }

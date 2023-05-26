@@ -1,0 +1,159 @@
+$inactive_icon_color: #BDBDBD;
+$active_icon_color: #3f51b5;
+$label_number_color: #FFFFFF;
+$active_label_color: rgba(0, 0, 0, 0.87);
+$inactive_label_color: rgba(0, 0, 0, 0.54);
+$back_button_color: black;
+$error_color: #F44336;
+
+.stepper-item-container--horizontal {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  hr {
+    flex-grow: 1;
+    margin: 0 20px;
+    align-self: center;
+  }
+}
+
+.stepper-label-container-alternative {
+  flex-direction: column;
+  .stepper-step-optional {
+    text-align: center;
+  }
+}
+
+.stepper-content-container--horizontal {
+  margin-top: 20px;
+}
+
+.stepper-label-container {
+  display: flex;
+  font-family: Roboto, serif;
+  align-items: center;
+
+  .stepper-icon-container-finished {
+    background-color: transparent !important;
+  }
+
+  .stepper-icon-container {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: $inactive_icon_color;
+    color: $label_number_color;
+
+    .stepper-finished-icon {
+      fill: $active_icon_color;
+    }
+  }
+
+  .stepper-icon-container-error {
+    background-color: transparent !important;
+  }
+
+  .stepper-icon-container-active {
+    background-color: $active_icon_color;
+  }
+
+  .stepper-step-icon {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .stepper-title-error-container {
+    p {
+      color: $error_color !important;
+    }
+  }
+}
+
+.stepper-title-container {
+  p {
+    margin: 0;
+    padding: 0;
+    color: $inactive_label_color;
+  }
+}
+
+.stepper-label-container-finished {
+  .stepper-title-container {
+    p {
+      color: $active_label_color;
+    }
+  }
+}
+
+.stepper-step-optional {
+  font-size: 12px;
+  color: $active_label_color !important;
+}
+
+.stepper-horizontal-buttons-group-container {
+  display: flex;
+  justify-content: space-between;
+
+  .stepper-back-button, .stepper-skip-button {
+    border: none;
+    color: $back_button_color;
+  }
+
+  .stepper-back-button:hover,
+  .stepper-skip-button:hover,
+  .stepper-reset-button,
+  .stepper-continue-button {
+    border:1px solid $active_icon_color;
+    color: $active_icon_color;
+  }
+
+  .stepper-skip-button {
+    margin-right: 20px;
+  }
+}
+
+.stepper-description-buttons-container--vertical {
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-left: 12px;
+  border-left: 1px solid $inactive_icon_color;
+
+  .stepper-buttons-container--vertical {
+    margin: 20px 0 0 0;
+
+    .stepper-back-button, .stepper-skip-button {
+      border: none;
+      color: $back_button_color;
+    }
+
+    .stepper-skip-button {
+      margin: 10px 0;
+    }
+
+    .stepper-back-button {
+      margin-left: 10px;
+    }
+
+    .stepper-back-button:hover,
+    .stepper-reset-button,
+    .stepper-continue-button {
+      border:1px solid $active_icon_color;
+      color: $active_icon_color;
+    }
+  }
+}
+
+.stepper-item-inactive-place-holder--vertical{
+  height: 30px;
+  margin: 0 0 10px 12px;
+  border-left: 1px solid $inactive_icon_color;
+}
+
+.stepper-container--vertical {
+  .stepper-label-container {
+    margin-bottom: 10px;
+  }
+}

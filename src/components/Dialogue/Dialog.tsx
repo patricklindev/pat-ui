@@ -63,7 +63,9 @@ export const Dialog: FC<PatDialogProps> = (props) => {
     ...rest
   } = props;
   const handleBackdropClick = (e: MouseEvent) => {
-    onClose(e, 'backdropClick');
+    if ((e.target as HTMLElement).classList.contains('dialog')) {
+      onClose(e, 'backdropClick');
+    }
   };
   const handleEscapeKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -89,38 +91,17 @@ export const Dialog: FC<PatDialogProps> = (props) => {
     handleBackdropScrollingBasedOnDialogState();
   }, [open]);
 
-  let styleClasses;
-  if (className) styleClasses = 'dialog ' + className;
-  else styleClasses = 'dialog';
-  let dialogBodyClasses = 'dialog__body';
-  if (maxWidth !== false) {
-    switch (maxWidth) {
-      case 'xs': {
-        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.xs;
-        break;
-      }
-      case 'sm': {
-        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.sm;
-        break;
-      }
-      case 'md': {
-        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.md;
-        break;
-      }
-      case 'lg': {
-        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.lg;
-        break;
-      }
-      case 'xl': {
-        dialogBodyClasses += ' ' + MaxWidthSizeTypeClass.xl;
-        break;
-      }
-      default: {
-        dialogBodyClasses += ` ${MaxWidthSizeTypeClass.sm}`;
-        break;
-      }
-    }
-  }
+  let styleClasses = { dialog: true };
+
+  let dialogBodyClasses = {
+    dialog__body: true,
+    [MaxWidthSizeTypeClass.xs]: maxWidth === 'xs',
+    [MaxWidthSizeTypeClass.sm]: maxWidth === 'sm',
+    [MaxWidthSizeTypeClass.md]: maxWidth === 'md',
+    [MaxWidthSizeTypeClass.lg]: maxWidth === 'lg',
+    [MaxWidthSizeTypeClass.xl]: maxWidth === 'xl',
+  };
+
   let dialog;
   dialog = open ? (
     <div
@@ -129,18 +110,14 @@ export const Dialog: FC<PatDialogProps> = (props) => {
       data-testid="dialog-element"
     >
       <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
         className={classNames(dialogBodyClasses)}
         data-testid="dialog-body-element"
+        {...(rest as PatDialogProps)}
       >
         {props.children}
       </div>
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
   return dialog;
 };
 

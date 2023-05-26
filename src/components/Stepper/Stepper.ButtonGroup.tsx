@@ -10,15 +10,34 @@ interface buttonGroupPropsType {
     continueButtonClassName?: string,
     activeStep: number,
     totalSteps: number,
+
     handleBackClick(): void,
+
     handleResetClick(): void,
+
     handleSkipClick(): void,
+
     handleNextClick(step: number): void,
+
     checkIsOptional(step: number): boolean,
 
 }
+
 const StepperButtonGroup: FC<buttonGroupPropsType> = (props) => {
-    const {buttonGroupClassName, continueButtonClassName, backButtonClassName, resetButtonClassName, skipButtonClassName, activeStep, totalSteps, handleBackClick, handleResetClick, handleNextClick,handleSkipClick, checkIsOptional} = props;
+    const {
+        buttonGroupClassName,
+        continueButtonClassName,
+        backButtonClassName,
+        resetButtonClassName,
+        skipButtonClassName,
+        activeStep,
+        totalSteps,
+        handleBackClick,
+        handleResetClick,
+        handleNextClick,
+        handleSkipClick,
+        checkIsOptional
+    } = props;
 
     let buttonGroupStyle = classNames('stepper-horizontal-buttons-group-container');
     let backButtonStyle = classNames('stepper-back-button');
@@ -35,7 +54,8 @@ const StepperButtonGroup: FC<buttonGroupPropsType> = (props) => {
     return (
         <div className={buttonGroupStyle}>
             <div>
-                {activeStep > totalSteps ? null : <Button className={backButtonStyle} disabled={activeStep === 0} onClick={handleBackClick}>Back</Button>}
+                {activeStep > totalSteps ? null : <Button className={backButtonStyle} disabled={activeStep === 0}
+                                                          onClick={handleBackClick}>Back</Button>}
             </div>
             <div>
                 {activeStep > totalSteps ? (
@@ -48,7 +68,8 @@ const StepperButtonGroup: FC<buttonGroupPropsType> = (props) => {
                             checkIsOptional(activeStep) ?
                                 <Button className={skipButtonStyle} onClick={handleSkipClick}>Skip</Button> : null
                         }
-                        <Button className={continueButtonStyle} onClick={() => handleNextClick(activeStep)}>{activeStep === totalSteps ? 'FINISH' : 'CONTINUE'}</Button>
+                        <Button className={continueButtonStyle}
+                                onClick={() => handleNextClick(activeStep)}>{activeStep === totalSteps ? 'FINISH' : 'CONTINUE'}</Button>
                     </React.Fragment>
                 )}
             </div>

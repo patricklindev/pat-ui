@@ -17,7 +17,6 @@ const stepContentArrVertical = [
     with your ads, find out how to tell if they're running and how to resolve approval issues.`,
 ]
 
-
 const customErrorSvg = (
     <svg viewBox='0 0 24 24'>
         <path d="M10 10 L90 10 L90 90 L10 90 Z" />
@@ -83,3 +82,10 @@ export const stepperVertical = () => (
         </Stepper>
     </div>
 )
+
+export const test = () => (
+    <div>
+        <Stepper stepsArr={stepsArr} detectError={detectError}></Stepper>
+    </div>
+)
+

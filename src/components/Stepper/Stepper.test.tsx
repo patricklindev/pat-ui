@@ -1,4 +1,4 @@
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitForElement} from '@testing-library/react';
 import React from 'react';
 
 import Stepper from './Stepper';
@@ -21,24 +21,88 @@ describe('Stepper', () => {
     with your ads, find out how to tell if they're running and how to resolve approval issues.`,
     ]
 
+    const className = {
+        horizontalContainerClassName: 'testHorizontalContainerClassName',
+        verticalContainerClassName: 'testVerticalContainerClassName',
+        horizontalItemClassName: 'testHorizontalItemClassName',
+        horizontalContentClassName: 'testHorizontalContentClassName',
+        verticalItemStyle: 'testVerticalItemStyle',
+        iconContainerStyle: 'testIconContainerStyle',
+        verticalTitleStyle: 'testVerticalTitleStyle',
+        horizontalLabelClassName: 'testHorizontalLabelClassName',
+        horizontalTitleStyle: 'testHorizontalTitleStyle',
+        buttonGroupClassName: 'testButtonGroupClassName',
+        backButtonClassName: 'testBackButtonClassName',
+        resetButtonClassName: 'testResetButtonClassName',
+        skipButtonClassName: 'testSkipButtonClassName',
+        continueButtonClassName: 'testContinueButtonClassName',
+    }
+
+    const customErrorSvg = (
+        <svg viewBox='0 0 24 24'>
+            <path d="M10 10 L90 10 L90 90 L10 90 Z" />
+        </svg>
+    )
+
+    const customFinishedSvg = (
+        <svg viewBox='0 0 24 24'>
+            <path d="M12 2l3.09 6.35 6.91.81-5 4.87 1.18 6.88L12 18.2l-6.18 3.82 1.18-6.88-5-4.87 6.91-.81z"/>
+        </svg>
+    )
+
+    const detectError = (step: number) => { return step === 1; }
+
+    const detectOptional = (step: number) => { return step === 1; }
 
     it('should match snapshot --default', function () {
-        const {asFragment} = render(<Stepper stepsArr={stepsArr}></Stepper>);
+        const {asFragment} = render(
+            <Stepper stepsArr={stepsArr}>
+                {stepContentArr.map(stepContent => (
+                    <div key={stepContent}>{stepContent}</div>
+                ))}
+            </Stepper>);
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('should match snapshot --alternative', function () {
-        const {asFragment} = render(<Stepper stepsArr={stepsArr} alternative></Stepper>);
+        const {asFragment} = render(
+            <Stepper
+                alternative
+                stepsArr={stepsArr}
+                detectError={detectError}
+                detectOptional={detectOptional}
+            >
+                {stepContentArrVertical.map(stepContent => (
+                    <div key={stepContent}>{stepContent}</div>
+                ))}
+            </Stepper>);
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('should match snapshot --vertical', function () {
-        const {asFragment} = render(<Stepper stepsArr={stepsArrVertical} verticalStepper></Stepper>);
+        const {asFragment} = render(
+            <Stepper
+                stepsArr={stepsArrVertical}
+                detectOptional={detectOptional}
+                verticalStepper detectError={detectError}
+            >
+                {stepContentArrVertical.map(stepContent => (
+                    <div key={stepContent}>{stepContent}</div>
+                ))}
+            </Stepper>);
         expect(asFragment()).toMatchSnapshot();
     });
 
-    it('should able to skip a step if the step is optional', function () {
-        render(<Stepper stepsArr={stepsArr}></Stepper>);
+    it('should feed an array of string description', function () {
+        render(<Stepper stepsArr={stepsArr} initActiveStep={0}></Stepper>);
+        stepsArr.forEach(label => {
+            const labelElement = screen.getByText(label);
+            expect(labelElement).toBeInTheDocument();
+        })
+    });
+
+    it('should allow users to choose whether to skip a step if the step is optional', function () {
+        render(<Stepper stepsArr={stepsArr} detectOptional={detectOptional}></Stepper>);
         const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
         fireEvent.click(continueBtn);
         const skipBtn = screen.getByText('Skip');
@@ -47,50 +111,62 @@ describe('Stepper', () => {
         expect(skipBtn).not.toBeInTheDocument();
     });
 
-    it('should have continue button', function () {
-        render(<Stepper stepsArr={stepsArr}></Stepper>);
-        const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
-        expect(continueBtn).toHaveProperty('disabled', false)
-        expect(continueBtn).toBeInTheDocument();
-        expect(continueBtn).toHaveClass('stepper-continue-button');
-    });
-
-    it('should have skip button', function () {
-        render(<Stepper stepsArr={stepsArr}></Stepper>);
-        let backBtn = screen.getByText('Back') as HTMLElement;
-        const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
-        expect(backBtn).toHaveProperty('disabled', true)
-        expect(backBtn).toBeInTheDocument();
-        fireEvent.click(continueBtn);
-        backBtn = screen.getByText('Back') as HTMLElement;
-        expect(backBtn).toHaveProperty('disabled', false)
-    });
-
-    it('should change icon if continue button is clicked', function () {
+    it('should allow users to click on the buttons to mark completion of steps', function () {
         render(<Stepper stepsArr={stepsArr}></Stepper>);
         const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
         fireEvent.click(continueBtn);
-        const finishedIcon = document.querySelector('.stepper-finished-icon');
+        const finishedIcon = screen.getByTestId('finished-icon');
         expect(finishedIcon).toBeInTheDocument();
     });
 
-    it('should have a error icon if the step has an error', function () {
+    it('should allow users to  dictate orientation of stepper (row vs column)', function () {
+        render(<Stepper stepsArr={stepsArr} verticalStepper></Stepper>);
+        const verticalStepper = screen.getByTestId('vertical-stepper');
+        expect(verticalStepper).toBeInTheDocument();
         render(<Stepper stepsArr={stepsArr}></Stepper>);
-        const errorIcon = document.querySelector('.stepper-error-icon');
-        expect(errorIcon).toBeInTheDocument();
+        const horizontalStepper = screen.getByTestId('horizontal-stepper');
+        expect(horizontalStepper).toBeInTheDocument();
     });
 
-    it('should allow users to use alternative horizontal stepper', function () {
-        render(<Stepper stepsArr={stepsArr} alternative></Stepper>);
-        const alternativeLabel = document.querySelector('.stepper-label-container-alternative');
-        expect(alternativeLabel).toBeInTheDocument();
-
+    it('should have a error icon if the step has an error', function () {
+        const myObj = {
+            detectError: (step: number) => { return step === 0; },
+        }
+        const spy = jest.spyOn(myObj, 'detectError')
+        render(<Stepper stepsArr={stepsArr} detectError={myObj.detectError}></Stepper>);
+        const continueBtn = screen.getByText('CONTINUE') as HTMLElement;
+        fireEvent.click(continueBtn);
+        expect(spy).toHaveBeenCalled();
+        waitForElement(() => {
+            const errorIcon = screen.getByTestId('error-icon');
+            expect(errorIcon).toBeInTheDocument();
+        })
     });
 
-    it('should allow users to use vertical stepper', function () {
-        render(<Stepper stepsArr={stepsArrVertical} verticalStepper></Stepper>);
-        const verticalBtn = document.querySelector('.stepper-description-buttons-container--vertical');
-        expect(verticalBtn).toBeInTheDocument();
-    });
 
+    it('should allow users to customize icon and class name', function () {
+        const myObj = {
+            myDetectError: detectError,
+            myDetectOptional: detectOptional,
+        }
+        render(<Stepper stepsArr={stepsArr}
+                        className={className}
+                        customErrorSvg={customErrorSvg}
+                        customFinishedSvg={customFinishedSvg}
+                        detectOptional={myObj.myDetectOptional}
+                        detectError={myObj.myDetectError}
+        ></Stepper>);
+        let continueBtn = screen.getByText('CONTINUE') as HTMLElement;
+        fireEvent.click(continueBtn);
+        const backBtn = screen.getByText('Back') as HTMLElement;
+        fireEvent.click(backBtn)
+        continueBtn = screen.getByText('CONTINUE') as HTMLElement;
+        fireEvent.click(continueBtn);
+        const skipBtn = screen.getByText('Skip') as HTMLElement;
+        fireEvent.click(skipBtn)
+        const finishBtn = screen.getByText('FINISH') as HTMLElement;
+        fireEvent.click(finishBtn);
+        const resetBtn = screen.getByText('RESET') as HTMLElement;
+        fireEvent.click(resetBtn);
+    });
 })

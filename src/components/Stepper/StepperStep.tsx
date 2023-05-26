@@ -13,12 +13,27 @@ export interface StepperStepProps {
     isOptional: boolean,
     isAlternative: boolean,
     isError: boolean,
-    checkIsSKipped(step: number): boolean,
     customErrorSvg?: React.ReactNode,
     customFinishedSvg?: React.ReactNode,
+
+    checkIsSKipped(step: number): boolean,
 }
-const StepperStep:FC<StepperStepProps> = (props) => {
-    const {horizontalLabelClassName, iconContainerStyle, horizontalTitleStyle, label, index, activeStep, isOptional, isAlternative, isError, checkIsSKipped, customErrorSvg, customFinishedSvg} = props;
+
+const StepperStep: FC<StepperStepProps> = (props) => {
+    const {
+        horizontalLabelClassName,
+        iconContainerStyle,
+        horizontalTitleStyle,
+        label,
+        index,
+        activeStep,
+        isOptional,
+        isAlternative,
+        isError,
+        checkIsSKipped,
+        customErrorSvg,
+        customFinishedSvg
+    } = props;
     const {IconLabel} = useIconElement(isError, activeStep, index, customErrorSvg, customFinishedSvg);
 
     let horizontalLabelStyle = classNames('stepper-label-container', {
@@ -48,7 +63,8 @@ const StepperStep:FC<StepperStepProps> = (props) => {
 
             <div className={titleContainerClasses}>
                 <p>{label}</p>
-                {isOptional ? <p className='stepper-step-optional'>Optional {checkIsSKipped(index) ? '(skipped)' : null}</p> : null}
+                {isOptional ?
+                    <p className='stepper-step-optional'>Optional {checkIsSKipped(index) ? '(skipped)' : null}</p> : null}
             </div>
         </div>
     );

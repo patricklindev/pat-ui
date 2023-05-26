@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import './_Stepper.scss'
 import StepperStep from './StepperStep';
@@ -6,9 +6,9 @@ import StepperButtonGroup from './Stepper.ButtonGroup';
 import StepperStepVertical from './StepperStepVertical';
 import Button from '../Button';
 import {forceReRender} from '@storybook/react';
-import {classNames} from '../../utils/classNames';
 
-interface IStepperProps {
+
+interface className {
     horizontalContainerClassName?: string | undefined,
     verticalContainerClassName?: string | undefined,
     horizontalItemClassName?: string | undefined,
@@ -23,46 +23,40 @@ interface IStepperProps {
     resetButtonClassName?: string | undefined,
     skipButtonClassName?: string | undefined,
     continueButtonClassName?: string | undefined,
+}
 
+interface IStepperProps {
+
+    className?: className,
+    initActiveStep?: number,
     alternative?: boolean,
     verticalStepper?: boolean,
-    stepsArr:string[],
+    stepsArr: string[],
     detectError?(step: number): boolean,
-    detectOptional?(step: number) : boolean,
+    detectOptional?(step: number): boolean,
     customErrorSvg?: React.ReactNode,
     customFinishedSvg?: React.ReactNode,
     children?: React.ReactNode[],
+
 }
 
 
 export const Stepper: FC<IStepperProps> = ({
-                                               horizontalContainerClassName,
-                                               verticalContainerClassName,
-                                               horizontalItemClassName,
-                                               horizontalContentClassName,
-                                               verticalItemStyle,
-                                               iconContainerStyle,
-                                               verticalTitleStyle,
-                                               horizontalLabelClassName,
-                                               horizontalTitleStyle,
-                                               buttonGroupClassName,
-                                               backButtonClassName,
-                                               resetButtonClassName,
-                                               skipButtonClassName,
-                                               continueButtonClassName,
-                                               alternative=false,
-                                               verticalStepper=false,
+                                               className,
+                                               initActiveStep,
+                                               alternative = false,
+                                               verticalStepper = false,
                                                stepsArr,
                                                detectError,
                                                detectOptional,
                                                customErrorSvg,
                                                customFinishedSvg,
-                                               children}) => {
+                                               children
+                                           }) => {
 
     const [activeStep, setActiveStep] = useState<number>(0);
     const [skipped, setSkipped] = useState(new Set<number>());
     const [errorSteps, setErrorSteps] = useState(new Set<number>());
-
 
     const checkIsOptional = (step: number): boolean => {
         if (detectOptional) {
@@ -97,7 +91,15 @@ export const Stepper: FC<IStepperProps> = ({
     }
 
     const handleBackClick = () => {
+        if (checkIsSKipped(activeStep - 1)) {
+            setSkipped(prevState => {
+                const newSkipped = new Set(prevState.values())
+                newSkipped.delete(activeStep - 1);
+                return newSkipped;
+            })
+        }
         setActiveStep(prevState => prevState - 1);
+
     }
 
     const handleNextClick = (step: number) => {
@@ -116,11 +118,44 @@ export const Stepper: FC<IStepperProps> = ({
         setActiveStep(0);
     }
 
+    useEffect(() => {
+        if (initActiveStep || initActiveStep === 0) {
+            if (initActiveStep <= stepsArr.length - 1) {
+                setActiveStep(initActiveStep)
+            }
+        }
+    }, [initActiveStep])
 
-    let verticalStyle = classNames('stepper-container--vertical');
-    let horizontalStyle = classNames('stepper-container--horizontal');
-    let horizontalItemStyle = classNames('stepper-item-container--horizontal');
-    let horizontalContentStyle = classNames('stepper-content-container--horizontal');
+    let horizontalContainerClassName: string | undefined, verticalContainerClassName: string | undefined,
+        horizontalItemClassName: string | undefined, horizontalContentClassName: string | undefined,
+        verticalItemStyle: string | undefined, iconContainerStyle: string | undefined,
+        verticalTitleStyle: string | undefined, horizontalLabelClassName: string | undefined,
+        horizontalTitleStyle: string | undefined, buttonGroupClassName: string | undefined,
+        backButtonClassName: string | undefined, resetButtonClassName: string | undefined,
+        skipButtonClassName: string | undefined, continueButtonClassName: string | undefined;
+
+    if (className) {
+        horizontalContainerClassName = className.horizontalContainerClassName ? className.horizontalContainerClassName : undefined;
+        verticalContainerClassName = className.verticalContainerClassName ? className.verticalContainerClassName : undefined;
+        horizontalItemClassName = className.horizontalItemClassName ? className.horizontalItemClassName : undefined;
+        horizontalContentClassName = className.horizontalContentClassName ? className.horizontalContentClassName : undefined;
+        verticalItemStyle = className.verticalItemStyle ? className.verticalItemStyle : undefined;
+        iconContainerStyle = className.iconContainerStyle ? className.iconContainerStyle : undefined;
+        verticalTitleStyle = className.verticalTitleStyle ? className.verticalTitleStyle : undefined;
+        horizontalLabelClassName = className.horizontalLabelClassName ? className.horizontalLabelClassName : undefined;
+        horizontalTitleStyle = className.horizontalTitleStyle ? className.horizontalTitleStyle : undefined;
+        buttonGroupClassName = className.buttonGroupClassName ? className.buttonGroupClassName : undefined;
+        backButtonClassName = className.backButtonClassName ? className.backButtonClassName : undefined;
+        resetButtonClassName = className.resetButtonClassName ? className.resetButtonClassName : undefined;
+        skipButtonClassName = className.skipButtonClassName ? className.skipButtonClassName : undefined;
+        continueButtonClassName = className.continueButtonClassName ? className.continueButtonClassName : undefined;
+    }
+
+
+    let verticalStyle = 'stepper-container--vertical';
+    let horizontalStyle = 'stepper-container--horizontal';
+    let horizontalItemStyle = 'stepper-item-container--horizontal';
+    let horizontalContentStyle = 'stepper-content-container--horizontal';
 
     verticalStyle = verticalContainerClassName ? verticalStyle + ' ' + verticalContainerClassName : verticalStyle;
     horizontalStyle = horizontalContainerClassName ? horizontalStyle + ' ' + horizontalContainerClassName : horizontalStyle;
@@ -128,7 +163,7 @@ export const Stepper: FC<IStepperProps> = ({
     horizontalContentStyle = horizontalContentClassName ? horizontalContentStyle + ' ' + horizontalContentClassName : horizontalContentStyle;
 
     return verticalStepper ? (
-        <div className={verticalStyle}>
+        <div data-testid='vertical-stepper' className={verticalStyle}>
             {stepsArr.map((item, index) => {
                 const label = item;
                 const description = children? children[index] : null;
@@ -164,11 +199,10 @@ export const Stepper: FC<IStepperProps> = ({
                     <p>All steps completed - you're finished</p>
                     <Button onClick={handleResetClick}>RESET</Button>
                 </div>
-
             ) : null}
         </div>
     ) : (
-        <div className={horizontalStyle}>
+        <div data-testid='horizontal-stepper' className={horizontalStyle}>
             <div className={horizontalItemStyle}>
                 {stepsArr.map((item, index) => {
                     const label = item as string;

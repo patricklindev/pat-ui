@@ -3,6 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import Switch from './Switch';
 
 describe('Switch', () => {
+
   const renderSwitch = (props: any) => {
     return render(<Switch {...props} />);
   };
@@ -87,6 +88,19 @@ describe('Switch', () => {
   });
 
   it('should call the onChange function when clicked', () => {
+    const onChange = jest.fn();
+    const { container } = renderSwitch({ onChange });
+    fireEvent.click(container.firstChild as Element);
+    expect(onChange).toHaveBeenCalled();
+  });
+
+  it('Use can decide whether on or off the switch by providing props externally', () => {
+    const onChange = jest.fn();
+    const { container } = renderSwitch({ onChange, checked: true });
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('Users can provide some callback function as props, callback will be triggered whenever the state is changed', () => {
     const onChange = jest.fn();
     const { container } = renderSwitch({ onChange });
     fireEvent.click(container.firstChild as Element);

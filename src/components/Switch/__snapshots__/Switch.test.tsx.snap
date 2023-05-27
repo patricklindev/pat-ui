@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch Use can decide whether on or off the switch by providing props externally 1`] = `
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the checked props and disabled 1`] = `
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  disabled=""
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the default props 1`] = `
+<input
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the default props and checked 1`] = `
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the primary color 1`] = `
+<input
+  class="switch-input"
+  color="primary"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the primary color and checked 1`] = `
+<input
+  checked=""
+  class="switch-input"
+  color="primary"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the secondary color 1`] = `
+<input
+  class="switch-input"
+  color="secondary"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the small size 1`] = `
+<input
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the small size and checked 1`] = `
+<input
+  checked=""
+  class="switch-input"
+  color="default"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the small size and disabled and no label 1`] = `
+<input
+  class="switch-input"
+  color="default"
+  disabled=""
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the small size and primary color 1`] = `
+<input
+  class="switch-input"
+  color="primary"
+  id="switchId"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should render with the small size and secondary color 1`] = `
+<input
+  class="switch-input"
+  color="secondary"
+  id="switchId"
+  type="checkbox"
+/>
+`;

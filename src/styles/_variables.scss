@@ -293,3 +293,19 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+
+// Alert - alt
+// different alert background color
+$alt-primary-background: rgba(32, 201, 151, 0.2) !default;
+$alt-secondary-background: rgba(108, 117, 125, 0.2) !default;
+$alt-success-background: rgba(82, 196, 26, 0.2) !default;
+$alt-info-background: rgba(23, 162, 184, 0.2) !default;
+$alt-warning-background: rgba(250, 219, 20, 0.2) !default;
+$alt-error-background: rgba(220, 53, 69, 0.2) !default;
+
+// filled alert background color
+$alt-error-background-filled: #F44336 !default;
+$alt-info-background-filled: #2196F3 !default;
+$alt-success-background-filled: #4CAF50 !default;
+$alt-warning-background-filled: #FF9800 !default;

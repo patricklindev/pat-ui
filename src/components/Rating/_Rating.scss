@@ -1,0 +1,31 @@
+.rating__container {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.rating_star {
+  // height: 19px;
+  // width: 20px;
+  @include rating-size(20px, 19px);
+  transition: all 0.2s ease;
+}
+
+.rating_star-large {
+  // height: 30px;
+  // width: 30px;
+  @include rating-size(30px, 30px);
+}
+.rating_star-small {
+  // height: 15px;
+  // width: 15px;
+  @include rating-size(15px, 15px);
+}
+.rating_star.rating_star.rating_star-active {
+  cursor: pointer;
+}
+.rating_star.rating_star-active:hover {
+  transform: scale(1.2);
+}
+.rating_number {
+  width: 50px;
+}

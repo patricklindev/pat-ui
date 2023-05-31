@@ -12,7 +12,7 @@ export const DefaultRating = () => {
       Large
       <Rating value={3} size={'large'} />
       Default
-      <Rating value={3} size={'default'} />
+      <Rating value={3} />
       Small
       <Rating value={3} size={'small'} />
     </div>
@@ -37,7 +37,7 @@ export const RatingPrecision = () => {
       <p>
         set the precision of the rating component can rate a fraction of stars
       </p>
-      <Rating value={3.5} size={'large'} precision={0.5} />
+      <Rating value={3.5} size={'large'} precision={0.2} />
     </div>
   );
 };

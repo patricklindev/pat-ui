@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from 'react';
+import React, { FC, useState, useRef, ReactElement } from 'react';
 import { classNames } from '../../utils/classNames';
 export type RatingSize = 'small' | 'large' | 'default';
 export interface IRatingProps {
@@ -8,9 +8,9 @@ export interface IRatingProps {
   name?: string;
   /** Provide rating value */
   value: number;
-  /** Rating is read only */
+  /** Rating is can be interacted but can not be selected */
   readOnly?: boolean;
-  /** Rating can only be viewed  */
+  /** Rating can only be viewed and can not be modified and interacted */
   disabled?: boolean;
   /** Rating icon size: small|large|default */
   size?: RatingSize;
@@ -91,7 +91,7 @@ export const Rating: FC<patRatingProp> = (props) => {
     className,
     name,
     value,
-    precision = 1,
+    precision,
     readOnly,
     disabled,
     size,
@@ -109,7 +109,7 @@ export const Rating: FC<patRatingProp> = (props) => {
   if (className) {
     styleClasses += ' ' + className;
   }
-  const numberOfStars = max ? max : 5;
+  const numberOfStars = (max as number) > 0 ? max : 0;
   const [rating, setRating] = useState<number>(value ? Math.floor(value) : -1);
   const [lastStarFraction, setLastStarFraction] = useState<number>(
     value ? Math.round((value - Math.floor(value)) * 100) : 0
@@ -135,10 +135,13 @@ export const Rating: FC<patRatingProp> = (props) => {
         setLastStarFraction(100);
         currentTotalRating.current = id + 1;
       } else {
-        const starFraction = Math.floor(fraction / precision) * precision * 100;
+        const starFraction =
+          Math.floor(fraction / (precision as number)) *
+          (precision as number) *
+          100;
         const nextStarFraction = +(
-          Math.ceil(fraction / precision) *
-          precision *
+          Math.ceil(fraction / (precision as number)) *
+          (precision as number) *
           100
         ).toPrecision(2);
 
@@ -173,7 +176,8 @@ export const Rating: FC<patRatingProp> = (props) => {
         currentTotalRating.current = value + 1;
       } else {
         const fraction = getFraction(event);
-        const ceilFraction = Math.ceil(fraction / precision) * precision;
+        const ceilFraction =
+          Math.ceil(fraction / (precision as number)) * (precision as number);
         const starFraction = Math.floor(ceilFraction * 100);
 
         setRating(+event.currentTarget.id);
@@ -217,7 +221,7 @@ export const Rating: FC<patRatingProp> = (props) => {
         {lastStarFraction === 100 ? rating + 1 : rating}.
         {lastStarFraction === 100 ? 0 : lastStarFraction}
       </div> */}
-      {Array.from({ length: numberOfStars }).map((_, index) => {
+      {Array.from({ length: numberOfStars as number }).map((_, index) => {
         const starFraction =
           rating > index ? 100 : rating === index ? lastStarFraction : 0;
 

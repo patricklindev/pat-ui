@@ -14,6 +14,7 @@ describe('Rating', () => {
         .querySelector('linearGradient')
         ?.setAttribute('id', `star-${index + 1}`);
     });
+
     expect(container.firstChild).toMatchSnapshot();
   });
   it('should render default rating', () => {

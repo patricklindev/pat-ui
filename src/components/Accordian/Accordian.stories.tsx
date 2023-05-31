@@ -17,7 +17,9 @@ export default {
   },
 };
 
-export const BasicAccordion = () => (
+export const BasicAccordion = () => {
+
+  return (
     <div>
         <Accordion title="Accordion 1">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -33,11 +35,10 @@ export const BasicAccordion = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex, sit amet blandit leo lobortis eget.
         </Accordion>
-        
     </div>
 
-
-);
+  )
+  };
 
 export const ControlledAccordion = () => {
     const [expanded, setExpanded] = React.useState<string | false>(false);

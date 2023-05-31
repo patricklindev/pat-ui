@@ -2,26 +2,33 @@
   position: relative;
   display: block;
   cursor: pointer;
-  transition: 0.4s;
-  border: 1px solid #232222;
-  background-color: #232222;
-  padding: 20px;
-  color: #fff;
+  // transition: height 0.4s;
+  background-color: #ffffff;
+  padding: 10px;
+  color: #000000;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
 
-  // .accordion-header {
-  //   display: flex;
-  //   flex-direction: column;
-  //   // justify-content: flex-start;
-  //   // align-items: center;
-  // }
-
-  .accordion-title, .accordion-subTitle {
-    margin: 0;
-    padding: 0;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .accordion-title {
+    font-size: 18px;
+    font-weight: 600;
   }
+
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // padding: 0 10px; 
+  }
+
+
+
+  // .accordion-title, .accordion-subTitle {
+  //   margin: 0;
+  //   padding: 0;
+  //   // white-space: nowrap; 
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
 
   // .accordion-subTitle {
   //   margin-left: 10px;
@@ -30,16 +37,14 @@
   .content {
     max-height: 0;
     overflow: hidden;
-    background-color: #232222;
-    // transition: max-height 0.4s ease-out;
-    // padding: auto;
+    transition: max-height 0.6s ease-out;
   }
 
-  &.active {
-    .content {
-      max-height: 100vh; 
-    }
-  }
+  // &.active {
+  //   .content {
+  //     max-height: 100vh; 
+  //   }
+  // }
 
   &.disabled {
     cursor: not-allowed;

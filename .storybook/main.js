@@ -13,7 +13,7 @@ module.exports = {
             presets: [['react-app', {flow: false, typescript: true}]],
           },
         },
-        // already had have built in typescript -- 
+        // already had have built in typescript --
         // {
         //   loader: require.resolve('react-docgen-typescript-loader'),
         //   options: {

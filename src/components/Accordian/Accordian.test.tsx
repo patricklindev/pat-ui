@@ -12,6 +12,7 @@ describe('Accordion', () => {
   it('should render accordion with given title and content', () => {
     const accordionProps: AccordionProps = {
       title: 'Test Accordion',
+      children: <div>Some child component</div>
     };
     const wrapper = render(<Accordion {...accordionProps}>Test Content</Accordion>);
     const titleElement = wrapper.queryByText('Test Accordion') as HTMLElement;

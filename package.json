@@ -40,6 +40,7 @@
     "build-lib-local-test": "npm run build && cp ./package.localtest.json ./dist/package.json && rimraf ../pat-ui-local && cp -R ./dist ../pat-ui-local",
     "test:nowatch": "react-scripts test --watchAll=false",
     "test": "react-scripts test",
+    "test-coverage": "react-scripts test --coverage --coverageReporters=text --watchAll" ,
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public -o docs",
     "prepublishOnly": "npm run build",

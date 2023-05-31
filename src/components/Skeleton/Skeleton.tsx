@@ -11,7 +11,6 @@ export type SkeletonVariant = 'circular'
     | 'rectangular'
     | 'rounded'
     | 'text'
-    | string;
 
 export interface ISkeletonProps {
     /** The animation type. If false, the animation effect is disabled. */

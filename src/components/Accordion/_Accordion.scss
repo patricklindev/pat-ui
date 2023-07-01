@@ -1,0 +1,20 @@
+.accordion{
+    border: 1px solid gray;
+    width: 70%;
+}
+.accordion-title{
+    border: none;
+    background-color: aquamarine;
+    width: 100%;
+    button{
+        background-color: red;
+    }
+    
+}
+.title-summary{
+    display: flex;
+    direction: row;
+}
+.accordion-description{
+    margin-bottom: 0;
+}

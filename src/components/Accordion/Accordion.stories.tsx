@@ -33,7 +33,7 @@ export const ControlledAccordion = () => {
   };
   return (
     <div>
-      <h3>Simple Expansion Panel</h3>
+      <h3>Controlled Accordion</h3>
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={() => handleChange('panel1')}
@@ -65,7 +65,7 @@ export const AdditionalActions = () => {
   };
   return (
     <div>
-      <h3>Simple Expansion Panel</h3>
+      <h3>Additional Actions</h3>
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={() => handleChange('panel1')}

@@ -2,17 +2,20 @@
 .accordion{
     border: 1px solid gray;
     width: 100%;
-    max-width: 35rem;
+    max-width: 45rem;
     background-color: white;
     transition-duration: 0.5s;
 }
+input[type="checkbox"] {
+    margin-right: 0 
+}
 .accordion:first-of-type{
-    border-top-right-radius: 0.2rem;
-    border-top-left-radius: 0.2rem;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
 }
 .accordion:last-of-type{
-    border-bottom-left-radius: 0.2rem;
-    border-bottom-right-radius: 0.2rem;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
 }
 .isExpanded:first-of-type{
     margin-top: 0;
@@ -21,10 +24,17 @@
 .isExpanded{
     margin: 1rem 0rem;
 }
-
+.title-container{
+    @include accordion-item-style;
+    display: flex;
+    direction: row  ;
+}
+.title-checkbox{
+    width: 1rem;
+    margin-left: 1rem;
+}
 .title{
-    background-color: transparent;
-    border: none;
+    @include accordion-item-style;
     width: 100%;
     padding:  0 1rem;
 }
@@ -32,57 +42,51 @@
     outline: none;
 }
 .title-summary{
-    background-color: transparent;
+    @include accordion-item-style;
     display: flex;
     direction: row;
-    border: none;
+    align-items: center;
 }
 .accordion-description{
     margin-bottom: 0;
 }
 .title-information{
-    background-color: transparent;
-    border: none;
+    @include accordion-item-style;
     font-size: 0.75rem;
     margin:0.5rem  auto;
     text-align: left;
     width: 30%;
 }
+.title-checkbox{
+    margin-right: 1rem;
+}
 .title-additional{
-    background-color: transparent;
-    border: none;
+    @include accordion-item-style;
     text-align: left;
     font-size: 0.75rem;
     margin:0.5rem  auto;
     width: 60%;
 }
 .title-icon{
-    background-color: transparent;
-    border: none;
+    @include accordion-item-style;
     width: 1.2rem;
     margin-left: 1rem;
     margin-right: 3%;
 }
 .accordion-description {
-    border: none;
+    @include accordion-item-style;
     padding: 1rem;
     font-size: 0.75rem;
     overflow: hidden;
- 
     transition-duration: 0.5s;
-
 }
-
 .hidden {
-    margin: 0;
     padding: 0;
     padding-left: 1rem;
-    height: 0; /* 你可能需要根据实际情况调整这个值 */
+    height: 0; 
 }
-
 .isDisabled{
-    background-color: lightgray ;
-    
+    background-color: $gray-500 ;
 }
 
 

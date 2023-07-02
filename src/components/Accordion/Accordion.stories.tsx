@@ -68,6 +68,7 @@ export const ControlledAccordion = () => {
         expanded={expanded === 'panel4'}
         onChange={() => handleChange('panel4')}
         title='Personal data'
+        
       >
         Behind the window was a reflection that only instilled fear.
       </Accordion>
@@ -76,32 +77,23 @@ export const ControlledAccordion = () => {
 };
 
 export const AdditionalActions = () => {
-  const [expanded, setExpanded] = React.useState<string>('');
-
-  const handleChange = (panel: string) => {
-    expanded !== panel ? setExpanded(panel) : setExpanded('');
-    console.log(expanded);
-  };
   return (
     <div>
-      <h3>Additional Actions</h3>
-      <Accordion
-        expanded={expanded === 'panel1'}
-        onChange={() => handleChange('panel1')}
-      >
+      <h3>Simple Expansion Panel</h3>
+      <Accordion type='checkbox'>
+        More RVs were seen in the storage lot than at the campground..
+        More RVs were seen in the storage lot than at the campground..
         More RVs were seen in the storage lot than at the campground..
       </Accordion>
-      <Accordion
-        expanded={expanded === 'panel2'}
-        onChange={() => handleChange('panel2')}
-      >
+      <Accordion type='checkbox' >
+        More RVs were seen in the storage lot than at the campground..
         More RVs were seen in the storage lot than at the campground..
       </Accordion>
-      <Accordion
-        expanded={expanded === 'panel3'}
-        onChange={() => handleChange('panel3')}
-      >
+      <Accordion type='checkbox'  >
         Behind the window was a reflection that only instilled fear.
+        More RVs were seen in the storage lot than at the campground..
+        More RVs were seen in the storage lot than at the campground..
+        More RVs were seen in the storage lot than at the campground..
       </Accordion>
     </div>
   );

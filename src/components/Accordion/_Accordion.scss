@@ -1,6 +1,6 @@
 
 .accordion{
-    border: 1px solid gray;
+    border: $border-width solid $gray-500;
     width: 100%;
     max-width: 45rem;
     background-color: white;
@@ -19,70 +19,68 @@ input[type="checkbox"] {
 }
 .isExpanded:first-of-type{
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: $spacer;
 }
 .isExpanded{
-    margin: 1rem 0rem;
+    margin: $spacer 0;
 }
-.title-container{
+.accordion-title-container{
     @include accordion-item-style;
-    display: flex;
-    direction: row  ;
+    @include accordion-row-display;
 }
-.title-checkbox{
+.accordion-title-checkbox{
     width: 1rem;
-    margin-left: 1rem;
+    margin-left: $spacer;
 }
-.title{
+.accordion-title{
     @include accordion-item-style;
     width: 100%;
-    padding:  0 1rem;
+    padding:  0 $spacer;
 }
-.title:focus{
+.accordion-title:focus{
     outline: none;
 }
-.title-summary{
+.accordion-title-summary{
     @include accordion-item-style;
-    display: flex;
-    direction: row;
+    @include accordion-row-display;
     align-items: center;
 }
 .accordion-description{
     margin-bottom: 0;
 }
-.title-information{
+.accordion-title-information{
     @include accordion-item-style;
     font-size: 0.75rem;
     margin:0.5rem  auto;
     text-align: left;
     width: 30%;
 }
-.title-checkbox{
-    margin-right: 1rem;
+.accordion-title-checkbox{
+    margin-right: $spacer;
 }
-.title-additional{
+.accordion-title-additional{
     @include accordion-item-style;
     text-align: left;
     font-size: 0.75rem;
     margin:0.5rem  auto;
     width: 60%;
 }
-.title-icon{
+.accordion-title-icon{
     @include accordion-item-style;
     width: 1.2rem;
-    margin-left: 1rem;
+    margin-left: $spacer;
     margin-right: 3%;
 }
 .accordion-description {
     @include accordion-item-style;
-    padding: 1rem;
+    padding: $spacer;
     font-size: 0.75rem;
     overflow: hidden;
     transition-duration: 0.5s;
 }
 .hidden {
     padding: 0;
-    padding-left: 1rem;
+    padding-left: $spacer;
     height: 0; 
 }
 .isDisabled{

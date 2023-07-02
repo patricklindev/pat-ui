@@ -79,3 +79,7 @@
   background-color: transparent;
   border: none;
 }
+@mixin accordion-row-display{
+  display: flex;
+  direction: row;
+}

@@ -28,8 +28,13 @@
   }
 }
 
-
-@mixin message-style($msg-background-color, $msg-border-radius, $msg-border, $msg-padding, $msg-box-width) {
+@mixin message-style(
+  $msg-background-color,
+  $msg-border-radius,
+  $msg-border,
+  $msg-padding,
+  $msg-box-width
+) {
   background-color: $msg-background-color;
   border-radius: $msg-border-radius;
   border: $msg-border;
@@ -73,4 +78,35 @@
   border-width: $border-width;
   border-radius: $border-radius;
   border-color: $border-color;
+}
+
+// functions for checkbox
+@mixin checkbox-size($width, $height, $size) {
+  width: $width;
+  height: $height;
+  font-size: 0.75 * $size;
+}
+
+@mixin checkbox-style(
+  $bgColor,
+  $hover-background-color: lighten($bgColor, 7.5%),
+  $hover-halo-color: lighten($bgColor, 45%)
+) {
+  & > input[type='checkbox']:checked + span::before {
+    background-color: $bgColor;
+  }
+  &.checkbox-indeterminate > span::before {
+    content: '-';
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $bgColor;
+  }
+  &:hover {
+    & > span::before {
+      -moz-outline-radius: 50%;
+      outline: 8px solid $hover-halo-color;
+    }
+  }
 }

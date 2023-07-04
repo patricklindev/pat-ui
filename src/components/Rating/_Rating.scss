@@ -1,0 +1,88 @@
+@mixin visually-hidden {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin center-flex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pui-rating {
+  @include center-flex();
+  width: min-content;
+  position: relative;
+  cursor: pointer;
+
+  &--focused {
+    outline: 1px solid grey;
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 50%;
+  }
+
+  // align with 8-pt grid system
+  $sizes: (
+    "small": 16px,
+    "medium": 24px,
+    "large": 32px
+  );
+
+  @each $size-name, $size-value in $sizes {
+    &--size-#{$size-name} label, svg {
+      width: $size-value;
+      height: $size-value;
+    }
+
+    &__item {
+      height: $size-value;
+    }
+  }
+
+  &__item {
+    position: relative;
+ 
+    &--visually-hidden {
+      @include visually-hidden();
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &--hover {
+      transform: scale(1.25);
+    }
+
+    &--focused {
+      outline: 1px solid grey;
+    }
+
+  }
+  
+  &__radio-button {
+    @include visually-hidden();
+  }
+
+  &__icon {
+    @include center-flex();
+    cursor: pointer;
+  }
+
+  &__border-icon {
+    @include center-flex();
+    cursor: pointer;
+  }
+
+  &__label-text {
+    @include visually-hidden();
+  }
+}

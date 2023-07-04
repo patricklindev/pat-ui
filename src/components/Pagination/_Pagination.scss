@@ -1,0 +1,132 @@
+.ui-pagination{
+  display:flex;
+  flex-direction:row;
+
+}
+.pagi-btn {
+  border-radius: 20px;
+  border:none;
+  width: $pagi-large-btn-size;
+  height: $pagi-large-btn-size;
+  margin:4px;
+}
+.pagi-btn:focus, .pagi-btn:hover{
+  color: black;
+  border:none;
+  background-color: $pagi-standard-color;
+}
+.pagi-btn-current {
+  background-color: $pagi-standard-color;
+}
+.pagi-omit{
+  display:flex;
+  flex-direction:column-reverse;
+
+  width: $pagi-large-btn-size;
+  height: $pagi-large-btn-size;
+  text-align: center;
+
+}
+.pagi-icon{
+  width: $pagi-large-icon-size;
+  height: $pagi-large-icon-size;
+}
+.pagi-btn:disabled{
+  color:$pagi-disabled-font-color;
+  background-color:$pagi-disabled-bg-color;
+}
+
+.pagi-large{
+  .pagi-btn{
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+  }
+  .pagi-icon{
+    width: 22px;
+    height: 22px;
+  }
+}
+.pagi-medium{
+  .pagi-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+    }
+  
+    .pagi-icon {
+      width: 20px;
+      height: 20px;
+    }
+}
+.pagi-small{
+  .pagi-btn {
+      width: 26px;
+      height: 26px;
+      font-size: 14px;
+    }
+  
+    .pagi-icon {
+      width: 18px;
+      height: 18px;
+    }
+}
+
+.pagi-primary{
+  .pagi-btn-current,.pagi-btn:focus,.pagi-btn:hover{
+    background-color: $pagi-primary-color;
+    color:white;
+  }
+}
+.pagi-secondary{
+  .pagi-btn-current,.pagi-btn:focus, .pagi-btn:hover{
+      background-color: $pagi-secondary-color;
+      color: white;
+    }
+}
+.pagi-standard{
+  .pagi-btn-current {
+      background-color: $pagi-standard-color;
+    }
+}
+
+.pagi-outlined{
+  .pagi-btn{
+    border: 1px solid var(--docs-grey, #E0E0E0);
+  }
+}
+.pagi-text{
+  .pagi-btn{
+    background-color: var(--docs-light-grey, #EEE);
+  }
+}
+
+.pagi-rounded{
+  .pagi-btn{
+    border-radius: 4px;
+  }
+}
+.pagi-circular{
+  .pagi-btn{
+    border-radius:40px;
+  }
+}
+
+.pagi-outlined.pagi-primary{
+  .pagi-btn-current,.pagi-btn:focus, .pagi-btn:hover{
+    background-color: $pagi-outlined-primary-btn-color;
+    border: 1px solid $pagi-outlined-primary-border-color;
+    color:$pagi-outlined-primary-border-color;
+  }
+}
+
+.pagi-outlined.pagi-secondary {
+
+  .pagi-btn-current,
+  .pagi-btn:focus,
+  .pagi-btn:hover {
+    background-color: $pagi-outlined-secondary-btn-color;
+    border: 1px solid $pagi-outlined-secondary-border-color;
+    color: $pagi-outlined-secondary-border-color;
+  }
+}

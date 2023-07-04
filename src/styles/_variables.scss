@@ -293,3 +293,21 @@ $pg-circular-sm-text-size: 12px;
 $pg-circular-md-text-size: 16px;
 $pg-circular-lg-text-size: 20px;
 $pg-circular-xl-text-size: 30px;
+
+// different pagination color
+$pagi-large-btn-size:40px;
+$pagi-medium-btn-size: 32px;
+$pagi-small-btn-size: 26px;
+$pagi-large-icon-size: 22px;
+$pagi-medium-icon-size: 20px;
+$pagi-small-icon-size: 18px;
+$pagi-btn-font-size:15px;
+$pagi-primary-color: rgba(63, 81, 181, 1);
+$pagi-secondary-color: rgba(245, 0, 87, 1);
+$pagi-standard-color: rgba(0, 0, 0, 0.08);
+$pagi-disabled-font-color:var(--palette-action-disabled, rgba(0, 0, 0, 0.26));
+$pagi-disabled-bg-color:var(--palette-action-selected, rgba(0, 0, 0, 0.08));
+$pagi-outlined-primary-border-color:rgba(63, 81, 181, 0.5);
+$pagi-outlined-secondary-border-color: rgba(245, 0, 87, 0.5);
+$pagi-outlined-primary-btn-color: rgba(63, 81, 181, 0.08);
+$pagi-outlined-secondary-btn-color: rgba(245, 0, 87, 0.08);

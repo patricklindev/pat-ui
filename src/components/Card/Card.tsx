@@ -59,39 +59,42 @@ export const Card: FC<patCardProps> = (props) => {
     [`card-${cardTheme}`]: true,
     [`card-${cardSize}`]: !!cardSize,
   });
+
   if (className) {
     styleClasses += ' ' + className;
   }
 
+  console.log(className);
+  console.log(styleClasses);
   let Card =
     buttonTitle === undefined ? (
-      <div className={styleClasses} data-testid='card-element'>
+      <div className={styleClasses} data-testid="card-element">
         <div
           className={styleClasses + ' image'}
-          data-testid='card-image-element'
+          data-testid="card-image-element"
         >
-          <img src={props.cardImgSrc} data-testid='image-element' />
+          <img src={props.cardImgSrc} data-testid="image-element" />
         </div>
-        <div className={styleClasses + ' body'} data-testid='card-body-element'>
+        <div className={styleClasses + ' body'} data-testid="card-body-element">
           <h5>{props.cardTitle}</h5>
           <p>{props.cardParagraph}</p>
         </div>
       </div>
     ) : (
-      <div className={styleClasses} data-testid='card-element'>
+      <div className={styleClasses} data-testid="card-element">
         <div
           className={styleClasses + ' image'}
-          data-testid='card-image-element'
+          data-testid="card-image-element"
         >
-          <img src={props.cardImgSrc} data-testid='image-element' />
+          <img src={props.cardImgSrc} data-testid="image-element" />
         </div>
-        <div className={styleClasses + ' body'} data-testid='card-body-element'>
+        <div className={styleClasses + ' body'} data-testid="card-body-element">
           <h5>{props.cardTitle}</h5>
           <p>{props.cardParagraph}</p>
           <Button
-            btnType='primary'
+            btnType="primary"
             onClick={props.btnOnClick}
-            data-testid='button-element'
+            data-testid="button-element"
           >
             {props.buttonTitle}
           </Button>

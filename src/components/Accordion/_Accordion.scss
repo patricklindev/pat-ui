@@ -1,0 +1,94 @@
+
+.accordion{
+    border: $border-width solid $gray-500;
+    width: 100%;
+    max-width: 45rem;
+    background-color: white;
+    transition-duration: 0.5s;
+}
+input[type="checkbox"] {
+    margin-right: 0 
+}
+.accordion:first-of-type{
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+}
+.accordion:last-of-type{
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}
+.isExpanded:first-of-type{
+    margin-top: 0;
+    margin-bottom: $spacer;
+}
+.isExpanded{
+    margin: $spacer 0;
+}
+.accordion-title-container{
+    @include accordion-item-style;
+    @include accordion-row-display;
+}
+.accordion-title-checkbox{
+    width: 1rem;
+    margin-left: $spacer;
+}
+.accordion-title{
+    @include accordion-item-style;
+    width: 100%;
+    padding:  0 $spacer;
+}
+.accordion-title:focus{
+    outline: none;
+}
+.accordion-title-summary{
+    @include accordion-item-style;
+    @include accordion-row-display;
+    align-items: center;
+}
+.accordion-description{
+    margin-bottom: 0;
+}
+.accordion-title-information{
+    @include accordion-item-style;
+    font-size: 0.75rem;
+    margin:0.5rem  auto;
+    text-align: left;
+    width: 30%;
+}
+.accordion-title-checkbox{
+    margin-right: $spacer;
+}
+.accordion-title-additional{
+    @include accordion-item-style;
+    text-align: left;
+    font-size: 0.75rem;
+    margin:0.5rem  auto;
+    width: 60%;
+}
+.accordion-title-icon{
+    @include accordion-item-style;
+    width: 1.2rem;
+    margin-left: $spacer;
+    margin-right: 3%;
+}
+.accordion-description {
+    @include accordion-item-style;
+    padding: $spacer;
+    font-size: 0.75rem;
+    overflow: hidden;
+    transition-duration: 0.5s;
+}
+.hidden {
+    padding: 0;
+    padding-left: $spacer;
+    height: 0; 
+    visibility: hidden;
+    opacity: 0;
+}
+.isDisabled{
+    background-color: $gray-500 ;
+}
+
+
+
+

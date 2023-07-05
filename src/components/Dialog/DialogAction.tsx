@@ -4,7 +4,7 @@ export interface IDialogActionProps {
   className?: string;
   showCancelBtn?: boolean;
   showSubmitBtn?: boolean;
-  cancleBtnTitle?: string;
+  cancelBtnTitle?: string;
   submitBtnTitle?: string;
   children?: ReactNode;
   onCancel?: (val?: any) => void;
@@ -18,6 +18,8 @@ const DialogAction: FC<IDialogActionProps> = (props) => {
     onSubmit,
     showCancelBtn,
     showSubmitBtn,
+    cancelBtnTitle,
+    submitBtnTitle,
     children,
     ...rest
   } = props;
@@ -49,7 +51,7 @@ const DialogAction: FC<IDialogActionProps> = (props) => {
   if (showCancelBtn) {
     cancelBtn = (
       <button className={styleClasses + ' btn'} onClick={onCancel}>
-        cancle
+        {cancelBtnTitle}
       </button>
     );
   } else {
@@ -61,7 +63,7 @@ const DialogAction: FC<IDialogActionProps> = (props) => {
   if (showSubmitBtn) {
     submitBtn = (
       <button className={styleClasses + ' btn'} onClick={onSubmit}>
-        submit
+        {submitBtnTitle}
       </button>
     );
   } else {
@@ -85,6 +87,8 @@ const DialogAction: FC<IDialogActionProps> = (props) => {
 DialogAction.defaultProps = {
   showCancelBtn: true,
   showSubmitBtn: true,
+  cancelBtnTitle: 'cancel',
+  submitBtnTitle: 'submit'
 };
 
 export default DialogAction;

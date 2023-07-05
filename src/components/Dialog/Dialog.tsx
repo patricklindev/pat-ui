@@ -15,8 +15,6 @@ export type DialogSize = 'sm'| 'md' | 'lg';
 export interface IDialogProps {
   // set Class name
   className?: string;
-  // set Dialog Type;
-  // dialogType?: DialogType;
 
   dialogTheme?: DialogTheme;
 

@@ -11,7 +11,7 @@ const DialogTitle: FC<IDialogTitleProps> = (props) => {
   return (
     <div className={className + ' dialog-title'}>
       {!!children ? (
-        { children }
+        children
       ) : (
           <h2> {title} </h2>
       )}

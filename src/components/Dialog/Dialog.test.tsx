@@ -95,15 +95,4 @@ describe('Dialog', () => {
     );
   });
 
-//   it('Should be close the dialog by click', () => {
-//     const dialogProps: IDialogProps = {
-//       onClose: jest.fn(),
-//     };
-
-//     const wrapper = render(<Dialog {...dialogProps}></Dialog>);
-//     const testElement = wrapper.getByTestId('dialog-backdrop-element');
-//     fireEvent.click(testElement);
-
-//     expect(dialogProps.onClose).toBeCalledTimes(1);
-//   });
 });

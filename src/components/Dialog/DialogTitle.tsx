@@ -18,7 +18,7 @@ const DialogTitle: FC<IDialogTitleProps> = (props) => {
       {!!children ? (
         children
       ) : (
-          <h2> {title} </h2>
+          <p>  {title} </p>
       )}
     </div>
   );

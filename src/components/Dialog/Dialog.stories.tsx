@@ -89,8 +89,8 @@ export const DiffSizeDialog = () => (
       dialogSize="sm"
       triggerTitle="Show small dialog"
     >
-      <Dialog.Title title="Small dialog title"></Dialog.Title>
-      <Dialog.Content contentMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Dolor sit amet consectetur adipiscing elit ut aliquam. "></Dialog.Content>
+      <Dialog.Title title="Small dialog"></Dialog.Title>
+      <Dialog.Content contentMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit, "></Dialog.Content>
       <Dialog.Action
         showCancelBtn={false}
         showSubmitBtn={false}

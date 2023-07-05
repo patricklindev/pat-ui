@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Dialog from './index';
 import Input from '../Input';
+import DialogContent from './DialogContent';
 export default {
   title: 'Dialog',
   component: Dialog,
@@ -15,17 +16,22 @@ const emails = ['username@gmail.com', 'user02@gmail.com'];
 export const DefaultDialog = () => (
   <Dialog triggerTitle="show Dialog" onClose={action('dialog closed')}>
     <Dialog.Title title="simple dialog"></Dialog.Title>
-    {/* <Dialog.Content contentMessage="this is the content message"></Dialog.Content> */}
-    <ul>
-      {emails.map((email) => (
-        <li>{email}</li>
-      ))}
-    </ul>
+    <DialogContent>
+      <ul>
+        {emails.map((email) => (
+          <li>{email}</li>
+        ))}
+      </ul>
+    </DialogContent>
   </Dialog>
 );
 
 export const AlertDialog = () => (
-  <Dialog triggerTitle="show alert dialog" dialogSize='md' onClose={action('alert Dialog closed')}>
+  <Dialog
+    triggerTitle="show alert dialog"
+    dialogSize="md"
+    onClose={action('alert Dialog closed')}
+  >
     <Dialog.Title>Use Google's location service?</Dialog.Title>
     <Dialog.Content contentMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Dolor sit amet consectetur adipiscing elit ut aliquam.">
       Let Google help apps determine location. This means sending anonymous
@@ -39,7 +45,11 @@ export const AlertDialog = () => (
 );
 
 export const FormDialog = () => (
-  <Dialog triggerTitle="show alert dialog" dialogSize='lg' onClose={action('form dialog closed')}>
+  <Dialog
+    triggerTitle="show alert dialog"
+    dialogSize="lg"
+    onClose={action('form dialog closed')}
+  >
     <Dialog.Title>{'Subscribe'}</Dialog.Title>
     <Dialog.Content>
       <p>
@@ -64,7 +74,7 @@ export const DialogTheme = () => (
     </Dialog>
     <br />
     <br />
-    <Dialog dialogTheme="light" dialogSize='md' triggerTitle="show light them">
+    <Dialog dialogTheme="light" dialogSize="md" triggerTitle="show light theme">
       <Dialog.Title title="Dialog light Theme"></Dialog.Title>
       <Dialog.Content contentMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Dolor sit amet consectetur adipiscing elit ut aliquam."></Dialog.Content>
       <Dialog.Action></Dialog.Action>

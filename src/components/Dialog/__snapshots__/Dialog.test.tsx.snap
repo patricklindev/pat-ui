@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <button>
+      show dialog
+    </button>
+    <dialog
+      class="dialog"
+    >
+      <div
+        class="dialog-backdrop"
+      >
+        <div
+          class="dialog dialog-light dialog-md dialog-body"
+          data-testid="dialog-body-element"
+        >
+          <div
+            class=" dialog-title"
+          >
+            <h2>
+                
+            </h2>
+          </div>
+          <div
+            class="dialog-content"
+          >
+            <p
+              class="dialog-content dialog-content-text"
+            />
+          </div>
+          <div
+            class="dialog-action"
+          >
+            <button
+              class="dialog-action btn"
+            >
+              cancel
+            </button>
+            <button
+              class="dialog-action btn"
+            >
+              submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</DocumentFragment>
+`;

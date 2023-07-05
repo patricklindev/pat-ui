@@ -1,5 +1,6 @@
 .dialog {
   padding-top: 0;
+  border-style: none;
 }
 .dialog-backdrop {
   position: fixed;
@@ -96,15 +97,17 @@
 
   .dialog-content {
     color: $white;
+    .dialog-content-text {
+      color: $white;
+    }
   }
 
   .dialog-action {
     color: $white;
     .btn {
-      color: $gray-300
+      color: $gray-300;
     }
   }
-
 }
 
 .dialog-light {

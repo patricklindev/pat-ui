@@ -8,8 +8,13 @@ export interface IDialogTitleProps {
 const DialogTitle: FC<IDialogTitleProps> = (props) => {
   const { className, title, children, ...rest } = props;
 
+  let styleClasses = '';
+
+  if (className) {
+    styleClasses += ' ' + className;
+  }
   return (
-    <div className={className + ' dialog-title'}>
+    <div className={styleClasses + ' dialog-title'}>
       {!!children ? (
         children
       ) : (

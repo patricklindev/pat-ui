@@ -96,7 +96,7 @@ const Dialog: FC<IDialogProps> = (props) => {
           className='dialog-backdrop'
           onClick={(event) => closeDialogByBackdrop(event)}
         >
-          <div className={styleClasses + ' dialog-body'}>{children}</div>
+          <div className={styleClasses + ' dialog-body'} data-testid='dialog-body-element'>{children}</div>
         </div>
       </dialog>
     </div>

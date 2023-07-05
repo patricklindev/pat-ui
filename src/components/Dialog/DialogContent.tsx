@@ -20,7 +20,7 @@ const DialogContent: FC<IDialogContentProps> = (props) => {
       {!!children ? (
         children
       ) : (
-          <p className={styleClasses + 'dialog-content-text'}>{contentMessage}</p>
+          <p className={styleClasses + ' dialog-content-text'}>{contentMessage}</p>
       )}
     </div>
   );

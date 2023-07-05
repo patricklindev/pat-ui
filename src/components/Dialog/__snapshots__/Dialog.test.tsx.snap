@@ -11,6 +11,7 @@ exports[`Dialog should match snapshot 1`] = `
     >
       <div
         class="dialog-backdrop"
+        data-testid="dialog-backdrop-element"
       >
         <div
           class="dialog dialog-light dialog-md dialog-body"

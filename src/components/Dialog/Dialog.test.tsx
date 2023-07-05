@@ -47,18 +47,18 @@ describe('Dialog', () => {
 
   it('should render dialog with three children', () => {
     const dialogProps: IDialogProps = {
-        isOpen: true,
-        onClose: jest.fn(),
-        dialogSize: 'md',
-        dialogTheme: 'dark',
-    }
+      isOpen: true,
+      onClose: jest.fn(),
+      dialogSize: 'md',
+      dialogTheme: 'dark',
+    };
     const wrapper = render(
-      <Dialog isOpen={true}>
+      <Dialog {...dialogProps}>
         <Dialog.Title></Dialog.Title>
         <Dialog.Content></Dialog.Content>
         <Dialog.Action></Dialog.Action>
       </Dialog>
-    )
+    );
     const element = wrapper.getByTestId('dialog-body-element');
     expect(element).toHaveClass('dialog-body');
     expect(element.firstChild).toHaveClass('dialog-title');
@@ -84,11 +84,26 @@ describe('Dialog', () => {
     const dialogElement = wrapper.queryByText('trigger title test');
     const titleElemment = wrapper.queryByText('title test');
     const contentElement = wrapper.queryByText('content test');
-    const btnElement = wrapper.queryByAltText('test cancel btn');
+    const btnElement = wrapper.queryByText('test cancel btn');
     expect(dialogElement).toBeInTheDocument();
+    expect(titleElemment).toBeInTheDocument();
+    expect(contentElement).toBeInTheDocument();
+    expect(btnElement).toBeInTheDocument();
     const Element = screen.getByTestId('dialog-body-element');
     expect(Element).toHaveClass(
       'dialog dialog-dark dialog-lg test dialog-body'
     );
   });
+
+//   it('Should be close the dialog by click', () => {
+//     const dialogProps: IDialogProps = {
+//       onClose: jest.fn(),
+//     };
+
+//     const wrapper = render(<Dialog {...dialogProps}></Dialog>);
+//     const testElement = wrapper.getByTestId('dialog-backdrop-element');
+//     fireEvent.click(testElement);
+
+//     expect(dialogProps.onClose).toBeCalledTimes(1);
+//   });
 });

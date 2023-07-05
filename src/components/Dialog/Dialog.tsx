@@ -9,23 +9,22 @@ import React, {
 import { classNames } from '../../utils/classNames';
 
 // export type DialogType = 'simple' | 'alert' | 'form';
-export type DialogTheme = 'dark' | 'light'; 
-export type DialogSize = 'sm'| 'md' | 'lg';
+export type DialogTheme = 'dark' | 'light';
+export type DialogSize = 'sm' | 'md' | 'lg';
 
 export interface IDialogProps {
   // set Class name
   className?: string;
-
+  //set dialog theme to dark or light. default is light
   dialogTheme?: DialogTheme;
-
+  //set dailog size between small, medium and large
   dialogSize?: DialogSize;
   // show or hide dialog
   isOpen?: boolean;
-
+  //passing children nodes
   children?: ReactNode;
   // set trigger button title
   triggerTitle?: string;
-
   // set onClose method
   onClose?: (val?: any) => void;
 }
@@ -91,12 +90,18 @@ const Dialog: FC<IDialogProps> = (props) => {
       <button onClick={toggleDialog}>
         {!!triggerTitle ? triggerTitle : 'Show Dialog'}
       </button>
-      <dialog className='dialog' open={isDialogOpen}>
+      <dialog className="dialog" open={isDialogOpen}>
         <div
-          className='dialog-backdrop'
+          className="dialog-backdrop"
           onClick={(event) => closeDialogByBackdrop(event)}
+          data-testid="dialog-backdrop-element"
         >
-          <div className={styleClasses + ' dialog-body'} data-testid='dialog-body-element'>{children}</div>
+          <div
+            className={styleClasses + ' dialog-body'}
+            data-testid="dialog-body-element"
+          >
+            {children}
+          </div>
         </div>
       </dialog>
     </div>

@@ -1,44 +1,45 @@
 import React, {
   FC,
-  ReactNode,
   useEffect,
   useState,
   useRef,
   MouseEvent,
+  ReactNode,
 } from 'react';
 import { classNames } from '../../utils/classNames';
 
-export type DialogType = 'simple' | 'alert' | 'form';
-// export type message = Message;
+// export type DialogType = 'simple' | 'alert' | 'form';
+export type DialogTheme = 'dark' | 'light'; 
+export type DialogSize = 'sm'| 'md' | 'lg';
 
 export interface IDialogProps {
   // set Class name
   className?: string;
   // set Dialog Type;
-  dialogType?: DialogType;
+  // dialogType?: DialogType;
+
+  dialogTheme?: DialogTheme;
+
+  dialogSize?: DialogSize;
   // show or hide dialog
   isOpen?: boolean;
-  // set dialog title
-  dialogTitle?: ReactNode;
-  dialogMessage?: ReactNode;
-  dialogInput?: ReactNode;
-  // set dialog content
-  dialogContent?: ReactNode;
-  //set dialog
-  dialogAction?: ReactNode;
+
+  children?: ReactNode;
+  // set trigger button title
+  triggerTitle?: string;
+
+  // set onClose method
   onClose?: (val?: any) => void;
 }
 
 const Dialog: FC<IDialogProps> = (props) => {
   const {
     className,
-    dialogType,
+    dialogSize,
+    dialogTheme,
     isOpen,
-    dialogTitle,
-    dialogInput,
-    dialogMessage,
-    dialogContent,
-    dialogAction,
+    children,
+    triggerTitle,
     onClose,
     ...rest
   } = props;
@@ -48,7 +49,8 @@ const Dialog: FC<IDialogProps> = (props) => {
   const isPriviousDialogOpen = useRef(isDialogOpen);
 
   let styleClasses = classNames('dialog', {
-    [`dialog-${dialogType}`]: true,
+    [`dialog-${dialogTheme}`]: true,
+    [`dialog-${dialogSize}`]: !!dialogSize,
   });
 
   if (className) {
@@ -62,9 +64,11 @@ const Dialog: FC<IDialogProps> = (props) => {
   };
 
   //if mouse clicked the dialog overlay, close dialog.
-  const closeDialog = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+  const closeDialogByBackdrop = (
+    e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
+  ) => {
     if (e.target instanceof Element) {
-      if (e.target.classList.contains('dialog-overlay')) {
+      if (e.target.classList.contains('dialog-backdrop')) {
         setDialogOpen(false);
       }
     }
@@ -84,46 +88,28 @@ const Dialog: FC<IDialogProps> = (props) => {
     isPriviousDialogOpen.current = isDialogOpen;
   }, [isDialogOpen]);
 
-  // let dialog = (
-  //   <div className={styleClasses}>
-  //     <div>{dialogTitle}</div>
-  //     <div>{dialogMessage}</div>
-  //     <div>this is a simple dialog</div>
-  //   </div>
-  // );
-
-  // const dialog = () => {
-  //   switch (dialogType) {
-  //     case 'simple':
-  //       return <>{simpleDialog}</>;
-
-  //     default:
-  //       return <>{simpleDialog}</>;
-  //   }
-  // };
-
-  const simpleDialog = (
-    <div className="dialog-overlay" onClick={(event) => closeDialog(event)}>
-      <div className="dialog-body">
-        <div>{dialogTitle}</div>
-        <div>{dialogMessage}</div>
-        <div>this is a simple dialog</div>
-      </div>
-    </div>
-  );
-
   return (
     <div>
-      <button onClick={() => toggleDialog()}> Show Dialog</button>
-      <dialog open={isDialogOpen}>{simpleDialog}</dialog>
+      <button onClick={toggleDialog}>
+        {!!triggerTitle ? triggerTitle : 'Show Dialog'}
+      </button>
+      <dialog className='dialog' open={isDialogOpen}>
+        <div
+          className='dialog-backdrop'
+          onClick={(event) => closeDialogByBackdrop(event)}
+        >
+          <div className={styleClasses + ' dialog-body'}>{children}</div>
+        </div>
+      </dialog>
     </div>
   );
 };
 
 Dialog.defaultProps = {
   isOpen: false,
-  className: 'dialog',
-  dialogType: 'simple',
+  dialogSize: 'md',
+  dialogTheme: 'light',
+  triggerTitle: 'show dialog',
 };
 
 export default Dialog;

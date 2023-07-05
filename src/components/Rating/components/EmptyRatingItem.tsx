@@ -1,6 +1,7 @@
 import React, { Dispatch, useEffect, useState } from "react";
 
 export interface EmptyRatingItemProps {
+  name: string;
   hoverRating: number | null;
   disabled: boolean;
   rating: number | null;
@@ -11,6 +12,7 @@ export interface EmptyRatingItemProps {
 
 export default function EmptyRatingItem(props: EmptyRatingItemProps) {
   const {
+    name,
     hoverRating,
     disabled,
     rating,
@@ -47,7 +49,7 @@ export default function EmptyRatingItem(props: EmptyRatingItemProps) {
       <label>
         <input
           disabled={disabled}
-          name="pui-rating"
+          name={name}
           type="radio"
           value="null"
           checked={rating === null}

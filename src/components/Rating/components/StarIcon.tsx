@@ -12,6 +12,7 @@ export default function StarIcon({ color = "currentColor" }: StarIconProps) {
         focusable="false"
         aria-hidden="true"
         viewBox="0 0 24 24"
+        data-testid='star-icon'
       >
         <path
           d="

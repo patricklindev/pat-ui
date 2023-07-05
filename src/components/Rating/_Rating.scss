@@ -19,12 +19,18 @@
   width: min-content;
   position: relative;
   cursor: pointer;
+  
+  &, * {
+    box-sizing: border-box;
+    margin: 0;
+  }
 
   &--focused {
     outline: 1px solid grey;
   }
 
   &--disabled {
+    cursor: not-allowed;
     pointer-events: none;
     opacity: 50%;
   }
@@ -37,14 +43,16 @@
   );
 
   @each $size-name, $size-value in $sizes {
-    &--size-#{$size-name} label, svg {
-      width: $size-value;
-      height: $size-value;
-    }
+    &--size-#{$size-name} {
+      label, svg {
+        width: $size-value;
+        height: $size-value;
+      }
 
-    &__item {
-      height: $size-value;
-    }
+      .pui-rating__item {
+        height: $size-value;
+      }
+    } 
   }
 
   &__item {
@@ -59,7 +67,8 @@
     }
 
     &--hover {
-      transform: scale(1.25);
+      transform: scale(1.15);
+      transition: all 0.15s;
     }
 
     &--focused {

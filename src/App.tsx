@@ -20,9 +20,10 @@ const App = () => {
   return (
     <>
       <Rating
+        name='rating'
         max={10}
         precision={0.25}
-        size="large"
+        size="medium" 
         value={starValue}
         onChange={handleChange}
         disabled={disable}

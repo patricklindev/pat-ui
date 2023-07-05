@@ -3,6 +3,7 @@ import RatingItem from "./components/RatingItem";
 import EmptyRatingItem from "./components/EmptyRatingItem";
 
 export interface RatingProps {
+  name: string;
   defaultValue?: number | null;
   value?: number | null;
   onChange?: (value: number | null) => void;
@@ -16,6 +17,7 @@ export interface RatingProps {
 
 export default function Rating(props: RatingProps) {
   const {
+    name, // name has to be unique for each rating
     defaultValue = null,
     value,
     onChange,
@@ -76,8 +78,10 @@ export default function Rating(props: RatingProps) {
       onMouseMove={handleMouseMove}
       className={classNames.join(" ")}
       ref={containerRef}
+      role='radiogroup'
     >
       <EmptyRatingItem
+        name={name}
         hoverRating={hoverRating}
         disabled={disabled}
         rating={rating}
@@ -87,6 +91,7 @@ export default function Rating(props: RatingProps) {
       />
       {new Array(max).fill(null).map((_, index) => (
         <RatingItem
+          name={name}
           key={index + 1}
           disabled={disabled}
           hoverRating={hoverRating}

@@ -14,6 +14,7 @@ function StarBorderIcon({
         focusable="false"
         aria-hidden="true"
         viewBox="0 0 24 24"
+        data-testid='starborder-icon'
       >
         <path
           d="

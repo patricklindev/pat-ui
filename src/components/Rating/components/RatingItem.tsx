@@ -3,6 +3,7 @@ import StarIcon from "./StarIcon";
 import StarBorderIcon from "./StarBorderIcon";
 
 export interface RatingItemProps {
+  name: string;
   disabled: boolean;
   hoverRating: number | null;
   rating: number | null;
@@ -16,6 +17,7 @@ export interface RatingItemProps {
 // Control the radio button inside this rating item
 export default function RatingItem(props: RatingItemProps) {
   const {
+    name,
     disabled,
     hoverRating,
     rating,
@@ -101,7 +103,7 @@ export default function RatingItem(props: RatingItemProps) {
             <input
               disabled={disabled}
               className="pui-rating__radio-button"
-              name="pui-rating"
+              name={name}
               type="radio"
               value={value}
               checked={rating === value}

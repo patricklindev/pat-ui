@@ -1,0 +1,296 @@
+/* Variables For Switch */
+
+//Switch
+$sw-transition-time: 0.3s;
+$sw-thumb-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12),
+  0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+
+//Switch Label
+$sw-font-weight-normal: $font-weight-normal;
+$sw-font-family: $font-family-base !default;
+$sw-font-size: $font-size-base !default;
+$sw-line-height: $line-height-base !default;
+
+//Switch track
+$sw-track-width: 34px;
+$sw-track-height: 14px;
+$sw-track-padding: 12px;
+$sw-track-width-small: 26px;
+$sw-track-height-small: 10px;
+$sw-track-padding-small: 7px;
+$sw-track-color-default-off: rgba(0, 0, 0, 0.3799999952316284);
+$sw-track-color-default-on: rgba(0, 0, 0, 0.5);
+$sw-track-color-disabled: rgba(0, 0, 0, 0.12);
+$sw-track-color-primary-off: rgba(0, 0, 0, 0.3799999952316284);
+$sw-track-color-primary-on: rgba(63, 81, 181, 0.5);
+$sw-track-color-secondary-off: rgba(0, 0, 0, 0.3799999952316284);
+$sw-track-color-secondary-on: rgba(245, 0, 87, 0.5);
+
+//Switch Thumb
+$sw-thumb-diameter: 20px;
+$sw-thumb-diameter-small: 16px;
+$sw-thumb-color-default-off: #fafafa;
+$sw-thumb-color-default-on: #fafafa;
+$sw-thumb-color-disabled: #bdbdbd;
+$sw-thumb-color-primary-off: #fafafa;
+$sw-thumb-color-primary-on: #3f51b5;
+$sw-thumb-color-secondary-off: #fafafa;
+$sw-thumb-color-secondary-on: #f50057;
+
+@mixin switch-style(
+  $track-width,
+  $track-height,
+  $track-padding,
+  $thumb-diameter,
+  $transition-time,
+  $thumb-shadow,
+  $track-color-off,
+  $track-color-on,
+  $thumb-color-off,
+  $thumb-color-on
+) {
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  /* The Label - Text besides the Switch*/
+  .switch__text {
+    font-size: $sw-font-size;
+    font-family: $sw-font-family;
+    font-style: normal;
+    font-weight: $sw-font-weight-normal;
+    line-height: $sw-line-height;
+    margin: 0;
+    cursor: inherit;
+  }
+
+  /* The switch - the wrapper around the slider */
+  .switch {
+    width: $track-width;
+    height: $track-height;
+    padding: $track-padding;
+    position: relative;
+    display: inline-block;
+    box-sizing: content-box;
+    margin: 0;
+
+    /* Hide default HTML checkbox */
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The Track of the switch */
+    .switch__slider {
+      position: absolute;
+      top: $track-padding;
+      left: $track-padding;
+      right: $track-padding;
+      bottom: $track-padding;
+      background-color: $track-color-off;
+      border-radius: $track-height/2;
+    }
+
+    /* Thumb of the Switch  */
+    .switch__slider:before {
+      position: absolute;
+      content: '';
+      height: $thumb-diameter;
+      width: $thumb-diameter;
+      left: $track-width/2 - $thumb-diameter;
+      bottom: ($track-height - $thumb-diameter)/2;
+      background-color: $thumb-color-on;
+      transition: $transition-time;
+      border-radius: $thumb-diameter/2;
+
+      /* shadow-1 */
+      box-shadow: $thumb-shadow;
+    }
+
+    input:checked + .switch__slider {
+      background-color: $track-color-on;
+    }
+
+    input:checked + .switch__slider::before {
+      transform: translateX($thumb-diameter);
+      background-color: $thumb-color-on;
+    }
+  }
+
+  .switch:hover .switch__slider::before {
+    box-shadow: $thumb-shadow,
+      0px 0px 0px ($track-height/2 + $track-padding - $thumb-diameter/2)
+        color-mix(in srgb, currentColor 8%, transparent);
+  }
+
+  // .switch:hover {
+  //   .switch__slider::before {
+  //     box-shadow: $thumb-shadow,
+  //       0px 0px 0px ($track-height/2 + $track-padding - $thumb-diameter/2)
+  //         color-mix(in srgb, currentColor 8%, transparent);
+  //   }
+  // }
+
+}
+
+/** Syle Just for changing color */
+@mixin switch-style-color(
+  $track-color-off,
+  $track-color-on,
+  $thumb-color-off,
+  $thumb-color-on
+) {
+  /* The switch - the wrapper around the slider */
+  .switch {
+    /* The Track of the switch */
+    .switch__slider {
+      background-color: $track-color-off;
+    }
+
+    /* Thumb of the Switch  */
+    .switch__slider:before {
+      background-color: $thumb-color-off;
+    }
+
+    input:checked + .switch__slider {
+      background-color: $track-color-on;
+    }
+
+    input:checked + .switch__slider::before {
+      background-color: $thumb-color-on;
+    }
+  }
+}
+
+/** Style for changing size and thumb shadow*/
+@mixin switch-style-size(
+  $track-width,
+  $track-height,
+  $track-padding,
+  $thumb-diameter,
+  $thumb-shadow
+) {
+  /* The switch - the wrapper around the slider */
+  .switch {
+    width: $track-width;
+    height: $track-height;
+    padding: $track-padding;
+
+    /* The Track of the switch */
+    .switch__slider {
+      top: $track-padding;
+      left: $track-padding;
+      right: $track-padding;
+      bottom: $track-padding;
+      border-radius: $track-height/2;
+    }
+
+    /* Thumb of the Switch  */
+    .switch__slider::before {
+      height: $thumb-diameter;
+      width: $thumb-diameter;
+      left: $track-width/2 - $thumb-diameter;
+      bottom: ($track-height - $thumb-diameter)/2;
+      border-radius: $thumb-diameter/2;
+
+      /* shadow-1 */
+      box-shadow: $thumb-shadow;
+    }
+
+    input:checked + .switch__slider::before {
+      transform: translateX($thumb-diameter);
+    }
+
+  }
+
+  :hover .switch__slider::before {
+    box-shadow: $thumb-shadow,
+      0px 0px 0px ($track-height/2 + $track-padding - $thumb-diameter/2)
+        color-mix(in srgb, currentColor 8%, transparent);
+  }
+  
+}
+
+/** Default style */
+.switch-wrapper {
+  @include switch-style(
+    $sw-track-width,
+    $sw-track-height,
+    $sw-track-padding,
+    $sw-thumb-diameter,
+    $sw-transition-time,
+    $sw-thumb-shadow,
+    $sw-track-color-default-off,
+    $sw-track-color-default-on,
+    $sw-thumb-color-default-off,
+    $sw-thumb-color-default-on
+  );
+}
+
+// Diff Switch Type
+.switch-primary {
+  @include switch-style-color(
+    $sw-track-color-primary-off,
+    $sw-track-color-primary-on,
+    $sw-thumb-color-primary-off,
+    $sw-thumb-color-primary-on
+  );
+}
+
+.switch-secondary {
+  @include switch-style-color(
+    $sw-track-color-secondary-off,
+    $sw-track-color-secondary-on,
+    $sw-thumb-color-secondary-off,
+    $sw-thumb-color-secondary-on
+  );
+}
+
+// Diff Switch Size
+.switch-small {
+  @include switch-style-size(
+    $sw-track-width-small,
+    $sw-track-height-small,
+    $sw-track-padding-small,
+    $sw-thumb-diameter-small,
+    $sw-thumb-shadow
+  )
+}
+
+// If disabled
+.disabled {
+  @include switch-style-color(
+    $sw-track-color-disabled,
+    $sw-track-color-disabled,
+    $sw-thumb-color-disabled,
+    $sw-thumb-color-disabled
+  );
+
+  // Cancel Hover shadow
+  :hover .switch__slider::before {
+    box-shadow: $sw-thumb-shadow;
+  }
+
+  cursor: not-allowed;
+}
+
+// If color customed
+.switch-color-custum {
+  .switch {
+    /* Thumb of the Switch  */
+    .switch__slider:before {
+      opacity: 100%;
+      background-color: inherit;
+    }
+
+    input:checked + .switch__slider::before {
+      opacity: 100%;
+      background-color: inherit;
+    }
+  }
+}

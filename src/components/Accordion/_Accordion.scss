@@ -82,6 +82,8 @@ input[type="checkbox"] {
     padding: 0;
     padding-left: $spacer;
     height: 0; 
+    visibility: hidden;
+    opacity: 0;
 }
 .isDisabled{
     background-color: $gray-500 ;

@@ -55,7 +55,10 @@ export const Accordion: FC<patAccordionProps> = (props) => {
   let accordion;
   if (props.onChange === undefined) {
     accordion = (
-      <div className={styleClasses + ' ' + isExpanded}>
+      <div
+        className={styleClasses + ' ' + isExpanded}
+        data-testid="accordion-element"
+      >
         <div className={styleClasses + ' accordion-title-container'}>
           {type === 'checkbox' && (
             <input
@@ -64,7 +67,7 @@ export const Accordion: FC<patAccordionProps> = (props) => {
             />
           )}
           <button
-            className={accordion + ' accordion-title'}
+            className={styleClasses + ' accordion-title'}
             onClick={handleDefaultClick}
             disabled={disabled}
           >
@@ -97,7 +100,10 @@ export const Accordion: FC<patAccordionProps> = (props) => {
     );
   } else {
     accordion = (
-      <div className={styleClasses + ' ' + isControlExpanded}>
+      <div
+        className={styleClasses + ' ' + isControlExpanded}
+        data-testid="accordion-element"
+      >
         <div className={styleClasses + ' accordion-title-container'}>
           {type === 'checkbox' && (
             <input
@@ -106,7 +112,7 @@ export const Accordion: FC<patAccordionProps> = (props) => {
             />
           )}
           <button
-            className={accordion + ' accordion-title'}
+            className={styleClasses + ' accordion-title'}
             onClick={onChange}
             disabled={disabled}
           >
